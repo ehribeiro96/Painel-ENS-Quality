@@ -1,0 +1,63 @@
+mod:
+  preferred_ptbr: "mod"
+  allowed_synonyms: ["modificação"]
+  avoid: []
+  context: "Modding"
+  keep_english: true
+  notes: "Preservar termo da comunidade."
+manifest:
+  preferred_ptbr: "manifest"
+  allowed_synonyms: []
+  avoid: []
+  context: "Modding"
+  keep_english: true
+  notes: "Arquivo de descrição técnica."
+asset:
+  preferred_ptbr: "asset"
+  allowed_synonyms: ["ativo"]
+  avoid: []
+  context: "Modding"
+  keep_english: true
+  notes: "Pode permanecer em inglês."
+load order:
+  preferred_ptbr: "load order"
+  allowed_synonyms: ["ordem de carregamento"]
+  avoid: []
+  context: "Modding"
+  keep_english: true
+  notes: "Termo técnico comum."
+plugin:
+  preferred_ptbr: "plugin"
+  allowed_synonyms: ["complemento"]
+  avoid: []
+  context: "Modding"
+  keep_english: true
+  notes: "Preservar se for nome oficial."
+patch:
+  preferred_ptbr: "patch"
+  allowed_synonyms: ["correção"]
+  avoid: []
+  context: "Modding"
+  keep_english: true
+  notes: "Termo técnico."
+compatibilidade:
+  preferred_ptbr: "compatibilidade"
+  allowed_synonyms: []
+  avoid: []
+  context: "Modding"
+  keep_english: true
+  notes: "Termo padrão."
+versão:
+  preferred_ptbr: "versão"
+  allowed_synonyms: []
+  avoid: []
+  context: "Modding"
+  keep_english: true
+  notes: "Termo padrão."
+empacotamento:
+  preferred_ptbr: "empacotamento"
+  allowed_synonyms: ["packaging"]
+  avoid: []
+  context: "Modding"
+  keep_english: true
+  notes: "Usar em contexto técnico."

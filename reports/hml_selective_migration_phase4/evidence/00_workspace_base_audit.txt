@@ -1,0 +1,20 @@
+== Workspace ==
+/home/estevaoqualityadm/projects/Painel-ENS-Quality
+RJM22137
+estevaoqualityadm
+uid=1000(estevaoqualityadm) gid=1000(estevaoqualityadm) groups=1000(estevaoqualityadm),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),1001(docker)
+2026-06-08T10:36:57-03:00
+
+== Paths ==
+PHASE1_DOCS=/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/hermesops
+PHASE2_TOOLS=/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline
+PHASE3_CLI=/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hmlops_cli
+HMLOPS_WRAPPER=/home/estevaoqualityadm/projects/Painel-ENS-Quality/scripts/hmlops
+IMPORT_CURRENT=/home/estevaoqualityadm/projects/Painel-ENS-Quality/imports/HermesOps-Final-Transfer/current
+
+== Existence ==
+OK PHASE1_DOCS
+OK PHASE2_TOOLS
+OK PHASE3_CLI
+OK HMLOPS_WRAPPER
+OK IMPORT_CURRENT

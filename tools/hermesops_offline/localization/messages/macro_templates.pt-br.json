@@ -1,0 +1,5 @@
+{
+  "itil_incident": "Olá, {usuario}. Seu chamado foi registrado como incidente. Próximo passo: {proximo_passo}.",
+  "kcs_resolution": "Sintoma: {sintoma}. Causa: {causa}. Solução: {solucao}. Validação: {validacao}.",
+  "rollback_notice": "Foi necessário acionar rollback para preservar a estabilidade. Evidência: {evidencia}."
+}

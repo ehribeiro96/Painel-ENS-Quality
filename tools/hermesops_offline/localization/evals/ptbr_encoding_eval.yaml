@@ -1,0 +1,7 @@
+name: ptbr_encoding
+encoding: UTF-8
+checks:
+  - md_utf8
+  - json_utf8
+  - yaml_utf8
+  - ps1_utf8

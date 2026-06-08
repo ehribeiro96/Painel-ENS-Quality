@@ -1,0 +1,33 @@
+{
+  "blocked_commands": [
+    "shell",
+    "exec",
+    "network",
+    "docker-up",
+    "docker-down",
+    "composio-exec",
+    "desktop-launch",
+    "global-install",
+    "path-traversal"
+  ],
+  "blocked_paths": [
+    "backend/",
+    "frontend/",
+    "tools/composio_plugin/",
+    "tools/desktop_cli/",
+    "tools/rag/",
+    "imports/HermesOps-Final-Transfer/current/hermes-agent-hermesops/apps/desktop/electron/"
+  ],
+  "blocked_behaviors": [
+    "arbitrary shell execution",
+    "network access",
+    "runtime startup",
+    "filesystem traversal outside project root",
+    "modification of backend or frontend HML trees"
+  ],
+  "review_only_tools": [
+    "tools/hermesops_offline/auditors/localization/ptbr_localization_audit.py",
+    "tools/hermesops_offline/validators/coderos/powershell_static_checker.py",
+    "tools/hermesops_offline/validators/coderos/stack_detector.py"
+  ]
+}

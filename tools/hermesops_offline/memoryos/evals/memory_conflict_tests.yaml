@@ -1,0 +1,5 @@
+tests:
+  - id: conflict_same_title_different_fact
+    description: same title with different evidence must create conflict
+  - id: conflict_superseded
+    description: superseded memories remain linked, not overwritten

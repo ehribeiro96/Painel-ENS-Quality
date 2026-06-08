@@ -1,0 +1,7 @@
+{
+  "valid_directory": "Diretório validado com sucesso.",
+  "hash_divergent": "Hash divergente detectado.",
+  "package_validated": "Pacote validado com sucesso.",
+  "composio_registry_ok": "Registry de plugins validado com sucesso.",
+  "composio_policy_ok": "Política do Composio validada com sucesso."
+}

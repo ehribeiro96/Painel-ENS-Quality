@@ -1,0 +1,57 @@
+{
+  "memory_id": "office-native-fidelity-policy-v1",
+  "memory_type": "semantic",
+  "title": "Office native formats are required when document fidelity matters",
+  "summary": "CSV is acceptable only for simple tabular interchange. XLSX, DOCX, PPTX and PDF must be preferred when preserving formulas, formatting, layout, tables, validation, metadata or visual fidelity matters.",
+  "source_type": "internal_decision",
+  "source_path": "reports/enterprise_office_skills/OFFICE_FILE_FIDELITY_POLICY.md",
+  "captured_at": "2026-06-07T18:57:09Z",
+  "domain": "office_skills",
+  "environment": "generic",
+  "sensitivity": "internal",
+  "risk_level": "medium",
+  "confidence": "verified",
+  "status": "approved",
+  "facts": [
+    "CSV does not preserve Office document fidelity.",
+    "Native Office formats should be preferred for fidelity-sensitive work.",
+    "M365/Graph and Office Scripts are HML-gated integrations."
+  ],
+  "inferences": [
+    "HermesOps must not convert fidelity-sensitive Excel workbooks to CSV as a default workflow."
+  ],
+  "decisions": [
+    "CSV is allowed only for simple staging/debug/interchange.",
+    "XLSX/DOCX/PPTX/PDF are preferred for corporate document fidelity.",
+    "Office Desktop automation is fallback-only and must be interactive/approved."
+  ],
+  "procedures": [],
+  "commands": [],
+  "validation": [
+    "Documentation updated.",
+    "Tools skeleton compiled.",
+    "Secret scan clean."
+  ],
+  "rollback": [
+    "Revert this memory item and related documentation if corporate policy changes."
+  ],
+  "tags": [
+    "office",
+    "excel",
+    "m365",
+    "fidelity",
+    "csv",
+    "xlsx",
+    "docx",
+    "pptx",
+    "pdf"
+  ],
+  "related_memory_ids": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "external_model_allowed": false,
+  "human_review_required": true,
+  "retention_policy": "long",
+  "checksum": "",
+  "version": 1
+}

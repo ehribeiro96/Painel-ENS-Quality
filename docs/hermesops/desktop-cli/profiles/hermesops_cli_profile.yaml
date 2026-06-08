@@ -1,0 +1,33 @@
+profile_name: hermesops_cli
+environment: test
+backend: wsl_ubuntu
+project_root: /home/ribeiro/Build_Mod/HermesOps
+hermes_home: /home/ribeiro/.hermes
+default_mode: safe
+allow_external_models: false
+allow_docker: false
+allow_desktop_copy: false
+allow_pendrive_copy: false
+require_pwd_validation: true
+language: pt-BR
+locale: pt_BR.UTF-8
+encoding: UTF-8
+preserve_technical_terms: true
+fallback_language: en-US
+forbidden_paths:
+  - /mnt/c/Windows/System32
+  - /mnt/c/Windows
+  - /home/ribeiro/.hermes/secrets
+  - /home/ribeiro/.hermes/tokens
+log_dir: /home/ribeiro/Build_Mod/HermesOps/reports/desktop_cli/runtime_logs
+plugins:
+  composio:
+    visible_in_cli: true
+    status: disabled
+    mode: dry-run
+    hml_required: true
+    external_actions: blocked
+    logs_enabled: true
+    log_review_enabled: true
+    change_proposals_enabled: true
+    auto_apply_log_changes: false

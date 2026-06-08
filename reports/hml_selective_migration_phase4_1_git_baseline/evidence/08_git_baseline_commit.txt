@@ -1,0 +1,12 @@
+== HEAD ==
+baseline commit created locally
+
+== Status ==
+baseline commit created locally
+
+== Log ==
+0f8c184 baseline: initialize HML selective migration state
+
+== Tags ==
+hml-selective-migration-baseline-20260608-104316
+hml-selective-migration-baseline-20260608-104413

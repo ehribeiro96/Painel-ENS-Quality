@@ -1,0 +1,18 @@
+== Workspace ==
+/home/estevaoqualityadm/projects/Painel-ENS-Quality
+RJM22137
+estevaoqualityadm
+uid=1000(estevaoqualityadm) gid=1000(estevaoqualityadm) groups=1000(estevaoqualityadm),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),1001(docker)
+2026-06-08T10:43:14-03:00
+
+== Git pre-check ==
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+
+== Required paths ==
+OK PHASE1_DOCS
+OK PHASE2_TOOLS
+OK PHASE3_CLI
+OK HMLOPS_WRAPPER
+OK IMPORT_CURRENT

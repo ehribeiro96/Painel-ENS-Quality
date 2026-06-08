@@ -1,0 +1,52 @@
+== Cached diff stat ==
+ .../00_PRE_GIT_AUDIT.md                            |   23 +
+ .../01_PRE_GIT_BACKUP_REPORT.md                    |   18 +
+ .../02_PRE_GIT_SECURITY_SCAN.md                    |   16 +
+ .../03_GITIGNORE_APPLIED.md                        |   17 +
+ .../04_GIT_INIT_REPORT.md                          |   14 +
+ .../05_GIT_BASELINE_STAGING_REPORT.md              |   29 +
+ .../06_PRE_COMMIT_STAGE_AUDIT.md                   |   10 +
+ .../07_GIT_BASELINE_COMMIT_REPORT.md               |   14 +
+ .../08_HMLOPS_POST_COMMIT_VALIDATION.md            |   16 +
+ .../09_PHASE41_GIT_BASELINE_EXECUTION_REPORT.md    |   73 +
+ .../10_GO_NO_GO_PHASE41.md                         |   20 +
+ .../11_ROLLBACK_PHASE41.md                         |   15 +
+ .../evidence/00_pre_git_audit.txt                  |   18 +
+ .../evidence/01_pre_git_backup_manifest.txt        |  883 +++++++++++
+ .../evidence/02_pre_git_forbidden_scan.txt         |    0
+ .../evidence/02_pre_git_forbidden_scan_status.txt  |    1 +
+ .../evidence/03_pre_git_secret_scan.txt            |    7 +
+ .../evidence/04_git_after_init.txt                 |   39 +
+ .../evidence/05_git_cached_baseline.txt            | 1652 ++++++++++++++++++++
+ .../evidence/06_cached_forbidden_scan.txt          |    0
+ .../evidence/07_cached_secret_scan.txt             |    3 +
+ .../evidence/08_git_baseline_commit.txt            |  107 ++
+ .../evidence/09_hmlops_post_commit_validation.rc   |    1 +
+ .../evidence/09_hmlops_post_commit_validation.txt  |  159 ++
+ 24 files changed, 3135 insertions(+)
+
+== Cached files ==
+reports/hml_selective_migration_phase4_1_git_baseline/00_PRE_GIT_AUDIT.md
+reports/hml_selective_migration_phase4_1_git_baseline/01_PRE_GIT_BACKUP_REPORT.md
+reports/hml_selective_migration_phase4_1_git_baseline/02_PRE_GIT_SECURITY_SCAN.md
+reports/hml_selective_migration_phase4_1_git_baseline/03_GITIGNORE_APPLIED.md
+reports/hml_selective_migration_phase4_1_git_baseline/04_GIT_INIT_REPORT.md
+reports/hml_selective_migration_phase4_1_git_baseline/05_GIT_BASELINE_STAGING_REPORT.md
+reports/hml_selective_migration_phase4_1_git_baseline/06_PRE_COMMIT_STAGE_AUDIT.md
+reports/hml_selective_migration_phase4_1_git_baseline/07_GIT_BASELINE_COMMIT_REPORT.md
+reports/hml_selective_migration_phase4_1_git_baseline/08_HMLOPS_POST_COMMIT_VALIDATION.md
+reports/hml_selective_migration_phase4_1_git_baseline/09_PHASE41_GIT_BASELINE_EXECUTION_REPORT.md
+reports/hml_selective_migration_phase4_1_git_baseline/10_GO_NO_GO_PHASE41.md
+reports/hml_selective_migration_phase4_1_git_baseline/11_ROLLBACK_PHASE41.md
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/00_pre_git_audit.txt
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/01_pre_git_backup_manifest.txt
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/02_pre_git_forbidden_scan.txt
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/02_pre_git_forbidden_scan_status.txt
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/03_pre_git_secret_scan.txt
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/04_git_after_init.txt
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/05_git_cached_baseline.txt
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/06_cached_forbidden_scan.txt
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/07_cached_secret_scan.txt
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/08_git_baseline_commit.txt
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/09_hmlops_post_commit_validation.rc
+reports/hml_selective_migration_phase4_1_git_baseline/evidence/09_hmlops_post_commit_validation.txt

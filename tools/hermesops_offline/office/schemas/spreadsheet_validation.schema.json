@@ -1,0 +1,49 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "title": "spreadsheet_validation",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "validation_id": {
+      "type": "string"
+    },
+    "file_name": {
+      "type": "string"
+    },
+    "row_count": {
+      "type": "integer"
+    },
+    "column_count": {
+      "type": "integer"
+    },
+    "missing_values": {
+      "type": "integer"
+    },
+    "duplicate_rows": {
+      "type": "integer"
+    },
+    "invalid_values": {
+      "type": "integer"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "validation_id",
+    "file_name",
+    "row_count",
+    "column_count",
+    "missing_values",
+    "duplicate_rows",
+    "invalid_values",
+    "findings",
+    "status"
+  ]
+}

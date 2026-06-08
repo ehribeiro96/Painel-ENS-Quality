@@ -1,0 +1,3 @@
+Backup path: /home/estevaoqualityadm/projects/Painel-ENS-Quality/_backup/selective_migration_phase1_20260608-094550
+
+Files backed up:

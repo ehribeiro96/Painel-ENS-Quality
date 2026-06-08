@@ -1,0 +1,77 @@
+GPO:
+  preferred_ptbr: "GPO"
+  allowed_synonyms: ["política de grupo"]
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "Preservar sigla."
+domínio:
+  preferred_ptbr: "domínio"
+  allowed_synonyms: []
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "Active Directory e afins."
+WinRM:
+  preferred_ptbr: "WinRM"
+  allowed_synonyms: []
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "Não traduzir."
+RDP:
+  preferred_ptbr: "RDP"
+  allowed_synonyms: []
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "Não traduzir."
+WSUS:
+  preferred_ptbr: "WSUS"
+  allowed_synonyms: []
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "Não traduzir."
+hostname:
+  preferred_ptbr: "hostname"
+  allowed_synonyms: ["nome do host"]
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "Usar conforme contexto."
+firewall:
+  preferred_ptbr: "firewall"
+  allowed_synonyms: ["barramento"]
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "Termo técnico preservado."
+certificado:
+  preferred_ptbr: "certificado"
+  allowed_synonyms: []
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "TLS, assinatura e similares."
+autenticação:
+  preferred_ptbr: "autenticação"
+  allowed_synonyms: []
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "Termo padrão."
+permissão:
+  preferred_ptbr: "permissão"
+  allowed_synonyms: []
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "ACL e acesso."
+credencial:
+  preferred_ptbr: "credencial"
+  allowed_synonyms: []
+  avoid: []
+  context: "Infra"
+  keep_english: true
+  notes: "Nunca abrir valores sensíveis."

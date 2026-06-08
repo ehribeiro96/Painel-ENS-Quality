@@ -1,0 +1,8 @@
+permissions:
+  github:
+    list_issues: read_only
+    create_issue: write_requires_approval
+    delete_repo: destructive_blocked
+  gmail:
+    draft_email: draft_only
+    send_email: write_requires_approval

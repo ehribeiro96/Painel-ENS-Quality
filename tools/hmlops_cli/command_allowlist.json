@@ -1,0 +1,34 @@
+{
+  "name": "hmlops",
+  "commands": [
+    "status",
+    "inventory",
+    "docs-status",
+    "offline-list",
+    "offline-validate",
+    "offline-dry-run",
+    "schemas-validate",
+    "python-validate",
+    "security-scan",
+    "phase2-summary",
+    "migration status",
+    "reports list"
+  ],
+  "offline_dry_run_tools": [
+    "validators/coderos/validation_runner.py",
+    "validators/office/office_safety_validator.py",
+    "validators/ingest/sanitize_document.py",
+    "auditors/localization/ptbr_prompt_audit.py",
+    "auditors/coderos/code_review_checker.py",
+    "validators/memory/memory_conflict_check.py"
+  ],
+  "scope": "local-filesystem-only",
+  "notes": [
+    "No network.",
+    "No shell passthrough.",
+    "No Docker.",
+    "No Composio runtime.",
+    "No Desktop runtime.",
+    "No external file required."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "title": "service_desk_base_schema",
+  "type": "object",
+  "properties": {
+    "ticket_id": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "string"
+    },
+    "opened_at": {
+      "type": "string"
+    },
+    "resolved_at": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "ticket_id",
+    "category",
+    "priority",
+    "opened_at",
+    "status"
+  ],
+  "additionalProperties": false
+}

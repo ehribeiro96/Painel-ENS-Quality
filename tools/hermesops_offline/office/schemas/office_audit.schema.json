@@ -1,0 +1,36 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "title": "office_audit",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "audit_id": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "audit_id",
+    "scope",
+    "findings",
+    "risks",
+    "status"
+  ]
+}

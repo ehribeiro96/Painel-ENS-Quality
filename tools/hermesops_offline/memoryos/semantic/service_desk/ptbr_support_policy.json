@@ -1,0 +1,55 @@
+{
+  "memory_id": "ptbr-support-policy-v1",
+  "memory_type": "semantic",
+  "title": "pt-BR is the default operational language for HermesOps",
+  "summary": "HermesOps should use Brazilian Portuguese for human-facing explanations, reports, KCS, macros and operational guidance while preserving technical syntax, commands, paths, function names and original error messages.",
+  "source_type": "internal_decision",
+  "source_path": "localization/PT_BR_LOCALIZATION_POLICY.md",
+  "captured_at": "2026-06-07T20:57:10Z",
+  "domain": "localization",
+  "environment": "generic",
+  "sensitivity": "internal",
+  "risk_level": "low",
+  "confidence": "verified",
+  "status": "approved",
+  "facts": [
+    "pt-BR is the preferred operational language.",
+    "Technical syntax must not be translated.",
+    "Original error messages must be preserved and explained in Portuguese."
+  ],
+  "inferences": [
+    "CLI messages, prompts, KCS and macros should have pt-BR variants."
+  ],
+  "decisions": [
+    "Add pt-BR glossaries.",
+    "Validate UTF-8.",
+    "Use pt-BR prompts.",
+    "Preserve fallback to technical English."
+  ],
+  "procedures": [],
+  "commands": [],
+  "validation": [
+    "JSON message catalogs validated.",
+    "Python localization tools compiled.",
+    "Secret scan clean."
+  ],
+  "rollback": [
+    "Revert localization files and memory item if policy changes."
+  ],
+  "tags": [
+    "pt-BR",
+    "localization",
+    "utf-8",
+    "cli",
+    "kcs",
+    "macros"
+  ],
+  "related_memory_ids": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "external_model_allowed": false,
+  "human_review_required": true,
+  "retention_policy": "long",
+  "checksum": "",
+  "version": 1
+}

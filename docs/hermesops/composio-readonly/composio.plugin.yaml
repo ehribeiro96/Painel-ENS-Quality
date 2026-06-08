@@ -1,0 +1,63 @@
+id: composio
+name: Composio
+status: configured
+mode: dry-run
+environment: test
+language: pt-BR
+connection_methods:
+  - mcp
+  - api
+mcp:
+  enabled: false
+  endpoint_placeholder: https://connect.composio.dev/mcp
+api:
+  enabled: false
+  configured: true
+  sdk_python: candidate
+  sdk_typescript: candidate
+credentials:
+  source: local_secret_file
+  secret_file: ~/.config/hermesops/secrets/composio.env
+  env_var: COMPOSIO_API_KEY
+  env_file_allowed: false
+  env_example_allowed: true
+  git_storage_allowed: false
+  memory_storage_allowed: false
+  log_storage_allowed: false
+permissions:
+  model: allowlist
+  require_human_approval: true
+  external_actions_default: blocked
+toolkits:
+  default_allowlist:
+    - github
+    - gitlab
+    - gmail
+    - google_drive
+    - google_calendar
+    - outlook
+    - microsoft_teams
+    - slack
+    - notion
+    - jira
+    - linear
+    - trello
+audit:
+  enabled: true
+  log_path: reports/composio_plugin/audit_logs/audit_events.jsonl
+runtime_logs:
+  enabled: true
+  log_path: reports/composio_plugin/runtime_logs/composio_runtime.jsonl
+  sanitized_log_path: reports/composio_plugin/sanitized_logs/composio_runtime_sanitized.jsonl
+change_proposals:
+  enabled: true
+  output_dir: reports/composio_plugin/change_proposals
+  auto_apply: false
+security:
+  block_secret_storage: true
+  block_unreviewed_toolkits: true
+  block_prod_actions: true
+  block_destructive_actions: true
+  block_network_in_test: true
+  block_external_execution_in_test: true
+external_actions_default: blocked

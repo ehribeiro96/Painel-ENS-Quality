@@ -1,0 +1,39 @@
+== Git after init ==
+true
+/home/estevaoqualityadm/projects/Painel-ENS-Quality
+## No commits yet on main
+?? .dockerignore
+?? .editorconfig
+?? .env.example
+?? .github/
+?? .gitignore
+?? .vscode/
+?? AGENTS.md
+?? HERMES.md
+?? README.md
+?? _cleanup_backup_manifest.md
+?? _migration_proposals/
+?? assets/
+?? backend/
+?? config/
+?? data/
+?? docker-compose.yml
+?? docs/
+?? docx_sample.md
+?? docx_template_output.md
+?? frontend/
+?? imports/
+?? infra/
+?? pptx_sample.md
+?? pptx_template_output.md
+?? pyproject.toml
+?? reports/
+?? requirements-dev.txt
+?? requirements-legacy.txt
+?? requirements-lock.txt
+?? requirements.txt
+?? run.py
+?? scripts/
+?? src/
+?? tests/
+?? tools/

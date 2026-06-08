@@ -1,0 +1,54 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "title": "spreadsheet_job",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "job_id": {
+      "type": "string"
+    },
+    "job_type": {
+      "type": "string"
+    },
+    "input_file": {
+      "type": "string"
+    },
+    "output_file": {
+      "type": "string"
+    },
+    "sheet_name": {
+      "type": "string"
+    },
+    "table_name": {
+      "type": "string"
+    },
+    "validation_profile": {
+      "type": "string"
+    },
+    "sensitivity": {
+      "type": "string"
+    },
+    "external_model_allowed": {
+      "type": "boolean"
+    },
+    "dry_run": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "job_id",
+    "job_type",
+    "input_file",
+    "output_file",
+    "sheet_name",
+    "table_name",
+    "validation_profile",
+    "sensitivity",
+    "external_model_allowed",
+    "dry_run",
+    "created_at"
+  ]
+}

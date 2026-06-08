@@ -1,0 +1,7 @@
+tests:
+  - id: policy_secret_block
+    description: secret must never become approved memory
+  - id: policy_candidate_only
+    description: candidate requires source and validation
+  - id: policy_restricted_local
+    description: restricted content remains local

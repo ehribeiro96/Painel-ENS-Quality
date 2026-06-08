@@ -1,0 +1,6 @@
+{
+  "file_missing": "Arquivo ausente.",
+  "network_blocked": "Rede bloqueada nesta fase.",
+  "composio_network_blocked": "Rede bloqueada para Composio nesta fase.",
+  "composio_external_action_blocked": "Ação externa bloqueada pelo modo seguro."
+}

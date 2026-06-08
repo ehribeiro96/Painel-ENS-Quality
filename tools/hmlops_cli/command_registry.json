@@ -1,0 +1,97 @@
+{
+  "name": "hmlops",
+  "version": "phase3-local-offline",
+  "description": "Controlled offline CLI for HML migration review and reporting",
+  "commands": [
+    {
+      "name": "status",
+      "description": "Summarize the current local migration state."
+    },
+    {
+      "name": "inventory",
+      "description": "List the offline tooling inventory."
+    },
+    {
+      "name": "docs-status",
+      "description": "Summarize the migrated documentation tree."
+    },
+    {
+      "name": "offline-list",
+      "description": "Show the local offline allowlist and review-only tools."
+    },
+    {
+      "name": "offline-validate",
+      "description": "Validate the local command policy and registry."
+    },
+    {
+      "name": "offline-dry-run",
+      "description": "Run a preapproved offline tool in dry-run mode."
+    },
+    {
+      "name": "schemas-validate",
+      "description": "Validate the local JSON policy manifests."
+    },
+    {
+      "name": "python-validate",
+      "description": "Run py_compile on the CLI entrypoint."
+    },
+    {
+      "name": "security-scan",
+      "description": "Scan the local CLI surface for forbidden files and credential patterns."
+    },
+    {
+      "name": "phase2-summary",
+      "description": "Summarize the Phase 2 offline migration."
+    },
+    {
+      "name": "migration status",
+      "description": "Summarize the multi-phase migration state."
+    },
+    {
+      "name": "reports list",
+      "description": "List generated Phase 3 reports."
+    }
+  ],
+  "aliases": {
+    "docs status": "docs-status",
+    "phase2 summary": "phase2-summary"
+  },
+  "tool_presets": {
+    "validators/coderos/validation_runner.py": [
+      "--dry-run",
+      "--command",
+      "python3 -m py_compile tools/hmlops_cli/hmlops_cli.py"
+    ],
+    "validators/office/office_safety_validator.py": [
+      "--dry-run",
+      "--path",
+      "tools/hermesops_offline/office",
+      "--sensitivity",
+      "low"
+    ],
+    "validators/ingest/sanitize_document.py": [
+      "--dry-run",
+      "--input",
+      "tools/hermesops_offline/prompts",
+      "--output",
+      "reports/hml_selective_migration_phase3/evidence/sanitize_output",
+      "--report",
+      "reports/hml_selective_migration_phase3/evidence/sanitize_report.json"
+    ],
+    "auditors/localization/ptbr_prompt_audit.py": [
+      "--dry-run",
+      "--path",
+      "reports/hml_selective_migration_phase3/evidence/ptbr_prompt_sample"
+    ],
+    "auditors/coderos/code_review_checker.py": [
+      "--dry-run",
+      "--path",
+      "tools/hermesops_offline/coderos"
+    ],
+    "validators/memory/memory_conflict_check.py": [
+      "--dry-run",
+      "--memory-id",
+      "PHASE3-TEST"
+    ]
+  }
+}

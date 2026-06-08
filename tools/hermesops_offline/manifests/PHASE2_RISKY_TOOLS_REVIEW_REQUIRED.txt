@@ -1,0 +1,3 @@
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/auditors/localization/ptbr_localization_audit.py
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/validators/coderos/powershell_static_checker.py
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/validators/coderos/stack_detector.py

@@ -1,0 +1,7 @@
+{
+  "summary": "Resumo executivo",
+  "risks": "Riscos",
+  "rollback": "Rollback",
+  "composio_plugin_section": "Seção de Composio Plugin",
+  "log_driven_change_section": "Seção de mudanças orientadas por logs"
+}

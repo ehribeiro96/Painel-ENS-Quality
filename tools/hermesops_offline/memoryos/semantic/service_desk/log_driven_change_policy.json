@@ -1,0 +1,61 @@
+{
+  "memory_id": "log-driven-change-policy-v1",
+  "memory_type": "semantic",
+  "title": "Logs may generate change proposals but never automatic patches",
+  "summary": "HermesOps may analyze sanitized runtime and audit logs to identify findings and propose changes, but logs must never trigger automatic code or configuration changes without human review.",
+  "source_type": "internal_decision",
+  "source_path": "plugins/PLUGIN_CHANGE_PROPOSAL_POLICY.md",
+  "captured_at": "2026-06-07T21:27:20.924364+00:00",
+  "domain": "plugins",
+  "subdomain": "logs",
+  "environment": "generic",
+  "sensitivity": "internal",
+  "risk_level": "medium",
+  "confidence": "verified",
+  "status": "approved",
+  "facts": [
+    "Logs can contain sensitive operational details.",
+    "Only sanitized logs may be analyzed for MemoryOS candidates.",
+    "Automatic changes from logs can introduce unsafe behavior."
+  ],
+  "inferences": [
+    "A governed change proposal workflow is required before applying any log-derived change."
+  ],
+  "decisions": [
+    "Logs generate findings.",
+    "Findings generate candidate change proposals.",
+    "Change proposals require human review.",
+    "No log-derived change may be applied automatically."
+  ],
+  "procedures": [],
+  "commands": [
+    "hermesops composio logs summarize --dry-run",
+    "hermesops composio logs propose-changes --dry-run"
+  ],
+  "validation": [
+    "Log policy documented.",
+    "Change proposal schema validates.",
+    "Scripts compile.",
+    "Secret scan clean."
+  ],
+  "rollback": [
+    "Disable change proposal generation.",
+    "Remove proposed changes before approval.",
+    "Revert plugin log policy if corporate policy changes."
+  ],
+  "tags": [
+    "logs",
+    "change_proposal",
+    "memoryos",
+    "plugin",
+    "audit"
+  ],
+  "related_memory_ids": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "external_model_allowed": false,
+  "human_review_required": true,
+  "retention_policy": "long",
+  "checksum": "",
+  "version": 1
+}

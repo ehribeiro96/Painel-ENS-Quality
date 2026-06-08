@@ -1,0 +1,3 @@
+version: 1
+policy: governed-learning
+status_values: [candidate, approved, deprecated, conflict_pending, rejected]

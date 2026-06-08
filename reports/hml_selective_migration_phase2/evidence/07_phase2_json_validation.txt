@@ -1,0 +1,1383 @@
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/localization/messages/cli_messages.pt-br.json
+{
+    "start": "Iniciando execu\u00e7\u00e3o controlada.",
+    "dry_run": "Modo dry-run ativo. Nenhuma altera\u00e7\u00e3o real ser\u00e1 aplicada.",
+    "blocked_forbidden_path": "Opera\u00e7\u00e3o bloqueada: caminho proibido detectado.",
+    "success": "Opera\u00e7\u00e3o conclu\u00edda com sucesso.",
+    "error": "Erro durante a execu\u00e7\u00e3o.",
+    "requires_human_approval": "Esta a\u00e7\u00e3o exige aprova\u00e7\u00e3o humana antes de continuar.",
+    "composio_disabled": "Composio est\u00e1 desativado por padr\u00e3o.",
+    "composio_dry_run": "Composio opera em dry-run nesta fase.",
+    "composio_hml_required": "Composio exige HML para autentica\u00e7\u00e3o e a\u00e7\u00f5es reais.",
+    "composio_logs_sanitized": "Logs Composio foram sanitizados antes da an\u00e1lise."
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/localization/messages/validation_messages.pt-br.json
+{
+    "valid_directory": "Diret\u00f3rio validado com sucesso.",
+    "hash_divergent": "Hash divergente detectado.",
+    "package_validated": "Pacote validado com sucesso.",
+    "composio_registry_ok": "Registry de plugins validado com sucesso.",
+    "composio_policy_ok": "Pol\u00edtica do Composio validada com sucesso."
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/localization/messages/error_messages.pt-br.json
+{
+    "file_missing": "Arquivo ausente.",
+    "network_blocked": "Rede bloqueada nesta fase.",
+    "composio_network_blocked": "Rede bloqueada para Composio nesta fase.",
+    "composio_external_action_blocked": "A\u00e7\u00e3o externa bloqueada pelo modo seguro."
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/localization/messages/report_sections.pt-br.json
+{
+    "summary": "Resumo executivo",
+    "risks": "Riscos",
+    "rollback": "Rollback",
+    "composio_plugin_section": "Se\u00e7\u00e3o de Composio Plugin",
+    "log_driven_change_section": "Se\u00e7\u00e3o de mudan\u00e7as orientadas por logs"
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/localization/messages/macro_templates.pt-br.json
+{
+    "itil_incident": "Ol\u00e1, {usuario}. Seu chamado foi registrado como incidente. Pr\u00f3ximo passo: {proximo_passo}.",
+    "kcs_resolution": "Sintoma: {sintoma}. Causa: {causa}. Solu\u00e7\u00e3o: {solucao}. Valida\u00e7\u00e3o: {validacao}.",
+    "rollback_notice": "Foi necess\u00e1rio acionar rollback para preservar a estabilidade. Evid\u00eancia: {evidencia}."
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/schemas/text_editing_job.schema.json
+{
+    "": "https://json-schema.org/draft/2020-12/schema",
+    "title": "text_editing_job",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "job_id": {
+            "type": "string"
+        },
+        "job_type": {
+            "type": "string"
+        },
+        "source_file": {
+            "type": "string"
+        },
+        "output_file": {
+            "type": "string"
+        },
+        "style": {
+            "type": "string"
+        },
+        "audience": {
+            "type": "string"
+        },
+        "tone": {
+            "type": "string"
+        },
+        "sensitivity": {
+            "type": "string"
+        },
+        "external_model_allowed": {
+            "type": "boolean"
+        },
+        "dry_run": {
+            "type": "boolean"
+        },
+        "created_at": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "job_id",
+        "job_type",
+        "source_file",
+        "output_file",
+        "style",
+        "audience",
+        "tone",
+        "sensitivity",
+        "external_model_allowed",
+        "dry_run",
+        "created_at"
+    ]
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/schemas/spreadsheet_job.schema.json
+{
+    "": "https://json-schema.org/draft/2020-12/schema",
+    "title": "spreadsheet_job",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "job_id": {
+            "type": "string"
+        },
+        "job_type": {
+            "type": "string"
+        },
+        "input_file": {
+            "type": "string"
+        },
+        "output_file": {
+            "type": "string"
+        },
+        "sheet_name": {
+            "type": "string"
+        },
+        "table_name": {
+            "type": "string"
+        },
+        "validation_profile": {
+            "type": "string"
+        },
+        "sensitivity": {
+            "type": "string"
+        },
+        "external_model_allowed": {
+            "type": "boolean"
+        },
+        "dry_run": {
+            "type": "boolean"
+        },
+        "created_at": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "job_id",
+        "job_type",
+        "input_file",
+        "output_file",
+        "sheet_name",
+        "table_name",
+        "validation_profile",
+        "sensitivity",
+        "external_model_allowed",
+        "dry_run",
+        "created_at"
+    ]
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/schemas/pdf_audit.schema.json
+{
+    "": "https://json-schema.org/draft/2020-12/schema",
+    "title": "pdf_audit",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "audit_id": {
+            "type": "string"
+        },
+        "file_name": {
+            "type": "string"
+        },
+        "page_count": {
+            "type": "integer"
+        },
+        "has_text_layer": {
+            "type": "boolean"
+        },
+        "has_images": {
+            "type": "boolean"
+        },
+        "has_forms": {
+            "type": "boolean"
+        },
+        "has_signature": {
+            "type": "boolean"
+        },
+        "has_attachments": {
+            "type": "boolean"
+        },
+        "metadata_findings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "sensitivity_findings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "redaction_required": {
+            "type": "boolean"
+        },
+        "ocr_required": {
+            "type": "boolean"
+        },
+        "signature_caution": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "audit_id",
+        "file_name",
+        "page_count",
+        "has_text_layer",
+        "has_images",
+        "has_forms",
+        "has_signature",
+        "has_attachments",
+        "metadata_findings",
+        "sensitivity_findings",
+        "redaction_required",
+        "ocr_required",
+        "signature_caution",
+        "status"
+    ]
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/schemas/docx_job.schema.json
+{
+    "": "https://json-schema.org/draft/2020-12/schema",
+    "title": "docx_job",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "job_id": {
+            "type": "string"
+        },
+        "job_type": {
+            "type": "string"
+        },
+        "input_file": {
+            "type": "string"
+        },
+        "output_file": {
+            "type": "string"
+        },
+        "template": {
+            "type": "string"
+        },
+        "document_type": {
+            "type": "string"
+        },
+        "audience": {
+            "type": "string"
+        },
+        "review_level": {
+            "type": "string"
+        },
+        "sensitivity": {
+            "type": "string"
+        },
+        "external_model_allowed": {
+            "type": "boolean"
+        },
+        "dry_run": {
+            "type": "boolean"
+        },
+        "created_at": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "job_id",
+        "job_type",
+        "input_file",
+        "output_file",
+        "template",
+        "document_type",
+        "audience",
+        "review_level",
+        "sensitivity",
+        "external_model_allowed",
+        "dry_run",
+        "created_at"
+    ]
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/schemas/document_review.schema.json
+{
+    "": "https://json-schema.org/draft/2020-12/schema",
+    "title": "document_review",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "review_id": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "document_type": {
+            "type": "string"
+        },
+        "findings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "recommendations": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "status": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "review_id",
+        "title",
+        "document_type",
+        "findings",
+        "recommendations",
+        "status"
+    ]
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/schemas/office_audit.schema.json
+{
+    "": "https://json-schema.org/draft/2020-12/schema",
+    "title": "office_audit",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "audit_id": {
+            "type": "string"
+        },
+        "scope": {
+            "type": "string"
+        },
+        "findings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "risks": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "status": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "audit_id",
+        "scope",
+        "findings",
+        "risks",
+        "status"
+    ]
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/schemas/spreadsheet_validation.schema.json
+{
+    "": "https://json-schema.org/draft/2020-12/schema",
+    "title": "spreadsheet_validation",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "validation_id": {
+            "type": "string"
+        },
+        "file_name": {
+            "type": "string"
+        },
+        "row_count": {
+            "type": "integer"
+        },
+        "column_count": {
+            "type": "integer"
+        },
+        "missing_values": {
+            "type": "integer"
+        },
+        "duplicate_rows": {
+            "type": "integer"
+        },
+        "invalid_values": {
+            "type": "integer"
+        },
+        "findings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "status": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "validation_id",
+        "file_name",
+        "row_count",
+        "column_count",
+        "missing_values",
+        "duplicate_rows",
+        "invalid_values",
+        "findings",
+        "status"
+    ]
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/schemas/pptx_job.schema.json
+{
+    "": "https://json-schema.org/draft/2020-12/schema",
+    "title": "pptx_job",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "job_id": {
+            "type": "string"
+        },
+        "job_type": {
+            "type": "string"
+        },
+        "input_file": {
+            "type": "string"
+        },
+        "output_file": {
+            "type": "string"
+        },
+        "template": {
+            "type": "string"
+        },
+        "presentation_type": {
+            "type": "string"
+        },
+        "audience": {
+            "type": "string"
+        },
+        "slide_count_target": {
+            "type": "integer"
+        },
+        "sections_required": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "speaker_notes_required": {
+            "type": "boolean"
+        },
+        "review_level": {
+            "type": "string"
+        },
+        "sensitivity": {
+            "type": "string"
+        },
+        "external_model_allowed": {
+            "type": "boolean"
+        },
+        "dry_run": {
+            "type": "boolean"
+        },
+        "created_at": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "job_id",
+        "job_type",
+        "input_file",
+        "output_file",
+        "template",
+        "presentation_type",
+        "audience",
+        "slide_count_target",
+        "sections_required",
+        "speaker_notes_required",
+        "review_level",
+        "sensitivity",
+        "external_model_allowed",
+        "dry_run",
+        "created_at"
+    ]
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/schemas/presentation_review.schema.json
+{
+    "": "https://json-schema.org/draft/2020-12/schema",
+    "title": "presentation_review",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "review_id": {
+            "type": "string"
+        },
+        "presentation_type": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "audience": {
+            "type": "string"
+        },
+        "slide_count": {
+            "type": "integer"
+        },
+        "sections_checked": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "missing_sections": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "narrative_findings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "visual_density_findings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "speaker_note_findings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "sensitivity_findings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "recommendations": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "status": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "review_id",
+        "presentation_type",
+        "title",
+        "audience",
+        "slide_count",
+        "sections_checked",
+        "missing_sections",
+        "narrative_findings",
+        "visual_density_findings",
+        "speaker_note_findings",
+        "sensitivity_findings",
+        "recommendations",
+        "status"
+    ]
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/schemas/pdf_job.schema.json
+{
+    "": "https://json-schema.org/draft/2020-12/schema",
+    "title": "pdf_job",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "job_id": {
+            "type": "string"
+        },
+        "job_type": {
+            "type": "string"
+        },
+        "input_file": {
+            "type": "string"
+        },
+        "output_file": {
+            "type": "string"
+        },
+        "pdf_operation": {
+            "type": "string"
+        },
+        "requires_ocr": {
+            "type": "boolean"
+        },
+        "requires_redaction": {
+            "type": "boolean"
+        },
+        "requires_signature_validation": {
+            "type": "boolean"
+        },
+        "contains_personal_data": {
+            "type": "boolean"
+        },
+        "contains_certificate": {
+            "type": "boolean"
+        },
+        "sensitivity": {
+            "type": "string"
+        },
+        "external_model_allowed": {
+            "type": "boolean"
+        },
+        "dry_run": {
+            "type": "boolean"
+        },
+        "created_at": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "job_id",
+        "job_type",
+        "input_file",
+        "output_file",
+        "pdf_operation",
+        "requires_ocr",
+        "requires_redaction",
+        "requires_signature_validation",
+        "contains_personal_data",
+        "contains_certificate",
+        "sensitivity",
+        "external_model_allowed",
+        "dry_run",
+        "created_at"
+    ]
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/templates/powerpoint/powerpoint_job_examples.json
+[
+    {
+        "job_id": "ppt-001",
+        "job_type": "outline",
+        "input_file": "kcs.md",
+        "output_file": "deck.pptx",
+        "template": "kcs_training_deck_template.md",
+        "presentation_type": "training",
+        "audience": "service_desk",
+        "slide_count_target": 8,
+        "sections_required": [
+            "intro",
+            "workflow",
+            "examples",
+            "validation"
+        ],
+        "speaker_notes_required": true,
+        "review_level": "human",
+        "sensitivity": "low",
+        "external_model_allowed": false,
+        "dry_run": true,
+        "created_at": "2026-06-07T14:00:00Z"
+    }
+]
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/templates/word/word_job_examples.json
+[
+    {
+        "job_id": "doc-001",
+        "job_type": "draft",
+        "input_file": "source.md",
+        "output_file": "output.docx",
+        "template": "kcs_document_template.md",
+        "document_type": "kcs",
+        "audience": "service_desk",
+        "review_level": "human",
+        "sensitivity": "low",
+        "external_model_allowed": false,
+        "dry_run": true,
+        "created_at": "2026-06-07T14:00:00Z"
+    }
+]
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/templates/spreadsheet/service_desk_base_schema.json
+{
+    "title": "service_desk_base_schema",
+    "type": "object",
+    "properties": {
+        "ticket_id": {
+            "type": "string"
+        },
+        "category": {
+            "type": "string"
+        },
+        "priority": {
+            "type": "string"
+        },
+        "opened_at": {
+            "type": "string"
+        },
+        "resolved_at": {
+            "type": "string"
+        },
+        "owner": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "ticket_id",
+        "category",
+        "priority",
+        "opened_at",
+        "status"
+    ],
+    "additionalProperties": false
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/templates/spreadsheet/spreadsheet_job_examples.json
+[
+    {
+        "job_id": "sheet-001",
+        "job_type": "analysis",
+        "input_file": "synthetic_input.xlsx",
+        "output_file": "analysis.json",
+        "sheet_name": "Tickets",
+        "table_name": "TicketsTable",
+        "validation_profile": "service_desk_base",
+        "sensitivity": "low",
+        "external_model_allowed": false,
+        "dry_run": true,
+        "created_at": "2026-06-07T14:00:00Z"
+    }
+]
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/office/templates/pdf/pdf_job_examples.json
+[
+    {
+        "job_id": "pdf-001",
+        "job_type": "audit",
+        "input_file": "synthetic.pdf",
+        "output_file": "audit.json",
+        "pdf_operation": "metadata_audit",
+        "requires_ocr": false,
+        "requires_redaction": false,
+        "requires_signature_validation": true,
+        "contains_personal_data": false,
+        "contains_certificate": false,
+        "sensitivity": "low",
+        "external_model_allowed": false,
+        "dry_run": true,
+        "created_at": "2026-06-07T14:00:00Z"
+    }
+]
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/memoryos/inbox/research_candidates/office_native_fidelity_policy.json
+{
+    "memory_id": "office-native-fidelity-policy-v1",
+    "memory_type": "semantic",
+    "title": "Office native formats are required when document fidelity matters",
+    "summary": "CSV is acceptable only for simple tabular interchange. XLSX, DOCX, PPTX and PDF must be preferred when preserving formulas, formatting, layout, tables, validation, metadata or visual fidelity matters.",
+    "source_type": "internal_decision",
+    "source_path": "reports/enterprise_office_skills/OFFICE_FILE_FIDELITY_POLICY.md",
+    "captured_at": "2026-06-07T18:57:09Z",
+    "domain": "office_skills",
+    "environment": "generic",
+    "sensitivity": "internal",
+    "risk_level": "medium",
+    "confidence": "verified",
+    "status": "approved",
+    "facts": [
+        "CSV does not preserve Office document fidelity.",
+        "Native Office formats should be preferred for fidelity-sensitive work.",
+        "M365/Graph and Office Scripts are HML-gated integrations."
+    ],
+    "inferences": [
+        "HermesOps must not convert fidelity-sensitive Excel workbooks to CSV as a default workflow."
+    ],
+    "decisions": [
+        "CSV is allowed only for simple staging/debug/interchange.",
+        "XLSX/DOCX/PPTX/PDF are preferred for corporate document fidelity.",
+        "Office Desktop automation is fallback-only and must be interactive/approved."
+    ],
+    "procedures": [],
+    "commands": [],
+    "validation": [
+        "Documentation updated.",
+        "Tools skeleton compiled.",
+        "Secret scan clean."
+    ],
+    "rollback": [
+        "Revert this memory item and related documentation if corporate policy changes."
+    ],
+    "tags": [
+        "office",
+        "excel",
+        "m365",
+        "fidelity",
+        "csv",
+        "xlsx",
+        "docx",
+        "pptx",
+        "pdf"
+    ],
+    "related_memory_ids": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "external_model_allowed": false,
+    "human_review_required": true,
+    "retention_policy": "long",
+    "checksum": "",
+    "version": 1
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/memoryos/semantic/service_desk/ptbr_support_policy.json
+{
+    "memory_id": "ptbr-support-policy-v1",
+    "memory_type": "semantic",
+    "title": "pt-BR is the default operational language for HermesOps",
+    "summary": "HermesOps should use Brazilian Portuguese for human-facing explanations, reports, KCS, macros and operational guidance while preserving technical syntax, commands, paths, function names and original error messages.",
+    "source_type": "internal_decision",
+    "source_path": "localization/PT_BR_LOCALIZATION_POLICY.md",
+    "captured_at": "2026-06-07T20:57:10Z",
+    "domain": "localization",
+    "environment": "generic",
+    "sensitivity": "internal",
+    "risk_level": "low",
+    "confidence": "verified",
+    "status": "approved",
+    "facts": [
+        "pt-BR is the preferred operational language.",
+        "Technical syntax must not be translated.",
+        "Original error messages must be preserved and explained in Portuguese."
+    ],
+    "inferences": [
+        "CLI messages, prompts, KCS and macros should have pt-BR variants."
+    ],
+    "decisions": [
+        "Add pt-BR glossaries.",
+        "Validate UTF-8.",
+        "Use pt-BR prompts.",
+        "Preserve fallback to technical English."
+    ],
+    "procedures": [],
+    "commands": [],
+    "validation": [
+        "JSON message catalogs validated.",
+        "Python localization tools compiled.",
+        "Secret scan clean."
+    ],
+    "rollback": [
+        "Revert localization files and memory item if policy changes."
+    ],
+    "tags": [
+        "pt-BR",
+        "localization",
+        "utf-8",
+        "cli",
+        "kcs",
+        "macros"
+    ],
+    "related_memory_ids": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "external_model_allowed": false,
+    "human_review_required": true,
+    "retention_policy": "long",
+    "checksum": "",
+    "version": 1
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/memoryos/semantic/service_desk/log_driven_change_policy.json
+{
+    "memory_id": "log-driven-change-policy-v1",
+    "memory_type": "semantic",
+    "title": "Logs may generate change proposals but never automatic patches",
+    "summary": "HermesOps may analyze sanitized runtime and audit logs to identify findings and propose changes, but logs must never trigger automatic code or configuration changes without human review.",
+    "source_type": "internal_decision",
+    "source_path": "plugins/PLUGIN_CHANGE_PROPOSAL_POLICY.md",
+    "captured_at": "2026-06-07T21:27:20.924364+00:00",
+    "domain": "plugins",
+    "subdomain": "logs",
+    "environment": "generic",
+    "sensitivity": "internal",
+    "risk_level": "medium",
+    "confidence": "verified",
+    "status": "approved",
+    "facts": [
+        "Logs can contain sensitive operational details.",
+        "Only sanitized logs may be analyzed for MemoryOS candidates.",
+        "Automatic changes from logs can introduce unsafe behavior."
+    ],
+    "inferences": [
+        "A governed change proposal workflow is required before applying any log-derived change."
+    ],
+    "decisions": [
+        "Logs generate findings.",
+        "Findings generate candidate change proposals.",
+        "Change proposals require human review.",
+        "No log-derived change may be applied automatically."
+    ],
+    "procedures": [],
+    "commands": [
+        "hermesops composio logs summarize --dry-run",
+        "hermesops composio logs propose-changes --dry-run"
+    ],
+    "validation": [
+        "Log policy documented.",
+        "Change proposal schema validates.",
+        "Scripts compile.",
+        "Secret scan clean."
+    ],
+    "rollback": [
+        "Disable change proposal generation.",
+        "Remove proposed changes before approval.",
+        "Revert plugin log policy if corporate policy changes."
+    ],
+    "tags": [
+        "logs",
+        "change_proposal",
+        "memoryos",
+        "plugin",
+        "audit"
+    ],
+    "related_memory_ids": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "external_model_allowed": false,
+    "human_review_required": true,
+    "retention_policy": "long",
+    "checksum": "",
+    "version": 1
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/memoryos/semantic/service_desk/composio_plugin_policy.json
+{
+    "memory_id": "composio-plugin-policy-v1",
+    "memory_type": "semantic",
+    "title": "Composio plugin is governed, disabled by default and HML-gated",
+    "summary": "Composio must be treated as a high-impact external connector that stays disabled in TEST, uses allowlists, blocks destructive actions, and requires human approval before any external action or write capability is enabled.",
+    "source_type": "internal_decision",
+    "source_path": "plugins/composio/COMPOSIO_SECURITY_POLICY.md",
+    "captured_at": "2026-06-07T21:27:20.923987+00:00",
+    "domain": "plugins",
+    "subdomain": "composio",
+    "environment": "generic",
+    "sensitivity": "internal",
+    "risk_level": "high",
+    "confidence": "verified",
+    "status": "approved",
+    "facts": [
+        "Composio is an external connector with high impact.",
+        "TEST must remain disabled and dry-run only.",
+        "Toolkits must be allowlisted."
+    ],
+    "inferences": [
+        "HML is required before any real external action is allowed."
+    ],
+    "decisions": [
+        "Disable Composio by default.",
+        "Block external actions in TEST.",
+        "Require human approval for write actions."
+    ],
+    "procedures": [],
+    "commands": [
+        "hermesops plugins status composio --dry-run",
+        "hermesops composio logs summarize --dry-run"
+    ],
+    "validation": [
+        "Registry documented.",
+        "Schemas created.",
+        "Dry-run supported."
+    ],
+    "rollback": [
+        "Disable the plugin and remove HML references if policy changes."
+    ],
+    "tags": [
+        "composio",
+        "plugin",
+        "security",
+        "hml",
+        "dry-run"
+    ],
+    "related_memory_ids": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "external_model_allowed": false,
+    "human_review_required": true,
+    "retention_policy": "long",
+    "checksum": "",
+    "version": 1
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/memoryos/semantic/office_skills/office_native_fidelity_policy.json
+{
+    "memory_id": "office-native-fidelity-policy-v1",
+    "memory_type": "semantic",
+    "title": "Office native formats are required when document fidelity matters",
+    "summary": "CSV is acceptable only for simple tabular interchange. XLSX, DOCX, PPTX and PDF must be preferred when preserving formulas, formatting, layout, tables, validation, metadata or visual fidelity matters.",
+    "source_type": "internal_decision",
+    "source_path": "reports/enterprise_office_skills/OFFICE_FILE_FIDELITY_POLICY.md",
+    "captured_at": "2026-06-07T18:57:09Z",
+    "domain": "office_skills",
+    "environment": "generic",
+    "sensitivity": "internal",
+    "risk_level": "medium",
+    "confidence": "verified",
+    "status": "approved",
+    "facts": [
+        "CSV does not preserve Office document fidelity.",
+        "Native Office formats should be preferred for fidelity-sensitive work.",
+        "M365/Graph and Office Scripts are HML-gated integrations."
+    ],
+    "inferences": [
+        "HermesOps must not convert fidelity-sensitive Excel workbooks to CSV as a default workflow."
+    ],
+    "decisions": [
+        "CSV is allowed only for simple staging/debug/interchange.",
+        "XLSX/DOCX/PPTX/PDF are preferred for corporate document fidelity.",
+        "Office Desktop automation is fallback-only and must be interactive/approved."
+    ],
+    "procedures": [],
+    "commands": [],
+    "validation": [
+        "Documentation updated.",
+        "Tools skeleton compiled.",
+        "Secret scan clean."
+    ],
+    "rollback": [
+        "Revert this memory item and related documentation if corporate policy changes."
+    ],
+    "tags": [
+        "office",
+        "excel",
+        "m365",
+        "fidelity",
+        "csv",
+        "xlsx",
+        "docx",
+        "pptx",
+        "pdf"
+    ],
+    "related_memory_ids": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "external_model_allowed": false,
+    "human_review_required": true,
+    "retention_policy": "long",
+    "checksum": "",
+    "version": 1
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/coderos/schemas/coding_memory.schema.json
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Coding Memory",
+    "type": "object",
+    "required": [
+        "memory_id",
+        "title",
+        "summary",
+        "stack",
+        "risk",
+        "validation",
+        "rollback",
+        "commit"
+    ],
+    "properties": {
+        "memory_id": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "summary": {
+            "type": "string"
+        },
+        "stack": {
+            "type": "string"
+        },
+        "risk": {
+            "type": "string"
+        },
+        "validation": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "rollback": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "commit": {
+            "type": "string"
+        },
+        "external_model_allowed": {
+            "type": "boolean"
+        },
+        "human_review_required": {
+            "type": "boolean"
+        }
+    }
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/coderos/schemas/patch_plan.schema.json
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Patch Plan",
+    "type": "object",
+    "required": [
+        "objective",
+        "files",
+        "changes",
+        "validation",
+        "rollback"
+    ],
+    "properties": {
+        "objective": {
+            "type": "string"
+        },
+        "files": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "changes": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "validation": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "rollback": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "risk": {
+            "type": "string"
+        }
+    }
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/coderos/schemas/toolchain_profile.schema.json
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Toolchain Profile",
+    "type": "object",
+    "required": [
+        "stack",
+        "build_commands",
+        "test_commands",
+        "lint_commands"
+    ],
+    "properties": {
+        "stack": {
+            "type": "string"
+        },
+        "build_commands": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "test_commands": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "lint_commands": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "notes": {
+            "type": "string"
+        }
+    }
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/coderos/schemas/code_review.schema.json
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Code Review",
+    "type": "object",
+    "required": [
+        "summary",
+        "findings",
+        "risk",
+        "recommendation"
+    ],
+    "properties": {
+        "summary": {
+            "type": "string"
+        },
+        "findings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "risk": {
+            "type": "string"
+        },
+        "recommendation": {
+            "type": "string"
+        },
+        "rollback": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/coderos/schemas/repo_profile.schema.json
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Repo Profile",
+    "type": "object",
+    "required": [
+        "repo_path",
+        "stack_tags",
+        "risk_tags",
+        "entrypoints"
+    ],
+    "properties": {
+        "repo_path": {
+            "type": "string"
+        },
+        "stack_tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "risk_tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "entrypoints": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "notes": {
+            "type": "string"
+        }
+    }
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/coderos/schemas/coding_task.schema.json
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "CoderOS Coding Task",
+    "type": "object",
+    "required": [
+        "objective",
+        "stack",
+        "allowed_files",
+        "forbidden_files",
+        "risk",
+        "plan",
+        "validation",
+        "rollback",
+        "expected_output"
+    ],
+    "properties": {
+        "objective": {
+            "type": "string"
+        },
+        "stack": {
+            "type": "string"
+        },
+        "allowed_files": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "forbidden_files": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "risk": {
+            "type": "string"
+        },
+        "plan": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "validation": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "rollback": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "expected_output": {
+            "type": "string"
+        }
+    }
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/coderos/schemas/validation_result.schema.json
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Validation Result",
+    "type": "object",
+    "required": [
+        "tool",
+        "status",
+        "output"
+    ],
+    "properties": {
+        "tool": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string"
+        },
+        "output": {
+            "type": "string"
+        },
+        "commands": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline/coderos/schemas/modding_project.schema.json
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Modding Project",
+    "type": "object",
+    "required": [
+        "project_name",
+        "allowed_actions",
+        "forbidden_actions",
+        "compatibility",
+        "validation"
+    ],
+    "properties": {
+        "project_name": {
+            "type": "string"
+        },
+        "allowed_actions": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "forbidden_actions": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "compatibility": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "validation": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

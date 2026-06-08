@@ -1,0 +1,441 @@
+{
+  "input": "tools/hermesops_offline/prompts",
+  "output": "reports/hml_selective_migration_phase3/evidence/sanitize_output",
+  "files_processed": 46,
+  "findings_total": 4,
+  "dry_run": true,
+  "documents": [
+    {
+      "source_path": "tools/hermesops_offline/prompts/README.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/README.md",
+      "sha256_original": "6b2e4e30ee3be4f95c67f15bba7f666875bb63a3014e4d145cbe33b47c7722e8",
+      "sha256_sanitized": "6b2e4e30ee3be4f95c67f15bba7f666875bb63a3014e4d145cbe33b47c7722e8",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/code_review.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/code_review.md",
+      "sha256_original": "4e98e5bed32a4eaa8dc956dbe0f48c192c994a48e733d3804f21d189417c5e4a",
+      "sha256_sanitized": "4e98e5bed32a4eaa8dc956dbe0f48c192c994a48e733d3804f21d189417c5e4a",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/code_review_ptbr.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/code_review_ptbr.md",
+      "sha256_original": "5816f59e93638a647a2e24c1f59c890765a004b2ea3c08d417ffa8513d6828c6",
+      "sha256_sanitized": "5816f59e93638a647a2e24c1f59c890765a004b2ea3c08d417ffa8513d6828c6",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/coding_assistant_ptbr.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/coding_assistant_ptbr.md",
+      "sha256_original": "1893c572b22e2646c4bc1184d26c93de185114e9eb2c97462e19bb3f1f0538d8",
+      "sha256_sanitized": "1893c572b22e2646c4bc1184d26c93de185114e9eb2c97462e19bb3f1f0538d8",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/composio_audit_review.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_audit_review.md",
+      "sha256_original": "e456e8b93a53e8aa9c45de3e36472ee4fba88c85feab7a956332b7ba9c7d0f1a",
+      "sha256_sanitized": "e456e8b93a53e8aa9c45de3e36472ee4fba88c85feab7a956332b7ba9c7d0f1a",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/composio_change_proposal.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_change_proposal.md",
+      "sha256_original": "724961f22f5a656971eb72b5c07b5fbdb9ea10b3527077e4d81c99695a1fa4d4",
+      "sha256_sanitized": "724961f22f5a656971eb72b5c07b5fbdb9ea10b3527077e4d81c99695a1fa4d4",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/composio_connection_triage.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_connection_triage.md",
+      "sha256_original": "03b1a0c322c89cab1d7cb5e2f577510436c080dd88ab4bf80f9eeb7e33a15611",
+      "sha256_sanitized": "03b1a0c322c89cab1d7cb5e2f577510436c080dd88ab4bf80f9eeb7e33a15611",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/composio_hml_activation.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_hml_activation.md",
+      "sha256_original": "5e33220cfc4e8293f06c2f2a8623ad052dbdfab8e4c238aecf8cf5238848eb89",
+      "sha256_sanitized": "5e33220cfc4e8293f06c2f2a8623ad052dbdfab8e4c238aecf8cf5238848eb89",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/composio_log_review.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_log_review.md",
+      "sha256_original": "f04dc906e3037228583c7e786e37b124d8e99eccd10bab3807b8d1ff736ea129",
+      "sha256_sanitized": "f04dc906e3037228583c7e786e37b124d8e99eccd10bab3807b8d1ff736ea129",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/composio_permission_review.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_permission_review.md",
+      "sha256_original": "5565da11db87563a9c27d33025cad0a0ad4679a605e72889103091c2b1d383e2",
+      "sha256_sanitized": "5565da11db87563a9c27d33025cad0a0ad4679a605e72889103091c2b1d383e2",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/composio_tool_execution_plan.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_tool_execution_plan.md",
+      "sha256_original": "d780b62294360d6eecb0db1743b70c5797ee2d9d54bed3220f4b8720c99bbb85",
+      "sha256_sanitized": "d780b62294360d6eecb0db1743b70c5797ee2d9d54bed3220f4b8720c99bbb85",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/corporate_text_rewrite.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/corporate_text_rewrite.md",
+      "sha256_original": "1e941b2a1867e7194e6a2abf0983405430d1a16eb61dc2a417616f713d08c514",
+      "sha256_sanitized": "1e941b2a1867e7194e6a2abf0983405430d1a16eb61dc2a417616f713d08c514",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/desktop_cli_ptbr.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/desktop_cli_ptbr.md",
+      "sha256_original": "abfc850dc9a3de1ac92fe47ee0de74bf8709ea22925c101cbb5c7d51cddde1bb",
+      "sha256_sanitized": "abfc850dc9a3de1ac92fe47ee0de74bf8709ea22925c101cbb5c7d51cddde1bb",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/document_quality_audit.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/document_quality_audit.md",
+      "sha256_original": "5f809c0bfbc111a98f4a817eef42ea0280d0100153d41925a62416d37e33fd48",
+      "sha256_sanitized": "5f809c0bfbc111a98f4a817eef42ea0280d0100153d41925a62416d37e33fd48",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/excel_m365_integration.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/excel_m365_integration.md",
+      "sha256_original": "f9565e3e4066164e0f1af88901d9b975a8dcb96f9417122369948800ff1f6b64",
+      "sha256_sanitized": "f9565e3e4066164e0f1af88901d9b975a8dcb96f9417122369948800ff1f6b64",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/first_response_from_seed_corpus.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/first_response_from_seed_corpus.md",
+      "sha256_original": "5249088b565cd512597a344952cb4e669acf9400b1ae7680724119129d041fce",
+      "sha256_sanitized": "cfddefae9218c6f6320c0a8285dba8dc43b099c2aff6f3009d8cc60f4c81cb32",
+      "changed": true,
+      "findings": [
+        {
+          "type": "secret_keyword",
+          "count": 3,
+          "samples": [
+            "senha",
+            "token",
+            "chave"
+          ]
+        }
+      ],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/implementation.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/implementation.md",
+      "sha256_original": "64f123b19695bc33da6f6b2f804345e1e2ca5c55392066e1788a99fda2624f30",
+      "sha256_sanitized": "e1b8f14855846653e928d66c1c414f380d4087940e3c06ed4f66a678395c3356",
+      "changed": true,
+      "findings": [
+        {
+          "type": "secret_keyword",
+          "count": 1,
+          "samples": [
+            "secret"
+          ]
+        }
+      ],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/kcs_document_generation.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/kcs_document_generation.md",
+      "sha256_original": "08efe170975d3626deafa253cc3c643a7a98eaa95c97fa529517ef77edacc683",
+      "sha256_sanitized": "08efe170975d3626deafa253cc3c643a7a98eaa95c97fa529517ef77edacc683",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/kcs_generation.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/kcs_generation.md",
+      "sha256_original": "595654664d667a0b80d1cac4a9677636f959e5b36a45a03215283fd1671c044f",
+      "sha256_sanitized": "595654664d667a0b80d1cac4a9677636f959e5b36a45a03215283fd1671c044f",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/kcs_generation_ptbr.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/kcs_generation_ptbr.md",
+      "sha256_original": "18d114511ed961d828fa9bd74563b8f02a0ef4feaa64341d0eaf7a46dcd70db6",
+      "sha256_sanitized": "18d114511ed961d828fa9bd74563b8f02a0ef4feaa64341d0eaf7a46dcd70db6",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/log_analysis.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/log_analysis.md",
+      "sha256_original": "076726ad821f315103771356789cd08819b22a01337f7e94d18f10532d9c5cab",
+      "sha256_sanitized": "076726ad821f315103771356789cd08819b22a01337f7e94d18f10532d9c5cab",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/m365_excel_ptbr.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/m365_excel_ptbr.md",
+      "sha256_original": "4919baa6dea9a0520f40c217e6b22cb97e0b3aef2db71c8caebd120494eb5f2f",
+      "sha256_sanitized": "4919baa6dea9a0520f40c217e6b22cb97e0b3aef2db71c8caebd120494eb5f2f",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/macro_generation.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/macro_generation.md",
+      "sha256_original": "9cc7b1dba2c9a5dd48dc143c4cbd1d6cf1de7dbb5975bc63d23c41488055aef3",
+      "sha256_sanitized": "9cc7b1dba2c9a5dd48dc143c4cbd1d6cf1de7dbb5975bc63d23c41488055aef3",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/macro_itil_ptbr.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/macro_itil_ptbr.md",
+      "sha256_original": "b2e70b2958c6080f1df7698a98b10cee2f550169ad635f8e79438adb82c2808a",
+      "sha256_sanitized": "b2e70b2958c6080f1df7698a98b10cee2f550169ad635f8e79438adb82c2808a",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/modding_ptbr.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/modding_ptbr.md",
+      "sha256_original": "14361a44b5504b650a08bbed248e49cc5de5d912aab5eb1e78f73779f3281503",
+      "sha256_sanitized": "14361a44b5504b650a08bbed248e49cc5de5d912aab5eb1e78f73779f3281503",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/office_document_ptbr.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/office_document_ptbr.md",
+      "sha256_original": "7e18078632274d3a5b2f62f3aa45e70396648aaa39cf6cc2aa17d74f28b67609",
+      "sha256_sanitized": "7e18078632274d3a5b2f62f3aa45e70396648aaa39cf6cc2aa17d74f28b67609",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/patch_generation.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/patch_generation.md",
+      "sha256_original": "3c7c5a5475490f7a23aa1f49f9b95de9ba0e2ca7fd7b2d84c9ab3f0f5c36dc4e",
+      "sha256_sanitized": "3c7c5a5475490f7a23aa1f49f9b95de9ba0e2ca7fd7b2d84c9ab3f0f5c36dc4e",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/pdf_acrobat_ptbr.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/pdf_acrobat_ptbr.md",
+      "sha256_original": "76de19b75119cc4210a9712d666990204b46b67611517a0626e66f57135804a4",
+      "sha256_sanitized": "76de19b75119cc4210a9712d666990204b46b67611517a0626e66f57135804a4",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/pdf_acrobat_workflow.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/pdf_acrobat_workflow.md",
+      "sha256_original": "3366772caa45cfc8887be0a84f2347968f4183f93d8a3f3c764a12c4880f41fa",
+      "sha256_sanitized": "3366772caa45cfc8887be0a84f2347968f4183f93d8a3f3c764a12c4880f41fa",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/pdf_content_extraction.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/pdf_content_extraction.md",
+      "sha256_original": "a173c68e48182c7f46b7b607168d8baed6f245fa404ee4415c83a35706f8af7e",
+      "sha256_sanitized": "a173c68e48182c7f46b7b607168d8baed6f245fa404ee4415c83a35706f8af7e",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/pdf_redaction_review.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/pdf_redaction_review.md",
+      "sha256_original": "6617867f6e40ce211901adadddac3c0e62cd635a424d4fb9f4659daa3ed29d75",
+      "sha256_sanitized": "6617867f6e40ce211901adadddac3c0e62cd635a424d4fb9f4659daa3ed29d75",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/pdf_signature_certificate_handling.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/pdf_signature_certificate_handling.md",
+      "sha256_original": "4c6a5424a53ab292aae7114447744f580d271378450977a47b796aa73c5d3da1",
+      "sha256_sanitized": "4c6a5424a53ab292aae7114447744f580d271378450977a47b796aa73c5d3da1",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/powerpoint_deck_generation.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/powerpoint_deck_generation.md",
+      "sha256_original": "7417fdb86a8856ec80232ecd60f31f3f2ceca047aa9adacb9cdf1e20cbcf501c",
+      "sha256_sanitized": "7417fdb86a8856ec80232ecd60f31f3f2ceca047aa9adacb9cdf1e20cbcf501c",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/powerpoint_deck_review.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/powerpoint_deck_review.md",
+      "sha256_original": "787dde4015de68c3f8601acc00d6e8f87ac4c4f81a98eb47d176fbff3ba07189",
+      "sha256_sanitized": "787dde4015de68c3f8601acc00d6e8f87ac4c4f81a98eb47d176fbff3ba07189",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/powerpoint_training_material.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/powerpoint_training_material.md",
+      "sha256_original": "50a87137605ac73e6db838148379a72212368111cad991db95351d969b0cdc54",
+      "sha256_sanitized": "50a87137605ac73e6db838148379a72212368111cad991db95351d969b0cdc54",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/powershell_generation.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/powershell_generation.md",
+      "sha256_original": "c59cc4c7a3aa0b42ab9c82f6a35f39e7109ac82301dcc5509d484cce850cf9cb",
+      "sha256_sanitized": "c59cc4c7a3aa0b42ab9c82f6a35f39e7109ac82301dcc5509d484cce850cf9cb",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/review.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/review.md",
+      "sha256_original": "73a250d999b17e12c524ccef46c7e8376fe3aa2daa547f8c0d23b16f6fafbe7f",
+      "sha256_sanitized": "73a250d999b17e12c524ccef46c7e8376fe3aa2daa547f8c0d23b16f6fafbe7f",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/security_review.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/security_review.md",
+      "sha256_original": "e5df5f82c4693af4e6391058d2803191ae53dee4412d15640ae1b3203f52ddb7",
+      "sha256_sanitized": "e5df5f82c4693af4e6391058d2803191ae53dee4412d15640ae1b3203f52ddb7",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/service_desk_ptbr.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/service_desk_ptbr.md",
+      "sha256_original": "55512dd6b1676d5174929eb219e53cf877eba9e286840a862287ef9bf9e50c5a",
+      "sha256_sanitized": "55512dd6b1676d5174929eb219e53cf877eba9e286840a862287ef9bf9e50c5a",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/spreadsheet_analysis.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/spreadsheet_analysis.md",
+      "sha256_original": "ed013066f7aa9dd382f77c61ae3a1efe90de00e01eeb33eef3d9b72e2ecc19db",
+      "sha256_sanitized": "ed013066f7aa9dd382f77c61ae3a1efe90de00e01eeb33eef3d9b72e2ecc19db",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/spreadsheet_automation.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/spreadsheet_automation.md",
+      "sha256_original": "f63daf4713610613684d6c5eb75487adbb7566adaf925f221009c5d146f76998",
+      "sha256_sanitized": "f63daf4713610613684d6c5eb75487adbb7566adaf925f221009c5d146f76998",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/spreadsheet_data_quality.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/spreadsheet_data_quality.md",
+      "sha256_original": "6129cff447781f5202848eedd8ca6775382cb1df1231b889a6b912a7bc681637",
+      "sha256_sanitized": "6129cff447781f5202848eedd8ca6775382cb1df1231b889a6b912a7bc681637",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/triage.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/triage.md",
+      "sha256_original": "59eb2971d42e06770bfed1c678eae965f8a795b2edb2d7f4c75bba3b93922c59",
+      "sha256_sanitized": "59eb2971d42e06770bfed1c678eae965f8a795b2edb2d7f4c75bba3b93922c59",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/troubleshooting.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/troubleshooting.md",
+      "sha256_original": "6c41c0a987b5247bb22b3a22eadffdbbae9be8f5a4e1ecb9745f3062d0216d5d",
+      "sha256_sanitized": "6c41c0a987b5247bb22b3a22eadffdbbae9be8f5a4e1ecb9745f3062d0216d5d",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/word_complex_revision.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/word_complex_revision.md",
+      "sha256_original": "2455d56a988a10dee369070a906bb111c05b6341e2730eedc04382ea7101f307",
+      "sha256_sanitized": "2455d56a988a10dee369070a906bb111c05b6341e2730eedc04382ea7101f307",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    },
+    {
+      "source_path": "tools/hermesops_offline/prompts/word_document_editing.md",
+      "output_path": "reports/hml_selective_migration_phase3/evidence/sanitize_output/word_document_editing.md",
+      "sha256_original": "c983a9b83544fbf528b9f3a3abf486281c3d933fd8d1a0e651cbd262659771af",
+      "sha256_sanitized": "c983a9b83544fbf528b9f3a3abf486281c3d933fd8d1a0e651cbd262659771af",
+      "changed": false,
+      "findings": [],
+      "dry_run": true
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "job_id": "doc-001",
+    "job_type": "draft",
+    "input_file": "source.md",
+    "output_file": "output.docx",
+    "template": "kcs_document_template.md",
+    "document_type": "kcs",
+    "audience": "service_desk",
+    "review_level": "human",
+    "sensitivity": "low",
+    "external_model_allowed": false,
+    "dry_run": true,
+    "created_at": "2026-06-07T14:00:00Z"
+  }
+]

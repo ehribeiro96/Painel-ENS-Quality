@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Validation Result",
+  "type": "object",
+  "required": [
+    "tool",
+    "status",
+    "output"
+  ],
+  "properties": {
+    "tool": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "output": {
+      "type": "string"
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

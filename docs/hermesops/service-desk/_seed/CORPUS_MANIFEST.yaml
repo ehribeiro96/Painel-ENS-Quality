@@ -1,0 +1,426 @@
+version: 1
+created_at: '2026-06-07T00:00:00'
+corpus_name: Hermes Ops Seed Corpus
+root: knowledge/service-desk/_seed
+documents:
+- id: anydesk-unattended-access
+  path: knowledge/service-desk/_seed/anydesk/anydesk-unattended-access.md
+  title: AnyDesk unattended access com falha de vínculo ou permissão
+  document_type: playbook
+  domain: anydesk
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - anydesk
+  - remote
+  - unattended
+  - permission
+  - agent
+- id: certificado-a1-nao-aparece
+  path: knowledge/service-desk/_seed/certificates/certificado-a1-nao-aparece.md
+  title: Certificado A1 não aparece para aplicação do usuário
+  document_type: troubleshooting_note
+  domain: certificates
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - certificado
+  - a1
+  - certmgr
+  - store
+  - assinatura
+- id: certificado-a3-token-smartcard
+  path: knowledge/service-desk/_seed/certificates/certificado-a3-token-smartcard.md
+  title: Certificado A3 em token ou smartcard não reconhecido
+  document_type: playbook
+  domain: certificates
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - certificado
+  - a3
+  - token
+  - smartcard
+  - middleware
+- id: alembic-migration-debug
+  path: knowledge/service-desk/_seed/coding/alembic-migration-debug.md
+  title: Debug de migração Alembic
+  document_type: code_debug_note
+  domain: coding
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - coding
+  - alembic
+  - sqlalchemy
+  - migration
+  - database
+- id: docker-compose-debug
+  path: knowledge/service-desk/_seed/coding/docker-compose-debug.md
+  title: Debug de docker compose em ambiente de desenvolvimento
+  document_type: code_debug_note
+  domain: coding
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - coding
+  - docker
+  - compose
+  - containers
+  - healthcheck
+- id: git-branch-rollback
+  path: knowledge/service-desk/_seed/coding/git-branch-rollback.md
+  title: Rollback seguro de branch Git
+  document_type: decision_record
+  domain: coding
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - coding
+  - git
+  - rollback
+  - branch
+  - revert
+- id: node-npm-dependency-conflict
+  path: knowledge/service-desk/_seed/coding/node-npm-dependency-conflict.md
+  title: Conflito de dependências Node/NPM
+  document_type: code_debug_note
+  domain: coding
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - coding
+  - node
+  - npm
+  - dependency
+  - peer-deps
+- id: postgresql-redis-debug
+  path: knowledge/service-desk/_seed/coding/postgresql-redis-debug.md
+  title: Debug de integração PostgreSQL e Redis
+  document_type: code_debug_note
+  domain: coding
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - coding
+  - postgresql
+  - redis
+  - cache
+  - connection
+- id: powershell-script-seguro
+  path: knowledge/service-desk/_seed/coding/powershell-script-seguro.md
+  title: Boas práticas para script PowerShell seguro
+  document_type: script_note
+  domain: coding
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - coding
+  - powershell
+  - script
+  - security
+  - windows
+- id: python-fastapi-debug
+  path: knowledge/service-desk/_seed/coding/python-fastapi-debug.md
+  title: Debug de aplicação Python FastAPI
+  document_type: code_debug_note
+  domain: coding
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - coding
+  - python
+  - fastapi
+  - uvicorn
+  - api
+- id: react-vite-typescript-build
+  path: knowledge/service-desk/_seed/coding/react-vite-typescript-build.md
+  title: Build React Vite TypeScript com erro
+  document_type: code_debug_note
+  domain: coding
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - coding
+  - react
+  - vite
+  - typescript
+  - build
+- id: gpo-nao-aplica
+  path: knowledge/service-desk/_seed/gpo-ad/gpo-nao-aplica.md
+  title: GPO não aplica no endpoint ou usuário
+  document_type: kcs_article
+  domain: gpo-ad
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - gpo
+  - ad
+  - ou
+  - gpresult
+  - sysvol
+- id: inventario-lansweeper-divergente
+  path: knowledge/service-desk/_seed/lansweeper/inventario-lansweeper-divergente.md
+  title: Inventário Lansweeper divergente do endpoint real
+  document_type: troubleshooting_note
+  domain: lansweeper
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - lansweeper
+  - inventory
+  - scan
+  - asset
+  - agentless
+- id: ndd-print-pin-portal-360
+  path: knowledge/service-desk/_seed/ndd-print/ndd-print-pin-portal-360.md
+  title: NDD Print Portal 360 - criação ou ajuste de PIN
+  document_type: playbook
+  domain: ndd-print
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - ndd
+  - print
+  - pin
+  - portal360
+  - followme
+- id: dns-incorreto
+  path: knowledge/service-desk/_seed/network/dns-incorreto.md
+  title: DNS incorreto causando falhas de domínio e aplicações
+  document_type: troubleshooting_note
+  domain: network
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - dns
+  - name-resolution
+  - ad
+  - split-dns
+  - vpn
+- id: maquina-sem-rede
+  path: knowledge/service-desk/_seed/network/maquina-sem-rede.md
+  title: Máquina sem conectividade de rede
+  document_type: playbook
+  domain: network
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - network
+  - ethernet
+  - wifi
+  - dhcp
+  - gateway
+- id: wake-on-lan
+  path: knowledge/service-desk/_seed/network/wake-on-lan.md
+  title: Wake-on-LAN para ligar estação remotamente
+  document_type: vendor_reference
+  domain: network
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - network
+  - wol
+  - bios
+  - nic
+  - magic-packet
+- id: office365-ativacao-licenca
+  path: knowledge/service-desk/_seed/office365/office365-ativacao-licenca.md
+  title: Office 365 sem ativar licença no desktop
+  document_type: kcs_article
+  domain: office365
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - office365
+  - activation
+  - license
+  - signin
+  - subscription
+- id: outlook-nao-abre
+  path: knowledge/service-desk/_seed/outlook/outlook-nao-abre.md
+  title: Outlook não abre após atualização ou falha de perfil
+  document_type: troubleshooting_note
+  domain: outlook
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - outlook
+  - office
+  - perfil
+  - addin
+  - ost
+  - clicktorun
+- id: impressora-nao-imprime
+  path: knowledge/service-desk/_seed/printers/impressora-nao-imprime.md
+  title: Impressora instalada não imprime
+  document_type: kcs_article
+  domain: printers
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - printer
+  - spooler
+  - fila
+  - driver
+  - tcpip
+- id: rdp-entre-dominios-sem-trust
+  path: knowledge/service-desk/_seed/rdp-vpn/rdp-entre-dominios-sem-trust.md
+  title: RDP entre domínios sem trust
+  document_type: decision_record
+  domain: rdp-vpn
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - rdp
+  - vpn
+  - domain
+  - trust
+  - credssp
+- id: alerta-trend-possivel-malware
+  path: knowledge/service-desk/_seed/security-incidents/alerta-trend-possivel-malware.md
+  title: Alerta Trend indicando possível malware
+  document_type: playbook
+  domain: security-incidents
+  risk_level: critical
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - security
+  - trend
+  - malware
+  - edr
+  - incident
+- id: teams-cache-corrompido
+  path: knowledge/service-desk/_seed/teams/teams-cache-corrompido.md
+  title: Teams com cache corrompido ou loop de autenticação
+  document_type: playbook
+  domain: teams
+  risk_level: low
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - teams
+  - cache
+  - login
+  - webview2
+  - m365
+- id: bsod-eventos-criticos
+  path: knowledge/service-desk/_seed/windows/bsod-eventos-criticos.md
+  title: BSOD ou eventos críticos recorrentes no Windows
+  document_type: decision_record
+  domain: windows
+  risk_level: critical
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - windows
+  - bsod
+  - bugcheck
+  - eventlog
+  - driver
+- id: erro-instalacao-java
+  path: knowledge/service-desk/_seed/windows/erro-instalacao-java.md
+  title: Erro de instalação ou atualização de Java
+  document_type: troubleshooting_note
+  domain: windows
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - java
+  - jre
+  - jdk
+  - msi
+  - path
+- id: lentidao-windows
+  path: knowledge/service-desk/_seed/windows/lentidao-windows.md
+  title: Lentidão generalizada no Windows
+  document_type: kcs_article
+  domain: windows
+  risk_level: medium
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - windows
+  - performance
+  - disk
+  - cpu
+  - startup
+- id: perfil-usuario-corrompido
+  path: knowledge/service-desk/_seed/windows/perfil-usuario-corrompido.md
+  title: Perfil de usuário Windows corrompido
+  document_type: playbook
+  domain: windows
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - windows
+  - profile
+  - temp-profile
+  - registry
+  - ntuser
+- id: windows-update-wsus-travado
+  path: knowledge/service-desk/_seed/wsus-windows-update/windows-update-wsus-travado.md
+  title: Windows Update apontando para WSUS travado
+  document_type: playbook
+  domain: wsus-windows-update
+  risk_level: high
+  sensitivity: sanitized
+  external_model_allowed: true
+  automation_allowed: false
+  tags:
+  - wsus
+  - windows-update
+  - gpo
+  - bits
+  - usosvc

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Coding Memory",
+  "type": "object",
+  "required": [
+    "memory_id",
+    "title",
+    "summary",
+    "stack",
+    "risk",
+    "validation",
+    "rollback",
+    "commit"
+  ],
+  "properties": {
+    "memory_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "stack": {
+      "type": "string"
+    },
+    "risk": {
+      "type": "string"
+    },
+    "validation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollback": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commit": {
+      "type": "string"
+    },
+    "external_model_allowed": {
+      "type": "boolean"
+    },
+    "human_review_required": {
+      "type": "boolean"
+    }
+  }
+}

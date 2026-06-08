@@ -1,0 +1,58 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "title": "docx_job",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "job_id": {
+      "type": "string"
+    },
+    "job_type": {
+      "type": "string"
+    },
+    "input_file": {
+      "type": "string"
+    },
+    "output_file": {
+      "type": "string"
+    },
+    "template": {
+      "type": "string"
+    },
+    "document_type": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string"
+    },
+    "review_level": {
+      "type": "string"
+    },
+    "sensitivity": {
+      "type": "string"
+    },
+    "external_model_allowed": {
+      "type": "boolean"
+    },
+    "dry_run": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "job_id",
+    "job_type",
+    "input_file",
+    "output_file",
+    "template",
+    "document_type",
+    "audience",
+    "review_level",
+    "sensitivity",
+    "external_model_allowed",
+    "dry_run",
+    "created_at"
+  ]
+}

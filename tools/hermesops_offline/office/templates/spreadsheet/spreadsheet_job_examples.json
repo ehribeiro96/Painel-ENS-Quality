@@ -1,0 +1,15 @@
+[
+  {
+    "job_id": "sheet-001",
+    "job_type": "analysis",
+    "input_file": "synthetic_input.xlsx",
+    "output_file": "analysis.json",
+    "sheet_name": "Tickets",
+    "table_name": "TicketsTable",
+    "validation_profile": "service_desk_base",
+    "sensitivity": "low",
+    "external_model_allowed": false,
+    "dry_run": true,
+    "created_at": "2026-06-07T14:00:00Z"
+  }
+]

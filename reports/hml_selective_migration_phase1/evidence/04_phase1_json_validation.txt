@@ -1,0 +1,42 @@
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/hermesops/localization/messages/cli_messages.pt-br.json
+{
+    "start": "Iniciando execu\u00e7\u00e3o controlada.",
+    "dry_run": "Modo dry-run ativo. Nenhuma altera\u00e7\u00e3o real ser\u00e1 aplicada.",
+    "blocked_forbidden_path": "Opera\u00e7\u00e3o bloqueada: caminho proibido detectado.",
+    "success": "Opera\u00e7\u00e3o conclu\u00edda com sucesso.",
+    "error": "Erro durante a execu\u00e7\u00e3o.",
+    "requires_human_approval": "Esta a\u00e7\u00e3o exige aprova\u00e7\u00e3o humana antes de continuar.",
+    "composio_disabled": "Composio est\u00e1 desativado por padr\u00e3o.",
+    "composio_dry_run": "Composio opera em dry-run nesta fase.",
+    "composio_hml_required": "Composio exige HML para autentica\u00e7\u00e3o e a\u00e7\u00f5es reais.",
+    "composio_logs_sanitized": "Logs Composio foram sanitizados antes da an\u00e1lise."
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/hermesops/localization/messages/validation_messages.pt-br.json
+{
+    "valid_directory": "Diret\u00f3rio validado com sucesso.",
+    "hash_divergent": "Hash divergente detectado.",
+    "package_validated": "Pacote validado com sucesso.",
+    "composio_registry_ok": "Registry de plugins validado com sucesso.",
+    "composio_policy_ok": "Pol\u00edtica do Composio validada com sucesso."
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/hermesops/localization/messages/error_messages.pt-br.json
+{
+    "file_missing": "Arquivo ausente.",
+    "network_blocked": "Rede bloqueada nesta fase.",
+    "composio_network_blocked": "Rede bloqueada para Composio nesta fase.",
+    "composio_external_action_blocked": "A\u00e7\u00e3o externa bloqueada pelo modo seguro."
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/hermesops/localization/messages/report_sections.pt-br.json
+{
+    "summary": "Resumo executivo",
+    "risks": "Riscos",
+    "rollback": "Rollback",
+    "composio_plugin_section": "Se\u00e7\u00e3o de Composio Plugin",
+    "log_driven_change_section": "Se\u00e7\u00e3o de mudan\u00e7as orientadas por logs"
+}
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/hermesops/localization/messages/macro_templates.pt-br.json
+{
+    "itil_incident": "Ol\u00e1, {usuario}. Seu chamado foi registrado como incidente. Pr\u00f3ximo passo: {proximo_passo}.",
+    "kcs_resolution": "Sintoma: {sintoma}. Causa: {causa}. Solu\u00e7\u00e3o: {solucao}. Valida\u00e7\u00e3o: {validacao}.",
+    "rollback_notice": "Foi necess\u00e1rio acionar rollback para preservar a estabilidade. Evid\u00eancia: {evidencia}."
+}

@@ -1,0 +1,7 @@
+name: ptbr_language_quality
+language: pt-BR
+checks:
+  - clarity
+  - technical_term_preservation
+  - human_readable_explanation
+  - no_mixed_command_translation

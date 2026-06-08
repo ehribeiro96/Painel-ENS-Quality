@@ -1,0 +1,23 @@
+profile_name: hermesops_desktop
+environment: test
+backend: wsl_ubuntu
+project_root: /home/ribeiro/Build_Mod/HermesOps
+hermes_home: /home/ribeiro/.hermes
+default_mode: safe
+language: pt-BR
+locale: pt_BR.UTF-8
+encoding: UTF-8
+preserve_technical_terms: true
+fallback_language: en-US
+start_directory: /home/ribeiro/Build_Mod/HermesOps
+plugins:
+  composio:
+    visible_in_cli: true
+    status: disabled
+    mode: dry-run
+    hml_required: true
+    external_actions: blocked
+    logs_enabled: true
+    log_review_enabled: true
+    change_proposals_enabled: true
+    auto_apply_log_changes: false

@@ -1,0 +1,66 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pdf_job",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "job_id": {
+      "type": "string"
+    },
+    "job_type": {
+      "type": "string"
+    },
+    "input_file": {
+      "type": "string"
+    },
+    "output_file": {
+      "type": "string"
+    },
+    "pdf_operation": {
+      "type": "string"
+    },
+    "requires_ocr": {
+      "type": "boolean"
+    },
+    "requires_redaction": {
+      "type": "boolean"
+    },
+    "requires_signature_validation": {
+      "type": "boolean"
+    },
+    "contains_personal_data": {
+      "type": "boolean"
+    },
+    "contains_certificate": {
+      "type": "boolean"
+    },
+    "sensitivity": {
+      "type": "string"
+    },
+    "external_model_allowed": {
+      "type": "boolean"
+    },
+    "dry_run": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "job_id",
+    "job_type",
+    "input_file",
+    "output_file",
+    "pdf_operation",
+    "requires_ocr",
+    "requires_redaction",
+    "requires_signature_validation",
+    "contains_personal_data",
+    "contains_certificate",
+    "sensitivity",
+    "external_model_allowed",
+    "dry_run",
+    "created_at"
+  ]
+}

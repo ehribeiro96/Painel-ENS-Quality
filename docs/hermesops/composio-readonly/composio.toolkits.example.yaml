@@ -1,0 +1,13 @@
+allowlist:
+  - github
+  - gitlab
+  - google_drive
+  - google_calendar
+  - gmail
+  - outlook
+  - microsoft_teams
+  - slack
+  - notion
+  - jira
+  - linear
+  - trello

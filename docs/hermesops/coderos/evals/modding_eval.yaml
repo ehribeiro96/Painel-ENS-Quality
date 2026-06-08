@@ -1,0 +1,7 @@
+version: 1
+name: synthetic
+description: offline eval
+cases:
+  - id: case-1
+    input: synthetic
+    expected: offline-only

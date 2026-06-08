@@ -1,0 +1,72 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pdf_audit",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "audit_id": {
+      "type": "string"
+    },
+    "file_name": {
+      "type": "string"
+    },
+    "page_count": {
+      "type": "integer"
+    },
+    "has_text_layer": {
+      "type": "boolean"
+    },
+    "has_images": {
+      "type": "boolean"
+    },
+    "has_forms": {
+      "type": "boolean"
+    },
+    "has_signature": {
+      "type": "boolean"
+    },
+    "has_attachments": {
+      "type": "boolean"
+    },
+    "metadata_findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sensitivity_findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "redaction_required": {
+      "type": "boolean"
+    },
+    "ocr_required": {
+      "type": "boolean"
+    },
+    "signature_caution": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "audit_id",
+    "file_name",
+    "page_count",
+    "has_text_layer",
+    "has_images",
+    "has_forms",
+    "has_signature",
+    "has_attachments",
+    "metadata_findings",
+    "sensitivity_findings",
+    "redaction_required",
+    "ocr_required",
+    "signature_caution",
+    "status"
+  ]
+}

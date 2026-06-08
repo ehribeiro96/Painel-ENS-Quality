@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import argparse, json
+from pathlib import Path
+
+BANNED = ('.env', '.env.', '.pfx', '.p12', '.pem', '.key', 'token', 'secret', 'password', 'senha', 'credential')
+
+
+def blocked(path: str | None) -> bool:
+    if not path:
+        return False
+    low = path.lower()
+    return any(b in low for b in BANNED)
+
+
+def safe_path(p: str) -> Path:
+    if blocked(p):
+        raise SystemExit(f'Blocked sensitive path: {p}')
+    return Path(p)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--dry-run', action='store_true', default=False)
+    ap.add_argument('--input')
+    ap.add_argument('--output')
+    ap.add_argument('--memory-id')
+    ap.add_argument('--query')
+    ap.add_argument('--report')
+    args = ap.parse_args()
+    result = {'tool': 'memory_query', 'dry_run': args.dry_run}
+    catalog = Path('memory/indexes/memory_catalog.jsonl')
+    hits = []
+    if args.query and catalog.exists():
+        for line in catalog.read_text(encoding='utf-8').splitlines():
+            if args.query.lower() in line.lower():
+                hits.append(line)
+    result.update({'status': 'queried', 'query': args.query, 'hits': hits[:5]})
+    if args.report:
+        out = safe_path(args.report)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(result, indent=2), encoding='utf-8')
+    print(json.dumps(result, indent=2))
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,7 @@
+name: ptbr_technical_terms
+checks:
+  - preserve_commands
+  - preserve_paths
+  - preserve_error_messages
+  - preserve_apis
+  - preserve_function_names

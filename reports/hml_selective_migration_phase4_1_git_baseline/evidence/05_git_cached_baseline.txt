@@ -1,0 +1,1652 @@
+== Cached diff stat ==
+ .gitignore                                         |   57 +
+ AGENTS.md                                          |   45 +
+ HERMES.md                                          |   85 +
+ README.md                                          |   35 +
+ docs/hermesops/INDEX.md                            |   29 +
+ docs/hermesops/MIGRATION_SOURCE.md                 |   29 +
+ docs/hermesops/README.md                           |   13 +
+ docs/hermesops/coderos/CODEROS_ARCHITECTURE.md     |    3 +
+ .../coderos/CODEROS_CODE_REVIEW_STANDARD.md        |    9 +
+ .../coderos/CODEROS_DEBUGGING_STANDARD.md          |    3 +
+ .../coderos/CODEROS_MEMORY_INTEGRATION.md          |   12 +
+ docs/hermesops/coderos/CODEROS_MODDING_POLICY.md   |    3 +
+ docs/hermesops/coderos/CODEROS_POLICY.md           |    3 +
+ .../coderos/CODEROS_PROMPTING_STANDARD.md          |   10 +
+ .../coderos/CODEROS_REFACTORING_STANDARD.md        |    3 +
+ .../coderos/CODEROS_SECURITY_BOUNDARIES.md         |   12 +
+ docs/hermesops/coderos/CODEROS_STACK_CATALOG.md    |    3 +
+ docs/hermesops/coderos/CODEROS_TESTING_STRATEGY.md |    3 +
+ docs/hermesops/coderos/CODEROS_TOOLCHAIN.md        |   12 +
+ docs/hermesops/coderos/CODEROS_WORKFLOW.md         |    3 +
+ docs/hermesops/coderos/README.md                   |    3 +
+ docs/hermesops/coderos/evals/README.md             |    1 +
+ .../hermesops/coderos/evals/coding_agent_eval.yaml |    7 +
+ docs/hermesops/coderos/evals/fastapi_eval.yaml     |    7 +
+ docs/hermesops/coderos/evals/modding_eval.yaml     |    7 +
+ .../coderos/evals/patch_quality_eval.yaml          |    7 +
+ docs/hermesops/coderos/evals/powershell_eval.yaml  |    7 +
+ docs/hermesops/coderos/evals/react_eval.yaml       |    7 +
+ docs/hermesops/coderos/evals/repo_triage_eval.yaml |    7 +
+ .../coderos/evals/security_boundary_eval.yaml      |    7 +
+ docs/hermesops/coderos/examples/README.md          |    1 +
+ .../coderos/modding/MODDING_SAFE_BOUNDARIES.md     |    5 +
+ docs/hermesops/coderos/modding/README.md           |    1 +
+ docs/hermesops/coderos/modding/asset_pipeline.md   |    3 +
+ .../coderos/modding/config_patch_patterns.md       |    3 +
+ .../coderos/modding/game_mod_project_structure.md  |    3 +
+ .../hermesops/coderos/modding/packaging_release.md |    3 +
+ .../coderos/modding/plugin_architecture.md         |    3 +
+ .../coderos/modding/prohibited_modding_actions.md  |    3 +
+ .../modding/troubleshooting_mod_load_order.md      |    3 +
+ .../coderos/modding/version_compatibility.md       |    3 +
+ docs/hermesops/coderos/playbooks/README.md         |    1 +
+ .../hermesops/coderos/playbooks/bugfix_workflow.md |   41 +
+ .../coderos/playbooks/feature_implementation.md    |   41 +
+ .../coderos/playbooks/refactor_workflow.md         |   41 +
+ .../coderos/playbooks/repository_triage.md         |   41 +
+ .../hermesops/coderos/playbooks/security_review.md |    7 +
+ docs/hermesops/coderos/prompts/README.md           |    1 +
+ docs/hermesops/coderos/prompts/code_review.md      |    6 +
+ docs/hermesops/coderos/prompts/patch_generation.md |    6 +
+ .../coderos/prompts/powershell_generation.md       |    6 +
+ docs/hermesops/coderos/prompts/security_review.md  |    6 +
+ docs/hermesops/coderos/schemas/README.md           |    1 +
+ docs/hermesops/coderos/stacks/README.md            |    1 +
+ docs/hermesops/coderos/stacks/ai_agents.md         |   12 +
+ docs/hermesops/coderos/stacks/docker_compose.md    |   47 +
+ docs/hermesops/coderos/stacks/m365_graph.md        |   12 +
+ docs/hermesops/coderos/stacks/modding_general.md   |   47 +
+ docs/hermesops/coderos/stacks/nextjs.md            |   47 +
+ docs/hermesops/coderos/stacks/node_typescript.md   |   47 +
+ docs/hermesops/coderos/stacks/office_automation.md |   47 +
+ .../coderos/stacks/postgres_sqlalchemy_alembic.md  |   47 +
+ docs/hermesops/coderos/stacks/powershell7.md       |   47 +
+ docs/hermesops/coderos/stacks/python_cli.md        |   47 +
+ docs/hermesops/coderos/stacks/python_data_tools.md |   47 +
+ docs/hermesops/coderos/stacks/python_fastapi.md    |   47 +
+ docs/hermesops/coderos/stacks/qdrant_rag.md        |   47 +
+ docs/hermesops/coderos/stacks/react_vite.md        |   47 +
+ docs/hermesops/coderos/stacks/redis.md             |   47 +
+ docs/hermesops/coderos/stacks/windows_ad_gpo.md    |   47 +
+ .../composio-readonly/COMPOSIO_AUDIT_LOGGING.md    |    3 +
+ .../COMPOSIO_CHANGE_PROPOSAL_WORKFLOW.md           |    3 +
+ .../composio-readonly/COMPOSIO_CLI_SPEC.md         |   44 +
+ .../COMPOSIO_HML_ACTIVATION_PLAN.md                |   28 +
+ .../COMPOSIO_LOG_REVIEW_WORKFLOW.md                |    3 +
+ .../composio-readonly/COMPOSIO_PERMISSION_MODEL.md |   31 +
+ .../COMPOSIO_PLUGIN_ARCHITECTURE.md                |   11 +
+ .../composio-readonly/COMPOSIO_ROLLBACK.md         |    6 +
+ .../composio-readonly/COMPOSIO_RUNTIME_LOGGING.md  |    3 +
+ .../composio-readonly/COMPOSIO_SECURITY_POLICY.md  |   33 +
+ .../COMPOSIO_TOOLKIT_ALLOWLIST.md                  |   10 +
+ docs/hermesops/composio-readonly/README.md         |    3 +
+ .../composio.permissions.example.yaml              |    8 +
+ .../composio-readonly/composio.plugin.yaml         |   63 +
+ .../composio.toolkits.example.yaml                 |   13 +
+ .../prompts/composio_audit_review.md               |   11 +
+ .../prompts/composio_change_proposal.md            |   11 +
+ .../prompts/composio_connection_triage.md          |   11 +
+ .../prompts/composio_hml_activation.md             |   11 +
+ .../prompts/composio_log_review.md                 |   11 +
+ .../prompts/composio_permission_review.md          |   11 +
+ .../prompts/composio_tool_execution_plan.md        |   11 +
+ .../COMPOSIO_API_HEALTH_CHECK_ENDPOINT_FIX.md      |   42 +
+ .../reports/COMPOSIO_API_HEALTH_CHECK_PLAN.md      |   66 +
+ .../reports/COMPOSIO_CHANGE_PROPOSAL_REVIEW.md     |    7 +
+ .../reports/COMPOSIO_CLI_REVIEW.md                 |   11 +
+ .../composio-readonly/reports/COMPOSIO_GO_NO_GO.md |   32 +
+ .../reports/COMPOSIO_HML_READINESS.md              |   14 +
+ .../reports/COMPOSIO_LOCAL_SECRET_CONFIGURATION.md |   45 +
+ .../reports/COMPOSIO_LOGGING_REVIEW.md             |    6 +
+ .../reports/COMPOSIO_NEXT_STEPS.md                 |   14 +
+ .../reports/COMPOSIO_PERMISSION_REVIEW.md          |    9 +
+ .../reports/COMPOSIO_PLUGIN_PHASE_REPORT.md        |   17 +
+ .../reports/COMPOSIO_READ_ONLY_API_HARDENING.md    |   71 +
+ .../reports/COMPOSIO_SECURITY_REVIEW.md            |    9 +
+ ...KTOP_APP_UI_PLUGIN_PANEL_IMPLEMENTATION_PLAN.md |   41 +
+ .../DESKTOP_APP_VISUAL_CHANGE_LIMITS.md            |    6 +
+ .../FUTURE_DESKTOP_APP_UI_PLUGIN_PANEL_PLAN.md     |   22 +
+ .../desktop-cli/HERMES_DESKTOP_CLI_ARCHITECTURE.md |   17 +
+ .../desktop-cli/HERMES_DESKTOP_CLI_DISCOVERY.md    |   10 +
+ .../desktop-cli/HERMES_DESKTOP_CLI_LOGGING.md      |   12 +
+ .../desktop-cli/HERMES_DESKTOP_CLI_POLICY.md       |   14 +
+ .../HERMES_DESKTOP_CLI_PROJECT_ROUTING.md          |   10 +
+ .../desktop-cli/HERMES_DESKTOP_CLI_ROLLBACK.md     |    7 +
+ .../desktop-cli/HERMES_DESKTOP_CLI_WRAPPER_PLAN.md |   13 +
+ .../HERMES_DESKTOP_MANUAL_ACTIVATION_GUIDE.md      |   20 +
+ .../desktop-cli/HERMES_DESKTOP_MANUAL_ROLLBACK.md  |   12 +
+ .../desktop-cli/HERMES_DESKTOP_PTBR_KEYBOARD.md    |   47 +
+ docs/hermesops/desktop-cli/README.md               |   12 +
+ docs/hermesops/desktop-cli/profiles/README.md      |    3 +
+ .../profiles/hermesops_cli_profile.yaml            |   33 +
+ .../profiles/hermesops_desktop_profile.yaml        |   23 +
+ .../desktop-cli/prompts/cli_change_request.md      |    3 +
+ .../hermesops/desktop-cli/prompts/cli_debugging.md |    3 +
+ .../desktop-cli/prompts/cli_release_checklist.md   |    7 +
+ .../desktop-cli/prompts/cli_wrapper_review.md      |    3 +
+ .../reports/COMPOSIO_UI_VISIBILITY_AUDIT.md        |   26 +
+ .../reports/COMPOSIO_UI_VISIBILITY_FIX_REPORT.md   |   36 +
+ .../reports/COMPOSIO_UI_VISIBILITY_GO_NO_GO.md     |   31 +
+ .../desktop-cli/reports/DARK_MODE_FIX_REPORT.md    |   20 +
+ .../reports/DESKTOP_PATCH_SOURCE_REPORT.md         |   28 +
+ .../reports/DESKTOP_UI_STRUCTURE_AUDIT.md          |   30 +
+ .../HERMESOPS_DESKTOP_BRIDGE_SECURITY_AUDIT.md     |   41 +
+ .../reports/HERMESOPS_PANEL_GO_NO_GO.md            |   24 +
+ .../HERMESOPS_PANEL_IMPLEMENTATION_REPORT.md       |   32 +
+ .../reports/HERMESOPS_PANEL_VALIDATION_REPORT.md   |   27 +
+ .../reports/HERMESOPS_PTBR_STRING_AUDIT.md         |   72 +
+ .../reports/HERMESOPS_PTBR_UI_FIX_REPORT.md        |   33 +
+ .../reports/HERMES_DESKTOP_MOD_NEXT_STEPS.md       |    8 +
+ .../reports/HERMES_DESKTOP_SOURCE_DISCOVERY.md     |   18 +
+ .../reports/KEYBOARD_LAYOUT_FIX_REPORT.md          |   26 +
+ .../reports/PTBR_LOCALE_KEYBOARD_DIAGNOSIS.md      |   24 +
+ .../desktop-cli/reports/PTBR_UI_GO_NO_GO.md        |   25 +
+ .../reports/PTBR_UI_SMOKE_TEST_CHECKLIST.md        |   16 +
+ .../reports/READ_ONLY_BRIDGE_GO_NO_GO.md           |   25 +
+ .../READ_ONLY_BRIDGE_IMPLEMENTATION_REPORT.md      |   70 +
+ .../READ_ONLY_BRIDGE_SMOKE_TEST_CHECKLIST.md       |   25 +
+ docs/hermesops/desktop-cli/wrappers/README.md      |    8 +
+ .../ADOBE_ACROBAT_INTEGRATION_PLAN.md              |   15 +
+ .../ENTERPRISE_OFFICE_SKILLS_ARCHITECTURE.md       |   25 +
+ .../HML_DEPLOYMENT_NOTES.md                        |   11 +
+ .../M365_OFFICE_INTEGRATION_PLAN.md                |   31 +
+ .../PDF_ADOBE_ACROBAT_SKILL_SPEC.md                |   26 +
+ .../POWERPOINT_PPTX_SKILL_SPEC.md                  |   29 +
+ docs/hermesops/enterprise-office-skills/README.md  |    3 +
+ .../SECURITY_AND_DATA_POLICY.md                    |   20 +
+ .../SPREADSHEET_SKILL_SPEC.md                      |   22 +
+ .../TEXT_EDITING_SKILL_SPEC.md                     |   14 +
+ .../WORD_DOCX_SKILL_SPEC.md                        |   20 +
+ .../document_redaction_and_sanitization.md         |   16 +
+ .../playbooks/excel_base_service_desk.md           |   16 +
+ .../playbooks/excel_data_quality_review.md         |   16 +
+ .../playbooks/pdf_acrobat_standard_workflow.md     |   16 +
+ .../playbooks/pdf_ocr_and_text_extraction.md       |   16 +
+ .../playbooks/pdf_redaction_and_sanitization.md    |   16 +
+ .../pdf_signature_and_certificate_caution.md       |   16 +
+ .../powerpoint_executive_report_creation.md        |   16 +
+ .../playbooks/powerpoint_training_deck_creation.md |   16 +
+ .../playbooks/word_kcs_generation.md               |   16 +
+ .../playbooks/word_manual_creation.md              |   16 +
+ .../prompts/corporate_text_rewrite.md              |   14 +
+ .../prompts/document_quality_audit.md              |   12 +
+ .../prompts/excel_m365_integration.md              |   13 +
+ .../prompts/kcs_document_generation.md             |   14 +
+ .../prompts/pdf_acrobat_workflow.md                |   18 +
+ .../prompts/pdf_content_extraction.md              |   18 +
+ .../prompts/pdf_redaction_review.md                |   18 +
+ .../prompts/pdf_signature_certificate_handling.md  |   18 +
+ .../prompts/powerpoint_deck_generation.md          |   17 +
+ .../prompts/powerpoint_deck_review.md              |   17 +
+ .../prompts/powerpoint_training_material.md        |   17 +
+ .../prompts/spreadsheet_analysis.md                |   13 +
+ .../prompts/spreadsheet_automation.md              |   13 +
+ .../prompts/spreadsheet_data_quality.md            |   13 +
+ .../prompts/word_complex_revision.md               |   14 +
+ .../prompts/word_document_editing.md               |   14 +
+ .../templates/pdf/README.md                        |    3 +
+ .../templates/pdf/pdf_audit_template.md            |   13 +
+ .../templates/pdf/pdf_ocr_workflow_template.md     |    6 +
+ .../templates/pdf/pdf_redaction_checklist.md       |    6 +
+ .../pdf/pdf_signature_validation_checklist.md      |    5 +
+ .../templates/powerpoint/README.md                 |    3 +
+ .../powerpoint/executive_deck_template.md          |   73 +
+ .../powerpoint/kcs_training_deck_template.md       |   73 +
+ .../powerpoint/procedure_training_deck_template.md |   73 +
+ .../service_desk_report_deck_template.md           |   73 +
+ .../templates/spreadsheet/README.md                |    3 +
+ .../templates/word/README.md                       |    3 +
+ .../templates/word/corporate_report_template.md    |   16 +
+ .../templates/word/kcs_document_template.md        |   16 +
+ .../templates/word/meeting_minutes_template.md     |   16 +
+ .../templates/word/procedure_manual_template.md    |   16 +
+ docs/hermesops/governance/AGENTS.md                |   13 +
+ docs/hermesops/governance/ARCHITECTURE.md          |   19 +
+ docs/hermesops/governance/PROJECT_CONTEXT.md       |   19 +
+ docs/hermesops/governance/README.md                |   13 +
+ docs/hermesops/governance/ROADMAP.md               |   19 +
+ docs/hermesops/governance/SECURITY.md              |   13 +
+ docs/hermesops/localization/PT_BR_CLI_MESSAGES.md  |    3 +
+ .../localization/PT_BR_ENCODING_POLICY.md          |    8 +
+ .../localization/PT_BR_FALLBACK_POLICY.md          |    5 +
+ .../localization/PT_BR_KCS_MACRO_GUIDE.md          |    5 +
+ .../localization/PT_BR_LOCALIZATION_POLICY.md      |    8 +
+ docs/hermesops/localization/PT_BR_STYLE_GUIDE.md   |    7 +
+ .../localization/PT_BR_TERMINOLOGY_GUIDE.md        |    6 +
+ docs/hermesops/localization/README.md              |    8 +
+ .../localization/evals/ptbr_encoding_eval.yaml     |    7 +
+ .../localization/evals/ptbr_kcs_macro_eval.yaml    |    8 +
+ .../evals/ptbr_language_quality_eval.yaml          |    7 +
+ .../evals/ptbr_technical_terms_eval.yaml           |    7 +
+ .../localization/glossary/coding_terms.pt-br.yaml  |   42 +
+ .../glossary/desktop_cli_terms.pt-br.yaml          |   35 +
+ .../glossary/infrastructure_terms.pt-br.yaml       |   77 +
+ .../localization/glossary/m365_terms.pt-br.yaml    |   28 +
+ .../localization/glossary/modding_terms.pt-br.yaml |   63 +
+ .../localization/glossary/office_terms.pt-br.yaml  |  112 +
+ .../glossary/service_desk_terms.pt-br.yaml         |   28 +
+ .../localization/messages/cli_messages.pt-br.json  |   12 +
+ .../messages/error_messages.pt-br.json             |    6 +
+ .../messages/macro_templates.pt-br.json            |    5 +
+ .../messages/report_sections.pt-br.json            |    7 +
+ .../messages/validation_messages.pt-br.json        |    7 +
+ .../localization/prompts/code_review_ptbr.md       |   16 +
+ .../localization/prompts/coding_assistant_ptbr.md  |   16 +
+ .../localization/prompts/desktop_cli_ptbr.md       |   16 +
+ .../localization/prompts/kcs_generation_ptbr.md    |   17 +
+ .../localization/prompts/m365_excel_ptbr.md        |   17 +
+ .../localization/prompts/macro_itil_ptbr.md        |   18 +
+ .../hermesops/localization/prompts/modding_ptbr.md |   16 +
+ .../localization/prompts/office_document_ptbr.md   |   16 +
+ .../localization/prompts/pdf_acrobat_ptbr.md       |   16 +
+ .../localization/prompts/service_desk_ptbr.md      |   17 +
+ .../manifests/PHASE1_DECISION_MANIFEST.md          |   44 +
+ docs/hermesops/manifests/PHASE1_FILE_MANIFEST.txt  |  308 +
+ docs/hermesops/memoryos/MEMORY_ARCHITECTURE.md     |   21 +
+ .../memoryos/MEMORY_CONFLICT_RESOLUTION.md         |   21 +
+ .../memoryos/MEMORY_CONSOLIDATION_RULES.md         |   41 +
+ docs/hermesops/memoryos/MEMORY_LIFECYCLE.md        |   20 +
+ docs/hermesops/memoryos/MEMORY_POLICY.md           |   21 +
+ docs/hermesops/memoryos/MEMORY_RETRIEVAL_POLICY.md |   22 +
+ docs/hermesops/memoryos/README.md                  |   20 +
+ docs/hermesops/memoryos/episodic/README.md         |   21 +
+ docs/hermesops/memoryos/evals/README.md            |   20 +
+ docs/hermesops/memoryos/inbox/README.md            |   22 +
+ docs/hermesops/memoryos/indexes/README.md          |   20 +
+ docs/hermesops/memoryos/procedural/README.md       |   23 +
+ .../memoryos/procedural/agent_behavior.md          |   25 +
+ docs/hermesops/memoryos/procedural/coding_rules.md |   11 +
+ .../memoryos/procedural/hml_promotion_rules.md     |   20 +
+ .../memoryos/procedural/office_document_rules.md   |   34 +
+ .../memoryos/procedural/security_rules.md          |   25 +
+ .../memoryos/procedural/service_desk_rules.md      |   25 +
+ docs/hermesops/memoryos/rejected/README.md         |   20 +
+ docs/hermesops/memoryos/semantic/README.md         |   22 +
+ docs/hermesops/memoryos/semantic/coding/README.md  |    3 +
+ .../memoryos/semantic/office_skills/README.md      |    9 +
+ docs/hermesops/memoryos/working/README.md          |   21 +
+ .../service-desk/_seed/CORPUS_MANIFEST.yaml        |  426 ++
+ docs/hermesops/service-desk/_seed/README.md        |   34 +
+ .../_seed/anydesk/anydesk-unattended-access.md     |   88 +
+ .../certificates/certificado-a1-nao-aparece.md     |   89 +
+ .../certificates/certificado-a3-token-smartcard.md |   93 +
+ .../_seed/coding/alembic-migration-debug.md        |   71 +
+ .../_seed/coding/docker-compose-debug.md           |   72 +
+ .../_seed/coding/git-branch-rollback.md            |   70 +
+ .../_seed/coding/node-npm-dependency-conflict.md   |   71 +
+ .../_seed/coding/postgresql-redis-debug.md         |   72 +
+ .../_seed/coding/powershell-script-seguro.md       |   72 +
+ .../_seed/coding/python-fastapi-debug.md           |   73 +
+ .../_seed/coding/react-vite-typescript-build.md    |   71 +
+ .../service-desk/_seed/gpo-ad/gpo-nao-aplica.md    |   94 +
+ .../lansweeper/inventario-lansweeper-divergente.md |   89 +
+ .../_seed/ndd-print/ndd-print-pin-portal-360.md    |   85 +
+ .../service-desk/_seed/network/dns-incorreto.md    |   95 +
+ .../service-desk/_seed/network/maquina-sem-rede.md |   95 +
+ .../service-desk/_seed/network/wake-on-lan.md      |   88 +
+ .../_seed/office365/office365-ativacao-licenca.md  |   88 +
+ .../service-desk/_seed/outlook/outlook-nao-abre.md |   98 +
+ .../_seed/printers/impressora-nao-imprime.md       |   95 +
+ .../_seed/rdp-vpn/rdp-entre-dominios-sem-trust.md  |   93 +
+ .../alerta-trend-possivel-malware.md               |   84 +
+ .../_seed/teams/teams-cache-corrompido.md          |   92 +
+ .../_seed/windows/bsod-eventos-criticos.md         |   89 +
+ .../_seed/windows/erro-instalacao-java.md          |   89 +
+ .../service-desk/_seed/windows/lentidao-windows.md |   90 +
+ .../_seed/windows/perfil-usuario-corrompido.md     |   87 +
+ .../windows-update-wsus-travado.md                 |   96 +
+ .../document-redaction-and-sanitization.md         |   40 +
+ .../excel-automation-support.md                    |   40 +
+ .../excel-base-service-desk.md                     |   40 +
+ .../excel-data-quality.md                          |   40 +
+ .../excel-m365-workbook-governance.md              |   40 +
+ .../pdf-adobe-acrobat-standard.md                  |   40 +
+ .../pdf-document-quality-audit.md                  |   40 +
+ .../pdf-ocr-text-extraction.md                     |   40 +
+ .../pdf-redaction-sanitization.md                  |   40 +
+ .../pdf-signature-certificate-handling.md          |   40 +
+ .../powerpoint-executive-reporting.md              |   40 +
+ .../powerpoint-kcs-training.md                     |   40 +
+ .../powerpoint-procedure-training.md               |   40 +
+ .../word-complex-text-editing.md                   |   40 +
+ .../word-kcs-generation.md                         |   40 +
+ .../word-manual-creation.md                        |   40 +
+ .../word-report-generation.md                      |   40 +
+ .../00_BASE_VALIDATION.md                          |   27 +
+ .../01_BACKUP_REPORT.md                            |   12 +
+ .../02_SECURITY_SCAN_PHASE1.md                     |   14 +
+ .../03_DOCUMENT_VALIDATION_PHASE1.md               |   14 +
+ .../04_PHASE1_MIGRATION_EXECUTION_REPORT.md        |   62 +
+ .../05_GO_NO_GO_PHASE1.md                          |   17 +
+ .../evidence/00_base_validation.txt                |   18 +
+ .../evidence/01_backup_manifest.txt                |    3 +
+ .../evidence/02_phase1_forbidden_scan.txt          |    0
+ .../evidence/03_phase1_secret_scan.txt             |    1 +
+ .../evidence/04_phase1_json_validation.rc          |    1 +
+ .../evidence/04_phase1_json_validation.txt         |   42 +
+ .../evidence/05_phase1_yaml_validation.rc          |    1 +
+ .../evidence/05_phase1_yaml_validation.txt         |    1 +
+ .../06_non_regression_operational_check.txt        |  429 ++
+ .../00_BASE_VALIDATION.md                          |   27 +
+ .../01_BACKUP_REPORT.md                            |   12 +
+ .../02_SOURCE_TOOLING_INVENTORY.md                 |   28 +
+ .../03_TOOLING_CLASSIFICATION.md                   |   28 +
+ .../04_SECURITY_SCAN_PHASE2.md                     |   12 +
+ .../05_PYTHON_VALIDATION_PHASE2.md                 |   10 +
+ .../06_JSON_VALIDATION_PHASE2.md                   |   10 +
+ .../07_YAML_VALIDATION_PHASE2.md                   |   11 +
+ .../08_SAFE_DRY_RUNS_PHASE2.md                     |   23 +
+ .../09_PHASE2_MIGRATION_EXECUTION_REPORT.md        |   74 +
+ .../10_GO_NO_GO_PHASE2.md                          |   20 +
+ .../evidence/00_base_validation.txt                |   18 +
+ .../evidence/01_backup_manifest.txt                |    3 +
+ .../evidence/02_source_tooling_inventory.txt       |  295 +
+ .../evidence/04_phase2_forbidden_scan.txt          |    0
+ .../evidence/05_phase2_secret_scan.txt             |    0
+ .../evidence/06_phase2_py_compile.rc               |    1 +
+ .../evidence/06_phase2_py_compile.txt              |    0
+ .../evidence/07_phase2_json_validation.rc          |    1 +
+ .../evidence/07_phase2_json_validation.txt         | 1383 ++++
+ .../evidence/08_phase2_yaml_validation.rc          |    1 +
+ .../evidence/08_phase2_yaml_validation.txt         |    1 +
+ .../evidence/09_phase2_safe_dry_runs.txt           | 7434 ++++++++++++++++++++
+ .../10_non_regression_operational_check.txt        |  568 ++
+ .../00_BASE_VALIDATION.md                          |   22 +
+ .../01_BACKUP_REPORT.md                            |   16 +
+ .../02_POLICY_AND_REGISTRY_AUDIT.md                |   32 +
+ .../03_CLI_VALIDATION.md                           |   22 +
+ .../04_DRY_RUN_AND_NEGATIVE_TESTS.md               |   29 +
+ .../05_PHASE3_CLI_EXECUTION_REPORT.md              |   25 +
+ .../06_GO_NO_GO_PHASE3.md                          |   18 +
+ .../07_ROLLBACK_PHASE3.md                          |   18 +
+ .../09_PHASE3_CLI_EXECUTION_REPORT.md              |   67 +
+ .../evidence/ptbr_prompt_sample/README.md          |    8 +
+ .../evidence/sanitize_output/README.md             |    1 +
+ .../evidence/sanitize_output/code_review.md        |    6 +
+ .../evidence/sanitize_output/code_review_ptbr.md   |   16 +
+ .../sanitize_output/coding_assistant_ptbr.md       |   16 +
+ .../sanitize_output/composio_audit_review.md       |   11 +
+ .../sanitize_output/composio_change_proposal.md    |   11 +
+ .../sanitize_output/composio_connection_triage.md  |   11 +
+ .../sanitize_output/composio_hml_activation.md     |   11 +
+ .../sanitize_output/composio_log_review.md         |   11 +
+ .../sanitize_output/composio_permission_review.md  |   11 +
+ .../composio_tool_execution_plan.md                |   11 +
+ .../sanitize_output/corporate_text_rewrite.md      |   14 +
+ .../evidence/sanitize_output/desktop_cli_ptbr.md   |   16 +
+ .../sanitize_output/document_quality_audit.md      |   12 +
+ .../sanitize_output/excel_m365_integration.md      |   13 +
+ .../first_response_from_seed_corpus.md             |   51 +
+ .../evidence/sanitize_output/implementation.md     |   22 +
+ .../sanitize_output/kcs_document_generation.md     |   14 +
+ .../evidence/sanitize_output/kcs_generation.md     |   22 +
+ .../sanitize_output/kcs_generation_ptbr.md         |   17 +
+ .../evidence/sanitize_output/log_analysis.md       |   22 +
+ .../evidence/sanitize_output/m365_excel_ptbr.md    |   17 +
+ .../evidence/sanitize_output/macro_generation.md   |   22 +
+ .../evidence/sanitize_output/macro_itil_ptbr.md    |   18 +
+ .../evidence/sanitize_output/modding_ptbr.md       |   16 +
+ .../sanitize_output/office_document_ptbr.md        |   16 +
+ .../evidence/sanitize_output/patch_generation.md   |    6 +
+ .../evidence/sanitize_output/pdf_acrobat_ptbr.md   |   16 +
+ .../sanitize_output/pdf_acrobat_workflow.md        |   18 +
+ .../sanitize_output/pdf_content_extraction.md      |   18 +
+ .../sanitize_output/pdf_redaction_review.md        |   18 +
+ .../pdf_signature_certificate_handling.md          |   18 +
+ .../sanitize_output/powerpoint_deck_generation.md  |   17 +
+ .../sanitize_output/powerpoint_deck_review.md      |   17 +
+ .../powerpoint_training_material.md                |   17 +
+ .../sanitize_output/powershell_generation.md       |    6 +
+ .../evidence/sanitize_output/review.md             |   22 +
+ .../evidence/sanitize_output/security_review.md    |   22 +
+ .../evidence/sanitize_output/service_desk_ptbr.md  |   17 +
+ .../sanitize_output/spreadsheet_analysis.md        |   13 +
+ .../sanitize_output/spreadsheet_automation.md      |   13 +
+ .../sanitize_output/spreadsheet_data_quality.md    |   13 +
+ .../evidence/sanitize_output/triage.md             |   22 +
+ .../evidence/sanitize_output/troubleshooting.md    |   22 +
+ .../sanitize_output/word_complex_revision.md       |   14 +
+ .../sanitize_output/word_document_editing.md       |   14 +
+ .../evidence/sanitize_report.json                  |  441 ++
+ .../00_WORKSPACE_BASE_AUDIT.md                     |   20 +
+ .../01_GIT_READONLY_AUDIT.md                       |   23 +
+ .../02_CRITICAL_INVENTORY.md                       |   33 +
+ .../03_PHASE4_BACKUP_REPORT.md                     |   20 +
+ .../04_MIGRATED_STATE_CHECKSUM_AUDIT.md            |   21 +
+ .../05_SECURITY_SCAN_PHASE4.md                     |   17 +
+ .../06_HMLOPS_POST_BACKUP_VALIDATION.md            |   17 +
+ .../07_GITIGNORE_PROPOSAL_REPORT.md                |   15 +
+ .../08_GIT_PROVENANCE_REPAIR_PLAN.md               |   31 +
+ .../09_PHASE4_PROVENANCE_EXECUTION_REPORT.md       |   65 +
+ .../10_GO_NO_GO_PHASE4.md                          |   19 +
+ .../11_ROLLBACK_PHASE4.md                          |   18 +
+ .../MIGRATED_STATE_SHA256SUMS.txt                  |  797 +++
+ .../PROPOSED_GITIGNORE_HML.md                      |   59 +
+ .../evidence/00_workspace_base_audit.txt           |   20 +
+ .../evidence/01_git_readonly_audit.txt             |  159 +
+ .../evidence/02_critical_inventory.txt             | 1147 +++
+ .../evidence/03_phase4_backup_manifest.txt         |  800 +++
+ .../evidence/04_migrated_state_sha256_check.txt    |  797 +++
+ .../evidence/05_migrated_state_forbidden_scan.txt  |    0
+ .../evidence/06_migrated_state_secret_scan.txt     |    3 +
+ .../evidence/07_hmlops_post_backup_validation.rc   |    1 +
+ .../evidence/07_hmlops_post_backup_validation.txt  |  159 +
+ scripts/hmlops                                     |    9 +
+ tools/hermesops_offline/README.md                  |   11 +
+ .../auditors/coderos/code_context_builder.py       |   27 +
+ .../auditors/coderos/code_review_checker.py        |   22 +
+ .../auditors/coderos/coderos_audit.py              |   22 +
+ .../auditors/coderos/coderos_eval.py               |   22 +
+ .../auditors/coderos/coding_memory_capture.py      |   22 +
+ .../auditors/coderos/dependency_risk_scanner.py    |   25 +
+ .../auditors/coderos/modding_project_analyzer.py   |   28 +
+ .../auditors/coderos/patch_plan_builder.py         |   22 +
+ .../auditors/coderos/repo_mapper.py                |   28 +
+ .../localization/ptbr_localization_audit.py        |   36 +
+ .../auditors/localization/ptbr_prompt_audit.py     |   31 +
+ .../auditors/memory/memory_audit.py                |   40 +
+ .../auditors/memory/memory_capture.py              |   43 +
+ .../auditors/memory/memory_eval.py                 |   40 +
+ .../auditors/office/docx_template_builder.py       |   14 +
+ .../auditors/office/docx_text_reviewer.py          |   13 +
+ .../auditors/office/pptx_deck_reviewer.py          |   13 +
+ .../auditors/office/pptx_template_builder.py       |   19 +
+ .../office/spreadsheet_offline_analyzer.py         |   22 +
+ .../coderos/CODEROS_ARCHITECTURE.md                |    3 +
+ .../coderos/CODEROS_CODE_REVIEW_STANDARD.md        |    9 +
+ .../coderos/CODEROS_DEBUGGING_STANDARD.md          |    3 +
+ .../coderos/CODEROS_MEMORY_INTEGRATION.md          |   12 +
+ .../coderos/CODEROS_MODDING_POLICY.md              |    3 +
+ tools/hermesops_offline/coderos/CODEROS_POLICY.md  |    3 +
+ .../coderos/CODEROS_PROMPTING_STANDARD.md          |   10 +
+ .../coderos/CODEROS_REFACTORING_STANDARD.md        |    3 +
+ .../coderos/CODEROS_SECURITY_BOUNDARIES.md         |   12 +
+ .../coderos/CODEROS_STACK_CATALOG.md               |    3 +
+ .../coderos/CODEROS_TESTING_STRATEGY.md            |    3 +
+ .../hermesops_offline/coderos/CODEROS_TOOLCHAIN.md |   12 +
+ .../hermesops_offline/coderos/CODEROS_WORKFLOW.md  |    3 +
+ tools/hermesops_offline/coderos/README.md          |    3 +
+ tools/hermesops_offline/coderos/evals/README.md    |    1 +
+ .../coderos/evals/coding_agent_eval.yaml           |    7 +
+ .../coderos/evals/fastapi_eval.yaml                |    7 +
+ .../coderos/evals/modding_eval.yaml                |    7 +
+ .../coderos/evals/patch_quality_eval.yaml          |    7 +
+ .../coderos/evals/powershell_eval.yaml             |    7 +
+ .../coderos/evals/react_eval.yaml                  |    7 +
+ .../coderos/evals/repo_triage_eval.yaml            |    7 +
+ .../coderos/evals/security_boundary_eval.yaml      |    7 +
+ tools/hermesops_offline/coderos/examples/README.md |    1 +
+ .../coderos/modding/MODDING_SAFE_BOUNDARIES.md     |    5 +
+ tools/hermesops_offline/coderos/modding/README.md  |    1 +
+ .../coderos/modding/asset_pipeline.md              |    3 +
+ .../coderos/modding/config_patch_patterns.md       |    3 +
+ .../coderos/modding/game_mod_project_structure.md  |    3 +
+ .../coderos/modding/packaging_release.md           |    3 +
+ .../coderos/modding/plugin_architecture.md         |    3 +
+ .../coderos/modding/prohibited_modding_actions.md  |    3 +
+ .../modding/troubleshooting_mod_load_order.md      |    3 +
+ .../coderos/modding/version_compatibility.md       |    3 +
+ .../hermesops_offline/coderos/playbooks/README.md  |    1 +
+ .../coderos/playbooks/bugfix_workflow.md           |   41 +
+ .../coderos/playbooks/feature_implementation.md    |   41 +
+ .../coderos/playbooks/refactor_workflow.md         |   41 +
+ .../coderos/playbooks/repository_triage.md         |   41 +
+ .../coderos/playbooks/security_review.md           |    7 +
+ tools/hermesops_offline/coderos/prompts/README.md  |    1 +
+ .../coderos/prompts/code_review.md                 |    6 +
+ .../coderos/prompts/patch_generation.md            |    6 +
+ .../coderos/prompts/powershell_generation.md       |    6 +
+ .../coderos/prompts/security_review.md             |    6 +
+ tools/hermesops_offline/coderos/schemas/README.md  |    1 +
+ .../coderos/schemas/code_review.schema.json        |   34 +
+ .../coderos/schemas/coding_memory.schema.json      |   53 +
+ .../coderos/schemas/coding_task.schema.json        |   60 +
+ .../coderos/schemas/modding_project.schema.json    |   41 +
+ .../coderos/schemas/patch_plan.schema.json         |   44 +
+ .../coderos/schemas/repo_profile.schema.json       |   37 +
+ .../coderos/schemas/toolchain_profile.schema.json  |   37 +
+ .../coderos/schemas/validation_result.schema.json  |   27 +
+ tools/hermesops_offline/coderos/stacks/README.md   |    1 +
+ .../hermesops_offline/coderos/stacks/ai_agents.md  |   12 +
+ .../coderos/stacks/docker_compose.md               |   47 +
+ .../hermesops_offline/coderos/stacks/m365_graph.md |   12 +
+ .../coderos/stacks/modding_general.md              |   47 +
+ tools/hermesops_offline/coderos/stacks/nextjs.md   |   47 +
+ .../coderos/stacks/node_typescript.md              |   47 +
+ .../coderos/stacks/office_automation.md            |   47 +
+ .../coderos/stacks/postgres_sqlalchemy_alembic.md  |   47 +
+ .../coderos/stacks/powershell7.md                  |   47 +
+ .../hermesops_offline/coderos/stacks/python_cli.md |   47 +
+ .../coderos/stacks/python_data_tools.md            |   47 +
+ .../coderos/stacks/python_fastapi.md               |   47 +
+ .../hermesops_offline/coderos/stacks/qdrant_rag.md |   47 +
+ .../hermesops_offline/coderos/stacks/react_vite.md |   47 +
+ tools/hermesops_offline/coderos/stacks/redis.md    |   47 +
+ .../coderos/stacks/windows_ad_gpo.md               |   47 +
+ .../localization/PT_BR_CLI_MESSAGES.md             |    3 +
+ .../localization/PT_BR_ENCODING_POLICY.md          |    8 +
+ .../localization/PT_BR_FALLBACK_POLICY.md          |    5 +
+ .../localization/PT_BR_KCS_MACRO_GUIDE.md          |    5 +
+ .../localization/PT_BR_LOCALIZATION_POLICY.md      |    8 +
+ .../localization/PT_BR_STYLE_GUIDE.md              |    7 +
+ .../localization/PT_BR_TERMINOLOGY_GUIDE.md        |    6 +
+ tools/hermesops_offline/localization/README.md     |    8 +
+ .../localization/evals/ptbr_encoding_eval.yaml     |    7 +
+ .../localization/evals/ptbr_kcs_macro_eval.yaml    |    8 +
+ .../evals/ptbr_language_quality_eval.yaml          |    7 +
+ .../evals/ptbr_technical_terms_eval.yaml           |    7 +
+ .../localization/glossary/coding_terms.pt-br.yaml  |   42 +
+ .../glossary/desktop_cli_terms.pt-br.yaml          |   35 +
+ .../glossary/infrastructure_terms.pt-br.yaml       |   77 +
+ .../localization/glossary/m365_terms.pt-br.yaml    |   28 +
+ .../localization/glossary/modding_terms.pt-br.yaml |   63 +
+ .../localization/glossary/office_terms.pt-br.yaml  |  112 +
+ .../glossary/service_desk_terms.pt-br.yaml         |   28 +
+ .../localization/messages/cli_messages.pt-br.json  |   12 +
+ .../messages/error_messages.pt-br.json             |    6 +
+ .../messages/macro_templates.pt-br.json            |    5 +
+ .../messages/report_sections.pt-br.json            |    7 +
+ .../messages/validation_messages.pt-br.json        |    7 +
+ .../localization/prompts/code_review_ptbr.md       |   16 +
+ .../localization/prompts/coding_assistant_ptbr.md  |   16 +
+ .../localization/prompts/desktop_cli_ptbr.md       |   16 +
+ .../localization/prompts/kcs_generation_ptbr.md    |   17 +
+ .../localization/prompts/m365_excel_ptbr.md        |   17 +
+ .../localization/prompts/macro_itil_ptbr.md        |   18 +
+ .../localization/prompts/modding_ptbr.md           |   16 +
+ .../localization/prompts/office_document_ptbr.md   |   16 +
+ .../localization/prompts/pdf_acrobat_ptbr.md       |   16 +
+ .../localization/prompts/service_desk_ptbr.md      |   17 +
+ .../manifests/PHASE2_FILE_MANIFEST.txt             |  384 +
+ .../manifests/PHASE2_JSON_FILES.txt                |   33 +
+ .../manifests/PHASE2_OFFLINE_TOOL_ALLOWLIST.md     |   31 +
+ .../manifests/PHASE2_PYTHON_TOOLS.txt              |   61 +
+ .../PHASE2_RISKY_TOOLS_REVIEW_REQUIRED.txt         |    3 +
+ .../manifests/PHASE2_TOOL_DENYLIST.md              |   16 +
+ .../memoryos/MEMORY_ARCHITECTURE.md                |   21 +
+ .../memoryos/MEMORY_CONFLICT_RESOLUTION.md         |   21 +
+ .../memoryos/MEMORY_CONSOLIDATION_RULES.md         |   41 +
+ .../hermesops_offline/memoryos/MEMORY_LIFECYCLE.md |   20 +
+ tools/hermesops_offline/memoryos/MEMORY_POLICY.md  |   21 +
+ .../memoryos/MEMORY_RETRIEVAL_POLICY.md            |   22 +
+ tools/hermesops_offline/memoryos/README.md         |   20 +
+ .../hermesops_offline/memoryos/episodic/README.md  |   21 +
+ tools/hermesops_offline/memoryos/evals/README.md   |   20 +
+ .../memoryos/evals/memory_conflict_tests.yaml      |    5 +
+ .../memoryos/evals/memory_policy_tests.yaml        |    7 +
+ .../memoryos/evals/memory_retrieval_tests.yaml     |   41 +
+ tools/hermesops_offline/memoryos/inbox/README.md   |   22 +
+ .../office_native_fidelity_policy.json             |   57 +
+ tools/hermesops_offline/memoryos/indexes/README.md |   20 +
+ .../memoryos/indexes/memory_manifest.yaml          |    3 +
+ .../memoryos/indexes/memory_tags.yaml              |    9 +
+ .../memoryos/procedural/README.md                  |   23 +
+ .../memoryos/procedural/agent_behavior.md          |   25 +
+ .../memoryos/procedural/coding_rules.md            |   11 +
+ .../memoryos/procedural/hml_promotion_rules.md     |   20 +
+ .../memoryos/procedural/office_document_rules.md   |   34 +
+ .../memoryos/procedural/security_rules.md          |   25 +
+ .../memoryos/procedural/service_desk_rules.md      |   25 +
+ .../hermesops_offline/memoryos/rejected/README.md  |   20 +
+ .../hermesops_offline/memoryos/semantic/README.md  |   22 +
+ .../memoryos/semantic/coding/README.md             |    3 +
+ .../memoryos/semantic/office_skills/README.md      |    9 +
+ .../office_native_fidelity_policy.json             |   57 +
+ .../service_desk/composio_plugin_policy.json       |   57 +
+ .../service_desk/log_driven_change_policy.json     |   61 +
+ .../semantic/service_desk/ptbr_support_policy.json |   55 +
+ tools/hermesops_offline/memoryos/working/README.md |   21 +
+ .../office/ADOBE_ACROBAT_INTEGRATION_PLAN.md       |   15 +
+ .../ENTERPRISE_OFFICE_SKILLS_ARCHITECTURE.md       |   25 +
+ .../office/HML_DEPLOYMENT_NOTES.md                 |   11 +
+ .../office/M365_OFFICE_INTEGRATION_PLAN.md         |   31 +
+ .../office/PDF_ADOBE_ACROBAT_SKILL_SPEC.md         |   26 +
+ .../office/POWERPOINT_PPTX_SKILL_SPEC.md           |   29 +
+ tools/hermesops_offline/office/README.md           |    3 +
+ .../office/SECURITY_AND_DATA_POLICY.md             |   20 +
+ .../office/SPREADSHEET_SKILL_SPEC.md               |   22 +
+ .../office/TEXT_EDITING_SKILL_SPEC.md              |   14 +
+ .../office/WORD_DOCX_SKILL_SPEC.md                 |   20 +
+ .../document_redaction_and_sanitization.md         |   16 +
+ .../office/playbooks/excel_base_service_desk.md    |   16 +
+ .../office/playbooks/excel_data_quality_review.md  |   16 +
+ .../playbooks/pdf_acrobat_standard_workflow.md     |   16 +
+ .../playbooks/pdf_ocr_and_text_extraction.md       |   16 +
+ .../playbooks/pdf_redaction_and_sanitization.md    |   16 +
+ .../pdf_signature_and_certificate_caution.md       |   16 +
+ .../powerpoint_executive_report_creation.md        |   16 +
+ .../playbooks/powerpoint_training_deck_creation.md |   16 +
+ .../office/playbooks/word_kcs_generation.md        |   16 +
+ .../office/playbooks/word_manual_creation.md       |   16 +
+ .../office/prompts/corporate_text_rewrite.md       |   14 +
+ .../office/prompts/document_quality_audit.md       |   12 +
+ .../office/prompts/excel_m365_integration.md       |   13 +
+ .../office/prompts/kcs_document_generation.md      |   14 +
+ .../office/prompts/pdf_acrobat_workflow.md         |   18 +
+ .../office/prompts/pdf_content_extraction.md       |   18 +
+ .../office/prompts/pdf_redaction_review.md         |   18 +
+ .../prompts/pdf_signature_certificate_handling.md  |   18 +
+ .../office/prompts/powerpoint_deck_generation.md   |   17 +
+ .../office/prompts/powerpoint_deck_review.md       |   17 +
+ .../office/prompts/powerpoint_training_material.md |   17 +
+ .../office/prompts/spreadsheet_analysis.md         |   13 +
+ .../office/prompts/spreadsheet_automation.md       |   13 +
+ .../office/prompts/spreadsheet_data_quality.md     |   13 +
+ .../office/prompts/word_complex_revision.md        |   14 +
+ .../office/prompts/word_document_editing.md        |   14 +
+ .../office/schemas/document_review.schema.json     |   40 +
+ .../office/schemas/docx_job.schema.json            |   58 +
+ .../office/schemas/office_audit.schema.json        |   36 +
+ .../office/schemas/pdf_audit.schema.json           |   72 +
+ .../office/schemas/pdf_job.schema.json             |   66 +
+ .../office/schemas/pptx_job.schema.json            |   73 +
+ .../office/schemas/presentation_review.schema.json |   83 +
+ .../office/schemas/spreadsheet_job.schema.json     |   54 +
+ .../schemas/spreadsheet_validation.schema.json     |   49 +
+ .../office/schemas/text_editing_job.schema.json    |   54 +
+ .../office/templates/pdf/README.md                 |    3 +
+ .../office/templates/pdf/pdf_audit_template.md     |   13 +
+ .../office/templates/pdf/pdf_job_examples.json     |   18 +
+ .../templates/pdf/pdf_ocr_workflow_template.md     |    6 +
+ .../templates/pdf/pdf_redaction_checklist.md       |    6 +
+ .../pdf/pdf_signature_validation_checklist.md      |    5 +
+ .../office/templates/powerpoint/README.md          |    3 +
+ .../powerpoint/executive_deck_template.md          |   73 +
+ .../powerpoint/kcs_training_deck_template.md       |   73 +
+ .../powerpoint/powerpoint_job_examples.json        |   24 +
+ .../powerpoint/procedure_training_deck_template.md |   73 +
+ .../service_desk_report_deck_template.md           |   73 +
+ .../office/templates/spreadsheet/README.md         |    3 +
+ .../spreadsheet/service_desk_base_schema.json      |   35 +
+ .../spreadsheet/spreadsheet_job_examples.json      |   15 +
+ .../office/templates/word/README.md                |    3 +
+ .../templates/word/corporate_report_template.md    |   16 +
+ .../office/templates/word/kcs_document_template.md |   16 +
+ .../templates/word/meeting_minutes_template.md     |   16 +
+ .../templates/word/procedure_manual_template.md    |   16 +
+ .../office/templates/word/word_job_examples.json   |   16 +
+ tools/hermesops_offline/playbooks/README.md        |    1 +
+ .../hermesops_offline/playbooks/bugfix_workflow.md |   41 +
+ .../document_redaction_and_sanitization.md         |   16 +
+ .../playbooks/excel_base_service_desk.md           |   16 +
+ .../playbooks/excel_data_quality_review.md         |   16 +
+ .../playbooks/feature_implementation.md            |   41 +
+ .../playbooks/pdf_acrobat_standard_workflow.md     |   16 +
+ .../playbooks/pdf_ocr_and_text_extraction.md       |   16 +
+ .../playbooks/pdf_redaction_and_sanitization.md    |   16 +
+ .../pdf_signature_and_certificate_caution.md       |   16 +
+ .../powerpoint_executive_report_creation.md        |   16 +
+ .../playbooks/powerpoint_training_deck_creation.md |   16 +
+ .../playbooks/refactor_workflow.md                 |   41 +
+ .../playbooks/repository_triage.md                 |   41 +
+ .../hermesops_offline/playbooks/security_review.md |    7 +
+ .../playbooks/word_kcs_generation.md               |   16 +
+ .../playbooks/word_manual_creation.md              |   16 +
+ tools/hermesops_offline/prompts/README.md          |    1 +
+ tools/hermesops_offline/prompts/code_review.md     |    6 +
+ .../hermesops_offline/prompts/code_review_ptbr.md  |   16 +
+ .../prompts/coding_assistant_ptbr.md               |   16 +
+ .../prompts/composio_audit_review.md               |   11 +
+ .../prompts/composio_change_proposal.md            |   11 +
+ .../prompts/composio_connection_triage.md          |   11 +
+ .../prompts/composio_hml_activation.md             |   11 +
+ .../prompts/composio_log_review.md                 |   11 +
+ .../prompts/composio_permission_review.md          |   11 +
+ .../prompts/composio_tool_execution_plan.md        |   11 +
+ .../prompts/corporate_text_rewrite.md              |   14 +
+ .../hermesops_offline/prompts/desktop_cli_ptbr.md  |   16 +
+ .../prompts/document_quality_audit.md              |   12 +
+ .../prompts/excel_m365_integration.md              |   13 +
+ .../prompts/first_response_from_seed_corpus.md     |   51 +
+ tools/hermesops_offline/prompts/implementation.md  |   22 +
+ .../prompts/kcs_document_generation.md             |   14 +
+ tools/hermesops_offline/prompts/kcs_generation.md  |   22 +
+ .../prompts/kcs_generation_ptbr.md                 |   17 +
+ tools/hermesops_offline/prompts/log_analysis.md    |   22 +
+ tools/hermesops_offline/prompts/m365_excel_ptbr.md |   17 +
+ .../hermesops_offline/prompts/macro_generation.md  |   22 +
+ tools/hermesops_offline/prompts/macro_itil_ptbr.md |   18 +
+ tools/hermesops_offline/prompts/modding_ptbr.md    |   16 +
+ .../prompts/office_document_ptbr.md                |   16 +
+ .../hermesops_offline/prompts/patch_generation.md  |    6 +
+ .../hermesops_offline/prompts/pdf_acrobat_ptbr.md  |   16 +
+ .../prompts/pdf_acrobat_workflow.md                |   18 +
+ .../prompts/pdf_content_extraction.md              |   18 +
+ .../prompts/pdf_redaction_review.md                |   18 +
+ .../prompts/pdf_signature_certificate_handling.md  |   18 +
+ .../prompts/powerpoint_deck_generation.md          |   17 +
+ .../prompts/powerpoint_deck_review.md              |   17 +
+ .../prompts/powerpoint_training_material.md        |   17 +
+ .../prompts/powershell_generation.md               |    6 +
+ tools/hermesops_offline/prompts/review.md          |   22 +
+ tools/hermesops_offline/prompts/security_review.md |   22 +
+ .../hermesops_offline/prompts/service_desk_ptbr.md |   17 +
+ .../prompts/spreadsheet_analysis.md                |   13 +
+ .../prompts/spreadsheet_automation.md              |   13 +
+ .../prompts/spreadsheet_data_quality.md            |   13 +
+ tools/hermesops_offline/prompts/triage.md          |   22 +
+ tools/hermesops_offline/prompts/troubleshooting.md |   22 +
+ .../prompts/word_complex_revision.md               |   14 +
+ .../prompts/word_document_editing.md               |   14 +
+ .../rejected/plugins/auditors/plugin_audit.py      |   34 +
+ .../plugins/auditors/plugin_change_review.py       |   28 +
+ .../plugins/auditors/plugin_log_analyzer.py        |   42 +
+ .../plugins/validators/plugin_change_proposal.py   |   43 +
+ .../rejected/plugins/validators/plugin_cli.py      |   46 +
+ .../plugins/validators/plugin_log_sanitizer.py     |   36 +
+ .../plugins/validators/plugin_policy_validator.py  |   40 +
+ .../rejected/plugins/validators/plugin_registry.py |  108 +
+ .../plugins/validators/plugin_schema_validator.py  |   30 +
+ .../service-desk/_seed/CORPUS_MANIFEST.yaml        |  426 ++
+ .../hermesops_offline/service-desk/_seed/README.md |   34 +
+ .../_seed/anydesk/anydesk-unattended-access.md     |   88 +
+ .../certificates/certificado-a1-nao-aparece.md     |   89 +
+ .../certificates/certificado-a3-token-smartcard.md |   93 +
+ .../_seed/coding/alembic-migration-debug.md        |   71 +
+ .../_seed/coding/docker-compose-debug.md           |   72 +
+ .../_seed/coding/git-branch-rollback.md            |   70 +
+ .../_seed/coding/node-npm-dependency-conflict.md   |   71 +
+ .../_seed/coding/postgresql-redis-debug.md         |   72 +
+ .../_seed/coding/powershell-script-seguro.md       |   72 +
+ .../_seed/coding/python-fastapi-debug.md           |   73 +
+ .../_seed/coding/react-vite-typescript-build.md    |   71 +
+ .../service-desk/_seed/gpo-ad/gpo-nao-aplica.md    |   94 +
+ .../lansweeper/inventario-lansweeper-divergente.md |   89 +
+ .../_seed/ndd-print/ndd-print-pin-portal-360.md    |   85 +
+ .../service-desk/_seed/network/dns-incorreto.md    |   95 +
+ .../service-desk/_seed/network/maquina-sem-rede.md |   95 +
+ .../service-desk/_seed/network/wake-on-lan.md      |   88 +
+ .../_seed/office365/office365-ativacao-licenca.md  |   88 +
+ .../service-desk/_seed/outlook/outlook-nao-abre.md |   98 +
+ .../_seed/printers/impressora-nao-imprime.md       |   95 +
+ .../_seed/rdp-vpn/rdp-entre-dominios-sem-trust.md  |   93 +
+ .../alerta-trend-possivel-malware.md               |   84 +
+ .../_seed/teams/teams-cache-corrompido.md          |   92 +
+ .../_seed/windows/bsod-eventos-criticos.md         |   89 +
+ .../_seed/windows/erro-instalacao-java.md          |   89 +
+ .../service-desk/_seed/windows/lentidao-windows.md |   90 +
+ .../_seed/windows/perfil-usuario-corrompido.md     |   87 +
+ .../windows-update-wsus-travado.md                 |   96 +
+ .../document-redaction-and-sanitization.md         |   40 +
+ .../excel-automation-support.md                    |   40 +
+ .../excel-base-service-desk.md                     |   40 +
+ .../excel-data-quality.md                          |   40 +
+ .../excel-m365-workbook-governance.md              |   40 +
+ .../pdf-adobe-acrobat-standard.md                  |   40 +
+ .../pdf-document-quality-audit.md                  |   40 +
+ .../pdf-ocr-text-extraction.md                     |   40 +
+ .../pdf-redaction-sanitization.md                  |   40 +
+ .../pdf-signature-certificate-handling.md          |   40 +
+ .../powerpoint-executive-reporting.md              |   40 +
+ .../powerpoint-kcs-training.md                     |   40 +
+ .../powerpoint-procedure-training.md               |   40 +
+ .../word-complex-text-editing.md                   |   40 +
+ .../word-kcs-generation.md                         |   40 +
+ .../word-manual-creation.md                        |   40 +
+ .../word-report-generation.md                      |   40 +
+ .../coderos/powershell_static_checker.py           |   27 +
+ .../validators/coderos/stack_detector.py           |   51 +
+ .../validators/coderos/validation_runner.py        |   22 +
+ .../validators/ingest/chunk_document.py            |  130 +
+ .../validators/ingest/sanitize_document.py         |  104 +
+ .../validators/localization/ptbr_encoding_check.py |   37 +
+ .../localization/ptbr_glossary_validator.py        |   52 +
+ .../localization/ptbr_message_catalog_validator.py |   38 +
+ .../validators/localization/ptbr_text_lint.py      |   49 +
+ .../validators/memory/memory_classify.py           |   40 +
+ .../validators/memory/memory_conflict_check.py     |   40 +
+ .../validators/memory/memory_consolidate.py        |   40 +
+ .../validators/memory/memory_index.py              |   40 +
+ .../validators/memory/memory_query.py              |   46 +
+ .../validators/memory/memory_retention.py          |   40 +
+ .../validators/memory/memory_sanitize.py           |   40 +
+ .../validators/office/docx_export_sample.py        |   14 +
+ .../validators/office/docx_structure_reader.py     |   13 +
+ .../validators/office/excel_fidelity_validator.py  |   45 +
+ .../office/m365_workbook_operation_plan.py         |   45 +
+ .../validators/office/native_format_policy.py      |   57 +
+ .../validators/office/office_format_router.py      |   55 +
+ .../validators/office/office_job_router.py         |   47 +
+ .../validators/office/office_safety_validator.py   |   22 +
+ .../office/pdf_acrobat_workflow_validator.py       |   13 +
+ .../validators/office/pdf_metadata_inspector.py    |   13 +
+ .../validators/office/pdf_safety_validator.py      |   14 +
+ .../office/pdf_text_extraction_skeleton.py         |   14 +
+ .../validators/office/pptx_export_sample.py        |   19 +
+ .../validators/office/pptx_structure_reader.py     |   13 +
+ .../validators/office/spreadsheet_data_quality.py  |   30 +
+ .../validators/office/spreadsheet_export_sample.py |   17 +
+ .../office/spreadsheet_schema_validator.py         |   19 +
+ tools/hmlops_cli/README.md                         |   47 +
+ tools/hmlops_cli/command_allowlist.json            |   34 +
+ tools/hmlops_cli/command_denylist.json             |   33 +
+ tools/hmlops_cli/command_registry.json             |   97 +
+ tools/hmlops_cli/hmlops_cli.py                     |  466 ++
+ 824 files changed, 38014 insertions(+)
+
+== Cached files ==
+.gitignore
+AGENTS.md
+HERMES.md
+README.md
+docs/hermesops/INDEX.md
+docs/hermesops/MIGRATION_SOURCE.md
+docs/hermesops/README.md
+docs/hermesops/coderos/CODEROS_ARCHITECTURE.md
+docs/hermesops/coderos/CODEROS_CODE_REVIEW_STANDARD.md
+docs/hermesops/coderos/CODEROS_DEBUGGING_STANDARD.md
+docs/hermesops/coderos/CODEROS_MEMORY_INTEGRATION.md
+docs/hermesops/coderos/CODEROS_MODDING_POLICY.md
+docs/hermesops/coderos/CODEROS_POLICY.md
+docs/hermesops/coderos/CODEROS_PROMPTING_STANDARD.md
+docs/hermesops/coderos/CODEROS_REFACTORING_STANDARD.md
+docs/hermesops/coderos/CODEROS_SECURITY_BOUNDARIES.md
+docs/hermesops/coderos/CODEROS_STACK_CATALOG.md
+docs/hermesops/coderos/CODEROS_TESTING_STRATEGY.md
+docs/hermesops/coderos/CODEROS_TOOLCHAIN.md
+docs/hermesops/coderos/CODEROS_WORKFLOW.md
+docs/hermesops/coderos/README.md
+docs/hermesops/coderos/evals/README.md
+docs/hermesops/coderos/evals/coding_agent_eval.yaml
+docs/hermesops/coderos/evals/fastapi_eval.yaml
+docs/hermesops/coderos/evals/modding_eval.yaml
+docs/hermesops/coderos/evals/patch_quality_eval.yaml
+docs/hermesops/coderos/evals/powershell_eval.yaml
+docs/hermesops/coderos/evals/react_eval.yaml
+docs/hermesops/coderos/evals/repo_triage_eval.yaml
+docs/hermesops/coderos/evals/security_boundary_eval.yaml
+docs/hermesops/coderos/examples/README.md
+docs/hermesops/coderos/modding/MODDING_SAFE_BOUNDARIES.md
+docs/hermesops/coderos/modding/README.md
+docs/hermesops/coderos/modding/asset_pipeline.md
+docs/hermesops/coderos/modding/config_patch_patterns.md
+docs/hermesops/coderos/modding/game_mod_project_structure.md
+docs/hermesops/coderos/modding/packaging_release.md
+docs/hermesops/coderos/modding/plugin_architecture.md
+docs/hermesops/coderos/modding/prohibited_modding_actions.md
+docs/hermesops/coderos/modding/troubleshooting_mod_load_order.md
+docs/hermesops/coderos/modding/version_compatibility.md
+docs/hermesops/coderos/playbooks/README.md
+docs/hermesops/coderos/playbooks/bugfix_workflow.md
+docs/hermesops/coderos/playbooks/feature_implementation.md
+docs/hermesops/coderos/playbooks/refactor_workflow.md
+docs/hermesops/coderos/playbooks/repository_triage.md
+docs/hermesops/coderos/playbooks/security_review.md
+docs/hermesops/coderos/prompts/README.md
+docs/hermesops/coderos/prompts/code_review.md
+docs/hermesops/coderos/prompts/patch_generation.md
+docs/hermesops/coderos/prompts/powershell_generation.md
+docs/hermesops/coderos/prompts/security_review.md
+docs/hermesops/coderos/schemas/README.md
+docs/hermesops/coderos/stacks/README.md
+docs/hermesops/coderos/stacks/ai_agents.md
+docs/hermesops/coderos/stacks/docker_compose.md
+docs/hermesops/coderos/stacks/m365_graph.md
+docs/hermesops/coderos/stacks/modding_general.md
+docs/hermesops/coderos/stacks/nextjs.md
+docs/hermesops/coderos/stacks/node_typescript.md
+docs/hermesops/coderos/stacks/office_automation.md
+docs/hermesops/coderos/stacks/postgres_sqlalchemy_alembic.md
+docs/hermesops/coderos/stacks/powershell7.md
+docs/hermesops/coderos/stacks/python_cli.md
+docs/hermesops/coderos/stacks/python_data_tools.md
+docs/hermesops/coderos/stacks/python_fastapi.md
+docs/hermesops/coderos/stacks/qdrant_rag.md
+docs/hermesops/coderos/stacks/react_vite.md
+docs/hermesops/coderos/stacks/redis.md
+docs/hermesops/coderos/stacks/windows_ad_gpo.md
+docs/hermesops/composio-readonly/COMPOSIO_AUDIT_LOGGING.md
+docs/hermesops/composio-readonly/COMPOSIO_CHANGE_PROPOSAL_WORKFLOW.md
+docs/hermesops/composio-readonly/COMPOSIO_CLI_SPEC.md
+docs/hermesops/composio-readonly/COMPOSIO_HML_ACTIVATION_PLAN.md
+docs/hermesops/composio-readonly/COMPOSIO_LOG_REVIEW_WORKFLOW.md
+docs/hermesops/composio-readonly/COMPOSIO_PERMISSION_MODEL.md
+docs/hermesops/composio-readonly/COMPOSIO_PLUGIN_ARCHITECTURE.md
+docs/hermesops/composio-readonly/COMPOSIO_ROLLBACK.md
+docs/hermesops/composio-readonly/COMPOSIO_RUNTIME_LOGGING.md
+docs/hermesops/composio-readonly/COMPOSIO_SECURITY_POLICY.md
+docs/hermesops/composio-readonly/COMPOSIO_TOOLKIT_ALLOWLIST.md
+docs/hermesops/composio-readonly/README.md
+docs/hermesops/composio-readonly/composio.permissions.example.yaml
+docs/hermesops/composio-readonly/composio.plugin.yaml
+docs/hermesops/composio-readonly/composio.toolkits.example.yaml
+docs/hermesops/composio-readonly/prompts/composio_audit_review.md
+docs/hermesops/composio-readonly/prompts/composio_change_proposal.md
+docs/hermesops/composio-readonly/prompts/composio_connection_triage.md
+docs/hermesops/composio-readonly/prompts/composio_hml_activation.md
+docs/hermesops/composio-readonly/prompts/composio_log_review.md
+docs/hermesops/composio-readonly/prompts/composio_permission_review.md
+docs/hermesops/composio-readonly/prompts/composio_tool_execution_plan.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_API_HEALTH_CHECK_ENDPOINT_FIX.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_API_HEALTH_CHECK_PLAN.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_CHANGE_PROPOSAL_REVIEW.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_CLI_REVIEW.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_GO_NO_GO.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_HML_READINESS.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_LOCAL_SECRET_CONFIGURATION.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_LOGGING_REVIEW.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_NEXT_STEPS.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_PERMISSION_REVIEW.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_PLUGIN_PHASE_REPORT.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_READ_ONLY_API_HARDENING.md
+docs/hermesops/composio-readonly/reports/COMPOSIO_SECURITY_REVIEW.md
+docs/hermesops/desktop-cli/DESKTOP_APP_UI_PLUGIN_PANEL_IMPLEMENTATION_PLAN.md
+docs/hermesops/desktop-cli/DESKTOP_APP_VISUAL_CHANGE_LIMITS.md
+docs/hermesops/desktop-cli/FUTURE_DESKTOP_APP_UI_PLUGIN_PANEL_PLAN.md
+docs/hermesops/desktop-cli/HERMES_DESKTOP_CLI_ARCHITECTURE.md
+docs/hermesops/desktop-cli/HERMES_DESKTOP_CLI_DISCOVERY.md
+docs/hermesops/desktop-cli/HERMES_DESKTOP_CLI_LOGGING.md
+docs/hermesops/desktop-cli/HERMES_DESKTOP_CLI_POLICY.md
+docs/hermesops/desktop-cli/HERMES_DESKTOP_CLI_PROJECT_ROUTING.md
+docs/hermesops/desktop-cli/HERMES_DESKTOP_CLI_ROLLBACK.md
+docs/hermesops/desktop-cli/HERMES_DESKTOP_CLI_WRAPPER_PLAN.md
+docs/hermesops/desktop-cli/HERMES_DESKTOP_MANUAL_ACTIVATION_GUIDE.md
+docs/hermesops/desktop-cli/HERMES_DESKTOP_MANUAL_ROLLBACK.md
+docs/hermesops/desktop-cli/HERMES_DESKTOP_PTBR_KEYBOARD.md
+docs/hermesops/desktop-cli/README.md
+docs/hermesops/desktop-cli/profiles/README.md
+docs/hermesops/desktop-cli/profiles/hermesops_cli_profile.yaml
+docs/hermesops/desktop-cli/profiles/hermesops_desktop_profile.yaml
+docs/hermesops/desktop-cli/prompts/cli_change_request.md
+docs/hermesops/desktop-cli/prompts/cli_debugging.md
+docs/hermesops/desktop-cli/prompts/cli_release_checklist.md
+docs/hermesops/desktop-cli/prompts/cli_wrapper_review.md
+docs/hermesops/desktop-cli/reports/COMPOSIO_UI_VISIBILITY_AUDIT.md
+docs/hermesops/desktop-cli/reports/COMPOSIO_UI_VISIBILITY_FIX_REPORT.md
+docs/hermesops/desktop-cli/reports/COMPOSIO_UI_VISIBILITY_GO_NO_GO.md
+docs/hermesops/desktop-cli/reports/DARK_MODE_FIX_REPORT.md
+docs/hermesops/desktop-cli/reports/DESKTOP_PATCH_SOURCE_REPORT.md
+docs/hermesops/desktop-cli/reports/DESKTOP_UI_STRUCTURE_AUDIT.md
+docs/hermesops/desktop-cli/reports/HERMESOPS_DESKTOP_BRIDGE_SECURITY_AUDIT.md
+docs/hermesops/desktop-cli/reports/HERMESOPS_PANEL_GO_NO_GO.md
+docs/hermesops/desktop-cli/reports/HERMESOPS_PANEL_IMPLEMENTATION_REPORT.md
+docs/hermesops/desktop-cli/reports/HERMESOPS_PANEL_VALIDATION_REPORT.md
+docs/hermesops/desktop-cli/reports/HERMESOPS_PTBR_STRING_AUDIT.md
+docs/hermesops/desktop-cli/reports/HERMESOPS_PTBR_UI_FIX_REPORT.md
+docs/hermesops/desktop-cli/reports/HERMES_DESKTOP_MOD_NEXT_STEPS.md
+docs/hermesops/desktop-cli/reports/HERMES_DESKTOP_SOURCE_DISCOVERY.md
+docs/hermesops/desktop-cli/reports/KEYBOARD_LAYOUT_FIX_REPORT.md
+docs/hermesops/desktop-cli/reports/PTBR_LOCALE_KEYBOARD_DIAGNOSIS.md
+docs/hermesops/desktop-cli/reports/PTBR_UI_GO_NO_GO.md
+docs/hermesops/desktop-cli/reports/PTBR_UI_SMOKE_TEST_CHECKLIST.md
+docs/hermesops/desktop-cli/reports/READ_ONLY_BRIDGE_GO_NO_GO.md
+docs/hermesops/desktop-cli/reports/READ_ONLY_BRIDGE_IMPLEMENTATION_REPORT.md
+docs/hermesops/desktop-cli/reports/READ_ONLY_BRIDGE_SMOKE_TEST_CHECKLIST.md
+docs/hermesops/desktop-cli/wrappers/README.md
+docs/hermesops/enterprise-office-skills/ADOBE_ACROBAT_INTEGRATION_PLAN.md
+docs/hermesops/enterprise-office-skills/ENTERPRISE_OFFICE_SKILLS_ARCHITECTURE.md
+docs/hermesops/enterprise-office-skills/HML_DEPLOYMENT_NOTES.md
+docs/hermesops/enterprise-office-skills/M365_OFFICE_INTEGRATION_PLAN.md
+docs/hermesops/enterprise-office-skills/PDF_ADOBE_ACROBAT_SKILL_SPEC.md
+docs/hermesops/enterprise-office-skills/POWERPOINT_PPTX_SKILL_SPEC.md
+docs/hermesops/enterprise-office-skills/README.md
+docs/hermesops/enterprise-office-skills/SECURITY_AND_DATA_POLICY.md
+docs/hermesops/enterprise-office-skills/SPREADSHEET_SKILL_SPEC.md
+docs/hermesops/enterprise-office-skills/TEXT_EDITING_SKILL_SPEC.md
+docs/hermesops/enterprise-office-skills/WORD_DOCX_SKILL_SPEC.md
+docs/hermesops/enterprise-office-skills/playbooks/document_redaction_and_sanitization.md
+docs/hermesops/enterprise-office-skills/playbooks/excel_base_service_desk.md
+docs/hermesops/enterprise-office-skills/playbooks/excel_data_quality_review.md
+docs/hermesops/enterprise-office-skills/playbooks/pdf_acrobat_standard_workflow.md
+docs/hermesops/enterprise-office-skills/playbooks/pdf_ocr_and_text_extraction.md
+docs/hermesops/enterprise-office-skills/playbooks/pdf_redaction_and_sanitization.md
+docs/hermesops/enterprise-office-skills/playbooks/pdf_signature_and_certificate_caution.md
+docs/hermesops/enterprise-office-skills/playbooks/powerpoint_executive_report_creation.md
+docs/hermesops/enterprise-office-skills/playbooks/powerpoint_training_deck_creation.md
+docs/hermesops/enterprise-office-skills/playbooks/word_kcs_generation.md
+docs/hermesops/enterprise-office-skills/playbooks/word_manual_creation.md
+docs/hermesops/enterprise-office-skills/prompts/corporate_text_rewrite.md
+docs/hermesops/enterprise-office-skills/prompts/document_quality_audit.md
+docs/hermesops/enterprise-office-skills/prompts/excel_m365_integration.md
+docs/hermesops/enterprise-office-skills/prompts/kcs_document_generation.md
+docs/hermesops/enterprise-office-skills/prompts/pdf_acrobat_workflow.md
+docs/hermesops/enterprise-office-skills/prompts/pdf_content_extraction.md
+docs/hermesops/enterprise-office-skills/prompts/pdf_redaction_review.md
+docs/hermesops/enterprise-office-skills/prompts/pdf_signature_certificate_handling.md
+docs/hermesops/enterprise-office-skills/prompts/powerpoint_deck_generation.md
+docs/hermesops/enterprise-office-skills/prompts/powerpoint_deck_review.md
+docs/hermesops/enterprise-office-skills/prompts/powerpoint_training_material.md
+docs/hermesops/enterprise-office-skills/prompts/spreadsheet_analysis.md
+docs/hermesops/enterprise-office-skills/prompts/spreadsheet_automation.md
+docs/hermesops/enterprise-office-skills/prompts/spreadsheet_data_quality.md
+docs/hermesops/enterprise-office-skills/prompts/word_complex_revision.md
+docs/hermesops/enterprise-office-skills/prompts/word_document_editing.md
+docs/hermesops/enterprise-office-skills/templates/pdf/README.md
+docs/hermesops/enterprise-office-skills/templates/pdf/pdf_audit_template.md
+docs/hermesops/enterprise-office-skills/templates/pdf/pdf_ocr_workflow_template.md
+docs/hermesops/enterprise-office-skills/templates/pdf/pdf_redaction_checklist.md
+docs/hermesops/enterprise-office-skills/templates/pdf/pdf_signature_validation_checklist.md
+docs/hermesops/enterprise-office-skills/templates/powerpoint/README.md
+docs/hermesops/enterprise-office-skills/templates/powerpoint/executive_deck_template.md
+docs/hermesops/enterprise-office-skills/templates/powerpoint/kcs_training_deck_template.md
+docs/hermesops/enterprise-office-skills/templates/powerpoint/procedure_training_deck_template.md
+docs/hermesops/enterprise-office-skills/templates/powerpoint/service_desk_report_deck_template.md
+docs/hermesops/enterprise-office-skills/templates/spreadsheet/README.md
+docs/hermesops/enterprise-office-skills/templates/word/README.md
+docs/hermesops/enterprise-office-skills/templates/word/corporate_report_template.md
+docs/hermesops/enterprise-office-skills/templates/word/kcs_document_template.md
+docs/hermesops/enterprise-office-skills/templates/word/meeting_minutes_template.md
+docs/hermesops/enterprise-office-skills/templates/word/procedure_manual_template.md
+docs/hermesops/governance/AGENTS.md
+docs/hermesops/governance/ARCHITECTURE.md
+docs/hermesops/governance/PROJECT_CONTEXT.md
+docs/hermesops/governance/README.md
+docs/hermesops/governance/ROADMAP.md
+docs/hermesops/governance/SECURITY.md
+docs/hermesops/localization/PT_BR_CLI_MESSAGES.md
+docs/hermesops/localization/PT_BR_ENCODING_POLICY.md
+docs/hermesops/localization/PT_BR_FALLBACK_POLICY.md
+docs/hermesops/localization/PT_BR_KCS_MACRO_GUIDE.md
+docs/hermesops/localization/PT_BR_LOCALIZATION_POLICY.md
+docs/hermesops/localization/PT_BR_STYLE_GUIDE.md
+docs/hermesops/localization/PT_BR_TERMINOLOGY_GUIDE.md
+docs/hermesops/localization/README.md
+docs/hermesops/localization/evals/ptbr_encoding_eval.yaml
+docs/hermesops/localization/evals/ptbr_kcs_macro_eval.yaml
+docs/hermesops/localization/evals/ptbr_language_quality_eval.yaml
+docs/hermesops/localization/evals/ptbr_technical_terms_eval.yaml
+docs/hermesops/localization/glossary/coding_terms.pt-br.yaml
+docs/hermesops/localization/glossary/desktop_cli_terms.pt-br.yaml
+docs/hermesops/localization/glossary/infrastructure_terms.pt-br.yaml
+docs/hermesops/localization/glossary/m365_terms.pt-br.yaml
+docs/hermesops/localization/glossary/modding_terms.pt-br.yaml
+docs/hermesops/localization/glossary/office_terms.pt-br.yaml
+docs/hermesops/localization/glossary/service_desk_terms.pt-br.yaml
+docs/hermesops/localization/messages/cli_messages.pt-br.json
+docs/hermesops/localization/messages/error_messages.pt-br.json
+docs/hermesops/localization/messages/macro_templates.pt-br.json
+docs/hermesops/localization/messages/report_sections.pt-br.json
+docs/hermesops/localization/messages/validation_messages.pt-br.json
+docs/hermesops/localization/prompts/code_review_ptbr.md
+docs/hermesops/localization/prompts/coding_assistant_ptbr.md
+docs/hermesops/localization/prompts/desktop_cli_ptbr.md
+docs/hermesops/localization/prompts/kcs_generation_ptbr.md
+docs/hermesops/localization/prompts/m365_excel_ptbr.md
+docs/hermesops/localization/prompts/macro_itil_ptbr.md
+docs/hermesops/localization/prompts/modding_ptbr.md
+docs/hermesops/localization/prompts/office_document_ptbr.md
+docs/hermesops/localization/prompts/pdf_acrobat_ptbr.md
+docs/hermesops/localization/prompts/service_desk_ptbr.md
+docs/hermesops/manifests/PHASE1_DECISION_MANIFEST.md
+docs/hermesops/manifests/PHASE1_FILE_MANIFEST.txt
+docs/hermesops/memoryos/MEMORY_ARCHITECTURE.md
+docs/hermesops/memoryos/MEMORY_CONFLICT_RESOLUTION.md
+docs/hermesops/memoryos/MEMORY_CONSOLIDATION_RULES.md
+docs/hermesops/memoryos/MEMORY_LIFECYCLE.md
+docs/hermesops/memoryos/MEMORY_POLICY.md
+docs/hermesops/memoryos/MEMORY_RETRIEVAL_POLICY.md
+docs/hermesops/memoryos/README.md
+docs/hermesops/memoryos/episodic/README.md
+docs/hermesops/memoryos/evals/README.md
+docs/hermesops/memoryos/inbox/README.md
+docs/hermesops/memoryos/indexes/README.md
+docs/hermesops/memoryos/procedural/README.md
+docs/hermesops/memoryos/procedural/agent_behavior.md
+docs/hermesops/memoryos/procedural/coding_rules.md
+docs/hermesops/memoryos/procedural/hml_promotion_rules.md
+docs/hermesops/memoryos/procedural/office_document_rules.md
+docs/hermesops/memoryos/procedural/security_rules.md
+docs/hermesops/memoryos/procedural/service_desk_rules.md
+docs/hermesops/memoryos/rejected/README.md
+docs/hermesops/memoryos/semantic/README.md
+docs/hermesops/memoryos/semantic/coding/README.md
+docs/hermesops/memoryos/semantic/office_skills/README.md
+docs/hermesops/memoryos/working/README.md
+docs/hermesops/service-desk/_seed/CORPUS_MANIFEST.yaml
+docs/hermesops/service-desk/_seed/README.md
+docs/hermesops/service-desk/_seed/anydesk/anydesk-unattended-access.md
+docs/hermesops/service-desk/_seed/certificates/certificado-a1-nao-aparece.md
+docs/hermesops/service-desk/_seed/certificates/certificado-a3-token-smartcard.md
+docs/hermesops/service-desk/_seed/coding/alembic-migration-debug.md
+docs/hermesops/service-desk/_seed/coding/docker-compose-debug.md
+docs/hermesops/service-desk/_seed/coding/git-branch-rollback.md
+docs/hermesops/service-desk/_seed/coding/node-npm-dependency-conflict.md
+docs/hermesops/service-desk/_seed/coding/postgresql-redis-debug.md
+docs/hermesops/service-desk/_seed/coding/powershell-script-seguro.md
+docs/hermesops/service-desk/_seed/coding/python-fastapi-debug.md
+docs/hermesops/service-desk/_seed/coding/react-vite-typescript-build.md
+docs/hermesops/service-desk/_seed/gpo-ad/gpo-nao-aplica.md
+docs/hermesops/service-desk/_seed/lansweeper/inventario-lansweeper-divergente.md
+docs/hermesops/service-desk/_seed/ndd-print/ndd-print-pin-portal-360.md
+docs/hermesops/service-desk/_seed/network/dns-incorreto.md
+docs/hermesops/service-desk/_seed/network/maquina-sem-rede.md
+docs/hermesops/service-desk/_seed/network/wake-on-lan.md
+docs/hermesops/service-desk/_seed/office365/office365-ativacao-licenca.md
+docs/hermesops/service-desk/_seed/outlook/outlook-nao-abre.md
+docs/hermesops/service-desk/_seed/printers/impressora-nao-imprime.md
+docs/hermesops/service-desk/_seed/rdp-vpn/rdp-entre-dominios-sem-trust.md
+docs/hermesops/service-desk/_seed/security-incidents/alerta-trend-possivel-malware.md
+docs/hermesops/service-desk/_seed/teams/teams-cache-corrompido.md
+docs/hermesops/service-desk/_seed/windows/bsod-eventos-criticos.md
+docs/hermesops/service-desk/_seed/windows/erro-instalacao-java.md
+docs/hermesops/service-desk/_seed/windows/lentidao-windows.md
+docs/hermesops/service-desk/_seed/windows/perfil-usuario-corrompido.md
+docs/hermesops/service-desk/_seed/wsus-windows-update/windows-update-wsus-travado.md
+docs/hermesops/service-desk/enterprise_office_document_skills/document-redaction-and-sanitization.md
+docs/hermesops/service-desk/enterprise_office_document_skills/excel-automation-support.md
+docs/hermesops/service-desk/enterprise_office_document_skills/excel-base-service-desk.md
+docs/hermesops/service-desk/enterprise_office_document_skills/excel-data-quality.md
+docs/hermesops/service-desk/enterprise_office_document_skills/excel-m365-workbook-governance.md
+docs/hermesops/service-desk/enterprise_office_document_skills/pdf-adobe-acrobat-standard.md
+docs/hermesops/service-desk/enterprise_office_document_skills/pdf-document-quality-audit.md
+docs/hermesops/service-desk/enterprise_office_document_skills/pdf-ocr-text-extraction.md
+docs/hermesops/service-desk/enterprise_office_document_skills/pdf-redaction-sanitization.md
+docs/hermesops/service-desk/enterprise_office_document_skills/pdf-signature-certificate-handling.md
+docs/hermesops/service-desk/enterprise_office_document_skills/powerpoint-executive-reporting.md
+docs/hermesops/service-desk/enterprise_office_document_skills/powerpoint-kcs-training.md
+docs/hermesops/service-desk/enterprise_office_document_skills/powerpoint-procedure-training.md
+docs/hermesops/service-desk/enterprise_office_document_skills/word-complex-text-editing.md
+docs/hermesops/service-desk/enterprise_office_document_skills/word-kcs-generation.md
+docs/hermesops/service-desk/enterprise_office_document_skills/word-manual-creation.md
+docs/hermesops/service-desk/enterprise_office_document_skills/word-report-generation.md
+reports/hml_selective_migration_phase1/00_BASE_VALIDATION.md
+reports/hml_selective_migration_phase1/01_BACKUP_REPORT.md
+reports/hml_selective_migration_phase1/02_SECURITY_SCAN_PHASE1.md
+reports/hml_selective_migration_phase1/03_DOCUMENT_VALIDATION_PHASE1.md
+reports/hml_selective_migration_phase1/04_PHASE1_MIGRATION_EXECUTION_REPORT.md
+reports/hml_selective_migration_phase1/05_GO_NO_GO_PHASE1.md
+reports/hml_selective_migration_phase1/evidence/00_base_validation.txt
+reports/hml_selective_migration_phase1/evidence/01_backup_manifest.txt
+reports/hml_selective_migration_phase1/evidence/02_phase1_forbidden_scan.txt
+reports/hml_selective_migration_phase1/evidence/03_phase1_secret_scan.txt
+reports/hml_selective_migration_phase1/evidence/04_phase1_json_validation.rc
+reports/hml_selective_migration_phase1/evidence/04_phase1_json_validation.txt
+reports/hml_selective_migration_phase1/evidence/05_phase1_yaml_validation.rc
+reports/hml_selective_migration_phase1/evidence/05_phase1_yaml_validation.txt
+reports/hml_selective_migration_phase1/evidence/06_non_regression_operational_check.txt
+reports/hml_selective_migration_phase2/00_BASE_VALIDATION.md
+reports/hml_selective_migration_phase2/01_BACKUP_REPORT.md
+reports/hml_selective_migration_phase2/02_SOURCE_TOOLING_INVENTORY.md
+reports/hml_selective_migration_phase2/03_TOOLING_CLASSIFICATION.md
+reports/hml_selective_migration_phase2/04_SECURITY_SCAN_PHASE2.md
+reports/hml_selective_migration_phase2/05_PYTHON_VALIDATION_PHASE2.md
+reports/hml_selective_migration_phase2/06_JSON_VALIDATION_PHASE2.md
+reports/hml_selective_migration_phase2/07_YAML_VALIDATION_PHASE2.md
+reports/hml_selective_migration_phase2/08_SAFE_DRY_RUNS_PHASE2.md
+reports/hml_selective_migration_phase2/09_PHASE2_MIGRATION_EXECUTION_REPORT.md
+reports/hml_selective_migration_phase2/10_GO_NO_GO_PHASE2.md
+reports/hml_selective_migration_phase2/evidence/00_base_validation.txt
+reports/hml_selective_migration_phase2/evidence/01_backup_manifest.txt
+reports/hml_selective_migration_phase2/evidence/02_source_tooling_inventory.txt
+reports/hml_selective_migration_phase2/evidence/04_phase2_forbidden_scan.txt
+reports/hml_selective_migration_phase2/evidence/05_phase2_secret_scan.txt
+reports/hml_selective_migration_phase2/evidence/06_phase2_py_compile.rc
+reports/hml_selective_migration_phase2/evidence/06_phase2_py_compile.txt
+reports/hml_selective_migration_phase2/evidence/07_phase2_json_validation.rc
+reports/hml_selective_migration_phase2/evidence/07_phase2_json_validation.txt
+reports/hml_selective_migration_phase2/evidence/08_phase2_yaml_validation.rc
+reports/hml_selective_migration_phase2/evidence/08_phase2_yaml_validation.txt
+reports/hml_selective_migration_phase2/evidence/09_phase2_safe_dry_runs.txt
+reports/hml_selective_migration_phase2/evidence/10_non_regression_operational_check.txt
+reports/hml_selective_migration_phase3/00_BASE_VALIDATION.md
+reports/hml_selective_migration_phase3/01_BACKUP_REPORT.md
+reports/hml_selective_migration_phase3/02_POLICY_AND_REGISTRY_AUDIT.md
+reports/hml_selective_migration_phase3/03_CLI_VALIDATION.md
+reports/hml_selective_migration_phase3/04_DRY_RUN_AND_NEGATIVE_TESTS.md
+reports/hml_selective_migration_phase3/05_PHASE3_CLI_EXECUTION_REPORT.md
+reports/hml_selective_migration_phase3/06_GO_NO_GO_PHASE3.md
+reports/hml_selective_migration_phase3/07_ROLLBACK_PHASE3.md
+reports/hml_selective_migration_phase3/09_PHASE3_CLI_EXECUTION_REPORT.md
+reports/hml_selective_migration_phase3/evidence/ptbr_prompt_sample/README.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/README.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/code_review.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/code_review_ptbr.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/coding_assistant_ptbr.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_audit_review.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_change_proposal.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_connection_triage.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_hml_activation.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_log_review.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_permission_review.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/composio_tool_execution_plan.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/corporate_text_rewrite.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/desktop_cli_ptbr.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/document_quality_audit.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/excel_m365_integration.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/first_response_from_seed_corpus.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/implementation.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/kcs_document_generation.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/kcs_generation.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/kcs_generation_ptbr.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/log_analysis.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/m365_excel_ptbr.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/macro_generation.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/macro_itil_ptbr.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/modding_ptbr.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/office_document_ptbr.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/patch_generation.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/pdf_acrobat_ptbr.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/pdf_acrobat_workflow.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/pdf_content_extraction.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/pdf_redaction_review.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/pdf_signature_certificate_handling.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/powerpoint_deck_generation.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/powerpoint_deck_review.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/powerpoint_training_material.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/powershell_generation.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/review.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/security_review.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/service_desk_ptbr.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/spreadsheet_analysis.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/spreadsheet_automation.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/spreadsheet_data_quality.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/triage.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/troubleshooting.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/word_complex_revision.md
+reports/hml_selective_migration_phase3/evidence/sanitize_output/word_document_editing.md
+reports/hml_selective_migration_phase3/evidence/sanitize_report.json
+reports/hml_selective_migration_phase4/00_WORKSPACE_BASE_AUDIT.md
+reports/hml_selective_migration_phase4/01_GIT_READONLY_AUDIT.md
+reports/hml_selective_migration_phase4/02_CRITICAL_INVENTORY.md
+reports/hml_selective_migration_phase4/03_PHASE4_BACKUP_REPORT.md
+reports/hml_selective_migration_phase4/04_MIGRATED_STATE_CHECKSUM_AUDIT.md
+reports/hml_selective_migration_phase4/05_SECURITY_SCAN_PHASE4.md
+reports/hml_selective_migration_phase4/06_HMLOPS_POST_BACKUP_VALIDATION.md
+reports/hml_selective_migration_phase4/07_GITIGNORE_PROPOSAL_REPORT.md
+reports/hml_selective_migration_phase4/08_GIT_PROVENANCE_REPAIR_PLAN.md
+reports/hml_selective_migration_phase4/09_PHASE4_PROVENANCE_EXECUTION_REPORT.md
+reports/hml_selective_migration_phase4/10_GO_NO_GO_PHASE4.md
+reports/hml_selective_migration_phase4/11_ROLLBACK_PHASE4.md
+reports/hml_selective_migration_phase4/MIGRATED_STATE_SHA256SUMS.txt
+reports/hml_selective_migration_phase4/PROPOSED_GITIGNORE_HML.md
+reports/hml_selective_migration_phase4/evidence/00_workspace_base_audit.txt
+reports/hml_selective_migration_phase4/evidence/01_git_readonly_audit.txt
+reports/hml_selective_migration_phase4/evidence/02_critical_inventory.txt
+reports/hml_selective_migration_phase4/evidence/03_phase4_backup_manifest.txt
+reports/hml_selective_migration_phase4/evidence/04_migrated_state_sha256_check.txt
+reports/hml_selective_migration_phase4/evidence/05_migrated_state_forbidden_scan.txt
+reports/hml_selective_migration_phase4/evidence/06_migrated_state_secret_scan.txt
+reports/hml_selective_migration_phase4/evidence/07_hmlops_post_backup_validation.rc
+reports/hml_selective_migration_phase4/evidence/07_hmlops_post_backup_validation.txt
+scripts/hmlops
+tools/hermesops_offline/README.md
+tools/hermesops_offline/auditors/coderos/code_context_builder.py
+tools/hermesops_offline/auditors/coderos/code_review_checker.py
+tools/hermesops_offline/auditors/coderos/coderos_audit.py
+tools/hermesops_offline/auditors/coderos/coderos_eval.py
+tools/hermesops_offline/auditors/coderos/coding_memory_capture.py
+tools/hermesops_offline/auditors/coderos/dependency_risk_scanner.py
+tools/hermesops_offline/auditors/coderos/modding_project_analyzer.py
+tools/hermesops_offline/auditors/coderos/patch_plan_builder.py
+tools/hermesops_offline/auditors/coderos/repo_mapper.py
+tools/hermesops_offline/auditors/localization/ptbr_localization_audit.py
+tools/hermesops_offline/auditors/localization/ptbr_prompt_audit.py
+tools/hermesops_offline/auditors/memory/memory_audit.py
+tools/hermesops_offline/auditors/memory/memory_capture.py
+tools/hermesops_offline/auditors/memory/memory_eval.py
+tools/hermesops_offline/auditors/office/docx_template_builder.py
+tools/hermesops_offline/auditors/office/docx_text_reviewer.py
+tools/hermesops_offline/auditors/office/pptx_deck_reviewer.py
+tools/hermesops_offline/auditors/office/pptx_template_builder.py
+tools/hermesops_offline/auditors/office/spreadsheet_offline_analyzer.py
+tools/hermesops_offline/coderos/CODEROS_ARCHITECTURE.md
+tools/hermesops_offline/coderos/CODEROS_CODE_REVIEW_STANDARD.md
+tools/hermesops_offline/coderos/CODEROS_DEBUGGING_STANDARD.md
+tools/hermesops_offline/coderos/CODEROS_MEMORY_INTEGRATION.md
+tools/hermesops_offline/coderos/CODEROS_MODDING_POLICY.md
+tools/hermesops_offline/coderos/CODEROS_POLICY.md
+tools/hermesops_offline/coderos/CODEROS_PROMPTING_STANDARD.md
+tools/hermesops_offline/coderos/CODEROS_REFACTORING_STANDARD.md
+tools/hermesops_offline/coderos/CODEROS_SECURITY_BOUNDARIES.md
+tools/hermesops_offline/coderos/CODEROS_STACK_CATALOG.md
+tools/hermesops_offline/coderos/CODEROS_TESTING_STRATEGY.md
+tools/hermesops_offline/coderos/CODEROS_TOOLCHAIN.md
+tools/hermesops_offline/coderos/CODEROS_WORKFLOW.md
+tools/hermesops_offline/coderos/README.md
+tools/hermesops_offline/coderos/evals/README.md
+tools/hermesops_offline/coderos/evals/coding_agent_eval.yaml
+tools/hermesops_offline/coderos/evals/fastapi_eval.yaml
+tools/hermesops_offline/coderos/evals/modding_eval.yaml
+tools/hermesops_offline/coderos/evals/patch_quality_eval.yaml
+tools/hermesops_offline/coderos/evals/powershell_eval.yaml
+tools/hermesops_offline/coderos/evals/react_eval.yaml
+tools/hermesops_offline/coderos/evals/repo_triage_eval.yaml
+tools/hermesops_offline/coderos/evals/security_boundary_eval.yaml
+tools/hermesops_offline/coderos/examples/README.md
+tools/hermesops_offline/coderos/modding/MODDING_SAFE_BOUNDARIES.md
+tools/hermesops_offline/coderos/modding/README.md
+tools/hermesops_offline/coderos/modding/asset_pipeline.md
+tools/hermesops_offline/coderos/modding/config_patch_patterns.md
+tools/hermesops_offline/coderos/modding/game_mod_project_structure.md
+tools/hermesops_offline/coderos/modding/packaging_release.md
+tools/hermesops_offline/coderos/modding/plugin_architecture.md
+tools/hermesops_offline/coderos/modding/prohibited_modding_actions.md
+tools/hermesops_offline/coderos/modding/troubleshooting_mod_load_order.md
+tools/hermesops_offline/coderos/modding/version_compatibility.md
+tools/hermesops_offline/coderos/playbooks/README.md
+tools/hermesops_offline/coderos/playbooks/bugfix_workflow.md
+tools/hermesops_offline/coderos/playbooks/feature_implementation.md
+tools/hermesops_offline/coderos/playbooks/refactor_workflow.md
+tools/hermesops_offline/coderos/playbooks/repository_triage.md
+tools/hermesops_offline/coderos/playbooks/security_review.md
+tools/hermesops_offline/coderos/prompts/README.md
+tools/hermesops_offline/coderos/prompts/code_review.md
+tools/hermesops_offline/coderos/prompts/patch_generation.md
+tools/hermesops_offline/coderos/prompts/powershell_generation.md
+tools/hermesops_offline/coderos/prompts/security_review.md
+tools/hermesops_offline/coderos/schemas/README.md
+tools/hermesops_offline/coderos/schemas/code_review.schema.json
+tools/hermesops_offline/coderos/schemas/coding_memory.schema.json
+tools/hermesops_offline/coderos/schemas/coding_task.schema.json
+tools/hermesops_offline/coderos/schemas/modding_project.schema.json
+tools/hermesops_offline/coderos/schemas/patch_plan.schema.json
+tools/hermesops_offline/coderos/schemas/repo_profile.schema.json
+tools/hermesops_offline/coderos/schemas/toolchain_profile.schema.json
+tools/hermesops_offline/coderos/schemas/validation_result.schema.json
+tools/hermesops_offline/coderos/stacks/README.md
+tools/hermesops_offline/coderos/stacks/ai_agents.md
+tools/hermesops_offline/coderos/stacks/docker_compose.md
+tools/hermesops_offline/coderos/stacks/m365_graph.md
+tools/hermesops_offline/coderos/stacks/modding_general.md
+tools/hermesops_offline/coderos/stacks/nextjs.md
+tools/hermesops_offline/coderos/stacks/node_typescript.md
+tools/hermesops_offline/coderos/stacks/office_automation.md
+tools/hermesops_offline/coderos/stacks/postgres_sqlalchemy_alembic.md
+tools/hermesops_offline/coderos/stacks/powershell7.md
+tools/hermesops_offline/coderos/stacks/python_cli.md
+tools/hermesops_offline/coderos/stacks/python_data_tools.md
+tools/hermesops_offline/coderos/stacks/python_fastapi.md
+tools/hermesops_offline/coderos/stacks/qdrant_rag.md
+tools/hermesops_offline/coderos/stacks/react_vite.md
+tools/hermesops_offline/coderos/stacks/redis.md
+tools/hermesops_offline/coderos/stacks/windows_ad_gpo.md
+tools/hermesops_offline/localization/PT_BR_CLI_MESSAGES.md
+tools/hermesops_offline/localization/PT_BR_ENCODING_POLICY.md
+tools/hermesops_offline/localization/PT_BR_FALLBACK_POLICY.md
+tools/hermesops_offline/localization/PT_BR_KCS_MACRO_GUIDE.md
+tools/hermesops_offline/localization/PT_BR_LOCALIZATION_POLICY.md
+tools/hermesops_offline/localization/PT_BR_STYLE_GUIDE.md
+tools/hermesops_offline/localization/PT_BR_TERMINOLOGY_GUIDE.md
+tools/hermesops_offline/localization/README.md
+tools/hermesops_offline/localization/evals/ptbr_encoding_eval.yaml
+tools/hermesops_offline/localization/evals/ptbr_kcs_macro_eval.yaml
+tools/hermesops_offline/localization/evals/ptbr_language_quality_eval.yaml
+tools/hermesops_offline/localization/evals/ptbr_technical_terms_eval.yaml
+tools/hermesops_offline/localization/glossary/coding_terms.pt-br.yaml
+tools/hermesops_offline/localization/glossary/desktop_cli_terms.pt-br.yaml
+tools/hermesops_offline/localization/glossary/infrastructure_terms.pt-br.yaml
+tools/hermesops_offline/localization/glossary/m365_terms.pt-br.yaml
+tools/hermesops_offline/localization/glossary/modding_terms.pt-br.yaml
+tools/hermesops_offline/localization/glossary/office_terms.pt-br.yaml
+tools/hermesops_offline/localization/glossary/service_desk_terms.pt-br.yaml
+tools/hermesops_offline/localization/messages/cli_messages.pt-br.json
+tools/hermesops_offline/localization/messages/error_messages.pt-br.json
+tools/hermesops_offline/localization/messages/macro_templates.pt-br.json
+tools/hermesops_offline/localization/messages/report_sections.pt-br.json
+tools/hermesops_offline/localization/messages/validation_messages.pt-br.json
+tools/hermesops_offline/localization/prompts/code_review_ptbr.md
+tools/hermesops_offline/localization/prompts/coding_assistant_ptbr.md
+tools/hermesops_offline/localization/prompts/desktop_cli_ptbr.md
+tools/hermesops_offline/localization/prompts/kcs_generation_ptbr.md
+tools/hermesops_offline/localization/prompts/m365_excel_ptbr.md
+tools/hermesops_offline/localization/prompts/macro_itil_ptbr.md
+tools/hermesops_offline/localization/prompts/modding_ptbr.md
+tools/hermesops_offline/localization/prompts/office_document_ptbr.md
+tools/hermesops_offline/localization/prompts/pdf_acrobat_ptbr.md
+tools/hermesops_offline/localization/prompts/service_desk_ptbr.md
+tools/hermesops_offline/manifests/PHASE2_FILE_MANIFEST.txt
+tools/hermesops_offline/manifests/PHASE2_JSON_FILES.txt
+tools/hermesops_offline/manifests/PHASE2_OFFLINE_TOOL_ALLOWLIST.md
+tools/hermesops_offline/manifests/PHASE2_PYTHON_TOOLS.txt
+tools/hermesops_offline/manifests/PHASE2_RISKY_TOOLS_REVIEW_REQUIRED.txt
+tools/hermesops_offline/manifests/PHASE2_TOOL_DENYLIST.md
+tools/hermesops_offline/memoryos/MEMORY_ARCHITECTURE.md
+tools/hermesops_offline/memoryos/MEMORY_CONFLICT_RESOLUTION.md
+tools/hermesops_offline/memoryos/MEMORY_CONSOLIDATION_RULES.md
+tools/hermesops_offline/memoryos/MEMORY_LIFECYCLE.md
+tools/hermesops_offline/memoryos/MEMORY_POLICY.md
+tools/hermesops_offline/memoryos/MEMORY_RETRIEVAL_POLICY.md
+tools/hermesops_offline/memoryos/README.md
+tools/hermesops_offline/memoryos/episodic/README.md
+tools/hermesops_offline/memoryos/evals/README.md
+tools/hermesops_offline/memoryos/evals/memory_conflict_tests.yaml
+tools/hermesops_offline/memoryos/evals/memory_policy_tests.yaml
+tools/hermesops_offline/memoryos/evals/memory_retrieval_tests.yaml
+tools/hermesops_offline/memoryos/inbox/README.md
+tools/hermesops_offline/memoryos/inbox/research_candidates/office_native_fidelity_policy.json
+tools/hermesops_offline/memoryos/indexes/README.md
+tools/hermesops_offline/memoryos/indexes/memory_manifest.yaml
+tools/hermesops_offline/memoryos/indexes/memory_tags.yaml
+tools/hermesops_offline/memoryos/procedural/README.md
+tools/hermesops_offline/memoryos/procedural/agent_behavior.md
+tools/hermesops_offline/memoryos/procedural/coding_rules.md
+tools/hermesops_offline/memoryos/procedural/hml_promotion_rules.md
+tools/hermesops_offline/memoryos/procedural/office_document_rules.md
+tools/hermesops_offline/memoryos/procedural/security_rules.md
+tools/hermesops_offline/memoryos/procedural/service_desk_rules.md
+tools/hermesops_offline/memoryos/rejected/README.md
+tools/hermesops_offline/memoryos/semantic/README.md
+tools/hermesops_offline/memoryos/semantic/coding/README.md
+tools/hermesops_offline/memoryos/semantic/office_skills/README.md
+tools/hermesops_offline/memoryos/semantic/office_skills/office_native_fidelity_policy.json
+tools/hermesops_offline/memoryos/semantic/service_desk/composio_plugin_policy.json
+tools/hermesops_offline/memoryos/semantic/service_desk/log_driven_change_policy.json
+tools/hermesops_offline/memoryos/semantic/service_desk/ptbr_support_policy.json
+tools/hermesops_offline/memoryos/working/README.md
+tools/hermesops_offline/office/ADOBE_ACROBAT_INTEGRATION_PLAN.md
+tools/hermesops_offline/office/ENTERPRISE_OFFICE_SKILLS_ARCHITECTURE.md
+tools/hermesops_offline/office/HML_DEPLOYMENT_NOTES.md
+tools/hermesops_offline/office/M365_OFFICE_INTEGRATION_PLAN.md
+tools/hermesops_offline/office/PDF_ADOBE_ACROBAT_SKILL_SPEC.md
+tools/hermesops_offline/office/POWERPOINT_PPTX_SKILL_SPEC.md
+tools/hermesops_offline/office/README.md
+tools/hermesops_offline/office/SECURITY_AND_DATA_POLICY.md
+tools/hermesops_offline/office/SPREADSHEET_SKILL_SPEC.md
+tools/hermesops_offline/office/TEXT_EDITING_SKILL_SPEC.md
+tools/hermesops_offline/office/WORD_DOCX_SKILL_SPEC.md
+tools/hermesops_offline/office/playbooks/document_redaction_and_sanitization.md
+tools/hermesops_offline/office/playbooks/excel_base_service_desk.md
+tools/hermesops_offline/office/playbooks/excel_data_quality_review.md
+tools/hermesops_offline/office/playbooks/pdf_acrobat_standard_workflow.md
+tools/hermesops_offline/office/playbooks/pdf_ocr_and_text_extraction.md
+tools/hermesops_offline/office/playbooks/pdf_redaction_and_sanitization.md
+tools/hermesops_offline/office/playbooks/pdf_signature_and_certificate_caution.md
+tools/hermesops_offline/office/playbooks/powerpoint_executive_report_creation.md
+tools/hermesops_offline/office/playbooks/powerpoint_training_deck_creation.md
+tools/hermesops_offline/office/playbooks/word_kcs_generation.md
+tools/hermesops_offline/office/playbooks/word_manual_creation.md
+tools/hermesops_offline/office/prompts/corporate_text_rewrite.md
+tools/hermesops_offline/office/prompts/document_quality_audit.md
+tools/hermesops_offline/office/prompts/excel_m365_integration.md
+tools/hermesops_offline/office/prompts/kcs_document_generation.md
+tools/hermesops_offline/office/prompts/pdf_acrobat_workflow.md
+tools/hermesops_offline/office/prompts/pdf_content_extraction.md
+tools/hermesops_offline/office/prompts/pdf_redaction_review.md
+tools/hermesops_offline/office/prompts/pdf_signature_certificate_handling.md
+tools/hermesops_offline/office/prompts/powerpoint_deck_generation.md
+tools/hermesops_offline/office/prompts/powerpoint_deck_review.md
+tools/hermesops_offline/office/prompts/powerpoint_training_material.md
+tools/hermesops_offline/office/prompts/spreadsheet_analysis.md
+tools/hermesops_offline/office/prompts/spreadsheet_automation.md
+tools/hermesops_offline/office/prompts/spreadsheet_data_quality.md
+tools/hermesops_offline/office/prompts/word_complex_revision.md
+tools/hermesops_offline/office/prompts/word_document_editing.md
+tools/hermesops_offline/office/schemas/document_review.schema.json
+tools/hermesops_offline/office/schemas/docx_job.schema.json
+tools/hermesops_offline/office/schemas/office_audit.schema.json
+tools/hermesops_offline/office/schemas/pdf_audit.schema.json
+tools/hermesops_offline/office/schemas/pdf_job.schema.json
+tools/hermesops_offline/office/schemas/pptx_job.schema.json
+tools/hermesops_offline/office/schemas/presentation_review.schema.json
+tools/hermesops_offline/office/schemas/spreadsheet_job.schema.json
+tools/hermesops_offline/office/schemas/spreadsheet_validation.schema.json
+tools/hermesops_offline/office/schemas/text_editing_job.schema.json
+tools/hermesops_offline/office/templates/pdf/README.md
+tools/hermesops_offline/office/templates/pdf/pdf_audit_template.md
+tools/hermesops_offline/office/templates/pdf/pdf_job_examples.json
+tools/hermesops_offline/office/templates/pdf/pdf_ocr_workflow_template.md
+tools/hermesops_offline/office/templates/pdf/pdf_redaction_checklist.md
+tools/hermesops_offline/office/templates/pdf/pdf_signature_validation_checklist.md
+tools/hermesops_offline/office/templates/powerpoint/README.md
+tools/hermesops_offline/office/templates/powerpoint/executive_deck_template.md
+tools/hermesops_offline/office/templates/powerpoint/kcs_training_deck_template.md
+tools/hermesops_offline/office/templates/powerpoint/powerpoint_job_examples.json
+tools/hermesops_offline/office/templates/powerpoint/procedure_training_deck_template.md
+tools/hermesops_offline/office/templates/powerpoint/service_desk_report_deck_template.md
+tools/hermesops_offline/office/templates/spreadsheet/README.md
+tools/hermesops_offline/office/templates/spreadsheet/service_desk_base_schema.json
+tools/hermesops_offline/office/templates/spreadsheet/spreadsheet_job_examples.json
+tools/hermesops_offline/office/templates/word/README.md
+tools/hermesops_offline/office/templates/word/corporate_report_template.md
+tools/hermesops_offline/office/templates/word/kcs_document_template.md
+tools/hermesops_offline/office/templates/word/meeting_minutes_template.md
+tools/hermesops_offline/office/templates/word/procedure_manual_template.md
+tools/hermesops_offline/office/templates/word/word_job_examples.json
+tools/hermesops_offline/playbooks/README.md
+tools/hermesops_offline/playbooks/bugfix_workflow.md
+tools/hermesops_offline/playbooks/document_redaction_and_sanitization.md
+tools/hermesops_offline/playbooks/excel_base_service_desk.md
+tools/hermesops_offline/playbooks/excel_data_quality_review.md
+tools/hermesops_offline/playbooks/feature_implementation.md
+tools/hermesops_offline/playbooks/pdf_acrobat_standard_workflow.md
+tools/hermesops_offline/playbooks/pdf_ocr_and_text_extraction.md
+tools/hermesops_offline/playbooks/pdf_redaction_and_sanitization.md
+tools/hermesops_offline/playbooks/pdf_signature_and_certificate_caution.md
+tools/hermesops_offline/playbooks/powerpoint_executive_report_creation.md
+tools/hermesops_offline/playbooks/powerpoint_training_deck_creation.md
+tools/hermesops_offline/playbooks/refactor_workflow.md
+tools/hermesops_offline/playbooks/repository_triage.md
+tools/hermesops_offline/playbooks/security_review.md
+tools/hermesops_offline/playbooks/word_kcs_generation.md
+tools/hermesops_offline/playbooks/word_manual_creation.md
+tools/hermesops_offline/prompts/README.md
+tools/hermesops_offline/prompts/code_review.md
+tools/hermesops_offline/prompts/code_review_ptbr.md
+tools/hermesops_offline/prompts/coding_assistant_ptbr.md
+tools/hermesops_offline/prompts/composio_audit_review.md
+tools/hermesops_offline/prompts/composio_change_proposal.md
+tools/hermesops_offline/prompts/composio_connection_triage.md
+tools/hermesops_offline/prompts/composio_hml_activation.md
+tools/hermesops_offline/prompts/composio_log_review.md
+tools/hermesops_offline/prompts/composio_permission_review.md
+tools/hermesops_offline/prompts/composio_tool_execution_plan.md
+tools/hermesops_offline/prompts/corporate_text_rewrite.md
+tools/hermesops_offline/prompts/desktop_cli_ptbr.md
+tools/hermesops_offline/prompts/document_quality_audit.md
+tools/hermesops_offline/prompts/excel_m365_integration.md
+tools/hermesops_offline/prompts/first_response_from_seed_corpus.md
+tools/hermesops_offline/prompts/implementation.md
+tools/hermesops_offline/prompts/kcs_document_generation.md
+tools/hermesops_offline/prompts/kcs_generation.md
+tools/hermesops_offline/prompts/kcs_generation_ptbr.md
+tools/hermesops_offline/prompts/log_analysis.md
+tools/hermesops_offline/prompts/m365_excel_ptbr.md
+tools/hermesops_offline/prompts/macro_generation.md
+tools/hermesops_offline/prompts/macro_itil_ptbr.md
+tools/hermesops_offline/prompts/modding_ptbr.md
+tools/hermesops_offline/prompts/office_document_ptbr.md
+tools/hermesops_offline/prompts/patch_generation.md
+tools/hermesops_offline/prompts/pdf_acrobat_ptbr.md
+tools/hermesops_offline/prompts/pdf_acrobat_workflow.md
+tools/hermesops_offline/prompts/pdf_content_extraction.md
+tools/hermesops_offline/prompts/pdf_redaction_review.md
+tools/hermesops_offline/prompts/pdf_signature_certificate_handling.md
+tools/hermesops_offline/prompts/powerpoint_deck_generation.md
+tools/hermesops_offline/prompts/powerpoint_deck_review.md
+tools/hermesops_offline/prompts/powerpoint_training_material.md
+tools/hermesops_offline/prompts/powershell_generation.md
+tools/hermesops_offline/prompts/review.md
+tools/hermesops_offline/prompts/security_review.md
+tools/hermesops_offline/prompts/service_desk_ptbr.md
+tools/hermesops_offline/prompts/spreadsheet_analysis.md
+tools/hermesops_offline/prompts/spreadsheet_automation.md
+tools/hermesops_offline/prompts/spreadsheet_data_quality.md
+tools/hermesops_offline/prompts/triage.md
+tools/hermesops_offline/prompts/troubleshooting.md
+tools/hermesops_offline/prompts/word_complex_revision.md
+tools/hermesops_offline/prompts/word_document_editing.md
+tools/hermesops_offline/rejected/plugins/auditors/plugin_audit.py
+tools/hermesops_offline/rejected/plugins/auditors/plugin_change_review.py
+tools/hermesops_offline/rejected/plugins/auditors/plugin_log_analyzer.py
+tools/hermesops_offline/rejected/plugins/validators/plugin_change_proposal.py
+tools/hermesops_offline/rejected/plugins/validators/plugin_cli.py
+tools/hermesops_offline/rejected/plugins/validators/plugin_log_sanitizer.py
+tools/hermesops_offline/rejected/plugins/validators/plugin_policy_validator.py
+tools/hermesops_offline/rejected/plugins/validators/plugin_registry.py
+tools/hermesops_offline/rejected/plugins/validators/plugin_schema_validator.py
+tools/hermesops_offline/service-desk/_seed/CORPUS_MANIFEST.yaml
+tools/hermesops_offline/service-desk/_seed/README.md
+tools/hermesops_offline/service-desk/_seed/anydesk/anydesk-unattended-access.md
+tools/hermesops_offline/service-desk/_seed/certificates/certificado-a1-nao-aparece.md
+tools/hermesops_offline/service-desk/_seed/certificates/certificado-a3-token-smartcard.md
+tools/hermesops_offline/service-desk/_seed/coding/alembic-migration-debug.md
+tools/hermesops_offline/service-desk/_seed/coding/docker-compose-debug.md
+tools/hermesops_offline/service-desk/_seed/coding/git-branch-rollback.md
+tools/hermesops_offline/service-desk/_seed/coding/node-npm-dependency-conflict.md
+tools/hermesops_offline/service-desk/_seed/coding/postgresql-redis-debug.md
+tools/hermesops_offline/service-desk/_seed/coding/powershell-script-seguro.md
+tools/hermesops_offline/service-desk/_seed/coding/python-fastapi-debug.md
+tools/hermesops_offline/service-desk/_seed/coding/react-vite-typescript-build.md
+tools/hermesops_offline/service-desk/_seed/gpo-ad/gpo-nao-aplica.md
+tools/hermesops_offline/service-desk/_seed/lansweeper/inventario-lansweeper-divergente.md
+tools/hermesops_offline/service-desk/_seed/ndd-print/ndd-print-pin-portal-360.md
+tools/hermesops_offline/service-desk/_seed/network/dns-incorreto.md
+tools/hermesops_offline/service-desk/_seed/network/maquina-sem-rede.md
+tools/hermesops_offline/service-desk/_seed/network/wake-on-lan.md
+tools/hermesops_offline/service-desk/_seed/office365/office365-ativacao-licenca.md
+tools/hermesops_offline/service-desk/_seed/outlook/outlook-nao-abre.md
+tools/hermesops_offline/service-desk/_seed/printers/impressora-nao-imprime.md
+tools/hermesops_offline/service-desk/_seed/rdp-vpn/rdp-entre-dominios-sem-trust.md
+tools/hermesops_offline/service-desk/_seed/security-incidents/alerta-trend-possivel-malware.md
+tools/hermesops_offline/service-desk/_seed/teams/teams-cache-corrompido.md
+tools/hermesops_offline/service-desk/_seed/windows/bsod-eventos-criticos.md
+tools/hermesops_offline/service-desk/_seed/windows/erro-instalacao-java.md
+tools/hermesops_offline/service-desk/_seed/windows/lentidao-windows.md
+tools/hermesops_offline/service-desk/_seed/windows/perfil-usuario-corrompido.md
+tools/hermesops_offline/service-desk/_seed/wsus-windows-update/windows-update-wsus-travado.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/document-redaction-and-sanitization.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/excel-automation-support.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/excel-base-service-desk.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/excel-data-quality.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/excel-m365-workbook-governance.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/pdf-adobe-acrobat-standard.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/pdf-document-quality-audit.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/pdf-ocr-text-extraction.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/pdf-redaction-sanitization.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/pdf-signature-certificate-handling.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/powerpoint-executive-reporting.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/powerpoint-kcs-training.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/powerpoint-procedure-training.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/word-complex-text-editing.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/word-kcs-generation.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/word-manual-creation.md
+tools/hermesops_offline/service-desk/enterprise_office_document_skills/word-report-generation.md
+tools/hermesops_offline/validators/coderos/powershell_static_checker.py
+tools/hermesops_offline/validators/coderos/stack_detector.py
+tools/hermesops_offline/validators/coderos/validation_runner.py
+tools/hermesops_offline/validators/ingest/chunk_document.py
+tools/hermesops_offline/validators/ingest/sanitize_document.py
+tools/hermesops_offline/validators/localization/ptbr_encoding_check.py
+tools/hermesops_offline/validators/localization/ptbr_glossary_validator.py
+tools/hermesops_offline/validators/localization/ptbr_message_catalog_validator.py
+tools/hermesops_offline/validators/localization/ptbr_text_lint.py
+tools/hermesops_offline/validators/memory/memory_classify.py
+tools/hermesops_offline/validators/memory/memory_conflict_check.py
+tools/hermesops_offline/validators/memory/memory_consolidate.py
+tools/hermesops_offline/validators/memory/memory_index.py
+tools/hermesops_offline/validators/memory/memory_query.py
+tools/hermesops_offline/validators/memory/memory_retention.py
+tools/hermesops_offline/validators/memory/memory_sanitize.py
+tools/hermesops_offline/validators/office/docx_export_sample.py
+tools/hermesops_offline/validators/office/docx_structure_reader.py
+tools/hermesops_offline/validators/office/excel_fidelity_validator.py
+tools/hermesops_offline/validators/office/m365_workbook_operation_plan.py
+tools/hermesops_offline/validators/office/native_format_policy.py
+tools/hermesops_offline/validators/office/office_format_router.py
+tools/hermesops_offline/validators/office/office_job_router.py
+tools/hermesops_offline/validators/office/office_safety_validator.py
+tools/hermesops_offline/validators/office/pdf_acrobat_workflow_validator.py
+tools/hermesops_offline/validators/office/pdf_metadata_inspector.py
+tools/hermesops_offline/validators/office/pdf_safety_validator.py
+tools/hermesops_offline/validators/office/pdf_text_extraction_skeleton.py
+tools/hermesops_offline/validators/office/pptx_export_sample.py
+tools/hermesops_offline/validators/office/pptx_structure_reader.py
+tools/hermesops_offline/validators/office/spreadsheet_data_quality.py
+tools/hermesops_offline/validators/office/spreadsheet_export_sample.py
+tools/hermesops_offline/validators/office/spreadsheet_schema_validator.py
+tools/hmlops_cli/README.md
+tools/hmlops_cli/command_allowlist.json
+tools/hmlops_cli/command_denylist.json
+tools/hmlops_cli/command_registry.json
+tools/hmlops_cli/hmlops_cli.py

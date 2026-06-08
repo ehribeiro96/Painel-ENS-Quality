@@ -1,0 +1,112 @@
+planilha:
+  preferred_ptbr: "planilha"
+  allowed_synonyms: ["sheet"]
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Termo base para Excel."
+pasta de trabalho:
+  preferred_ptbr: "pasta de trabalho"
+  allowed_synonyms: ["workbook"]
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Termo Excel."
+tabela:
+  preferred_ptbr: "tabela"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Estrutura tabular."
+aba:
+  preferred_ptbr: "aba"
+  allowed_synonyms: ["worksheet"]
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Termo de planilha."
+fórmula:
+  preferred_ptbr: "fórmula"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Manter acento."
+formatação:
+  preferred_ptbr: "formatação"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Termo central."
+validação de dados:
+  preferred_ptbr: "validação de dados"
+  allowed_synonyms: ["data validation"]
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Excel."
+layout:
+  preferred_ptbr: "layout"
+  allowed_synonyms: ["diagramação"]
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Termo técnico."
+documento:
+  preferred_ptbr: "documento"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Termo genérico."
+apresentação:
+  preferred_ptbr: "apresentação"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "PowerPoint."
+PDF:
+  preferred_ptbr: "PDF"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Formato preservado."
+Adobe Acrobat:
+  preferred_ptbr: "Adobe Acrobat"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Nome oficial."
+SharePoint:
+  preferred_ptbr: "SharePoint"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Nome oficial."
+OneDrive:
+  preferred_ptbr: "OneDrive"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Nome oficial."
+Microsoft Graph:
+  preferred_ptbr: "Microsoft Graph"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "API oficial."
+Office Scripts:
+  preferred_ptbr: "Office Scripts"
+  allowed_synonyms: []
+  avoid: []
+  context: "Office"
+  keep_english: true
+  notes: "Nome oficial."

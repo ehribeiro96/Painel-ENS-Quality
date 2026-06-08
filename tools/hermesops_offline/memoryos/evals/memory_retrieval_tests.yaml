@@ -1,0 +1,41 @@
+tests:
+  - id: wsl_backend
+    description: WSL backend is the expected runtime backend
+  - id: test_not_hml
+    description: TEST must not be treated as HML
+  - id: hml_not_prod
+    description: HML must not be treated as PROD
+  - id: old_hml_obsolete
+    description: old HML package is obsolete after new phase
+  - id: office_skills_present
+    description: Enterprise Office Skills are present
+  - id: adobe_acrobat_pdf_default
+    description: Adobe Acrobat is the default PDF governance path
+  - id: excel_not_database
+    description: Excel is operational and not the definitive database
+  - id: m365_graph_hml_only
+    description: M365 Graph integration stays HML gated
+  - id: signed_pdf_sensitive
+    description: Signed PDFs are treated as sensitive
+  - id: env_prohibited
+    description: .env files are prohibited
+  - id: pfx_p12_prohibited
+    description: PFX and P12 are prohibited
+  - id: qdrant_collection_hml
+    description: future Qdrant collection must be HML scoped
+  - id: compose_project_hml
+    description: future compose project must be HML scoped
+  - id: candidate_warns
+    description: candidate memory requires warning
+  - id: approved_answer
+    description: approved memory can be used in responses
+  - id: rejected_blocked
+    description: rejected memory is not surfaced in answers
+  - id: secret_not_indexed
+    description: secret values are never indexed
+  - id: restricted_local_only
+    description: restricted memory cannot go to external models
+  - id: procedural_review
+    description: procedural memory requires human review
+  - id: conflict_superseded
+    description: conflict and superseded metadata is required

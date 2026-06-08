@@ -1,0 +1,83 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "title": "presentation_review",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "review_id": {
+      "type": "string"
+    },
+    "presentation_type": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string"
+    },
+    "slide_count": {
+      "type": "integer"
+    },
+    "sections_checked": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "narrative_findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "visual_density_findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "speaker_note_findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sensitivity_findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "review_id",
+    "presentation_type",
+    "title",
+    "audience",
+    "slide_count",
+    "sections_checked",
+    "missing_sections",
+    "narrative_findings",
+    "visual_density_findings",
+    "speaker_note_findings",
+    "sensitivity_findings",
+    "recommendations",
+    "status"
+  ]
+}

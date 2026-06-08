@@ -1,0 +1,8 @@
+name: ptbr_kcs_macro
+checks:
+  - role_statement
+  - input_output_structure
+  - rules
+  - blocks
+  - validation
+  - rollback

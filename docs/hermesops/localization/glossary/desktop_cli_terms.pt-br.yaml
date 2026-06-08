@@ -1,0 +1,35 @@
+plugin:
+  preferred_ptbr: plugin
+  allowed_synonyms: [conector]
+  avoid: [plug-in]
+  context: Governança de integrações externas
+  keep_english: true
+  notes: Termo técnico preservado quando necessário
+conector:
+  preferred_ptbr: conector
+  allowed_synonyms: [plugin]
+  avoid: []
+  context: Integração externa
+  keep_english: false
+  notes: Usar quando o foco for o papel funcional
+aprovação_humana:
+  preferred_ptbr: aprovação humana
+  allowed_synonyms: [aprovação manual]
+  avoid: []
+  context: Fluxos com ação externa
+  keep_english: false
+  notes: Exigida antes de write actions
+integração_externa:
+  preferred_ptbr: integração externa
+  allowed_synonyms: [conector externo]
+  avoid: []
+  context: Plugins e APIs externas
+  keep_english: false
+  notes: Termo descritivo para documentação
+dry-run:
+  preferred_ptbr: dry-run
+  allowed_synonyms: [execução simulada]
+  avoid: []
+  context: Validação segura
+  keep_english: true
+  notes: Preservar literalidade do comando

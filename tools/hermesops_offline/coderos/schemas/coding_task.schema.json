@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CoderOS Coding Task",
+  "type": "object",
+  "required": [
+    "objective",
+    "stack",
+    "allowed_files",
+    "forbidden_files",
+    "risk",
+    "plan",
+    "validation",
+    "rollback",
+    "expected_output"
+  ],
+  "properties": {
+    "objective": {
+      "type": "string"
+    },
+    "stack": {
+      "type": "string"
+    },
+    "allowed_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk": {
+      "type": "string"
+    },
+    "plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollback": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_output": {
+      "type": "string"
+    }
+  }
+}

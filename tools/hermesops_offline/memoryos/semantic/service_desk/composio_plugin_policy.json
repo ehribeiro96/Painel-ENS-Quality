@@ -1,0 +1,57 @@
+{
+  "memory_id": "composio-plugin-policy-v1",
+  "memory_type": "semantic",
+  "title": "Composio plugin is governed, disabled by default and HML-gated",
+  "summary": "Composio must be treated as a high-impact external connector that stays disabled in TEST, uses allowlists, blocks destructive actions, and requires human approval before any external action or write capability is enabled.",
+  "source_type": "internal_decision",
+  "source_path": "plugins/composio/COMPOSIO_SECURITY_POLICY.md",
+  "captured_at": "2026-06-07T21:27:20.923987+00:00",
+  "domain": "plugins",
+  "subdomain": "composio",
+  "environment": "generic",
+  "sensitivity": "internal",
+  "risk_level": "high",
+  "confidence": "verified",
+  "status": "approved",
+  "facts": [
+    "Composio is an external connector with high impact.",
+    "TEST must remain disabled and dry-run only.",
+    "Toolkits must be allowlisted."
+  ],
+  "inferences": [
+    "HML is required before any real external action is allowed."
+  ],
+  "decisions": [
+    "Disable Composio by default.",
+    "Block external actions in TEST.",
+    "Require human approval for write actions."
+  ],
+  "procedures": [],
+  "commands": [
+    "hermesops plugins status composio --dry-run",
+    "hermesops composio logs summarize --dry-run"
+  ],
+  "validation": [
+    "Registry documented.",
+    "Schemas created.",
+    "Dry-run supported."
+  ],
+  "rollback": [
+    "Disable the plugin and remove HML references if policy changes."
+  ],
+  "tags": [
+    "composio",
+    "plugin",
+    "security",
+    "hml",
+    "dry-run"
+  ],
+  "related_memory_ids": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "external_model_allowed": false,
+  "human_review_required": true,
+  "retention_policy": "long",
+  "checksum": "",
+  "version": 1
+}

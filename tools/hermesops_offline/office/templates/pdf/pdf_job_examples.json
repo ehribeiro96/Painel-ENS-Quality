@@ -1,0 +1,18 @@
+[
+  {
+    "job_id": "pdf-001",
+    "job_type": "audit",
+    "input_file": "synthetic.pdf",
+    "output_file": "audit.json",
+    "pdf_operation": "metadata_audit",
+    "requires_ocr": false,
+    "requires_redaction": false,
+    "requires_signature_validation": true,
+    "contains_personal_data": false,
+    "contains_certificate": false,
+    "sensitivity": "low",
+    "external_model_allowed": false,
+    "dry_run": true,
+    "created_at": "2026-06-07T14:00:00Z"
+  }
+]

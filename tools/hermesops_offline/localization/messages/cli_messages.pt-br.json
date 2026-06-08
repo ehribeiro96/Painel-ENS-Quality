@@ -1,0 +1,12 @@
+{
+  "start": "Iniciando execução controlada.",
+  "dry_run": "Modo dry-run ativo. Nenhuma alteração real será aplicada.",
+  "blocked_forbidden_path": "Operação bloqueada: caminho proibido detectado.",
+  "success": "Operação concluída com sucesso.",
+  "error": "Erro durante a execução.",
+  "requires_human_approval": "Esta ação exige aprovação humana antes de continuar.",
+  "composio_disabled": "Composio está desativado por padrão.",
+  "composio_dry_run": "Composio opera em dry-run nesta fase.",
+  "composio_hml_required": "Composio exige HML para autenticação e ações reais.",
+  "composio_logs_sanitized": "Logs Composio foram sanitizados antes da análise."
+}

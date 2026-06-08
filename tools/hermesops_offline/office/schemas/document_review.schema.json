@@ -1,0 +1,40 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "title": "document_review",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "review_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "document_type": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "review_id",
+    "title",
+    "document_type",
+    "findings",
+    "recommendations",
+    "status"
+  ]
+}
