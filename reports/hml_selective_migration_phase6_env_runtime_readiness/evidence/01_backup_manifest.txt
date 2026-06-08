@@ -1,0 +1,8 @@
+Backup path: _backup/selective_migration_phase6_env_runtime_readiness_20260608-111741
+
+Backup manifest, names only:
+_backup/selective_migration_phase6_env_runtime_readiness_20260608-111741/infra-hermesops/.env.hml
+_backup/selective_migration_phase6_env_runtime_readiness_20260608-111741/infra-hermesops/.env.hml.example
+_backup/selective_migration_phase6_env_runtime_readiness_20260608-111741/infra-hermesops/COMPOSE_USAGE_POLICY.md
+_backup/selective_migration_phase6_env_runtime_readiness_20260608-111741/infra-hermesops/ENV_HML_POLICY.md
+_backup/selective_migration_phase6_env_runtime_readiness_20260608-111741/infra-hermesops/docker-compose.hml.yml

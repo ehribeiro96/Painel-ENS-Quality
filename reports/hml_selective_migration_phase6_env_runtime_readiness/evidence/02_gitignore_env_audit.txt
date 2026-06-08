@@ -1,0 +1,11 @@
+== .gitignore relevant lines ==
+1:.env
+2:.env.*
+4:!.env.hml.example
+5:secrets/
+6:.secrets/
+7:tokens/
+8:credentials/
+
+== git check-ignore ==
+.gitignore:2:.env.*	infra/hermesops/.env.hml

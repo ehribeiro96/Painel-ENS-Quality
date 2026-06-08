@@ -1,0 +1,4 @@
+docker compose config: OK
+Arquivo usado: infra/hermesops/docker-compose.hml.yml
+Env usado: infra/hermesops/.env.hml
+Valores sensíveis: não impressos
