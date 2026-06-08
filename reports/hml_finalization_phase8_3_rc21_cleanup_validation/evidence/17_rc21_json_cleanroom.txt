@@ -1,0 +1,2 @@
+== JSON RC2.1 clean-room ==
+JSON_OK

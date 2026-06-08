@@ -1,0 +1,2 @@
+== compileall with PYTHONDONTWRITEBYTECODE ==
+rc=0

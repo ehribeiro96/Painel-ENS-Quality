@@ -1,0 +1,2 @@
+== YAML validation excluding generated dirs ==
+YAML_OK

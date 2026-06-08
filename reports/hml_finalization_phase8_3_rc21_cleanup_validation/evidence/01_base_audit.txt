@@ -1,0 +1,397 @@
+== Workspace ==
+/home/estevaoqualityadm/projects/Painel-ENS-Quality
+RJM22137
+estevaoqualityadm
+2026-06-08T13:58:32-03:00
+
+== Git status ==
+## main...origin/main [ahead 3]
+?? .env.example
+?? .github/
+?? .vscode/
+?? _cleanup_backup_manifest.md
+?? _migration_proposals/
+?? _validation/
+?? assets/
+?? data/
+?? docx_sample.md
+?? docx_template_output.md
+?? frontend/package-lock.json
+?? imports/
+?? pptx_sample.md
+?? pptx_template_output.md
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/07_CONSOLIDATION_COMMIT_REPORT.md
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/08_RELEASE_CANDIDATE_V2_REPORT.md
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/09_PHASE81_FULL_SCOPE_FINALIZATION_REPORT.md
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/10_GO_NO_GO_PHASE81.md
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/evidence/13_release_staging_forbidden_scan.txt
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/evidence/14_release_required_paths.txt
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/evidence/15_release_sha256_check.txt
+?? reports/hml_finalization_phase8_3_rc21_cleanup_validation/
+?? reports/hml_import_audit/
+?? reports/hml_migration_unification_audit/
+?? reports/hml_selective_migration_phase4_2_remote_release_policy/
+?? reports/hml_selective_migration_phase7_1_functional_probes/evidence/
+?? reports/hml_selective_migration_phase7_1b_docker_runtime_audit/evidence/
+?? reports/hml_selective_migration_phase7_1c_native_docker_migration_plan/evidence/
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/00_approval_gate.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/01_base_audit.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/02_backup_manifest.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/03_docker_state_before_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/04_docker_compose_config_pre_up.rc
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/04_docker_compose_config_pre_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/05_compose_config_pre_up_sanitized_summary.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/06_docker_compose_up_d.rc
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/06_docker_compose_up_d.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/07_observation_60s.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/08_compose_ps_after_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/09_compose_logs_tail_200.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/10_docker_state_after_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/11_health_restart_check.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/12_ports_after_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/13_log_secret_scan.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/14_log_critical_error_scan.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/15_composio_non_execution_check.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/16_hmlops_phase7_validation.rc
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/16_hmlops_phase7_validation.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/17_phase7_sha256_check.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/18_final_git_status.txt
+?? reports/hml_selective_migration_plan/
+?? tests/fixtures/imports/
+
+== Git log ==
+d84bee2 (HEAD -> main) docs: finalize RC2 clean-room validation reports
+387f022 test: validate Painel ENS-Quality RC2 in clean-room
+5694f06 release: consolidate Painel ENS-Quality HML full-scope release candidate
+4c62932 (origin/main) docs: refresh phase 7.2 final git status evidence
+02f9910 docs: add phase 7.2 final git status evidence
+11cfb91 ops: apply HermesOps HML healthchecks
+08c50cb ops: plan native Docker Engine migration for HermesOps HML
+213e09b ops: audit Docker runtime portability for HermesOps HML
+5d8b768 ops: validate HermesOps HML service probes
+78d53b7 ops: finalize HermesOps HML phase 7 smoke reports
+966bf91 ops: run first HermesOps HML infra smoke test
+311b65b ops: define HermesOps HML smoke test plan without runtime
+b2b9194 ops: prepare HermesOps HML env runtime readiness without runtime
+00414b9 infra: promote HermesOps compose to canonical config
+7bb69b7 infra: audit and fix HermesOps HML compose config
+63d264a (tag: hml-selective-migration-baseline-20260608-104531) baseline: initialize HML selective migration state
+
+== HEAD ==
+d84bee2d49bb3e69d8f6610df556bd0e7d7602e9
+
+== Python cache tracked files ==
+
+== Python cache files in workspace excluding ignored heavy dirs ==
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/code_context_builder.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/code_review_checker.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/coderos_audit.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/coderos_eval.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/coding_memory_capture.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/dependency_risk_scanner.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/docx_export_sample.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/docx_structure_reader.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/docx_template_builder.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/docx_text_reviewer.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/excel_fidelity_validator.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/m365_workbook_operation_plan.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/memory_audit.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/memory_capture.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/memory_classify.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/memory_conflict_check.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/memory_consolidate.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/memory_eval.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/memory_index.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/memory_query.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/memory_retention.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/memory_sanitize.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/modding_project_analyzer.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/native_format_policy.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/office_format_router.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/office_job_router.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/office_safety_validator.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/patch_plan_builder.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/pdf_acrobat_workflow_validator.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/pdf_metadata_inspector.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/pdf_safety_validator.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/pdf_text_extraction_skeleton.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/powershell_static_checker.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/pptx_deck_reviewer.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/pptx_export_sample.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/pptx_structure_reader.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/pptx_template_builder.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/ptbr_encoding_check.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/ptbr_glossary_validator.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/ptbr_localization_audit.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/ptbr_message_catalog_validator.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/ptbr_prompt_audit.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/ptbr_text_lint.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/repo_mapper.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/spreadsheet_data_quality.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/spreadsheet_export_sample.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/spreadsheet_offline_analyzer.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/spreadsheet_schema_validator.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/stack_detector.cpython-312.pyc
+./_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/__pycache__/validation_runner.cpython-312.pyc
+./backend/alembic/__pycache__/env.cpython-312.pyc
+./backend/alembic/__pycache__/env.cpython-314.pyc
+./backend/alembic/versions/__pycache__/0001_initial_itam.cpython-312.pyc
+./backend/alembic/versions/__pycache__/0001_initial_itam.cpython-314.pyc
+./backend/alembic/versions/__pycache__/0002_import_pipeline_staging.cpython-312.pyc
+./backend/alembic/versions/__pycache__/0002_import_pipeline_staging.cpython-314.pyc
+./backend/alembic/versions/__pycache__/0003_enterprise_startup_auth_observability.cpython-312.pyc
+./backend/alembic/versions/__pycache__/0003_enterprise_startup_auth_observability.cpython-314.pyc
+./backend/alembic/versions/__pycache__/0004_add_user_source_metadata.cpython-312.pyc
+./backend/alembic/versions/__pycache__/0005_macros_module.cpython-312.pyc
+./backend/alembic/versions/__pycache__/0006_ai_chat.cpython-312.pyc
+./backend/alembic/versions/__pycache__/0006_ai_chat_mvp.cpython-312.pyc
+./backend/app/__pycache__/main.cpython-312.pyc
+./backend/app/__pycache__/main.cpython-314.pyc
+./backend/app/api/v1/__pycache__/router.cpython-312.pyc
+./backend/app/api/v1/__pycache__/router.cpython-314.pyc
+./backend/app/api/v1/dependencies/__pycache__/auth.cpython-312.pyc
+./backend/app/api/v1/dependencies/__pycache__/auth.cpython-314.pyc
+./backend/app/api/v1/routes/__pycache__/ai_chat.cpython-312.pyc
+./backend/app/api/v1/routes/__pycache__/assets.cpython-312.pyc
+./backend/app/api/v1/routes/__pycache__/assets.cpython-314.pyc
+./backend/app/api/v1/routes/__pycache__/audit.cpython-312.pyc
+./backend/app/api/v1/routes/__pycache__/audit.cpython-314.pyc
+./backend/app/api/v1/routes/__pycache__/auth.cpython-312.pyc
+./backend/app/api/v1/routes/__pycache__/auth.cpython-314.pyc
+./backend/app/api/v1/routes/__pycache__/dashboard.cpython-312.pyc
+./backend/app/api/v1/routes/__pycache__/dashboard.cpython-314.pyc
+./backend/app/api/v1/routes/__pycache__/imports.cpython-312.pyc
+./backend/app/api/v1/routes/__pycache__/imports.cpython-314.pyc
+./backend/app/api/v1/routes/__pycache__/macros.cpython-312.pyc
+./backend/app/api/v1/routes/__pycache__/search.cpython-312.pyc
+./backend/app/api/v1/routes/__pycache__/search.cpython-314.pyc
+./backend/app/api/v1/routes/__pycache__/signatures.cpython-312.pyc
+./backend/app/api/v1/routes/__pycache__/signatures.cpython-314.pyc
+./backend/app/api/v1/routes/__pycache__/users.cpython-312.pyc
+./backend/app/api/v1/routes/__pycache__/users.cpython-314.pyc
+./backend/app/core/__pycache__/frontend.cpython-312.pyc
+./backend/app/core/__pycache__/frontend.cpython-314.pyc
+./backend/app/core/__pycache__/health.cpython-312.pyc
+./backend/app/core/__pycache__/health.cpython-314.pyc
+./backend/app/core/__pycache__/legacy.cpython-312.pyc
+./backend/app/core/__pycache__/legacy.cpython-314.pyc
+./backend/app/core/__pycache__/startup.cpython-312.pyc
+./backend/app/core/__pycache__/startup.cpython-314.pyc
+./backend/app/core/config/__pycache__/settings.cpython-312.pyc
+./backend/app/core/config/__pycache__/settings.cpython-314.pyc
+./backend/app/core/database/__pycache__/base.cpython-312.pyc
+./backend/app/core/database/__pycache__/base.cpython-314.pyc
+./backend/app/core/database/__pycache__/session.cpython-312.pyc
+./backend/app/core/database/__pycache__/session.cpython-314.pyc
+./backend/app/core/logging/__pycache__/setup.cpython-312.pyc
+./backend/app/core/logging/__pycache__/setup.cpython-314.pyc
+./backend/app/core/observability/__pycache__/metrics.cpython-312.pyc
+./backend/app/core/observability/__pycache__/metrics.cpython-314.pyc
+./backend/app/core/permissions/__pycache__/rbac.cpython-312.pyc
+./backend/app/core/permissions/__pycache__/rbac.cpython-314.pyc
+./backend/app/core/security/__pycache__/jwt.cpython-312.pyc
+./backend/app/core/security/__pycache__/jwt.cpython-314.pyc
+./backend/app/core/security/__pycache__/passwords.cpython-312.pyc
+./backend/app/core/security/__pycache__/passwords.cpython-314.pyc
+./backend/app/domains/ai_chat/__pycache__/__init__.cpython-312.pyc
+./backend/app/domains/ai_chat/__pycache__/models.cpython-312.pyc
+./backend/app/domains/ai_chat/__pycache__/providers.cpython-312.pyc
+./backend/app/domains/ai_chat/__pycache__/repository.cpython-312.pyc
+./backend/app/domains/ai_chat/__pycache__/schemas.cpython-312.pyc
+./backend/app/domains/ai_chat/__pycache__/service.cpython-312.pyc
+./backend/app/domains/assets/__pycache__/models.cpython-312.pyc
+./backend/app/domains/assets/__pycache__/models.cpython-314.pyc
+./backend/app/domains/assets/__pycache__/schemas.cpython-312.pyc
+./backend/app/domains/assets/__pycache__/schemas.cpython-314.pyc
+./backend/app/domains/assets/__pycache__/service.cpython-312.pyc
+./backend/app/domains/assets/__pycache__/service.cpython-314.pyc
+./backend/app/domains/audit/__pycache__/models.cpython-312.pyc
+./backend/app/domains/audit/__pycache__/models.cpython-314.pyc
+./backend/app/domains/audit/__pycache__/schemas.cpython-312.pyc
+./backend/app/domains/audit/__pycache__/schemas.cpython-314.pyc
+./backend/app/domains/audit/__pycache__/service.cpython-312.pyc
+./backend/app/domains/audit/__pycache__/service.cpython-314.pyc
+./backend/app/domains/auth/__pycache__/models.cpython-312.pyc
+./backend/app/domains/auth/__pycache__/models.cpython-314.pyc
+./backend/app/domains/auth/__pycache__/schemas.cpython-312.pyc
+./backend/app/domains/auth/__pycache__/schemas.cpython-314.pyc
+./backend/app/domains/auth/__pycache__/service.cpython-312.pyc
+./backend/app/domains/auth/__pycache__/service.cpython-314.pyc
+./backend/app/domains/dashboard/__pycache__/service.cpython-312.pyc
+./backend/app/domains/dashboard/__pycache__/service.cpython-314.pyc
+./backend/app/domains/imports/__pycache__/models.cpython-312.pyc
+./backend/app/domains/imports/__pycache__/models.cpython-314.pyc
+./backend/app/domains/imports/__pycache__/presets.cpython-312.pyc
+./backend/app/domains/imports/__pycache__/schemas.cpython-312.pyc
+./backend/app/domains/imports/__pycache__/schemas.cpython-314.pyc
+./backend/app/domains/imports/__pycache__/service.cpython-312.pyc
+./backend/app/domains/imports/__pycache__/service.cpython-314.pyc
+./backend/app/domains/imports/conflict_detection/__pycache__/detector.cpython-312.pyc
+./backend/app/domains/imports/conflict_detection/__pycache__/detector.cpython-314.pyc
+./backend/app/domains/imports/merge_engine/__pycache__/policy.cpython-312.pyc
+./backend/app/domains/imports/merge_engine/__pycache__/policy.cpython-314.pyc
+./backend/app/domains/imports/normalization/__pycache__/asset_normalizer.cpython-312.pyc
+./backend/app/domains/imports/normalization/__pycache__/asset_normalizer.cpython-314.pyc
+./backend/app/domains/imports/validators/__pycache__/asset_validator.cpython-312.pyc
+./backend/app/domains/imports/validators/__pycache__/asset_validator.cpython-314.pyc
+./backend/app/domains/macros/__pycache__/__init__.cpython-312.pyc
+./backend/app/domains/macros/__pycache__/models.cpython-312.pyc
+./backend/app/domains/macros/__pycache__/renderer.cpython-312.pyc
+./backend/app/domains/macros/__pycache__/repository.cpython-312.pyc
+./backend/app/domains/macros/__pycache__/schemas.cpython-312.pyc
+./backend/app/domains/macros/__pycache__/service.cpython-312.pyc
+./backend/app/domains/movements/__pycache__/models.cpython-312.pyc
+./backend/app/domains/movements/__pycache__/models.cpython-314.pyc
+./backend/app/domains/movements/__pycache__/schemas.cpython-312.pyc
+./backend/app/domains/movements/__pycache__/schemas.cpython-314.pyc
+./backend/app/domains/signatures/__pycache__/service.cpython-312.pyc
+./backend/app/domains/signatures/__pycache__/service.cpython-314.pyc
+./backend/app/domains/users/__pycache__/models.cpython-312.pyc
+./backend/app/domains/users/__pycache__/models.cpython-314.pyc
+./backend/app/domains/users/__pycache__/schemas.cpython-312.pyc
+./backend/app/domains/users/__pycache__/schemas.cpython-314.pyc
+./backend/app/domains/users/__pycache__/service.cpython-312.pyc
+./backend/app/domains/users/__pycache__/service.cpython-314.pyc
+./backend/app/integrations/azure/__pycache__/client.cpython-312.pyc
+./backend/app/integrations/azure/__pycache__/client.cpython-314.pyc
+./backend/app/integrations/lansweeper/__pycache__/client.cpython-312.pyc
+./backend/app/integrations/lansweeper/__pycache__/client.cpython-314.pyc
+./backend/app/integrations/microsoft_graph/__pycache__/client.cpython-312.pyc
+./backend/app/integrations/microsoft_graph/__pycache__/client.cpython-314.pyc
+./backend/app/shared/__pycache__/audit_context.cpython-312.pyc
+./backend/app/shared/__pycache__/audit_context.cpython-314.pyc
+./backend/app/shared/__pycache__/enums.cpython-312.pyc
+./backend/app/shared/__pycache__/enums.cpython-314.pyc
+./backend/app/shared/__pycache__/models.cpython-312.pyc
+./backend/app/shared/__pycache__/models.cpython-314.pyc
+./backend/app/shared/__pycache__/pagination.cpython-312.pyc
+./backend/app/shared/__pycache__/pagination.cpython-314.pyc
+./backend/app/shared/__pycache__/snapshots.cpython-312.pyc
+./backend/app/shared/__pycache__/snapshots.cpython-314.pyc
+./backend/app/shared/__pycache__/transactions.cpython-312.pyc
+./backend/app/shared/__pycache__/transactions.cpython-314.pyc
+./scripts/__pycache__/import_colaboradores_json_to_macro_hints.cpython-312.pyc
+./scripts/__pycache__/import_legacy_ens_db_to_postgres.cpython-312.pyc
+./scripts/__pycache__/import_macros_json_to_postgres.cpython-312.pyc
+./scripts/__pycache__/import_quality_macros_to_postgres.cpython-312.pyc
+./src/__pycache__/__init__.cpython-312.pyc
+./src/__pycache__/__init__.cpython-314.pyc
+./src/api/__pycache__/__init__.cpython-312.pyc
+./src/api/__pycache__/__init__.cpython-314.pyc
+./src/api/__pycache__/fastapi_app.cpython-312.pyc
+./src/api/__pycache__/fastapi_app.cpython-314.pyc
+./src/api/__pycache__/wsgi.cpython-312.pyc
+./src/config/__pycache__/__init__.cpython-312.pyc
+./src/config/__pycache__/__init__.cpython-314.pyc
+./src/config/__pycache__/settings.cpython-312.pyc
+./src/config/__pycache__/settings.cpython-314.pyc
+./src/legacy/__pycache__/__init__.cpython-312.pyc
+./src/legacy/__pycache__/__init__.cpython-314.pyc
+./src/legacy/__pycache__/assets_base64.cpython-312.pyc
+./src/legacy/__pycache__/assets_base64.cpython-314.pyc
+./src/legacy/__pycache__/flask_app.cpython-312.pyc
+./src/legacy/__pycache__/flask_app.cpython-314.pyc
+./src/legacy/__pycache__/render_public.cpython-312.pyc
+./src/legacy/__pycache__/render_public_icons.cpython-312.pyc
+./src/legacy/__pycache__/signature_model_spec.cpython-312.pyc
+./src/legacy/__pycache__/signature_model_spec.cpython-314.pyc
+./tests/__pycache__/__init__.cpython-312.pyc
+./tests/__pycache__/__init__.cpython-314.pyc
+./tests/__pycache__/operational_http.cpython-312.pyc
+./tests/__pycache__/operational_http.cpython-314.pyc
+./tests/__pycache__/test_ai_chat_api.cpython-312.pyc
+./tests/__pycache__/test_ai_chat_hardening.cpython-312.pyc
+./tests/__pycache__/test_ai_chat_mvp.cpython-312.pyc
+./tests/__pycache__/test_ai_chat_provider_mock.cpython-312.pyc
+./tests/__pycache__/test_assets_regression.cpython-312.pyc
+./tests/__pycache__/test_assets_regression.cpython-314.pyc
+./tests/__pycache__/test_auth_regression.cpython-312.pyc
+./tests/__pycache__/test_auth_regression.cpython-314.pyc
+./tests/__pycache__/test_import_pipeline_units.cpython-312.pyc
+./tests/__pycache__/test_import_pipeline_units.cpython-314.pyc
+./tests/__pycache__/test_imports_regression.cpython-312.pyc
+./tests/__pycache__/test_imports_regression.cpython-314.pyc
+./tests/__pycache__/test_legacy_ens_db_importer.cpython-312.pyc
+./tests/__pycache__/test_legacy_ens_db_pre_apply_review.cpython-312.pyc
+./tests/__pycache__/test_legacy_routes.cpython-312.pyc
+./tests/__pycache__/test_legacy_routes.cpython-314.pyc
+./tests/__pycache__/test_macros_audit_operational.cpython-312.pyc
+./tests/__pycache__/test_macros_module.cpython-312.pyc
+./tests/__pycache__/test_migrations_regression.cpython-312.pyc
+./tests/__pycache__/test_migrations_regression.cpython-314.pyc
+./tests/__pycache__/test_operational_contracts.cpython-312.pyc
+./tests/__pycache__/test_operational_contracts.cpython-314.pyc
+./tests/__pycache__/test_public_signature_routes.cpython-312-pytest-9.0.3.pyc
+./tests/__pycache__/test_public_signature_routes.cpython-312.pyc
+./tests/__pycache__/test_public_signature_routes.cpython-314.pyc
+./tests/__pycache__/test_signature_html_fidelity.cpython-312-pytest-9.0.3.pyc
+./tests/__pycache__/test_signature_html_fidelity.cpython-312.pyc
+./tests/__pycache__/test_signature_html_fidelity.cpython-314.pyc
+./tests/__pycache__/test_signature_model_spec.cpython-312-pytest-9.0.3.pyc
+./tests/__pycache__/test_signature_model_spec.cpython-312.pyc
+./tests/__pycache__/test_signature_model_spec.cpython-314.pyc
+./tests/__pycache__/test_signatures_postgres_flow.cpython-312.pyc
+./tests/__pycache__/test_startup_diagnostics.cpython-312.pyc
+./tests/__pycache__/test_startup_diagnostics.cpython-314.pyc
+./tools/hermesops_offline/auditors/coderos/__pycache__/code_context_builder.cpython-312.pyc
+./tools/hermesops_offline/auditors/coderos/__pycache__/code_review_checker.cpython-312.pyc
+./tools/hermesops_offline/auditors/coderos/__pycache__/coderos_audit.cpython-312.pyc
+./tools/hermesops_offline/auditors/coderos/__pycache__/coderos_eval.cpython-312.pyc
+./tools/hermesops_offline/auditors/coderos/__pycache__/coding_memory_capture.cpython-312.pyc
+./tools/hermesops_offline/auditors/coderos/__pycache__/dependency_risk_scanner.cpython-312.pyc
+./tools/hermesops_offline/auditors/coderos/__pycache__/modding_project_analyzer.cpython-312.pyc
+./tools/hermesops_offline/auditors/coderos/__pycache__/patch_plan_builder.cpython-312.pyc
+./tools/hermesops_offline/auditors/coderos/__pycache__/repo_mapper.cpython-312.pyc
+./tools/hermesops_offline/auditors/localization/__pycache__/ptbr_localization_audit.cpython-312.pyc
+./tools/hermesops_offline/auditors/localization/__pycache__/ptbr_prompt_audit.cpython-312.pyc
+./tools/hermesops_offline/auditors/memory/__pycache__/memory_audit.cpython-312.pyc
+./tools/hermesops_offline/auditors/memory/__pycache__/memory_capture.cpython-312.pyc
+./tools/hermesops_offline/auditors/memory/__pycache__/memory_eval.cpython-312.pyc
+./tools/hermesops_offline/auditors/office/__pycache__/docx_template_builder.cpython-312.pyc
+./tools/hermesops_offline/auditors/office/__pycache__/docx_text_reviewer.cpython-312.pyc
+./tools/hermesops_offline/auditors/office/__pycache__/pptx_deck_reviewer.cpython-312.pyc
+./tools/hermesops_offline/auditors/office/__pycache__/pptx_template_builder.cpython-312.pyc
+./tools/hermesops_offline/auditors/office/__pycache__/spreadsheet_offline_analyzer.cpython-312.pyc
+./tools/hermesops_offline/rejected/plugins/auditors/__pycache__/plugin_audit.cpython-312.pyc
+./tools/hermesops_offline/rejected/plugins/auditors/__pycache__/plugin_change_review.cpython-312.pyc
+./tools/hermesops_offline/rejected/plugins/auditors/__pycache__/plugin_log_analyzer.cpython-312.pyc
+./tools/hermesops_offline/rejected/plugins/validators/__pycache__/plugin_change_proposal.cpython-312.pyc
+./tools/hermesops_offline/rejected/plugins/validators/__pycache__/plugin_cli.cpython-312.pyc
+./tools/hermesops_offline/rejected/plugins/validators/__pycache__/plugin_log_sanitizer.cpython-312.pyc
+./tools/hermesops_offline/rejected/plugins/validators/__pycache__/plugin_policy_validator.cpython-312.pyc
+./tools/hermesops_offline/rejected/plugins/validators/__pycache__/plugin_registry.cpython-312.pyc
+./tools/hermesops_offline/rejected/plugins/validators/__pycache__/plugin_schema_validator.cpython-312.pyc
+./tools/hermesops_offline/validators/coderos/__pycache__/powershell_static_checker.cpython-312.pyc
+./tools/hermesops_offline/validators/coderos/__pycache__/stack_detector.cpython-312.pyc
+./tools/hermesops_offline/validators/coderos/__pycache__/validation_runner.cpython-312.pyc
+./tools/hermesops_offline/validators/ingest/__pycache__/chunk_document.cpython-312.pyc
+./tools/hermesops_offline/validators/ingest/__pycache__/sanitize_document.cpython-312.pyc
+./tools/hermesops_offline/validators/localization/__pycache__/ptbr_encoding_check.cpython-312.pyc
+./tools/hermesops_offline/validators/localization/__pycache__/ptbr_glossary_validator.cpython-312.pyc
+./tools/hermesops_offline/validators/localization/__pycache__/ptbr_message_catalog_validator.cpython-312.pyc
+./tools/hermesops_offline/validators/localization/__pycache__/ptbr_text_lint.cpython-312.pyc
+./tools/hermesops_offline/validators/memory/__pycache__/memory_classify.cpython-312.pyc
+./tools/hermesops_offline/validators/memory/__pycache__/memory_conflict_check.cpython-312.pyc
+./tools/hermesops_offline/validators/memory/__pycache__/memory_consolidate.cpython-312.pyc
+./tools/hermesops_offline/validators/memory/__pycache__/memory_index.cpython-312.pyc
+./tools/hermesops_offline/validators/memory/__pycache__/memory_query.cpython-312.pyc
+./tools/hermesops_offline/validators/memory/__pycache__/memory_retention.cpython-312.pyc
+./tools/hermesops_offline/validators/memory/__pycache__/memory_sanitize.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/docx_export_sample.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/docx_structure_reader.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/excel_fidelity_validator.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/m365_workbook_operation_plan.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/native_format_policy.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/office_format_router.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/office_job_router.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/office_safety_validator.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/pdf_acrobat_workflow_validator.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/pdf_metadata_inspector.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/pdf_safety_validator.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/pdf_text_extraction_skeleton.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/pptx_export_sample.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/pptx_structure_reader.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/spreadsheet_data_quality.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/spreadsheet_export_sample.cpython-312.pyc
+./tools/hermesops_offline/validators/office/__pycache__/spreadsheet_schema_validator.cpython-312.pyc
+./tools/hmlops_cli/__pycache__/hmlops_cli.cpython-312.pyc

@@ -1,0 +1,2 @@
+== JSON validation excluding generated dirs ==
+JSON_OK

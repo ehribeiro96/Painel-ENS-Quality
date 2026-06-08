@@ -1,0 +1,10 @@
+== Required paths in RC2.1 staging ==
+OK backend
+OK frontend/itam-platform
+OK docker-compose.yml
+OK pyproject.toml
+OK requirements.txt
+OK run.py
+OK tests
+OK infra/hermesops
+OK docs
