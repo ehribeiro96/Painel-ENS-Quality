@@ -1,0 +1,51 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: hermesops_hml_qdrant
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:7333:6333"
+      - "127.0.0.1:7334:6334"
+    volumes:
+      - hermesops_hml_qdrant_storage:/qdrant/storage
+    networks:
+      - hermesops_hml_net
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: hermesops_hml_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-hermesops_hml}
+      POSTGRES_USER: ${POSTGRES_USER:-hermesops}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-CHANGE_ME_DO_NOT_COMMIT}
+    ports:
+      - "127.0.0.1:7433:5432"
+    volumes:
+      - hermesops_hml_postgres_data:/var/lib/postgresql/data
+    networks:
+      - hermesops_hml_net
+
+  redis:
+    image: redis:7-alpine
+    container_name: hermesops_hml_redis
+    restart: unless-stopped
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    ports:
+      - "127.0.0.1:7380:6379"
+    volumes:
+      - hermesops_hml_redis_data:/data
+    networks:
+      - hermesops_hml_net
+
+volumes:
+  hermesops_hml_qdrant_storage:
+    name: hermesops_hml_qdrant_storage
+  hermesops_hml_postgres_data:
+    name: hermesops_hml_postgres_data
+  hermesops_hml_redis_data:
+    name: hermesops_hml_redis_data
+
+networks:
+  hermesops_hml_net:
+    name: hermesops_hml_net

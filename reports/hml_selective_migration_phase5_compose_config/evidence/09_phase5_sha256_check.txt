@@ -1,0 +1,12 @@
+infra/hermesops/.env.hml.example: OK
+infra/hermesops/docker-compose.hml.yml: OK
+reports/hml_selective_migration_phase5_compose_config/evidence/00_base_audit.txt: OK
+reports/hml_selective_migration_phase5_compose_config/evidence/02_original_compose_error_reproduction.txt: OK
+reports/hml_selective_migration_phase5_compose_config/evidence/04_target_yaml_validation.rc: OK
+reports/hml_selective_migration_phase5_compose_config/evidence/04_target_yaml_validation.txt: OK
+reports/hml_selective_migration_phase5_compose_config/evidence/05_docker_compose_config_target.rc: OK
+reports/hml_selective_migration_phase5_compose_config/evidence/05_docker_compose_config_target.txt: OK
+reports/hml_selective_migration_phase5_compose_config/evidence/06_phase5_forbidden_scan.txt: OK
+reports/hml_selective_migration_phase5_compose_config/evidence/07_phase5_secret_scan.txt: OK
+reports/hml_selective_migration_phase5_compose_config/evidence/08_hmlops_phase5_validation.rc: OK
+reports/hml_selective_migration_phase5_compose_config/evidence/08_hmlops_phase5_validation.txt: OK

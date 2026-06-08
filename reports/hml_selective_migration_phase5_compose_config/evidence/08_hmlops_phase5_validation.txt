@@ -1,0 +1,95 @@
+== hmlops status ==
+{
+  "project_root": "/home/estevaoqualityadm/projects/Painel-ENS-Quality",
+  "docs_root_exists": true,
+  "offline_root_exists": true,
+  "phase2_report_exists": true,
+  "phase3_reports_root": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/reports/hml_selective_migration_phase3",
+  "allowed_commands": [
+    "status",
+    "inventory",
+    "docs-status",
+    "offline-list",
+    "offline-validate",
+    "offline-dry-run",
+    "schemas-validate",
+    "python-validate",
+    "security-scan",
+    "phase2-summary",
+    "migration status",
+    "reports list"
+  ],
+  "registered_commands": [
+    "status",
+    "inventory",
+    "docs-status",
+    "offline-list",
+    "offline-validate",
+    "offline-dry-run",
+    "schemas-validate",
+    "python-validate",
+    "security-scan",
+    "phase2-summary",
+    "migration status",
+    "reports list"
+  ]
+}
+
+== hmlops security-scan ==
+{
+  "forbidden_findings": [],
+  "secret_hits": [],
+  "status": "ok"
+}
+
+== hmlops inventory ==
+{
+  "offline_root": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/tools/hermesops_offline",
+  "active_files": 385,
+  "python_files": 61,
+  "json_files": 33,
+  "yaml_files": 25,
+  "markdown_files": 262,
+  "sample_paths": [
+    "tools/hermesops_offline/README.md",
+    "tools/hermesops_offline/auditors/coderos/code_context_builder.py",
+    "tools/hermesops_offline/auditors/coderos/code_review_checker.py",
+    "tools/hermesops_offline/auditors/coderos/coderos_audit.py",
+    "tools/hermesops_offline/auditors/coderos/coderos_eval.py",
+    "tools/hermesops_offline/auditors/coderos/coding_memory_capture.py",
+    "tools/hermesops_offline/auditors/coderos/dependency_risk_scanner.py",
+    "tools/hermesops_offline/auditors/coderos/modding_project_analyzer.py",
+    "tools/hermesops_offline/auditors/coderos/patch_plan_builder.py",
+    "tools/hermesops_offline/auditors/coderos/repo_mapper.py",
+    "tools/hermesops_offline/auditors/localization/ptbr_localization_audit.py",
+    "tools/hermesops_offline/auditors/localization/ptbr_prompt_audit.py",
+    "tools/hermesops_offline/auditors/memory/memory_audit.py",
+    "tools/hermesops_offline/auditors/memory/memory_capture.py",
+    "tools/hermesops_offline/auditors/memory/memory_eval.py",
+    "tools/hermesops_offline/auditors/office/docx_template_builder.py",
+    "tools/hermesops_offline/auditors/office/docx_text_reviewer.py",
+    "tools/hermesops_offline/auditors/office/pptx_deck_reviewer.py",
+    "tools/hermesops_offline/auditors/office/pptx_template_builder.py",
+    "tools/hermesops_offline/auditors/office/spreadsheet_offline_analyzer.py",
+    "tools/hermesops_offline/coderos/CODEROS_ARCHITECTURE.md",
+    "tools/hermesops_offline/coderos/CODEROS_CODE_REVIEW_STANDARD.md",
+    "tools/hermesops_offline/coderos/CODEROS_DEBUGGING_STANDARD.md",
+    "tools/hermesops_offline/coderos/CODEROS_MEMORY_INTEGRATION.md",
+    "tools/hermesops_offline/coderos/CODEROS_MODDING_POLICY.md",
+    "tools/hermesops_offline/coderos/CODEROS_POLICY.md",
+    "tools/hermesops_offline/coderos/CODEROS_PROMPTING_STANDARD.md",
+    "tools/hermesops_offline/coderos/CODEROS_REFACTORING_STANDARD.md",
+    "tools/hermesops_offline/coderos/CODEROS_SECURITY_BOUNDARIES.md",
+    "tools/hermesops_offline/coderos/CODEROS_STACK_CATALOG.md",
+    "tools/hermesops_offline/coderos/CODEROS_TESTING_STRATEGY.md",
+    "tools/hermesops_offline/coderos/CODEROS_TOOLCHAIN.md",
+    "tools/hermesops_offline/coderos/CODEROS_WORKFLOW.md",
+    "tools/hermesops_offline/coderos/README.md",
+    "tools/hermesops_offline/coderos/evals/README.md",
+    "tools/hermesops_offline/coderos/evals/coding_agent_eval.yaml",
+    "tools/hermesops_offline/coderos/evals/fastapi_eval.yaml",
+    "tools/hermesops_offline/coderos/evals/modding_eval.yaml",
+    "tools/hermesops_offline/coderos/evals/patch_quality_eval.yaml",
+    "tools/hermesops_offline/coderos/evals/powershell_eval.yaml"
+  ]
+}

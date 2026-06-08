@@ -1,0 +1,2 @@
+YAML: OK
+Services: postgres, qdrant, redis

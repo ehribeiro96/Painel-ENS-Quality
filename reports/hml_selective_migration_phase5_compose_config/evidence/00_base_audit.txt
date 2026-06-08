@@ -1,0 +1,153 @@
+== Workspace ==
+/home/estevaoqualityadm/projects/Painel-ENS-Quality
+RJM22137
+estevaoqualityadm
+2026-06-08T10:59:12-03:00
+
+== Git ==
+## main
+?? .dockerignore
+?? .editorconfig
+?? .env.example
+?? .github/
+?? .vscode/
+?? _cleanup_backup_manifest.md
+?? _migration_proposals/
+?? assets/
+?? backend/
+?? config/
+?? data/
+?? docker-compose.yml
+?? docs/AI_CHAT_PROVIDER_OPENAI_REPORT.md
+?? docs/AI_CHAT_REAL_PROVIDER_LOCAL_TEST_REPORT.md
+?? docs/AI_CHAT_SECURITY_HARDENING_REPORT.md
+?? docs/ARCHITECTURE_REVIEW_ITAM.md
+?? docs/ASSETS_CRUD_REPORT.md
+?? docs/BACKUP_RESTORE_RUNBOOK.md
+?? docs/BASE44_PRINTS_UX_REFERENCE.md
+?? docs/CODE_LIFECYCLE.md
+?? docs/COLLABORATORS_CRUD_REPORT.md
+?? docs/DEPENDENCY_STRATEGY.md
+?? docs/HERMES_SELF_CONFIG_HARDENING_PLAN.md
+?? docs/HERMES_SELF_CONFIG_MIGRATION_REPORT.md
+?? docs/IMPORT_PIPELINE_REVIEW.md
+?? docs/INTERNAL_RC_UAT_REPORT.md
+?? docs/KNOWN_ISSUES.md
+?? docs/LANSWEEPER_CONFLICT_REVIEW_REPORT.md
+?? docs/LANSWEEPER_IMPORT_FIX_REPORT.md
+?? docs/LEGACY_ENS_DB_INVENTORY.md
+?? docs/LEGACY_ENS_DB_PRE_APPLY_REVIEW.md
+?? docs/LEGACY_ENS_DB_TO_POSTGRES_MAPPING.md
+?? docs/LEGACY_ENS_DB_UAT_DRYRUN_REPORT.md
+?? docs/LEGACY_FLASK_REFACTOR_PLAN.md
+?? docs/LEGACY_SIGNATURE_STATIC_INVENTORY.md
+?? docs/MACROS_APPLY_UAT_REPORT.md
+?? docs/MACROS_END_TO_END_UAT_REPORT.md
+?? docs/MACROS_MODULE_PLAN.md
+?? docs/MACROS_TECHNICIAN_ASSISTED_UAT_REPORT.md
+?? docs/MACROS_UAT_OPERATIONAL_REPORT.md
+?? docs/MONOLITHIC_ARCHITECTURE.md
+?? docs/OPERATIONAL_TEST_MATRIX.md
+?? docs/OPERATIONAL_VALIDATION_REPORT.md
+?? docs/PROJECT_CLEANUP_AUDIT.md
+?? docs/PROJECT_HYGIENE_REMEDIATION_PLAN.md
+?? docs/QUALITY_MACROS_PROJECT_INVENTORY.md
+?? docs/README_HYBRID.md
+?? docs/REGRESSION_SAFETY_SUITE.md
+?? docs/RELEASE_CANDIDATE_CHECKLIST.md
+?? docs/RUFF_BASELINE.txt
+?? docs/RUFF_VALIDATION_REPORT.md
+?? docs/RUNTIME_FIXES_REPORT.md
+?? docs/SECURITY_SANITIZATION_REPORT.md
+?? docs/SIGNATURES_FIX_REPORT.md
+?? docs/SIGNATURE_ENGINE_EXTRACTION_REPORT.md
+?? docs/SPREADSHEET_IMPORT_PIPELINE.md
+?? docs/SPREADSHEET_IMPORT_UAT_REPORT.md
+?? docs/STARTUP_FAILURE_DIAGNOSTIC.md
+?? docs/UAT_EVIDENCE_TEMPLATE.md
+?? docs/UAT_EXECUTION_REPORT.md
+?? docs/UAT_EXECUTION_SCRIPT.md
+?? docs/UAT_FACILITATOR_CHECKLIST.md
+?? docs/UAT_FEEDBACK_FORM.md
+?? docs/UAT_PLAN.md
+?? docs/UAT_SCENARIOS.md
+?? docs/UAT_SECURITY_CHECKLIST.md
+?? docs/UNIFIED_POSTGRES_SIGNATURE_ASSET_ARCHITECTURE.md
+?? docs/UX_OPERATIONAL_REVIEW.md
+?? docs/UX_UI_POLISH_REPORT.md
+?? docs/templates/
+?? docx_sample.md
+?? docx_template_output.md
+?? frontend/
+?? imports/
+?? infra/
+?? pptx_sample.md
+?? pptx_template_output.md
+?? pyproject.toml
+?? reports/hml_import_audit/
+?? reports/hml_migration_unification_audit/
+?? reports/hml_selective_migration_phase4_2_remote_release_policy/
+?? reports/hml_selective_migration_phase5_compose_config/
+?? reports/hml_selective_migration_plan/
+?? requirements-dev.txt
+?? requirements-legacy.txt
+?? requirements-lock.txt
+?? requirements.txt
+?? run.py
+?? scripts/create-local-secrets.ps1
+?? scripts/import_colaboradores_json_to_macro_hints.py
+?? scripts/import_legacy_ens_db_to_postgres.py
+?? scripts/import_macros_json_to_postgres.py
+?? scripts/import_quality_macros_to_postgres.py
+?? scripts/ops/
+?? src/
+?? tests/
+?? tools/hermes/
+63d264a (HEAD -> main, tag: hml-selective-migration-baseline-20260608-104531) baseline: initialize HML selective migration state
+
+== Required paths ==
+OK IMPORTED_HERMESOPS
+OK SOURCE_COMPOSE_HML
+OK SOURCE_COMPOSE_RAG
+
+== Docker availability ==
+/usr/bin/docker
+Docker version 29.5.2, build 79eb04c
+Docker Compose version v5.1.4
+
+== hmlops ==
+{
+  "project_root": "/home/estevaoqualityadm/projects/Painel-ENS-Quality",
+  "docs_root_exists": true,
+  "offline_root_exists": true,
+  "phase2_report_exists": true,
+  "phase3_reports_root": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/reports/hml_selective_migration_phase3",
+  "allowed_commands": [
+    "status",
+    "inventory",
+    "docs-status",
+    "offline-list",
+    "offline-validate",
+    "offline-dry-run",
+    "schemas-validate",
+    "python-validate",
+    "security-scan",
+    "phase2-summary",
+    "migration status",
+    "reports list"
+  ],
+  "registered_commands": [
+    "status",
+    "inventory",
+    "docs-status",
+    "offline-list",
+    "offline-validate",
+    "offline-dry-run",
+    "schemas-validate",
+    "python-validate",
+    "security-scan",
+    "phase2-summary",
+    "migration status",
+    "reports list"
+  ]
+}

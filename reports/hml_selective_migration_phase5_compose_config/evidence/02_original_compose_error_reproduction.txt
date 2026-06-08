@@ -1,0 +1,73 @@
+== Source compose HML path ==
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/imports/HermesOps-Final-Transfer/current/HermesOps/infra/docker-compose.hml.yml
+
+== First 220 lines ==
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: hermesops_hml_qdrant
+    restart: unless-stopped
+    env_file:
+      - .env.hml
+    ports:
+      - 127.0.0.1:7333:6333
+      - 127.0.0.1:7334:6334
+    volumes:
+      - hermesops_hml_qdrant_storage:/qdrant/storage
+    networks:
+      - hermesops_hml_net
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: hermesops_hml_postgres
+    restart: unless-stopped
+    env_file:
+      - .env.hml
+    environment:
+      POSTGRES_DB: 
+      POSTGRES_USER: 
+      POSTGRES_PASSWORD: 
+    ports:
+      - 127.0.0.1:7433:5432
+    volumes:
+      - hermesops_hml_postgres_data:/var/lib/postgresql/data
+    networks:
+      - hermesops_hml_net
+
+  redis:
+    image: redis:7-alpine
+    container_name: hermesops_hml_redis
+    restart: unless-stopped
+    env_file:
+      - .env.hml
+    command: [redis-server, --save, , --appendonly, no]
+    ports:
+      - 127.0.0.1:7380:6379
+    volumes:
+      - hermesops_hml_redis_data:/data
+    networks:
+      - hermesops_hml_net
+
+volumes:
+  hermesops_hml_qdrant_storage:
+    name: hermesops_hml_qdrant_storage
+  hermesops_hml_postgres_data:
+    name: hermesops_hml_postgres_data
+  hermesops_hml_redis_data:
+    name: hermesops_hml_redis_data
+
+networks:
+  hermesops_hml_net:
+    name: hermesops_hml_net
+
+== YAML parse with Python/PyYAML if available ==
+YAML: FAIL
+ParserError
+while parsing a flow node
+expected the node content, but found ','
+  in "<unicode string>", line 39, column 37:
+        command: [redis-server, --save, , --appendonly, no]
+                                        ^
+
+== docker compose config original if available ==
+yaml: while parsing a flow node at line 38, column 37: did not find expected node content
