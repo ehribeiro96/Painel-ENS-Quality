@@ -1,4 +1,8 @@
-## main...origin/main [ahead 4]
+## main...origin/main [ahead 5]
+ M reports/hml_finalization_phase8_3_rc21_cleanup_validation/PHASE83_SHA256SUMS.txt
+ M reports/hml_finalization_phase8_3_rc21_cleanup_validation/evidence/11_rc21_staging_forbidden_scan.txt
+ M reports/hml_finalization_phase8_3_rc21_cleanup_validation/evidence/15_rc21_cleanroom_forbidden_scan.txt
+ M reports/hml_finalization_phase8_3_rc21_cleanup_validation/evidence/23_final_git_status.txt
 ?? .env.example
 ?? .github/
 ?? .vscode/
@@ -20,7 +24,6 @@
 ?? reports/hml_finalization_phase8_1_full_scope_consolidation/evidence/13_release_staging_forbidden_scan.txt
 ?? reports/hml_finalization_phase8_1_full_scope_consolidation/evidence/14_release_required_paths.txt
 ?? reports/hml_finalization_phase8_1_full_scope_consolidation/evidence/15_release_sha256_check.txt
-?? reports/hml_finalization_phase8_3_rc21_cleanup_validation/
 ?? reports/hml_import_audit/
 ?? reports/hml_migration_unification_audit/
 ?? reports/hml_selective_migration_phase4_2_remote_release_policy/

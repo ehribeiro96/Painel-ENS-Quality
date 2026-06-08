@@ -1,3 +1,1 @@
 == Forbidden files in RC2.1 staging ==
-/home/estevaoqualityadm/projects/Painel-ENS-Quality/exports/final_release_candidate_v2_1_staging/Painel-ENS-Quality-RC/config/.env.example
-/home/estevaoqualityadm/projects/Painel-ENS-Quality/exports/final_release_candidate_v2_1_staging/Painel-ENS-Quality-RC/infra/hermesops/.env.hml.example
