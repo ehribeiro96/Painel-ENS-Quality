@@ -1,0 +1,15 @@
+== docker ps final ==
+NAMES                    STATUS                   PORTS
+hermesops_hml_postgres   Up 3 minutes (healthy)   127.0.0.1:7433->5432/tcp
+hermesops_hml_redis      Up 3 minutes (healthy)   127.0.0.1:7380->6379/tcp
+hermesops_hml_qdrant     Up About an hour         127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+
+== volumes ==
+VOLUME NAME                                                        DRIVER
+hermesops_hml_postgres_data                                        local
+hermesops_hml_qdrant_storage                                       local
+hermesops_hml_redis_data                                           local
+
+== networks ==
+NAME                         DRIVER    SCOPE
+hermesops_hml_net            bridge    local

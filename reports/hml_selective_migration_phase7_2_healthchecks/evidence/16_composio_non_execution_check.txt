@@ -1,0 +1,4 @@
+== Composio markers in logs and probes ==
+
+== Expected ==
+No Composio execution, no connected account, no tools/execute

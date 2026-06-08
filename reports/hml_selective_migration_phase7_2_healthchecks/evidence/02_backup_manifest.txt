@@ -1,0 +1,8 @@
+Backup path: /home/estevaoqualityadm/projects/Painel-ENS-Quality/_backup/selective_migration_phase7_2_healthchecks_20260608-124430
+
+Backup manifest, names only:
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_backup/selective_migration_phase7_2_healthchecks_20260608-124430/infra-hermesops/.env.hml
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_backup/selective_migration_phase7_2_healthchecks_20260608-124430/infra-hermesops/.env.hml.example
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_backup/selective_migration_phase7_2_healthchecks_20260608-124430/infra-hermesops/COMPOSE_USAGE_POLICY.md
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_backup/selective_migration_phase7_2_healthchecks_20260608-124430/infra-hermesops/ENV_HML_POLICY.md
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_backup/selective_migration_phase7_2_healthchecks_20260608-124430/infra-hermesops/docker-compose.hml.yml

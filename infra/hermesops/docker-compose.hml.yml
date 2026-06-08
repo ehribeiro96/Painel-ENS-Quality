@@ -25,6 +25,12 @@ services:
       - hermesops_hml_postgres_data:/var/lib/postgresql/data
     networks:
       - hermesops_hml_net
+    healthcheck:
+      test: ["CMD-SHELL", 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
 
   redis:
     image: redis:7-alpine
@@ -37,6 +43,12 @@ services:
       - hermesops_hml_redis_data:/data
     networks:
       - hermesops_hml_net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
 volumes:
   hermesops_hml_qdrant_storage:

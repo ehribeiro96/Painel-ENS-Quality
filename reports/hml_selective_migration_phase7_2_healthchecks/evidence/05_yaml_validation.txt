@@ -1,0 +1,5 @@
+YAML: OK
+Services: postgres, qdrant, redis
+postgres: healthcheck=present
+qdrant: healthcheck=absent
+redis: healthcheck=present

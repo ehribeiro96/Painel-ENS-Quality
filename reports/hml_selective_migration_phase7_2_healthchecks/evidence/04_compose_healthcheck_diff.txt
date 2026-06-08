@@ -1,0 +1,29 @@
+== Diff Compose before vs after healthchecks ==
+--- /home/estevaoqualityadm/projects/Painel-ENS-Quality/_backup/selective_migration_phase7_2_healthchecks_20260608-124430/docker-compose.hml.yml.before-healthchecks	2026-06-08 12:45:31.244838503 -0300
++++ /home/estevaoqualityadm/projects/Painel-ENS-Quality/infra/hermesops/docker-compose.hml.yml	2026-06-08 12:45:16.679473169 -0300
+@@ -25,6 +25,12 @@
+       - hermesops_hml_postgres_data:/var/lib/postgresql/data
+     networks:
+       - hermesops_hml_net
++    healthcheck:
++      test: ["CMD-SHELL", 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
++      interval: 10s
++      timeout: 5s
++      retries: 5
++      start_period: 20s
+ 
+   redis:
+     image: redis:7-alpine
+@@ -37,6 +43,12 @@
+       - hermesops_hml_redis_data:/data
+     networks:
+       - hermesops_hml_net
++    healthcheck:
++      test: ["CMD", "redis-cli", "ping"]
++      interval: 10s
++      timeout: 5s
++      retries: 5
++      start_period: 10s
+ 
+ volumes:
+   hermesops_hml_qdrant_storage:

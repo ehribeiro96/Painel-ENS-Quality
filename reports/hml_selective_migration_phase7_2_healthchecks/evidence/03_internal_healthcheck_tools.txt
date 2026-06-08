@@ -1,0 +1,8 @@
+== postgres tools ==
+/usr/local/bin/pg_isready
+/usr/local/bin/psql
+
+== redis tools ==
+/usr/local/bin/redis-cli
+
+== qdrant tools ==

@@ -1,0 +1,95 @@
+name: hermesops_hml
+networks:
+  hermesops_hml_net:
+    name: hermesops_hml_net
+services:
+  postgres:
+    container_name: hermesops_hml_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-hermesops_hml}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-CHANGE_ME_DO_NOT_COMMIT}
+      POSTGRES_USER: ${POSTGRES_USER:-hermesops}
+    healthcheck:
+      interval: 10s
+      retries: 5
+      start_period: 20s
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
+      timeout: 5s
+    image: postgres:16-alpine
+    networks:
+      hermesops_hml_net: null
+    ports:
+      - host_ip: 127.0.0.1
+        mode: ingress
+        protocol: tcp
+        published: "7433"
+        target: 5432
+    restart: unless-stopped
+    volumes:
+      - source: hermesops_hml_postgres_data
+        target: /var/lib/postgresql/data
+        type: volume
+        volume: {}
+  qdrant:
+    container_name: hermesops_hml_qdrant
+    image: qdrant/qdrant:latest
+    networks:
+      hermesops_hml_net: null
+    ports:
+      - host_ip: 127.0.0.1
+        mode: ingress
+        protocol: tcp
+        published: "7333"
+        target: 6333
+      - host_ip: 127.0.0.1
+        mode: ingress
+        protocol: tcp
+        published: "7334"
+        target: 6334
+    restart: unless-stopped
+    volumes:
+      - source: hermesops_hml_qdrant_storage
+        target: /qdrant/storage
+        type: volume
+        volume: {}
+  redis:
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+    container_name: hermesops_hml_redis
+    healthcheck:
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      timeout: 5s
+    image: redis:7-alpine
+    networks:
+      hermesops_hml_net: null
+    ports:
+      - host_ip: 127.0.0.1
+        mode: ingress
+        protocol: tcp
+        published: "7380"
+        target: 6379
+    restart: unless-stopped
+    volumes:
+      - source: hermesops_hml_redis_data
+        target: /data
+        type: volume
+        volume: {}
+volumes:
+  hermesops_hml_postgres_data:
+    name: hermesops_hml_postgres_data
+  hermesops_hml_qdrant_storage:
+    name: hermesops_hml_qdrant_storage
+  hermesops_hml_redis_data:
+    name: hermesops_hml_redis_data
