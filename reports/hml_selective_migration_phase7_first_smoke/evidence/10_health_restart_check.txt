@@ -1,0 +1,7 @@
+== Restart count inspect ==
+Container: hermesops_hml_postgres
+Status=running Health=none RestartCount=0 StartedAt=2026-06-08T14:46:19.469409032Z
+Container: hermesops_hml_qdrant
+Status=running Health=none RestartCount=0 StartedAt=2026-06-08T14:46:19.477079887Z
+Container: hermesops_hml_redis
+Status=running Health=none RestartCount=0 StartedAt=2026-06-08T14:46:19.472626109Z

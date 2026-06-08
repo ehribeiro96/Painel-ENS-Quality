@@ -1,0 +1,21 @@
+== docker ps after up ==
+NAMES                    STATUS          PORTS
+hermesops_hml_postgres   Up 20 seconds   127.0.0.1:7433->5432/tcp
+hermesops_hml_qdrant     Up 20 seconds   127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+hermesops_hml_redis      Up 20 seconds   127.0.0.1:7380->6379/tcp
+
+== docker compose ps after up ==
+NAME                     IMAGE                  COMMAND                  SERVICE    CREATED          STATUS          PORTS
+hermesops_hml_postgres   postgres:16-alpine     "docker-entrypoint.s…"   postgres   22 seconds ago   Up 20 seconds   127.0.0.1:7433->5432/tcp
+hermesops_hml_qdrant     qdrant/qdrant:latest   "./entrypoint.sh"        qdrant     22 seconds ago   Up 20 seconds   127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+hermesops_hml_redis      redis:7-alpine         "docker-entrypoint.s…"   redis      22 seconds ago   Up 20 seconds   127.0.0.1:7380->6379/tcp
+
+== docker volumes after up ==
+VOLUME NAME                                                        DRIVER
+hermesops_hml_postgres_data                                        local
+hermesops_hml_qdrant_storage                                       local
+hermesops_hml_redis_data                                           local
+
+== docker networks after up ==
+NAME                         DRIVER    SCOPE
+hermesops_hml_net            bridge    local

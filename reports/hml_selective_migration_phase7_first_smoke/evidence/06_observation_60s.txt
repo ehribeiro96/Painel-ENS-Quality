@@ -1,0 +1,47 @@
+== Observation started ==
+2026-06-08T11:46:40-03:00
+
+== Observation round 1 ==
+2026-06-08T11:46:40-03:00
+NAME                     IMAGE                  COMMAND                  SERVICE    CREATED          STATUS          PORTS
+hermesops_hml_postgres   postgres:16-alpine     "docker-entrypoint.s…"   postgres   22 seconds ago   Up 20 seconds   127.0.0.1:7433->5432/tcp
+hermesops_hml_qdrant     qdrant/qdrant:latest   "./entrypoint.sh"        qdrant     22 seconds ago   Up 20 seconds   127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+hermesops_hml_redis      redis:7-alpine         "docker-entrypoint.s…"   redis      22 seconds ago   Up 20 seconds   127.0.0.1:7380->6379/tcp
+
+== Observation round 2 ==
+2026-06-08T11:46:50-03:00
+NAME                     IMAGE                  COMMAND                  SERVICE    CREATED          STATUS          PORTS
+hermesops_hml_postgres   postgres:16-alpine     "docker-entrypoint.s…"   postgres   32 seconds ago   Up 30 seconds   127.0.0.1:7433->5432/tcp
+hermesops_hml_qdrant     qdrant/qdrant:latest   "./entrypoint.sh"        qdrant     32 seconds ago   Up 30 seconds   127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+hermesops_hml_redis      redis:7-alpine         "docker-entrypoint.s…"   redis      32 seconds ago   Up 30 seconds   127.0.0.1:7380->6379/tcp
+
+== Observation round 3 ==
+2026-06-08T11:47:00-03:00
+NAME                     IMAGE                  COMMAND                  SERVICE    CREATED          STATUS          PORTS
+hermesops_hml_postgres   postgres:16-alpine     "docker-entrypoint.s…"   postgres   42 seconds ago   Up 41 seconds   127.0.0.1:7433->5432/tcp
+hermesops_hml_qdrant     qdrant/qdrant:latest   "./entrypoint.sh"        qdrant     42 seconds ago   Up 41 seconds   127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+hermesops_hml_redis      redis:7-alpine         "docker-entrypoint.s…"   redis      42 seconds ago   Up 41 seconds   127.0.0.1:7380->6379/tcp
+
+== Observation round 4 ==
+2026-06-08T11:47:12-03:00
+NAME                     IMAGE                  COMMAND                  SERVICE    CREATED          STATUS          PORTS
+hermesops_hml_postgres   postgres:16-alpine     "docker-entrypoint.s…"   postgres   54 seconds ago   Up 53 seconds   127.0.0.1:7433->5432/tcp
+hermesops_hml_qdrant     qdrant/qdrant:latest   "./entrypoint.sh"        qdrant     54 seconds ago   Up 53 seconds   127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+hermesops_hml_redis      redis:7-alpine         "docker-entrypoint.s…"   redis      54 seconds ago   Up 53 seconds   127.0.0.1:7380->6379/tcp
+
+== Observation round 5 ==
+2026-06-08T11:47:22-03:00
+NAME                     IMAGE                  COMMAND                  SERVICE    CREATED              STATUS              PORTS
+hermesops_hml_postgres   postgres:16-alpine     "docker-entrypoint.s…"   postgres   About a minute ago   Up About a minute   127.0.0.1:7433->5432/tcp
+hermesops_hml_qdrant     qdrant/qdrant:latest   "./entrypoint.sh"        qdrant     About a minute ago   Up About a minute   127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+hermesops_hml_redis      redis:7-alpine         "docker-entrypoint.s…"   redis      About a minute ago   Up About a minute   127.0.0.1:7380->6379/tcp
+
+== Observation round 6 ==
+2026-06-08T11:47:32-03:00
+NAME                     IMAGE                  COMMAND                  SERVICE    CREATED              STATUS              PORTS
+hermesops_hml_postgres   postgres:16-alpine     "docker-entrypoint.s…"   postgres   About a minute ago   Up About a minute   127.0.0.1:7433->5432/tcp
+hermesops_hml_qdrant     qdrant/qdrant:latest   "./entrypoint.sh"        qdrant     About a minute ago   Up About a minute   127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+hermesops_hml_redis      redis:7-alpine         "docker-entrypoint.s…"   redis      About a minute ago   Up About a minute   127.0.0.1:7380->6379/tcp
+
+== Observation finished ==
+2026-06-08T11:47:45-03:00

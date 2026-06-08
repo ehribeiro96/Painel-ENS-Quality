@@ -1,0 +1,1 @@
+76:hermesops_hml_postgres  | 2026-06-08T14:46:22.029295835Z 2026-06-08 14:46:22.029 UTC [41] LOG:  database system is shut down

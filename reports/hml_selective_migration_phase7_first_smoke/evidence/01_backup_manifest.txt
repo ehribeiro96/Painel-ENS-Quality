@@ -1,0 +1,8 @@
+Backup path: _backup/selective_migration_phase7_first_smoke_20260608-114541
+
+Backup manifest, names only:
+_backup/selective_migration_phase7_first_smoke_20260608-114541/infra-hermesops/.env.hml
+_backup/selective_migration_phase7_first_smoke_20260608-114541/infra-hermesops/.env.hml.example
+_backup/selective_migration_phase7_first_smoke_20260608-114541/infra-hermesops/COMPOSE_USAGE_POLICY.md
+_backup/selective_migration_phase7_first_smoke_20260608-114541/infra-hermesops/ENV_HML_POLICY.md
+_backup/selective_migration_phase7_first_smoke_20260608-114541/infra-hermesops/docker-compose.hml.yml

@@ -1,0 +1,87 @@
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649858439Z            _                 _    
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649888869Z   __ _  __| |_ __ __ _ _ __ | |_  
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649891086Z  / _` |/ _` | '__/ _` | '_ \| __| 
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649892331Z | (_| | (_| | | | (_| | | | | |_  
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649893461Z  \__, |\__,_|_|  \__,_|_| |_|\__| 
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649894756Z     |_|                           
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649895868Z 
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649896885Z Version: 1.18.2, build: 44ad62f8
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649897990Z Access web UI at http://localhost:6333/dashboard
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649899101Z Agentic Skills: https://skills.qdrant.tech/
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649900178Z 
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.649901238Z 2026-06-08T14:46:21.649784Z  INFO storage::content_manager::consensus::persistent: Initializing new raft state at ./storage/raft_state.json
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.665060748Z 2026-06-08T14:46:21.664877Z  INFO qdrant: Distributed mode disabled
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.665081865Z 2026-06-08T14:46:21.664899Z  INFO qdrant: Telemetry reporting enabled, id: 991af073-618b-40f4-b73d-0b24bf7ece4a
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.679232046Z 2026-06-08T14:46:21.679051Z  INFO qdrant::actix: REST transport settings: keep_alive=5s, client_request_timeout=5s, client_disconnect_timeout=5s
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.679247809Z 2026-06-08T14:46:21.679076Z  INFO qdrant::actix: TLS disabled for REST API
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.681579635Z 2026-06-08T14:46:21.681429Z  INFO qdrant::tonic: Qdrant gRPC listening on 6334
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.681601500Z 2026-06-08T14:46:21.681461Z  INFO qdrant::tonic: TLS disabled for gRPC API
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.688387834Z 2026-06-08T14:46:21.688188Z  INFO qdrant::actix: Qdrant HTTP listening on 6333
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.688412150Z 2026-06-08T14:46:21.688231Z  INFO actix_server::builder: starting 27 workers
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.688415456Z 2026-06-08T14:46:21.688250Z  INFO actix_server::server: Actix runtime found; starting in Actix runtime
+hermesops_hml_qdrant  | 2026-06-08T14:46:21.688417806Z 2026-06-08T14:46:21.688255Z  INFO actix_server::server: starting service: "actix-web-service-0.0.0.0:6333", workers: 27, listening on: 0.0.0.0:6333
+hermesops_hml_redis   | 2026-06-08T14:46:21.100953240Z 1:C 08 Jun 2026 14:46:21.100 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+hermesops_hml_redis   | 2026-06-08T14:46:21.100982825Z 1:C 08 Jun 2026 14:46:21.100 * Redis version=7.4.9, bits=64, commit=00000000, modified=0, pid=1, just started
+hermesops_hml_redis   | 2026-06-08T14:46:21.100985100Z 1:C 08 Jun 2026 14:46:21.100 * Configuration loaded
+hermesops_hml_redis   | 2026-06-08T14:46:21.101368103Z 1:M 08 Jun 2026 14:46:21.101 * monotonic clock: POSIX clock_gettime
+hermesops_hml_redis   | 2026-06-08T14:46:21.104045384Z 1:M 08 Jun 2026 14:46:21.103 * Running mode=standalone, port=6379.
+hermesops_hml_redis   | 2026-06-08T14:46:21.145188515Z 1:M 08 Jun 2026 14:46:21.145 * Server initialized
+hermesops_hml_redis   | 2026-06-08T14:46:21.147380212Z 1:M 08 Jun 2026 14:46:21.147 * Ready to accept connections tcp
+hermesops_hml_postgres  | 2026-06-08T14:46:20.806263829Z The files belonging to this database system will be owned by user "postgres".
+hermesops_hml_postgres  | 2026-06-08T14:46:20.806350735Z This user must also own the server process.
+hermesops_hml_postgres  | 2026-06-08T14:46:20.806353009Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:20.806923919Z The database cluster will be initialized with locale "en_US.utf8".
+hermesops_hml_postgres  | 2026-06-08T14:46:20.806926550Z The default database encoding has accordingly been set to "UTF8".
+hermesops_hml_postgres  | 2026-06-08T14:46:20.806927729Z The default text search configuration will be set to "english".
+hermesops_hml_postgres  | 2026-06-08T14:46:20.806928765Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:20.806929652Z Data page checksums are disabled.
+hermesops_hml_postgres  | 2026-06-08T14:46:20.806930551Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:20.807001187Z fixing permissions on existing directory /var/lib/postgresql/data ... ok
+hermesops_hml_postgres  | 2026-06-08T14:46:20.809276206Z creating subdirectories ... ok
+hermesops_hml_postgres  | 2026-06-08T14:46:20.809288228Z selecting dynamic shared memory implementation ... posix
+hermesops_hml_postgres  | 2026-06-08T14:46:20.828657679Z selecting default max_connections ... 100
+hermesops_hml_postgres  | 2026-06-08T14:46:20.843225883Z selecting default shared_buffers ... 128MB
+hermesops_hml_postgres  | 2026-06-08T14:46:20.871768323Z selecting default time zone ... UTC
+hermesops_hml_postgres  | 2026-06-08T14:46:20.872372334Z creating configuration files ... ok
+hermesops_hml_postgres  | 2026-06-08T14:46:20.965212634Z running bootstrap script ... ok
+hermesops_hml_postgres  | 2026-06-08T14:46:21.118654626Z sh: locale: not found
+hermesops_hml_postgres  | 2026-06-08T14:46:21.118728599Z 2026-06-08 14:46:21.118 UTC [35] WARNING:  no usable system locales were found
+hermesops_hml_postgres  | 2026-06-08T14:46:21.532157134Z performing post-bootstrap initialization ... ok
+hermesops_hml_postgres  | 2026-06-08T14:46:21.772793363Z initdb: warning: enabling "trust" authentication for local connections
+hermesops_hml_postgres  | 2026-06-08T14:46:21.772815499Z initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+hermesops_hml_postgres  | 2026-06-08T14:46:21.772797596Z syncing data to disk ... ok
+hermesops_hml_postgres  | 2026-06-08T14:46:21.772820618Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:21.772821734Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:21.772822688Z Success. You can now start the database server using:
+hermesops_hml_postgres  | 2026-06-08T14:46:21.772823704Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:21.772824598Z     pg_ctl -D /var/lib/postgresql/data -l logfile start
+hermesops_hml_postgres  | 2026-06-08T14:46:21.772825572Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:21.815468893Z waiting for server to start....2026-06-08 14:46:21.815 UTC [41] LOG:  starting PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+hermesops_hml_postgres  | 2026-06-08T14:46:21.818143652Z 2026-06-08 14:46:21.818 UTC [41] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+hermesops_hml_postgres  | 2026-06-08T14:46:21.822978107Z 2026-06-08 14:46:21.822 UTC [44] LOG:  database system was shut down at 2026-06-08 14:46:21 UTC
+hermesops_hml_postgres  | 2026-06-08T14:46:21.828358732Z 2026-06-08 14:46:21.828 UTC [41] LOG:  database system is ready to accept connections
+hermesops_hml_postgres  | 2026-06-08T14:46:21.890175795Z  done
+hermesops_hml_postgres  | 2026-06-08T14:46:21.890195992Z server started
+hermesops_hml_postgres  | 2026-06-08T14:46:21.947393738Z CREATE DATABASE
+hermesops_hml_postgres  | 2026-06-08T14:46:21.947884749Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:21.947899936Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:21.947901509Z /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+hermesops_hml_postgres  | 2026-06-08T14:46:21.947902795Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:21.948618728Z waiting for server to shut down....2026-06-08 14:46:21.948 UTC [41] LOG:  received fast shutdown request
+hermesops_hml_postgres  | 2026-06-08T14:46:21.949924352Z 2026-06-08 14:46:21.949 UTC [41] LOG:  aborting any active transactions
+hermesops_hml_postgres  | 2026-06-08T14:46:21.951810174Z 2026-06-08 14:46:21.951 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+hermesops_hml_postgres  | 2026-06-08T14:46:21.951899002Z 2026-06-08 14:46:21.951 UTC [42] LOG:  shutting down
+hermesops_hml_postgres  | 2026-06-08T14:46:21.953318169Z 2026-06-08 14:46:21.953 UTC [42] LOG:  checkpoint starting: shutdown immediate
+hermesops_hml_postgres  | 2026-06-08T14:46:22.025159308Z 2026-06-08 14:46:22.024 UTC [42] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.012 s, sync=0.051 s, total=0.074 s; sync files=301, longest=0.002 s, average=0.001 s; distance=4272 kB, estimate=4272 kB; lsn=0/191E938, redo lsn=0/191E938
+hermesops_hml_postgres  | 2026-06-08T14:46:22.029295835Z 2026-06-08 14:46:22.029 UTC [41] LOG:  database system is shut down
+hermesops_hml_postgres  | 2026-06-08T14:46:22.048708499Z  done
+hermesops_hml_postgres  | 2026-06-08T14:46:22.048723853Z server stopped
+hermesops_hml_postgres  | 2026-06-08T14:46:22.049584529Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:22.049591810Z PostgreSQL init process complete; ready for start up.
+hermesops_hml_postgres  | 2026-06-08T14:46:22.049593268Z 
+hermesops_hml_postgres  | 2026-06-08T14:46:22.066127206Z 2026-06-08 14:46:22.066 UTC [1] LOG:  starting PostgreSQL 16.14 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+hermesops_hml_postgres  | 2026-06-08T14:46:22.067119175Z 2026-06-08 14:46:22.067 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+hermesops_hml_postgres  | 2026-06-08T14:46:22.067878982Z 2026-06-08 14:46:22.067 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+hermesops_hml_postgres  | 2026-06-08T14:46:22.078432953Z 2026-06-08 14:46:22.078 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+hermesops_hml_postgres  | 2026-06-08T14:46:22.082556870Z 2026-06-08 14:46:22.082 UTC [57] LOG:  database system was shut down at 2026-06-08 14:46:22 UTC
+hermesops_hml_postgres  | 2026-06-08T14:46:22.086511714Z 2026-06-08 14:46:22.086 UTC [1] LOG:  database system is ready to accept connections
