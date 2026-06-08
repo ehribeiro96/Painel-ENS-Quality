@@ -1,0 +1,83 @@
+== Workspace original ==
+/home/estevaoqualityadm/projects/Painel-ENS-Quality
+RJM22137
+estevaoqualityadm
+2026-06-08T13:49:29-03:00
+
+== Git status ==
+## main...origin/main [ahead 1]
+?? .env.example
+?? .github/
+?? .vscode/
+?? _cleanup_backup_manifest.md
+?? _migration_proposals/
+?? assets/
+?? data/
+?? docx_sample.md
+?? docx_template_output.md
+?? frontend/package-lock.json
+?? imports/
+?? pptx_sample.md
+?? pptx_template_output.md
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/07_CONSOLIDATION_COMMIT_REPORT.md
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/08_RELEASE_CANDIDATE_V2_REPORT.md
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/09_PHASE81_FULL_SCOPE_FINALIZATION_REPORT.md
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/10_GO_NO_GO_PHASE81.md
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/evidence/13_release_staging_forbidden_scan.txt
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/evidence/14_release_required_paths.txt
+?? reports/hml_finalization_phase8_1_full_scope_consolidation/evidence/15_release_sha256_check.txt
+?? reports/hml_finalization_phase8_2_rc2_cleanroom_validation/
+?? reports/hml_import_audit/
+?? reports/hml_migration_unification_audit/
+?? reports/hml_selective_migration_phase4_2_remote_release_policy/
+?? reports/hml_selective_migration_phase7_1_functional_probes/evidence/
+?? reports/hml_selective_migration_phase7_1b_docker_runtime_audit/evidence/
+?? reports/hml_selective_migration_phase7_1c_native_docker_migration_plan/evidence/
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/00_approval_gate.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/01_base_audit.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/02_backup_manifest.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/03_docker_state_before_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/04_docker_compose_config_pre_up.rc
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/04_docker_compose_config_pre_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/05_compose_config_pre_up_sanitized_summary.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/06_docker_compose_up_d.rc
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/06_docker_compose_up_d.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/07_observation_60s.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/08_compose_ps_after_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/09_compose_logs_tail_200.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/10_docker_state_after_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/11_health_restart_check.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/12_ports_after_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/13_log_secret_scan.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/14_log_critical_error_scan.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/15_composio_non_execution_check.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/16_hmlops_phase7_validation.rc
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/16_hmlops_phase7_validation.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/17_phase7_sha256_check.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/18_final_git_status.txt
+?? reports/hml_selective_migration_plan/
+?? tests/fixtures/imports/
+
+== Git log ==
+5694f06 (HEAD -> main) release: consolidate Painel ENS-Quality HML full-scope release candidate
+4c62932 (origin/main) docs: refresh phase 7.2 final git status evidence
+02f9910 docs: add phase 7.2 final git status evidence
+11cfb91 ops: apply HermesOps HML healthchecks
+08c50cb ops: plan native Docker Engine migration for HermesOps HML
+213e09b ops: audit Docker runtime portability for HermesOps HML
+5d8b768 ops: validate HermesOps HML service probes
+78d53b7 ops: finalize HermesOps HML phase 7 smoke reports
+966bf91 ops: run first HermesOps HML infra smoke test
+311b65b ops: define HermesOps HML smoke test plan without runtime
+b2b9194 ops: prepare HermesOps HML env runtime readiness without runtime
+00414b9 infra: promote HermesOps compose to canonical config
+7bb69b7 infra: audit and fix HermesOps HML compose config
+63d264a (tag: hml-selective-migration-baseline-20260608-104531) baseline: initialize HML selective migration state
+
+== HEAD ==
+5694f06e235c859de9e75fb257cc5919adde0058
+
+== RC2 package ==
+OK RC2_PACKAGE
+
+== Runtime current ps, read-only ==

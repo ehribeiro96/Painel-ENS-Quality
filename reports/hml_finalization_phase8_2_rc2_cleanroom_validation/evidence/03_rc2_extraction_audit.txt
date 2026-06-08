@@ -1,0 +1,56 @@
+== Extracted tree ==
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/alembic
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/config
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/docs
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/docs/hermesops
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/docs/templates
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/frontend
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/infra
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/infra/hermesops
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/infra/nginx
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_finalization_audit
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_finalization_phase8_1_full_scope_consolidation
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase1
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase2
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase3
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase4
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase4_1_git_baseline
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase5_1_compose_promotion
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase5_compose_config
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase6_1_smoke_plan
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase6_env_runtime_readiness
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase7_1_functional_probes
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase7_1b_docker_runtime_audit
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase7_1c_native_docker_migration_plan
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase7_2_healthchecks
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/reports/hml_selective_migration_phase7_first_smoke
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/scripts
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/scripts/ops
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/src
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/src/api
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/src/config
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/src/legacy
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/tests
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/tests/fixtures
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/tests/ui
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/tools
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/tools/hermes
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/tools/hermesops_offline
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/tools/hmlops_cli
+
+== Required paths ==
+OK backend
+OK frontend/itam-platform
+OK docker-compose.yml
+OK pyproject.toml
+OK requirements.txt
+OK run.py
+OK tests
+OK infra/hermesops
+OK docs

@@ -1,0 +1,2 @@
+== YAML validation clean-room ==
+YAML_OK

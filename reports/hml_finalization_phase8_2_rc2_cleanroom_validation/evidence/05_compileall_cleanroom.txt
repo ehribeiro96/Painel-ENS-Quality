@@ -1,0 +1,2 @@
+== compileall clean-room ==
+rc=0

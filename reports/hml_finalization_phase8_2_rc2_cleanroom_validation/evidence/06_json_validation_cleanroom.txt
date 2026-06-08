@@ -1,0 +1,2 @@
+== JSON validation clean-room ==
+JSON_OK

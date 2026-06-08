@@ -1,0 +1,17 @@
+== Forbidden files in extracted RC2 ==
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/conflict_detection
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/conflict_detection/detector.py
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/future_ai
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/future_ai/README.md
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/merge_engine
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/merge_engine/policy.py
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/models.py
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/normalization
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/normalization/asset_normalizer.py
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/presets.py
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/schemas.py
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/service.py
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/validators
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/backend/app/domains/imports/validators/asset_validator.py
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/config/.env.example
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/infra/hermesops/.env.hml.example
