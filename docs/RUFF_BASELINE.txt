@@ -1,0 +1,920 @@
+backend\app\api\v1\dependencies\auth.py:19:56: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+17 | async def get_current_user(
+18 |     request: Request,
+19 |     credentials: HTTPAuthorizationCredentials | None = Depends(bearer),
+   |                                                        ^^^^^^^^^^^^^^^ B008
+20 |     session: AsyncSession = Depends(get_session),
+21 | ) -> User:
+   |
+
+backend\app\api\v1\dependencies\auth.py:20:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+18 |     request: Request,
+19 |     credentials: HTTPAuthorizationCredentials | None = Depends(bearer),
+20 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+21 | ) -> User:
+22 |     if credentials is None:
+   |
+
+backend\app\api\v1\dependencies\auth.py:41:56: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+39 | async def get_optional_current_user(
+40 |     request: Request,
+41 |     credentials: HTTPAuthorizationCredentials | None = Depends(bearer),
+   |                                                        ^^^^^^^^^^^^^^^ B008
+42 |     session: AsyncSession = Depends(get_session),
+43 | ) -> User | None:
+   |
+
+backend\app\api\v1\dependencies\auth.py:42:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+40 |     request: Request,
+41 |     credentials: HTTPAuthorizationCredentials | None = Depends(bearer),
+42 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+43 | ) -> User | None:
+44 |     if credentials is None:
+   |
+
+backend\app\api\v1\dependencies\auth.py:50:47: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+49 | def require_role(*roles: Role):
+50 |     async def dependency(current_user: User = Depends(get_current_user)) -> User:
+   |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+51 |         if current_user.role not in set(roles):
+52 |             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="permission_denied")
+   |
+
+backend\app\api\v1\routes\assets.py:29:41: B008 Do not perform function call `Query` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+27 |     page_size: int = Query(25, ge=1, le=200),
+28 |     search: str | None = None,
+29 |     status_filter: AssetStatus | None = Query(default=None, alias="status"),
+   |                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+30 |     asset_type: AssetType | None = None,
+31 |     location: str | None = None,
+   |
+
+backend\app\api\v1\routes\assets.py:35:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+33 |     sort_by: str = Query("updated_at", pattern="^(hostname|patrimony|serial|status|location|updated_at|created_at)$"),
+34 |     sort_order: str = Query("desc", pattern="^(asc|desc)$"),
+35 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+36 |     _: User = Depends(get_current_user),
+37 | ) -> Page[Asset]:
+   |
+
+backend\app\api\v1\routes\assets.py:36:15: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+34 |     sort_order: str = Query("desc", pattern="^(asc|desc)$"),
+35 |     session: AsyncSession = Depends(get_session),
+36 |     _: User = Depends(get_current_user),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+37 | ) -> Page[Asset]:
+38 |     return await AssetService(session).list(
+   |
+
+backend\app\api\v1\routes\assets.py:54:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+52 |     payload: AssetCreate,
+53 |     request: Request,
+54 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+55 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+56 | ) -> Asset:
+   |
+
+backend\app\api\v1\routes\assets.py:55:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+53 |     request: Request,
+54 |     session: AsyncSession = Depends(get_session),
+55 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+56 | ) -> Asset:
+57 |     async def operation() -> Asset:
+   |
+
+backend\app\api\v1\routes\assets.py:55:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+53 |     request: Request,
+54 |     session: AsyncSession = Depends(get_session),
+55 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+56 | ) -> Asset:
+57 |     async def operation() -> Asset:
+   |
+
+backend\app\api\v1\routes\assets.py:64:61: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+63 | @router.get("/{asset_id}", response_model=AssetRead)
+64 | async def get_asset(asset_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> Asset:
+   |                                                             ^^^^^^^^^^^^^^^^^^^^ B008
+65 |     asset = await AssetService(session).get(asset_id)
+66 |     if asset is None:
+   |
+
+backend\app\api\v1\routes\assets.py:64:93: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+63 | @router.get("/{asset_id}", response_model=AssetRead)
+64 | async def get_asset(asset_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> Asset:
+   |                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+65 |     asset = await AssetService(session).get(asset_id)
+66 |     if asset is None:
+   |
+
+backend\app\api\v1\routes\assets.py:76:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+74 |     payload: AssetUpdate,
+75 |     request: Request,
+76 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+77 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+78 | ) -> Asset:
+   |
+
+backend\app\api\v1\routes\assets.py:77:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+75 |     request: Request,
+76 |     session: AsyncSession = Depends(get_session),
+77 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+78 | ) -> Asset:
+79 |     service = AssetService(session)
+   |
+
+backend\app\api\v1\routes\assets.py:77:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+75 |     request: Request,
+76 |     session: AsyncSession = Depends(get_session),
+77 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+78 | ) -> Asset:
+79 |     service = AssetService(session)
+   |
+
+backend\app\api\v1\routes\assets.py:93:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+91 |     asset_id: UUID,
+92 |     request: Request,
+93 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+94 |     current_user: User = Depends(require_role(Role.ADMIN)),
+95 | ) -> None:
+   |
+
+backend\app\api\v1\routes\assets.py:94:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+92 |     request: Request,
+93 |     session: AsyncSession = Depends(get_session),
+94 |     current_user: User = Depends(require_role(Role.ADMIN)),
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+95 | ) -> None:
+96 |     service = AssetService(session)
+   |
+
+backend\app\api\v1\routes\assets.py:94:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+92 |     request: Request,
+93 |     session: AsyncSession = Depends(get_session),
+94 |     current_user: User = Depends(require_role(Role.ADMIN)),
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^ B008
+95 | ) -> None:
+96 |     service = AssetService(session)
+   |
+
+backend\app\api\v1\routes\assets.py:111:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+109 |     payload: AssetMove,
+110 |     request: Request,
+111 |     session: AsyncSession = Depends(get_session),
+    |                             ^^^^^^^^^^^^^^^^^^^^ B008
+112 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+113 | ) -> AssetMovement:
+    |
+
+backend\app\api\v1\routes\assets.py:112:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+110 |     request: Request,
+111 |     session: AsyncSession = Depends(get_session),
+112 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+113 | ) -> AssetMovement:
+114 |     service = AssetService(session)
+    |
+
+backend\app\api\v1\routes\assets.py:112:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+110 |     request: Request,
+111 |     session: AsyncSession = Depends(get_session),
+112 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+113 | ) -> AssetMovement:
+114 |     service = AssetService(session)
+    |
+
+backend\app\api\v1\routes\assets.py:130:65: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+129 | @router.get("/{asset_id}/history", response_model=list[MovementRead])
+130 | async def asset_history(asset_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[As…
+    |                                                                 ^^^^^^^^^^^^^^^^^^^^ B008
+131 |     result = await session.execute(select(AssetMovement).where(AssetMovement.asset_id == asset_id).order_by(AssetMovement.created_at.…
+132 |     return list(result.scalars())
+    |
+
+backend\app\api\v1\routes\assets.py:130:97: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+129 | @router.get("/{asset_id}/history", response_model=list[MovementRead])
+130 | async def asset_history(asset_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[As…
+    |                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+131 |     result = await session.execute(select(AssetMovement).where(AssetMovement.asset_id == asset_id).order_by(AssetMovement.created_at.…
+132 |     return list(result.scalars())
+    |
+
+backend\app\api\v1\routes\audit.py:21:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+19 |     page: int = Query(1, ge=1),
+20 |     page_size: int = Query(25, ge=1, le=100),
+21 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+22 |     _: User = Depends(require_role(Role.ADMIN, Role.MANAGER)),
+23 | ) -> Page[AuditLog]:
+   |
+
+backend\app\api\v1\routes\audit.py:22:15: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+20 |     page_size: int = Query(25, ge=1, le=100),
+21 |     session: AsyncSession = Depends(get_session),
+22 |     _: User = Depends(require_role(Role.ADMIN, Role.MANAGER)),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+23 | ) -> Page[AuditLog]:
+24 |     params = PageParams(page=page, page_size=page_size)
+   |
+
+backend\app\api\v1\routes\audit.py:22:23: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+20 |     page_size: int = Query(25, ge=1, le=100),
+21 |     session: AsyncSession = Depends(get_session),
+22 |     _: User = Depends(require_role(Role.ADMIN, Role.MANAGER)),
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+23 | ) -> Page[AuditLog]:
+24 |     params = PageParams(page=page, page_size=page_size)
+   |
+
+backend\app\api\v1\routes\auth.py:58:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+56 |     request: Request,
+57 |     response: Response,
+58 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+59 | ) -> TokenResponse:
+60 |     user = await session.scalar(select(User).where(User.email == payload.email, User.deleted_at.is_(None)))
+   |
+
+backend\app\api\v1\routes\auth.py:91:81: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+90 | @router.post("/refresh", response_model=TokenResponse)
+91 | async def refresh(request: Request, response: Response, session: AsyncSession = Depends(get_session)) -> TokenResponse:
+   |                                                                                 ^^^^^^^^^^^^^^^^^^^^ B008
+92 |     refresh_token = request.cookies.get(settings.refresh_cookie_name)
+93 |     if not refresh_token:
+   |
+
+backend\app\api\v1\routes\auth.py:125:33: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+123 |     request: Request,
+124 |     response: Response,
+125 |     current_user: User | None = Depends(get_optional_current_user),
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+126 |     session: AsyncSession = Depends(get_session),
+127 | ) -> dict[str, str]:
+    |
+
+backend\app\api\v1\routes\auth.py:126:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+124 |     response: Response,
+125 |     current_user: User | None = Depends(get_optional_current_user),
+126 |     session: AsyncSession = Depends(get_session),
+    |                             ^^^^^^^^^^^^^^^^^^^^ B008
+127 | ) -> dict[str, str]:
+128 |     refresh_token = request.cookies.get(settings.refresh_cookie_name)
+    |
+
+backend\app\api\v1\routes\auth.py:148:35: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+147 | @router.get("/me", response_model=UserRead)
+148 | async def me(current_user: User = Depends(get_current_user)) -> User:
+    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+149 |     return current_user
+    |
+
+backend\app\api\v1\routes\dashboard.py:16:43: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+15 | @router.get("/summary")
+16 | async def summary(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> dict[str, int]:
+   |                                           ^^^^^^^^^^^^^^^^^^^^ B008
+17 |     return await DashboardService(session).summary()
+   |
+
+backend\app\api\v1\routes\dashboard.py:16:75: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+15 | @router.get("/summary")
+16 | async def summary(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> dict[str, int]:
+   |                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+17 |     return await DashboardService(session).summary()
+   |
+
+backend\app\api\v1\routes\dashboard.py:21:52: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+20 | @router.get("/assets-by-status")
+21 | async def assets_by_status(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[dict[str, str | …
+   |                                                    ^^^^^^^^^^^^^^^^^^^^ B008
+22 |     return await DashboardService(session).group_by("status")
+   |
+
+backend\app\api\v1\routes\dashboard.py:21:84: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+20 | @router.get("/assets-by-status")
+21 | async def assets_by_status(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[dict[str, str | …
+   |                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+22 |     return await DashboardService(session).group_by("status")
+   |
+
+backend\app\api\v1\routes\dashboard.py:26:50: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+25 | @router.get("/assets-by-type")
+26 | async def assets_by_type(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[dict[str, str | in…
+   |                                                  ^^^^^^^^^^^^^^^^^^^^ B008
+27 |     return await DashboardService(session).group_by("asset_type")
+   |
+
+backend\app\api\v1\routes\dashboard.py:26:82: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+25 | @router.get("/assets-by-type")
+26 | async def assets_by_type(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[dict[str, str | in…
+   |                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+27 |     return await DashboardService(session).group_by("asset_type")
+   |
+
+backend\app\api\v1\routes\dashboard.py:31:52: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+30 | @router.get("/recent-movements", response_model=list[MovementRead])
+31 | async def recent_movements(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[AssetMovement]:
+   |                                                    ^^^^^^^^^^^^^^^^^^^^ B008
+32 |     return await DashboardService(session).recent_movements()
+   |
+
+backend\app\api\v1\routes\dashboard.py:31:84: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+30 | @router.get("/recent-movements", response_model=list[MovementRead])
+31 | async def recent_movements(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[AssetMovement]:
+   |                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+32 |     return await DashboardService(session).recent_movements()
+   |
+
+backend\app\api\v1\routes\imports.py:40:24: B008 Do not perform function call `File` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+38 | async def import_lansweeper(
+39 |     request: Request,
+40 |     file: UploadFile = File(...),
+   |                        ^^^^^^^^^ B008
+41 |     import_mode: str = Form("INITIAL_LOAD"),
+42 |     session: AsyncSession = Depends(get_session),
+   |
+
+backend\app\api\v1\routes\imports.py:42:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+40 |     file: UploadFile = File(...),
+41 |     import_mode: str = Form("INITIAL_LOAD"),
+42 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+43 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+44 | ) -> ImportJob:
+   |
+
+backend\app\api\v1\routes\imports.py:43:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+41 |     import_mode: str = Form("INITIAL_LOAD"),
+42 |     session: AsyncSession = Depends(get_session),
+43 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+44 | ) -> ImportJob:
+45 |     try:
+   |
+
+backend\app\api\v1\routes\imports.py:43:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+41 |     import_mode: str = Form("INITIAL_LOAD"),
+42 |     session: AsyncSession = Depends(get_session),
+43 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+44 | ) -> ImportJob:
+45 |     try:
+   |
+
+backend\app\api\v1\routes\imports.py:57:24: B008 Do not perform function call `File` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+55 | async def upload_spreadsheet(
+56 |     request: Request,
+57 |     file: UploadFile = File(...),
+   |                        ^^^^^^^^^ B008
+58 |     import_mode: str = Form("INITIAL_LOAD"),
+59 |     session: AsyncSession = Depends(get_session),
+   |
+
+backend\app\api\v1\routes\imports.py:59:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+57 |     file: UploadFile = File(...),
+58 |     import_mode: str = Form("INITIAL_LOAD"),
+59 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+60 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+61 | ) -> ImportJob:
+   |
+
+backend\app\api\v1\routes\imports.py:60:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+58 |     import_mode: str = Form("INITIAL_LOAD"),
+59 |     session: AsyncSession = Depends(get_session),
+60 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+61 | ) -> ImportJob:
+62 |     try:
+   |
+
+backend\app\api\v1\routes\imports.py:60:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+58 |     import_mode: str = Form("INITIAL_LOAD"),
+59 |     session: AsyncSession = Depends(get_session),
+60 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+61 | ) -> ImportJob:
+62 |     try:
+   |
+
+backend\app\api\v1\routes\imports.py:75:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+73 |     page: int = Query(1, ge=1),
+74 |     page_size: int = Query(25, ge=1, le=100),
+75 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+76 |     _: User = Depends(get_current_user),
+77 | ) -> Page[ImportJob]:
+   |
+
+backend\app\api\v1\routes\imports.py:76:15: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+74 |     page_size: int = Query(25, ge=1, le=100),
+75 |     session: AsyncSession = Depends(get_session),
+76 |     _: User = Depends(get_current_user),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+77 | ) -> Page[ImportJob]:
+78 |     params = PageParams(page=page, page_size=page_size)
+   |
+
+backend\app\api\v1\routes\imports.py:85:63: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+84 | @router.get("/{import_id}", response_model=ImportJobRead)
+85 | async def get_import(import_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> ImportJob:
+   |                                                               ^^^^^^^^^^^^^^^^^^^^ B008
+86 |     return await _get_import_or_404(import_id, session)
+   |
+
+backend\app\api\v1\routes\imports.py:85:95: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+84 | @router.get("/{import_id}", response_model=ImportJobRead)
+85 | async def get_import(import_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> ImportJob:
+   |                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+86 |     return await _get_import_or_404(import_id, session)
+   |
+
+backend\app\api\v1\routes\imports.py:93:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+91 |     import_id: UUID,
+92 |     limit: int = Query(20, ge=1, le=50),
+93 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+94 |     _: User = Depends(get_current_user),
+95 | ) -> ImportPreview:
+   |
+
+backend\app\api\v1\routes\imports.py:94:15: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+92 |     limit: int = Query(20, ge=1, le=50),
+93 |     session: AsyncSession = Depends(get_session),
+94 |     _: User = Depends(get_current_user),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+95 | ) -> ImportPreview:
+96 |     job = await _get_import_or_404(import_id, session)
+   |
+
+backend\app\api\v1\routes\imports.py:118:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+116 |     page_size: int = Query(50, ge=1, le=200),
+117 |     decision: str | None = None,
+118 |     session: AsyncSession = Depends(get_session),
+    |                             ^^^^^^^^^^^^^^^^^^^^ B008
+119 |     _: User = Depends(get_current_user),
+120 | ) -> Page[ImportStagingAssetRead]:
+    |
+
+backend\app\api\v1\routes\imports.py:119:15: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+117 |     decision: str | None = None,
+118 |     session: AsyncSession = Depends(get_session),
+119 |     _: User = Depends(get_current_user),
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+120 | ) -> Page[ImportStagingAssetRead]:
+121 |     params = PageParams(page=page, page_size=page_size)
+    |
+
+backend\app\api\v1\routes\imports.py:138:73: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+137 | @router.get("/{import_id}/conflicts", response_model=list[ImportConflictRead])
+138 | async def get_import_conflicts(import_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) ->…
+    |                                                                         ^^^^^^^^^^^^^^^^^^^^ B008
+139 |     result = await session.execute(
+140 |         select(ImportConflict)
+    |
+
+backend\app\api\v1\routes\imports.py:138:105: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+137 | …list[ImportConflictRead])
+138 | …on: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[ImportConflict]:
+    |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+139 | …
+140 | …
+    |
+
+backend\app\api\v1\routes\imports.py:150:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+148 | async def get_import_validation_errors(
+149 |     import_id: UUID,
+150 |     session: AsyncSession = Depends(get_session),
+    |                             ^^^^^^^^^^^^^^^^^^^^ B008
+151 |     _: User = Depends(get_current_user),
+152 | ) -> list[ImportValidationError]:
+    |
+
+backend\app\api\v1\routes\imports.py:151:15: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+149 |     import_id: UUID,
+150 |     session: AsyncSession = Depends(get_session),
+151 |     _: User = Depends(get_current_user),
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+152 | ) -> list[ImportValidationError]:
+153 |     result = await session.execute(
+    |
+
+backend\app\api\v1\routes\imports.py:166:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+164 |     payload: ImportMappingUpdate,
+165 |     request: Request,
+166 |     session: AsyncSession = Depends(get_session),
+    |                             ^^^^^^^^^^^^^^^^^^^^ B008
+167 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+168 | ) -> ImportJob:
+    |
+
+backend\app\api\v1\routes\imports.py:167:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+165 |     request: Request,
+166 |     session: AsyncSession = Depends(get_session),
+167 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+168 | ) -> ImportJob:
+169 |     job = await _get_import_or_404(import_id, session)
+    |
+
+backend\app\api\v1\routes\imports.py:167:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+165 |     request: Request,
+166 |     session: AsyncSession = Depends(get_session),
+167 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+168 | ) -> ImportJob:
+169 |     job = await _get_import_or_404(import_id, session)
+    |
+
+backend\app\api\v1\routes\imports.py:181:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+179 |     import_id: UUID,
+180 |     request: Request,
+181 |     session: AsyncSession = Depends(get_session),
+    |                             ^^^^^^^^^^^^^^^^^^^^ B008
+182 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+183 | ) -> ImportApplyResponse:
+    |
+
+backend\app\api\v1\routes\imports.py:182:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+180 |     request: Request,
+181 |     session: AsyncSession = Depends(get_session),
+182 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+183 | ) -> ImportApplyResponse:
+184 |     job = await _get_import_or_404(import_id, session)
+    |
+
+backend\app\api\v1\routes\imports.py:182:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+180 |     request: Request,
+181 |     session: AsyncSession = Depends(get_session),
+182 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+183 | ) -> ImportApplyResponse:
+184 |     job = await _get_import_or_404(import_id, session)
+    |
+
+backend\app\api\v1\routes\imports.py:199:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+197 |     import_id: UUID,
+198 |     request: Request,
+199 |     session: AsyncSession = Depends(get_session),
+    |                             ^^^^^^^^^^^^^^^^^^^^ B008
+200 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+201 | ) -> ImportJob:
+    |
+
+backend\app\api\v1\routes\imports.py:200:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+198 |     request: Request,
+199 |     session: AsyncSession = Depends(get_session),
+200 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+201 | ) -> ImportJob:
+202 |     job = await _get_import_or_404(import_id, session)
+    |
+
+backend\app\api\v1\routes\imports.py:200:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+198 |     request: Request,
+199 |     session: AsyncSession = Depends(get_session),
+200 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+201 | ) -> ImportJob:
+202 |     job = await _get_import_or_404(import_id, session)
+    |
+
+backend\app\api\v1\routes\imports.py:213:70: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+212 | @router.get("/{import_id}/report")
+213 | async def get_import_report(import_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> di…
+    |                                                                      ^^^^^^^^^^^^^^^^^^^^ B008
+214 |     job = await _get_import_or_404(import_id, session)
+215 |     return {"import_id": str(job.id), "status": job.status, "report": job.report}
+    |
+
+backend\app\api\v1\routes\imports.py:213:102: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+    |
+212 | …
+213 | …on: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> dict:
+    |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+214 | …ion)
+215 | …b.status, "report": job.report}
+    |
+
+backend\app\api\v1\routes\search.py:18:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+16 |     q: str = Query(..., min_length=2, max_length=120),
+17 |     limit: int = Query(8, ge=1, le=20),
+18 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+19 |     _: User = Depends(get_current_user),
+20 | ) -> dict[str, object]:
+   |
+
+backend\app\api\v1\routes\search.py:19:15: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+17 |     limit: int = Query(8, ge=1, le=20),
+18 |     session: AsyncSession = Depends(get_session),
+19 |     _: User = Depends(get_current_user),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+20 | ) -> dict[str, object]:
+21 |     term = f"%{q.strip()}%"
+   |
+
+backend\app\api\v1\routes\signatures.py:22:68: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+21 | @router.get("/{user_id}", response_class=HTMLResponse)
+22 | async def preview_signature(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> str:
+   |                                                                    ^^^^^^^^^^^^^^^^^^^^ B008
+23 |     user = await UserService(session).get(user_id)
+24 |     if user is None:
+   |
+
+backend\app\api\v1\routes\signatures.py:22:100: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+21 | @router.get("/{user_id}", response_class=HTMLResponse)
+22 | async def preview_signature(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> str:
+   |                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+23 |     user = await UserService(session).get(user_id)
+24 |     if user is None:
+   |
+
+backend\app\api\v1\routes\signatures.py:33:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+31 |     user_id: UUID,
+32 |     request: Request,
+33 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+34 |     current_user: User = Depends(get_current_user),
+35 | ) -> str:
+   |
+
+backend\app\api\v1\routes\signatures.py:34:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+32 |     request: Request,
+33 |     session: AsyncSession = Depends(get_session),
+34 |     current_user: User = Depends(get_current_user),
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+35 | ) -> str:
+36 |     user = await UserService(session).get(user_id)
+   |
+
+backend\app\api\v1\routes\signatures.py:55:69: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+54 | @router.get("/{user_id}/download-html", response_class=HTMLResponse)
+55 | async def download_signature(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> HTML…
+   |                                                                     ^^^^^^^^^^^^^^^^^^^^ B008
+56 |     user = await UserService(session).get(user_id)
+57 |     if user is None:
+   |
+
+backend\app\api\v1\routes\signatures.py:55:101: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+54 | …class=HTMLResponse)
+55 | …on: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> HTMLResponse:
+   |                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+56 | …)
+57 | …
+   |
+
+backend\app\api\v1\routes\users.py:29:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+27 |     page_size: int = Query(25, ge=1, le=100),
+28 |     search: str | None = None,
+29 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+30 |     _: User = Depends(get_current_user),
+31 | ) -> Page[User]:
+   |
+
+backend\app\api\v1\routes\users.py:30:15: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+28 |     search: str | None = None,
+29 |     session: AsyncSession = Depends(get_session),
+30 |     _: User = Depends(get_current_user),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+31 | ) -> Page[User]:
+32 |     return await UserService(session).list(PageParams(page=page, page_size=page_size), search)
+   |
+
+backend\app\api\v1\routes\users.py:39:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+37 |     payload: UserCreate,
+38 |     request: Request,
+39 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+40 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+41 | ) -> User:
+   |
+
+backend\app\api\v1\routes\users.py:40:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+38 |     request: Request,
+39 |     session: AsyncSession = Depends(get_session),
+40 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+41 | ) -> User:
+42 |     async def operation() -> User:
+   |
+
+backend\app\api\v1\routes\users.py:40:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+38 |     request: Request,
+39 |     session: AsyncSession = Depends(get_session),
+40 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+41 | ) -> User:
+42 |     async def operation() -> User:
+   |
+
+backend\app\api\v1\routes\users.py:49:59: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+48 | @router.get("/{user_id}", response_model=UserRead)
+49 | async def get_user(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> User:
+   |                                                           ^^^^^^^^^^^^^^^^^^^^ B008
+50 |     user = await UserService(session).get(user_id)
+51 |     if user is None:
+   |
+
+backend\app\api\v1\routes\users.py:49:91: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+48 | @router.get("/{user_id}", response_model=UserRead)
+49 | async def get_user(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> User:
+   |                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+50 |     user = await UserService(session).get(user_id)
+51 |     if user is None:
+   |
+
+backend\app\api\v1\routes\users.py:61:29: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+59 |     payload: UserUpdate,
+60 |     request: Request,
+61 |     session: AsyncSession = Depends(get_session),
+   |                             ^^^^^^^^^^^^^^^^^^^^ B008
+62 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+63 | ) -> User:
+   |
+
+backend\app\api\v1\routes\users.py:62:26: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+60 |     request: Request,
+61 |     session: AsyncSession = Depends(get_session),
+62 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+63 | ) -> User:
+64 |     service = UserService(session)
+   |
+
+backend\app\api\v1\routes\users.py:62:34: B008 Do not perform function call `require_role` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+60 |     request: Request,
+61 |     session: AsyncSession = Depends(get_session),
+62 |     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+63 | ) -> User:
+64 |     service = UserService(session)
+   |
+
+backend\app\api\v1\routes\users.py:75:62: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+74 | @router.get("/{user_id}/assets", response_model=list[AssetRead])
+75 | async def user_assets(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[Asset]:
+   |                                                              ^^^^^^^^^^^^^^^^^^^^ B008
+76 |     result = await session.execute(
+77 |         select(Asset)
+   |
+
+backend\app\api\v1\routes\users.py:75:94: B008 Do not perform function call `Depends` in argument defaults; instead, perform the call within the function, or read the default from a module-level singleton variable
+   |
+74 | @router.get("/{user_id}/assets", response_model=list[AssetRead])
+75 | async def user_assets(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[Asset]:
+   |                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^ B008
+76 |     result = await session.execute(
+77 |         select(Asset)
+   |
+
+backend\app\core\database\base.py:14:31: F401 [*] `app.shared.models.Base` imported but unused
+   |
+12 | from app.domains.movements.models import AssetMovement  # noqa: F401
+13 | from app.domains.users.models import User  # noqa: F401
+14 | from app.shared.models import Base
+   |                               ^^^^ F401
+   |
+   = help: Remove unused import: `app.shared.models.Base`
+
+backend\app\core\security\jwt.py:12:30: UP017 [*] Use `datetime.UTC` alias
+   |
+11 | def create_access_token(subject: UUID, role: str) -> str:
+12 |     issued_at = datetime.now(timezone.utc)
+   |                              ^^^^^^^^^^^^ UP017
+13 |     expires_at = issued_at + timedelta(minutes=settings.access_token_minutes)
+14 |     payload = {
+   |
+   = help: Convert to `datetime.UTC` alias
+
+backend\app\shared\models.py:12:25: UP017 [*] Use `datetime.UTC` alias
+   |
+11 | def utc_now() -> datetime:
+12 |     return datetime.now(timezone.utc)
+   |                         ^^^^^^^^^^^^ UP017
+   |
+   = help: Convert to `datetime.UTC` alias
+
+backend\app\shared\snapshots.py:12:25: UP038 Use `X | Y` in `isinstance` call instead of `(X, Y)`
+   |
+10 |     if hasattr(value, "value"):
+11 |         return value.value
+12 |     if value is None or isinstance(value, (str, int, float, bool)):
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UP038
+13 |         return value
+14 |     return str(value)
+   |
+   = help: Convert to `X | Y`
+
+tests\test_imports_regression.py:3:21: F401 [*] `pathlib.Path` imported but unused
+  |
+1 | from __future__ import annotations
+2 |
+3 | from pathlib import Path
+  |                     ^^^^ F401
+4 | from uuid import uuid4
+  |
+  = help: Remove unused import: `pathlib.Path`
+
+Found 96 errors.
+[*] 4 fixable with the `--fix` option (1 hidden fix can be enabled with the `--unsafe-fixes` option).

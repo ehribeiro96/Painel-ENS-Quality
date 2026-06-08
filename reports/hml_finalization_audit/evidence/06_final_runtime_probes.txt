@@ -1,0 +1,10 @@
+== Postgres probe ==
+/var/run/postgresql:5432 - accepting connections
+1
+
+== Redis probe ==
+PONG
+
+== Qdrant probe ==
+all shards are ready
+{"result":{"collections":[]},"status":"ok","time":0.000084354}

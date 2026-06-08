@@ -1,0 +1,2 @@
+== Python compile backend/tools/tests ==
+rc=0

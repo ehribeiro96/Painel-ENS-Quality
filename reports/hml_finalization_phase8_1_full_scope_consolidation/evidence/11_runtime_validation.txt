@@ -1,0 +1,5 @@
+/var/run/postgresql:5432 - accepting connections
+1
+PONG
+all shards are ready
+{"result":{"collections":[]},"status":"ok","time":0.000172055}

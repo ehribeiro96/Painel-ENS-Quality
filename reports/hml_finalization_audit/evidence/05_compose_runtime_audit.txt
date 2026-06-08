@@ -1,0 +1,175 @@
+== Compose HML ==
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: hermesops_hml_qdrant
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:7333:6333"
+      - "127.0.0.1:7334:6334"
+    volumes:
+      - hermesops_hml_qdrant_storage:/qdrant/storage
+    networks:
+      - hermesops_hml_net
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: hermesops_hml_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-hermesops_hml}
+      POSTGRES_USER: ${POSTGRES_USER:-hermesops}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-CHANGE_ME_DO_NOT_COMMIT}
+    ports:
+      - "127.0.0.1:7433:5432"
+    volumes:
+      - hermesops_hml_postgres_data:/var/lib/postgresql/data
+    networks:
+      - hermesops_hml_net
+    healthcheck:
+      test: ["CMD-SHELL", 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  redis:
+    image: redis:7-alpine
+    container_name: hermesops_hml_redis
+    restart: unless-stopped
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    ports:
+      - "127.0.0.1:7380:6379"
+    volumes:
+      - hermesops_hml_redis_data:/data
+    networks:
+      - hermesops_hml_net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  hermesops_hml_qdrant_storage:
+    name: hermesops_hml_qdrant_storage
+  hermesops_hml_postgres_data:
+    name: hermesops_hml_postgres_data
+  hermesops_hml_redis_data:
+    name: hermesops_hml_redis_data
+
+networks:
+  hermesops_hml_net:
+    name: hermesops_hml_net
+
+== Compose config (sanitized) ==
+name: hermesops_hml
+services:
+  postgres:
+    container_name: hermesops_hml_postgres
+    environment:
+      POSTGRES_DB: hermesops_hml
+      POSTGRES_PASSWORD: ***REDACTED***
+      POSTGRES_USER: hermesops
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"
+      timeout: 5s
+      interval: 10s
+      retries: 5
+      start_period: 20s
+    image: postgres:16-alpine
+    networks:
+      hermesops_hml_net: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 5432
+        published: "7433"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: hermesops_hml_postgres_data
+        target: /var/lib/postgresql/data
+        volume: {}
+  qdrant:
+    container_name: hermesops_hml_qdrant
+    image: qdrant/qdrant:latest
+    networks:
+      hermesops_hml_net: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 6333
+        published: "7333"
+        protocol: tcp
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 6334
+        published: "7334"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: hermesops_hml_qdrant_storage
+        target: /qdrant/storage
+        volume: {}
+  redis:
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+    container_name: hermesops_hml_redis
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      timeout: 5s
+      interval: 10s
+      retries: 5
+      start_period: 10s
+    image: redis:7-alpine
+    networks:
+      hermesops_hml_net: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 6379
+        published: "7380"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: hermesops_hml_redis_data
+        target: /data
+        volume: {}
+networks:
+  hermesops_hml_net:
+    name: hermesops_hml_net
+volumes:
+  hermesops_hml_postgres_data:
+    name: hermesops_hml_postgres_data
+  hermesops_hml_qdrant_storage:
+    name: hermesops_hml_qdrant_storage
+  hermesops_hml_redis_data:
+    name: hermesops_hml_redis_data
+
+== Compose ps ==
+NAME                     IMAGE                  COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+hermesops_hml_postgres   postgres:16-alpine     "docker-entrypoint.s…"   postgres   43 minutes ago   Up 43 minutes (healthy)   127.0.0.1:7433->5432/tcp
+hermesops_hml_qdrant     qdrant/qdrant:latest   "./entrypoint.sh"        qdrant     2 hours ago      Up 2 hours                127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+hermesops_hml_redis      redis:7-alpine         "docker-entrypoint.s…"   redis      43 minutes ago   Up 43 minutes (healthy)   127.0.0.1:7380->6379/tcp
+
+== Inspect health ==
+Container: hermesops_hml_postgres
+Status=running Health=healthy RestartCount=0
+Container: hermesops_hml_redis
+Status=running Health=healthy RestartCount=0
+Container: hermesops_hml_qdrant
+Status=running Health=none RestartCount=0

@@ -1,0 +1,357 @@
+== Workspace ==
+/home/estevaoqualityadm/projects/Painel-ENS-Quality
+RJM22137
+estevaoqualityadm
+2026-06-08T13:29:03-03:00
+
+== Git status ==
+## main...origin/main
+?? .dockerignore
+?? .editorconfig
+?? .env.example
+?? .github/
+?? .vscode/
+?? _cleanup_backup_manifest.md
+?? _migration_proposals/
+?? assets/
+?? backend/
+?? config/
+?? data/
+?? docker-compose.yml
+?? docs/AI_CHAT_PROVIDER_OPENAI_REPORT.md
+?? docs/AI_CHAT_REAL_PROVIDER_LOCAL_TEST_REPORT.md
+?? docs/AI_CHAT_SECURITY_HARDENING_REPORT.md
+?? docs/ARCHITECTURE_REVIEW_ITAM.md
+?? docs/ASSETS_CRUD_REPORT.md
+?? docs/BACKUP_RESTORE_RUNBOOK.md
+?? docs/BASE44_PRINTS_UX_REFERENCE.md
+?? docs/CODE_LIFECYCLE.md
+?? docs/COLLABORATORS_CRUD_REPORT.md
+?? docs/DEPENDENCY_STRATEGY.md
+?? docs/HERMES_SELF_CONFIG_HARDENING_PLAN.md
+?? docs/HERMES_SELF_CONFIG_MIGRATION_REPORT.md
+?? docs/IMPORT_PIPELINE_REVIEW.md
+?? docs/INTERNAL_RC_UAT_REPORT.md
+?? docs/KNOWN_ISSUES.md
+?? docs/LANSWEEPER_CONFLICT_REVIEW_REPORT.md
+?? docs/LANSWEEPER_IMPORT_FIX_REPORT.md
+?? docs/LEGACY_ENS_DB_INVENTORY.md
+?? docs/LEGACY_ENS_DB_PRE_APPLY_REVIEW.md
+?? docs/LEGACY_ENS_DB_TO_POSTGRES_MAPPING.md
+?? docs/LEGACY_ENS_DB_UAT_DRYRUN_REPORT.md
+?? docs/LEGACY_FLASK_REFACTOR_PLAN.md
+?? docs/LEGACY_SIGNATURE_STATIC_INVENTORY.md
+?? docs/MACROS_APPLY_UAT_REPORT.md
+?? docs/MACROS_END_TO_END_UAT_REPORT.md
+?? docs/MACROS_MODULE_PLAN.md
+?? docs/MACROS_TECHNICIAN_ASSISTED_UAT_REPORT.md
+?? docs/MACROS_UAT_OPERATIONAL_REPORT.md
+?? docs/MONOLITHIC_ARCHITECTURE.md
+?? docs/OPERATIONAL_TEST_MATRIX.md
+?? docs/OPERATIONAL_VALIDATION_REPORT.md
+?? docs/PROJECT_CLEANUP_AUDIT.md
+?? docs/PROJECT_HYGIENE_REMEDIATION_PLAN.md
+?? docs/QUALITY_MACROS_PROJECT_INVENTORY.md
+?? docs/README_HYBRID.md
+?? docs/REGRESSION_SAFETY_SUITE.md
+?? docs/RELEASE_CANDIDATE_CHECKLIST.md
+?? docs/RUFF_BASELINE.txt
+?? docs/RUFF_VALIDATION_REPORT.md
+?? docs/RUNTIME_FIXES_REPORT.md
+?? docs/SECURITY_SANITIZATION_REPORT.md
+?? docs/SIGNATURES_FIX_REPORT.md
+?? docs/SIGNATURE_ENGINE_EXTRACTION_REPORT.md
+?? docs/SPREADSHEET_IMPORT_PIPELINE.md
+?? docs/SPREADSHEET_IMPORT_UAT_REPORT.md
+?? docs/STARTUP_FAILURE_DIAGNOSTIC.md
+?? docs/UAT_EVIDENCE_TEMPLATE.md
+?? docs/UAT_EXECUTION_REPORT.md
+?? docs/UAT_EXECUTION_SCRIPT.md
+?? docs/UAT_FACILITATOR_CHECKLIST.md
+?? docs/UAT_FEEDBACK_FORM.md
+?? docs/UAT_PLAN.md
+?? docs/UAT_SCENARIOS.md
+?? docs/UAT_SECURITY_CHECKLIST.md
+?? docs/UNIFIED_POSTGRES_SIGNATURE_ASSET_ARCHITECTURE.md
+?? docs/UX_OPERATIONAL_REVIEW.md
+?? docs/UX_UI_POLISH_REPORT.md
+?? docs/templates/
+?? docx_sample.md
+?? docx_template_output.md
+?? frontend/
+?? imports/
+?? infra/README.md
+?? infra/nginx/
+?? pptx_sample.md
+?? pptx_template_output.md
+?? pyproject.toml
+?? reports/hml_finalization_audit/
+?? reports/hml_import_audit/
+?? reports/hml_migration_unification_audit/
+?? reports/hml_selective_migration_phase4_2_remote_release_policy/
+?? reports/hml_selective_migration_phase7_1_functional_probes/evidence/
+?? reports/hml_selective_migration_phase7_1b_docker_runtime_audit/evidence/
+?? reports/hml_selective_migration_phase7_1c_native_docker_migration_plan/evidence/
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/00_approval_gate.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/01_base_audit.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/02_backup_manifest.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/03_docker_state_before_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/04_docker_compose_config_pre_up.rc
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/04_docker_compose_config_pre_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/05_compose_config_pre_up_sanitized_summary.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/06_docker_compose_up_d.rc
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/06_docker_compose_up_d.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/07_observation_60s.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/08_compose_ps_after_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/09_compose_logs_tail_200.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/10_docker_state_after_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/11_health_restart_check.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/12_ports_after_up.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/13_log_secret_scan.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/14_log_critical_error_scan.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/15_composio_non_execution_check.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/16_hmlops_phase7_validation.rc
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/16_hmlops_phase7_validation.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/17_phase7_sha256_check.txt
+?? reports/hml_selective_migration_phase7_first_smoke/evidence/18_final_git_status.txt
+?? reports/hml_selective_migration_plan/
+?? requirements-dev.txt
+?? requirements-legacy.txt
+?? requirements-lock.txt
+?? requirements.txt
+?? run.py
+?? scripts/create-local-secrets.ps1
+?? scripts/import_colaboradores_json_to_macro_hints.py
+?? scripts/import_legacy_ens_db_to_postgres.py
+?? scripts/import_macros_json_to_postgres.py
+?? scripts/import_quality_macros_to_postgres.py
+?? scripts/ops/
+?? src/
+?? tests/
+?? tools/hermes/
+
+== Git log ==
+4c62932 (HEAD -> main, origin/main) docs: refresh phase 7.2 final git status evidence
+02f9910 docs: add phase 7.2 final git status evidence
+11cfb91 ops: apply HermesOps HML healthchecks
+08c50cb ops: plan native Docker Engine migration for HermesOps HML
+213e09b ops: audit Docker runtime portability for HermesOps HML
+5d8b768 ops: validate HermesOps HML service probes
+78d53b7 ops: finalize HermesOps HML phase 7 smoke reports
+966bf91 ops: run first HermesOps HML infra smoke test
+311b65b ops: define HermesOps HML smoke test plan without runtime
+b2b9194 ops: prepare HermesOps HML env runtime readiness without runtime
+00414b9 infra: promote HermesOps compose to canonical config
+7bb69b7 infra: audit and fix HermesOps HML compose config
+63d264a (tag: hml-selective-migration-baseline-20260608-104531) baseline: initialize HML selective migration state
+
+== HEAD ==
+4c62932d48b7a032e4aaa7ee0cbfa53d2894f93e
+
+== Top-level tree ==
+.
+./.agents
+./.codex
+./.codex-remote-attachments
+./.codex-remote-attachments/019e2c8d-b64e-7952-817c-ce1ed0f15551
+./.git
+./.git/branches
+./.git/hooks
+./.git/info
+./.git/logs
+./.git/objects
+./.git/refs
+./.github
+./.github/workflows
+./.ruff_cache
+./.ruff_cache/0.15.16
+./.venv
+./.venv/bin
+./.venv/include
+./.venv/lib
+./.vscode
+./_backup
+./_backup/finalization_audit_20260608-132708
+./_backup/selective_migration_phase1_20260608-094550
+./_backup/selective_migration_phase2_20260608-100151
+./_backup/selective_migration_phase3_20260608-103244
+./_backup/selective_migration_phase4_1_git_baseline_20260608-104207
+./_backup/selective_migration_phase4_1_git_baseline_20260608-104314
+./_backup/selective_migration_phase4_20260608-103657
+./_backup/selective_migration_phase4_2_remote_release_policy_20260608-110000
+./_backup/selective_migration_phase5_1_compose_promotion_20260608-110648
+./_backup/selective_migration_phase5_compose_config_20260608-105904
+./_backup/selective_migration_phase5_compose_config_20260608-105912
+./_backup/selective_migration_phase6_1_smoke_plan_20260608-112945
+./_backup/selective_migration_phase6_env_runtime_readiness_20260608-111741
+./_backup/selective_migration_phase7_1_functional_probes_20260608-121915
+./_backup/selective_migration_phase7_1b_docker_runtime_audit_20260608-122940
+./_backup/selective_migration_phase7_1c_native_docker_migration_plan_20260608-123449
+./_backup/selective_migration_phase7_2_healthchecks_20260608-124409
+./_backup/selective_migration_phase7_2_healthchecks_20260608-124430
+./_backup/selective_migration_phase7_first_smoke_20260608-114541
+./_backup/selective_migration_phase7_first_smoke_20260608-120253
+./_migration_proposals
+./_migration_proposals/hermesops_selective_migration
+./assets
+./assets/legacy
+./assets/static
+./assets/templates
+./backend
+./backend/alembic
+./backend/app
+./backups
+./config
+./data
+./data/backups
+./data/previews
+./docs
+./docs/hermesops
+./docs/templates
+./exports
+./exports/final_release_candidate
+./exports/final_release_candidate_staging
+./exports/git_baseline_release
+./exports/hml_sanitized_release
+./frontend
+./frontend/itam-platform
+./frontend/legacy
+./imports
+./imports/HermesOps-Final-Transfer
+./infra
+./infra/hermesops
+./infra/nginx
+./reports
+./reports/hml_finalization_audit
+./reports/hml_import_audit
+./reports/hml_migration_unification_audit
+./reports/hml_selective_migration_phase1
+./reports/hml_selective_migration_phase2
+./reports/hml_selective_migration_phase3
+./reports/hml_selective_migration_phase4
+./reports/hml_selective_migration_phase4_1_git_baseline
+./reports/hml_selective_migration_phase4_2_remote_release_policy
+./reports/hml_selective_migration_phase5_1_compose_promotion
+./reports/hml_selective_migration_phase5_compose_config
+./reports/hml_selective_migration_phase6_1_smoke_plan
+./reports/hml_selective_migration_phase6_env_runtime_readiness
+./reports/hml_selective_migration_phase7_1_functional_probes
+./reports/hml_selective_migration_phase7_1b_docker_runtime_audit
+./reports/hml_selective_migration_phase7_1c_native_docker_migration_plan
+./reports/hml_selective_migration_phase7_2_healthchecks
+./reports/hml_selective_migration_phase7_first_smoke
+./reports/hml_selective_migration_plan
+./scripts
+./scripts/__pycache__
+./scripts/ops
+./src
+./src/__pycache__
+./src/api
+./src/config
+./src/legacy
+./tests
+./tests/__pycache__
+./tests/fixtures
+./tests/ui
+./tools
+./tools/hermes
+./tools/hermesops_offline
+./tools/hmlops_cli
+./uat_evidence
+./uat_evidence/ai_chat_real_provider
+./uat_evidence/macros_import
+
+== File count by top-level ==
+  10928 .venv
+   8320 frontend
+   5587 imports
+   1789 _backup
+   1092 exports
+    580 _migration_proposals
+    563 reports
+    460 tools
+    369 docs
+    250 assets
+    230 data
+    218 backend
+     77 tests
+     67 .ruff_cache
+     33 src
+     25 scripts
+     17 uat_evidence
+      8 infra
+      5 .codex-remote-attachments
+      2 config
+      2 .github
+      1 run.py
+      1 requirements.txt
+      1 requirements-lock.txt
+      1 requirements-legacy.txt
+      1 requirements-dev.txt
+      1 pyproject.toml
+      1 pptx_template_output.md
+      1 pptx_sample.md
+      1 docx_template_output.md
+      1 docx_sample.md
+      1 docker-compose.yml
+      1 backups
+      1 _cleanup_backup_manifest.md
+      1 README.md
+      1 HERMES.md
+      1 AGENTS.md
+      1 .vscode
+      1 .gitignore
+      1 .env.example
+      1 .env.bak_20260603_132713
+      1 .env
+      1 .editorconfig
+      1 .dockerignore
+
+== Size by top-level ==
+4.0K	.agents
+4.0K	.codex
+4.0K	.dockerignore
+4.0K	.editorconfig
+4.0K	.env
+4.0K	.env.bak_20260603_132713
+4.0K	.env.example
+4.0K	.gitignore
+4.0K	AGENTS.md
+4.0K	HERMES.md
+4.0K	README.md
+4.0K	docker-compose.yml
+4.0K	docx_sample.md
+4.0K	docx_template_output.md
+4.0K	pptx_sample.md
+4.0K	pptx_template_output.md
+4.0K	pyproject.toml
+4.0K	requirements-dev.txt
+4.0K	requirements-legacy.txt
+4.0K	requirements-lock.txt
+4.0K	requirements.txt
+4.0K	run.py
+8.0K	.vscode
+12K	config
+16K	.github
+24K	_cleanup_backup_manifest.md
+44K	infra
+52K	backups
+80K	uat_evidence
+208K	scripts
+228K	.codex-remote-attachments
+276K	.ruff_cache
+600K	tests
+700K	src
+1.8M	backend
+2.1M	docs
+2.4M	tools
+2.9M	_migration_proposals
+7.5M	data
+11M	reports
+18M	assets
+24M	.git
+26M	_backup
+90M	exports
+135M	frontend
+152M	imports
+325M	.venv

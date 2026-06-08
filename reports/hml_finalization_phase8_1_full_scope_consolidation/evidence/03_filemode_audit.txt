@@ -1,0 +1,8 @@
+== core.fileMode ==
+true
+
+== diff summary ==
+
+== mode-only candidates ==
+
+== numstat ==

@@ -1,0 +1,17 @@
+# Direct dependencies for the legacy corporate signature portal.
+# Used by /assinaturas/ and /admin/ through src/legacy mounted in FastAPI.
+# Keep this file separate from backend/requirements.txt to avoid mixing
+# enterprise backend dependencies with preserved legacy runtime dependencies.
+
+Flask==3.1.2
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+Werkzeug==3.1.8
+
+pandas==2.2.3
+openpyxl==3.1.5
+python-docx>=0.8.11
+
+msal==1.36.0
+requests==2.34.2
+python-dotenv==1.2.2

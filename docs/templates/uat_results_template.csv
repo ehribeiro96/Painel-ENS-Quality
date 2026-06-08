@@ -1,0 +1,2 @@
+scenario_id,scenario_name,executor,role,date,start_time,end_time,status,severity,expected_result,actual_result,issue_id,evidence_path,business_impact,workaround,decision,notes
+UAT-001,Login,,,,,,,,,,,,,,,

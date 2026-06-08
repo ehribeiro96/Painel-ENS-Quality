@@ -1,0 +1,26 @@
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+src = ["backend/app", "tests"]
+exclude = [
+  "src/legacy",
+  "frontend",
+  "_archive_cleanup_candidates",
+  ".venv",
+  "uat_evidence",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501", "UP046", "UP047"]
+
+[tool.ruff.lint.per-file-ignores]
+"backend/app/api/v1/routes/*.py" = ["B008"]
+"backend/app/core/database/base.py" = ["F401"]
+"backend/app/shared/snapshots.py" = ["UP038"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_ignores = false
+exclude = "src/legacy|frontend|_archive_cleanup_candidates|uat_evidence"

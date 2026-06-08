@@ -1,0 +1,4 @@
+NAME                     IMAGE                  COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+hermesops_hml_postgres   postgres:16-alpine     "docker-entrypoint.s…"   postgres   52 minutes ago   Up 52 minutes (healthy)   127.0.0.1:7433->5432/tcp
+hermesops_hml_qdrant     qdrant/qdrant:latest   "./entrypoint.sh"        qdrant     2 hours ago      Up 2 hours                127.0.0.1:7333->6333/tcp, 127.0.0.1:7334->6334/tcp
+hermesops_hml_redis      redis:7-alpine         "docker-entrypoint.s…"   redis      52 minutes ago   Up 52 minutes (healthy)   127.0.0.1:7380->6379/tcp

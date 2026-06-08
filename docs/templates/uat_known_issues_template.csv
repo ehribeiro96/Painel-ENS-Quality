@@ -1,0 +1,2 @@
+issue_id,title,severity,area,reported_by,scenario_id,steps_to_reproduce,actual_result,expected_result,workaround,blocks_uat,blocks_release,status,owner,target_fix_version,notes
+UAT-KI-001,,,,,,,,,,,,Open,,,

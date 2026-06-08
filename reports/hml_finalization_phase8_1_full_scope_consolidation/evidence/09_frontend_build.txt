@@ -1,0 +1,13 @@
+
+> ens-itam-platform@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v6.4.2 building for production...
+transforming...
+✓ 1799 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                    0.41 kB │ gzip:   0.28 kB
+dist/_assets/index-DWjPlMri.css   41.76 kB │ gzip:   8.12 kB
+dist/_assets/index-C7FAk4R6.js   484.44 kB │ gzip: 145.45 kB
+✓ built in 2.65s

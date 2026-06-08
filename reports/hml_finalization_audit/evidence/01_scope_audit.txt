@@ -1,0 +1,60 @@
+== Tracked top-level ==
+    390 tools
+    374 reports
+    310 docs
+      5 infra
+      1 scripts
+      1 README.md
+      1 HERMES.md
+      1 AGENTS.md
+      1 .gitignore
+
+== Untracked top-level ==
+     58 docs
+     30 reports
+      6 scripts
+      2 infra
+      1 tools
+      1 tests
+      1 src
+      1 run.py
+      1 requirements.txt
+      1 requirements-lock.txt
+      1 requirements-legacy.txt
+      1 requirements-dev.txt
+      1 pyproject.toml
+      1 pptx_template_output.md
+      1 pptx_sample.md
+      1 imports
+      1 frontend
+      1 docx_template_output.md
+      1 docx_sample.md
+      1 docker-compose.yml
+      1 data
+      1 config
+      1 backend
+      1 assets
+      1 _migration_proposals
+      1 _cleanup_backup_manifest.md
+      1 .vscode
+      1 .github
+      1 .env.example
+      1 .editorconfig
+      1 .dockerignore
+
+== Important path tracking ==
+UNTRACKED_OR_PARTIAL backend
+UNTRACKED_OR_PARTIAL frontend
+UNTRACKED_OR_PARTIAL docker-compose.yml
+UNTRACKED_OR_PARTIAL requirements.txt
+UNTRACKED_OR_PARTIAL requirements-dev.txt
+UNTRACKED_OR_PARTIAL requirements-lock.txt
+UNTRACKED_OR_PARTIAL pyproject.toml
+UNTRACKED_OR_PARTIAL run.py
+UNTRACKED_OR_PARTIAL src
+UNTRACKED_OR_PARTIAL tests
+TRACKED infra/hermesops
+TRACKED docs/hermesops
+TRACKED tools/hmlops_cli
+TRACKED tools/hermesops_offline
+TRACKED scripts/hmlops

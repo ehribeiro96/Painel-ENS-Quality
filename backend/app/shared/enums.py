@@ -1,0 +1,67 @@
+from __future__ import annotations
+
+from enum import StrEnum
+
+
+class AssetStatus(StrEnum):
+    IN_USE = "IN_USE"
+    STOCK = "STOCK"
+    MAINTENANCE = "MAINTENANCE"
+    DEFECTIVE = "DEFECTIVE"
+    DISCARDED = "DISCARDED"
+    RESERVED = "RESERVED"
+    CONFIG_PENDING = "CONFIG_PENDING"
+
+
+class AssetType(StrEnum):
+    NOTEBOOK = "NOTEBOOK"
+    DESKTOP = "DESKTOP"
+    MONITOR = "MONITOR"
+    DOCK = "DOCK"
+    MOBILE = "MOBILE"
+    PRINTER = "PRINTER"
+    PERIPHERAL = "PERIPHERAL"
+    OTHER = "OTHER"
+
+
+class UserStatus(StrEnum):
+    ACTIVE = "ACTIVE"
+    INACTIVE = "INACTIVE"
+    ON_LEAVE = "ON_LEAVE"
+
+
+class Role(StrEnum):
+    ADMIN = "ADMIN"
+    TECHNICIAN = "TECHNICIAN"
+    VIEWER = "VIEWER"
+    MANAGER = "MANAGER"
+
+
+class AuditAction(StrEnum):
+    LOGIN = "LOGIN"
+    LOGOUT = "LOGOUT"
+    CREATE = "CREATE"
+    UPDATE = "UPDATE"
+    DELETE = "DELETE"
+    MOVE = "MOVE"
+    IMPORT = "IMPORT"
+    SIGNATURE_GENERATE = "SIGNATURE_GENERATE"
+    STATUS_CHANGE = "STATUS_CHANGE"
+
+
+class ImportDecision(StrEnum):
+    CREATE = "CREATE"
+    SAFE_UPDATE = "SAFE_UPDATE"
+    SAFE_MERGE = "SAFE_MERGE"
+    REVIEW_REQUIRED = "REVIEW_REQUIRED"
+    CONFLICT = "CONFLICT"
+    INVALID = "INVALID"
+    SKIPPED = "SKIPPED"
+    SKIPPED_DUPLICATE_IN_FILE = "SKIPPED_DUPLICATE_IN_FILE"
+
+
+class ImportRowStatus(StrEnum):
+    STAGED = "STAGED"
+    APPLIED = "APPLIED"
+    SKIPPED = "SKIPPED"
+    FAILED = "FAILED"

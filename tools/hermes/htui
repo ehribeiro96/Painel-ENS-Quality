@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Start Hermes TUI from the Painel ENS-Quality project root.
+
+set -euo pipefail
+
+# Keep the default project root fixed, while allowing local override for tests.
+PROJECT_ROOT="${HERMES_PROJECT_ROOT:-$HOME/projects/Painel-ENS-Quality}"
+
+cd "$PROJECT_ROOT"
+hermes --tui -t file,code_execution,clarify

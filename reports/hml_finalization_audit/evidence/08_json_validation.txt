@@ -1,0 +1,4 @@
+== JSON validation ==
+Expecting property name enclosed in double quotes: line 10 column 5 (char 222)
+JSON_FAIL ./imports/HermesOps-Final-Transfer/releases/20260608-091540/hermes-agent-hermesops/web/tsconfig.node.json
+JSON_OK

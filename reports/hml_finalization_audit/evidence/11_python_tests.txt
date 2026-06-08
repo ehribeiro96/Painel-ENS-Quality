@@ -1,0 +1,4 @@
+== Python tests ==
+SKIP_DEPS_MISSING: No module named 'fastapi'
+SKIP: dependências Python ausentes
+rc=10

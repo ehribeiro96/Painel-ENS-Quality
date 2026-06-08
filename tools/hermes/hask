@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+# Open a Markdown prompt in an editor, then send it to Hermes CLI.
+# Optional usage:
+#   tools/hermes/hask
+#   tools/hermes/hask prompt.md path/to/file.py path/to/other.ts
+#   tools/hermes/hask --prompt prompt.md path/to/file.py
+
+set -euo pipefail
+
+# Keep the default project root fixed, while allowing local override for tests.
+PROJECT_ROOT="${HERMES_PROJECT_ROOT:-$HOME/projects/Painel-ENS-Quality}"
+
+# Prefer HERMES_EDITOR, then VISUAL/EDITOR, and finally nano for WSL terminals.
+EDITOR_CMD="${HERMES_EDITOR:-${VISUAL:-${EDITOR:-nano}}}"
+
+usage() {
+  printf '%s\n' "Usage: $0 [--prompt prompt.md] [path ...]"
+  printf '%s\n' "       $0 [prompt.md] [path ...]"
+}
+
+PROMPT_FILE=""
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    -p|--prompt)
+      shift
+      if [ "$#" -eq 0 ]; then
+        printf '%s\n' "hask: --prompt requires a file path." >&2
+        exit 2
+      fi
+      PROMPT_FILE="$1"
+      shift
+      break
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*)
+      printf '%s\n' "hask: unknown option: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+    *)
+      # If the first argument is an existing Markdown file, treat it as the prompt.
+      case "$1" in
+        *.md|*.markdown)
+          if [ -f "$1" ]; then
+            PROMPT_FILE="$1"
+            shift
+          fi
+          ;;
+      esac
+      break
+      ;;
+  esac
+done
+
+PATH_ARGS="$*"
+
+if [ -z "$PROMPT_FILE" ]; then
+  PROMPT_FILE="$(mktemp "${TMPDIR:-/tmp}/hask.XXXXXX.md")"
+  cat > "$PROMPT_FILE" <<'EOF'
+# Pedido ao Hermes
+
+EOF
+fi
+
+# Let the operator write or adjust the prompt before sending it to Hermes.
+${EDITOR_CMD} "$PROMPT_FILE"
+
+PROMPT_BODY="$(cat "$PROMPT_FILE")"
+
+# Add file references only as paths. Hermes should call read_file when needed.
+if [ -n "$PATH_ARGS" ]; then
+  PROMPT_BODY="$PROMPT_BODY
+
+## Arquivos para o Hermes consultar
+
+Use read_file para ler estes caminhos quando precisar. Nao assuma conteudo nao lido.
+"
+  for path in "$@"; do
+    PROMPT_BODY="$PROMPT_BODY
+- $path"
+  done
+fi
+
+cd "$PROJECT_ROOT"
+hermes --cli -t file,code_execution,clarify -z "$PROMPT_BODY" chat

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Read the Windows clipboard through PowerShell and send it to Hermes CLI.
+
+set -euo pipefail
+
+# Keep the default project root fixed, while allowing local override for tests.
+PROJECT_ROOT="${HERMES_PROJECT_ROOT:-$HOME/projects/Painel-ENS-Quality}"
+
+if ! command -v powershell.exe >/dev/null 2>&1; then
+  printf '%s\n' "hclip: powershell.exe not found. Run this script from WSL with Windows interop enabled." >&2
+  exit 1
+fi
+
+CLIPBOARD_TEXT="$(powershell.exe -NoProfile -Command 'Get-Clipboard' | sed 's/\r$//')"
+
+if ! printf '%s' "$CLIPBOARD_TEXT" | grep '[^[:space:]]' >/dev/null 2>&1; then
+  printf '%s\n' "hclip: Windows clipboard is empty." >&2
+  exit 1
+fi
+
+cd "$PROJECT_ROOT"
+hermes --cli -t file,code_execution,clarify -z "$CLIPBOARD_TEXT" chat

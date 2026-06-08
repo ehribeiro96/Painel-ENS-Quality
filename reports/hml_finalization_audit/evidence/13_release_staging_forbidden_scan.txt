@@ -1,0 +1,2 @@
+== Forbidden files in staging ==
+Painel-ENS-Quality-RC/infra/hermesops/.env.hml.example

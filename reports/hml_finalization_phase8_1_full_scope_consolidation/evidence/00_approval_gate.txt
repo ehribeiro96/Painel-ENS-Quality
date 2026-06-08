@@ -1,0 +1,1 @@
+OK: approval gate passed for APROVADO_ESCOPO_COMPLETO=true

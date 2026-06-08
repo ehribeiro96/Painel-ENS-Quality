@@ -1,0 +1,7 @@
+# Development/test dependencies.
+#
+# The current Python tests use the standard library unittest module and do not
+# require pytest. Ruff is declared as optional quality tooling for local and CI
+# checks over backend/app and tests, excluding preserved legacy code.
+
+ruff==0.11.13

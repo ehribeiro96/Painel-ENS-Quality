@@ -1,0 +1,3 @@
+hostname,usuario,fabricante,modelo,serial,sistema_operacional,ip,ultimo_login,localizacao,patrimonio
+RJMUAT001,Colaborador UAT,Dell,Latitude 5440,SN-UAT-001,Windows 11,10.10.10.11,2026-06-01,Matriz,PAT-UAT-001
+RJMUAT003,Colaborador UAT,Dell,Latitude 5440,SN-UAT-001,Windows 11,10.10.10.13,2026-06-01,Matriz,PAT-UAT-003

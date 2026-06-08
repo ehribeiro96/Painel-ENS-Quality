@@ -1,0 +1,6 @@
+== core.fileMode ==
+true
+
+== mode-only summary ==
+
+== numstat ==

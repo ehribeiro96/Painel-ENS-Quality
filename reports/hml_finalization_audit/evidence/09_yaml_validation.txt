@@ -1,0 +1,2 @@
+== YAML validation ==
+YAML_OK

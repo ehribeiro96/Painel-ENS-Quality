@@ -1,0 +1,13 @@
+# Compatibility entrypoint for the preserved legacy signature portal.
+#
+# New backend installations should use:
+#   pip install -r backend/requirements.txt
+#
+# Legacy signature runtime installations should use:
+#   pip install -r requirements-legacy.txt
+#
+# This file intentionally remains as a thin wrapper because older scripts,
+# Docker history and operator muscle memory still call `pip install -r
+# requirements.txt`.
+
+-r requirements-legacy.txt

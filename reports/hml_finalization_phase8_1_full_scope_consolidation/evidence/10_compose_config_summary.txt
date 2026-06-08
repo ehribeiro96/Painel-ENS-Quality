@@ -1,0 +1,3 @@
+Compose config rendered successfully for docker-compose.hml.yml with env-file .env.hml.
+Services: postgres, qdrant, redis.
+Secrets not reproduced in report artifacts.

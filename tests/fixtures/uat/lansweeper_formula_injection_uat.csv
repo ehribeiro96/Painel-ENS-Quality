@@ -1,0 +1,3 @@
+hostname,usuario,fabricante,modelo,serial,sistema_operacional,ip,ultimo_login,localizacao,patrimonio
+=cmd,Colaborador UAT,Dell,Latitude 5440,SN-UAT-003,Windows 11,10.10.10.15,2026-06-01,Matriz,PAT-UAT-003
+RJMUAT004,+SUM(1,1),HP,EliteBook 840,SN-UAT-004,Windows 11,10.10.10.16,2026-06-01,Matriz,PAT-UAT-004
