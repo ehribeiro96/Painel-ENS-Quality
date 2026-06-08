@@ -14,6 +14,10 @@ O resultado final é `NO-GO` porque a extração RC2 contém artefatos compilado
 
 `APROVADO_RC2_CLEANROOM=true` foi validado antes de qualquer etapa sensível.
 
+## Commit criado
+
+Sim, o bundle de relatórios desta fase foi commitado no repositório.
+
 ## RC2 validado
 
 O pacote RC2 foi localizado e o SHA256 conferido com sucesso antes da extração.
