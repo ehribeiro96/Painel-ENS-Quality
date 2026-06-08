@@ -1,0 +1,78 @@
+name: hermesops_hml
+services:
+  postgres:
+    container_name: hermesops_hml_postgres
+    environment:
+      POSTGRES_DB: hermesops_hml
+      POSTGRES_PASSWORD: CHANGE_ME_DO_NOT_COMMIT
+      POSTGRES_USER: hermesops
+    image: postgres:16-alpine
+    networks:
+      hermesops_hml_net: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 5432
+        published: "7433"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: hermesops_hml_postgres_data
+        target: /var/lib/postgresql/data
+        volume: {}
+  qdrant:
+    container_name: hermesops_hml_qdrant
+    image: qdrant/qdrant:latest
+    networks:
+      hermesops_hml_net: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 6333
+        published: "7333"
+        protocol: tcp
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 6334
+        published: "7334"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: hermesops_hml_qdrant_storage
+        target: /qdrant/storage
+        volume: {}
+  redis:
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+    container_name: hermesops_hml_redis
+    image: redis:7-alpine
+    networks:
+      hermesops_hml_net: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 6379
+        published: "7380"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: hermesops_hml_redis_data
+        target: /data
+        volume: {}
+networks:
+  hermesops_hml_net:
+    name: hermesops_hml_net
+volumes:
+  hermesops_hml_postgres_data:
+    name: hermesops_hml_postgres_data
+  hermesops_hml_qdrant_storage:
+    name: hermesops_hml_qdrant_storage
+  hermesops_hml_redis_data:
+    name: hermesops_hml_redis_data

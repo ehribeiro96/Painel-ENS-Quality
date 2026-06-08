@@ -1,0 +1,49 @@
+--- imports/HermesOps-Final-Transfer/current/HermesOps/infra/docker-compose.hml.yml	2026-06-07 13:47:15.000000000 -0300
++++ infra/hermesops/docker-compose.hml.yml	2026-06-08 10:58:46.896996270 -0300
+@@ -3,11 +3,9 @@
+     image: qdrant/qdrant:latest
+     container_name: hermesops_hml_qdrant
+     restart: unless-stopped
+-    env_file:
+-      - .env.hml
+     ports:
+-      - 127.0.0.1:7333:6333
+-      - 127.0.0.1:7334:6334
++      - "127.0.0.1:7333:6333"
++      - "127.0.0.1:7334:6334"
+     volumes:
+       - hermesops_hml_qdrant_storage:/qdrant/storage
+     networks:
+@@ -17,14 +15,12 @@
+     image: postgres:16-alpine
+     container_name: hermesops_hml_postgres
+     restart: unless-stopped
+-    env_file:
+-      - .env.hml
+     environment:
+-      POSTGRES_DB: 
+-      POSTGRES_USER: 
+-      POSTGRES_PASSWORD: 
++      POSTGRES_DB: ${POSTGRES_DB:-hermesops_hml}
++      POSTGRES_USER: ${POSTGRES_USER:-hermesops}
++      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-CHANGE_ME_DO_NOT_COMMIT}
+     ports:
+-      - 127.0.0.1:7433:5432
++      - "127.0.0.1:7433:5432"
+     volumes:
+       - hermesops_hml_postgres_data:/var/lib/postgresql/data
+     networks:
+@@ -34,11 +30,9 @@
+     image: redis:7-alpine
+     container_name: hermesops_hml_redis
+     restart: unless-stopped
+-    env_file:
+-      - .env.hml
+-    command: [redis-server, --save, , --appendonly, no]
++    command: ["redis-server", "--save", "", "--appendonly", "no"]
+     ports:
+-      - 127.0.0.1:7380:6379
++      - "127.0.0.1:7380:6379"
+     volumes:
+       - hermesops_hml_redis_data:/data
+     networks:
