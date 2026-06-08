@@ -29,6 +29,8 @@ exports/
 *.cer
 *.der
 *.pyc
+*.py[cod]
+*$py.class
 __pycache__/
 .pytest_cache/
 .mypy_cache/
