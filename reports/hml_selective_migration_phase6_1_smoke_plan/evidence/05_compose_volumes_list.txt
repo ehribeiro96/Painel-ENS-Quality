@@ -1,0 +1,3 @@
+hermesops_hml_redis_data
+hermesops_hml_qdrant_storage
+hermesops_hml_postgres_data

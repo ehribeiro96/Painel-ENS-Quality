@@ -1,0 +1,4 @@
+docker compose config: OK
+Compose file: infra/hermesops/docker-compose.hml.yml
+Env file: infra/hermesops/.env.hml
+Sensitive values: redacted/not printed

@@ -1,0 +1,28 @@
+== .env.hml metadata ==
+600 estevaoqualityadm estevaoqualityadm infra/hermesops/.env.hml
+
+== .env.hml git ignore ==
+OK .env.hml ignored
+
+== variable names only ==
+COMPOSE_PROJECT_NAME=***REDACTED***
+COMPOSIO_API_KEY=***REDACTED***
+COMPOSIO_ENABLED=***REDACTED***
+COMPOSIO_MODE=***REDACTED***
+POSTGRES_DB=***REDACTED***
+POSTGRES_PASSWORD=***REDACTED***
+POSTGRES_USER=***REDACTED***
+QDRANT_HOST=***REDACTED***
+QDRANT_PORT=***REDACTED***
+REDIS_HOST=***REDACTED***
+REDIS_PORT=***REDACTED***
+
+== required variable presence ==
+OK COMPOSE_PROJECT_NAME
+OK POSTGRES_DB
+OK POSTGRES_USER
+OK POSTGRES_PASSWORD
+OK REDIS_HOST
+OK REDIS_PORT
+OK COMPOSIO_ENABLED
+OK COMPOSIO_MODE

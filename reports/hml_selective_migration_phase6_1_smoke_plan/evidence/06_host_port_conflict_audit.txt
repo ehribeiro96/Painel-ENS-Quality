@@ -1,0 +1,12 @@
+== Listening TCP ports ==
+State  Recv-Q Send-Q  Local Address:Port  Peer Address:PortProcess                               
+LISTEN 0      511         127.0.0.1:42891      0.0.0.0:*    users:(("MainThread",pid=1567,fd=22))
+LISTEN 0      1000   10.255.255.254:53         0.0.0.0:*                                         
+LISTEN 0      4096       127.0.0.54:53         0.0.0.0:*                                         
+LISTEN 0      4096    127.0.0.53%lo:53         0.0.0.0:*                                         
+
+== Compose ports from config ==
+postgres: 127.0.0.1:7433:5432
+qdrant: 127.0.0.1:7333:6333
+qdrant: 127.0.0.1:7334:6334
+redis: 127.0.0.1:7380:6379
