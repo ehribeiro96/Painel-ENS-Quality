@@ -6,6 +6,15 @@ export default defineConfig({
   plugins: [react()],
   base: "/",
   envPrefix: ["VITE_", "ENABLE_"],
+  server: {
+    proxy: {
+      "/api/v1": {
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src")

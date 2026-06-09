@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-06-09T18:10:00+00:00",
+  "status": "go_tecnico_local_com_ressalvas",
+  "environment": {
+    "frontend_dev_server": "http://127.0.0.1:5173",
+    "backend": "http://127.0.0.1:8000",
+    "api_base": "/api/v1"
+  },
+  "fixes": [
+    {
+      "issue": "5173 dev server was sending /api/v1 requests to itself and returning 404",
+      "resolution": "Added a Vite dev proxy for /api/v1 -> http://127.0.0.1:8000"
+    },
+    {
+      "issue": "AI Chat returned 404 in the local backend runtime",
+      "resolution": "Enabled ai_chat for local runtime when settings.environment == 'local' so the route no longer returns ai_chat_disabled"
+    }
+  ],
+  "validation": [
+    { "route": "http://127.0.0.1:5173/login", "http_status": 200 },
+    { "route": "http://127.0.0.1:5173/", "http_status": 200 },
+    { "route": "http://127.0.0.1:5173/ai-chat", "http_status": 200 },
+    { "route": "http://127.0.0.1:8000/", "http_status": 200 },
+    { "route": "http://127.0.0.1:8000/ai-chat", "http_status": 200 },
+    { "endpoint": "/api/v1/auth/login", "origin": "5173", "http_status": 200 },
+    { "endpoint": "/api/v1/auth/refresh", "origin": "5173", "http_status": 200 },
+    { "endpoint": "/api/v1/ai-chat/health", "origin": "8000", "http_status": 200 },
+    { "endpoint": "/api/v1/ai-chat/conversations", "origin": "8000", "http_status": 200 },
+    { "endpoint": "/api/v1/ai-chat/conversations/{conversation_id}/messages", "origin": "8000", "http_status": 201 }
+  ],
+  "console_errors_count": 0,
+  "js_errors_count": 0,
+  "network_errors_count": 0,
+  "ai_chat_provider": "mock",
+  "go_no_go": "GO técnico local com ressalvas"
+}

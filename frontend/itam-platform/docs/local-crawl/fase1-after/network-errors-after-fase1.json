@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-06-09T18:10:00+00:00",
+  "observed_routes": [
+    { "url": "http://127.0.0.1:5173/login", "http_status": 200 },
+    { "url": "http://127.0.0.1:5173/", "http_status": 200 },
+    { "url": "http://127.0.0.1:5173/ai-chat", "http_status": 200 },
+    { "url": "http://127.0.0.1:8000/", "http_status": 200 },
+    { "url": "http://127.0.0.1:8000/ai-chat", "http_status": 200 }
+  ],
+  "auth_flows": [
+    { "endpoint": "/api/v1/auth/login", "origin": "5173", "http_status": 200 },
+    { "endpoint": "/api/v1/auth/refresh", "origin": "5173", "http_status": 200 },
+    { "endpoint": "/api/v1/auth/login", "origin": "8000", "http_status": 200 },
+    { "endpoint": "/api/v1/auth/refresh", "origin": "8000", "http_status": 200 }
+  ],
+  "ai_chat_flows": [
+    { "endpoint": "/api/v1/ai-chat/health", "http_status": 200 },
+    { "endpoint": "/api/v1/ai-chat/conversations", "http_status": 200 },
+    { "endpoint": "/api/v1/ai-chat/conversations/{conversation_id}/messages", "http_status": 201 }
+  ],
+  "network_errors": [],
+  "notes": [
+    "5173 now proxies /api/v1 to the backend on 8000.",
+    "AI Chat no longer returns 404; the local backend responds with enabled=true and the mock provider.",
+    "The synthetic local message used for validation was: 'Teste local de conectividade da IA. Não contém dados reais.'"
+  ]
+}

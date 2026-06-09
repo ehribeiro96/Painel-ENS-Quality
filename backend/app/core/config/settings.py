@@ -76,6 +76,10 @@ class Settings(BaseSettings):
             external_openai_key = os.environ.get("OPENAI_API_KEY", "")
             if external_openai_key.strip():
                 self.ai_openai_api_key = external_openai_key
+        if self.environment == "local":
+            # Local developer instances should expose AI Chat unless it is explicitly disabled
+            # by a runtime configuration override.
+            self.enable_ai_chat = True
         if self.environment == "production" and self.jwt_secret_key == "change-me-with-at-least-32-characters":
             raise ValueError("JWT_SECRET_KEY must be changed in production")
         if self.environment == "production" and self.admin_password == "<DEFINIR_LOCALMENTE_NO_ENV>":

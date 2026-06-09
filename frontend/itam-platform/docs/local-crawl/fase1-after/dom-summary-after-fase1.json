@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-06-09T18:10:00+00:00",
+  "summary": [
+    {
+      "route": "http://127.0.0.1:5173/login",
+      "state": "login_form",
+      "inputs": 2,
+      "primary_actions": 1,
+      "visible_errors": 0,
+      "note": "Login real works against backend 8000 through the Vite proxy."
+    },
+    {
+      "route": "http://127.0.0.1:5173/",
+      "state": "authenticated_dashboard",
+      "inputs": 1,
+      "visible_errors": 0,
+      "note": "Authenticated shell rendered correctly with navigation and dashboard cards."
+    },
+    {
+      "route": "http://127.0.0.1:5173/ai-chat",
+      "state": "authenticated_ai_chat",
+      "inputs": 2,
+      "visible_errors": 0,
+      "note": "Conversations loaded; the synthetic test message and mock response are visible."
+    },
+    {
+      "route": "http://127.0.0.1:8000/",
+      "state": "authenticated_dashboard",
+      "inputs": 1,
+      "visible_errors": 0,
+      "note": "Backend-served app remains coherent and reachable."
+    },
+    {
+      "route": "http://127.0.0.1:8000/ai-chat",
+      "state": "authenticated_ai_chat",
+      "inputs": 2,
+      "visible_errors": 0,
+      "note": "AI Chat backend route renders, loads conversations, and supports message send/readback."
+    }
+  ]
+}

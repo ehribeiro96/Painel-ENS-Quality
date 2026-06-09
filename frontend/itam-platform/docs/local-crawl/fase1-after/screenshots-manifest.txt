@@ -1,0 +1,5 @@
+frontend/itam-platform/docs/local-crawl/fase1-after/screenshots/20260609-local-login-1366x768.png
+frontend/itam-platform/docs/local-crawl/fase1-after/screenshots/20260609-local-5173-home-1366x768.png
+frontend/itam-platform/docs/local-crawl/fase1-after/screenshots/20260609-local-ai-chat-1366x768.png
+frontend/itam-platform/docs/local-crawl/fase1-after/screenshots/20260609-local-home-1366x768.png
+frontend/itam-platform/docs/local-crawl/fase1-after/screenshots/20260609-local-home-1920x1080.png

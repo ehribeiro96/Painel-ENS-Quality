@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-06-09T18:10:00+00:00",
+  "scope": [
+    "http://127.0.0.1:5173/login",
+    "http://127.0.0.1:5173/",
+    "http://127.0.0.1:5173/ai-chat",
+    "http://127.0.0.1:8000/",
+    "http://127.0.0.1:8000/ai-chat"
+  ],
+  "console_errors": [],
+  "js_errors": [],
+  "notes": [
+    "Browser console was cleared after the phase-1 validation run and returned zero errors.",
+    "No uncaught JavaScript exceptions were observed during the login and AI Chat flows."
+  ]
+}
