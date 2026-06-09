@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
+import { SentinelSectionHeader } from "@/components/brand/SentinelSectionHeader";
 import { Alert, LoadingBlock } from "@/components/StateBlocks";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
@@ -77,12 +79,12 @@ export function MacrosPage() {
 
   return (
     <>
-      <div className="page-title">
-        <div>
-          <h1>Macros</h1>
-          <p>Gere textos padronizados para chamados, movimentações e atendimento.</p>
-        </div>
-      </div>
+      <SentinelSectionHeader
+        chips={selected ? <HermesStatusPill state="Auditável">{selected.slug === "ativos-atualizar-inventario" ? "Macro pós-movimentação" : "Macro operativa"}</HermesStatusPill> : null}
+        eyebrow="Macros ITIL"
+        subtitle="Gere textos padronizados para chamados, movimentações e atendimento."
+        title="Macros ITIL"
+      />
       <div className="ops-panel compact-panel">
         <label className="wide-field">
           Busca

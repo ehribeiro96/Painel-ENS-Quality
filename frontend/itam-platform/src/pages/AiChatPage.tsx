@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
+import { SentinelSectionHeader } from "@/components/brand/SentinelSectionHeader";
 import { ChatComposer } from "@/components/ai-chat/ChatComposer";
 import { ChatMessages } from "@/components/ai-chat/ChatMessages";
 import { ConversationList } from "@/components/ai-chat/ConversationList";
@@ -188,20 +190,25 @@ export function AiChatPage() {
 
   return (
     <div className="ai-chat-page">
-      <div className="page-title">
-        <div>
-          <h1>IA Chat</h1>
-          <p>A IA não executa ações no sistema. Use apenas para apoio textual.</p>
-          {providerLabel && (
-            <span className="ai-chat-provider-badge" title={`Provider ${providerLabel} - Status: ${providerHealth?.status ?? "indisponível"}`}>
-              {providerLabel}
-            </span>
-          )}
-          <span className="ai-chat-mode-badge" title="Modo textual selecionado">
-            Modo: {modeLabels[selectedMode]}
-          </span>
+      <SentinelSectionHeader
+        chips={(
+          <>
+            <HermesStatusPill state={isChatDisabled ? "Offline" : "Online"}>{providerHealth?.enabled ? "IA ativa" : "IA inativa"}</HermesStatusPill>
+            <HermesStatusPill state="Somente leitura">Modo textual</HermesStatusPill>
+          </>
+        )}
+        eyebrow="IA Assistiva"
+        subtitle="A IA não executa ações no sistema. Use apenas para apoio textual."
+        title="IA Assistiva"
+      />
+      {providerLabel && (
+        <div className="ai-chat-provider-badge" title={`Provider ${providerLabel} - Status: ${providerHealth?.status ?? "indisponível"}`}>
+          {providerLabel}
         </div>
-      </div>
+      )}
+      <span className="ai-chat-mode-badge" title="Modo textual selecionado">
+        Modo: {modeLabels[selectedMode]}
+      </span>
 
       {isChatDisabled && (
         <div className="alert warning">

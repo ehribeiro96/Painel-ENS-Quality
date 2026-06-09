@@ -1,5 +1,8 @@
 import { FormEvent, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { BrandMark } from "@/components/brand/BrandMark";
+import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
+import { SentinelHero } from "@/components/brand/SentinelHero";
 import { useAuth } from "@/lib/auth";
 
 export function LoginPage() {
@@ -36,11 +39,23 @@ export function LoginPage() {
 
   return (
     <main className="login-screen">
+      <section className="login-hero">
+        <SentinelHero
+          chips={(
+            <>
+              <HermesStatusPill state="Online">Agente local</HermesStatusPill>
+              <HermesStatusPill state="Auditável">Rastreabilidade ativa</HermesStatusPill>
+            </>
+          )}
+          description="Centro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional."
+          eyebrow="Acesso ao HermesOps Sentinel"
+          subtitle="Guardião local da infraestrutura"
+          title="HermesOps Sentinel"
+        />
+      </section>
       <form className="card login-card" onSubmit={handleSubmit}>
-        <div>
-          <h1>ENS ITAM</h1>
-          <p>Acesso operacional seguro.</p>
-        </div>
+        <BrandMark compact subtitle="Guardião local da infraestrutura" title="HermesOps Sentinel" />
+        <p className="login-copy">Acesso operacional com rastreabilidade. Use suas credenciais locais para entrar no centro de comando.</p>
         {error ? <div className="alert danger">{error}</div> : null}
         <input className="input" placeholder="E-mail" type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
         <input className="input" placeholder="Senha" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required />

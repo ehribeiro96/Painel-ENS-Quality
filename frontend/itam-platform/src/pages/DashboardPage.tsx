@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Archive, Box, Link2, Monitor, PackageCheck, Upload, Users, Wrench } from "lucide-react";
+import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
+import { SentinelHero } from "@/components/brand/SentinelHero";
 import { AlertBlock, EmptyState, LoadingBlock } from "@/components/StateBlocks";
+import {
+  AgentOrbitIcon,
+  ConflictSplitIcon,
+  HermesCoreIcon,
+  PackageChipIcon,
+  SettingsCircuitIcon,
+  TransferCircuitIcon
+} from "@/components/icons/HermesIcons";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import type { Asset, Page } from "@/lib/types";
@@ -78,12 +88,12 @@ export function DashboardPage() {
   const isError = summaryQuery.isError || assetsQuery.isError || statusQuery.isError;
 
   const metrics = [
-    { label: "Total de ativos", value: totalAssets, description: "Base operacional cadastrada", icon: Monitor, tone: "blue", badge: "CMDB" },
-    { label: "Colaboradores ativos", value: activeUsers, description: "Com ativo vinculado na amostra", icon: Users, tone: "green", badge: "Uso" },
-    { label: "Vínculos vigentes", value: assignments, description: "Ativos atualmente atribuídos", icon: Link2, tone: "purple", badge: `${percent(assignments, Math.max(assets.length, 1))}%` },
-    { label: "Em estoque", value: stock, description: "Disponíveis para operação", icon: Box, tone: "teal", badge: "Estoque" },
-    { label: "Em manutenção", value: maintenance, description: "Exigem acompanhamento técnico", icon: Wrench, tone: "amber", badge: maintenance > 0 ? "Atenção" : "OK" },
-    { label: "Para descarte", value: discarded, description: "Itens fora do ciclo operacional", icon: Archive, tone: "red", badge: discarded > 0 ? "Revisar" : "OK" }
+    { label: "Total de ativos", value: totalAssets, description: "Base operacional cadastrada", icon: HermesCoreIcon, tone: "blue", badge: "CMDB" },
+    { label: "Colaboradores ativos", value: activeUsers, description: "Com ativo vinculado na amostra", icon: AgentOrbitIcon, tone: "green", badge: "Uso" },
+    { label: "Vínculos vigentes", value: assignments, description: "Ativos atualmente atribuídos", icon: TransferCircuitIcon, tone: "purple", badge: `${percent(assignments, Math.max(assets.length, 1))}%` },
+    { label: "Em estoque", value: stock, description: "Disponíveis para operação", icon: PackageChipIcon, tone: "teal", badge: "Estoque" },
+    { label: "Em manutenção", value: maintenance, description: "Exigem acompanhamento técnico", icon: SettingsCircuitIcon, tone: "amber", badge: maintenance > 0 ? "Atenção" : "OK" },
+    { label: "Para descarte", value: discarded, description: "Itens fora do ciclo operacional", icon: ConflictSplitIcon, tone: "red", badge: discarded > 0 ? "Revisar" : "OK" }
   ];
 
   const recommendations = [
@@ -119,18 +129,26 @@ export function DashboardPage() {
 
   return (
     <>
-      <header className="page-title dashboard-header">
-        <div>
-          <span className="badge info">Painel operacional</span>
-          <h1>Dashboard</h1>
-          <p>Resumo visual da CMDB, vínculos e pendências do inventário ENS-Quality.</p>
-        </div>
-        <nav className="dashboard-actions" aria-label="Ações rápidas do dashboard">
-          <Link className="button secondary" to="/assets">Ver ativos</Link>
-          <Link className="button secondary" to="/assignments">Atribuições</Link>
-          <Link className="button" to="/imports">Importar dados</Link>
-        </nav>
-      </header>
+      <SentinelHero
+        actions={(
+          <nav className="dashboard-actions" aria-label="Ações rápidas do dashboard">
+            <Link className="button secondary" to="/assets">Inventário</Link>
+            <Link className="button secondary" to="/assignments">Movimentações</Link>
+            <Link className="button" to="/imports">Importação Lansweeper</Link>
+          </nav>
+        )}
+        chips={(
+          <>
+            <HermesStatusPill state="Online">Agente local</HermesStatusPill>
+            <HermesStatusPill state="Auditável">Inventário auditável</HermesStatusPill>
+            <HermesStatusPill state="Em revisão">Macro e movimentação</HermesStatusPill>
+          </>
+        )}
+        description="Visão operacional de inventário, vínculos, pendências e auditoria da infraestrutura."
+        eyebrow="Centro de Comando"
+        subtitle="Guardião local da infraestrutura"
+        title="Centro de Comando"
+      />
 
       {isError ? (
         <AlertBlock tone="danger">
@@ -157,8 +175,8 @@ export function DashboardPage() {
           return (
             <article className="card metric-card" key={metric.label}>
               <div className="metric-card-header">
-                <span className={`metric-icon ${metric.tone}`}><Icon size={18} aria-hidden /></span>
-                <span className={`badge ${metric.tone === "amber" ? "warning" : metric.tone === "red" ? "danger" : "neutral"}`}>{metric.badge}</span>
+                <span className={`metric-icon tone-${metric.tone}`}><Icon size={18} aria-hidden="true" /></span>
+                <HermesStatusPill state={metric.tone === "red" ? "Conflito" : metric.tone === "amber" ? "Pendente" : metric.tone === "green" ? "Validado" : "Auditável"}>{metric.badge}</HermesStatusPill>
               </div>
               <strong className="metric-value">{metric.value}</strong>
               <span className="metric-label">{metric.label}</span>

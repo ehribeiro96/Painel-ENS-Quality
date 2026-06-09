@@ -109,3 +109,63 @@ Resultados:
 Decisao: `GO COM RESSALVAS`.
 
 Motivo: as melhorias sao pequenas, o build/testes/rotas passaram e nao houve alteracao funcional sensivel. A ressalva fica limitada a evidencia visual automatizada de viewport.
+
+## HermesOps Sentinel visual identity
+
+A identidade HermesOps Sentinel foi aplicada no frontend principal como uma segunda camada visual focada em centro de comando, rastreabilidade e operação local.
+
+### Componentes criados
+
+- `frontend/itam-platform/src/components/brand/BrandMark.tsx`
+- `frontend/itam-platform/src/components/brand/HermesCard.tsx`
+- `frontend/itam-platform/src/components/brand/HermesStatusPill.tsx`
+- `frontend/itam-platform/src/components/brand/SentinelHero.tsx`
+- `frontend/itam-platform/src/components/brand/SentinelSectionHeader.tsx`
+- `frontend/itam-platform/src/components/icons/HermesIcons.tsx`
+
+### Páginas atualizadas
+
+- `frontend/itam-platform/src/components/AppShell.tsx`
+- `frontend/itam-platform/src/pages/DashboardPage.tsx`
+- `frontend/itam-platform/src/pages/LoginPage.tsx`
+- `frontend/itam-platform/src/pages/AssetsPage.tsx`
+- `frontend/itam-platform/src/pages/ImportsPage.tsx`
+- `frontend/itam-platform/src/pages/MacrosPage.tsx`
+- `frontend/itam-platform/src/pages/AiChatPage.tsx`
+- `frontend/itam-platform/src/pages/AuditLogsPage.tsx`
+- `frontend/itam-platform/src/pages/SettingsPage.tsx`
+- `frontend/itam-platform/src/components/StateBlocks.tsx`
+- `frontend/itam-platform/src/components/DataTable.tsx`
+
+### Observacao
+
+A execução desta etapa ocorreu sem alterar backend, migrations, autenticação, pipeline Lansweeper, macros ou legado `/assinaturas/` e `/admin/`.
+
+## Pré-produção visual
+
+- Build Vite executado com sucesso.
+- Smoke visual: não executado neste ambiente por ausência de navegador gráfico/binário de browser local.
+- Asset `sentinel-logo.png`: otimizado sem dependência nova pela remoção de chunk ancillary `caBX`.
+- Tamanho final do `sentinel-logo.png`: `2,472,076` bytes.
+- Rotas verificadas em smoke técnico: `/` e resposta HTTP do app local. As rotas `login`, `assets`, `imports`, `macros`, `ai-chat`, `audit-logs` e `settings` permanecem no contrato visual e devem ser conferidas manualmente.
+- Pendências visuais: `Users`, `Signatures`, `Assignments` ainda seguem com o visual anterior e podem receber uma Fase 2 Sentinel.
+
+## Fase 0 — Hardening técnico/visual aplicado
+
+Correções aplicadas:
+- Corrigido erro TypeScript em `HermesIcons.tsx`.
+- PNG pesado removido do runtime.
+- Marca operacional substituída por ícone vetorial/componentizado.
+- Dashboard quick cards retematizados para tema escuro Sentinel.
+- IA Chat retematizado para remover bubbles/cards claros.
+- Macros retematizado para remover preview/card claro.
+- `<title>` atualizado para HermesOps Sentinel.
+- Build executado com sucesso.
+- Screenshots after gerados.
+
+Limitações:
+- Screenshots de rotas protegidas podem usar mocks e não validam backend real.
+- Fluxos reais de importação/macro/copied_at ainda exigem smoke HML.
+- Users, Signatures, Assignments, Stock, Details e NotFound permanecem para fase posterior.
+
+Veredito atualizado: `GO técnico + GO visual com ressalvas`.
