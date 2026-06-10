@@ -21,6 +21,13 @@ dist/
 _archive_cleanup_candidates/
 _cleanup_backup_manifest.md
 docs/
+!docs/
+docs/*
+!docs/audit/
+docs/audit/*
+!docs/audit/*.md
+!docs/audit/*.csv
+!docs/audit/*.txt
 tests/
 *.log
 *.tmp
@@ -38,3 +45,39 @@ frontend/itam-platform/.next/
 assets/legacy/
 client/
 temp_hero.txt
+
+# --- Local secrets and credentials ---
+.env
+.env.*
+!.env.example
+secrets/
+private/
+credentials/
+*.pem
+*.key
+*.pfx
+*.p12
+*.kdbx
+
+# --- Local databases, dumps and backups ---
+*.bak
+*.backup
+*.dump
+*.sql
+*.sqlite
+*.db
+_backup/
+_validation/
+exports/
+
+# --- Local logs, reports and evidence ---
+logs/
+reports/
+evidence/
+
+# --- Local preview/staging artifacts ---
+data/previews/
+
+# --- Token/secret named local artifacts ---
+*_secret*
+*_token*

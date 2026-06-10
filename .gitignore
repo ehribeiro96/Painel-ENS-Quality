@@ -28,6 +28,7 @@ exports/
 *.crt
 *.cer
 *.der
+.sql
 *.pyc
 *.py[cod]
 *$py.class
@@ -57,3 +58,40 @@ imports/HermesOps-Final-Transfer/releases/
 .codex-remote-attachments/
 .DS_Store
 Thumbs.db
+
+# --- Local secrets and credentials ---
+.env
+.env.*
+!.env.example
+!.env.hml.example
+secrets/
+private/
+credentials/
+*.pem
+*.key
+*.pfx
+*.p12
+*.kdbx
+
+# --- Local databases, dumps and backups ---
+*.bak
+*.backup
+*.dump
+*.sql
+*.sqlite
+*.db
+_backup/
+_validation/
+exports/
+
+# --- Local logs, reports and evidence ---
+logs/
+reports/
+evidence/
+
+# --- Local preview/staging artifacts ---
+data/previews/
+
+# --- Token/secret named local artifacts ---
+*_secret*
+*_token*
