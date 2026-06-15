@@ -374,13 +374,3 @@ def normalize_asset_row(raw: dict[str, Any], mapping: dict[str, str] | None = No
         "notes": normalize_text(normalized_columns.get("notes"), uppercase=False),
         "source_metadata": source_metadata,
     }
-
-
-def identity_for(normalized: dict[str, Any]) -> tuple[str | None, str | None]:
-    for key in ("serial", "patrimony", "hostname"):
-        value = normalized.get(key)
-        if value:
-            return key, str(value)
-    if normalized.get("source_external_key"):
-        return "source_external_key", str(normalized["source_external_key"])
-    return None, None

@@ -1,0 +1,3 @@
+hostname,usuario,fabricante,modelo,serial,sistema operacional,IP,ultimo login,localizacao,patrimonio
+IMPREG001,Colaborador Teste,Dell,Latitude,SN-REG-001,Windows 11,10.20.1.10,2026-06-01,Matriz,PAT-REG-001
+IMPREG002,Gestor Teste,HP,EliteBook,SN-REG-002,Windows 11,10.20.1.11,2026-06-01,Matriz,PAT-REG-002

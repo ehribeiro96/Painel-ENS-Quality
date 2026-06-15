@@ -1,10 +1,8 @@
 from __future__ import annotations
 
 import hashlib
-import io
 import time
 from collections import Counter
-from datetime import datetime
 from uuid import UUID
 
 import pandas as pd
@@ -12,10 +10,16 @@ from app.core.config.settings import settings
 from app.core.observability.metrics import metrics
 from app.domains.assets.models import Asset
 from app.domains.audit.service import AuditService
-from app.domains.imports.conflict_detection.detector import detect_row_conflict
+from app.domains.imports.classification.conflict_detector import build_internal_duplicate_plan
+from app.domains.imports.classification.row_classifier import classify_row
 from app.domains.imports.merge_engine.policy import apply_trusted_updates, build_asset_from_import
 from app.domains.imports.models import ImportConflict, ImportJob, ImportStagingAsset, ImportValidationError
-from app.domains.imports.normalization.asset_normalizer import identity_for, normalize_asset_row
+from app.domains.imports.normalization.lansweeper_normalizer import (
+    identity_for,
+    normalize_asset_row,
+    normalize_column_name,
+)
+from app.domains.imports.parsing import read_spreadsheet_file
 from app.domains.imports.presets import (
     detect_import_preset,
     distribution,
@@ -24,7 +28,6 @@ from app.domains.imports.presets import (
     import_warnings,
     schema_signature,
 )
-from app.domains.imports.validators.asset_validator import validate_normalized_asset, validate_raw_row_security
 from app.shared.audit_context import AuditContext
 from app.shared.enums import AuditAction, ImportDecision, ImportRowStatus
 from app.shared.snapshots import asset_snapshot
@@ -352,8 +355,6 @@ class ImportService:
         return "csv"
 
     def _detected_mapping(self, columns) -> dict[str, str]:
-        from app.domains.imports.normalization.asset_normalizer import normalize_column_name
-
         mapping: dict[str, str] = {}
         for column in columns:
             normalized = normalize_column_name(column)
@@ -387,14 +388,7 @@ class ImportService:
         return mapping
 
     def _parse_file(self, filename: str, content: bytes) -> tuple[pd.DataFrame, str | None]:
-        suffix = filename.lower()
-        if suffix.endswith(".csv"):
-            return pd.read_csv(io.BytesIO(content), dtype=str, keep_default_na=False, encoding="utf-8-sig"), None
-        if suffix.endswith(".xlsx"):
-            workbook = pd.ExcelFile(io.BytesIO(content))
-            sheet_name = "report" if "report" in workbook.sheet_names else workbook.sheet_names[0]
-            return pd.read_excel(workbook, sheet_name=sheet_name, dtype=str, keep_default_na=False), sheet_name
-        raise ValueError("unsupported_import_file")
+        return read_spreadsheet_file(filename, content)
 
     def _deduplication_order(self, mapping: dict[str, str]) -> list[str]:
         order = ["serial"]
@@ -404,99 +398,7 @@ class ImportService:
         return order
 
     def _build_internal_duplicate_plan(self, normalized_rows: list[dict[str, object]]) -> dict[int, dict[str, object]]:
-        plan: dict[int, dict[str, object]] = {}
-
-        def group_by(field: str) -> dict[str, list[int]]:
-            groups: dict[str, list[int]] = {}
-            for index, row in enumerate(normalized_rows):
-                value = row.get(field)
-                if value:
-                    groups.setdefault(str(value), []).append(index)
-            return groups
-
-        for serial, indexes in group_by("serial").items():
-            hostnames = {str(normalized_rows[index].get("hostname")) for index in indexes if normalized_rows[index].get("hostname")}
-            if len(hostnames) > 1:
-                for index in indexes:
-                    plan[index] = {
-                        "decision": ImportDecision.CONFLICT,
-                        "issue": {
-                            "code": "serial_hostname_divergence",
-                            "identity_type": "serial",
-                            "identity_value": serial,
-                            "rows": [row + 2 for row in indexes],
-                            "hostnames": sorted(hostnames),
-                            "message": f"Conflito real: serial {serial} aparece com hostnames diferentes.",
-                            "suggested_action": "Revisar manualmente antes do apply.",
-                        },
-                    }
-
-        for hostname, indexes in group_by("hostname").items():
-            serials = {str(normalized_rows[index].get("serial")) for index in indexes if normalized_rows[index].get("serial")}
-            if len(serials) > 1:
-                for index in indexes:
-                    plan[index] = {
-                        "decision": ImportDecision.CONFLICT,
-                        "issue": {
-                            "code": "hostname_serial_divergence",
-                            "identity_type": "hostname",
-                            "identity_value": hostname,
-                            "rows": [row + 2 for row in indexes],
-                            "serials": sorted(serials),
-                            "message": f"Conflito real: hostname {hostname} aparece com seriais diferentes.",
-                            "suggested_action": "Revisar manualmente antes do apply.",
-                        },
-                    }
-
-        primary_groups: dict[tuple[str, str], list[int]] = {}
-        for index, row in enumerate(normalized_rows):
-            identity_type, identity_value = identity_for(row)
-            if identity_type and identity_value:
-                primary_groups.setdefault((identity_type, identity_value), []).append(index)
-
-        for (identity_type, identity_value), indexes in primary_groups.items():
-            if len(indexes) < 2 or any(index in plan for index in indexes):
-                continue
-            canonical = max(indexes, key=lambda index: self._canonical_score(normalized_rows[index]))
-            for index in indexes:
-                if index == canonical:
-                    continue
-                plan[index] = {
-                    "decision": ImportDecision.SKIPPED_DUPLICATE_IN_FILE,
-                    "issue": {
-                        "code": "skipped_duplicate_in_file",
-                        "identity_type": identity_type,
-                        "identity_value": identity_value,
-                        "rows": [row + 2 for row in indexes],
-                        "canonical_row": canonical + 2,
-                        "message": f"Duplicidade no arquivo: {identity_type} {identity_value} aparece em múltiplas linhas. O sistema manterá a linha {canonical + 2} e ignorará esta duplicata equivalente.",
-                        "suggested_action": "Nenhuma ação necessária se os dados forem equivalentes.",
-                    },
-                }
-        return plan
-
-    def _canonical_score(self, row: dict[str, object]) -> tuple[int, int, float, int, int, int]:
-        useful_fields = sum(1 for value in row.values() if value not in (None, "", {}, []))
-        return (
-            1 if row.get("serial") else 0,
-            1 if row.get("hostname") else 0,
-            self._last_seen_score(row),
-            useful_fields,
-            1 if row.get("asset_type") and row.get("asset_type") != "OTHER" else 0,
-            1 if row.get("status") else 0,
-        )
-
-    def _last_seen_score(self, row: dict[str, object]) -> float:
-        value = row.get("last_login") or (row.get("source_metadata") or {}).get("last_seen")
-        if not value:
-            return 0.0
-        try:
-            return datetime.fromisoformat(str(value).replace("Z", "+00:00")).timestamp()
-        except ValueError:
-            parsed = pd.to_datetime(str(value), errors="coerce")
-            if pd.isna(parsed):
-                return 0.0
-            return parsed.timestamp()
+        return build_internal_duplicate_plan(normalized_rows)
 
     def _classify_row(
         self,
@@ -508,31 +410,15 @@ class ImportService:
         existing_by_hostname: dict[str, Asset],
         seen_identities: set[tuple[str, str]],
     ) -> tuple[ImportDecision, list[dict[str, object]], UUID | None, str | None]:
-        validation_issues = self._dedupe_issues(validate_raw_row_security(raw_row) + validate_normalized_asset(normalized))
-        if validation_issues:
-            return ImportDecision.INVALID, validation_issues, None, None
-
-        if duplicate_action:
-            decision = duplicate_action["decision"]
-            issue = duplicate_action["issue"]
-            if decision == ImportDecision.SKIPPED_DUPLICATE_IN_FILE:
-                return ImportDecision.SKIPPED_DUPLICATE_IN_FILE, [issue], None, "SKIP_DUPLICATE_IN_FILE"
-            if decision == ImportDecision.CONFLICT:
-                return ImportDecision.CONFLICT, [issue], None, "REVIEW"
-
-        detection = detect_row_conflict(normalized, existing_by_serial, existing_by_patrimony, existing_by_hostname, seen_identities)
-        return detection.decision, detection.issues, detection.matched_asset_id, detection.merge_action
-
-    def _dedupe_issues(self, issues: list[dict[str, object]]) -> list[dict[str, object]]:
-        seen: set[tuple[str, str]] = set()
-        deduped: list[dict[str, object]] = []
-        for issue in issues:
-            key = (str(issue.get("field") or "row"), str(issue.get("code") or "validation_error"))
-            if key in seen:
-                continue
-            seen.add(key)
-            deduped.append(issue)
-        return deduped
+        return classify_row(
+            raw_row,
+            normalized,
+            duplicate_action,
+            existing_by_serial,
+            existing_by_patrimony,
+            existing_by_hostname,
+            seen_identities,
+        )
 
     def _build_summary(self, raw_rows: list[dict[str, object]], normalized_rows: list[dict[str, object]]) -> dict[str, int]:
         return {

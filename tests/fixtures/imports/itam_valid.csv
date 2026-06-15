@@ -1,0 +1,3 @@
+Hostname,Usuário,E-mail do usuário,Fabricante,Modelo,Serial,Sistema operacional,IP,Último login,Localização,Patrimônio,Tipo de equipamento,Status,Observações
+RJMIMP001,Colaborador Import,colaborador.import@ens.edu.br,Dell,Latitude 5440,SN-IMP-001,Windows 11,10.20.30.11,2026-06-01,Matriz,PAT-IMP-001,Notebook,Estoque,Fixture valida
+RJMIMP002,Colaborador Import,colaborador.import@ens.edu.br,HP Inc.,EliteBook 840,SN-IMP-002,Windows 11,10.20.30.12,2026-06-01,Matriz,PAT-IMP-002,Notebook,Estoque,Fixture valida

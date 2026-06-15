@@ -1,0 +1,3 @@
+Hostname,Usuário,Fabricante,Modelo,Serial,Sistema operacional,IP,Último login,Localização,Patrimônio,Tipo de equipamento
+=cmd,Colaborador Import,Dell,Latitude 5440,SN-IMP-003,Windows 11,10.20.30.14,2026-06-01,Matriz,PAT-IMP-003,Notebook
+RJMIMP004,*malicious,Dell,Latitude 5440,SN-IMP-004,Windows 11,10.20.30.15,2026-06-01,Matriz,PAT-IMP-004,Notebook
