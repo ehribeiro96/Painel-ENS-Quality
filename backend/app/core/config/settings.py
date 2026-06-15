@@ -4,12 +4,12 @@ import os
 from functools import lru_cache
 from typing import Annotated, Literal
 
-from pydantic import Field, field_validator, model_validator
+from pydantic import AliasChoices, Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore", populate_by_name=True)
 
     app_name: str = "ENS ITAM Platform"
     environment: Literal["local", "staging", "production"] = "local"
@@ -39,7 +39,10 @@ class Settings(BaseSettings):
     frontend_static: str | None = None
     frontend_dist: str | None = None
     enable_ai_chat: bool = False
-    ai_provider: Literal["mock", "gemini", "openai"] = "mock"
+    ai_provider: Literal["mock", "gemini", "openai", "ollama", "ollama-lan"] = Field(
+        default="mock",
+        validation_alias=AliasChoices("AI_CHAT_PROVIDER", "AI_PROVIDER"),
+    )
     ai_model: str = ""
     ai_gemini_api_key: str = ""
     ai_openai_api_key: str = ""
@@ -47,6 +50,10 @@ class Settings(BaseSettings):
     ai_max_input_chars: int = 12000
     ai_max_output_tokens: int = 1000
     ai_chat_rate_limit_per_minute: int = 20
+    ollama_base_url: str = "http://127.0.0.1:11434"
+    ollama_model: str = "qwen3:1.7b-64k"
+    ollama_timeout_seconds: int = 120
+    ollama_allowed_hosts: Annotated[list[str], NoDecode] = ["localhost", "127.0.0.1", "::1"]
 
     @property
     def openai_api_key(self) -> str:
@@ -59,9 +66,9 @@ class Settings(BaseSettings):
 
         return self.ai_openai_api_key
 
-    @field_validator("allowed_origins", mode="before")
+    @field_validator("allowed_origins", "ollama_allowed_hosts", mode="before")
     @classmethod
-    def parse_origins(cls, value: str | list[str] | None) -> list[str]:
+    def parse_csv_list(cls, value: str | list[str] | None) -> list[str]:
         if value is None:
             return []
         if isinstance(value, str):

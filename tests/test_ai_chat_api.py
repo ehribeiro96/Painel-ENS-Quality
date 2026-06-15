@@ -3,11 +3,11 @@ from __future__ import annotations
 import os
 import sys
 import unittest
-from unittest.mock import patch
 import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 BACKEND = ROOT / "backend"
@@ -18,8 +18,8 @@ from app.api.v1.dependencies.auth import get_current_user, require_role  # noqa:
 from app.api.v1.routes import ai_chat  # noqa: E402
 from app.core.config.settings import get_settings  # noqa: E402
 from app.core.database import base as _database_base  # noqa: E402, F401
-from app.domains.ai_chat import service as ai_chat_service_module  # noqa: E402
 from app.domains.ai_chat import providers as ai_chat_providers_module  # noqa: E402
+from app.domains.ai_chat import service as ai_chat_service_module  # noqa: E402
 from app.domains.ai_chat.providers import AiProviderConfigurationError  # noqa: E402
 from app.shared.enums import Role  # noqa: E402
 from fastapi import HTTPException  # noqa: E402

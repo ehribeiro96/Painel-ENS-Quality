@@ -3,10 +3,10 @@ from __future__ import annotations
 import os
 import sys
 import unittest
-from unittest.mock import patch
 import uuid
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 BACKEND = ROOT / "backend"
@@ -16,9 +16,10 @@ if str(BACKEND) not in sys.path:
 from app.api.v1.dependencies.auth import require_role  # noqa: E402
 from app.api.v1.routes import ai_chat  # noqa: E402
 from app.core.config.settings import Settings, get_settings  # noqa: E402
-from app.domains.ai_chat import service as ai_chat_service_module  # noqa: E402
 from app.domains.ai_chat import providers as ai_chat_providers_module  # noqa: E402
+from app.domains.ai_chat import service as ai_chat_service_module  # noqa: E402
 from app.domains.ai_chat.providers import AiProviderRequestError  # noqa: E402
+from app.domains.ai_chat.rate_limit import reset_ai_chat_rate_limit_memory  # noqa: E402
 from app.shared.enums import Role  # noqa: E402
 from fastapi import HTTPException  # noqa: E402
 
@@ -60,10 +61,10 @@ class AiChatHardeningTest(unittest.IsolatedAsyncioTestCase):
         self.addCleanup(self.urlopen_patch.stop)
         self.session = FakeAiChatSession()
         self.user = SimpleNamespace(id=uuid.uuid4(), name="Operador", email="op@example.test", role=Role.TECHNICIAN)
-        ai_chat._AI_CHAT_RATE_LIMIT.clear()
+        reset_ai_chat_rate_limit_memory()
 
     def tearDown(self) -> None:
-        ai_chat._AI_CHAT_RATE_LIMIT.clear()
+        reset_ai_chat_rate_limit_memory()
 
     def test_settings_default_ai_chat_feature_flag_is_disabled_and_limits_exist(self) -> None:
         fields = Settings.model_fields
@@ -155,6 +156,21 @@ class AiChatHardeningTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual("mock_failure", user_message.extra_metadata["error_type"])
         self.assertNotIn("Falha controlada", str(user_message.extra_metadata))
 
+    async def test_openai_without_key_returns_configuration_error_without_secret_leak(self) -> None:
+        original_provider = ai_chat.settings.ai_provider
+        original_openai_key = ai_chat.settings.ai_openai_api_key
+        ai_chat.settings.ai_provider = "openai"
+        ai_chat.settings.ai_openai_api_key = ""
+        try:
+            health = ai_chat_providers_module.get_ai_provider_health(ai_chat.settings)
+        finally:
+            ai_chat.settings.ai_provider = original_provider
+            ai_chat.settings.ai_openai_api_key = original_openai_key
+
+        self.assertEqual("configuration_error", health["status"])
+        self.assertEqual("openai_api_key_missing", health["detail"])
+        self.assertNotIn("sk-", str(health).lower())
+
     async def test_simple_per_user_rate_limit_returns_429(self) -> None:
         original_enabled = ai_chat.settings.enable_ai_chat
         original_limit = ai_chat.settings.ai_chat_rate_limit_per_minute
@@ -180,9 +196,8 @@ class AiChatFrontendHardeningTest(unittest.TestCase):
         vite_config = (ROOT / "frontend/itam-platform/vite.config.ts").read_text(encoding="utf-8")
 
         self.assertIn("ENABLE_AI_CHAT", features)
-        self.assertIn("enableAiChat", app_shell)
-        self.assertIn("nav.filter", app_shell)
-        self.assertIn("IA Chat", app_shell)
+        self.assertIn('href: "/ai-chat"', app_shell)
+        self.assertIn("IA Assistiva", app_shell)
         self.assertIn("envPrefix", vite_config)
         self.assertIn("ENABLE_", vite_config)
 

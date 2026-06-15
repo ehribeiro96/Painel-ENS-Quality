@@ -1,13 +1,12 @@
 from __future__ import annotations
 
-from collections import defaultdict, deque
-from time import monotonic
 from uuid import UUID
 
 from app.api.v1.dependencies.auth import require_role
 from app.core.config.settings import settings
 from app.core.database.session import get_session
 from app.domains.ai_chat.providers import AiProviderConfigurationError, AiProviderRequestError, get_ai_provider_health
+from app.domains.ai_chat.rate_limit import get_ai_chat_rate_limiter
 from app.domains.ai_chat.schemas import (
     AiChatConversationCreate,
     AiChatConversationDetail,
@@ -24,7 +23,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 router = APIRouter(prefix="/ai-chat", tags=["AI Chat"])
 
 ai_chat_user = Depends(require_role(Role.ADMIN, Role.TECHNICIAN, Role.MANAGER, Role.VIEWER))
-_AI_CHAT_RATE_LIMIT: dict[str, deque[float]] = defaultdict(deque)
+_AI_CHAT_RATE_LIMIT = get_ai_chat_rate_limiter()._memory_store._buckets  # compatibility for existing tests
 
 
 def _ensure_ai_chat_enabled() -> None:
@@ -32,18 +31,10 @@ def _ensure_ai_chat_enabled() -> None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="ai_chat_disabled")
 
 
-def _apply_rate_limit(user_id: UUID) -> None:
-    limit = int(settings.ai_chat_rate_limit_per_minute or 0)
-    if limit <= 0:
-        return
-    now = monotonic()
-    window_start = now - 60
-    bucket = _AI_CHAT_RATE_LIMIT[str(user_id)]
-    while bucket and bucket[0] < window_start:
-        bucket.popleft()
-    if len(bucket) >= limit:
-        raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail="ai_chat_rate_limit_exceeded")
-    bucket.append(now)
+async def _apply_rate_limit(user_id: UUID) -> None:
+    # Rate limit is enforced by the shared store abstraction to keep multi-worker and multi-container behavior aligned.
+    limiter = get_ai_chat_rate_limiter()
+    await limiter.check(user_id)
 
 
 def _provider_error_detail(prefix: str, exc: Exception) -> str:
@@ -76,7 +67,7 @@ async def create_conversation(
     if payload.message and len(payload.message) > settings.ai_max_input_chars:
         raise HTTPException(status_code=422, detail="ai_chat_input_too_large")
     if payload.message:
-        _apply_rate_limit(current_user.id)
+        await _apply_rate_limit(current_user.id)
     service = AiChatService(session)
 
     async def operation():
@@ -121,7 +112,7 @@ async def send_message(
     current_user: User = ai_chat_user,
 ):
     _ensure_ai_chat_enabled()
-    _apply_rate_limit(current_user.id)
+    await _apply_rate_limit(current_user.id)
     service = AiChatService(session)
     conversation = await service.get_conversation(conversation_id, current_user.id)
     if conversation is None:
