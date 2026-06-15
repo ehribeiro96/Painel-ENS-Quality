@@ -23,6 +23,18 @@ configure_logging()
 logger = structlog.get_logger()
 
 _rate_limit_buckets: dict[str, deque[float]] = defaultdict(deque)
+_STRICT_CSP = (
+    "default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; "
+    "style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'"
+)
+_LEGACY_CSP = (
+    "default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; "
+    "style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'self'"
+)
+_STRICT_CSP_REPORT_ONLY = (
+    "default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; "
+    "style-src 'self'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'"
+)
 
 
 @asynccontextmanager
@@ -76,16 +88,22 @@ def _is_rate_limited(request: Request) -> bool:
     return False
 
 
-def _apply_security_headers(response) -> None:
+def _is_legacy_path(path: str) -> bool:
+    return path.startswith("/admin") or path.startswith("/assinaturas")
+
+
+def _apply_security_headers(response, path: str) -> None:
     response.headers.setdefault("x-content-type-options", "nosniff")
     response.headers.setdefault("x-frame-options", "SAMEORIGIN")
     response.headers.setdefault("referrer-policy", "same-origin")
     response.headers.setdefault("permissions-policy", "camera=(), microphone=(), geolocation=()")
-    response.headers.setdefault(
-        "content-security-policy",
-        "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; "
-        "script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'self'",
-    )
+    if _is_legacy_path(path):
+        response.headers["content-security-policy"] = _LEGACY_CSP
+        response.headers["content-security-policy-report-only"] = _STRICT_CSP_REPORT_ONLY
+    else:
+        response.headers["content-security-policy"] = _STRICT_CSP
+        if "content-security-policy-report-only" in response.headers:
+            del response.headers["content-security-policy-report-only"]
     if settings.environment == "production":
         response.headers.setdefault("strict-transport-security", "max-age=31536000; includeSubDomains")
 
@@ -121,7 +139,7 @@ async def request_context(request: Request, call_next):
         metrics.observe("itam_http_request_duration_ms", duration_ms, {"method": request.method, "path": route_path})
         response.headers["x-request-id"] = request_id
         response.headers["x-correlation-id"] = correlation_id
-        _apply_security_headers(response)
+        _apply_security_headers(response, request.url.path)
         logger.info(
             "request_completed",
             method=request.method,
