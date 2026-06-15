@@ -7,6 +7,7 @@ Este diretório concentra a leitura operacional da auditoria e dos relatórios d
 Estado atual:
 
 - `GIT-C1 — Worktree boundary inventory and commit plan`: concluído com `GO`; stage vazio e plano de commits seletivos gerado.
+- `GIT-C2 — selective commits by approved boundary plan`: concluído com `PARTIAL`; commits seletivos principais foram criados e os ambíguos/ruídos de qualidade ficaram para `GIT-C3`.
 - `B0 — Segurança/higiene`: concluído com `GO`.
 - `B1 — Documentação de auditoria`: em consolidação.
 - `B2`: concluído com ressalva operacional.
@@ -39,7 +40,7 @@ Estado atual:
 
 1. Consolidar documentação e referências cruzadas em `B1`.
 2. Escolher uma única boundary funcional entre `B3` e `B4`.
-3. Executar `GIT-C2` para commits seletivos aprovados antes de abrir novas features.
+3. Executar `GIT-C3` para revisar os ambíguos remanescentes antes de abrir novas features.
 4. Só depois avançar para `B5` se houver necessidade de documentação/IA.
 5. Usar `B6` apenas para testes e infra quando estiver isolado.
 

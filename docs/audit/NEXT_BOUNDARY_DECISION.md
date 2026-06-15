@@ -3,6 +3,7 @@
 ## 1. Estado Pós-B3
 
 - `GIT-C1 — Worktree boundary inventory and commit plan` foi concluído com `GO`; o plano de commits seletivos foi gerado sem stage nem commit.
+- `GIT-C2 — selective commits by approved boundary plan` foi concluído com `PARTIAL`; os commits seletivos principais foram publicados e os ambíguos/ruídos de qualidade ficaram fora.
 - `B0 — Segurança/higiene` foi concluído com `GO`.
 - `B1 — Documentação de auditoria` foi consolidado.
 - `B2 — AI Chat/backend hardening` foi fechado com `GO COM RESSALVAS`.
@@ -53,9 +54,9 @@
 
 ### Recomendação padrão
 
-`GIT-C2 — executar commits seletivos aprovados` é a próxima ação mais segura.
+`GIT-C3 — revisar ambíguos remanescentes` é a próxima ação mais segura.
 
-Se a prioridade voltar para feature antes de commit, a alternativa documentada segue sendo `B4-E — legacy CSP and route polish`.
+Se a prioridade voltar para feature antes de triagem adicional, a alternativa documentada segue sendo `B4-E — legacy CSP and route polish`.
 
 ## 5. Critério para Escolher `B4`
 
