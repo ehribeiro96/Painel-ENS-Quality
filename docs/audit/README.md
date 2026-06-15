@@ -8,6 +8,7 @@ Estado atual:
 
 - `GIT-C1 — Worktree boundary inventory and commit plan`: concluído com `GO`; stage vazio e plano de commits seletivos gerado.
 - `GIT-C2 — selective commits by approved boundary plan`: concluído com `PARTIAL`; commits seletivos principais foram criados e os ambíguos/ruídos de qualidade ficaram para `GIT-C3`.
+- `GIT-C3 — revisar ambíguos remanescentes`: concluído com `PARTIAL`; arquivos seguros foram commitados e os remanescentes de qualidade ficaram documentados.
 - `B0 — Segurança/higiene`: concluído com `GO`.
 - `B1 — Documentação de auditoria`: em consolidação.
 - `B2`: concluído com ressalva operacional.
@@ -40,7 +41,7 @@ Estado atual:
 
 1. Consolidar documentação e referências cruzadas em `B1`.
 2. Escolher uma única boundary funcional entre `B3` e `B4`.
-3. Executar `GIT-C3` para revisar os ambíguos remanescentes antes de abrir novas features.
+3. Seguir para `B4-E` ou abrir uma nova boundary funcional apenas após revisar os remanescentes que ficaram documentados em `GIT-C3`.
 4. Só depois avançar para `B5` se houver necessidade de documentação/IA.
 5. Usar `B6` apenas para testes e infra quando estiver isolado.
 

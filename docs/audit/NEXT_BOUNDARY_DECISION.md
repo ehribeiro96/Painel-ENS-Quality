@@ -4,6 +4,7 @@
 
 - `GIT-C1 — Worktree boundary inventory and commit plan` foi concluído com `GO`; o plano de commits seletivos foi gerado sem stage nem commit.
 - `GIT-C2 — selective commits by approved boundary plan` foi concluído com `PARTIAL`; os commits seletivos principais foram publicados e os ambíguos/ruídos de qualidade ficaram fora.
+- `GIT-C3 — revisar ambíguos remanescentes` foi concluído com `PARTIAL`; os arquivos seguros foram commitados e os remanescentes ficaram classificados como defer/exclude.
 - `B0 — Segurança/higiene` foi concluído com `GO`.
 - `B1 — Documentação de auditoria` foi consolidado.
 - `B2 — AI Chat/backend hardening` foi fechado com `GO COM RESSALVAS`.
@@ -54,9 +55,9 @@
 
 ### Recomendação padrão
 
-`GIT-C3 — revisar ambíguos remanescentes` é a próxima ação mais segura.
+`B4-E — legacy CSP and route polish` é a próxima boundary funcional recomendada.
 
-Se a prioridade voltar para feature antes de triagem adicional, a alternativa documentada segue sendo `B4-E — legacy CSP and route polish`.
+Se a prioridade voltar para fechamento do inventário residual, abrir uma boundary separada apenas para os remanescentes documentados em `GIT-C3`.
 
 ## 5. Critério para Escolher `B4`
 
