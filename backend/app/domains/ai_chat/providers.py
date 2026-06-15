@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import asyncio
+import ipaddress
 import json
+import re
 import urllib.error
+import urllib.parse
 import urllib.request
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
@@ -26,6 +29,12 @@ OPENAI_CHAT_COMPLETIONS_URL = "https://api.openai.com/v1/chat/completions"
 DEFAULT_OPENAI_MODEL = "gpt-4o-mini"
 GEMINI_GENERATE_CONTENT_URL_TEMPLATE = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 DEFAULT_GEMINI_MODEL = "gemini-2.0-flash"
+DEFAULT_OLLAMA_BASE_URL = "http://127.0.0.1:11434"
+DEFAULT_OLLAMA_LAN_BASE_URL = "http://192.168.0.103:11434/v1"
+DEFAULT_OLLAMA_MODEL = "qwen3:1.7b-64k"
+OLLAMA_LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
+_THINK_BLOCK_RE = re.compile(r"<think\b[^>]*>.*?</think\s*>", re.IGNORECASE | re.DOTALL)
+_THINK_OPEN_RE = re.compile(r"^\s*<think\b[^>]*>\s*", re.IGNORECASE)
 
 
 class AiProviderConfigurationError(ValueError):
@@ -328,8 +337,115 @@ class OpenAIProvider:
         )
 
 
+class OllamaProvider:
+    provider = "ollama"
+
+    def __init__(
+        self,
+        settings: object | None = None,
+        *,
+        base_url: str | None = None,
+        model: str | None = None,
+        timeout_seconds: int | None = None,
+        http_post: AiHttpPost | None = None,
+    ) -> None:
+        if settings is not None:
+            base_url = getattr(settings, "ollama_base_url", "") or DEFAULT_OLLAMA_BASE_URL
+            model = getattr(settings, "ollama_model", "") or getattr(settings, "ai_model", "") or DEFAULT_OLLAMA_MODEL
+            timeout_seconds = int(getattr(settings, "ollama_timeout_seconds", 120) or 120)
+        self.base_url = _normalize_ollama_local_base_url(base_url or DEFAULT_OLLAMA_BASE_URL)
+        self.model = (model or DEFAULT_OLLAMA_MODEL).strip() or DEFAULT_OLLAMA_MODEL
+        self.timeout_seconds = max(1, timeout_seconds or 120)
+        self.http_post = http_post or _default_http_post
+
+    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:  # noqa: ARG002
+        payload: dict[str, object] = {
+            "model": self.model,
+            "stream": False,
+            "messages": [{"role": message.role, "content": message.content} for message in messages],
+        }
+        headers = {"Content-Type": "application/json"}
+        try:
+            data = await self.http_post(f"{self.base_url}/api/chat", headers, payload, self.timeout_seconds)
+        except TimeoutError as exc:
+            raise AiProviderRequestError("ollama_timeout") from exc
+        except AiProviderRequestError as exc:
+            if str(exc) == "provider_http_404":
+                raise AiProviderRequestError("ollama_model_unavailable") from exc
+            raise
+        except (urllib.error.URLError, OSError) as exc:
+            raise AiProviderRequestError("ollama_request_failed") from exc
+
+        content = _extract_ollama_content(data)
+        return AiProviderResponse(
+            content=content,
+            provider=self.provider,
+            model=self.model,
+            prompt_tokens=_int_or_none(data.get("prompt_eval_count")),
+            completion_tokens=_int_or_none(data.get("eval_count")),
+            raw_metadata={"done_reason": data.get("done_reason")},
+        )
+
+
+class OllamaLanProvider:
+    provider = "ollama-lan"
+
+    def __init__(
+        self,
+        settings: object | None = None,
+        *,
+        base_url: str | None = None,
+        model: str | None = None,
+        timeout_seconds: int | None = None,
+        allowed_hosts: list[str] | tuple[str, ...] | set[str] | None = None,
+        http_post: AiHttpPost | None = None,
+    ) -> None:
+        if settings is not None:
+            base_url = getattr(settings, "ollama_base_url", "") or DEFAULT_OLLAMA_LAN_BASE_URL
+            model = getattr(settings, "ollama_model", "") or getattr(settings, "ai_model", "") or DEFAULT_OLLAMA_MODEL
+            timeout_seconds = int(getattr(settings, "ollama_timeout_seconds", 120) or 120)
+            allowed_hosts = getattr(settings, "ollama_allowed_hosts", None)
+        self.base_url = _normalize_ollama_lan_base_url(
+            base_url or DEFAULT_OLLAMA_LAN_BASE_URL,
+            allowed_hosts=allowed_hosts,
+        )
+        self.model = (model or DEFAULT_OLLAMA_MODEL).strip() or DEFAULT_OLLAMA_MODEL
+        self.timeout_seconds = max(1, timeout_seconds or 120)
+        self.http_post = http_post or _default_http_post
+
+    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:  # noqa: ARG002
+        payload: dict[str, object] = {
+            "model": self.model,
+            "stream": False,
+            "messages": [{"role": message.role, "content": message.content} for message in messages],
+        }
+        headers = {"Content-Type": "application/json"}
+        try:
+            data = await self.http_post(f"{self.base_url}/chat/completions", headers, payload, self.timeout_seconds)
+        except TimeoutError as exc:
+            raise AiProviderRequestError("ollama_lan_timeout") from exc
+        except AiProviderRequestError as exc:
+            if str(exc) == "provider_http_404":
+                raise AiProviderRequestError("ollama_lan_model_unavailable") from exc
+            raise
+        except (urllib.error.URLError, OSError) as exc:
+            raise AiProviderRequestError("ollama_lan_request_failed") from exc
+
+        content = _extract_ollama_lan_content(data)
+        usage = data.get("usage", {})
+        usage_data = usage if isinstance(usage, dict) else {}
+        return AiProviderResponse(
+            content=content,
+            provider=self.provider,
+            model=self.model,
+            prompt_tokens=_int_or_none(usage_data.get("prompt_tokens")),
+            completion_tokens=_int_or_none(usage_data.get("completion_tokens")),
+            raw_metadata={"finish_reason": _extract_finish_reason(data)},
+        )
+
+
 def build_ai_provider(settings: object) -> AiProvider:
-    provider = (getattr(settings, "ai_provider", "mock") or "mock").strip().lower()
+    provider = _normalize_provider_name(getattr(settings, "ai_provider", "mock") or "mock")
     if provider == "mock":
         return MockAiProvider()
     if provider == "gemini":
@@ -341,11 +457,15 @@ def build_ai_provider(settings: object) -> AiProvider:
             timeout_seconds=int(getattr(settings, "ai_timeout_seconds", 30) or 30),
             max_output_tokens=int(getattr(settings, "ai_max_output_tokens", 1000) or 1000),
         )
+    if provider == "ollama":
+        return OllamaProvider(settings)
+    if provider == "ollama-lan":
+        return OllamaLanProvider(settings)
     raise ValueError(f"Unsupported AI_PROVIDER: {provider}")
 
 
 def get_ai_provider_health(settings: object) -> dict[str, object]:
-    provider = (getattr(settings, "ai_provider", "mock") or "mock").strip().lower()
+    provider = _normalize_provider_name(getattr(settings, "ai_provider", "mock") or "mock")
     if provider == "mock":
         return {"provider": "mock", "configured": True, "status": "ok"}
     if provider == "gemini":
@@ -376,7 +496,105 @@ def get_ai_provider_health(settings: object) -> dict[str, object]:
             "status": "ok",
             "model": (getattr(settings, "ai_model", "") or DEFAULT_OPENAI_MODEL).strip() or DEFAULT_OPENAI_MODEL,
         }
+    if provider == "ollama":
+        try:
+            _normalize_ollama_local_base_url(getattr(settings, "ollama_base_url", "") or DEFAULT_OLLAMA_BASE_URL)
+        except AiProviderConfigurationError as exc:
+            return {"provider": "ollama", "configured": False, "status": "configuration_error", "detail": str(exc)}
+        return {
+            "provider": "ollama",
+            "configured": True,
+            "status": "ok",
+            "model": (getattr(settings, "ollama_model", "") or getattr(settings, "ai_model", "") or DEFAULT_OLLAMA_MODEL).strip() or DEFAULT_OLLAMA_MODEL,
+        }
+    if provider == "ollama-lan":
+        try:
+            _normalize_ollama_lan_base_url(
+                getattr(settings, "ollama_base_url", "") or DEFAULT_OLLAMA_LAN_BASE_URL,
+                allowed_hosts=getattr(settings, "ollama_allowed_hosts", None),
+            )
+        except AiProviderConfigurationError as exc:
+            return {"provider": "ollama-lan", "configured": False, "status": "configuration_error", "detail": str(exc)}
+        return {
+            "provider": "ollama-lan",
+            "configured": True,
+            "status": "ok",
+            "model": (getattr(settings, "ollama_model", "") or getattr(settings, "ai_model", "") or DEFAULT_OLLAMA_MODEL).strip() or DEFAULT_OLLAMA_MODEL,
+        }
     return {"provider": provider, "configured": False, "status": "unsupported_provider"}
+
+
+def _normalize_provider_name(provider: str) -> str:
+    return (provider or "mock").strip().lower().replace("_", "-")
+
+
+def _normalize_ollama_local_base_url(base_url: str) -> str:
+    return _normalize_ollama_base_url(
+        base_url,
+        allowed_hosts=OLLAMA_LOOPBACK_HOSTS,
+        allow_openai_path=False,
+        error_prefix="ollama",
+    )
+
+
+def _normalize_ollama_lan_base_url(
+    base_url: str,
+    *,
+    allowed_hosts: list[str] | tuple[str, ...] | set[str] | None,
+) -> str:
+    return _normalize_ollama_base_url(
+        base_url,
+        allowed_hosts=allowed_hosts,
+        allow_openai_path=True,
+        error_prefix="ollama_lan",
+    )
+
+
+def _normalize_ollama_base_url(
+    base_url: str,
+    *,
+    allowed_hosts: list[str] | tuple[str, ...] | set[str] | None,
+    allow_openai_path: bool,
+    error_prefix: str,
+) -> str:
+    value = (base_url or DEFAULT_OLLAMA_BASE_URL).strip().rstrip("/")
+    parsed = urllib.parse.urlparse(value)
+    host = parsed.hostname or ""
+    allowed = _normalize_allowed_hosts(allowed_hosts)
+    if parsed.scheme != "http":
+        raise AiProviderConfigurationError(f"{error_prefix}_base_url_must_use_http")
+    if host.lower() not in allowed:
+        raise AiProviderConfigurationError(f"{error_prefix}_host_not_allowed")
+    if not _is_safe_ollama_host(host):
+        raise AiProviderConfigurationError(f"{error_prefix}_host_not_allowed")
+    if allow_openai_path:
+        if parsed.path in {"", "/"}:
+            return value + "/v1"
+        if parsed.path != "/v1":
+            raise AiProviderConfigurationError(f"{error_prefix}_base_url_must_use_v1_path")
+    elif parsed.path not in {"", "/"}:
+        raise AiProviderConfigurationError("ollama_base_url_must_not_include_path")
+    return value
+
+
+def _normalize_allowed_hosts(allowed_hosts: list[str] | tuple[str, ...] | set[str] | None) -> set[str]:
+    values = {str(host).strip().lower() for host in (allowed_hosts or []) if str(host).strip()}
+    if not values:
+        return set(OLLAMA_LOOPBACK_HOSTS)
+    if "*" in values or "0.0.0.0/0" in values or "::/0" in values:
+        raise AiProviderConfigurationError("ollama_allowed_hosts_wildcard_not_allowed")
+    return values
+
+
+def _is_safe_ollama_host(host: str) -> bool:
+    normalized = host.strip().lower()
+    if normalized == "localhost":
+        return True
+    try:
+        address = ipaddress.ip_address(normalized)
+    except ValueError:
+        return False
+    return bool(address.is_loopback or address.is_private)
 
 
 async def _default_http_post(
@@ -416,8 +634,43 @@ def _extract_openai_content(data: dict[str, object]) -> str:
     if not isinstance(message, dict):
         raise AiProviderRequestError("openai_invalid_response")
     content = message.get("content")
-    if not isinstance(content, str) or not content.strip():
+    if not isinstance(content, str):
         raise AiProviderRequestError("openai_empty_response")
+    content = _sanitize_ai_response_content(content)
+    if not content:
+        raise AiProviderRequestError("openai_empty_response")
+    return content
+
+
+def _extract_ollama_content(data: dict[str, object]) -> str:
+    message = data.get("message")
+    if not isinstance(message, dict):
+        raise AiProviderRequestError("ollama_invalid_response")
+    content = message.get("content")
+    if not isinstance(content, str):
+        raise AiProviderRequestError("ollama_empty_response")
+    content = _sanitize_ai_response_content(content)
+    if not content:
+        raise AiProviderRequestError("ollama_empty_response")
+    return content
+
+
+def _extract_ollama_lan_content(data: dict[str, object]) -> str:
+    choices = data.get("choices")
+    if not isinstance(choices, list) or not choices:
+        raise AiProviderRequestError("ollama_lan_empty_response")
+    first = choices[0]
+    if not isinstance(first, dict):
+        raise AiProviderRequestError("ollama_lan_invalid_response")
+    message = first.get("message")
+    if not isinstance(message, dict):
+        raise AiProviderRequestError("ollama_lan_invalid_response")
+    content = message.get("content")
+    if not isinstance(content, str):
+        raise AiProviderRequestError("ollama_lan_empty_response")
+    content = _sanitize_ai_response_content(content)
+    if not content:
+        raise AiProviderRequestError("ollama_lan_empty_response")
     return content
 
 
@@ -454,10 +707,31 @@ def _extract_gemini_content(data: dict[str, object]) -> str:
     if not isinstance(parts, list):
         raise AiProviderRequestError("gemini_invalid_response")
     texts = [part.get("text", "") for part in parts if isinstance(part, dict) and isinstance(part.get("text"), str)]
-    text = "".join(texts).strip()
+    text = _sanitize_ai_response_content("".join(texts))
     if not text:
         raise AiProviderRequestError("gemini_empty_response")
     return text
+
+
+def _sanitize_ai_response_content(content: str) -> str:
+    cleaned = content.strip()
+    if not cleaned:
+        return ""
+    cleaned = _THINK_BLOCK_RE.sub("", cleaned).strip()
+    if not cleaned:
+        return ""
+    if _THINK_OPEN_RE.match(cleaned):
+        remainder = _THINK_OPEN_RE.sub("", cleaned, count=1).strip()
+        if not remainder:
+            return ""
+        if re.search(r"\n\s*\n", remainder):
+            remainder = re.split(r"\n\s*\n", remainder, maxsplit=1)[-1].strip()
+        else:
+            lines = [line.strip() for line in remainder.splitlines() if line.strip()]
+            if len(lines) > 1:
+                remainder = lines[-1]
+        cleaned = remainder.strip()
+    return _THINK_BLOCK_RE.sub("", cleaned).strip()
 
 
 def _extract_gemini_finish_reason(data: dict[str, object]) -> object:
