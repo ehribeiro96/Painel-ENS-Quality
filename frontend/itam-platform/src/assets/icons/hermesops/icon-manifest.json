@@ -1,0 +1,92 @@
+{
+  "name": "HermesOps Sentinel Icon Pack",
+  "version": "1.0.0",
+  "style": "techno-indigena minimalista, line icons, currentColor, 24x24",
+  "defaultStrokeWidth": 1.8,
+  "icons": [
+    {
+      "name": "hermes-core",
+      "component": "HermesCoreIcon",
+      "svg": "svg/hermes-core.svg",
+      "description": "Símbolo central do agente: chip, eixo e nós de circuito."
+    },
+    {
+      "name": "radar-circuit",
+      "component": "RadarCircuitIcon",
+      "svg": "svg/radar-circuit.svg",
+      "description": "Centro de comando, visão geral e telemetria."
+    },
+    {
+      "name": "package-chip",
+      "component": "PackageChipIcon",
+      "svg": "svg/package-chip.svg",
+      "description": "Inventário de ativos: caixa patrimonial com núcleo de chip."
+    },
+    {
+      "name": "transfer-circuit",
+      "component": "TransferCircuitIcon",
+      "svg": "svg/transfer-circuit.svg",
+      "description": "Movimentações: transferência de ativo com trilhas auditáveis."
+    },
+    {
+      "name": "database-pulse",
+      "component": "DatabasePulseIcon",
+      "svg": "svg/database-pulse.svg",
+      "description": "Importação Lansweeper, sincronização e ingestão de dados."
+    },
+    {
+      "name": "document-bolt",
+      "component": "DocumentBoltIcon",
+      "svg": "svg/document-bolt.svg",
+      "description": "Macros ITIL, documentos técnicos e geração assistida."
+    },
+    {
+      "name": "book-circuit",
+      "component": "BookCircuitIcon",
+      "svg": "svg/book-circuit.svg",
+      "description": "KCS e base de conhecimento operacional."
+    },
+    {
+      "name": "eye-trace",
+      "component": "EyeTraceIcon",
+      "svg": "svg/eye-trace.svg",
+      "description": "Auditoria, rastreabilidade e observabilidade."
+    },
+    {
+      "name": "neural-node",
+      "component": "NeuralNodeIcon",
+      "svg": "svg/neural-node.svg",
+      "description": "Memória local, relações e conhecimento persistente."
+    },
+    {
+      "name": "settings-circuit",
+      "component": "SettingsCircuitIcon",
+      "svg": "svg/settings-circuit.svg",
+      "description": "Configurações, controle técnico e ajustes do agente."
+    },
+    {
+      "name": "shield-check",
+      "component": "ShieldCheckIcon",
+      "svg": "svg/shield-check.svg",
+      "description": "Validação, ativo confiável e segurança operacional."
+    },
+    {
+      "name": "conflict-split",
+      "component": "ConflictSplitIcon",
+      "svg": "svg/conflict-split.svg",
+      "description": "Conflitos de inventário, divergências e revisão manual."
+    },
+    {
+      "name": "agent-orbit",
+      "component": "AgentOrbitIcon",
+      "svg": "svg/agent-orbit.svg",
+      "description": "Agente Hermes em execução, orquestração e loop local."
+    },
+    {
+      "name": "audit-report",
+      "component": "AuditReportIcon",
+      "svg": "svg/audit-report.svg",
+      "description": "Relatórios de auditoria e trilha de eventos."
+    }
+  ]
+}

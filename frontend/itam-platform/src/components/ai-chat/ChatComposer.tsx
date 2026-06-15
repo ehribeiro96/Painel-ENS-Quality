@@ -15,7 +15,7 @@ export function ChatComposer({ disabled, value, onValueChange, onSend, isSending
 
   useEffect(() => {
     if (!disabled) {
-      textareaRef.current?.focus();
+      textareaRef.current?.focus({ preventScroll: true });
     }
   }, [disabled, isSending]);
 

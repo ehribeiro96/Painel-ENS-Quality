@@ -1,22 +1,37 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Activity, ClipboardList, Gauge, Import, Link2, LogOut, MessageSquareText, Monitor, Search, Shield, ShieldCheck, Signature, Users } from "lucide-react";
+import { LogOut, Search, Users } from "lucide-react";
+import { BrandMark } from "@/components/brand/BrandMark";
+import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
+import {
+  AgentOrbitIcon,
+  AuditReportIcon,
+  DatabasePulseIcon,
+  DocumentBoltIcon,
+  HermesCoreIcon,
+  NeuralNodeIcon,
+  PackageChipIcon,
+  RadarCircuitIcon,
+  SettingsCircuitIcon,
+  ShieldCheckIcon,
+  TransferCircuitIcon
+} from "@/components/icons/HermesIcons";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
-import { enableAiChat } from "@/lib/features";
 import type { SearchResult } from "@/lib/types";
 
 const nav = [
-  { href: "/", label: "Dashboard", icon: Gauge },
-  { href: "/assets", label: "Ativos", icon: Monitor },
+  { href: "/", label: "Centro de Comando", icon: RadarCircuitIcon },
+  { href: "/assets", label: "Inventário", icon: PackageChipIcon },
   { href: "/users", label: "Colaboradores", icon: Users },
-  { href: "/assignments", label: "Atribuições", icon: Link2 },
-  { href: "/signatures", label: "Assinaturas", icon: Signature },
-  { href: "/macros", label: "Macros", icon: MessageSquareText },
-  { href: "/ai-chat", label: "IA Chat", icon: MessageSquareText },
-  { href: "/audit-logs", label: "Auditoria", icon: ClipboardList },
-  { href: "/imports", label: "Importar/Exportar", icon: Import }
+  { href: "/assignments", label: "Movimentações", icon: TransferCircuitIcon },
+  { href: "/signatures", label: "Assinaturas", icon: ShieldCheckIcon },
+  { href: "/macros", label: "Macros ITIL", icon: DocumentBoltIcon },
+  { href: "/ai-chat", label: "IA Assistiva", icon: NeuralNodeIcon },
+  { href: "/audit-logs", label: "Auditoria", icon: AuditReportIcon },
+  { href: "/imports", label: "Importação Lansweeper", icon: DatabasePulseIcon },
+  { href: "/settings", label: "Configurações", icon: SettingsCircuitIcon }
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -45,19 +60,13 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="shell">
       <aside className="sidebar" aria-label="Menu lateral">
-        <div className="brand-block">
-          <div className="brand-mark"><Shield size={22} aria-hidden /></div>
-          <div>
-            <strong>Funenseg</strong>
-            <span>Inventário TI</span>
-          </div>
-        </div>
+        <BrandMark compact={false} />
         <nav className="nav" aria-label="Navegação principal">
-          {nav.filter((item) => item.href !== "/ai-chat" || enableAiChat || !enableAiChat).map((item) => {
+          {nav.map((item) => {
             const Icon = item.icon;
             return (
               <NavLink key={item.href} to={item.href} className={({ isActive }) => (isActive ? "active" : undefined)} end={item.href === "/"}>
-                <Icon size={17} aria-hidden />
+                <Icon size={17} aria-hidden="true" />
                 <span>{item.label}</span>
               </NavLink>
             );
@@ -76,7 +85,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <span>Sair</span>
           </button>
           <a className="legacy-link" href="/assinaturas/" title="Abrir módulo legado de assinaturas">
-            <ShieldCheck size={16} aria-hidden />
+            <ShieldCheckIcon size={16} aria-hidden="true" />
             <span>Assinaturas legado</span>
           </a>
         </div>
@@ -106,8 +115,19 @@ export function AppShell({ children }: { children: ReactNode }) {
             ) : null}
           </div>
           <div className="toolbar topbar-status" aria-label="Status da aplicação">
-            <Activity size={17} aria-hidden />
-            <span>ENS ITAM Platform</span>
+            <HermesStatusPill state="Online">Agente local</HermesStatusPill>
+            <HermesStatusPill state="Auditável">Inventário auditável</HermesStatusPill>
+            <span className="topbar-user">
+              <HermesCoreIcon size={16} aria-hidden="true" />
+              <span>
+                <strong>{user?.name ?? "Usuário"}</strong>
+                <small>{user?.role ?? "OPERADOR"}</small>
+              </span>
+            </span>
+            <button className="logout-link topbar-logout" type="button" onClick={() => void logout()}>
+              <LogOut size={16} aria-hidden />
+              <span>Sair</span>
+            </button>
           </div>
         </header>
         <section className="content">{children}</section>

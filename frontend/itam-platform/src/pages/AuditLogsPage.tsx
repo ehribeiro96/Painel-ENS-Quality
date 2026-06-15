@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
+import { SentinelSectionHeader } from "@/components/brand/SentinelSectionHeader";
 import { DataTable } from "@/components/DataTable";
 import { AlertBlock, EmptyState, LoadingBlock } from "@/components/StateBlocks";
 import { api } from "@/lib/api";
@@ -65,16 +67,12 @@ export function AuditLogsPage() {
 
   return (
     <>
-      <header className="page-title page-header audit-page-header">
-        <div>
-          <span className="badge info">Auditoria</span>
-          <h1>Auditoria</h1>
-          <p>Consulta para rastrear ações do sistema, apoiar investigação operacional e conferir eventos sensíveis.</p>
-        </div>
-        <div className="page-actions">
-          <span className="badge neutral">Consulta</span>
-        </div>
-      </header>
+      <SentinelSectionHeader
+        chips={<HermesStatusPill state="Auditável">Consulta</HermesStatusPill>}
+        eyebrow="Auditoria"
+        subtitle="Consulta para rastrear ações do sistema, apoiar investigação operacional e conferir eventos sensíveis."
+        title="Auditoria"
+      />
 
       <section className="audit-summary-grid" aria-label="Resumo de auditoria">
         {items.length ? (

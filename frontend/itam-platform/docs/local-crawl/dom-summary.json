@@ -1,0 +1,2227 @@
+[
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Centro de Comando"
+      },
+      {
+        "tag": "h2",
+        "text": "Ativos por status"
+      },
+      {
+        "tag": "h2",
+        "text": "Ativos por unidade"
+      },
+      {
+        "tag": "h2",
+        "text": "Top tipos de ativo"
+      },
+      {
+        "tag": "h2",
+        "text": "Ações recomendadas"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Importar dados",
+        "href": "/imports"
+      },
+      {
+        "text": "Cadastrar ativo",
+        "href": "/assets"
+      },
+      {
+        "text": "ATIVOS SEM USUÁRIO 0 Nenhum item sem usuário na amostra atual.",
+        "href": "/assets"
+      },
+      {
+        "text": "MANUTENÇÃO 0 Sem ativos em manutenção no resumo.",
+        "href": "/assets"
+      },
+      {
+        "text": "DEFEITUOSOS 0 Sem ativos defeituosos informados.",
+        "href": "/assets"
+      },
+      {
+        "text": "PENDÊNCIAS OPERACIONAIS 0 Sem configuração pendente no status atual.",
+        "href": "/assets"
+      },
+      {
+        "text": "Gerenciar ativos Ver, filtrar e editar o inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores Consultar vínculos por usuário",
+        "href": "/users"
+      },
+      {
+        "text": "Atribuições Histórico de vínculos e movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Importar Excel Atualizar dados via fluxo existente",
+        "href": "/imports"
+      }
+    ],
+    "tables": [],
+    "cards": [
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL CENTRO DE COMANDO Centro de Comando Visão operacional d",
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL CENTRO DE COMANDO Centro de Comando Visão operacional d",
+      "AU CMDB 0 TOTAL DE ATIVOS Base operacional cadastrada ✓ USO 0 COLABORADORES ATIVOS Com ativo vinculado na amostra AU 0% 0 VÍNCULOS VIGENTES ",
+      "AU CMDB 0 TOTAL DE ATIVOS Base operacional cadastrada",
+      "✓ USO 0 COLABORADORES ATIVOS Com ativo vinculado na amostra",
+      "AU 0% 0 VÍNCULOS VIGENTES Ativos atualmente atribuídos",
+      "AU ESTOQUE 0 EM ESTOQUE Disponíveis para operação",
+      "… OK 0 EM MANUTENÇÃO Exigem acompanhamento técnico",
+      "! OK 0 PARA DESCARTE Itens fora do ciclo operacional",
+      "Ativos por status Distribuição real retornada pelo backend. 0 ativos Sem status para exibir. Os totais por status ainda não foram retornados",
+      "Ativos por status Distribuição real retornada pelo backend. 0 ativos Sem status para exibir. Os totais por status ainda não foram retornados",
+      "Ativos por unidade Agrupamento por prefixo da localização nos ativos carregados. Sem unidades identificadas. Preencha localização nos ativos",
+      "Top tipos de ativo Tipos mais frequentes na amostra recente. Sem tipos para exibir. Cadastre ou importe ativos para montar o ranking de tipo",
+      "Ações recomendadas Sinais derivados apenas dos contadores já carregados nesta página. Sem endpoint novo ATIVOS SEM USUÁRIO 0 Nenhum item sem",
+      "Gerenciar ativos Ver, filtrar e editar o inventário Colaboradores Consultar vínculos por usuário Atribuições Histórico de vínculos e movimen"
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação",
+      "Ações rápidas do dashboard",
+      "Métricas principais"
+    ],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-home-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Centro de Comando"
+      },
+      {
+        "tag": "h2",
+        "text": "Ativos por status"
+      },
+      {
+        "tag": "h2",
+        "text": "Ativos por unidade"
+      },
+      {
+        "tag": "h2",
+        "text": "Top tipos de ativo"
+      },
+      {
+        "tag": "h2",
+        "text": "Ações recomendadas"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Importar dados",
+        "href": "/imports"
+      },
+      {
+        "text": "Cadastrar ativo",
+        "href": "/assets"
+      },
+      {
+        "text": "ATIVOS SEM USUÁRIO 0 Nenhum item sem usuário na amostra atual.",
+        "href": "/assets"
+      },
+      {
+        "text": "MANUTENÇÃO 0 Sem ativos em manutenção no resumo.",
+        "href": "/assets"
+      },
+      {
+        "text": "DEFEITUOSOS 0 Sem ativos defeituosos informados.",
+        "href": "/assets"
+      },
+      {
+        "text": "PENDÊNCIAS OPERACIONAIS 0 Sem configuração pendente no status atual.",
+        "href": "/assets"
+      },
+      {
+        "text": "Gerenciar ativos Ver, filtrar e editar o inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores Consultar vínculos por usuário",
+        "href": "/users"
+      },
+      {
+        "text": "Atribuições Histórico de vínculos e movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Importar Excel Atualizar dados via fluxo existente",
+        "href": "/imports"
+      }
+    ],
+    "tables": [],
+    "cards": [
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL CENTRO DE COMANDO Centro de Comando Visão operacional d",
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL CENTRO DE COMANDO Centro de Comando Visão operacional d",
+      "AU CMDB 0 TOTAL DE ATIVOS Base operacional cadastrada ✓ USO 0 COLABORADORES ATIVOS Com ativo vinculado na amostra AU 0% 0 VÍNCULOS VIGENTES ",
+      "AU CMDB 0 TOTAL DE ATIVOS Base operacional cadastrada",
+      "✓ USO 0 COLABORADORES ATIVOS Com ativo vinculado na amostra",
+      "AU 0% 0 VÍNCULOS VIGENTES Ativos atualmente atribuídos",
+      "AU ESTOQUE 0 EM ESTOQUE Disponíveis para operação",
+      "… OK 0 EM MANUTENÇÃO Exigem acompanhamento técnico",
+      "! OK 0 PARA DESCARTE Itens fora do ciclo operacional",
+      "Ativos por status Distribuição real retornada pelo backend. 0 ativos Sem status para exibir. Os totais por status ainda não foram retornados",
+      "Ativos por status Distribuição real retornada pelo backend. 0 ativos Sem status para exibir. Os totais por status ainda não foram retornados",
+      "Ativos por unidade Agrupamento por prefixo da localização nos ativos carregados. Sem unidades identificadas. Preencha localização nos ativos",
+      "Top tipos de ativo Tipos mais frequentes na amostra recente. Sem tipos para exibir. Cadastre ou importe ativos para montar o ranking de tipo",
+      "Ações recomendadas Sinais derivados apenas dos contadores já carregados nesta página. Sem endpoint novo ATIVOS SEM USUÁRIO 0 Nenhum item sem",
+      "Gerenciar ativos Ver, filtrar e editar o inventário Colaboradores Consultar vínculos por usuário Atribuições Histórico de vínculos e movimen"
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação",
+      "Ações rápidas do dashboard",
+      "Métricas principais"
+    ],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "1.92px"
+    },
+    "route": "/",
+    "viewport": "1366x768",
+    "zoom125_simulated": true,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-home-1366x768-zoom125.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Centro de Comando"
+      },
+      {
+        "tag": "h2",
+        "text": "Ativos por status"
+      },
+      {
+        "tag": "h2",
+        "text": "Ativos por unidade"
+      },
+      {
+        "tag": "h2",
+        "text": "Top tipos de ativo"
+      },
+      {
+        "tag": "h2",
+        "text": "Ações recomendadas"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Importar dados",
+        "href": "/imports"
+      },
+      {
+        "text": "Cadastrar ativo",
+        "href": "/assets"
+      },
+      {
+        "text": "ATIVOS SEM USUÁRIO 0 Nenhum item sem usuário na amostra atual.",
+        "href": "/assets"
+      },
+      {
+        "text": "MANUTENÇÃO 0 Sem ativos em manutenção no resumo.",
+        "href": "/assets"
+      },
+      {
+        "text": "DEFEITUOSOS 0 Sem ativos defeituosos informados.",
+        "href": "/assets"
+      },
+      {
+        "text": "PENDÊNCIAS OPERACIONAIS 0 Sem configuração pendente no status atual.",
+        "href": "/assets"
+      },
+      {
+        "text": "Gerenciar ativos Ver, filtrar e editar o inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores Consultar vínculos por usuário",
+        "href": "/users"
+      },
+      {
+        "text": "Atribuições Histórico de vínculos e movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Importar Excel Atualizar dados via fluxo existente",
+        "href": "/imports"
+      }
+    ],
+    "tables": [],
+    "cards": [
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL CENTRO DE COMANDO Centro de Comando Visão operacional d",
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL CENTRO DE COMANDO Centro de Comando Visão operacional d",
+      "AU CMDB 0 TOTAL DE ATIVOS Base operacional cadastrada ✓ USO 0 COLABORADORES ATIVOS Com ativo vinculado na amostra AU 0% 0 VÍNCULOS VIGENTES ",
+      "AU CMDB 0 TOTAL DE ATIVOS Base operacional cadastrada",
+      "✓ USO 0 COLABORADORES ATIVOS Com ativo vinculado na amostra",
+      "AU 0% 0 VÍNCULOS VIGENTES Ativos atualmente atribuídos",
+      "AU ESTOQUE 0 EM ESTOQUE Disponíveis para operação",
+      "… OK 0 EM MANUTENÇÃO Exigem acompanhamento técnico",
+      "! OK 0 PARA DESCARTE Itens fora do ciclo operacional",
+      "Ativos por status Distribuição real retornada pelo backend. 0 ativos Sem status para exibir. Os totais por status ainda não foram retornados",
+      "Ativos por status Distribuição real retornada pelo backend. 0 ativos Sem status para exibir. Os totais por status ainda não foram retornados",
+      "Ativos por unidade Agrupamento por prefixo da localização nos ativos carregados. Sem unidades identificadas. Preencha localização nos ativos",
+      "Top tipos de ativo Tipos mais frequentes na amostra recente. Sem tipos para exibir. Cadastre ou importe ativos para montar o ranking de tipo",
+      "Ações recomendadas Sinais derivados apenas dos contadores já carregados nesta página. Sem endpoint novo ATIVOS SEM USUÁRIO 0 Nenhum item sem",
+      "Gerenciar ativos Ver, filtrar e editar o inventário Colaboradores Consultar vínculos por usuário Atribuições Histórico de vínculos e movimen"
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação",
+      "Ações rápidas do dashboard",
+      "Métricas principais"
+    ],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/",
+    "viewport": "1920x1080",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-home-1920x1080.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Centro de Comando"
+      },
+      {
+        "tag": "h2",
+        "text": "Ativos por status"
+      },
+      {
+        "tag": "h2",
+        "text": "Ativos por unidade"
+      },
+      {
+        "tag": "h2",
+        "text": "Top tipos de ativo"
+      },
+      {
+        "tag": "h2",
+        "text": "Ações recomendadas"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Importar dados",
+        "href": "/imports"
+      },
+      {
+        "text": "Cadastrar ativo",
+        "href": "/assets"
+      },
+      {
+        "text": "ATIVOS SEM USUÁRIO 0 Nenhum item sem usuário na amostra atual.",
+        "href": "/assets"
+      },
+      {
+        "text": "MANUTENÇÃO 0 Sem ativos em manutenção no resumo.",
+        "href": "/assets"
+      },
+      {
+        "text": "DEFEITUOSOS 0 Sem ativos defeituosos informados.",
+        "href": "/assets"
+      },
+      {
+        "text": "PENDÊNCIAS OPERACIONAIS 0 Sem configuração pendente no status atual.",
+        "href": "/assets"
+      },
+      {
+        "text": "Gerenciar ativos Ver, filtrar e editar o inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores Consultar vínculos por usuário",
+        "href": "/users"
+      },
+      {
+        "text": "Atribuições Histórico de vínculos e movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Importar Excel Atualizar dados via fluxo existente",
+        "href": "/imports"
+      }
+    ],
+    "tables": [],
+    "cards": [
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL CENTRO DE COMANDO Centro de Comando Visão operacional d",
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL CENTRO DE COMANDO Centro de Comando Visão operacional d",
+      "AU CMDB 0 TOTAL DE ATIVOS Base operacional cadastrada ✓ USO 0 COLABORADORES ATIVOS Com ativo vinculado na amostra AU 0% 0 VÍNCULOS VIGENTES ",
+      "AU CMDB 0 TOTAL DE ATIVOS Base operacional cadastrada",
+      "✓ USO 0 COLABORADORES ATIVOS Com ativo vinculado na amostra",
+      "AU 0% 0 VÍNCULOS VIGENTES Ativos atualmente atribuídos",
+      "AU ESTOQUE 0 EM ESTOQUE Disponíveis para operação",
+      "… OK 0 EM MANUTENÇÃO Exigem acompanhamento técnico",
+      "! OK 0 PARA DESCARTE Itens fora do ciclo operacional",
+      "Ativos por status Distribuição real retornada pelo backend. 0 ativos Sem status para exibir. Os totais por status ainda não foram retornados",
+      "Ativos por status Distribuição real retornada pelo backend. 0 ativos Sem status para exibir. Os totais por status ainda não foram retornados",
+      "Ativos por unidade Agrupamento por prefixo da localização nos ativos carregados. Sem unidades identificadas. Preencha localização nos ativos",
+      "Top tipos de ativo Tipos mais frequentes na amostra recente. Sem tipos para exibir. Cadastre ou importe ativos para montar o ranking de tipo",
+      "Ações recomendadas Sinais derivados apenas dos contadores já carregados nesta página. Sem endpoint novo ATIVOS SEM USUÁRIO 0 Nenhum item sem",
+      "Gerenciar ativos Ver, filtrar e editar o inventário Colaboradores Consultar vínculos por usuário Atribuições Histórico de vínculos e movimen"
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação",
+      "Ações rápidas do dashboard",
+      "Métricas principais"
+    ],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/login",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-login-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/assets",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Inventário"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair",
+      "Colunas",
+      "+ Novo ativo",
+      "Limpar",
+      "Tag",
+      "Patrimônio",
+      "Status",
+      "Unidade",
+      "Última movimentação ↓",
+      "Anterior",
+      "Próxima"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Hostname, patrimônio, serial, usuário, e-mail ou localidade",
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "select",
+        "type": "select-one",
+        "placeholder": null,
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "select",
+        "type": "select-one",
+        "placeholder": null,
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": null,
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "select",
+        "type": "select-one",
+        "placeholder": null,
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "select",
+        "type": "select-one",
+        "placeholder": null,
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      }
+    ],
+    "tables": [
+      {
+        "headers": [
+          "Tag",
+          "Patrimônio",
+          "COLABORADOR",
+          "Status",
+          "Unidade",
+          "Última movimentação ↓",
+          "AÇÕES"
+        ],
+        "rows": 1
+      }
+    ],
+    "cards": [
+      "INVENTÁRIO TÉCNICO Inventário Busca operacional com filtros, visão salva e ações diretas por linha. Colunas + Novo ativo BUSCA UNIFICADA STA",
+      "BUSCA UNIFICADA STATUS Todos Em uso Em estoque Em manutenção Defeituoso Baixado Reservado Aguardando validação TIPO Todos NOTEBOOK DESKTOP M"
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação",
+      "Filtros de ativos",
+      "Tabela operacional",
+      "Paginação de ativos"
+    ],
+    "unlabeledInputs": 5,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/assets",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-assets-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/imports",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Importação Lansweeper"
+      },
+      {
+        "tag": "h2",
+        "text": "Importar Planilha Excel"
+      },
+      {
+        "tag": "h2",
+        "text": "Exportar Dados"
+      },
+      {
+        "tag": "h2",
+        "text": "Modo da importação"
+      },
+      {
+        "tag": "h2",
+        "text": "Fluxo da importação"
+      },
+      {
+        "tag": "h2",
+        "text": "Decisão da importação"
+      },
+      {
+        "tag": "h2",
+        "text": "Preset e qualidade"
+      },
+      {
+        "tag": "h2",
+        "text": "Distribuicoes"
+      },
+      {
+        "tag": "h3",
+        "text": "state"
+      },
+      {
+        "tag": "h3",
+        "text": "custom1"
+      },
+      {
+        "tag": "h3",
+        "text": "asset_family"
+      },
+      {
+        "tag": "h3",
+        "text": "building"
+      },
+      {
+        "tag": "h2",
+        "text": "Importacoes"
+      },
+      {
+        "tag": "h2",
+        "text": "Mapeamento"
+      },
+      {
+        "tag": "h2",
+        "text": "Staging"
+      },
+      {
+        "tag": "h2",
+        "text": "Erros"
+      },
+      {
+        "tag": "h2",
+        "text": "Conflitos"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair",
+      "Exportação em preparação",
+      "Aplicar importação",
+      "Cancelar"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "input",
+        "type": "file",
+        "placeholder": null,
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "select",
+        "type": "select-one",
+        "placeholder": null,
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      }
+    ],
+    "tables": [
+      {
+        "headers": [
+          "ARQUIVO",
+          "STATUS",
+          "LINHAS",
+          "CONFLITOS",
+          "CRIADA EM",
+          "AÇÃO"
+        ],
+        "rows": 1
+      },
+      {
+        "headers": [
+          "LINHA",
+          "IDENTIFICADOR",
+          "CONFIANÇA",
+          "AÇÃO",
+          "STATUS",
+          "MERGE",
+          "MOTIVO"
+        ],
+        "rows": 1
+      },
+      {
+        "headers": [
+          "LINHA",
+          "CAMPO",
+          "CÓDIGO",
+          "MENSAGEM"
+        ],
+        "rows": 1
+      },
+      {
+        "headers": [
+          "TIPO",
+          "SEVERIDADE",
+          "DETALHE"
+        ],
+        "rows": 1
+      }
+    ],
+    "cards": [
+      "IMPORTAÇÃO LANSWEEPER Importação Lansweeper Pipeline com etapas, conflitos e validação antes de aplicar mudanças. Importar Planilha Excel Fa",
+      "Importar Planilha Excel Faça upload de arquivo CSV/XLSX. A aplicação só ocorre após revisão do preview, mapeamento, validação e conflitos. A",
+      "Importar Planilha Excel Faça upload de arquivo CSV/XLSX. A aplicação só ocorre após revisão do preview, mapeamento, validação e conflitos. A",
+      "Exportar Dados Exportação consolidada ainda será tratada em fluxo próprio. Use filtros das telas operacionais nesta versão. Exportação em pr",
+      "Modo da importação INITIAL_LOAD SAFE_REIMPORT PREVIEW_ONLY Ativos existentes não terão usuário, status ou localização sobrescritos automatic",
+      "TOTAL DE LINHAS 0 PRONTAS PARA APLICAR 0 EXIGEM REVISÃO 0 INVÁLIDAS 0 CONFLITOS 0",
+      "TOTAL DE LINHAS 0",
+      "PRONTAS PARA APLICAR 0",
+      "EXIGEM REVISÃO 0",
+      "INVÁLIDAS 0",
+      "CONFLITOS 0",
+      "Fluxo da importação Upload Preview Mapeamento Validação Conflitos Aplicar Resultado",
+      "Decisão da importação Pronto para aplicar? Não. O que bloqueia? Nenhum bloqueio automático identificado. Próxima ação recomendada: Concluir ",
+      "Preset e qualidade Preset: Preset não detectado. Revise o mapeamento antes de aplicar. Versão: - Aba: - Modo: INITIAL_LOAD COM SERIAL 0 SEM ",
+      "Preset e qualidade Preset: Preset não detectado. Revise o mapeamento antes de aplicar. Versão: - Aba: - Modo: INITIAL_LOAD COM SERIAL 0 SEM ",
+      "COM SERIAL 0",
+      "SEM SERIAL 0",
+      "COM HOSTNAME 0",
+      "SEM PATRIMÔNIO 0",
+      "TIPO RECONHECIDO 0"
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação",
+      "Tabela operacional",
+      "Tabela operacional",
+      "Tabela operacional",
+      "Tabela operacional"
+    ],
+    "unlabeledInputs": 2,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/imports",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-imports-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/macros",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Macros ITIL"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar macro por nome, categoria ou slug",
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "select",
+        "type": "select-one",
+        "placeholder": null,
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      }
+    ],
+    "tables": [],
+    "cards": [
+      "MACROS ITIL Macros ITIL Gere textos padronizados para chamados, movimentações e atendimento. BUSCA CATEGORIA Todas Nenhuma macro encontrada.",
+      "Nenhuma macro encontrada. Verifique o seed oficial do quality_macros_project.",
+      "Selecione uma macro para visualizar."
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação"
+    ],
+    "unlabeledInputs": 1,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/macros",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-macros-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/ai-chat",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "IA Assistiva"
+      },
+      {
+        "tag": "h2",
+        "text": "Conversas"
+      },
+      {
+        "tag": "h2",
+        "text": "Nenhuma conversa selecionada"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair",
+      "Nova",
+      "Geral",
+      "Corrigir texto",
+      "Abertura ITIL",
+      "Atualização",
+      "Solução aplicada",
+      "Resumir",
+      "Melhorar tom",
+      "Macro",
+      "Orientação de ativo",
+      "Enviar"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "textarea",
+        "type": "textarea",
+        "placeholder": "AI Chat indisponível no momento.",
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": true
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      }
+    ],
+    "tables": [],
+    "cards": [
+      "IA ASSISTIVA IA Assistiva ○ IA INATIVA RO MODO TEXTUAL A IA não executa ações no sistema. Use apenas para apoio textual. MOCK MODO: GERAL IA",
+      "Geral Corrigir texto Abertura ITIL Atualização Solução aplicada Resumir Melhorar tom Macro Orientação de ativo Nenhuma conversa selecionada "
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação",
+      "Modos textuais do IA Chat"
+    ],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/ai-chat",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-ai-chat-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/audit-logs",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Auditoria"
+      },
+      {
+        "tag": "h2",
+        "text": "Registros de auditoria"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      }
+    ],
+    "tables": [
+      {
+        "headers": [
+          "DATA/HORA",
+          "AÇÃO",
+          "TABELA/ENTIDADE",
+          "DESCRIÇÃO",
+          "USUÁRIO",
+          "FONTE",
+          "RASTREAMENTO"
+        ],
+        "rows": 7
+      }
+    ],
+    "cards": [
+      "AUDITORIA Auditoria AU CONSULTA Consulta para rastrear ações do sistema, apoiar investigação operacional e conferir eventos sensíveis. TOTAL",
+      "TOTAL CARREGADO 7 Eventos exibidos nesta página. AÇÕES DISTINTAS 1 Tipos de operação presentes na amostra. ENTIDADES DISTINTAS 1 Tabelas ou ",
+      "TOTAL CARREGADO 7 Eventos exibidos nesta página.",
+      "AÇÕES DISTINTAS 1 Tipos de operação presentes na amostra.",
+      "ENTIDADES DISTINTAS 1 Tabelas ou domínios envolvidos.",
+      "ÚLTIMO EVENTO 09/06/2026, 14:47 Registro mais recente retornado pela API.",
+      "Busca avançada: em breve Ação: em breve Entidade: em breve Período: em breve Filtros avançados dependem de suporte da API. Esta tela mostra ",
+      "Registros de auditoria Eventos técnicos retornados pela API, com IDs preservados para rastreio quando disponíveis. 7 registro(s) Tabela oper"
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação",
+      "Resumo de auditoria",
+      "Filtros de auditoria",
+      "Tabela operacional"
+    ],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/audit-logs",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-audit-logs-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/settings",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Configurações"
+      },
+      {
+        "tag": "h2",
+        "text": "Microsoft Entra ID"
+      },
+      {
+        "tag": "h2",
+        "text": "Lansweeper API"
+      },
+      {
+        "tag": "h2",
+        "text": "Execucao integrada"
+      },
+      {
+        "tag": "h2",
+        "text": "Legado preservado"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      }
+    ],
+    "tables": [],
+    "cards": [
+      "CONFIGURAÇÕES Configurações RBAC, parâmetros de importação, integrações futuras e segurança. Microsoft Entra ID Preparado para tenant, clien",
+      "Microsoft Entra ID Preparado para tenant, client id e escopos via variaveis seguras. Lansweeper API Preparado para token, sync incremental, ",
+      "Microsoft Entra ID Preparado para tenant, client id e escopos via variaveis seguras.",
+      "Lansweeper API Preparado para token, sync incremental, retry e timeout.",
+      "Execucao integrada Frontend estatico servido pelo FastAPI, sem CORS e sem servidor Node em producao.",
+      "Legado preservado Portal de assinaturas mantido em /assinaturas/ e administracao legada em /admin/."
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação"
+    ],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/settings",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-settings-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/users",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Colaboradores / Usuários"
+      },
+      {
+        "tag": "h2",
+        "text": "Lista de colaboradores"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair",
+      "+ Novo colaborador",
+      "Editar",
+      "Desativar"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar por nome, identificador do e-mail, e-mail ou departamento...",
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      },
+      {
+        "text": "Estevão Ribeiro",
+        "href": "/users/47aafdfa-27dc-4896-9e1d-8ee50bc31122"
+      }
+    ],
+    "tables": [
+      {
+        "headers": [
+          "NOME",
+          "IDENTIFICADOR",
+          "E-MAIL",
+          "UNIDADE",
+          "DEPT.",
+          "FONTE",
+          "PERFIL",
+          "SITUAÇÃO",
+          "AÇÕES"
+        ],
+        "rows": 1
+      }
+    ],
+    "cards": [
+      "Colaboradores Colaboradores / Usuários Cadastro canônico usado por ativos, assinaturas, auditoria e vínculos operacionais. + Novo colaborado",
+      "Busca Sem busca ativa Unidade: em breve Situação: em breve",
+      "Lista de colaboradores Todos os colaboradores retornados pela API atual. 1 colaborador(es) Tabela operacional NOME IDENTIFICADOR E-MAIL UNID"
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação",
+      "Busca de colaboradores",
+      "Tabela operacional"
+    ],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/users",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-users-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/assignments",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Atribuições"
+      },
+      {
+        "tag": "h2",
+        "text": "Vínculos de ativos"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar por tag, colaborador, identificador ou e-mail...",
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "select",
+        "type": "select-one",
+        "placeholder": null,
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      }
+    ],
+    "tables": [
+      {
+        "headers": [
+          "ATIVO",
+          "TIPO",
+          "COLABORADOR ATUAL",
+          "IDENTIFICADOR",
+          "LOCALIZAÇÃO",
+          "ATUALIZADO EM",
+          "STATUS"
+        ],
+        "rows": 1
+      }
+    ],
+    "cards": [
+      "Visão atual Atribuições Visão operacional dos vínculos atuais entre ativos e colaboradores. Esta tela não substitui histórico completo de mo",
+      "Sem dados para resumir. Quando a API retornar ativos, esta área mostrará os vínculos e sinais operacionais da visão carregada.",
+      "Busca Visão Vínculos atuais Todos os ativos Sem busca ativa Mostrando IN_USE com colaborador",
+      "Vínculos de ativos Tabela baseada nos ativos retornados pela API atual. “Atualizado em” é referência do ativo, não início histórico do víncu"
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação",
+      "Resumo de atribuições",
+      "Filtros de atribuições",
+      "Tabela operacional"
+    ],
+    "unlabeledInputs": 1,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/assignments",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-assignments-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/signatures",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Assinaturas corporativas"
+      },
+      {
+        "tag": "h2",
+        "text": "Dados usados na assinatura"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair",
+      "Gerar",
+      "Copiar HTML",
+      "Baixar HTML"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "select",
+        "type": "select-one",
+        "placeholder": null,
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      },
+      {
+        "text": "Abrir legado",
+        "href": "/assinaturas/"
+      }
+    ],
+    "tables": [],
+    "cards": [
+      "Assinaturas corporativas Geração com dados canônicos do colaborador no PostgreSQL. Gerar Selecione um colaborador Estevão Ribeiro - estevao.",
+      "Dados usados na assinatura Estevão Ribeiro · estevao.quality@ens.edu.br Cargo não informado · Departamento não informado",
+      "Selecione um colaborador e clique em Gerar para visualizar a assinatura."
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação"
+    ],
+    "unlabeledInputs": 1,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/signatures",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-signatures-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:8000/stock",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Estoque"
+      }
+    ],
+    "buttons": [
+      "Sair",
+      "Sair"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "placeholder": "Buscar ativo, colaborador, patrimônio ou serial",
+        "ariaLabel": "Busca global",
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [
+      {
+        "text": "Centro de Comando",
+        "href": "/"
+      },
+      {
+        "text": "Inventário",
+        "href": "/assets"
+      },
+      {
+        "text": "Colaboradores",
+        "href": "/users"
+      },
+      {
+        "text": "Movimentações",
+        "href": "/assignments"
+      },
+      {
+        "text": "Assinaturas",
+        "href": "/signatures"
+      },
+      {
+        "text": "Macros ITIL",
+        "href": "/macros"
+      },
+      {
+        "text": "IA Assistiva",
+        "href": "/ai-chat"
+      },
+      {
+        "text": "Auditoria",
+        "href": "/audit-logs"
+      },
+      {
+        "text": "Importação Lansweeper",
+        "href": "/imports"
+      },
+      {
+        "text": "Configurações",
+        "href": "/settings"
+      },
+      {
+        "text": "Assinaturas legado",
+        "href": "/assinaturas/"
+      }
+    ],
+    "tables": [],
+    "cards": [
+      "Estoque Disponibilidade, reservas, manutencao e retirada operacional. STOCK 0 RESERVED 0 CONFIG_PENDING 0 MAINTENANCE 0 DEFECTIVE 0 DISCARDE",
+      "STOCK 0 RESERVED 0 CONFIG_PENDING 0 MAINTENANCE 0 DEFECTIVE 0 DISCARDED 0",
+      "STOCK 0",
+      "RESERVED 0",
+      "CONFIG_PENDING 0",
+      "MAINTENANCE 0",
+      "DEFECTIVE 0",
+      "DISCARDED 0"
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [
+      "Menu lateral",
+      "Navegação principal",
+      "Usuário logado",
+      "Busca global",
+      "Status da aplicação"
+    ],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nCentro de Comando\nInventário\nCola",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/stock",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-stock-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:5173/login",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "HermesOps Sentinel"
+      }
+    ],
+    "buttons": [
+      "Entrar"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "email",
+        "placeholder": "E-mail",
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "input",
+        "type": "password",
+        "placeholder": "Senha",
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [],
+    "tables": [],
+    "cards": [
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL ACESSO AO HERMESOPS SENTINEL HermesOps Sentinel Centro ",
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL ACESSO AO HERMESOPS SENTINEL HermesOps Sentinel Centro "
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nACESSO AO HERMESOPS SENTINEL\nHerm",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-5173-home-1366x768.png"
+  },
+  {
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "url": "http://127.0.0.1:5173/login",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "HermesOps Sentinel"
+      }
+    ],
+    "buttons": [
+      "Entrar"
+    ],
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "email",
+        "placeholder": "E-mail",
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      },
+      {
+        "tag": "input",
+        "type": "password",
+        "placeholder": "Senha",
+        "ariaLabel": null,
+        "name": null,
+        "id": null,
+        "disabled": false
+      }
+    ],
+    "links": [],
+    "tables": [],
+    "cards": [
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL ACESSO AO HERMESOPS SENTINEL HermesOps Sentinel Centro ",
+      "HermesOps Sentinel SENTINEL Guardião local da infraestrutura CENTRO DE COMANDO LOCAL ACESSO AO HERMESOPS SENTINEL HermesOps Sentinel Centro "
+    ],
+    "errorsVisible": [],
+    "ariaLabels": [],
+    "unlabeledInputs": 0,
+    "activeElement": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel\nSENTINEL\n\nGuardião local da infraestrutura\n\nCENTRO DE COMANDO LOCAL\nACESSO AO HERMESOPS SENTINEL\nHerm",
+      "outline": "none",
+      "outlineWidth": "3px"
+    },
+    "route": "/login",
+    "viewport": "1366x768",
+    "zoom125_simulated": false,
+    "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-login-1366x768.png"
+  }
+]

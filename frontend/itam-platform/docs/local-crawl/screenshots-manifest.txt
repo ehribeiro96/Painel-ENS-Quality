@@ -1,0 +1,15 @@
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-5173-home-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-ai-chat-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-assets-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-assignments-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-audit-logs-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-home-1366x768-zoom125.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-home-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-home-1920x1080.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-imports-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-login-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-macros-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-settings-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-signatures-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-stock-1366x768.png
+/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-users-1366x768.png

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Inventário de ativos: caixa patrimonial com núcleo de chip.">
+<path d="M12 3l7 3.8v8.4L12 21l-7-5.8V6.8L12 3Z" />
+  <path d="M5 7l7 4 7-4" />
+  <path d="M12 11v10" />
+  <rect x="8.75" y="8.75" width="6.5" height="6.5" rx="1.2" />
+  <path d="M10.25 8.75V7.3M12 8.75V7.3M13.75 8.75V7.3" />
+  <path d="M10.25 15.25v1.45M12 15.25v1.45M13.75 15.25v1.45" />
+  <path d="M8.75 10.25H7.3M8.75 12H7.3M8.75 13.75H7.3" />
+  <path d="M15.25 10.25h1.45M15.25 12h1.45M15.25 13.75h1.45" /></svg>

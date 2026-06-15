@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Archive, Eye, History, Pencil, RotateCcw, SlidersHorizontal, Trash2 } from "lucide-react";
+import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
+import { SentinelSectionHeader } from "@/components/brand/SentinelSectionHeader";
 import { DataTable } from "@/components/DataTable";
 import { MoveAssetDialog } from "@/components/MoveAssetDialog";
 import { Alert, LoadingBlock } from "@/components/StateBlocks";
@@ -283,7 +285,27 @@ export function AssetsPage() {
       patrimony: { key: "patrimony", label: "Patrimônio", sortable: true, render: (asset: Asset) => asset.patrimony && asset.patrimony !== "-" ? asset.patrimony : <span className="muted">Não informado</span> },
       serial: { key: "serial", label: "Serial", sortable: true },
       current_user: { key: "current_user", label: "Colaborador", render: (asset: Asset) => asset.current_user?.name ?? <span className="badge neutral">Sem usuário</span> },
-      status: { key: "status", label: "Status", sortable: true, render: (asset: Asset) => <span className={`badge status-${asset.status.toLowerCase()}`}>{formatAssetStatus(asset.status)}</span> },
+      status: {
+        key: "status",
+        label: "Status",
+        sortable: true,
+        render: (asset: Asset) => {
+          const state = asset.status === "STOCK"
+            ? "Validado"
+            : asset.status === "IN_USE"
+              ? "Online"
+              : asset.status === "MAINTENANCE"
+                ? "Em revisão"
+                : asset.status === "DEFECTIVE" || asset.status === "DISCARDED"
+                  ? "Erro"
+                  : asset.status === "CONFIG_PENDING"
+                    ? "Pendente"
+                    : asset.status === "RESERVED"
+                      ? "Somente leitura"
+                      : "Auditável";
+          return <HermesStatusPill state={state}>{formatAssetStatus(asset.status)}</HermesStatusPill>;
+        }
+      },
       location: { key: "location", label: "Unidade", sortable: true },
       asset_type: { key: "asset_type", label: "Tipo" },
       manufacturer: { key: "manufacturer", label: "Marca" },
@@ -297,17 +319,17 @@ export function AssetsPage() {
 
   return (
     <>
-      <div className="page-title">
-        <div>
-          <h1>Ativos</h1>
-          <p>Busca operacional com filtros, visão salva e ações diretas por linha.</p>
-        </div>
+      <SentinelSectionHeader
+        eyebrow="Inventário técnico"
+        subtitle="Busca operacional com filtros, visão salva e ações diretas por linha."
+        title="Inventário"
+      >
         <button className="button secondary" type="button" onClick={() => setShowColumns(!showColumns)}>
           <SlidersHorizontal size={16} aria-hidden />
           Colunas
         </button>
         {canWrite ? <button className="button" type="button" onClick={openCreateAsset}>+ Novo ativo</button> : null}
-      </div>
+      </SentinelSectionHeader>
 
       {assetFormOpen && canWrite ? (
         <form className="form-card" onSubmit={submitAssetForm}>

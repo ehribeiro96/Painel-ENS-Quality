@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Configurações, controle técnico e ajustes do agente.">
+<path d="M12 8.2a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6Z" />
+  <path d="M19.4 13.5a7.8 7.8 0 0 0 0-3l2-1.5-2-3.4-2.4 1a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.6A7.5 7.5 0 0 0 7 6.6l-2.4-1-2 3.4 2 1.5a7.8 7.8 0 0 0 0 3l-2 1.5 2 3.4 2.4-1a7.5 7.5 0 0 0 2.6 1.5L10 21.5h4l.4-2.6a7.5 7.5 0 0 0 2.6-1.5l2.4 1 2-3.4-2-1.5Z" />
+  <path d="M12 2.5V1" />
+  <path d="M12 23v-1.5" />
+  <circle cx="12" cy="1" r=".8" fill="currentColor" stroke="none" />
+  <circle cx="12" cy="23" r=".8" fill="currentColor" stroke="none" /></svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="KCS e base de conhecimento operacional.">
+<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z" />
+  <path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v16h4.5A2.5 2.5 0 0 1 20 21V5.5Z" />
+  <path d="M7 7h2" />
+  <path d="M15 7h2" />
+  <path d="M7 11h2" />
+  <path d="M15 11h2" />
+  <path d="M8 15h1.2l1.8-2" />
+  <path d="M16 15h-1.2L13 13" />
+  <circle cx="8" cy="15" r=".8" fill="currentColor" stroke="none" />
+  <circle cx="16" cy="15" r=".8" fill="currentColor" stroke="none" /></svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Símbolo central do agente: chip, eixo e nós de circuito.">
+<path d="M12 3v4" />
+  <path d="M12 17v4" />
+  <path d="M4 12h4M16 12h4" />
+  <rect x="8" y="8" width="8" height="8" rx="2" />
+  <rect x="10.25" y="10.25" width="3.5" height="3.5" rx="0.75" />
+  <circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none" />
+  <circle cx="4" cy="12" r="1.15" fill="currentColor" stroke="none" />
+  <circle cx="20" cy="12" r="1.15" fill="currentColor" stroke="none" />
+  <circle cx="12" cy="3" r="1.15" fill="currentColor" stroke="none" />
+  <circle cx="12" cy="21" r="1.15" fill="currentColor" stroke="none" /></svg>

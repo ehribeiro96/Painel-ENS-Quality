@@ -1,5 +1,7 @@
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { DataTable } from "@/components/DataTable";
+import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
+import { SentinelSectionHeader } from "@/components/brand/SentinelSectionHeader";
 import { Alert, LoadingBlock } from "@/components/StateBlocks";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
@@ -210,7 +212,11 @@ export function ImportsPage() {
 
   return (
     <>
-      <div className="page-title simple-title"><h1>Importar/Exportar</h1></div>
+      <SentinelSectionHeader
+        eyebrow="Importação Lansweeper"
+        subtitle="Pipeline com etapas, conflitos e validação antes de aplicar mudanças."
+        title="Importação Lansweeper"
+      />
       <section className="grid import-export-grid">
         <article className="card import-card">
           <h2>Importar Planilha Excel</h2>
@@ -313,7 +319,29 @@ export function ImportsPage() {
             items={page?.items ?? []}
             columns={[
               { key: "filename", label: "Arquivo" },
-              { key: "status", label: "Status", render: (item) => <span className="badge">{formatTechnicalLabel(item.status)}</span> },
+              {
+                key: "status",
+                label: "Status",
+                render: (item) => (
+                  <HermesStatusPill
+                    state={
+                      item.status === "APPLIED" || item.status === "APPLIED_WITH_ISSUES"
+                        ? "Validado"
+                        : item.status === "CANCELLED"
+                          ? "Somente leitura"
+                          : item.status === "FAILED"
+                            ? "Erro"
+                            : item.status === "PREVIEW_ONLY"
+                              ? "Somente leitura"
+                              : item.status === "VALIDATED"
+                                ? "Auditável"
+                                : "Em revisão"
+                    }
+                  >
+                    {formatTechnicalLabel(item.status)}
+                  </HermesStatusPill>
+                )
+              },
               { key: "total_rows", label: "Linhas" },
               { key: "conflict_rows", label: "Conflitos" },
               { key: "created_at", label: "Criada em", render: (item) => formatDateTime(item.created_at) },

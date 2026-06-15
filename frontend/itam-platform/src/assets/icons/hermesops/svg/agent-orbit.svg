@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Agente Hermes em execução, orquestração e loop local.">
+<rect x="9" y="9" width="6" height="6" rx="1.4" />
+  <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none" />
+  <path d="M4.5 12a7.5 7.5 0 0 1 7.5-7.5" />
+  <path d="M19.5 12a7.5 7.5 0 0 1-7.5 7.5" />
+  <path d="M12 4.5h2.5" />
+  <path d="M12 19.5H9.5" />
+  <circle cx="4.5" cy="12" r="1.2" fill="currentColor" stroke="none" />
+  <circle cx="19.5" cy="12" r="1.2" fill="currentColor" stroke="none" />
+  <path d="M7 7l-1.5-1.5" />
+  <path d="M17 17l1.5 1.5" /></svg>

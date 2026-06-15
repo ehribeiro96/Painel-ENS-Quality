@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { AuditReportIcon, HermesCoreIcon } from "@/components/icons/HermesIcons";
+
 type AlertTone = "neutral" | "info" | "warning" | "danger" | "success";
 
 export function Alert({ children, tone = "neutral" }: { children: ReactNode; tone?: AlertTone }) {
@@ -13,8 +15,10 @@ export function AlertBlock({ children, tone = "neutral" }: { children: ReactNode
 
 export function LoadingBlock({ label = "Carregando dados..." }: { label?: string }) {
   return (
-    <div className="loading-state card muted-card" aria-busy="true" aria-live="polite">
-      <span className="loading-dot" aria-hidden />
+    <div className="loading-state card muted-card sentinel-loading" aria-busy="true" aria-live="polite">
+      <span className="loading-mark" aria-hidden="true">
+        <HermesCoreIcon size={16} />
+      </span>
       <span>{label}</span>
     </div>
   );
@@ -31,6 +35,9 @@ export function EmptyState({
 }) {
   return (
     <div className="empty-state">
+      <span className="empty-state-icon" aria-hidden="true">
+        <AuditReportIcon size={20} />
+      </span>
       <strong>{title}</strong>
       {description ? <p>{description}</p> : null}
       {children ? <div className="empty-state-actions">{children}</div> : null}

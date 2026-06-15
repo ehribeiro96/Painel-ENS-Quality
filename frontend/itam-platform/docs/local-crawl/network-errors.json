@@ -1,0 +1,42 @@
+[
+  {
+    "route": "8000:/login",
+    "url": "http://127.0.0.1:8000/api/v1/auth/refresh",
+    "method": "POST",
+    "resourceType": "fetch",
+    "status": 401,
+    "statusText": "Unauthorized"
+  },
+  {
+    "route": "8000:/ai-chat",
+    "url": "http://127.0.0.1:8000/api/v1/ai-chat/conversations",
+    "method": "GET",
+    "resourceType": "fetch",
+    "status": 404,
+    "statusText": "Not Found"
+  },
+  {
+    "route": "5173:/",
+    "url": "http://127.0.0.1:5173/api/v1/auth/refresh",
+    "method": "POST",
+    "resourceType": "fetch",
+    "status": 404,
+    "statusText": "Not Found"
+  },
+  {
+    "route": "5173:/login",
+    "url": "http://127.0.0.1:5173/api/v1/auth/refresh",
+    "method": "POST",
+    "resourceType": "fetch",
+    "status": 404,
+    "statusText": "Not Found"
+  },
+  {
+    "route": "5173:/login",
+    "url": "http://127.0.0.1:5173/api/v1/auth/login",
+    "method": "POST",
+    "resourceType": "fetch",
+    "status": 404,
+    "statusText": "Not Found"
+  }
+]

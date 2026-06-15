@@ -1,12 +1,13 @@
+import { SentinelSectionHeader } from "@/components/brand/SentinelSectionHeader";
+
 export function SettingsPage() {
   return (
     <>
-      <div className="page-title">
-        <div>
-          <h1>Configuracoes</h1>
-          <p>RBAC, parametros de importacao, integracoes futuras e seguranca.</p>
-        </div>
-      </div>
+      <SentinelSectionHeader
+        eyebrow="Configurações"
+        subtitle="RBAC, parâmetros de importação, integrações futuras e segurança."
+        title="Configurações"
+      />
       <section className="grid settings-grid">
         <article className="card">
           <h2>Microsoft Entra ID</h2>

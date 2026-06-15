@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Importação Lansweeper, sincronização e ingestão de dados.">
+<ellipse cx="12" cy="5" rx="6" ry="2.5" />
+  <path d="M6 5v6c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V5" />
+  <path d="M6 11v6c0 1.4 2.7 2.5 6 2.5 1.5 0 2.9-.25 4-.7" />
+  <path d="M8.2 8.6c1 .55 2.25.85 3.8.85s2.8-.3 3.8-.85" opacity=".75" />
+  <path d="M14.5 17.2h2l1.1-2.2 1.6 4.2 1.1-2h1.7" />
+  <circle cx="4" cy="17" r="1" fill="currentColor" stroke="none" />
+  <path d="M4 17h2" /></svg>

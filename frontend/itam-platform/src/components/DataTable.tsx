@@ -26,9 +26,10 @@ export function DataTable<T extends { id: string }>({
   rowActions?: (item: T) => ReactNode;
 }) {
   const colSpan = columns.length + (rowActions ? 1 : 0);
+  const isEmpty = items.length === 0;
 
   return (
-    <div className="table-wrap" role="region" aria-label="Tabela operacional" tabIndex={0}>
+    <div className={isEmpty ? "table-wrap table-wrap-empty" : "table-wrap"} role="region" aria-label="Tabela operacional" tabIndex={0}>
       <table className="data-table">
         <caption className="sr-only">Tabela operacional</caption>
         <thead>
@@ -53,7 +54,7 @@ export function DataTable<T extends { id: string }>({
           </tr>
         </thead>
         <tbody>
-          {items.length === 0 ? (
+          {isEmpty ? (
             <tr className="table-empty-row">
               <td colSpan={colSpan}>
                 <div className="empty-state table-empty-state">
