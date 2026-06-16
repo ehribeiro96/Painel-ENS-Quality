@@ -2,20 +2,22 @@
 
 Este diretório concentra a documentação de auditoria ativa do projeto Painel ENS-Quality.
 
-Boundary atual: `CI-H2 — GitHub Actions docker build/push review without publishing`.
+Boundary atual: `CI-H3 — harden docker build workflow as manual-only, no publish`.
 
 ## Leitura recomendada
 
 1. `README.md` — este resumo.
 2. `NEXT_BOUNDARY_DECISION.md` — próxima boundary recomendada.
 3. `AUDIT_REPORT_INDEX_H2.md` — índice canônico dos relatórios ativos.
-4. `HERMES_FULL_PROJECT_AUDIT_H1_REPORT.md` — auditoria completa H1.
-5. `GIT_H2_UNTRACKED_SAFETY_TRIAGE_REPORT.md` — triagem de untracked.
-6. `SEC_H2_LOCAL_SENSITIVE_ARTIFACT_TRIAGE_REPORT.md` — triagem de artefatos sensíveis locais.
-7. `IGNORE_H2_GITIGNORE_HYGIENE_REPORT.md` — hygiene de ignore para artefatos locais/sensíveis.
-8. `CI_H2_DOCKER_BUILD_PUSH_WORKFLOW_REVIEW.md` — revisão estática do workflow Docker build/push.
-9. `CI_H2_WORKFLOW_DECISION_MATRIX.md` — matriz de decisão do workflow CI.
-10. `RUNTIME_HTTP_VALIDATION_QA_C2_REPORT.md` — validação runtime HTTP atual.
+4. `CI_H3_DOCKER_WORKFLOW_HARDENING_REPORT.md` — hardening do workflow Docker manual build-only.
+5. `CI_H3_WORKFLOW_FINAL_REVIEW.md` — checklist final do workflow CI-H3.
+6. `CI_H2_DOCKER_BUILD_PUSH_WORKFLOW_REVIEW.md` — revisão estática herdada do workflow Docker build/push.
+7. `CI_H2_WORKFLOW_DECISION_MATRIX.md` — matriz de decisão CI-H2.
+8. `HERMES_FULL_PROJECT_AUDIT_H1_REPORT.md` — auditoria completa H1.
+9. `GIT_H2_UNTRACKED_SAFETY_TRIAGE_REPORT.md` — triagem de untracked.
+10. `SEC_H2_LOCAL_SENSITIVE_ARTIFACT_TRIAGE_REPORT.md` — triagem de artefatos sensíveis locais.
+11. `IGNORE_H2_GITIGNORE_HYGIENE_REPORT.md` — hygiene de ignore para artefatos locais/sensíveis.
+12. `RUNTIME_HTTP_VALIDATION_QA_C2_REPORT.md` — validação runtime HTTP atual.
 
 ## Documentos ativos principais
 
@@ -24,10 +26,12 @@ Boundary atual: `CI-H2 — GitHub Actions docker build/push review without publi
 | `AUDIT_REPORT_INDEX_H2.md` | ACTIVE_INDEX | Índice claro dos relatórios ativos e da ordem de leitura |
 | `AUDIT_DOCS_CONSOLIDATION_H2_REPORT.md` | ACTIVE_CURRENT | Relatório da consolidação documental DOCS-H2 |
 | `IGNORE_H2_GITIGNORE_HYGIENE_REPORT.md` | ACTIVE_SECURITY | Relatório da hygiene de ignore para artefatos locais/sensíveis |
-| `CI_H2_DOCKER_BUILD_PUSH_WORKFLOW_REVIEW.md` | ACTIVE_CURRENT | Auditoria estática do workflow Docker build/push sem publicar |
-| `CI_H2_WORKFLOW_DECISION_MATRIX.md` | ACTIVE_CURRENT | Decisão sobre versionamento/hardening do workflow CI |
+| `CI_H3_DOCKER_WORKFLOW_HARDENING_REPORT.md` | ACTIVE_CURRENT | Hardening CI-H3 do workflow Docker para validação manual build-only |
+| `CI_H3_WORKFLOW_FINAL_REVIEW.md` | ACTIVE_CURRENT | Checklist final e decisão de versionamento seguro CI-H3 |
+| `CI_H2_DOCKER_BUILD_PUSH_WORKFLOW_REVIEW.md` | ACTIVE_REFERENCE | Auditoria estática herdada do workflow Docker build/push sem publicar |
+| `CI_H2_WORKFLOW_DECISION_MATRIX.md` | ACTIVE_REFERENCE | Decisão CI-H2 que abriu a boundary CI-H3 |
 | `SUPERSEDED_AUDIT_DOCS_H2.md` | ACTIVE_INDEX | Lista de documentos históricos/superseded/deferidos |
-| `NEXT_BOUNDARY_DECISION.md` | ACTIVE_INDEX | Próximas boundaries recomendadas após CI-H2 |
+| `NEXT_BOUNDARY_DECISION.md` | ACTIVE_INDEX | Próximas boundaries recomendadas após CI-H3 |
 | `HERMES_FULL_PROJECT_AUDIT_H1_REPORT.md` | ACTIVE_CURRENT | Relatório completo H1 |
 | `HERMES_IMPROVEMENT_BACKLOG_H1.md` | ACTIVE_CURRENT | Backlog de melhoria H1 |
 | `HERMES_DO_NOT_TOUCH_MAP_H1.md` | DO_NOT_TOUCH | Mapa de áreas que não devem ser alteradas sem boundary explícita |
@@ -47,7 +51,8 @@ Boundary atual: `CI-H2 — GitHub Actions docker build/push review without publi
 - Não abrir `123`, `123.pub`, `.env*`, dumps, bancos locais, tokens, credenciais, `imports/`, screenshots antigas ou binários grandes.
 - `IGNORE-H2` protegeu via ignore somente artefatos locais/sensíveis já classificados: `123`, `123.pub`, `imports/`, extensões sensíveis, outputs locais e `frontend/package-lock.json`.
 - `CI-H2` analisou `.github/workflows/docker-build-push.yml` sem versionar, sem executar publish, sem usar secrets e sem chamar GitHub API.
-- Não usar ignore para esconder candidatos de boundaries futuras: workflow CI, assets legados, DOCX grande, testes pendentes, docs históricos e screenshots antigas continuam fora do escopo de ignore em massa.
+- `CI-H3` reescreveu e versionou `.github/workflows/docker-build-push.yml` como workflow manual-only/build-only, sem publish, sem GHCR, sem `latest`, sem login e sem `packages: write`.
+- Não usar ignore para esconder candidatos de boundaries futuras: assets legados, DOCX grande, testes pendentes, docs históricos e screenshots antigas continuam fora do escopo de ignore em massa.
 - Para áreas sensíveis, consultar primeiro `HERMES_DO_NOT_TOUCH_MAP_H1.md`.
 
 ## Documentos antigos
@@ -56,4 +61,4 @@ Documentos antigos em `docs/audit/` não foram apagados, movidos ou commitados e
 
 ## Próxima boundary
 
-A próxima boundary recomendada é `CI-H3 — harden docker build workflow as manual-only, no publish`, seguida por `LEGACY-H2` e `TEST-H2`.
+A próxima boundary recomendada é `LEGACY-H2 — legacy assets and DOCX large artifact decision`, seguida por `TEST-H2`. `CI-H4 — publish workflow design` só deve ocorrer se houver decisão humana explícita para publicar imagem; `SEC-H3` só deve ocorrer se revisão humana confirmar necessidade.
