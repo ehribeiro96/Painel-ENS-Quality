@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block caller %}
+<div class="row justify-content-center my-4">
+  <div class="col-12 col-md-10 col-lg-8">
+    <div class="card shadow-card">
+      <div class="card-body">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div class="rounded-circle d-flex align-items-center justify-content-center"
+               style="width:52px;height:52px;background:rgba(0,104,122,.08);">
+            <i class="bi bi-plug-exclamation" style="font-size:1.8rem;color:#00687a;"></i>
+          </div>
+          <div>
+            <h1 class="h5 fw-bold mb-1" style="color:var(--ens-text-dark);">
+              Integração com Microsoft não configurada
+            </h1>
+            <p class="mb-0 text-secondary">
+              A autenticação com a conta corporativa ainda não está habilitada neste ambiente.
+            </p>
+          </div>
+        </div>
+
+        <p class="text-secondary mb-2">
+          Se você é usuário final, não se preocupe: você ainda pode gerar e baixar sua assinatura normalmente.
+        </p>
+        <p class="text-secondary mb-3">
+          Caso você faça parte da equipe técnica, configure as seguintes variáveis
+          de ambiente no servidor antes de habilitar o login via Microsoft:
+        </p>
+
+        <ul class="text-secondary small mb-3">
+          <li><code>ENS_MS_CLIENT_ID</code> – ID do aplicativo no Azure AD</li>
+          <li><code>ENS_MS_CLIENT_SECRET</code> – segredo do aplicativo</li>
+          <li><code>ENS_MS_TENANT_ID</code> – ID do tenant (opcional, usa <code>common</code> se vazio)</li>
+          <li><code>ENS_MS_REQUIRED_GROUP_IDS</code> – IDs de grupos autorizados (opcional)</li>
+        </ul>
+
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          <a href="{{ url_for('public.index') }}" class="btn btn-ens">
+            ← Voltar para o gerador de assinatura
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

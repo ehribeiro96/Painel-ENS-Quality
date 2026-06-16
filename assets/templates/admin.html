@@ -1,0 +1,512 @@
+{% extends "base.html" %}
+{% block caller %}
+{% if painel_resumo %}
+<div class="row g-3 admin-metric-grid mb-4">
+  {% for card in painel_resumo %}
+  <div class="col-12 col-sm-6 col-xl-3">
+    <div class="metric-card h-100">
+      <div class="metric-card-header">
+        <div>
+          <p class="metric-label mb-1">{{ card.title }}</p>
+          <p class="metric-meta">{{ card.meta }}</p>
+        </div>
+        <div class="metric-icon">
+          <i class="bi {{ card.icon }}" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="metric-value">
+        {{ "{:,}".format(card.value)|replace(",", ".") }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+<div class="card shadow-card mb-4">
+  <div class="card-body p-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+      <div>
+        <h2 class="h5 m-0" style="color:var(--ens-primary)">Painel de Administra&ccedil;&atilde;o</h2>
+        <div class="hint">Gerencie colaboradores e exporte assinaturas oficiais.</div>
+      </div>
+      <a class="btn btn-ens-accent text-white shadow-sm" href="{{ url_for('admin.export_zip') }}">Exportar ativos (ZIP)</a>
+    </div>
+    <form method="post" action="{{ url_for('admin.admin_add') }}" class="row g-3" enctype="multipart/form-data">
+      {{ csrf_field() }}
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="matricula" name="matricula" placeholder="Matr&iacute;cula">
+          <label for="matricula">Matr&iacute;cula</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="name" name="name" placeholder="Nome completo" required>
+          <label for="name">Nome completo</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="email" name="email" type="email" placeholder="E-mail" required>
+          <label for="email">E-mail</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="first_name" name="first_name" placeholder="Nome">
+          <label for="first_name">Nome (primeiro)</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="last_name" name="last_name" placeholder="Sobrenome">
+          <label for="last_name">Sobrenome</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="nome_exibicao" name="nome_exibicao" placeholder="Nome exibi&ccedil;&atilde;o">
+          <label for="nome_exibicao">Nome para exibi&ccedil;&atilde;o</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="department" name="department" placeholder="Departamento">
+          <label for="department">Departamento</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="role" name="role" placeholder="Cargo">
+          <label for="role">Cargo</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="posicao_organograma" name="posicao_organograma" placeholder="Posi&ccedil;&atilde;o no organograma">
+          <label for="posicao_organograma">Posi&ccedil;&atilde;o no organograma</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="diretoria" name="diretoria" placeholder="Diretoria">
+          <label for="diretoria">Diretoria</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="campo_assinatura" name="campo_assinatura" placeholder="Campo assinatura">
+          <label for="campo_assinatura">Campo assinatura</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="manager" name="manager" placeholder="Gestor">
+          <label for="manager">Gestor</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="phone" name="phone" placeholder="Telefone assinatura">
+          <label for="phone">Telefone assinatura</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="telefone_ad" name="telefone_ad" placeholder="Telefone AD">
+          <label for="telefone_ad">Telefone AD</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="local_descricao" name="local_descricao" placeholder="Local (descri&ccedil;&atilde;o)">
+          <label for="local_descricao">Local (descri&ccedil;&atilde;o)</label>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-floating">
+          <input class="form-control" id="endereco" name="endereco" placeholder="Endere&ccedil;o completo">
+          <label for="endereco">Endere&ccedil;o completo</label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control" id="uf" name="uf" placeholder="UF">
+          <label for="uf">UF</label>
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-start align-items-center">
+        <button class="btn btn-ens px-4 shadow-sm" type="submit">Salvar / Atualizar</button>
+      </div>
+    </form>
+    <!-- Controles de importacao/exportacao da planilha Excel -->
+    <div class="d-flex flex-wrap align-items-center gap-3 mt-3">
+      <form method="post" action="{{ url_for('admin.admin_import') }}" enctype="multipart/form-data" class="d-flex align-items-center gap-2 flex-nowrap">
+        {{ csrf_field() }}
+        <input type="file" name="file" accept=".csv,.xls,.xlsx" class="form-control form-control-sm" style="min-width:260px;max-width:360px;" required>
+      <button class="btn btn-ens-lime btn-sm btn-width text-white shadow-sm" type="submit">Importar planilha</button>
+      </form>
+      <a class="btn btn-ens-purple btn-sm btn-width text-white shadow-sm" href="{{ url_for('admin.admin_import_ad') }}" title="Sincronizar colaboradores do Azure AD">Importar AD</a>
+      <a class="btn btn-ens-outline btn-sm btn-width" href="{{ url_for('admin.admin_export') }}">Exportar planilha</a>
+    </div>
+    {% if quantidade_importada %}
+      <div class="alert alert-success mt-3">{{ quantidade_importada }} registro(s) importado(s) com sucesso.</div>
+    {% endif %}
+  </div>
+  </div>
+
+<div class="card shadow-card" id="colabCard">
+  <div class="card-body p-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+      <h3 class="h6 m-0">Colaboradores</h3>
+      <div class="input-group" style="max-width: 420px;">
+        <span class="input-group-text">Buscar</span>
+        <input id="filterInput" type="search" class="form-control" placeholder="Matr&iacute;cula ou e-mail" oninput="filtrarLinhas()" onkeydown="tratarTeclaBusca(event)" value="{{ (termo_busca or '')|default('') }}">
+      </div>
+      <div class="form-text text-secondary small">Busque apenas por matr&iacute;cula ou e-mail.</div>
+    </div>
+    <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
+      <span class="text-secondary small fw-semibold">Filtrar por inicial:</span>
+      <button type="button" class="btn btn-sm btn-filter-pill active" data-letter="" onclick="aplicarFiltroLetra('')">Todos</button>
+      {% for letra in letras %}
+        <button type="button" class="btn btn-sm btn-filter-pill" data-letter="{{ letra }}" onclick="aplicarFiltroLetra('{{ letra }}')">{{ letra }}</button>
+      {% endfor %}
+    </div>
+    <div id="colabFiltered" class="list-group list-group-flush d-none">
+      <div class="list-group-item bg-light fw-semibold text-uppercase small text-secondary d-flex justify-content-between align-items-center">
+        <span>Resultados filtrados</span>
+        <span class="badge rounded-pill text-bg-light text-secondary"><span id="colabFilteredCount">0</span></span>
+      </div>
+      <div class="p-3">
+        <div class="row row-cols-1 row-cols-xl-2 row-cols-xxl-3 g-3" id="colabFilteredGrid"></div>
+        <div id="colabFilteredEmpty" class="text-secondary py-4 d-none">Nenhum colaborador encontrado para este filtro.</div>
+      </div>
+    </div>
+    <div id="colabList" class="list-group list-group-flush">
+      <div id="colabEmpty" class="list-group-item text-secondary {{ 'd-none' if possui_registros else '' }}">Nenhum colaborador encontrado.</div>
+      {% for grupo in grupos %}
+      <div class="colab-section mb-4" data-section="{{ grupo.key }}">
+        <div class="list-group-item bg-light fw-semibold text-uppercase small text-secondary d-flex justify-content-between align-items-center">
+          <span>{{ grupo.title }}</span>
+          <span class="badge rounded-pill text-bg-light text-secondary">{{ grupo.rows|length }}</span>
+        </div>
+        <div class="p-3">
+          <div class="row row-cols-1 row-cols-xl-2 row-cols-xxl-3 g-3">
+          {% for c in grupo.rows %}
+            <div class="col">
+              <div class="colab-item card h-100 shadow-sm"
+                   data-busca="{{ c['lookup'] }}"
+                   data-area="{{ grupo.key }}"
+                   data-matricula="{{ c['matricula'] or '' }}"
+                   data-email="{{ c['email'] or '' }}"
+                   data-edit-url="{{ url_for('admin.admin_edit', cid=c['id']) }}">
+                <div class="card-body d-flex flex-column gap-2">
+                  <div>
+                    <div class="fw-semibold" style="color:var(--ens-text-dark)">{{ c['name'] }}</div>
+                  </div>
+                  <div class="d-flex flex-wrap align-items-center gap-2">
+                    {% if c['status']=='on' %}
+                      <span class="badge text-bg-success">Ativo</span>
+                    {% else %}
+                      <span class="badge text-bg-danger">Desligado</span>
+                    {% endif %}
+                    {% set adm = ((c['is_admin'] or 'no')|string|lower) %}
+                    {% if adm in ['yes','on','true','1'] %}
+                      <span class="badge text-bg-primary">Administrador</span>
+                    {% else %}
+                      <span class="badge text-bg-secondary">Colaborador</span>
+                    {% endif %}
+                  </div>
+                  <div class="small text-secondary d-grid gap-1">
+                    {% if c['matricula'] %}<div><strong>Matrícula:</strong> {{ c['matricula'] }}</div>{% endif %}
+                    {% if c['department'] %}<div><strong>Departamento:</strong> {{ c['department'] }}</div>{% endif %}
+                    {% if c['role'] %}<div><strong>Cargo:</strong> {{ c['role'] }}</div>{% endif %}
+                    {% if c['email'] %}<div><strong>E-mail:</strong> {{ c['email'] }}</div>{% endif %}
+                    {% if c['first_name'] or c['last_name'] %}
+                      <div><strong>Nome:</strong> {{ c['first_name'] or '' }}{{ (' ' + c['last_name']) if c['last_name'] else '' }}</div>
+                    {% endif %}
+                    {% if c['nome_exibicao'] and c['nome_exibicao'] != c['name'] %}
+                      <div><strong>Nome para exibi&ccedil;&atilde;o:</strong> {{ c['nome_exibicao'] }}</div>
+                    {% endif %}
+                    {% if c['posicao_organograma'] %}<div><strong>Posi&ccedil;&atilde;o no organograma:</strong> {{ c['posicao_organograma'] }}</div>{% endif %}
+                    {% if c['diretoria'] %}<div><strong>Diretoria:</strong> {{ c['diretoria'] }}</div>{% endif %}
+                    {% if c['campo_assinatura'] %}<div><strong>Campo assinatura:</strong> {{ c['campo_assinatura'] }}</div>{% endif %}
+                    {% if c['manager'] %}<div><strong>Manager:</strong> {{ c['manager'] }}</div>{% endif %}
+                    {% if c['phone'] %}<div><strong>Telefone assinatura:</strong> {{ c['phone'] }}</div>{% endif %}
+                    {% if c['telefone_ad'] %}<div><strong>Telefone AD:</strong> {{ c['telefone_ad'] }}</div>{% endif %}
+                    {% if c['local_descricao'] %}<div><strong>Local:</strong> {{ c['local_descricao'] }}</div>{% endif %}
+                    {% if c['endereco'] %}<div><strong>Endere&ccedil;o:</strong> {{ c['endereco'] }}</div>{% endif %}
+                    {% if c['uf'] %}<div><strong>UF:</strong> {{ c['uf'] }}</div>{% endif %}
+                  </div>
+                </div>
+                <div class="card-footer bg-transparent border-top-0 pb-3 px-3">
+                  <div class="btn-group w-100" role="group" aria-label="Ações">
+                    <a class="btn btn-ens btn-sm text-white" target="_blank" href="{{ url_for('admin.visualizar_assinatura', cid=c['id']) }}">Pr&eacute;via</a>
+                    <a class="btn btn-ens-accent btn-sm text-white" href="{{ url_for('admin.admin_edit', cid=c['id']) }}">Editar</a>
+                    <a class="btn btn-ens-outline btn-sm" title="Word (Outlook cl&aacute;ssico)" href="{{ url_for('admin.baixar_assinatura', cid=c['id'], ext='docx') }}">Word</a>
+                    <button class="btn btn-ens-lime btn-sm text-white" type="button" onclick="copiarAssinatura({{ c['id'] }}, this)" title="Copiar assinatura para a &aacute;rea de transfer&ecirc;ncia">Copiar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/signature-copy.js') }}"></script>
+<script>
+const normalizarTexto = (str) => {
+  if (!str) return '';
+  return str.toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+};
+window.letraFiltroAtual = '';
+const MODO_COPIA_ASSINATURA = (window.EnsSignatureCopy && window.EnsSignatureCopy.detectCopyMode)
+  ? window.EnsSignatureCopy.detectCopyMode()
+  : 'default';
+const listaOriginal = document.getElementById('colabList');
+const blocoFiltrado = document.getElementById('colabFiltered');
+const gridFiltrado = document.getElementById('colabFilteredGrid');
+const badgeFiltrado = document.getElementById('colabFilteredCount');
+const avisoFiltrado = document.getElementById('colabFilteredEmpty');
+const alertaListaVazia = document.getElementById('colabEmpty');
+const catalogoColaboradores = Array.from(document.querySelectorAll('#colabList .colab-section .col')).map(col => {
+  const card = col.querySelector('.colab-item');
+  const titulo = card ? card.querySelector('.fw-semibold') : null;
+  const nome = titulo ? titulo.textContent : '';
+  const lookup = card ? normalizarTexto(card.dataset.busca || '') : '';
+  const matricula = card ? normalizarTexto(card.dataset.matricula || '') : '';
+  const email = card ? normalizarTexto(card.dataset.email || '') : '';
+  return {
+    html: col.outerHTML,
+    nomeNormalizado: normalizarTexto(nome),
+    lookup,
+    matricula,
+    email,
+  };
+});
+
+function restaurarListaOriginal(){
+  if(blocoFiltrado){
+    blocoFiltrado.classList.add('d-none');
+  }
+  if(gridFiltrado){
+    gridFiltrado.innerHTML = '';
+  }
+  if(listaOriginal){
+    listaOriginal.classList.remove('d-none');
+  }
+  if(alertaListaVazia){
+    alertaListaVazia.classList.toggle('d-none', catalogoColaboradores.length > 0);
+  }
+}
+
+function exibirResultadosFiltrados(lista){
+  if(!blocoFiltrado || !gridFiltrado){
+    return;
+  }
+  gridFiltrado.innerHTML = '';
+  lista.forEach(entry => {
+    gridFiltrado.insertAdjacentHTML('beforeend', entry.html);
+  });
+  if(badgeFiltrado){
+    badgeFiltrado.textContent = lista.length;
+  }
+  const temResultados = lista.length > 0;
+  if(avisoFiltrado){
+    avisoFiltrado.classList.toggle('d-none', temResultados);
+  }
+  blocoFiltrado.classList.remove('d-none');
+  if(listaOriginal){
+    listaOriginal.classList.add('d-none');
+  }
+}
+
+function filtrarLinhas(){
+  const q = normalizarTexto(document.getElementById('filterInput').value || '');
+  const filtroLetra = normalizarTexto(window.letraFiltroAtual || '');
+  const filtrosAtivos = !!q || !!filtroLetra;
+  if(!filtrosAtivos){
+    restaurarListaOriginal();
+    return;
+  }
+  const resultados = catalogoColaboradores
+    .filter(entry => {
+      const matchesTexto = !q || entry.lookup.includes(q) || entry.nomeNormalizado.includes(q) || entry.matricula.includes(q) || entry.email.includes(q);
+      const matchesLetra = !filtroLetra || (entry.nomeNormalizado && entry.nomeNormalizado.startsWith(filtroLetra));
+      return matchesTexto && matchesLetra;
+    })
+    .sort((a, b) => a.nomeNormalizado.localeCompare(b.nomeNormalizado, 'pt-BR'));
+  exibirResultadosFiltrados(resultados);
+}
+
+// Evita envio padrao do formulario ao pressionar Enter no campo de busca.
+// Tambem executa o filtro para aplicar o valor atual imediatamente.
+function tratarTeclaBusca(ev){
+  if(ev && ev.key === 'Enter'){
+    ev.preventDefault();
+    const valorBusca = ev.target ? ev.target.value : '';
+    filtrarLinhas();
+    abrirEdicaoSeMatch(valorBusca);
+    return false;
+  }
+  return true;
+}
+
+function aplicarFiltroLetra(letra){
+  window.letraFiltroAtual = letra || '';
+  filtrarLinhas();
+  const botoes = document.querySelectorAll('.btn-filter-pill');
+  botoes.forEach(btn => {
+    const valor = btn.dataset.letter || '';
+    btn.classList.toggle('active', valor === window.letraFiltroAtual);
+  });
+}
+
+function abrirEdicaoSeMatch(valorBusca){
+  const termo = normalizarTexto(valorBusca);
+  if(!termo){
+    return;
+  }
+  const items = document.querySelectorAll('#colabList .colab-item');
+  for(const el of items){
+    const matricula = normalizarTexto(el.dataset.matricula || '');
+    const email = normalizarTexto(el.dataset.email || '');
+    if((matricula && termo === matricula) || (email && termo === email)){
+      const href = el.dataset.editUrl;
+      if(href){
+        window.location.href = href;
+        return;
+      }
+    }
+  }
+}
+
+async function copiarAssinatura(cid, btn){
+  const urlOutlookNew = `{{ url_for('admin.visualizar_assinatura_outlook_new', cid=0) }}`.replace('/0', `/${cid}`);
+  try{
+    const separador = urlOutlookNew.includes('?') ? '&' : '?';
+    const urlNoCache = `${urlOutlookNew}${separador}t=${Date.now()}`;
+    const res = await fetch(urlNoCache, {
+      credentials: 'same-origin',
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache' },
+    });
+    if(!res.ok){ throw new Error('Falha ao obter assinatura para Outlook New/Web'); }
+    const html = await res.text();
+    const htmlRico = gerarHtmlComEstiloCalculadoDeHtml(html);
+    let copied = await copiarHtmlRico(htmlRico || html);
+    if(!copied && htmlRico){
+      copied = await copiarHtmlRico(html);
+    }
+    if (btn){
+      const old = btn.textContent;
+      if(copied){
+        btn.textContent = 'Copiado!';
+      } else if(MODO_COPIA_ASSINATURA === 'outlook_desktop'){
+        btn.textContent = 'Falha modo desktop';
+      } else {
+        btn.textContent = 'Copiar falhou';
+      }
+      btn.disabled = true;
+      setTimeout(()=>{ btn.textContent = old; btn.disabled = false; }, 1800);
+    }
+  }catch(e){
+    if (btn){
+      const old = btn.textContent;
+      btn.textContent = 'Erro ao copiar';
+      btn.disabled = true;
+      setTimeout(()=>{ btn.textContent = old; btn.disabled = false; }, 1800);
+    }
+    console.error(e);
+  }
+}
+
+function aplicarEstiloCalculado(orig, clone){
+  const origTodos = [orig, ...orig.querySelectorAll('*')];
+  const cloneTodos = [clone, ...clone.querySelectorAll('*')];
+  const total = Math.min(origTodos.length, cloneTodos.length);
+  for(let i = 0; i < total; i++){
+    const src = origTodos[i];
+    const dst = cloneTodos[i];
+    const cs = window.getComputedStyle(src);
+    dst.style.setProperty('color', cs.color, 'important');
+    dst.style.setProperty('font-size', cs.fontSize, 'important');
+    dst.style.setProperty('font-family', cs.fontFamily, 'important');
+    dst.style.setProperty('font-weight', cs.fontWeight, 'important');
+    dst.style.setProperty('font-style', cs.fontStyle, 'important');
+    dst.style.setProperty('line-height', cs.lineHeight, 'important');
+    dst.style.setProperty('letter-spacing', cs.letterSpacing, 'important');
+    if(src.tagName === 'A'){
+      dst.style.setProperty('text-decoration', cs.textDecoration, 'important');
+    }
+    const textosDiretos = Array.from(dst.childNodes).filter((n) => n.nodeType === Node.TEXT_NODE);
+    for(const textoNode of textosDiretos){
+      if(!(textoNode.nodeValue || '').trim()){
+        continue;
+      }
+      const span = document.createElement('span');
+      span.textContent = textoNode.nodeValue;
+      span.style.setProperty('color', cs.color, 'important');
+      span.style.setProperty('font-size', cs.fontSize, 'important');
+      span.style.setProperty('font-family', cs.fontFamily, 'important');
+      span.style.setProperty('font-weight', cs.fontWeight, 'important');
+      span.style.setProperty('font-style', cs.fontStyle, 'important');
+      span.style.setProperty('line-height', cs.lineHeight, 'important');
+      span.style.setProperty('letter-spacing', cs.letterSpacing, 'important');
+      dst.replaceChild(span, textoNode);
+    }
+  }
+}
+
+function gerarHtmlComEstiloCalculado(elemento){
+  if(!elemento){
+    return '';
+  }
+  const clone = elemento.cloneNode(true);
+  aplicarEstiloCalculado(elemento, clone);
+  return clone.outerHTML || '';
+}
+
+function gerarHtmlComEstiloCalculadoDeHtml(html){
+  if(!html){
+    return '';
+  }
+  const host = document.createElement('div');
+  host.style.position = 'fixed';
+  host.style.left = '-9999px';
+  host.style.top = '0';
+  host.style.opacity = '0';
+  host.innerHTML = html;
+  document.body.appendChild(host);
+  const raiz = host.querySelector('table') || host.firstElementChild;
+  let saida = html;
+  if(raiz){
+    saida = gerarHtmlComEstiloCalculado(raiz);
+  }
+  document.body.removeChild(host);
+  return saida;
+}
+
+async function copiarHtmlRico(html){
+  if(!(window.EnsSignatureCopy && window.EnsSignatureCopy.copyRichHtml)){
+    return false;
+  }
+  try{
+    const resultado = await window.EnsSignatureCopy.copyRichHtml(html, {
+      mode: MODO_COPIA_ASSINATURA,
+      sourceUrl: window.location.href,
+    });
+    return !!(resultado && resultado.ok);
+  }catch(_err){
+    return false;
+  }
+}
+
+filtrarLinhas();
+</script>
+{% endblock %}

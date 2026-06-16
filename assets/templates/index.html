@@ -1,0 +1,444 @@
+{% extends "base.html" %}
+{% block extra_head %}
+  {{ super() }}
+  {% if hero_enabled %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='v4/hero-outlook.css') }}">
+  {% endif %}
+{% endblock %}
+
+{% block extra_scripts %}
+  {{ super() }}
+  {% if hero_enabled %}
+  <script src="{{ url_for('static', filename='v4/hero-outlook.js') }}" defer></script>
+  {% endif %}
+{% endblock %}
+
+{% block caller %}
+<div class="container my-4">
+
+  <div class="d-flex flex-column gap-4 stacked-public">
+
+      <!-- Passo 1 -->
+      <div class="card shadow-sm border" id="instalar">
+        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+          <div>
+            <div class="text-uppercase small fw-bold text-secondary mb-1"></div>
+            <div class="fw-semibold" style="color:var(--ens-primary);">
+              Digite sua Matrícula ou e-mail cadastrado
+            </div>
+          </div>
+          <div class="small text-muted d-none d-sm-block"></div>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="{{ url_for('public.index') }}" class="mb-2">
+            {{ csrf_field() }}
+            <input type="hidden" name="do" value="buscar">
+            <div class="input-group">
+              <input class="form-control" type="text" name="q"
+                     placeholder="Buscar por matrícula (ex.: 1096) ou e-mail institucional"
+                     value="{{ termo_busca or '' }}">
+              <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+            </div>
+          </form>
+
+          {% if erro_busca %}
+            <div class="alert alert-warning py-2 px-3 mb-2">
+              {{ erro_busca }}
+            </div>
+          {% endif %}
+
+          <p class="hint mb-0 small text-muted">&nbsp;</p>
+        </div>
+      </div>
+
+      {% if colaborador %}
+      <div class="card shadow-sm border">
+        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <div>
+            <div class="text-uppercase small fw-bold text-secondary mb-1"></div>
+            <div class="fw-semibold" style="color:var(--ens-primary);">
+              Segue seus dados
+            </div>
+            <div class="small text-muted"></div>
+          </div>
+          {% if colaborador.home_office %}
+            <span class="badge bg-warning text-dark">Home office</span>
+          {% endif %}
+        </div>
+        <div class="card-body small">
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <div class="text-muted">Nome para exibição</div>
+              <div class="fw-semibold">{{ colaborador.nome_exibicao or colaborador.nome or "-" }}</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="text-muted">Departamento</div>
+              <div class="fw-semibold">{{ colaborador.departamento or "-" }}</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="text-muted">Cargo / Função</div>
+              <div class="fw-semibold">{{ colaborador.cargo or colaborador.departamento or "-" }}</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="text-muted">Telefone na assinatura</div>
+              <div class="fw-semibold">{{ colaborador.telefone or "-" }}</div>
+            </div>
+            <div class="col-12">
+              <div class="text-muted">Endereço exibido</div>
+              <div class="fw-semibold">{{ colaborador.endereco or "-" }}</div>
+              {% if colaborador.address_label %}
+                <div class="hint">{{ colaborador.address_label }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="alert alert-info mt-4 mb-3" role="alert">
+            
+          </div>
+
+          <form method="POST" action="{{ url_for('public.index') }}" class="d-grid d-md-flex justify-content-center gap-2">
+            {{ csrf_field() }}
+            <input type="hidden" name="do" value="gerar">
+            <input type="hidden" name="colaborador_token" value="{{ colaborador_token }}">
+            <button class="btn btn-ens px-4" type="submit" {% if not colaborador_token %}disabled{% endif %}>
+              Gerar 
+            </button>
+          </form>
+        </div>
+      </div>
+      {% endif %}
+
+    <!-- Passo 3 -->
+    <div class="card shadow-sm border d-flex flex-column" id="guia">
+        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+          <div>
+            <div class="text-uppercase small fw-bold text-secondary mb-1"></div>
+            <div class="fw-semibold" style="color:var(--ens-primary);">
+              Assinatura
+            </div>
+          </div>
+          <span class="badge rounded-pill
+                       {% if USE_SMTP_EMAIL %}bg-warning text-dark{% else %}bg-primary{% endif %}">
+            {% if USE_SMTP_EMAIL %}
+              SMTP (homologação)
+            {% else %}
+              Outlook / Microsoft 365
+            {% endif %}
+          </span>
+        </div>
+
+        <div class="card-body d-flex flex-column">
+          <div id="alert-envio" class="alert d-none small mb-3" role="alert"></div>
+          <div class="preview preview-center mb-3" id="preview-container">
+            {% if html_assinatura %}
+              {{ html_assinatura|safe }}
+            {% else %}
+              <div class="text-muted text-center mt-5">
+                Localize seu cadastro e clique em <strong>Gerar assinatura</strong> para visualizar a assinatura aqui.
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="mt-auto pt-2 d-flex flex-wrap gap-2 justify-content-center text-center">
+            <button type="button" class="btn btn-ens btn-sm text-white"
+                    data-has-signature="{{ '1' if html_assinatura else '0' }}"
+                    onclick="copiarAssinaturaHtml(this)"
+                    title="Copiar a assinatura para a area de transferencia"
+                    {% if not html_assinatura %}disabled{% endif %}>
+              Copiar assinatura
+            </button>
+
+            <button type="button" class="btn btn-ens btn-sm text-white"
+                    data-has-signature="{{ '1' if html_assinatura else '0' }}"
+                    onclick="baixarWordOutlookClassico(this)"
+                    {% if not html_assinatura %}disabled{% endif %}>
+              Baixar
+            </button>
+
+            <button type="button" class="btn btn-ens btn-sm text-white"
+                    data-email="{{ colaborador.email if colaborador else '' }}"
+                    data-has-signature="{{ '1' if html_assinatura else '0' }}"
+                    onclick="enviarPorEmail(this)"
+                    {% if not html_assinatura %}disabled{% endif %}>
+              Enviar para o e-mail
+            </button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Hero -->
+  {% if hero_enabled %}
+  <div class="card shadow-sm border hero-card mt-4">
+    <div class="card-body hero-card-body">
+      {% include "hero_outlook.html" %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<script src="{{ url_for('static', filename='js/signature-copy.js') }}"></script>
+<script>
+const URL_ENVIAR_ASSINATURA = "{{ url_for('public.enviar_assinatura') }}";
+const URL_PREVIEW_ASSINATURA = "{{ url_for('public.assinatura_outlook_html') }}";
+const URL_COPY_OUTLOOK_NEW = URL_PREVIEW_ASSINATURA.replace('/outlook-classico.html', '/outlook-new.html');
+const URL_WORD_OUTLOOK = "{{ url_for('public.assinatura_outlook_word') }}";
+const URL_LOGIN_OUTLOOK = "{{ url_for('public.ms_login') }}";
+const CSRF_TOKEN = "{{ csrf_token() }}";
+let assinaturaCache = null;
+let assinaturaCopyOutlookNewCache = null;
+const MODO_COPIA_ASSINATURA = (window.EnsSignatureCopy && window.EnsSignatureCopy.detectCopyMode)
+  ? window.EnsSignatureCopy.detectCopyMode()
+  : 'default';
+
+function atualizarStatusEnvio(tipo, mensagem){
+  const alerta = document.getElementById('alert-envio');
+  if(!alerta){
+    return;
+  }
+  if(!mensagem){
+    alerta.classList.add('d-none');
+    alerta.textContent = '';
+    return;
+  }
+  alerta.className = `alert alert-${tipo} small mb-3`;
+  alerta.textContent = mensagem;
+}
+
+function assinaturaDisponivel(botao){
+  const disponivel = botao && botao.dataset.hasSignature === '1';
+  if(!disponivel){
+    atualizarStatusEnvio('warning', 'Gere a assinatura antes de usar esta ação.');
+  }
+  return disponivel;
+}
+
+async function obterAssinaturaHtml(){
+  if(assinaturaCache){
+    return assinaturaCache;
+  }
+  const resp = await fetch(URL_PREVIEW_ASSINATURA, { credentials: 'same-origin' });
+  if(!resp.ok){
+    throw new Error('Gere uma nova assinatura antes de continuar.');
+  }
+  const html = await resp.text();
+  if(!html || !html.trim()){
+    throw new Error('Assinatura indisponível. Gere novamente.');
+  }
+  assinaturaCache = html;
+  return html;
+}
+
+async function obterAssinaturaHtmlOutlookNew(){
+  if(assinaturaCopyOutlookNewCache){
+    return assinaturaCopyOutlookNewCache;
+  }
+  const separador = URL_COPY_OUTLOOK_NEW.includes('?') ? '&' : '?';
+  const urlNoCache = `${URL_COPY_OUTLOOK_NEW}${separador}t=${Date.now()}`;
+  const resp = await fetch(urlNoCache, {
+    credentials: 'same-origin',
+    cache: 'no-store',
+    headers: { 'Cache-Control': 'no-cache' },
+  });
+  if(!resp.ok){
+    throw new Error('Gere uma nova assinatura antes de continuar.');
+  }
+  const html = await resp.text();
+  if(!html || !html.trim()){
+    throw new Error('Assinatura indisponível. Gere novamente.');
+  }
+  assinaturaCopyOutlookNewCache = html;
+  return html;
+}
+
+function baixarWordOutlookClassico(botao){
+  if(!assinaturaDisponivel(botao)){
+    return;
+  }
+  atualizarStatusEnvio('info', 'Gerando arquivo Word...');
+  window.open(URL_WORD_OUTLOOK, '_blank');
+}
+
+async function copiarAssinaturaHtml(botao){
+  if(!assinaturaDisponivel(botao)){
+    return;
+  }
+  const estadoAnterior = botao.textContent;
+  botao.disabled = true;
+  botao.textContent = 'Copiando...';
+  if(MODO_COPIA_ASSINATURA === 'outlook_desktop'){
+    atualizarStatusEnvio('info', 'Preparando a assinatura no modo dedicado ao New Outlook Desktop...');
+  } else {
+    atualizarStatusEnvio('info', 'Preparando a assinatura para copiar...');
+  }
+  try{
+    const htmlBase = await obterAssinaturaHtmlOutlookNew();
+    const htmlRico = gerarHtmlComEstiloCalculadoDeHtml(htmlBase);
+    let copiado = await copiarHtmlRico(htmlRico || htmlBase);
+    if(!copiado && htmlRico){
+      copiado = await copiarHtmlRico(htmlBase);
+    }
+    if(!copiado){
+      if(MODO_COPIA_ASSINATURA === 'outlook_desktop'){
+        throw new Error('Falha no modo dedicado do New Outlook Desktop. Recarregue e tente novamente com ?copy_mode=outlook_desktop.');
+      }
+      throw new Error('Nao foi possivel copiar automaticamente. Use Ctrl+C/Cmd+C na pre-visualizacao.');
+    }
+    atualizarStatusEnvio('success', 'Assinatura copiada! Cole (Ctrl+V) diretamente na sua plataforma.');
+  }catch(err){
+    atualizarStatusEnvio('warning', err?.message || 'Falha ao copiar a assinatura.');
+  }finally{
+    botao.textContent = estadoAnterior;
+    botao.disabled = false;
+  }
+}
+
+function obterElementoAssinaturaPreview(){
+  const container = document.getElementById('preview-container');
+  if(!container){
+    return null;
+  }
+  return container.querySelector('table');
+}
+
+function obterAssinaturaHtmlDoPreview(){
+  const tabela = obterElementoAssinaturaPreview();
+  if(!tabela){
+    return '';
+  }
+  return tabela.outerHTML || '';
+}
+
+function aplicarEstiloCalculado(orig, clone){
+  const origTodos = [orig, ...orig.querySelectorAll('*')];
+  const cloneTodos = [clone, ...clone.querySelectorAll('*')];
+  const total = Math.min(origTodos.length, cloneTodos.length);
+  for(let i = 0; i < total; i++){
+    const src = origTodos[i];
+    const dst = cloneTodos[i];
+    const cs = window.getComputedStyle(src);
+    dst.style.setProperty('color', cs.color, 'important');
+    dst.style.setProperty('font-size', cs.fontSize, 'important');
+    dst.style.setProperty('font-family', cs.fontFamily, 'important');
+    dst.style.setProperty('font-weight', cs.fontWeight, 'important');
+    dst.style.setProperty('font-style', cs.fontStyle, 'important');
+    dst.style.setProperty('line-height', cs.lineHeight, 'important');
+    dst.style.setProperty('letter-spacing', cs.letterSpacing, 'important');
+    if(src.tagName === 'A'){
+      dst.style.setProperty('text-decoration', cs.textDecoration, 'important');
+    }
+    const textosDiretos = Array.from(dst.childNodes).filter((n) => n.nodeType === Node.TEXT_NODE);
+    for(const textoNode of textosDiretos){
+      if(!(textoNode.nodeValue || '').trim()){
+        continue;
+      }
+      const span = document.createElement('span');
+      span.textContent = textoNode.nodeValue;
+      span.style.setProperty('color', cs.color, 'important');
+      span.style.setProperty('font-size', cs.fontSize, 'important');
+      span.style.setProperty('font-family', cs.fontFamily, 'important');
+      span.style.setProperty('font-weight', cs.fontWeight, 'important');
+      span.style.setProperty('font-style', cs.fontStyle, 'important');
+      span.style.setProperty('line-height', cs.lineHeight, 'important');
+      span.style.setProperty('letter-spacing', cs.letterSpacing, 'important');
+      dst.replaceChild(span, textoNode);
+    }
+  }
+}
+
+function gerarHtmlComEstiloCalculado(elemento){
+  if(!elemento){
+    return '';
+  }
+  const clone = elemento.cloneNode(true);
+  aplicarEstiloCalculado(elemento, clone);
+  return clone.outerHTML || '';
+}
+
+function gerarHtmlComEstiloCalculadoDeHtml(html){
+  if(!html){
+    return '';
+  }
+  const host = document.createElement('div');
+  host.style.position = 'fixed';
+  host.style.left = '-9999px';
+  host.style.top = '0';
+  host.style.opacity = '0';
+  host.innerHTML = html;
+  document.body.appendChild(host);
+  const raiz = host.querySelector('table') || host.firstElementChild;
+  let saida = html;
+  if(raiz){
+    saida = gerarHtmlComEstiloCalculado(raiz);
+  }
+  document.body.removeChild(host);
+  return saida;
+}
+
+async function copiarHtmlRico(html){
+  if(!(window.EnsSignatureCopy && window.EnsSignatureCopy.copyRichHtml)){
+    return false;
+  }
+  try{
+    const resultado = await window.EnsSignatureCopy.copyRichHtml(html, {
+      mode: MODO_COPIA_ASSINATURA,
+      sourceUrl: window.location.href,
+    });
+    return !!(resultado && resultado.ok);
+  }catch(_err){
+    return false;
+  }
+}
+
+async function enviarPorEmail(botao){
+  if(!botao){
+    return;
+  }
+  const email = botao.dataset.email || '';
+  if(!email){
+    atualizarStatusEnvio('warning', 'Localize o colaborador antes de enviar.');
+    return;
+  }
+  if(!assinaturaDisponivel(botao)){
+    return;
+  }
+  const estadoAnterior = botao.textContent;
+  botao.disabled = true;
+  botao.textContent = 'Enviando...';
+  atualizarStatusEnvio('info', 'Preparando assinatura e enviando...');
+  try{
+    const html = await obterAssinaturaHtml();
+    const resposta = await fetch(URL_ENVIAR_ASSINATURA, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': CSRF_TOKEN,
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({ email, html }),
+    });
+    let payload = {};
+    try{
+      payload = await resposta.json();
+    }catch(_){
+      payload = {};
+    }
+    if(resposta.status === 401){
+      atualizarStatusEnvio('warning', 'Entre com sua conta ENS no Outlook para enviar o e-mail.');
+      window.location.href = URL_LOGIN_OUTLOOK;
+      return;
+    }
+    if(resposta.ok && payload.status === 'ok'){
+      atualizarStatusEnvio('success', `Assinatura enviada para ${email}.`);
+      return;
+    }
+    const message = payload.message || 'Erro ao enviar e-mail.';
+    throw new Error(message);
+  }catch(err){
+    atualizarStatusEnvio('warning', err?.message || 'Erro ao enviar sua assinatura por e-mail.');
+  }finally{
+    botao.textContent = estadoAnterior;
+    botao.disabled = false;
+  }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+{% block caller %}
+<div class="card shadow-card mb-4">
+  <div class="card-body p-4">
+    <h2 class="h5 mb-3" style="color:var(--ens-primary)">Editar colaborador</h2>
+    {% set status_atual = (col['status'] or 'off') | lower %}
+    <div class="alert {% if status_atual == 'on' %}alert-success{% else %}alert-warning{% endif %} d-flex align-items-center justify-content-between" role="status">
+      <span>
+        Status atual:
+        <strong>{% if status_atual == 'on' %}Ativo{% else %}Desligado{% endif %}</strong>
+      </span>
+      {% if status_atual != 'on' %}
+        <small class="text-muted">Reative pelo painel principal caso necess&aacute;rio.</small>
+      {% endif %}
+    </div>
+    <!-- Formulario para editar todos os campos do colaborador -->
+    <form method="post" action="{{ url_for('admin.admin_edit', cid=col['id']) }}" class="row g-3">
+      {{ csrf_field() }}
+      <!-- Matrícula -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="matricula" name="matricula" placeholder="Matrícula" value="{{ col['matricula'] or '' }}">
+          <label for="matricula">Matrícula</label>
+        </div>
+      </div>
+      <!-- Nome completo (campo principal) -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="name" name="name" placeholder="Nome completo" value="{{ col['name'] or '' }}" required>
+          <label for="name">Nome completo</label>
+        </div>
+      </div>
+      <!-- Email -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="email" name="email" type="email" placeholder="E-mail" value="{{ col['email'] or '' }}" required>
+          <label for="email">E-mail</label>
+        </div>
+      </div>
+      <!-- Nome (Primeiro) -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="first_name" name="first_name" placeholder="Nome" value="{{ col['first_name'] or '' }}">
+          <label for="first_name">Nome (primeiro)</label>
+        </div>
+      </div>
+      <!-- Sobrenome -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="last_name" name="last_name" placeholder="Sobrenome" value="{{ col['last_name'] or '' }}">
+          <label for="last_name">Sobrenome</label>
+        </div>
+      </div>
+      <!-- Nome para exibição -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="nome_exibicao" name="nome_exibicao" placeholder="Nome para exibição" value="{{ col['nome_exibicao'] or '' }}">
+          <label for="nome_exibicao">Nome para exibição</label>
+        </div>
+      </div>
+      <!-- Departamento -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="department" name="department" placeholder="Departamento" value="{{ col['department'] or '' }}">
+          <label for="department">Departamento</label>
+        </div>
+      </div>
+      <!-- Cargo -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="role" name="role" placeholder="Cargo" value="{{ col['role'] or '' }}">
+          <label for="role">Cargo</label>
+        </div>
+      </div>
+      <!-- Telefone assinatura -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="phone" name="phone" placeholder="Telefone assinatura" value="{{ col['phone'] or '' }}">
+          <label for="phone">Telefone assinatura</label>
+        </div>
+      </div>
+      <!-- Telefone AD -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="telefone_ad" name="telefone_ad" placeholder="Telefone AD" value="{{ col['telefone_ad'] or '' }}">
+          <label for="telefone_ad">Telefone AD</label>
+        </div>
+      </div>
+      <!-- Posição no organograma -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="posicao_organograma" name="posicao_organograma" placeholder="Posição no organograma" value="{{ col['posicao_organograma'] or '' }}">
+          <label for="posicao_organograma">Posição no organograma</label>
+        </div>
+      </div>
+      <!-- Diretoria -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="diretoria" name="diretoria" placeholder="Diretoria" value="{{ col['diretoria'] or '' }}">
+          <label for="diretoria">Diretoria</label>
+        </div>
+      </div>
+      <!-- Campo assinatura -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="campo_assinatura" name="campo_assinatura" placeholder="Campo assinatura" value="{{ col['campo_assinatura'] or '' }}">
+          <label for="campo_assinatura">Campo assinatura</label>
+        </div>
+      </div>
+      <!-- Gestor -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="manager" name="manager" placeholder="Gestor" value="{{ col['manager'] or '' }}">
+          <label for="manager">Gestor</label>
+        </div>
+      </div>
+      <!-- Local (descrição) -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="local_descricao" name="local_descricao" placeholder="Local (descrição)" value="{{ col['local_descricao'] or '' }}">
+          <label for="local_descricao">Local (descrição)</label>
+        </div>
+      </div>
+      <!-- Endereço -->
+      <div class="col-md-8">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="endereco" name="endereco" placeholder="Endereço" value="{{ col['endereco'] or '' }}">
+          <label for="endereco">Endereço</label>
+        </div>
+      </div>
+      <!-- UF -->
+      <div class="col-md-4">
+        <div class="form-floating">
+          <input class="form-control mb-2" id="uf" name="uf" placeholder="UF" value="{{ col['uf'] or '' }}">
+          <label for="uf">UF</label>
+        </div>
+      </div>
+      <!-- Botões de ação -->
+      <div class="col-12 mt-4 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <a class="btn btn-ens-outline shadow-sm" href="{{ url_for('admin.admin') }}">Cancelar</a>
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          {% if status_atual == 'on' %}
+          <button type="submit"
+                  class="btn btn-ens-accent text-white shadow-sm"
+                  formaction="{{ url_for('admin.admin_disable', cid=col['id']) }}"
+                  formmethod="post"
+                  formnovalidate
+                  onclick="return confirm('Confirmar desligamento deste colaborador?');">
+            Desligar colaborador
+          </button>
+          {% else %}
+          <button type="submit"
+                  class="btn btn-ens-lime text-white shadow-sm"
+                  formaction="{{ url_for('admin.admin_toggle', cid=col['id']) }}"
+                  formmethod="post"
+                  formnovalidate
+                  onclick="return confirm('Reativar este colaborador?');">
+            Reativar colaborador
+          </button>
+          {% endif %}
+          <button type="button" class="btn btn-ens-lime text-white shadow-sm" onclick="enviarAssinaturaAdmin(this)">Enviar para o e-mail</button>
+          <button type="button" class="btn btn-ens-purple text-white shadow-sm" onclick="conectarOutlookAdmin()">Conectar Outlook</button>
+          <button class="btn btn-ens shadow-sm" type="submit">Salvar alterações</button>
+          <button type="submit"
+                  class="btn btn-danger"
+                  formaction="{{ url_for('admin.admin_delete', cid=col['id']) }}"
+                  formmethod="post"
+                  formnovalidate
+                  onclick="return confirm('Tem certeza que deseja excluir este colaborador?');">
+            Excluir
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+{% if APLICATIVO_PUBLICO %}
+const URL_ENVIAR_ASSINATURA = "{{ url_for('public.enviar_assinatura') }}";
+const URL_LOGIN_OUTLOOK = "{{ url_for('public.ms_login') }}";
+{% else %}
+const URL_ENVIAR_ASSINATURA = "/assinaturas/enviar_assinatura";
+const URL_LOGIN_OUTLOOK = "/assinaturas/auth/login";
+{% endif %}
+const URL_PREVIEW_ASSINATURA = "{{ url_for('admin.visualizar_assinatura', cid=col['id']) }}";
+const CSRF_TOKEN = "{{ csrf_token() }}";
+
+function conectarOutlookAdmin(){
+  window.location.href = URL_LOGIN_OUTLOOK;
+}
+
+async function enviarAssinaturaAdmin(botao){
+  const emailCampo = document.getElementById('email');
+  const email = emailCampo ? emailCampo.value.trim() : '';
+  if(!email){
+    alert('Informe um e-mail antes de enviar.');
+    if(emailCampo){ emailCampo.focus(); }
+    return;
+  }
+  const labelOriginal = botao.dataset.label || botao.textContent;
+  botao.dataset.label = labelOriginal;
+  botao.disabled = true;
+  botao.textContent = 'Enviando...';
+  try{
+    const previewResp = await fetch(URL_PREVIEW_ASSINATURA, { credentials: 'same-origin' });
+    if(!previewResp.ok){
+      throw new Error('Falha ao obter a assinatura.');
+    }
+    const assinaturaHtml = await previewResp.text();
+    const resposta = await fetch(URL_ENVIAR_ASSINATURA, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': CSRF_TOKEN
+      },
+      body: JSON.stringify({ email, html: assinaturaHtml })
+    });
+    if(resposta.status === 401){
+      window.location.href = URL_LOGIN_OUTLOOK;
+      return;
+    }
+    const resultado = await resposta.json();
+    if(resultado.status === 'ok'){
+      botao.textContent = 'Enviado!';
+      return;
+    }
+    alert('Falha ao enviar assinatura: ' + (resultado.message || ''));
+  }catch(erro){
+    console.error(erro);
+    alert('Erro ao enviar assinatura.');
+  }finally{
+    setTimeout(() => {
+      botao.disabled = false;
+      botao.textContent = botao.dataset.label || 'Enviar por e-mail';
+    }, 1500);
+  }
+}
+</script>
+{% endblock %}
