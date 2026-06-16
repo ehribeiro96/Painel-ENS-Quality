@@ -17,6 +17,7 @@
 - `B4-B3 — Frontend manual visual smoke closeout` foi superseded por `B4-C`.
 - `B4-C — Frontend visual repair` foi concluido como `PARTIAL`: build passa, screenshots foram gerados e o reparo CSS estrutural foi aplicado, mas o shell autenticado ainda precisa de sessao real para smoke completo.
 - `B4-D — Authenticated visual smoke and fine polish` foi concluido com `GO`: backend real, sessao real, screenshots autenticados e ajustes finos foram validados.
+- `B4-E — Legacy CSP and route polish` foi concluido com `GO`: fontes externas foram removidas do legado e o stack passou a usar fontes locais/sistemicas.
 - `INFRA-D1 — Docker Engine nativo no WSL` foi concluido como `PARTIAL`: a auditoria confirmou que `docker`/Compose ainda vêm de symlinks do Docker Desktop em `/mnt/wsl/docker-desktop`, e a instalacao nativa ficou bloqueada porque `sudo -n` nao estava disponivel nesta sessao.
 - `INFRA-D1B — Docker Engine nativo no WSL com sudo interativo` foi concluido como `PARTIAL`: `sudo -v` abriu prompt, mas a autenticacao nao ficou disponivel para a sessao de comandos; nenhuma alteracao de sistema foi aplicada.
 - `INFRA-D1C — Docker Engine nativo no WSL via script root-assistido` foi concluido com `GO`: Docker CE oficial, Compose plugin nativo, `hello-world`, Postgres/Redis, backend e frontend foram validados no daemon WSL nativo.
@@ -55,13 +56,13 @@
 
 ### Recomendação padrão
 
-`B4-E — legacy CSP and route polish` é a próxima boundary funcional recomendada.
+`B6` é a próxima boundary recomendada somente se o foco voltar para testes/infra isolados.
 
-Se a prioridade voltar para fechamento do inventário residual, abrir uma boundary separada apenas para os remanescentes documentados em `GIT-C3`.
+Se a prioridade voltar para outra feature funcional, abrir uma boundary explícita e pequena, sem misturar legado, IA e imports.
 
 ## 5. Critério para Escolher `B4`
 
-Escolha `B4-E` quando o foco for:
+Escolha uma boundary legada dedicada quando o foco for:
 
 - CSP/fontes das rotas legadas;
 - visual de `/assinaturas/` e `/admin/`;
@@ -80,6 +81,6 @@ Escolha `B4-E` quando o foco for:
 
 ## 8. Decisão Final
 
-**Boundary funcional recomendada: `GIT-C2 — executar commits seletivos aprovados`.**
+**Boundary funcional recomendada: `B6` somente para testes/infra isolados, ou nova boundary explícita quando houver feature.**
 
-Motivo: o worktree está inventariado, o stage está vazio e o plano de commits seletivos foi produzido sem alterar código funcional. Depois de GIT-C2, a prioridade pode voltar para `B4-E` ou outra boundary funcional já fechada conforme necessidade de negócio.
+Motivo: as boundaries principais de frontend, backend, imports e legado já foram validadas; qualquer próximo passo precisa ser pequeno e isolado para não reabrir blast radius desnecessário.

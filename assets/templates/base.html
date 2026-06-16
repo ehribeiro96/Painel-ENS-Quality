@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }}</title>
+  <link rel="icon" href="{{ url_for('static', filename='icons/Favicon.png') }}" type="image/png" />
+  <!-- CSS local do Bootstrap, icones e template -->
+  <link href="{{ url_for('static', filename='vendor/tpl/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/tpl/css/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/tpl/css/templatemo-topic-listing.css') }}" rel="stylesheet">
+    <style>
+    :root{
+      color-scheme: light;
+      --ens-body-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --ens-title-font: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+      --body-font-family: var(--ens-body-font);
+      --title-font-family: var(--ens-title-font);
+      --ens-primary: #009DB7;
+      --ens-primary-dark: #067c92;
+      --ens-text-dark: #0b2630;
+      --ens-bg: #f2efe7;
+      --ens-card-bg: #ffffff;
+      --ens-card-bg-strong: #ffffff;
+      --ens-border-color: #e5e7eb;
+      --ens-radius: 14px;
+      --ens-shadow: 0 6px 24px rgba(0,0,0,.08);
+    }
+    html, body{height:100%}
+    body{
+      font-family: var(--ens-body-font);
+      background: var(--ens-bg);
+      color: var(--ens-text-dark);
+      transition: background-color .3s ease, color .3s ease;
+    }
+    .navbar-brand img{height:56px}
+    .navbar { background: var(--ens-card-bg) !important; box-shadow: var(--ens-shadow); }
+    .shadow-card{box-shadow: var(--ens-shadow); border-radius: var(--ens-radius);}
+    .card{border:0; border-radius: var(--ens-radius); background-color: var(--ens-card-bg); color: inherit; border:1px solid var(--ens-border-color);}
+    .card-header{background-color: var(--ens-card-bg-strong); border-bottom-color: var(--ens-border-color);}
+    .preview{background:var(--ens-card-bg);border:1px solid var(--ens-border-color);border-radius: var(--ens-radius);padding:20px;min-height:300px;overflow:hidden}
+    .preview.preview-center{display:flex;justify-content:center;align-items:flex-start}
+    .hint{color:#6b7280;font-size:.875rem}
+    .btn-ens{background: var(--ens-primary); color:#fff; border:none}
+    .btn-ens:hover{background: var(--ens-primary-dark); color:#fff}
+    .btn-ens-accent{
+      background: linear-gradient(135deg,#ff8a3a,#ff3d68);
+      color:#fff;
+      border:none;
+      box-shadow:0 8px 18px rgba(255,106,106,.35);
+    }
+    .btn-ens-accent:hover{
+      filter:brightness(1.05);
+      color:#fff;
+    }
+    .btn-ens-lime{
+      background: linear-gradient(135deg,#34d399,#0ea5e9);
+      color:#fff;
+      border:none;
+      box-shadow:0 8px 18px rgba(14,165,233,.25);
+    }
+    .btn-ens-lime:hover{
+      filter:brightness(1.05);
+      color:#fff;
+    }
+    .btn-ens-purple{
+      background: linear-gradient(135deg,#a855f7,#6366f1);
+      color:#fff;
+      border:none;
+      box-shadow:0 8px 18px rgba(99,102,241,.35);
+    }
+    .btn-ens-purple:hover{
+      filter:brightness(1.05);
+      color:#fff;
+    }
+    .btn-ens-outline{
+      border:2px solid var(--ens-primary);
+      color:var(--ens-primary);
+      background:#fff;
+    }
+    .btn-ens-outline:hover{
+      background:var(--ens-primary);
+      color:#fff;
+    }
+    .btn-filter-pill{
+      border:none;
+      background:rgba(0,157,183,.08);
+      color:var(--ens-primary);
+      font-weight:600;
+      transition:all .2s ease;
+    }
+    .btn-filter-pill:hover,
+    .btn-filter-pill.active{
+      background:var(--ens-primary);
+      color:#fff;
+    }
+    .stacked-public{
+      width:100%;
+    }
+    .stacked-public .card{
+      width:100%;
+    }
+    .stacked-public > .card:first-of-type{
+      border-top-left-radius: calc(var(--ens-radius) * 1.25);
+      border-top-right-radius: calc(var(--ens-radius) * 1.25);
+    }
+    .stacked-public > .card:first-of-type .card-header{
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+    .link-ens{color: var(--ens-primary)}
+    @media (min-width: 1200px){ .sticky-xl{ position: sticky; top: 24px; } }
+
+    /* Definicoes de tamanho padrao para inputs */
+    .form-floating>.form-control,
+    .form-floating>.form-select{ height:52px; min-height:52px; padding-top:1.25rem; padding-bottom:.5rem; }
+    .form-floating>label{ padding:.75rem 1rem; color:#6b7280; }
+    .form-control, .form-select{ border-radius:12px; }
+    .card .card-body{ padding:1.25rem 1.25rem; }
+    .shadow-card{ border:1px solid var(--ens-border-color); }
+    .btn-width{ min-width:160px; text-align:center; }
+
+    /* Garante que a barra superior nao sobreponha o conteudo */
+    .sticky-wrapper, .sticky-wrapper.is-sticky { position: static !important; height: auto !important; }
+    .navbar { position: sticky; top: 0; z-index: 1040; box-shadow: var(--ens-shadow); }
+    .navbar .navbar-brand span{ color: var(--ens-text-dark); }
+    .nav-ens .nav-link{ color: var(--ens-text-dark); font-weight:600; }
+    .nav-ens .nav-link:hover{ color: var(--ens-primary); }
+    .nav-ens .bi{ color: var(--ens-primary); font-size:1.1rem }
+    .admin-metric-grid .metric-card{
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(124,58,237,0.08));
+      border: 1px solid rgba(99,102,241,0.15);
+      padding: 1rem 1.25rem;
+    }
+    .metric-card-header{display:flex;justify-content:space-between;align-items:flex-start;}
+    .metric-label{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#6b7280;margin:0;}
+    .metric-meta{font-size:.85rem;color:#4b5563;margin:0;}
+    .metric-value{font-size:2rem;font-weight:600;color:var(--ens-text-dark);margin-top:.35rem;}
+    .metric-icon{width:40px;height:40px;border-radius:12px;background:rgba(37,99,235,0.15);display:flex;align-items:center;justify-content:center;color:#2563eb;}
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-light bg-white" role="navigation" aria-label="Topo ENS">
+    <div class="container-xl py-2 d-flex justify-content-between align-items-center">
+      <span class="navbar-brand mb-0 h5" style="color:var(--ens-primary);">{{ "Gerador de Assinaturas" }}</span>
+      <div class="d-flex align-items-center gap-3">
+        <img src="{{ url_for('static', filename='icons/Header.png') }}" alt="Topo ENS" style="height:64px; max-height:64px;" />
+        {% if request.blueprint == 'admin' %}
+          <a class="btn btn-ens-accent btn-sm text-white shadow-sm" href="{{ url_for('admin.logout') }}">Sair</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+  <main class="container-xl my-4">
+    {% block caller %}{% endblock %}
+  </main>
+  <script src="{{ url_for('static', filename='vendor/tpl/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/tpl/js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/tpl/js/jquery.sticky.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/tpl/js/click-scroll.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/tpl/js/custom.js') }}"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>
+

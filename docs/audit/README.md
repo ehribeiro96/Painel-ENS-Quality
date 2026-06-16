@@ -21,6 +21,7 @@ Estado atual:
 - `B4-B3 — Frontend manual visual smoke closeout`: superseded por `B4-C`; a validacao manual foi substituida por smoke automatizado parcial com Playwright temporario.
 - `B4-C — Frontend visual repair`: concluido como `PARTIAL`; build passa e screenshots foram gerados, mas smoke visual autenticado ainda depende de sessao valida.
 - `B4-D — Authenticated visual smoke and fine polish`: concluido com `GO`; backend real, sessao real e screenshots autenticados foram validados, com ajustes finos pequenos.
+- `B4-E — Legacy CSP and route polish`: concluido com `GO`; Google Fonts foram removidas do legado e o stack passou a usar fontes locais/sistemicas.
 - `B5-A — AI Chat Ollama local provider`: concluido com `GO`; backend FastAPI agora suporta provider Ollama local como proxy seguro, sem expor Ollama ao frontend.
 - `B5-B — AI Chat Ollama LAN OpenAI-compatible runtime smoke`: concluido como `PARTIAL`; provider `ollama-lan` foi implementado com allowlist e testes/build passaram, mas a validacao real do host LAN e o smoke UI autenticado ficaram pendentes.
 - `B5-C — AI Chat Ollama LAN authenticated runtime validation`: concluido como `PARTIAL`; TCP, `/v1/models`, `/v1/chat/completions` e provider backend real passaram; smoke UI autenticado ficou pendente por sessão não persistida no browser.
@@ -41,7 +42,7 @@ Estado atual:
 
 1. Consolidar documentação e referências cruzadas em `B1`.
 2. Escolher uma única boundary funcional entre `B3` e `B4`.
-3. Seguir para `B4-E` ou abrir uma nova boundary funcional apenas após revisar os remanescentes que ficaram documentados em `GIT-C3`.
+3. Seguir para `B6` ou abrir uma nova boundary funcional apenas após revisar os remanescentes que ficaram documentados em `GIT-C3`.
 4. Só depois avançar para `B5` se houver necessidade de documentação/IA.
 5. Usar `B6` apenas para testes e infra quando estiver isolado.
 
@@ -61,6 +62,7 @@ Estado atual:
 | `B4-B3` Frontend manual visual smoke closeout | Superseded | [FRONTEND_MANUAL_VISUAL_SMOKE_B4B3_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/FRONTEND_MANUAL_VISUAL_SMOKE_B4B3_REPORT.md) | Substituido pela boundary `B4-C`, que instalou Playwright temporariamente fora do repo e gerou screenshots parciais. |
 | `B4-C` Frontend visual repair | Concluido como `PARTIAL` | [FRONTEND_VISUAL_REPAIR_B4C_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/FRONTEND_VISUAL_REPAIR_B4C_REPORT.md) | CSS estrutural reparado; build passa; shell autenticado ainda precisa de smoke com sessao real. |
 | `B4-D` Authenticated visual smoke and fine polish | Concluido com `GO` | [FRONTEND_AUTHENTICATED_VISUAL_SMOKE_B4D_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/FRONTEND_AUTHENTICATED_VISUAL_SMOKE_B4D_REPORT.md) | Backend real e sessao real validados; screenshots autenticados gerados; ajustes finos em DataTable e AI Chat. |
+| `B4-E` Legacy CSP and route polish | Concluido com `GO` | [LEGACY_CSP_ROUTE_POLISH_B4E_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/LEGACY_CSP_ROUTE_POLISH_B4E_REPORT.md) | Legado `/admin/` e `/assinaturas/` preservado; fontes externas removidas e stack local/sistemica aplicado. |
 | `B5-A` AI Chat Ollama local provider | Concluido com `GO` | [AI_CHAT_OLLAMA_B5A_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/AI_CHAT_OLLAMA_B5A_REPORT.md) | Provider Ollama local integrado no backend como proxy seguro; frontend segue chamando somente backend. |
 | `B5-B` AI Chat Ollama LAN OpenAI-compatible runtime smoke | Concluido como `PARTIAL` | [AI_CHAT_OLLAMA_LAN_B5B_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/AI_CHAT_OLLAMA_LAN_B5B_REPORT.md) | Provider `ollama-lan` usa `/v1/chat/completions`, allowlist explicita e sem mock fallback; validacao LAN/UI autenticada ficou pendente. |
 | `B5-C` AI Chat Ollama LAN authenticated runtime validation | Concluido como `PARTIAL` | [AI_CHAT_OLLAMA_LAN_B5C_RUNTIME_VALIDATION.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/AI_CHAT_OLLAMA_LAN_B5C_RUNTIME_VALIDATION.md) | Runtime LAN real validado até provider backend; UI autenticada pendente por sessão não persistida. |
@@ -145,7 +147,7 @@ Estado atual:
 
 ## 7. Próxima Boundary Recomendada
 
-Recomendação objetiva: `B4-E — legacy CSP and route polish` se o foco voltar para legado; `B6` permanece alternativa para testes/infra.
+Recomendação objetiva: `B6` se o foco voltar para testes/infra; abrir nova boundary explícita se houver feature ou legado adicional.
 
 Motivo:
 
