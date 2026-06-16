@@ -1,6 +1,6 @@
 # Next Boundary Decision
 
-Boundary atual concluída: `CI-H3 — harden docker build workflow as manual-only, no publish`.
+Boundary atual concluída: `LEGACY-H2 — legacy assets and DOCX large artifact decision`.
 
 ## Estado consolidado
 
@@ -10,27 +10,32 @@ Boundary atual concluída: `CI-H3 — harden docker build workflow as manual-onl
 - `DOCS-H2`: `GO`; consolidou os documentos ativos em `AUDIT_REPORT_INDEX_H2.md` e separou documentos antigos em `SUPERSEDED_AUDIT_DOCS_H2.md`.
 - `IGNORE-H2`: `GO`; protege via ignore artefatos locais/sensíveis já classificados, sem ocultar candidatos de boundaries futuras.
 - `CI-H2`: `GO` documental; workflow `.github/workflows/docker-build-push.yml` foi auditado sem versionar e sem publicar. Decisão: `NEEDS_CI_H3_HARDENING` e `MANUAL_ONLY_REQUIRED`.
-- `CI-H3`: `GO`; workflow Docker foi reescrito e versionado como validação manual build-only, sem publish, sem registry login, sem GHCR, sem `latest`, sem `packages: write`, sem trigger automático e sem secrets.
+- `CI-H3`: `PARTIAL` aceitável por ausência de `actionlint`; workflow Docker foi reescrito e versionado como validação manual build-only, sem publish, sem registry login, sem GHCR, sem `latest`, sem `packages: write`, sem trigger automático e sem secrets.
+- `LEGACY-H2`: `GO` documental; `assets/legacy/`, DOCX grande e ícones remanescentes foram inventariados por metadados. Nenhum asset foi commitado, nenhum DOCX/imagem foi aberto e nenhuma alteração funcional foi feita.
 - `QA-C1`: `PARTIAL` por backend HTTP indisponível no momento da validação.
 - `QA-C2`: `GO`; relatório runtime HTTP atual.
 
 ## Decisão objetiva
 
-O workflow `.github/workflows/docker-build-push.yml` agora pode permanecer versionado como validação manual de build Docker. Ele não publica imagem e não usa credenciais.
+Não versionar assets remanescentes nesta etapa. A decisão LEGACY-H2 separa os grupos assim:
 
-Qualquer desenho futuro de publicação de imagem deve ser tratado em boundary separada, com decisão humana explícita, proteção de ambiente, política de tags e revisão de permissões.
+- `assets/legacy/`: `LEGACY_ARCHIVE_DEFER`, sem commit até decisão humana.
+- `assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx`: `BINARY_LARGE_HUMAN_REVIEW`, sem abertura e sem commit.
+- `assets/static/icons/Logo.png`: provável `REQUIRED_RUNTIME_ASSET` por referência no backend atual, mas exige `IMAGE_HUMAN_REVIEW` e boundary futura antes de commit.
+- Ícones sociais: `IMAGE_HUMAN_REVIEW`, sem uso local runtime comprovado; podem ser candidatos futuros para reduzir dependência externa do legado.
+- Referências externas em legado: `EXTERNAL_REFERENCE_RISK`, documentadas sem correção nesta boundary.
 
 ## Próximas boundaries recomendadas
 
-1. `LEGACY-H2 — legacy assets and DOCX large artifact decision`
-   - Objetivo: decidir o destino de `assets/legacy/`, ícones sem referência comprovada e `assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx`.
-   - Escopo: inventário por metadado, decisão humana e eventual commit seletivo.
-   - Não deve abrir DOCX/binários grandes sem autorização explícita.
-
-2. `TEST-H2 — pytest markers and validation standardization`
+1. `TEST-H2 — pytest markers and validation standardization`
    - Objetivo: padronizar marcadores/comandos de validação sem misturar feature.
    - Escopo: testes e documentação de validação, com cuidado para não quebrar import discovery.
    - Não deve tocar importação Lansweeper, migrations ou fluxo Ativo -> Movimentação -> Macro.
+
+2. `LEGACY-H3 — legacy archive/manual artifact handling`
+   - Condição: somente se decisão humana aprovar.
+   - Objetivo: decidir operacionalmente se `assets/legacy/`, DOCX grande, `Logo.png` e ícones sociais serão arquivados, ignorados, descartados manualmente ou versionados seletivamente.
+   - Não deve abrir DOCX/imagens sem autorização explícita, nem misturar archive legado com alteração funcional.
 
 3. `CI-H4 — publish workflow design`
    - Condição: somente se houver decisão humana explícita para publicar imagem.
@@ -45,6 +50,12 @@ Qualquer desenho futuro de publicação de imagem deve ser tratado em boundary s
 ## O que não fazer agora
 
 - Não fazer `git add .`, `git add -A` ou stage amplo.
+- Não commitar `assets/legacy/`.
+- Não commitar `assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx`.
+- Não commitar `assets/static/icons/Logo.png` ou ícones sociais sem boundary futura.
+- Não abrir DOCX grande.
+- Não usar OCR.
+- Não analisar imagens visualmente sem autorização.
 - Não publicar imagem.
 - Não rodar `docker push` ou `docker login`.
 - Não criar tag.
@@ -52,13 +63,12 @@ Qualquer desenho futuro de publicação de imagem deve ser tratado em boundary s
 - Não limpar untracked antigos.
 - Não apagar, mover ou renomear documentos antigos.
 - Não alterar código funcional.
-- Não alterar migrations, Dockerfile, Docker Compose, `.env*`, package-lock, AI Chat/Ollama, imports, assets, frontend ou backend fora de boundary própria.
-- Não commitar screenshots antigas, assets, imports, samples, package-lock ou outputs de laboratório fora de suas boundaries.
+- Não alterar migrations, Dockerfile, Docker Compose, `.env*`, package-lock, AI Chat/Ollama, imports, frontend ou backend fora de boundary própria.
 
 ## Decisão final
 
-Próxima boundary recomendada: `LEGACY-H2 — legacy assets and DOCX large artifact decision`.
+Próxima boundary recomendada: `TEST-H2 — pytest markers and validation standardization`.
 
-Ordem seguinte: `TEST-H2 — pytest markers and validation standardization`.
+`LEGACY-H3 — legacy archive/manual artifact handling` fica condicionada a decisão humana explícita sobre o destino dos assets legados e do DOCX grande.
 
 `CI-H4 — publish workflow design` fica condicionado a decisão humana explícita de publicação de imagem. `SEC-H3` fica condicionado a confirmação humana de necessidade de revisão/remediação de segurança.
