@@ -1,6 +1,6 @@
 # Next Boundary Decision
 
-Boundary atual concluída: `LEGACY-H2 — legacy assets and DOCX large artifact decision`.
+Boundary atual concluída: `TEST-H2 — pytest markers and validation command standardization`.
 
 ## Estado consolidado
 
@@ -12,12 +12,13 @@ Boundary atual concluída: `LEGACY-H2 — legacy assets and DOCX large artifact 
 - `CI-H2`: `GO` documental; workflow `.github/workflows/docker-build-push.yml` foi auditado sem versionar e sem publicar. Decisão: `NEEDS_CI_H3_HARDENING` e `MANUAL_ONLY_REQUIRED`.
 - `CI-H3`: `PARTIAL` aceitável por ausência de `actionlint`; workflow Docker foi reescrito e versionado como validação manual build-only, sem publish, sem registry login, sem GHCR, sem `latest`, sem `packages: write`, sem trigger automático e sem secrets.
 - `LEGACY-H2`: `GO` documental; `assets/legacy/`, DOCX grande e ícones remanescentes foram inventariados por metadados. Nenhum asset foi commitado, nenhum DOCX/imagem foi aberto e nenhuma alteração funcional foi feita.
+- `TEST-H2`: `PARTIAL`; markers pytest oficiais foram criados, dois testes pendentes foram revisados/versionados e validações principais passaram. Ressalva: marker `ai_chat` está registrado, mas ainda não possui testes marcados nesta boundary.
 - `QA-C1`: `PARTIAL` por backend HTTP indisponível no momento da validação.
 - `QA-C2`: `GO`; relatório runtime HTTP atual.
 
 ## Decisão objetiva
 
-Não versionar assets remanescentes nesta etapa. A decisão LEGACY-H2 separa os grupos assim:
+TEST-H2 não altera código funcional e não resolve pendências de publicação/legacy/security fora da boundary. A decisão LEGACY-H2 sobre assets remanescentes segue válida:
 
 - `assets/legacy/`: `LEGACY_ARCHIVE_DEFER`, sem commit até decisão humana.
 - `assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx`: `BINARY_LARGE_HUMAN_REVIEW`, sem abertura e sem commit.
@@ -27,10 +28,10 @@ Não versionar assets remanescentes nesta etapa. A decisão LEGACY-H2 separa os 
 
 ## Próximas boundaries recomendadas
 
-1. `TEST-H2 — pytest markers and validation standardization`
-   - Objetivo: padronizar marcadores/comandos de validação sem misturar feature.
-   - Escopo: testes e documentação de validação, com cuidado para não quebrar import discovery.
-   - Não deve tocar importação Lansweeper, migrations ou fluxo Ativo -> Movimentação -> Macro.
+1. `PUSH-C1 — publish validated local commits`
+   - Condição: somente se autenticação GitHub estiver resolvida.
+   - Objetivo: publicar commits locais validados sem misturar novas mudanças.
+   - Não deve reescrever histórico, fazer merge/rebase ou incluir untracked fora de escopo.
 
 2. `LEGACY-H3 — legacy archive/manual artifact handling`
    - Condição: somente se decisão humana aprovar.
@@ -64,10 +65,11 @@ Não versionar assets remanescentes nesta etapa. A decisão LEGACY-H2 separa os 
 - Não apagar, mover ou renomear documentos antigos.
 - Não alterar código funcional.
 - Não alterar migrations, Dockerfile, Docker Compose, `.env*`, package-lock, AI Chat/Ollama, imports, frontend ou backend fora de boundary própria.
+- Não marcar testes existentes em massa sem boundary própria para cobertura por marker.
 
 ## Decisão final
 
-Próxima boundary recomendada: `TEST-H2 — pytest markers and validation standardization`.
+Próxima boundary recomendada: `PUSH-C1 — publish validated local commits`, se autenticação GitHub estiver resolvida.
 
 `LEGACY-H3 — legacy archive/manual artifact handling` fica condicionada a decisão humana explícita sobre o destino dos assets legados e do DOCX grande.
 
