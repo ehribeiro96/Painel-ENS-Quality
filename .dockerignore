@@ -81,3 +81,34 @@ data/previews/
 # --- Token/secret named local artifacts ---
 *_secret*
 *_token*
+
+# Local sensitive artifacts — IGNORE-H2
+123
+123.pub
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+*.cer
+*.der
+*.kdbx
+
+# Local data/imports — IGNORE-H2
+imports/
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.bak
+*.sql
+
+# Local generated samples — IGNORE-H2
+docx_sample.md
+docx_template_output.md
+pptx_template_output.md
+pptx_sample.md
+
+# Local tool/audit outputs — IGNORE-H2
+_audit_findings/
+ai-lab/
