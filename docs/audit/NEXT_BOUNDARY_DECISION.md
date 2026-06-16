@@ -1,90 +1,58 @@
 # Next Boundary Decision
 
-## 1. Estado Pós-B3
+Boundary atual concluída/esperada: `DOCS-H2 — audit docs consolidation and selective commit`.
 
-- `GIT-C1 — Worktree boundary inventory and commit plan` foi concluído com `GO`; o plano de commits seletivos foi gerado sem stage nem commit.
-- `GIT-C2 — selective commits by approved boundary plan` foi concluído com `PARTIAL`; os commits seletivos principais foram publicados e os ambíguos/ruídos de qualidade ficaram fora.
-- `GIT-C3 — revisar ambíguos remanescentes` foi concluído com `PARTIAL`; os arquivos seguros foram commitados e os remanescentes ficaram classificados como defer/exclude.
-- `B0 — Segurança/higiene` foi concluído com `GO`.
-- `B1 — Documentação de auditoria` foi consolidado.
-- `B2 — AI Chat/backend hardening` foi fechado com `GO COM RESSALVAS`.
-- `B3 — Import pipeline/staging` foi fechado com `GO`.
-- `B4-A — Frontend shell/UX baseline` foi concluído com ressalva operacional.
-- `B4-A2 — Frontend runtime normalization` foi concluído com recomendação de runtime único.
-- `B4-A3 — Frontend WSL native runtime activation` foi concluído com `GO`.
-- `B4-B — Frontend shell/UX smoke e ajustes mínimos` foi concluído com `GO COM RESSALVAS`.
-- `B4-B2 — Frontend visual smoke validation` foi concluído com `GO COM RESSALVAS`.
-- `B4-B3 — Frontend manual visual smoke closeout` foi superseded por `B4-C`.
-- `B4-C — Frontend visual repair` foi concluido como `PARTIAL`: build passa, screenshots foram gerados e o reparo CSS estrutural foi aplicado, mas o shell autenticado ainda precisa de sessao real para smoke completo.
-- `B4-D — Authenticated visual smoke and fine polish` foi concluido com `GO`: backend real, sessao real, screenshots autenticados e ajustes finos foram validados.
-- `B4-E — Legacy CSP and route polish` foi concluido com `GO`: fontes externas foram removidas do legado e o stack passou a usar fontes locais/sistemicas.
-- `INFRA-D1 — Docker Engine nativo no WSL` foi concluido como `PARTIAL`: a auditoria confirmou que `docker`/Compose ainda vêm de symlinks do Docker Desktop em `/mnt/wsl/docker-desktop`, e a instalacao nativa ficou bloqueada porque `sudo -n` nao estava disponivel nesta sessao.
-- `INFRA-D1B — Docker Engine nativo no WSL com sudo interativo` foi concluido como `PARTIAL`: `sudo -v` abriu prompt, mas a autenticacao nao ficou disponivel para a sessao de comandos; nenhuma alteracao de sistema foi aplicada.
-- `INFRA-D1C — Docker Engine nativo no WSL via script root-assistido` foi concluido com `GO`: Docker CE oficial, Compose plugin nativo, `hello-world`, Postgres/Redis, backend e frontend foram validados no daemon WSL nativo.
-- `B5-A — AI Chat Ollama local provider` foi concluido com `GO`: provider Ollama local integrado no backend FastAPI como proxy seguro; frontend segue chamando apenas `/api/v1/ai-chat`.
-- `B5-B — AI Chat Ollama LAN OpenAI-compatible runtime smoke` foi concluido como `PARTIAL`: provider `ollama-lan` foi implementado com `/v1/chat/completions`, allowlist explicita, sem mock fallback, testes/backend/build passando; validacao real do host LAN e smoke UI autenticado ficaram pendentes.
-- `B5-C — AI Chat Ollama LAN authenticated runtime validation` foi concluido como `PARTIAL`: TCP, `/v1/models`, `/v1/chat/completions` e provider backend real passaram; smoke UI autenticado ficou pendente porque a sessão do navegador não persistiu.
-- `B5-D — AI Chat authenticated UI session fix/validation` foi concluída com `GO`; o smoke same-origin autenticado fechou a trilha com `qwen3:1.7b-64k` como baseline do `ollama-lan`.
-- `GIT-C5 — legacy assets dependency triage` foi concluído com `GO COM RESSALVAS`; os assets runtime mínimos de `/admin/` e `/assinaturas/` foram commitados seletivamente, e `assets/legacy/` mais o DOCX grande do guia ilustrado ficaram fora para boundary própria.
-- O candidato forte a segredo em `tools/composio_client.py` já foi removido do código e substituído por `COMPOSIO_API_KEY` no ambiente.
-- A rotação externa da credencial continua necessária se a chave antiga era real.
-- O worktree permanece misturado em várias áreas, então a próxima edição funcional precisa ser isolada por boundary.
+## Estado consolidado
 
-## 2. Por que `B1` Vem Antes de Feature Funcional
+- `AUDIT-H1`: `PARTIAL` por untracked antigos, mas os relatórios H1 são a base ativa de auditoria.
+- `GIT-H2`: `PARTIAL` por grande volume de untracked, com triagem e matriz de decisão preservadas.
+- `SEC-H2`: `GO COM RESSALVAS`; artefatos locais sensíveis seguem sem abertura de conteúdo e exigem revisão humana/manual.
+- `QA-C1`: `PARTIAL` por backend HTTP indisponível no momento da validação.
+- `QA-C2`: `GO`; relatório runtime HTTP atual.
+- `DOCS-H2`: consolida os documentos ativos em `AUDIT_REPORT_INDEX_H2.md` e separa documentos antigos em `SUPERSEDED_AUDIT_DOCS_H2.md`.
 
-`B1` consolida o mapa do projeto antes de qualquer feature nova:
+## Decisão objetiva
 
-- reduz duplicidade documental;
-- define onde estão os relatórios oficiais;
-- separa documentação de decisão de código funcional;
-- evita que a próxima rodada misture suporte, segurança e feature numa mesma mudança.
+Não iniciar feature funcional ampla enquanto houver untracked antigos, artefatos locais sensíveis e documentação histórica sem revisão. A próxima etapa deve reduzir risco operacional sem tocar código funcional.
 
-## 3. O que Ainda Impede Edição Ampla
+## Próximas boundaries recomendadas
 
-- O worktree continua com backend, frontend, testes e docs ao mesmo tempo.
-- Há materiais experimentais e legados fora do fluxo principal.
-- Existem boundaries futuras com blast radius diferente, e elas não devem ser misturadas.
-- A validacao visual autenticada do shell React foi concluida em `B4-D`.
-- O risco visual remanescente esta concentrado nas rotas legadas `/assinaturas/` e `/admin/`, fora do shell React.
-- O runtime Docker local foi comprovado como nativo WSL em `INFRA-D1C`.
-- Volumes do Docker Desktop nao foram migrados; se dados antigos forem necessarios, abrir boundary separada.
-- Assets legados ambíguos continuam fora do Git: `assets/legacy/`, ícones sem referência comprovada e o DOCX grande do guia ilustrado.
+1. `IGNORE-H2 — gitignore hygiene for local artifacts`
+   - Objetivo: aplicar hygiene de ignore para artefatos locais já classificados.
+   - Escopo: `.gitignore`/ignore policy apenas se explicitamente autorizado nessa boundary.
+   - Não deve abrir conteúdo de `123`, `123.pub` ou `imports/`.
 
-## 4. Recomendação Objetiva
+2. `CI-H2 — GitHub Actions docker build/push review`
+   - Objetivo: revisar workflow CI untracked sem publicar imagens e sem alterar runtime local.
+   - Escopo: análise e eventual commit seletivo do workflow somente após revisão.
+   - Não deve fazer push, release ou publicação de imagem.
 
-1. Consolidar documentação em `B1`.
-2. Executar `GIT-C2 — executar commits seletivos aprovados` antes de abrir nova feature.
-3. Não misturar imports, frontend, migrations e IA no mesmo ciclo.
+3. `LEGACY-H2 — legacy assets and DOCX large artifact decision`
+   - Objetivo: decidir o destino de `assets/legacy/`, ícones sem referência comprovada e DOCX grande do guia ilustrado.
+   - Escopo: inventário por metadado, decisão humana e eventual commit seletivo.
+   - Não deve abrir DOCX/binários grandes sem autorização explícita.
 
-### Recomendação padrão
+4. `TEST-H2 — pytest markers and validation standardization`
+   - Objetivo: padronizar marcadores/comandos de validação sem misturar feature.
+   - Escopo: testes e documentação de validação, com cuidado para não quebrar import discovery.
+   - Não deve tocar importação Lansweeper, migrations ou fluxo Ativo -> Movimentação -> Macro.
 
-`B6` é a próxima boundary recomendada somente se o foco voltar para testes/infra isolados.
+5. `SEC-H3 — manual sensitive artifact remediation`
+   - Condição: somente se revisão humana confirmar necessidade.
+   - Objetivo: remediar artefato sensível real ou exposição histórica comprovada.
+   - Escopo: segurança/manual; não imprimir segredos e não commitar valores sensíveis.
 
-Se a prioridade voltar para outra feature funcional, abrir uma boundary explícita e pequena, sem misturar legado, IA e imports.
+## O que não fazer agora
 
-Se a prioridade for fechamento de legado, abrir boundary específica para `assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx`, `assets/legacy/` e referências externas remanescentes do guia visual.
+- Não fazer `git add .`, `git add -A` ou stage amplo de `docs/audit/`.
+- Não limpar untracked antigos.
+- Não apagar, mover ou renomear documentos antigos.
+- Não alterar código funcional.
+- Não alterar migrations, Docker/Compose, `.env*`, `.gitignore`, `.dockerignore`, package-lock, AI Chat/Ollama, imports, assets, frontend ou backend fora de boundary própria.
+- Não commitar screenshots antigas, assets, imports, samples, package-lock ou outputs de laboratório.
 
-## 5. Critério para Escolher `B4`
+## Decisão final
 
-Escolha uma boundary legada dedicada quando o foco for:
+Próxima boundary recomendada: `IGNORE-H2 — gitignore hygiene for local artifacts`.
 
-- CSP/fontes das rotas legadas;
-- visual de `/assinaturas/` e `/admin/`;
-- validacao separada de legado, sem misturar com o shell React;
-- decisao explicita sobre manter fontes externas ou servir assets locais.
-
-## 7. O que Não Fazer Agora
-
-- Nao iniciar outro reparo CSS amplo sem evidencia visual autenticada.
-- Não mexer em migrations.
-- Não promover Ollama como default.
-- Não commitar arquivos sensíveis.
-- Não misturar boundaries num único PR.
-- Não usar documentação como substituto de validação funcional.
-- Não rodar `docker compose down -v`, prune ou remoção de volumes para resolver a migração Docker.
-
-## 8. Decisão Final
-
-**Boundary funcional recomendada: `B6` somente para testes/infra isolados, ou nova boundary explícita quando houver feature.**
-
-Motivo: as boundaries principais de frontend, backend, imports e legado já foram validadas; qualquer próximo passo precisa ser pequeno e isolado para não reabrir blast radius desnecessário.
+Motivo: ela reduz risco de stage acidental dos artefatos já identificados por H1/GIT-H2/SEC-H2 antes de qualquer feature funcional, CI, legado ou padronização de testes.

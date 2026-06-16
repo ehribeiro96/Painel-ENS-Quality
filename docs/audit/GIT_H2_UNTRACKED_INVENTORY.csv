@@ -1,0 +1,721 @@
+path,top_level,exists,is_file,is_dir,suffix,size_bytes,file_kind,initial_category
+.github/workflows/docker-build-push.yml,.github,True,True,False,.yml,940,"ASCII text, with CRLF, LF line terminators",CI_WORKFLOW_REVIEW
+123,123,True,True,False,,464,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+123.pub,123.pub,True,True,False,.pub,108,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+_audit_findings/all_findings.csv,_audit_findings,True,True,False,.csv,58763,"CSV Unicode text, UTF-8 text",AUDIT_FINDINGS_REVIEW
+_cleanup_backup_manifest.md,_cleanup_backup_manifest.md,True,True,False,.md,21978,SKIPPED_POTENTIAL_SENSITIVE,DOC_REVIEW
+_migration_proposals/hermesops_selective_migration/docs/hermesops/AGENTS.md,_migration_proposals,True,True,False,.md,1038,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/ARCHITECTURE.md,_migration_proposals,True,True,False,.md,1083,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/ENVIRONMENT.hml.md,_migration_proposals,True,True,False,.md,636,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/ENVIRONMENT.md,_migration_proposals,True,True,False,.md,1062,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/PROJECT_CONTEXT.md,_migration_proposals,True,True,False,.md,1083,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/README.md,_migration_proposals,True,True,False,.md,1038,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/ROADMAP.md,_migration_proposals,True,True,False,.md,1083,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/SECURITY.md,_migration_proposals,True,True,False,.md,1038,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_ARCHITECTURE.md,_migration_proposals,True,True,False,.md,148,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_CODE_REVIEW_STANDARD.md,_migration_proposals,True,True,False,.md,365,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_DEBUGGING_STANDARD.md,_migration_proposals,True,True,False,.md,159,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_MEMORY_INTEGRATION.md,_migration_proposals,True,True,False,.md,522,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_MODDING_POLICY.md,_migration_proposals,True,True,False,.md,287,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_POLICY.md,_migration_proposals,True,True,False,.md,127,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_PROMPTING_STANDARD.md,_migration_proposals,True,True,False,.md,460,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_REFACTORING_STANDARD.md,_migration_proposals,True,True,False,.md,119,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_SECURITY_BOUNDARIES.md,_migration_proposals,True,True,False,.md,517,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_STACK_CATALOG.md,_migration_proposals,True,True,False,.md,251,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_TESTING_STRATEGY.md,_migration_proposals,True,True,False,.md,125,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_TOOLCHAIN.md,_migration_proposals,True,True,False,.md,513,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_WORKFLOW.md,_migration_proposals,True,True,False,.md,159,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/README.md,_migration_proposals,True,True,False,.md,149,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/evals/README.md,_migration_proposals,True,True,False,.md,14,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/examples/README.md,_migration_proposals,True,True,False,.md,14,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/MODDING_SAFE_BOUNDARIES.md,_migration_proposals,True,True,False,.md,312,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/README.md,_migration_proposals,True,True,False,.md,14,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/asset_pipeline.md,_migration_proposals,True,True,False,.md,117,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/config_patch_patterns.md,_migration_proposals,True,True,False,.md,120,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/game_mod_project_structure.md,_migration_proposals,True,True,False,.md,118,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/packaging_release.md,_migration_proposals,True,True,False,.md,109,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/plugin_architecture.md,_migration_proposals,True,True,False,.md,97,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/prohibited_modding_actions.md,_migration_proposals,True,True,False,.md,109,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/troubleshooting_mod_load_order.md,_migration_proposals,True,True,False,.md,111,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/version_compatibility.md,_migration_proposals,True,True,False,.md,79,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/README.md,_migration_proposals,True,True,False,.md,14,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/bugfix_workflow.md,_migration_proposals,True,True,False,.md,745,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/feature_implementation.md,_migration_proposals,True,True,False,.md,759,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/refactor_workflow.md,_migration_proposals,True,True,False,.md,749,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/repository_triage.md,_migration_proposals,True,True,False,.md,749,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/security_review.md,_migration_proposals,True,True,False,.md,265,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/prompts/README.md,_migration_proposals,True,True,False,.md,14,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/prompts/code_review.md,_migration_proposals,True,True,False,.md,257,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/prompts/patch_generation.md,_migration_proposals,True,True,False,.md,226,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/prompts/powershell_generation.md,_migration_proposals,True,True,False,.md,228,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/prompts/security_review.md,_migration_proposals,True,True,False,.md,271,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/schemas/README.md,_migration_proposals,True,True,False,.md,14,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/README.md,_migration_proposals,True,True,False,.md,14,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/ai_agents.md,_migration_proposals,True,True,False,.md,486,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/docker_compose.md,_migration_proposals,True,True,False,.md,750,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/m365_graph.md,_migration_proposals,True,True,False,.md,483,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/modding_general.md,_migration_proposals,True,True,False,.md,751,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/nextjs.md,_migration_proposals,True,True,False,.md,713,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/node_typescript.md,_migration_proposals,True,True,False,.md,708,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/office_automation.md,_migration_proposals,True,True,False,.md,771,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/postgres_sqlalchemy_alembic.md,_migration_proposals,True,True,False,.md,737,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/powershell7.md,_migration_proposals,True,True,False,.md,747,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/python_cli.md,_migration_proposals,True,True,False,.md,714,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/python_data_tools.md,_migration_proposals,True,True,False,.md,749,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/python_fastapi.md,_migration_proposals,True,True,False,.md,736,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/qdrant_rag.md,_migration_proposals,True,True,False,.md,733,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/react_vite.md,_migration_proposals,True,True,False,.md,694,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/redis.md,_migration_proposals,True,True,False,.md,697,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/windows_ad_gpo.md,_migration_proposals,True,True,False,.md,742,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/DESKTOP_APP_UI_PLUGIN_PANEL_IMPLEMENTATION_PLAN.md,_migration_proposals,True,True,False,.md,1238,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/DESKTOP_APP_VISUAL_CHANGE_LIMITS.md,_migration_proposals,True,True,False,.md,642,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/FUTURE_DESKTOP_APP_UI_PLUGIN_PANEL_PLAN.md,_migration_proposals,True,True,False,.md,480,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_ARCHITECTURE.md,_migration_proposals,True,True,False,.md,781,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_DISCOVERY.md,_migration_proposals,True,True,False,.md,300,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_LOGGING.md,_migration_proposals,True,True,False,.md,583,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_POLICY.md,_migration_proposals,True,True,False,.md,743,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_PROJECT_ROUTING.md,_migration_proposals,True,True,False,.md,435,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_ROLLBACK.md,_migration_proposals,True,True,False,.md,266,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_WRAPPER_PLAN.md,_migration_proposals,True,True,False,.md,392,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_MANUAL_ACTIVATION_GUIDE.md,_migration_proposals,True,True,False,.md,874,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_MANUAL_ROLLBACK.md,_migration_proposals,True,True,False,.md,481,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_PTBR_KEYBOARD.md,_migration_proposals,True,True,False,.md,1058,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/README.md,_migration_proposals,True,True,False,.md,518,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/profiles/README.md,_migration_proposals,True,True,False,.md,110,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/prompts/cli_change_request.md,_migration_proposals,True,True,False,.md,138,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/prompts/cli_debugging.md,_migration_proposals,True,True,False,.md,115,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/prompts/cli_release_checklist.md,_migration_proposals,True,True,False,.md,135,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/prompts/cli_wrapper_review.md,_migration_proposals,True,True,False,.md,115,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/wrappers/README.md,_migration_proposals,True,True,False,.md,499,"ASCII text, with CRLF, LF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/docs/HERMES_DESKTOP_WSL.md,_migration_proposals,True,True,False,.md,778,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/ADOBE_ACROBAT_INTEGRATION_PLAN.md,_migration_proposals,True,True,False,.md,279,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/ENTERPRISE_OFFICE_SKILLS_ARCHITECTURE.md,_migration_proposals,True,True,False,.md,1029,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/HML_DEPLOYMENT_NOTES.md,_migration_proposals,True,True,False,.md,273,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/M365_OFFICE_INTEGRATION_PLAN.md,_migration_proposals,True,True,False,.md,1070,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/PDF_ADOBE_ACROBAT_SKILL_SPEC.md,_migration_proposals,True,True,False,.md,968,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/POWERPOINT_PPTX_SKILL_SPEC.md,_migration_proposals,True,True,False,.md,1042,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/README.md,_migration_proposals,True,True,False,.md,103,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/SECURITY_AND_DATA_POLICY.md,_migration_proposals,True,True,False,.md,927,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/SPREADSHEET_SKILL_SPEC.md,_migration_proposals,True,True,False,.md,986,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/TEXT_EDITING_SKILL_SPEC.md,_migration_proposals,True,True,False,.md,281,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/WORD_DOCX_SKILL_SPEC.md,_migration_proposals,True,True,False,.md,949,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/document_redaction_and_sanitization.md,_migration_proposals,True,True,False,.md,412,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/excel_base_service_desk.md,_migration_proposals,True,True,False,.md,413,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/excel_data_quality_review.md,_migration_proposals,True,True,False,.md,413,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/pdf_acrobat_standard_workflow.md,_migration_proposals,True,True,False,.md,394,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/pdf_ocr_and_text_extraction.md,_migration_proposals,True,True,False,.md,388,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/pdf_redaction_and_sanitization.md,_migration_proposals,True,True,False,.md,387,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/pdf_signature_and_certificate_caution.md,_migration_proposals,True,True,False,.md,401,SKIPPED_POTENTIAL_SENSITIVE,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/powerpoint_executive_report_creation.md,_migration_proposals,True,True,False,.md,402,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/powerpoint_training_deck_creation.md,_migration_proposals,True,True,False,.md,406,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/word_kcs_generation.md,_migration_proposals,True,True,False,.md,433,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/word_manual_creation.md,_migration_proposals,True,True,False,.md,420,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/corporate_text_rewrite.md,_migration_proposals,True,True,False,.md,209,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/document_quality_audit.md,_migration_proposals,True,True,False,.md,186,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/excel_m365_integration.md,_migration_proposals,True,True,False,.md,233,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/kcs_document_generation.md,_migration_proposals,True,True,False,.md,210,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/pdf_acrobat_workflow.md,_migration_proposals,True,True,False,.md,352,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/pdf_content_extraction.md,_migration_proposals,True,True,False,.md,354,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/pdf_redaction_review.md,_migration_proposals,True,True,False,.md,352,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/pdf_signature_certificate_handling.md,_migration_proposals,True,True,False,.md,366,SKIPPED_POTENTIAL_SENSITIVE,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/powerpoint_deck_generation.md,_migration_proposals,True,True,False,.md,328,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/powerpoint_deck_review.md,_migration_proposals,True,True,False,.md,324,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/powerpoint_training_material.md,_migration_proposals,True,True,False,.md,330,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/spreadsheet_analysis.md,_migration_proposals,True,True,False,.md,231,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/spreadsheet_automation.md,_migration_proposals,True,True,False,.md,233,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/spreadsheet_data_quality.md,_migration_proposals,True,True,False,.md,235,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/word_complex_revision.md,_migration_proposals,True,True,False,.md,208,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/word_document_editing.md,_migration_proposals,True,True,False,.md,208,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/pdf/README.md,_migration_proposals,True,True,False,.md,84,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/pdf/pdf_audit_template.md,_migration_proposals,True,True,False,.md,137,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/pdf/pdf_ocr_workflow_template.md,_migration_proposals,True,True,False,.md,142,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/pdf/pdf_redaction_checklist.md,_migration_proposals,True,True,False,.md,147,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/pdf/pdf_signature_validation_checklist.md,_migration_proposals,True,True,False,.md,129,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/powerpoint/README.md,_migration_proposals,True,True,False,.md,156,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/powerpoint/executive_deck_template.md,_migration_proposals,True,True,False,.md,1786,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/powerpoint/kcs_training_deck_template.md,_migration_proposals,True,True,False,.md,1789,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/powerpoint/procedure_training_deck_template.md,_migration_proposals,True,True,False,.md,1795,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/powerpoint/service_desk_report_deck_template.md,_migration_proposals,True,True,False,.md,1796,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/spreadsheet/README.md,_migration_proposals,True,True,False,.md,84,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/word/README.md,_migration_proposals,True,True,False,.md,75,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/word/corporate_report_template.md,_migration_proposals,True,True,False,.md,181,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/word/kcs_document_template.md,_migration_proposals,True,True,False,.md,177,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/word/meeting_minutes_template.md,_migration_proposals,True,True,False,.md,180,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/word/procedure_manual_template.md,_migration_proposals,True,True,False,.md,181,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/infra/README.md,_migration_proposals,True,True,False,.md,1741,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/infra/qdrant/README.md,_migration_proposals,True,True,False,.md,400,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/README.md,_migration_proposals,True,True,False,.md,1096,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/anydesk/anydesk-unattended-access.md,_migration_proposals,True,True,False,.md,2836,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/certificates/certificado-a1-nao-aparece.md,_migration_proposals,True,True,False,.md,2982,SKIPPED_POTENTIAL_SENSITIVE,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/certificates/certificado-a3-token-smartcard.md,_migration_proposals,True,True,False,.md,3008,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/alembic-migration-debug.md,_migration_proposals,True,True,False,.md,2027,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/docker-compose-debug.md,_migration_proposals,True,True,False,.md,1896,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/git-branch-rollback.md,_migration_proposals,True,True,False,.md,1955,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/node-npm-dependency-conflict.md,_migration_proposals,True,True,False,.md,1984,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/postgresql-redis-debug.md,_migration_proposals,True,True,False,.md,1955,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/powershell-script-seguro.md,_migration_proposals,True,True,False,.md,2069,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/python-fastapi-debug.md,_migration_proposals,True,True,False,.md,2099,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/react-vite-typescript-build.md,_migration_proposals,True,True,False,.md,1938,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/gpo-ad/gpo-nao-aplica.md,_migration_proposals,True,True,False,.md,3109,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/lansweeper/inventario-lansweeper-divergente.md,_migration_proposals,True,True,False,.md,2765,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/ndd-print/ndd-print-pin-portal-360.md,_migration_proposals,True,True,False,.md,2924,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/network/dns-incorreto.md,_migration_proposals,True,True,False,.md,2954,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/network/maquina-sem-rede.md,_migration_proposals,True,True,False,.md,2605,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/network/wake-on-lan.md,_migration_proposals,True,True,False,.md,2578,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/office365/office365-ativacao-licenca.md,_migration_proposals,True,True,False,.md,2958,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/outlook/outlook-nao-abre.md,_migration_proposals,True,True,False,.md,3424,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/printers/impressora-nao-imprime.md,_migration_proposals,True,True,False,.md,2718,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/rdp-vpn/rdp-entre-dominios-sem-trust.md,_migration_proposals,True,True,False,.md,2870,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/security-incidents/alerta-trend-possivel-malware.md,_migration_proposals,True,True,False,.md,3030,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/teams/teams-cache-corrompido.md,_migration_proposals,True,True,False,.md,2986,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/windows/bsod-eventos-criticos.md,_migration_proposals,True,True,False,.md,2943,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/windows/erro-instalacao-java.md,_migration_proposals,True,True,False,.md,2934,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/windows/lentidao-windows.md,_migration_proposals,True,True,False,.md,2610,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/windows/perfil-usuario-corrompido.md,_migration_proposals,True,True,False,.md,2953,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/wsus-windows-update/windows-update-wsus-travado.md,_migration_proposals,True,True,False,.md,3336,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/document-redaction-and-sanitization.md,_migration_proposals,True,True,False,.md,1283,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/excel-automation-support.md,_migration_proposals,True,True,False,.md,1251,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/excel-base-service-desk.md,_migration_proposals,True,True,False,.md,1260,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/excel-data-quality.md,_migration_proposals,True,True,False,.md,1251,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/excel-m365-workbook-governance.md,_migration_proposals,True,True,False,.md,1267,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/pdf-adobe-acrobat-standard.md,_migration_proposals,True,True,False,.md,1269,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/pdf-document-quality-audit.md,_migration_proposals,True,True,False,.md,1272,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/pdf-ocr-text-extraction.md,_migration_proposals,True,True,False,.md,1254,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/pdf-redaction-sanitization.md,_migration_proposals,True,True,False,.md,1250,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/pdf-signature-certificate-handling.md,_migration_proposals,True,True,False,.md,1272,SKIPPED_POTENTIAL_SENSITIVE,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/powerpoint-executive-reporting.md,_migration_proposals,True,True,False,.md,1258,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/powerpoint-kcs-training.md,_migration_proposals,True,True,False,.md,1254,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/powerpoint-procedure-training.md,_migration_proposals,True,True,False,.md,1254,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/word-complex-text-editing.md,_migration_proposals,True,True,False,.md,1256,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/word-kcs-generation.md,_migration_proposals,True,True,False,.md,1266,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/word-manual-creation.md,_migration_proposals,True,True,False,.md,1246,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/word-report-generation.md,_migration_proposals,True,True,False,.md,1264,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_CLI_MESSAGES.md,_migration_proposals,True,True,False,.md,97,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_ENCODING_POLICY.md,_migration_proposals,True,True,False,.md,357,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_FALLBACK_POLICY.md,_migration_proposals,True,True,False,.md,264,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_KCS_MACRO_GUIDE.md,_migration_proposals,True,True,False,.md,170,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_LOCALIZATION_POLICY.md,_migration_proposals,True,True,False,.md,405,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_STYLE_GUIDE.md,_migration_proposals,True,True,False,.md,225,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_TERMINOLOGY_GUIDE.md,_migration_proposals,True,True,False,.md,258,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/README.md,_migration_proposals,True,True,False,.md,301,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/code_review_ptbr.md,_migration_proposals,True,True,False,.md,690,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/coding_assistant_ptbr.md,_migration_proposals,True,True,False,.md,614,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/desktop_cli_ptbr.md,_migration_proposals,True,True,False,.md,898,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/kcs_generation_ptbr.md,_migration_proposals,True,True,False,.md,753,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/m365_excel_ptbr.md,_migration_proposals,True,True,False,.md,719,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/macro_itil_ptbr.md,_migration_proposals,True,True,False,.md,693,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/modding_ptbr.md,_migration_proposals,True,True,False,.md,714,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/office_document_ptbr.md,_migration_proposals,True,True,False,.md,742,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/pdf_acrobat_ptbr.md,_migration_proposals,True,True,False,.md,695,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/service_desk_ptbr.md,_migration_proposals,True,True,False,.md,701,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_ARCHITECTURE.md,_migration_proposals,True,True,False,.md,540,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_CONFLICT_RESOLUTION.md,_migration_proposals,True,True,False,.md,517,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_CONSOLIDATION_RULES.md,_migration_proposals,True,True,False,.md,1098,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_LIFECYCLE.md,_migration_proposals,True,True,False,.md,507,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_POLICY.md,_migration_proposals,True,True,False,.md,525,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_RETRIEVAL_POLICY.md,_migration_proposals,True,True,False,.md,539,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/README.md,_migration_proposals,True,True,False,.md,497,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/episodic/README.md,_migration_proposals,True,True,False,.md,420,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/evals/README.md,_migration_proposals,True,True,False,.md,442,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/inbox/README.md,_migration_proposals,True,True,False,.md,467,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/indexes/README.md,_migration_proposals,True,True,False,.md,410,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/README.md,_migration_proposals,True,True,False,.md,461,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/agent_behavior.md,_migration_proposals,True,True,False,.md,834,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/coding_rules.md,_migration_proposals,True,True,False,.md,574,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/hml_promotion_rules.md,_migration_proposals,True,True,False,.md,443,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/office_document_rules.md,_migration_proposals,True,True,False,.md,1462,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/security_rules.md,_migration_proposals,True,True,False,.md,775,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/service_desk_rules.md,_migration_proposals,True,True,False,.md,813,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/rejected/README.md,_migration_proposals,True,True,False,.md,421,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/semantic/README.md,_migration_proposals,True,True,False,.md,405,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/semantic/coding/README.md,_migration_proposals,True,True,False,.md,124,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/semantic/office_skills/README.md,_migration_proposals,True,True,False,.md,329,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/memory/working/README.md,_migration_proposals,True,True,False,.md,427,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_ARCHITECTURE.md,_migration_proposals,True,True,False,.md,271,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_CHANGE_PROPOSAL_POLICY.md,_migration_proposals,True,True,False,.md,172,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_LIFECYCLE.md,_migration_proposals,True,True,False,.md,189,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_LOGGING_POLICY.md,_migration_proposals,True,True,False,.md,292,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_REGISTRY.md,_migration_proposals,True,True,False,.md,126,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_SECURITY_POLICY.md,_migration_proposals,True,True,False,.md,338,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/README.md,_migration_proposals,True,True,False,.md,246,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_AUDIT_LOGGING.md,_migration_proposals,True,True,False,.md,242,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_CHANGE_PROPOSAL_WORKFLOW.md,_migration_proposals,True,True,False,.md,149,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_CLI_SPEC.md,_migration_proposals,True,True,False,.md,1297,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_HML_ACTIVATION_PLAN.md,_migration_proposals,True,True,False,.md,1214,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_LOG_REVIEW_WORKFLOW.md,_migration_proposals,True,True,False,.md,172,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_PERMISSION_MODEL.md,_migration_proposals,True,True,False,.md,1017,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_PLUGIN_ARCHITECTURE.md,_migration_proposals,True,True,False,.md,328,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_ROLLBACK.md,_migration_proposals,True,True,False,.md,185,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_RUNTIME_LOGGING.md,_migration_proposals,True,True,False,.md,255,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_SECURITY_POLICY.md,_migration_proposals,True,True,False,.md,1544,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_TOOLKIT_ALLOWLIST.md,_migration_proposals,True,True,False,.md,569,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/README.md,_migration_proposals,True,True,False,.md,125,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_audit_review.md,_migration_proposals,True,True,False,.md,464,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_change_proposal.md,_migration_proposals,True,True,False,.md,463,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_connection_triage.md,_migration_proposals,True,True,False,.md,461,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_hml_activation.md,_migration_proposals,True,True,False,.md,460,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_log_review.md,_migration_proposals,True,True,False,.md,459,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_permission_review.md,_migration_proposals,True,True,False,.md,466,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_tool_execution_plan.md,_migration_proposals,True,True,False,.md,476,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/code-review/security_review.md,_migration_proposals,True,True,False,.md,620,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/codex/implementation.md,_migration_proposals,True,True,False,.md,682,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/gemini/review.md,_migration_proposals,True,True,False,.md,622,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/local-model/log_analysis.md,_migration_proposals,True,True,False,.md,673,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/service-desk/first_response_from_seed_corpus.md,_migration_proposals,True,True,False,.md,1479,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/service-desk/kcs_generation.md,_migration_proposals,True,True,False,.md,629,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/service-desk/macro_generation.md,_migration_proposals,True,True,False,.md,637,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/service-desk/triage.md,_migration_proposals,True,True,False,.md,858,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/service-desk/troubleshooting.md,_migration_proposals,True,True,False,.md,754,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/tools/coderos/README.md,_migration_proposals,True,True,False,.md,142,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/tools/composio_plugin/README.md,_migration_proposals,True,True,False,.md,193,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/tools/desktop_cli/README.md,_migration_proposals,True,True,False,.md,126,"ASCII text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/tools/memory/README.md,_migration_proposals,True,True,False,.md,189,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/tools/office/README.md,_migration_proposals,True,True,False,.md,119,ASCII text,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/tools/plugins/README.md,_migration_proposals,True,True,False,.md,130,"Unicode text, UTF-8 text, with CRLF line terminators",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/docs/hermesops/tools/rag/README.md,_migration_proposals,True,True,False,.md,766,"Unicode text, UTF-8 text",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/code_context_builder.py,_migration_proposals,True,True,False,.py,1272,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/code_review_checker.py,_migration_proposals,True,True,False,.py,940,"Python script, ASCII text executable, with very long lines (337)",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/coderos_audit.py,_migration_proposals,True,True,False,.py,877,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/coderos_eval.py,_migration_proposals,True,True,False,.py,890,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/coding_memory_capture.py,_migration_proposals,True,True,False,.py,1041,"Python script, ASCII text executable, with very long lines (438)",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/dependency_risk_scanner.py,_migration_proposals,True,True,False,.py,1207,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/docx_export_sample.py,_migration_proposals,True,True,False,.py,705,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/docx_structure_reader.py,_migration_proposals,True,True,False,.py,683,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/docx_template_builder.py,_migration_proposals,True,True,False,.py,784,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/docx_text_reviewer.py,_migration_proposals,True,True,False,.py,619,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/excel_fidelity_validator.py,_migration_proposals,True,True,False,.py,2053,"Python script, ASCII text executable, with very long lines (459)",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/m365_workbook_operation_plan.py,_migration_proposals,True,True,False,.py,1982,"Python script, ASCII text executable, with very long lines (384)",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_audit.py,_migration_proposals,True,True,False,.py,1221,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_capture.py,_migration_proposals,True,True,False,.py,1358,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_classify.py,_migration_proposals,True,True,False,.py,1262,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_conflict_check.py,_migration_proposals,True,True,False,.py,1240,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_consolidate.py,_migration_proposals,True,True,False,.py,1224,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_eval.py,_migration_proposals,True,True,False,.py,1225,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_index.py,_migration_proposals,True,True,False,.py,1223,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_query.py,_migration_proposals,True,True,False,.py,1467,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_retention.py,_migration_proposals,True,True,False,.py,1278,"Python script, Unicode text, UTF-8 text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_sanitize.py,_migration_proposals,True,True,False,.py,1250,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/modding_project_analyzer.py,_migration_proposals,True,True,False,.py,1315,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/native_format_policy.py,_migration_proposals,True,True,False,.py,2354,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/office_format_router.py,_migration_proposals,True,True,False,.py,2214,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/office_job_router.py,_migration_proposals,True,True,False,.py,1580,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/office_safety_validator.py,_migration_proposals,True,True,False,.py,1001,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/patch_plan_builder.py,_migration_proposals,True,True,False,.py,964,"Python script, ASCII text executable, with very long lines (361)",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pdf_acrobat_workflow_validator.py,_migration_proposals,True,True,False,.py,639,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pdf_metadata_inspector.py,_migration_proposals,True,True,False,.py,701,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pdf_safety_validator.py,_migration_proposals,True,True,False,.py,973,"Python script, ASCII text executable, with very long lines (344)",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pdf_text_extraction_skeleton.py,_migration_proposals,True,True,False,.py,786,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/powershell_static_checker.py,_migration_proposals,True,True,False,.py,1280,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pptx_deck_reviewer.py,_migration_proposals,True,True,False,.py,645,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pptx_export_sample.py,_migration_proposals,True,True,False,.py,918,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pptx_structure_reader.py,_migration_proposals,True,True,False,.py,697,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pptx_template_builder.py,_migration_proposals,True,True,False,.py,940,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_encoding_check.py,_migration_proposals,True,True,False,.py,1209,"Python script, Unicode text, UTF-8 text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_glossary_validator.py,_migration_proposals,True,True,False,.py,1896,"Python script, Unicode text, UTF-8 text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_localization_audit.py,_migration_proposals,True,True,False,.py,1439,"Python script, Unicode text, UTF-8 text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_message_catalog_validator.py,_migration_proposals,True,True,False,.py,1272,"Python script, Unicode text, UTF-8 text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_prompt_audit.py,_migration_proposals,True,True,False,.py,1052,"Python script, Unicode text, UTF-8 text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_text_lint.py,_migration_proposals,True,True,False,.py,1737,"Python script, Unicode text, UTF-8 text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/repo_mapper.py,_migration_proposals,True,True,False,.py,1209,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/spreadsheet_data_quality.py,_migration_proposals,True,True,False,.py,1420,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/spreadsheet_export_sample.py,_migration_proposals,True,True,False,.py,1109,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/spreadsheet_offline_analyzer.py,_migration_proposals,True,True,False,.py,1178,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/spreadsheet_schema_validator.py,_migration_proposals,True,True,False,.py,707,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/stack_detector.py,_migration_proposals,True,True,False,.py,1838,"Python script, ASCII text executable",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/validation_runner.py,_migration_proposals,True,True,False,.py,1094,"Python script, ASCII text executable, with very long lines (491)",MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/code_review.schema.json,_migration_proposals,True,True,False,.json,558,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/coding_memory.schema.json,_migration_proposals,True,True,False,.json,871,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/coding_task.schema.json,_migration_proposals,True,True,False,.json,1008,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/document_review.schema.json,_migration_proposals,True,True,False,.json,682,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/docx_job.schema.json,_migration_proposals,True,True,False,.json,1005,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/memory_decision_schema.json,_migration_proposals,True,True,False,.json,978,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/memory_event_schema.json,_migration_proposals,True,True,False,.json,969,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/memory_item_schema.json,_migration_proposals,True,True,False,.json,2092,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/memory_policy_schema.json,_migration_proposals,True,True,False,.json,968,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/memory_research_schema.json,_migration_proposals,True,True,False,.json,992,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/modding_project.schema.json,_migration_proposals,True,True,False,.json,730,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/office_audit.schema.json,_migration_proposals,True,True,False,.json,583,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/patch_plan.schema.json,_migration_proposals,True,True,False,.json,713,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/pdf_audit.schema.json,_migration_proposals,True,True,False,.json,1312,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/pdf_job.schema.json,_migration_proposals,True,True,False,.json,1251,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin.schema.json,_migration_proposals,True,True,False,.json,150,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_audit_event.schema.json,_migration_proposals,True,True,False,.json,162,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_change_proposal.schema.json,_migration_proposals,True,True,False,.json,1341,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_command.schema.json,_migration_proposals,True,True,False,.json,158,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_connection.schema.json,_migration_proposals,True,True,False,.json,161,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_permission.schema.json,_migration_proposals,True,True,False,.json,161,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_runtime_log.schema.json,_migration_proposals,True,True,False,.json,162,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/pptx_job.schema.json,_migration_proposals,True,True,False,.json,1323,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/presentation_review.schema.json,_migration_proposals,True,True,False,.json,1531,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/repo_profile.schema.json,_migration_proposals,True,True,False,.json,618,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/spreadsheet_job.schema.json,_migration_proposals,True,True,False,.json,958,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/spreadsheet_validation.schema.json,_migration_proposals,True,True,False,.json,874,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/text_editing_job.schema.json,_migration_proposals,True,True,False,.json,919,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/toolchain_profile.schema.json,_migration_proposals,True,True,False,.json,635,JSON text data,MIGRATION_PROPOSAL_DEFER
+_migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/validation_result.schema.json,_migration_proposals,True,True,False,.json,432,JSON text data,MIGRATION_PROPOSAL_DEFER
+ai-lab/ollama-benchmark/README.md,ai-lab,True,True,False,.md,1680,"Unicode text, UTF-8 text",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/analyze_qwen3_empty_response.py,ai-lab,True,True,False,.py,6342,"Python script, Unicode text, UTF-8 text executable",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/benchmark_local.py,ai-lab,True,True,False,.py,12185,"Python script, Unicode text, UTF-8 text executable",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/check_ollama_context.py,ai-lab,True,True,False,.py,5576,"Python script, ASCII text executable",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/healthcheck_20260611T000000Z.json,ai-lab,True,True,False,.json,2555,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/ollama_context_check_20260611_192736.json,ai-lab,True,True,False,.json,342780,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/analysis_summary.md,ai-lab,True,True,False,.md,2704,"Unicode text, UTF-8 text, with very long lines (341)",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/health_llama3.json,ai-lab,True,True,False,.json,588,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/health_models.json,ai-lab,True,True,False,.json,1554,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/manifest.json,ai-lab,True,True,False,.json,1738,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/qwen3_1_7b_native_chat_think_false.json,ai-lab,True,True,False,.json,283,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/qwen3_1_7b_openai_default.json,ai-lab,True,True,False,.json,1075,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/qwen3_1_7b_openai_think_false.json,ai-lab,True,True,False,.json,1128,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/qwen3_4b_native_chat_think_false.json,ai-lab,True,True,False,.json,283,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/qwen3_4b_openai_default.json,ai-lab,True,True,False,.json,1024,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/qwen3_4b_openai_think_false.json,ai-lab,True,True,False,.json,1008,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/results/qwen3-empty-response-debug/thinkfalse_recheck.json,ai-lab,True,True,False,.json,1611,JSON text data,AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/smoke_test_models.py,ai-lab,True,True,False,.py,9307,"Python script, Unicode text, UTF-8 text executable",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-benchmark/smoke_test_ollama_profile.py,ai-lab,True,True,False,.py,5227,"Python script, ASCII text executable",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-modelfiles/Modelfile.llama3.2-3b-hermes-64k,ai-lab,True,True,False,.2-3b-hermes-64k,342,"Unicode text, UTF-8 text",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-modelfiles/Modelfile.qwen2.5-coder-7b-64k,ai-lab,True,True,False,.5-coder-7b-64k,567,"Unicode text, UTF-8 text",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-modelfiles/Modelfile.qwen2.5-coder-7b-hermes-64k,ai-lab,True,True,False,.5-coder-7b-hermes-64k,384,"Unicode text, UTF-8 text",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-modelfiles/Modelfile.qwen3-1.7b-64k,ai-lab,True,True,False,.7b-64k,469,"Unicode text, UTF-8 text",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-modelfiles/Modelfile.qwen3-4b-64k,ai-lab,True,True,False,.qwen3-4b-64k,630,"Unicode text, UTF-8 text",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-modelfiles/Modelfile.qwen3-4b-hermes-nothink-64k,ai-lab,True,True,False,.qwen3-4b-hermes-nothink-64k,423,"Unicode text, UTF-8 text",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-modelfiles/README.md,ai-lab,True,True,False,.md,1320,"Unicode text, UTF-8 text",AI_LAB_LOCAL_REVIEW
+ai-lab/ollama-modelfiles/create_hermes_ollama_models.sh,ai-lab,True,True,False,.sh,921,"Bourne-Again shell script, ASCII text executable",AI_LAB_LOCAL_REVIEW
+ai-lab/prompts/apply-hermes-local-ollama-config.prompt.md,ai-lab,True,True,False,.md,1503,ASCII text,AI_LAB_LOCAL_REVIEW
+assets/legacy/Laravel/.editorconfig,assets,True,True,False,,258,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/.env.example,assets,True,True,False,.example,1101,ASCII text,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/.gitattributes,assets,True,True,False,,186,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/.gitignore,assets,True,True,False,,243,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/README.md,assets,True,True,False,.md,4631,"Unicode text, UTF-8 text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Actions/Fortify/CreateNewUser.php,assets,True,True,False,.php,1012,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Actions/Fortify/PasswordValidationRules.php,assets,True,True,False,.php,408,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/app/Actions/Fortify/ResetUserPassword.php,assets,True,True,False,.php,693,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/app/Actions/Fortify/UpdateUserPassword.php,assets,True,True,False,.php,924,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/app/Actions/Fortify/UpdateUserProfileInformation.php,assets,True,True,False,.php,1703,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Actions/Jetstream/DeleteUser.php,assets,True,True,False,.php,358,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Console/Kernel.php,assets,True,True,False,.php,573,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Exceptions/Handler.php,assets,True,True,False,.php,639,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Controllers/Controller.php,assets,True,True,False,.php,299,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Controllers/DashboardController.php,assets,True,True,False,.php,760,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Controllers/DataFeedController.php,assets,True,True,False,.php,637,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Kernel.php,assets,True,True,False,.php,2778,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Middleware/Authenticate.php,assets,True,True,False,.php,409,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Middleware/EncryptCookies.php,assets,True,True,False,.php,307,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Middleware/PreventRequestsDuringMaintenance.php,assets,True,True,False,.php,366,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Middleware/RedirectIfAuthenticated.php,assets,True,True,False,.php,760,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Middleware/TrimStrings.php,assets,True,True,False,.php,381,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Middleware/TrustHosts.php,assets,True,True,False,.php,379,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Middleware/TrustProxies.php,assets,True,True,False,.php,649,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Middleware/ValidateSignature.php,assets,True,True,False,.php,460,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Http/Middleware/VerifyCsrfToken.php,assets,True,True,False,.php,320,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/app/Models/DataFeed.php,assets,True,True,False,.php,1474,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Models/User.php,assets,True,True,False,.php,1318,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Providers/AppServiceProvider.php,assets,True,True,False,.php,361,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Providers/AuthServiceProvider.php,assets,True,True,False,.php,518,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Providers/BroadcastServiceProvider.php,assets,True,True,False,.php,359,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Providers/EventServiceProvider.php,assets,True,True,False,.php,884,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Providers/FortifyServiceProvider.php,assets,True,True,False,.php,1405,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Providers/JetstreamServiceProvider.php,assets,True,True,False,.php,869,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/Providers/RouteServiceProvider.php,assets,True,True,False,.php,1106,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/View/Components/AppLayout.php,assets,True,True,False,.php,296,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/View/Components/AuthenticationLayout.php,assets,True,True,False,.php,286,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/View/Components/EmptyLayout.php,assets,True,True,False,.php,268,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/app/View/Components/GuestLayout.php,assets,True,True,False,.php,300,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/artisan,assets,True,True,False,,1686,"a php script, ASCII text executable",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/bootstrap/app.php,assets,True,True,False,.php,1620,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/bootstrap/cache/.gitignore,assets,True,True,False,,14,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/composer.json,assets,True,True,False,.json,1955,JSON text data,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/composer.lock,assets,True,True,False,.lock,328205,JSON text data,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/app.php,assets,True,True,False,.php,6562,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/auth.php,assets,True,True,False,.php,3897,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/broadcasting.php,assets,True,True,False,.php,2147,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/cache.php,assets,True,True,False,.php,3337,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/cors.php,assets,True,True,False,.php,846,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/database.php,assets,True,True,False,.php,5289,SKIPPED_POTENTIAL_SENSITIVE,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/filesystems.php,assets,True,True,False,.php,2370,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/fortify.php,assets,True,True,False,.php,5431,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/hashing.php,assets,True,True,False,.php,1624,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/jetstream.php,assets,True,True,False,.php,2699,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/livewire.php,assets,True,True,False,.php,6191,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/logging.php,assets,True,True,False,.php,4173,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/mail.php,assets,True,True,False,.php,4042,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/queue.php,assets,True,True,False,.php,3447,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/sanctum.php,assets,True,True,False,.php,2963,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/services.php,assets,True,True,False,.php,979,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/session.php,assets,True,True,False,.php,7498,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/config/view.php,assets,True,True,False,.php,1053,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/database/.gitignore,assets,True,True,False,,10,SKIPPED_POTENTIAL_SENSITIVE,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/database/factories/UserFactory.php,assets,True,True,False,.php,1885,SKIPPED_POTENTIAL_SENSITIVE,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/database/migrations/2014_10_12_000000_create_users_table.php,assets,True,True,False,.php,881,SKIPPED_POTENTIAL_SENSITIVE,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/database/migrations/2014_10_12_200000_add_two_factor_columns_to_users_table.php,assets,True,True,False,.php,1254,SKIPPED_POTENTIAL_SENSITIVE,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/database/migrations/2019_08_19_000000_create_failed_jobs_table.php,assets,True,True,False,.php,768,SKIPPED_POTENTIAL_SENSITIVE,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/database/migrations/2022_03_23_163443_create_sessions_table.php,assets,True,True,False,.php,825,SKIPPED_POTENTIAL_SENSITIVE,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/database/migrations/2022_05_11_154250_create_datafeeds_table.php,assets,True,True,False,.php,923,SKIPPED_POTENTIAL_SENSITIVE,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/database/seeders/DashboardTableSeeder.php,assets,True,True,False,.php,10097,SKIPPED_POTENTIAL_SENSITIVE,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/database/seeders/DatabaseSeeder.php,assets,True,True,False,.php,364,SKIPPED_POTENTIAL_SENSITIVE,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/lang/en/auth.php,assets,True,True,False,.php,674,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/lang/en/pagination.php,assets,True,True,False,.php,530,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/lang/en/passwords.php,assets,True,True,False,.php,744,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/lang/en/validation.php,assets,True,True,False,.php,11233,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/package.json,assets,True,True,False,.json,1041,JSON text data,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/phpunit.xml,assets,True,True,False,.xml,1134,"XML 1.0 document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/pnpm-lock.yaml,assets,True,True,False,.yaml,38343,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/postcss.config.js,assets,True,True,False,.js,78,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/.htaccess,assets,True,True,False,,603,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/favicon.ico,assets,True,True,False,.ico,0,empty,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/404-illustration-dark.svg,assets,True,True,False,.svg,4964,SVG Scalable Vector Graphics image,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/404-illustration.svg,assets,True,True,False,.svg,4696,SVG Scalable Vector Graphics image,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/auth-image.jpg,assets,True,True,False,.jpg,232046,"JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 1520x2048, components 3",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/icon-01.svg,assets,True,True,False,.svg,969,SVG Scalable Vector Graphics image,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/icon-02.svg,assets,True,True,False,.svg,969,SVG Scalable Vector Graphics image,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/icon-03.svg,assets,True,True,False,.svg,972,SVG Scalable Vector Graphics image,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/user-36-05.jpg,assets,True,True,False,.jpg,1448,"JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 72x72, components 3",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/user-36-06.jpg,assets,True,True,False,.jpg,1366,"JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 72x72, components 3",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/user-36-07.jpg,assets,True,True,False,.jpg,1870,"JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 72x72, components 3",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/user-36-08.jpg,assets,True,True,False,.jpg,1177,"JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 72x72, components 3",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/user-36-09.jpg,assets,True,True,False,.jpg,1660,"JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, progressive, precision 8, 72x72, components 3",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/images/user-avatar-32.png,assets,True,True,False,.png,1077,"PNG image data, 64 x 64, 8-bit/color RGB, non-interlaced",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/index.php,assets,True,True,False,.php,1710,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/public/robots.txt,assets,True,True,False,.txt,24,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/css/additional-styles/flatpickr.css,assets,True,True,False,.css,5697,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/css/additional-styles/utility-patterns.css,assets,True,True,False,.css,3267,"troff or preprocessor input, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/css/app.css,assets,True,True,False,.css,3742,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/app.js,assets,True,True,False,.js,5047,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/bootstrap.js,assets,True,True,False,.js,1248,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/components/dashboard-card-01.js,assets,True,True,False,.js,4681,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/components/dashboard-card-02.js,assets,True,True,False,.js,4681,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/components/dashboard-card-03.js,assets,True,True,False,.js,4682,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/components/dashboard-card-04.js,assets,True,True,False,.js,8430,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/components/dashboard-card-05.js,assets,True,True,False,.js,7805,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/components/dashboard-card-06.js,assets,True,True,False,.js,5499,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/components/dashboard-card-08.js,assets,True,True,False,.js,8971,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/components/dashboard-card-09.js,assets,True,True,False,.js,5235,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/components/dashboard-card-11.js,assets,True,True,False,.js,7364,"JavaScript source, Unicode text, UTF-8 text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/js/utils.js,assets,True,True,False,.js,1958,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/markdown/policy.md,assets,True,True,False,.md,84,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/markdown/terms.md,assets,True,True,False,.md,88,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/api/api-token-manager.blade.php,assets,True,True,False,.php,7036,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/resources/views/api/index.blade.php,assets,True,True,False,.php,357,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/auth/confirm-password.blade.php,assets,True,True,False,.php,676,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/resources/views/auth/forgot-password.blade.php,assets,True,True,False,.php,867,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/resources/views/auth/login.blade.php,assets,True,True,False,.php,2393,"exported SGML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/auth/register.blade.php,assets,True,True,False,.php,3117,"exported SGML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/auth/reset-password.blade.php,assets,True,True,False,.php,1218,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/resources/views/auth/two-factor-challenge.blade.php,assets,True,True,False,.php,2304,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/auth/verify-email.blade.php,assets,True,True,False,.php,1298,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/action-message.blade.php,assets,True,True,False,.php,471,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/action-section.blade.php,assets,True,True,False,.php,433,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/app/header.blade.php,assets,True,True,False,.php,2342,"exported SGML document, ASCII text, with very long lines (530)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/app/sidebar.blade.php,assets,True,True,False,.php,72604,"exported SGML document, Unicode text, UTF-8 text, with very long lines (677)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/button.blade.php,assets,True,True,False,.php,218,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/confirmation-modal.blade.php,assets,True,True,False,.php,1224,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/confirms-password.blade.php,assets,True,True,False,.php,1634,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/resources/views/components/danger-button.blade.php,assets,True,True,False,.php,393,"ASCII text, with very long lines (366)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-01.blade.php,assets,True,True,False,.php,3757,"exported SGML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-02.blade.php,assets,True,True,False,.php,3757,"exported SGML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-03.blade.php,assets,True,True,False,.php,3765,"exported SGML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-04.blade.php,assets,True,True,False,.php,520,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-05.blade.php,assets,True,True,False,.php,2463,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-06.blade.php,assets,True,True,False,.php,606,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-07.blade.php,assets,True,True,False,.php,8896,"HTML document, ASCII text, with very long lines (480)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-08.blade.php,assets,True,True,False,.php,988,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-09.blade.php,assets,True,True,False,.php,2466,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-10.blade.php,assets,True,True,False,.php,7134,"HTML document, Unicode text, UTF-8 text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-11.blade.php,assets,True,True,False,.php,1011,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-12.blade.php,assets,True,True,False,.php,7750,"exported SGML document, ASCII text, with very long lines (459)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-13.blade.php,assets,True,True,False,.php,7034,"exported SGML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/date-select.blade.php,assets,True,True,False,.php,5799,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/datepicker.blade.php,assets,True,True,False,.php,706,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dialog-modal.blade.php,assets,True,True,False,.php,470,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dropdown-filter.blade.php,assets,True,True,False,.php,4092,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dropdown-help.blade.php,assets,True,True,False,.php,3656,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dropdown-link.blade.php,assets,True,True,False,.php,176,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dropdown-notifications.blade.php,assets,True,True,False,.php,4328,"Unicode text, UTF-8 text, with very long lines (317)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dropdown-profile.blade.php,assets,True,True,False,.php,2933,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/dropdown.blade.php,assets,True,True,False,.php,1457,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/form-section.blade.php,assets,True,True,False,.php,941,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/input-error.blade.php,assets,True,True,False,.php,128,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/input.blade.php,assets,True,True,False,.php,134,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/label.blade.php,assets,True,True,False,.php,134,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/modal-search.blade.php,assets,True,True,False,.php,11898,"exported SGML document, Unicode text, UTF-8 text, with very long lines (378)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/modal.blade.php,assets,True,True,False,.php,1831,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/nav-link.blade.php,assets,True,True,False,.php,559,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/pagination-classic.blade.php,assets,True,True,False,.php,1033,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/pagination-numeric.blade.php,assets,True,True,False,.php,2622,"HTML document, Unicode text, UTF-8 text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/responsive-nav-link.blade.php,assets,True,True,False,.php,606,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/search-form.blade.php,assets,True,True,False,.php,890,"Unicode text, UTF-8 text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/secondary-button.blade.php,assets,True,True,False,.php,248,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/section-border.blade.php,assets,True,True,False,.php,91,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/section-title.blade.php,assets,True,True,False,.php,370,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/switchable-team.blade.php,assets,True,True,False,.php,833,"exported SGML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/theme-toggle.blade.php,assets,True,True,False,.php,2086,"ASCII text, with very long lines (502)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/components/validation-errors.blade.php,assets,True,True,False,.php,449,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/layouts/app.blade.php,assets,True,True,False,.php,2546,"HTML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/layouts/authentication.blade.php,assets,True,True,False,.php,3167,"HTML document, ASCII text, with very long lines (375)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/layouts/guest.blade.php,assets,True,True,False,.php,2676,"HTML document, ASCII text, with very long lines (371)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/pages/dashboard/dashboard.blade.php,assets,True,True,False,.php,2759,"exported SGML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/pages/utility/404.blade.php,assets,True,True,False,.php,911,"HTML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/policy.blade.php,assets,True,True,False,.php,469,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/profile/delete-user-form.blade.php,assets,True,True,False,.php,2340,"exported SGML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/profile/logout-other-browser-sessions-form.blade.php,assets,True,True,False,.php,5171,"exported SGML document, ASCII text, with very long lines (351)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/profile/show.blade.php,assets,True,True,False,.php,1458,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/profile/two-factor-authentication-form.blade.php,assets,True,True,False,.php,5745,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/profile/update-password-form.blade.php,assets,True,True,False,.php,1630,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/resources/views/profile/update-profile-information-form.blade.php,assets,True,True,False,.php,4393,"exported SGML document, ASCII text, with very long lines (308)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/terms.blade.php,assets,True,True,False,.php,468,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/vendor/pagination/simple-tailwind.blade.php,assets,True,True,False,.php,1838,"HTML document, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/resources/views/vendor/pagination/tailwind.blade.php,assets,True,True,False,.php,5577,"HTML document, ASCII text, with very long lines (392)",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/routes/api.php,assets,True,True,False,.php,570,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/routes/channels.php,assets,True,True,False,.php,558,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/routes/console.php,assets,True,True,False,.php,592,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/routes/web.php,assets,True,True,False,.php,8630,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/storage/app/.gitignore,assets,True,True,False,,23,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/storage/app/public/.gitignore,assets,True,True,False,,14,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/storage/framework/.gitignore,assets,True,True,False,,119,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/storage/framework/cache/.gitignore,assets,True,True,False,,21,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/storage/framework/cache/data/.gitignore,assets,True,True,False,,14,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/storage/framework/sessions/.gitignore,assets,True,True,False,,14,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/storage/framework/testing/.gitignore,assets,True,True,False,,14,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/storage/framework/views/.gitignore,assets,True,True,False,,14,ASCII text,LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/CreatesApplication.php,assets,True,True,False,.php,375,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/Feature/ApiTokenPermissionsTest.php,assets,True,True,False,.php,1369,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/tests/Feature/AuthenticationTest.php,assets,True,True,False,.php,1057,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/Feature/BrowserSessionsTest.php,assets,True,True,False,.php,624,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/Feature/CreateApiTokenTest.php,assets,True,True,False,.php,1165,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/tests/Feature/DeleteAccountTest.php,assets,True,True,False,.php,1286,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/Feature/DeleteApiTokenTest.php,assets,True,True,False,.php,988,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/tests/Feature/EmailVerificationTest.php,assets,True,True,False,.php,2167,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/Feature/ExampleTest.php,assets,True,True,False,.php,352,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/Feature/PasswordConfirmationTest.php,assets,True,True,False,.php,1112,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/tests/Feature/PasswordResetTest.php,assets,True,True,False,.php,2658,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/tests/Feature/ProfileInformationTest.php,assets,True,True,False,.php,1123,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/Feature/RegistrationTest.php,assets,True,True,False,.php,1539,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/Feature/TwoFactorAuthenticationSettingsTest.php,assets,True,True,False,.php,2431,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/Feature/UpdatePasswordTest.php,assets,True,True,False,.php,1922,SKIPPED_POTENTIAL_SENSITIVE,SENSITIVE_DO_NOT_OPEN
+assets/legacy/Laravel/tests/TestCase.php,assets,True,True,False,.php,163,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/tests/Unit/ExampleTest.php,assets,True,True,False,.php,243,"PHP script, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/Laravel/vite.config.js,assets,True,True,False,.js,266,"JavaScript source, ASCII text",LEGACY_DEFER_REVIEW
+assets/legacy/ens-hero-client.css,assets,True,True,False,.css,2619,"ASCII text, with very long lines (2618)",LEGACY_DEFER_REVIEW
+assets/legacy/hero.js,assets,True,True,False,.js,600107,"JavaScript source, ASCII text, with very long lines (19286)",LEGACY_DEFER_REVIEW
+assets/legacy/hero.js.map,assets,True,True,False,.map,2675163,JSON text data,LEGACY_DEFER_REVIEW
+assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx,assets,True,True,False,.docx,11700117,Microsoft Word 2007+,BINARY_REVIEW
+assets/static/icons/.gitkeep,assets,True,True,False,,1,very short file (no magic),UNKNOWN_REVIEW
+assets/static/icons/Logo.png,assets,True,True,False,.png,14243,"PNG image data, 278 x 397, 8-bit/color RGBA, non-interlaced",IMAGE_REVIEW
+assets/static/icons/facebook.png,assets,True,True,False,.png,467,"PNG image data, 74 x 74, 8-bit colormap, non-interlaced",IMAGE_REVIEW
+assets/static/icons/instagram.png,assets,True,True,False,.png,992,"PNG image data, 74 x 74, 8-bit colormap, non-interlaced",IMAGE_REVIEW
+assets/static/icons/linkedin.png,assets,True,True,False,.png,553,"PNG image data, 74 x 74, 8-bit colormap, non-interlaced",IMAGE_REVIEW
+assets/static/icons/tiktok.png,assets,True,True,False,.png,664,"PNG image data, 74 x 74, 8-bit colormap, non-interlaced",IMAGE_REVIEW
+assets/static/icons/youtube.png,assets,True,True,False,.png,689,"PNG image data, 74 x 74, 8-bit colormap, non-interlaced",IMAGE_REVIEW
+docs/AI_CHAT_OLLAMA_LAN_B5C_RUNTIME_VALIDATION.md,docs,True,True,False,.md,900,"Unicode text, UTF-8 text",DOC_REVIEW
+docs/AI_CHAT_OLLAMA_LAN_B5D2_SAME_ORIGIN_UI_SMOKE.md,docs,True,True,False,.md,2258,"Unicode text, UTF-8 text",DOC_REVIEW
+docs/AI_CHAT_OLLAMA_LAN_B5D_AUTH_UI_SMOKE.md,docs,True,True,False,.md,2457,"Unicode text, UTF-8 text",DOC_REVIEW
+docs/HERMES_LOCAL_OLLAMA_CONFIG_RECOMMENDATION.md,docs,True,True,False,.md,8158,"Python script, Unicode text, UTF-8 text executable",DOC_REVIEW
+docs/WSL_NATIVE_DOCKER_ENGINE_D1C_REPORT.md,docs,True,True,False,.md,7757,ASCII text,DOC_REVIEW
+docs/audit/ARCHITECTURE_AUDIT.md,docs,True,True,False,.md,1662,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/AUDIT_ENVIRONMENT.md,docs,True,True,False,.md,10636,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/B4B2_VISUAL_SMOKE_MANUAL_CHECKLIST.md,docs,True,True,False,.md,3304,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/BACKEND_AUDIT.md,docs,True,True,False,.md,27239,"Unicode text, UTF-8 text, with very long lines (329)",AUDIT_DOC_REVIEW
+docs/audit/BACKEND_FINDINGS.csv,docs,True,True,False,.csv,45994,"CSV Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/DATABASE_FINDINGS.csv,docs,True,True,False,.csv,106,SKIPPED_POTENTIAL_SENSITIVE,AUDIT_DOC_REVIEW
+docs/audit/DATABASE_MIGRATIONS_AUDIT.md,docs,True,True,False,.md,315,SKIPPED_POTENTIAL_SENSITIVE,AUDIT_DOC_REVIEW
+docs/audit/DESKTOP_APP_AUDIT.md,docs,True,True,False,.md,206,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/DEVOPS_RELEASE_AUDIT.md,docs,True,True,False,.md,9057,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/FILE_CLASSIFICATION.csv,docs,True,True,False,.csv,3689855,"CSV Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/FILE_INVENTORY.md,docs,True,True,False,.md,636,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/FRONTEND_AUDIT.md,docs,True,True,False,.md,1144,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/FRONTEND_FINDINGS.csv,docs,True,True,False,.csv,1159,"CSV Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/FULL_PROJECT_AUDIT_REPORT.md,docs,True,True,False,.md,4144,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/GAP_ANALYSIS.md,docs,True,True,False,.md,700,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/HERMES_DO_NOT_TOUCH_MAP_H1.md,docs,True,True,False,.md,6188,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/HERMES_FULL_PROJECT_AUDIT_H1_REPORT.md,docs,True,True,False,.md,16672,"Unicode text, UTF-8 text, with very long lines (494)",AUDIT_DOC_REVIEW
+docs/audit/HERMES_IMPROVEMENT_BACKLOG_H1.md,docs,True,True,False,.md,7281,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/HERMES_NEXT_BOUNDARIES_H1.md,docs,True,True,False,.md,5260,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/HERMES_RISK_REGISTER_H1.md,docs,True,True,False,.md,4409,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/HIGH_FIX_ROUND3_REPORT.md,docs,True,True,False,.md,1928,ASCII text,AUDIT_DOC_REVIEW
+docs/audit/POST_COMMIT_VALIDATION_QA_C1_REPORT.md,docs,True,True,False,.md,5139,"Unicode text, UTF-8 text, with very long lines (303)",AUDIT_DOC_REVIEW
+docs/audit/PROJECT_TREE.txt,docs,True,True,False,.txt,2072776,ASCII text,AUDIT_DOC_REVIEW
+docs/audit/RELEASE_HYGIENE_FINDINGS.csv,docs,True,True,False,.csv,11822,"CSV Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/RUNTIME_HTTP_VALIDATION_QA_C2_REPORT.md,docs,True,True,False,.md,5118,"Unicode text, UTF-8 text, with very long lines (308)",AUDIT_DOC_REVIEW
+docs/audit/SCRIPTS_OPS_AUDIT.md,docs,True,True,False,.md,27280,"Unicode text, UTF-8 text, with very long lines (329)",AUDIT_DOC_REVIEW
+docs/audit/SCRIPTS_OPS_FINDINGS.csv,docs,True,True,False,.csv,44364,"CSV Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/SECURITY_AUDIT.md,docs,True,True,False,.md,2245,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/SECURITY_FINDINGS.csv,docs,True,True,False,.csv,2761,"CSV Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/TESTING_AUDIT.md,docs,True,True,False,.md,737,"Unicode text, UTF-8 text",AUDIT_DOC_REVIEW
+docs/audit/TEST_RESULTS.md,docs,True,True,False,.md,2857,"Unicode text, UTF-8 text, with very long lines (322)",AUDIT_DOC_REVIEW
+docs/audit/WORKTREE_BOUNDARY_COMMIT_PLAN_GIT_C1.md,docs,True,True,False,.md,42446,"Unicode text, UTF-8 text, with very long lines (729)",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/admin-desktop.png,docs,True,True,False,.png,20577,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/admin-mobile.png,docs,True,True,False,.png,17620,"PNG image data, 390 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/ai-chat-desktop.png,docs,True,True,False,.png,197499,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/ai-chat-mobile.png,docs,True,True,False,.png,98987,"PNG image data, 390 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/assinaturas-desktop.png,docs,True,True,False,.png,20577,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/assinaturas-mobile.png,docs,True,True,False,.png,17620,"PNG image data, 390 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/audit-logs-desktop.png,docs,True,True,False,.png,197499,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/audit-logs-mobile.png,docs,True,True,False,.png,98987,"PNG image data, 390 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/imports-desktop.png,docs,True,True,False,.png,197499,SKIPPED_POTENTIAL_SENSITIVE,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/imports-mobile.png,docs,True,True,False,.png,98987,SKIPPED_POTENTIAL_SENSITIVE,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/login-desktop.png,docs,True,True,False,.png,197499,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/login-mobile.png,docs,True,True,False,.png,98987,"PNG image data, 390 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/macros-desktop.png,docs,True,True,False,.png,197499,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/macros-mobile.png,docs,True,True,False,.png,98987,"PNG image data, 390 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/manifest.json,docs,True,True,False,.json,5668,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/root-desktop.png,docs,True,True,False,.png,197499,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/root-mobile.png,docs,True,True,False,.png,98987,"PNG image data, 390 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/settings-desktop.png,docs,True,True,False,.png,197499,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/after/settings-mobile.png,docs,True,True,False,.png,98987,"PNG image data, 390 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/before/login-desktop.png,docs,True,True,False,.png,210013,"PNG image data, 1366 x 832, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/before/login-mobile.png,docs,True,True,False,.png,109957,"PNG image data, 390 x 892, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/before/manifest.json,docs,True,True,False,.json,1216,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/before/root-redirect-desktop.png,docs,True,True,False,.png,210013,"PNG image data, 1366 x 832, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4c/before/root-redirect-mobile.png,docs,True,True,False,.png,109957,"PNG image data, 390 x 892, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/after-polish/desktop/ai-chat.png,docs,True,True,False,.png,295213,"PNG image data, 1351 x 1044, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/after-polish/desktop/imports.png,docs,True,True,False,.png,479484,SKIPPED_POTENTIAL_SENSITIVE,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/after-polish/manifest.json,docs,True,True,False,.json,1410,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/after-polish/mobile/ai-chat.png,docs,True,True,False,.png,238277,"PNG image data, 375 x 2931, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/after-polish/mobile/imports.png,docs,True,True,False,.png,380441,SKIPPED_POTENTIAL_SENSITIVE,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/desktop/admin.png,docs,True,True,False,.png,35784,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/desktop/ai-chat.png,docs,True,True,False,.png,325377,"PNG image data, 1351 x 1044, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/desktop/assinaturas.png,docs,True,True,False,.png,44029,"PNG image data, 1351 x 771, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/desktop/audit-logs.png,docs,True,True,False,.png,352707,"PNG image data, 1351 x 1149, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/desktop/imports.png,docs,True,True,False,.png,474924,SKIPPED_POTENTIAL_SENSITIVE,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/desktop/macros.png,docs,True,True,False,.png,189968,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/desktop/root.png,docs,True,True,False,.png,456072,"PNG image data, 1351 x 1655, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/desktop/settings.png,docs,True,True,False,.png,205338,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/manifest.json,docs,True,True,False,.json,6543,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/mobile/admin.png,docs,True,True,False,.png,31939,"PNG image data, 434 x 829, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/mobile/ai-chat.png,docs,True,True,False,.png,238277,"PNG image data, 375 x 2931, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/mobile/assinaturas.png,docs,True,True,False,.png,39332,"PNG image data, 434 x 880, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/mobile/audit-logs.png,docs,True,True,False,.png,240829,"PNG image data, 375 x 2749, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/mobile/imports.png,docs,True,True,False,.png,365410,SKIPPED_POTENTIAL_SENSITIVE,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/mobile/macros.png,docs,True,True,False,.png,175296,"PNG image data, 465 x 1660, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/mobile/root.png,docs,True,True,False,.png,405866,"PNG image data, 375 x 4854, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4d/authenticated/mobile/settings.png,docs,True,True,False,.png,166504,"PNG image data, 375 x 1660, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/desktop/backend-admin-1366x768.json,docs,True,True,False,.json,1057,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/desktop/backend-admin-1366x768.png,docs,True,True,False,.png,35784,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/desktop/backend-assinaturas-1366x768.json,docs,True,True,False,.json,1071,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/desktop/backend-assinaturas-1366x768.png,docs,True,True,False,.png,44336,"PNG image data, 1366 x 771, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/desktop/preview-admin-1366x768.json,docs,True,True,False,.json,594,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/desktop/preview-admin-1366x768.png,docs,True,True,False,.png,19416,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/desktop/preview-assinaturas-1366x768.json,docs,True,True,False,.json,612,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/desktop/preview-assinaturas-1366x768.png,docs,True,True,False,.png,19416,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/mobile/backend-admin-390x844.json,docs,True,True,False,.json,1055,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/mobile/backend-admin-390x844.png,docs,True,True,False,.png,32011,"PNG image data, 434 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/mobile/backend-assinaturas-390x844.json,docs,True,True,False,.json,1069,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/mobile/backend-assinaturas-390x844.png,docs,True,True,False,.png,39332,"PNG image data, 434 x 880, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/mobile/preview-admin-390x844.json,docs,True,True,False,.json,592,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/mobile/preview-admin-390x844.png,docs,True,True,False,.png,16469,"PNG image data, 390 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/mobile/preview-assinaturas-390x844.json,docs,True,True,False,.json,610,JSON text data,AUDIT_DOC_REVIEW
+docs/audit/screenshots/b4e/before/mobile/preview-assinaturas-390x844.png,docs,True,True,False,.png,16469,"PNG image data, 390 x 844, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b5d2-same-origin-ai-chat/01-login.png,docs,True,True,False,.png,195328,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b5d2-same-origin-ai-chat/02-post-login-home.png,docs,True,True,False,.png,296291,"PNG image data, 1366 x 768, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b5d2-same-origin-ai-chat/03-ai-chat-initial.png,docs,True,True,False,.png,1642866,"PNG image data, 1366 x 8218, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/audit/screenshots/b5d2-same-origin-ai-chat/04-ai-chat-response.png,docs,True,True,False,.png,1766121,"PNG image data, 1366 x 8367, 8-bit/color RGB, non-interlaced",AUDIT_DOC_REVIEW
+docs/hermesops/HERMES_TOOLS_SKILLS_AUDIT.md,docs,True,True,False,.md,12186,"Unicode text, UTF-8 text",DOC_REVIEW
+docx_sample.md,docx_sample.md,True,True,False,.md,29,ASCII text,DOC_REVIEW
+docx_template_output.md,docx_template_output.md,True,True,False,.md,26,ASCII text,DOC_REVIEW
+frontend/package-lock.json,frontend,True,True,False,.json,87,JSON text data,PACKAGE_LOCK_DEFER
+imports/HermesOps-Final-Transfer/IMPORT_MANIFEST.txt,imports,True,True,False,.txt,1070,SKIPPED_POTENTIAL_SENSITIVE,LOCAL_DATA_DO_NOT_COMMIT
+imports/HermesOps-Final-Transfer/IMPORT_REPORT.md,imports,True,True,False,.md,1377,SKIPPED_POTENTIAL_SENSITIVE,LOCAL_DATA_DO_NOT_COMMIT
+imports/HermesOps-Final-Transfer/ROLLBACK_INSTRUCTIONS.md,imports,True,True,False,.md,1140,SKIPPED_POTENTIAL_SENSITIVE,LOCAL_DATA_DO_NOT_COMMIT
+pptx_sample.md,pptx_sample.md,True,True,False,.md,29,ASCII text,DOC_REVIEW
+pptx_template_output.md,pptx_template_output.md,True,True,False,.md,32,ASCII text,DOC_REVIEW
+tests/test_import_conflict_detector.py,tests,True,True,False,.py,2460,SKIPPED_POTENTIAL_SENSITIVE,CODE_OR_CONFIG_REVIEW
+tests/test_security_headers.py,tests,True,True,False,.py,1375,"Python script, ASCII text executable",CODE_OR_CONFIG_REVIEW
