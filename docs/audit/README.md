@@ -9,6 +9,7 @@ Estado atual:
 - `GIT-C1 — Worktree boundary inventory and commit plan`: concluído com `GO`; stage vazio e plano de commits seletivos gerado.
 - `GIT-C2 — selective commits by approved boundary plan`: concluído com `PARTIAL`; commits seletivos principais foram criados e os ambíguos/ruídos de qualidade ficaram para `GIT-C3`.
 - `GIT-C3 — revisar ambíguos remanescentes`: concluído com `PARTIAL`; arquivos seguros foram commitados e os remanescentes de qualidade ficaram documentados.
+- `GIT-C5 — legacy assets dependency triage`: concluído com `GO COM RESSALVAS`; assets runtime mínimos de `/admin/` e `/assinaturas/` foram commitados seletivamente, deixando arquivos legados/binários ambíguos fora.
 - `B0 — Segurança/higiene`: concluído com `GO`.
 - `B1 — Documentação de auditoria`: em consolidação.
 - `B2`: concluído com ressalva operacional.
@@ -67,6 +68,7 @@ Estado atual:
 | `B5-B` AI Chat Ollama LAN OpenAI-compatible runtime smoke | Concluido como `PARTIAL` | [AI_CHAT_OLLAMA_LAN_B5B_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/AI_CHAT_OLLAMA_LAN_B5B_REPORT.md) | Provider `ollama-lan` usa `/v1/chat/completions`, allowlist explicita e sem mock fallback; validacao LAN/UI autenticada ficou pendente. |
 | `B5-C` AI Chat Ollama LAN authenticated runtime validation | Concluido como `PARTIAL` | [AI_CHAT_OLLAMA_LAN_B5C_RUNTIME_VALIDATION.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/AI_CHAT_OLLAMA_LAN_B5C_RUNTIME_VALIDATION.md) | Runtime LAN real validado até provider backend; UI autenticada pendente por sessão não persistida. |
 | `B5-D` AI Chat authenticated UI session fix/validation | Concluido com `GO` | [AI_CHAT_OLLAMA_LAN_B5D_AUTH_UI_SMOKE.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/AI_CHAT_OLLAMA_LAN_B5D_AUTH_UI_SMOKE.md) | Smoke autenticado same-origin validado; provider `ollama-lan` e baseline `qwen3:1.7b-64k` confirmados na UI. |
+| `GIT-C5` Legacy assets dependency triage | Concluído com ressalvas | [LEGACY_ASSETS_TRIAGE_GIT_C5_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/LEGACY_ASSETS_TRIAGE_GIT_C5_REPORT.md) | Assets runtime mínimos do legado foram versionados; `assets/legacy/` e DOCX grande do guia ficaram fora por boundary. |
 | `INFRA-D1` Docker Engine nativo no WSL | Concluido como `PARTIAL` | [WSL_NATIVE_DOCKER_ENGINE_D1_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/WSL_NATIVE_DOCKER_ENGINE_D1_REPORT.md) | Docker atual vem de symlink do Docker Desktop; concluir instalacao nativa com `sudo` interativo. |
 | `INFRA-D1B` Docker Engine nativo no WSL com sudo interativo | Concluido como `PARTIAL` | [WSL_NATIVE_DOCKER_ENGINE_D1B_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/WSL_NATIVE_DOCKER_ENGINE_D1B_REPORT.md) | `sudo -v` nao autenticou dentro da PTY desta sessao; nenhuma alteracao de sistema foi aplicada. |
 | `INFRA-D1C` Docker Engine nativo no WSL via script root-assistido | Concluido com `GO` | [WSL_NATIVE_DOCKER_ENGINE_D1C_REPORT.md](/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/WSL_NATIVE_DOCKER_ENGINE_D1C_REPORT.md) | Docker Engine nativo ativo em `/var/lib/docker`; Compose, hello-world, Postgres/Redis, backend e frontend validados. |
@@ -163,6 +165,7 @@ Motivo:
 - `B4-C` aplicou reparo visual estrutural e gerou screenshots parciais;
 - `B4-D` validou o shell autenticado com sessao real, sem burlar autenticacao;
 - `B5-C` validou o runtime LAN real e o provider backend, mas ainda precisa do smoke UI autenticado por causa de sessão não persistida no browser.
+- `GIT-C5` fechou a rastreabilidade mínima dos assets legados, mas deixou `assets/legacy/` e o DOCX grande do guia ilustrado para boundary explícita.
 
 Se a prioridade de negocio for outra boundary, mantenha a nova boundary explicita e isolada.
 

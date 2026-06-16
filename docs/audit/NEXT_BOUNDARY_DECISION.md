@@ -25,6 +25,7 @@
 - `B5-B — AI Chat Ollama LAN OpenAI-compatible runtime smoke` foi concluido como `PARTIAL`: provider `ollama-lan` foi implementado com `/v1/chat/completions`, allowlist explicita, sem mock fallback, testes/backend/build passando; validacao real do host LAN e smoke UI autenticado ficaram pendentes.
 - `B5-C — AI Chat Ollama LAN authenticated runtime validation` foi concluido como `PARTIAL`: TCP, `/v1/models`, `/v1/chat/completions` e provider backend real passaram; smoke UI autenticado ficou pendente porque a sessão do navegador não persistiu.
 - `B5-D — AI Chat authenticated UI session fix/validation` foi concluída com `GO`; o smoke same-origin autenticado fechou a trilha com `qwen3:1.7b-64k` como baseline do `ollama-lan`.
+- `GIT-C5 — legacy assets dependency triage` foi concluído com `GO COM RESSALVAS`; os assets runtime mínimos de `/admin/` e `/assinaturas/` foram commitados seletivamente, e `assets/legacy/` mais o DOCX grande do guia ilustrado ficaram fora para boundary própria.
 - O candidato forte a segredo em `tools/composio_client.py` já foi removido do código e substituído por `COMPOSIO_API_KEY` no ambiente.
 - A rotação externa da credencial continua necessária se a chave antiga era real.
 - O worktree permanece misturado em várias áreas, então a próxima edição funcional precisa ser isolada por boundary.
@@ -47,6 +48,7 @@
 - O risco visual remanescente esta concentrado nas rotas legadas `/assinaturas/` e `/admin/`, fora do shell React.
 - O runtime Docker local foi comprovado como nativo WSL em `INFRA-D1C`.
 - Volumes do Docker Desktop nao foram migrados; se dados antigos forem necessarios, abrir boundary separada.
+- Assets legados ambíguos continuam fora do Git: `assets/legacy/`, ícones sem referência comprovada e o DOCX grande do guia ilustrado.
 
 ## 4. Recomendação Objetiva
 
@@ -59,6 +61,8 @@
 `B6` é a próxima boundary recomendada somente se o foco voltar para testes/infra isolados.
 
 Se a prioridade voltar para outra feature funcional, abrir uma boundary explícita e pequena, sem misturar legado, IA e imports.
+
+Se a prioridade for fechamento de legado, abrir boundary específica para `assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx`, `assets/legacy/` e referências externas remanescentes do guia visual.
 
 ## 5. Critério para Escolher `B4`
 
