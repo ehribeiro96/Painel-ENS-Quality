@@ -1,6 +1,6 @@
 # Next Boundary Decision
 
-Boundary atual concluída/esperada: `IGNORE-H2 — gitignore hygiene for local artifacts`.
+Boundary atual concluída/esperada: `CI-H2 — GitHub Actions docker build/push review without publishing`.
 
 ## Estado consolidado
 
@@ -8,20 +8,23 @@ Boundary atual concluída/esperada: `IGNORE-H2 — gitignore hygiene for local a
 - `GIT-H2`: `PARTIAL` por grande volume de untracked, com triagem e matriz de decisão preservadas.
 - `SEC-H2`: `GO COM RESSALVAS`; artefatos locais sensíveis seguem sem abertura de conteúdo e exigem revisão humana/manual.
 - `DOCS-H2`: `GO`; consolidou os documentos ativos em `AUDIT_REPORT_INDEX_H2.md` e separou documentos antigos em `SUPERSEDED_AUDIT_DOCS_H2.md`.
-- `IGNORE-H2`: protege via ignore artefatos locais/sensíveis já classificados, sem ocultar candidatos de boundaries futuras.
+- `IGNORE-H2`: `GO`; protege via ignore artefatos locais/sensíveis já classificados, sem ocultar candidatos de boundaries futuras.
+- `CI-H2`: `GO` documental; workflow `.github/workflows/docker-build-push.yml` foi auditado sem versionar e sem publicar. Decisão: `NEEDS_CI_H3_HARDENING` e `MANUAL_ONLY_REQUIRED`.
 - `QA-C1`: `PARTIAL` por backend HTTP indisponível no momento da validação.
 - `QA-C2`: `GO`; relatório runtime HTTP atual.
 
 ## Decisão objetiva
 
-Não iniciar feature funcional ampla enquanto houver workflow CI, assets legados, DOCX grande, testes pendentes e documentação histórica sem revisão. Após IGNORE-H2, a próxima etapa deve analisar candidatos futuros ainda visíveis, sem esconder dívida técnica por ignore genérico.
+Não versionar `.github/workflows/docker-build-push.yml` como está. Ele combina trigger `push` em `main`/`master`, `packages: write` e `docker/build-push-action` com `push: true`, podendo publicar imagem automaticamente após push se entrar no Git.
+
+A próxima etapa deve reescrever o workflow em boundary própria como manual-only/build-only antes de qualquer versionamento.
 
 ## Próximas boundaries recomendadas
 
-1. `CI-H2 — GitHub Actions docker build/push review`
-   - Objetivo: revisar `.github/workflows/docker-build-push.yml` sem publicar imagens e sem alterar runtime local.
-   - Escopo: análise e eventual commit seletivo do workflow somente após revisão de triggers, permissões, registry e secrets esperados.
-   - Não deve fazer push, release, publicação de imagem ou configuração de secrets.
+1. `CI-H3 — harden docker build workflow as manual-only, no publish`
+   - Objetivo: reescrever o workflow CI como `workflow_dispatch` manual-only e inicialmente sem publish.
+   - Escopo: editar/versionar workflow somente após remover publish automático, revisar permissões, definir `file: backend/Dockerfile` se aplicável e documentar tags.
+   - Não deve executar `docker push`, `docker login`, publicar imagem, criar tag ou configurar secrets.
 
 2. `LEGACY-H2 — legacy assets and DOCX large artifact decision`
    - Objetivo: decidir o destino de `assets/legacy/`, ícones sem referência comprovada e `assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx`.
@@ -41,15 +44,19 @@ Não iniciar feature funcional ampla enquanto houver workflow CI, assets legados
 ## O que não fazer agora
 
 - Não fazer `git add .`, `git add -A` ou stage amplo.
+- Não stagear `.github/workflows/docker-build-push.yml` como está.
+- Não publicar imagem.
+- Não rodar `docker push` ou `docker login`.
+- Não criar tag.
+- Não chamar GitHub API ou executar Actions.
 - Não limpar untracked antigos.
 - Não apagar, mover ou renomear documentos antigos.
 - Não alterar código funcional.
 - Não alterar migrations, Docker/Compose, `.env*`, package-lock, AI Chat/Ollama, imports, assets, frontend ou backend fora de boundary própria.
 - Não commitar screenshots antigas, assets, imports, samples, package-lock ou outputs de laboratório fora de suas boundaries.
-- Não adicionar ignore genérico para `*.md`, `*.csv`, `*.docx`, `*.png` ou `*.json`.
 
 ## Decisão final
 
-Próxima boundary recomendada: `CI-H2 — GitHub Actions docker build/push review`.
+Próxima boundary recomendada: `CI-H3 — harden docker build workflow as manual-only, no publish`.
 
-Motivo: o workflow CI continua visível propositalmente e pode ter impacto de release/publicação; deve ser revisado antes de legado, testes ou qualquer feature funcional ampla.
+Motivo: o workflow CI atual deve ficar fora do Git até ser endurecido; versioná-lo como está pode publicar `latest` automaticamente em GHCR após push para `main`/`master`.
