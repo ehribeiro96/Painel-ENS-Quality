@@ -1,76 +1,69 @@
 # Next Boundary Decision
 
-Boundary atual concluída: `TEST-H2 — pytest markers and validation command standardization`.
+Boundary atual concluída: `PRODUCT-H1 — roadmap de evolução funcional do Painel ENS-Quality`.
 
 ## Estado consolidado
 
-- `AUDIT-H1`: `PARTIAL` por untracked antigos, mas os relatórios H1 são a base ativa de auditoria.
+- `AUDIT-H1`: `PARTIAL` por untracked antigos, mas relatórios H1 seguem como base ativa de auditoria.
 - `GIT-H2`: `PARTIAL` por grande volume de untracked, com triagem e matriz de decisão preservadas.
 - `SEC-H2`: `GO COM RESSALVAS`; artefatos locais sensíveis seguem sem abertura de conteúdo e exigem revisão humana/manual.
-- `DOCS-H2`: `GO`; consolidou os documentos ativos em `AUDIT_REPORT_INDEX_H2.md` e separou documentos antigos em `SUPERSEDED_AUDIT_DOCS_H2.md`.
-- `IGNORE-H2`: `GO`; protege via ignore artefatos locais/sensíveis já classificados, sem ocultar candidatos de boundaries futuras.
-- `CI-H2`: `GO` documental; workflow `.github/workflows/docker-build-push.yml` foi auditado sem versionar e sem publicar. Decisão: `NEEDS_CI_H3_HARDENING` e `MANUAL_ONLY_REQUIRED`.
-- `CI-H3`: `PARTIAL` aceitável por ausência de `actionlint`; workflow Docker foi reescrito e versionado como validação manual build-only, sem publish, sem registry login, sem GHCR, sem `latest`, sem `packages: write`, sem trigger automático e sem secrets.
-- `LEGACY-H2`: `GO` documental; `assets/legacy/`, DOCX grande e ícones remanescentes foram inventariados por metadados. Nenhum asset foi commitado, nenhum DOCX/imagem foi aberto e nenhuma alteração funcional foi feita.
-- `TEST-H2`: `PARTIAL`; markers pytest oficiais foram criados, dois testes pendentes foram revisados/versionados e validações principais passaram. Ressalva: marker `ai_chat` está registrado, mas ainda não possui testes marcados nesta boundary.
-- `QA-C1`: `PARTIAL` por backend HTTP indisponível no momento da validação.
-- `QA-C2`: `GO`; relatório runtime HTTP atual.
+- `DOCS-H2`: `GO`; consolidou documentos ativos e históricos.
+- `IGNORE-H2`: `GO`; protege artefatos locais/sensíveis já classificados.
+- `CI-H3`: `PARTIAL` aceitável por ausência de `actionlint`; workflow Docker foi endurecido como manual build-only.
+- `LEGACY-H2`: `GO` documental; assets remanescentes foram inventariados por metadados sem abertura de binários/imagens.
+- `TEST-H2`: `PARTIAL`; markers pytest e comandos de validação foram padronizados com ressalva conhecida de marker `ai_chat` sem testes marcados na boundary.
+- `PRODUCT-H1`: `GO documental`; roadmap, MVP, backlog, UAT scenarios, do-not-touch e sumário executivo foram criados sem alteração funcional.
 
 ## Decisão objetiva
 
-TEST-H2 não altera código funcional e não resolve pendências de publicação/legacy/security fora da boundary. A decisão LEGACY-H2 sobre assets remanescentes segue válida:
+A próxima etapa do produto deve validar operação real antes de implementar novas features. O fluxo alvo já existe em partes técnicas:
 
-- `assets/legacy/`: `LEGACY_ARCHIVE_DEFER`, sem commit até decisão humana.
-- `assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx`: `BINARY_LARGE_HUMAN_REVIEW`, sem abertura e sem commit.
-- `assets/static/icons/Logo.png`: provável `REQUIRED_RUNTIME_ASSET` por referência no backend atual, mas exige `IMAGE_HUMAN_REVIEW` e boundary futura antes de commit.
-- Ícones sociais: `IMAGE_HUMAN_REVIEW`, sem uso local runtime comprovado; podem ser candidatos futuros para reduzir dependência externa do legado.
-- Referências externas em legado: `EXTERNAL_REFERENCE_RISK`, documentadas sem correção nesta boundary.
+- `/assets/{asset_id}/move` salva movimentação.
+- `/assets/{asset_id}/history` lista histórico.
+- `/movements/{movement_id}/suggested-macro` gera macro pós-movimentação.
+- `/macros/generations/{generation_id}/copied` marca cópia.
+- `/audit-logs` permite consulta de auditoria.
 
-## Próximas boundaries recomendadas
+Porém, o uso diário precisa ser provado ponta-a-ponta com dados sintéticos. Implementar MOV-H1 ou MACRO-H1 agora, sem UAT, arrisca corrigir a coisa errada.
 
-1. `PUSH-C1 — publish validated local commits`
-   - Condição: somente se autenticação GitHub estiver resolvida.
-   - Objetivo: publicar commits locais validados sem misturar novas mudanças.
-   - Não deve reescrever histórico, fazer merge/rebase ou incluir untracked fora de escopo.
+## Próxima boundary recomendada
 
-2. `LEGACY-H3 — legacy archive/manual artifact handling`
-   - Condição: somente se decisão humana aprovar.
-   - Objetivo: decidir operacionalmente se `assets/legacy/`, DOCX grande, `Logo.png` e ícones sociais serão arquivados, ignorados, descartados manualmente ou versionados seletivamente.
-   - Não deve abrir DOCX/imagens sem autorização explícita, nem misturar archive legado com alteração funcional.
+1. `UAT-H1 — end-to-end operational scenario validation`
+   - Objetivo: validar Ativo → Movimentação → Macro → Histórico → Copiar macro → Auditoria com dados sintéticos.
+   - Escopo: execução e documentação de UAT; sem alteração funcional.
+   - Critério de GO: 10 cenários do `PRODUCT_H1_UAT_SCENARIOS.md` executados ou bloqueados com evidência clara e sem dado real.
 
-3. `CI-H4 — publish workflow design`
-   - Condição: somente se houver decisão humana explícita para publicar imagem.
-   - Objetivo: desenhar publish seguro com proteção manual, permissões mínimas, política de tags e nome de imagem aprovado.
-   - Não deve reintroduzir publish automático, `latest` sem política, login sem proteção, secrets sem necessidade ou `packages: write` fora de fluxo aprovado.
+## Boundaries seguintes condicionais
 
-4. `SEC-H3`
-   - Condição: somente se revisão humana confirmar necessidade.
-   - Objetivo: remediar artefato sensível real ou exposição histórica comprovada.
-   - Escopo: segurança/manual; não imprimir segredos e não commitar valores sensíveis.
+2. `MOV-H1 — movement creation and validation hardening`
+   - Condição: UAT-H1 identificar lacuna em criação/validação/legibilidade de movimentação.
+   - Não deve mexer em imports, IA/Ollama, legacy, Docker ou migrations.
+
+3. `MACRO-H1 — ITIL macro generation polish`
+   - Condição: UAT-H1 identificar lacuna em geração, visibilidade, pendências ou cópia da macro.
+   - Não deve trocar template oficial sem revisão humana.
+
+4. `HISTORY-H1 — history and audit traceability`
+   - Condição: UAT-H1 mostrar dificuldade de rastrear movimento/macro/auditoria.
+   - Deve preservar RBAC e paginação.
+
+5. `RELEASE-H1 — production readiness checklist`
+   - Condição: UAT-H1 e correções P1 concluídas ou riscos aceitos.
+   - Não deve publicar imagem, push ou rodar migrations em banco produtivo.
 
 ## O que não fazer agora
 
+- Não implementar feature antes do UAT-H1.
 - Não fazer `git add .`, `git add -A` ou stage amplo.
-- Não commitar `assets/legacy/`.
-- Não commitar `assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx`.
-- Não commitar `assets/static/icons/Logo.png` ou ícones sociais sem boundary futura.
-- Não abrir DOCX grande.
-- Não usar OCR.
-- Não analisar imagens visualmente sem autorização.
-- Não publicar imagem.
-- Não rodar `docker push` ou `docker login`.
-- Não criar tag.
-- Não chamar GitHub API ou executar Actions.
+- Não commitar/pushar nesta boundary.
 - Não limpar untracked antigos.
-- Não apagar, mover ou renomear documentos antigos.
-- Não alterar código funcional.
-- Não alterar migrations, Dockerfile, Docker Compose, `.env*`, package-lock, AI Chat/Ollama, imports, frontend ou backend fora de boundary própria.
-- Não marcar testes existentes em massa sem boundary própria para cobertura por marker.
+- Não mexer em `.env*`, dumps, bancos, tokens ou credenciais.
+- Não alterar backend, frontend, migrations, Docker, package-lock, assets, CI ou IA/Ollama dentro de UAT-H1.
+- Não usar dado produtivo nos cenários.
+- Não abrir DOCX/imagens/legacy assets sem boundary e decisão humana.
 
 ## Decisão final
 
-Próxima boundary recomendada: `PUSH-C1 — publish validated local commits`, se autenticação GitHub estiver resolvida.
+Próxima boundary recomendada: `UAT-H1 — end-to-end operational scenario validation`.
 
-`LEGACY-H3 — legacy archive/manual artifact handling` fica condicionada a decisão humana explícita sobre o destino dos assets legados e do DOCX grande.
-
-`CI-H4 — publish workflow design` fica condicionado a decisão humana explícita de publicação de imagem. `SEC-H3` fica condicionado a confirmação humana de necessidade de revisão/remediação de segurança.
+Justificativa executiva: o projeto já tem base técnica suficiente para um MVP-candidate, mas ainda precisa provar valor operacional diário com evidência. UAT-H1 é a menor próxima boundary segura e a que melhor separa produto, técnica, segurança, UX e release.
