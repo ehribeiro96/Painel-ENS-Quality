@@ -1,6 +1,6 @@
 # Next Boundary Decision
 
-Boundary atual concluída: `MACRO-H1B — frontend build/runtime unblock and revalidation`.
+Boundary atual concluída: `AUTH-UAT-H1 — define safe local UAT authentication path`.
 
 ## Estado consolidado
 
@@ -17,6 +17,7 @@ Boundary atual concluída: `MACRO-H1B — frontend build/runtime unblock and rev
 - `MACRO-H1`: `PARTIAL_RUNTIME_BLOCKED`; a correção de frontend foi aplicada no código-fonte, mas a revalidação do bundle atualizado ficou bloqueada pelo ambiente WSL/UNC e pela dependência opcional ausente do Rollup.
 - `MACRO-H1B`: `PARTIAL_RUNTIME_RECHECK_BLOCKED`; o bundle novo foi servido com sucesso após `npm ci` e build em Node Linux, mas o recheck autenticado não pôde ser repetido porque a sessão local/admin não estava disponível nesta boundary.
 - `MACRO-H1C`: `PARTIAL_AUTH_SESSION_REQUIRED`; a rechecagem visual autenticada não pôde ser completada de forma segura sem uma sessão local válida do app nesta boundary.
+- `AUTH-UAT-H1`: `PARTIAL_AUTH_SESSION_REQUIRED`; o caminho seguro foi definido via scripts documentados, mas a sessão autenticada não pôde ser obtida nesta execução.
 
 ## Decisão objetiva
 
@@ -32,10 +33,10 @@ O código-fonte já contém a correção conservadora, mas a revalidação visua
 
 ## Próxima boundary recomendada
 
-1. `AUTH-UAT-H1 — define safe local UAT authentication path`
-   - Objetivo: estabelecer um caminho local seguro para autenticação UAT sem expor segredo.
-   - Escopo: sessão/autenticação local para reuso em rechecks visuais.
-   - Critério de GO: sessão autenticada local disponível de forma segura e recheck visual preparado.
+1. `AUTH-UAT-H2 — provision documented local UAT test user`
+   - Objetivo: viabilizar um usuário/sessão local repetível sem expor segredos.
+   - Escopo: somente a trilha de autenticação local para UAT visual.
+   - Critério de GO: sessão segura disponível para recheck.
 
 ## Boundaries seguintes condicionais
 
@@ -74,6 +75,6 @@ O código-fonte já contém a correção conservadora, mas a revalidação visua
 
 ## Decisão final
 
-Próxima boundary recomendada: `AUTH-UAT-H1 — define safe local UAT authentication path`.
+Próxima boundary recomendada: `AUTH-UAT-H2 — provision documented local UAT test user`.
 
 Justificativa executiva: o ajuste está codificado, mas a garantia operacional depende de um runtime frontend funcional para provar o comportamento na UI atualizada. O próximo passo deve restaurar essa capacidade de validação antes de avançar para HISTÓRIA ou outras evoluções.
