@@ -16,10 +16,11 @@ Boundary atual concluída: `MACRO-H1B — frontend build/runtime unblock and rev
 - `UAT-H1`: `GO COM RESSALVAS`; cenário ponta-a-ponta validado com dados sintéticos, com ressalva de UX porque a modal de movimentação fecha antes de manter a macro visível para cópia.
 - `MACRO-H1`: `PARTIAL_RUNTIME_BLOCKED`; a correção de frontend foi aplicada no código-fonte, mas a revalidação do bundle atualizado ficou bloqueada pelo ambiente WSL/UNC e pela dependência opcional ausente do Rollup.
 - `MACRO-H1B`: `PARTIAL_RUNTIME_RECHECK_BLOCKED`; o bundle novo foi servido com sucesso após `npm ci` e build em Node Linux, mas o recheck autenticado não pôde ser repetido porque a sessão local/admin não estava disponível nesta boundary.
+- `MACRO-H1C`: `PARTIAL_AUTH_SESSION_REQUIRED`; a rechecagem visual autenticada não pôde ser completada de forma segura sem uma sessão local válida do app nesta boundary.
 
 ## Decisão objetiva
 
-O fluxo alvo segue corrigido no frontend e o build foi revalidado em ambiente Linux. A execução UAT autenticada ainda depende de uma sessão local disponível para confirmar a macro visível e copiável no percurso pós-movimentação.
+O fluxo alvo segue corrigido no frontend e o build foi revalidado em ambiente Linux. O último bloqueio é a disponibilidade de uma sessão autenticada local segura para completar a rechecagem visual.
 
 - `/assets/{asset_id}/move` salva movimentação.
 - `/assets/{asset_id}/history` lista histórico.
@@ -31,26 +32,32 @@ O código-fonte já contém a correção conservadora, mas a revalidação visua
 
 ## Próxima boundary recomendada
 
-1. `MACRO-H1C — runtime visual recheck only`
-   - Objetivo: repetir a validação visual autenticada do fluxo de macro pós-movimentação agora que o build foi revalidado.
-   - Escopo: recheck visual/UAT sem alterar código funcional.
-   - Critério de GO: sessão autenticada disponível e fluxo visual confirma a macro visível/copiável.
+1. `AUTH-UAT-H1 — define safe local UAT authentication path`
+   - Objetivo: estabelecer um caminho local seguro para autenticação UAT sem expor segredo.
+   - Escopo: sessão/autenticação local para reuso em rechecks visuais.
+   - Critério de GO: sessão autenticada local disponível de forma segura e recheck visual preparado.
 
 ## Boundaries seguintes condicionais
 
-2. `MOV-H1 — movement creation and validation hardening`
+2. `MACRO-H1C — runtime visual recheck only`
+   - Condição: a sessão autenticada local segura estiver disponível.
+   - Objetivo: repetir a validação visual autenticada do fluxo de macro pós-movimentação agora que o build foi revalidado.
+   - Escopo: recheck visual/UAT sem alterar código funcional.
+   - Critério de GO: fluxo visual confirma a macro visível/copiável.
+
+3. `MOV-H1 — movement creation and validation hardening`
    - Condição: UAT-H1 identificar lacuna em criação/validação/legibilidade de movimentação.
    - Não deve mexer em imports, IA/Ollama, legacy, Docker ou migrations.
 
-3. `MACRO-H1 — ITIL macro generation polish`
+4. `MACRO-H1 — ITIL macro generation polish`
    - Condição: o fluxo já revalidado mostrar oportunidade adicional de refinamento da macro oficial.
    - Não deve trocar template oficial sem revisão humana.
 
-4. `HISTORY-H1 — history and audit traceability`
+5. `HISTORY-H1 — history and audit traceability`
    - Condição: UAT-H1 mostrar dificuldade de rastrear movimento/macro/auditoria.
    - Deve preservar RBAC e paginação.
 
-5. `RELEASE-H1 — production readiness checklist`
+6. `RELEASE-H1 — production readiness checklist`
    - Condição: UAT-H1 e correções P1 concluídas ou riscos aceitos.
    - Não deve publicar imagem, push ou rodar migrations em banco produtivo.
 
@@ -67,6 +74,6 @@ O código-fonte já contém a correção conservadora, mas a revalidação visua
 
 ## Decisão final
 
-Próxima boundary recomendada: `MACRO-H1C — runtime visual recheck only`.
+Próxima boundary recomendada: `AUTH-UAT-H1 — define safe local UAT authentication path`.
 
 Justificativa executiva: o ajuste está codificado, mas a garantia operacional depende de um runtime frontend funcional para provar o comportamento na UI atualizada. O próximo passo deve restaurar essa capacidade de validação antes de avançar para HISTÓRIA ou outras evoluções.
