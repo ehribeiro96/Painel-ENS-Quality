@@ -56,7 +56,7 @@ export function AssetDetailsPage() {
   const { id } = useParams();
   const { token } = useAuth();
   const queryClient = useQueryClient();
-  const [moving, setMoving] = useState(false);
+  const [movingAsset, setMovingAsset] = useState<Asset | null>(null);
 
   const assetQuery = useQuery({
     queryKey: ["asset", id],
@@ -73,7 +73,7 @@ export function AssetDetailsPage() {
   const usersQuery = useQuery({
     queryKey: ["users", "movement-select"],
     enabled: Boolean(token),
-    queryFn: () => api.users(token as string, "&page_size=100")
+    queryFn: () => api.users(token as string, "?page_size=100")
   });
 
   const asset = assetQuery.data as Asset | undefined;
@@ -94,7 +94,7 @@ export function AssetDetailsPage() {
           <h1>{asset?.hostname ?? asset?.patrimony ?? "Detalhe do ativo"}</h1>
           <p>Situacao atual, timeline operacional e auditoria do ativo.</p>
         </div>
-        <button className="button" type="button" onClick={() => setMoving(true)} disabled={!asset}>Movimentar</button>
+        <button className="button" type="button" onClick={() => setMovingAsset(asset ?? null)} disabled={!asset}>Movimentar</button>
       </div>
 
       {assetQuery.isError ? <Alert tone="danger">Nao foi possivel carregar o ativo.</Alert> : null}
@@ -167,15 +167,14 @@ export function AssetDetailsPage() {
       ) : null}
 
       <MoveAssetDialog
-        asset={moving ? asset ?? null : null}
+        asset={movingAsset}
         token={token ?? ""}
         users={usersQuery.data}
-        onClose={() => setMoving(false)}
+        onClose={() => setMovingAsset(null)}
         onMoved={() => {
           void queryClient.invalidateQueries({ queryKey: ["asset", id] });
           void queryClient.invalidateQueries({ queryKey: ["asset-history", id] });
           void queryClient.invalidateQueries({ queryKey: ["assets"] });
-          setMoving(false);
         }}
       />
     </>

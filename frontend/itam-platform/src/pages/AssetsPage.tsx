@@ -167,7 +167,7 @@ export function AssetsPage() {
   const usersQuery = useQuery({
     queryKey: ["users", "movement-select"],
     enabled: Boolean(token),
-    queryFn: () => api.users(token as string, "&page_size=100")
+    queryFn: () => api.users(token as string, "?page_size=100")
   });
 
   const stockMutation = useMutation({

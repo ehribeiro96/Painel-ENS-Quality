@@ -14,6 +14,7 @@ Boundary atual concluída: `PRODUCT-H1 — roadmap de evolução funcional do Pa
 - `TEST-H2`: `PARTIAL`; markers pytest e comandos de validação foram padronizados com ressalva conhecida de marker `ai_chat` sem testes marcados na boundary.
 - `PRODUCT-H1`: `GO documental`; roadmap, MVP, backlog, UAT scenarios, do-not-touch e sumário executivo foram criados sem alteração funcional.
 - `UAT-H1`: `GO COM RESSALVAS`; cenário ponta-a-ponta validado com dados sintéticos, com ressalva de UX porque a modal de movimentação fecha antes de manter a macro visível para cópia.
+- `MACRO-H1`: `PARTIAL_RUNTIME_BLOCKED`; a correção de frontend foi aplicada no código-fonte, mas a revalidação do bundle atualizado ficou bloqueada pelo ambiente WSL/UNC e pela dependência opcional ausente do Rollup.
 
 ## Decisão objetiva
 
@@ -25,14 +26,14 @@ O fluxo alvo foi validado em nível de backend e auditoria, mas a experiência o
 - `/macros/generations/{generation_id}/copied` marca cópia.
 - `/audit-logs` permite consulta de auditoria.
 
-Como o UAT confirmou a lacuna de continuidade da macro, a próxima boundary deve focar esse ponto com escopo estreito.
+O código-fonte já contém a correção conservadora, mas a revalidação visual depende de um runtime frontend funcional que o ambiente local não conseguiu fornecer.
 
 ## Próxima boundary recomendada
 
-1. `MACRO-H1 — preserve post-movement macro visibility and copy flow`
-   - Objetivo: manter a macro gerada visível após a movimentação e permitir cópia sem sair do fluxo operacional.
-   - Escopo: ajuste de UX/fluxo do movimento, sem mudar regra de negócio, auditoria ou contrato de backend.
-   - Critério de GO: operador consegue concluir a movimentação, visualizar a macro e copiá-la na mesma jornada, com auditoria preservada.
+1. `MACRO-H1 — frontend build/runtime unblock and revalidation`
+   - Objetivo: restaurar um runtime frontend que permita validar o bundle atualizado e confirmar a macro visível após a movimentação.
+   - Escopo: desbloqueio do build/runtime local para a UI já corrigida.
+   - Critério de GO: build do frontend e revalidação visual passam com a modal permanecendo aberta até a cópia.
 
 ## Boundaries seguintes condicionais
 
@@ -41,7 +42,7 @@ Como o UAT confirmou a lacuna de continuidade da macro, a próxima boundary deve
    - Não deve mexer em imports, IA/Ollama, legacy, Docker ou migrations.
 
 3. `MACRO-H1 — ITIL macro generation polish`
-   - Condição: a camada operacional de macro precisar de refinamento adicional após a boundary de continuidade visual.
+   - Condição: o fluxo já revalidado mostrar oportunidade adicional de refinamento da macro oficial.
    - Não deve trocar template oficial sem revisão humana.
 
 4. `HISTORY-H1 — history and audit traceability`
@@ -65,6 +66,6 @@ Como o UAT confirmou a lacuna de continuidade da macro, a próxima boundary deve
 
 ## Decisão final
 
-Próxima boundary recomendada: `MACRO-H1 — preserve post-movement macro visibility and copy flow`.
+Próxima boundary recomendada: `MACRO-H1 — frontend build/runtime unblock and revalidation`.
 
-Justificativa executiva: a validação UAT-H1 confirmou o valor operacional e isolou uma lacuna concreta e estreita. Agora a melhor próxima boundary é corrigir a continuidade da macro sem expandir escopo para imports, auditoria, IA ou migrations.
+Justificativa executiva: o ajuste está codificado, mas a garantia operacional depende de um runtime frontend funcional para provar o comportamento na UI atualizada. O próximo passo deve restaurar essa capacidade de validação antes de avançar para HISTÓRIA ou outras evoluções.

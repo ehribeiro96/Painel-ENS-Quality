@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -37,10 +37,11 @@ type MoveAssetDialogProps = {
 const statuses: AssetStatus[] = ["IN_USE", "STOCK", "MAINTENANCE", "DEFECTIVE", "DISCARDED", "RESERVED", "CONFIG_PENDING"];
 
 export function MoveAssetDialog({ asset, token, users, onClose, onMoved }: MoveAssetDialogProps) {
-  const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [isSubmittingMovement, setIsSubmittingMovement] = useState(false);
+  const [movementResult, setMovementResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [movementMacro, setMovementMacro] = useState<SuggestedMovementMacro | null>(null);
+  const [generatedMacro, setGeneratedMacro] = useState<SuggestedMovementMacro | null>(null);
+  const [isCopyingMacro, setIsCopyingMacro] = useState(false);
   const [macroCopied, setMacroCopied] = useState(false);
 
   const form = useForm<MoveForm>({
@@ -61,17 +62,36 @@ export function MoveAssetDialog({ asset, token, users, onClose, onMoved }: MoveA
     [users?.items, watched.new_user_id]
   );
 
+  useEffect(() => {
+    if (!asset) {
+      return;
+    }
+    form.reset({
+      new_user_id: asset.current_user_id ?? "",
+      new_status: asset.status ?? "STOCK",
+      new_location: asset.location ?? "",
+      justification: "",
+      notes: "",
+      explicit_confirmation: false
+    });
+    setMovementResult(null);
+    setError(null);
+    setGeneratedMacro(null);
+    setIsCopyingMacro(false);
+    setMacroCopied(false);
+  }, [asset?.id, form]);
+
   if (!asset) {
     return null;
   }
 
   async function submit(values: MoveForm) {
-    if (!asset || submitting) {
+    if (!asset || isSubmittingMovement || generatedMacro) {
       return;
     }
-    setSubmitting(true);
+    setIsSubmittingMovement(true);
     setError(null);
-    setSuccess(null);
+    setMovementResult(null);
     try {
       const movement = await api.moveAsset(token, asset.id, {
         new_user_id: values.new_user_id || null,
@@ -81,14 +101,31 @@ export function MoveAssetDialog({ asset, token, users, onClose, onMoved }: MoveA
         notes: values.notes || null
       });
       const suggested = await api.suggestedMovementMacro(token, movement.id).catch(() => null);
-      setMovementMacro(suggested?.rendered_text ? suggested : null);
+      setGeneratedMacro(suggested?.rendered_text ? suggested : null);
       setMacroCopied(false);
-      setSuccess("Movimentação registrada com sucesso. Histórico atualizado.");
+      setMovementResult("Movimentação registrada com sucesso. Histórico atualizado.");
       onMoved();
     } catch {
       setError("Não foi possível movimentar o ativo. Revise os campos e tente novamente.");
     } finally {
-      setSubmitting(false);
+      setIsSubmittingMovement(false);
+    }
+  }
+
+  async function copyGeneratedMacro() {
+    if (!generatedMacro?.generation_id || isCopyingMacro) {
+      return;
+    }
+    setIsCopyingMacro(true);
+    setError(null);
+    try {
+      await navigator.clipboard.writeText(generatedMacro.rendered_text);
+      await api.macroMarkCopied(token, generatedMacro.generation_id);
+      setMacroCopied(true);
+    } catch {
+      setError("Não foi possível copiar a macro. Tente novamente.");
+    } finally {
+      setIsCopyingMacro(false);
     }
   }
 
@@ -103,31 +140,23 @@ export function MoveAssetDialog({ asset, token, users, onClose, onMoved }: MoveA
           <button className="icon-only" type="button" aria-label="Fechar movimentação" onClick={onClose}>X</button>
         </div>
 
-        {success ? <Alert tone="success">{success}</Alert> : null}
+        {movementResult ? <Alert tone="success">{movementResult}</Alert> : null}
         {error ? <Alert tone="danger">{error}</Alert> : null}
-        {movementMacro ? (
+        {generatedMacro ? (
           <div className="macro-after-move">
             <h2>Macro de movimentação</h2>
-            {movementMacro.pending_fields.length > 0 ? (
-              <Alert tone="danger">Campos pendentes: {movementMacro.pending_fields.join(", ")}. Revise antes de colar no chamado.</Alert>
+            {generatedMacro.pending_fields.length > 0 ? (
+              <Alert tone="danger">Campos pendentes: {generatedMacro.pending_fields.join(", ")}. Revise antes de colar no chamado.</Alert>
             ) : null}
             {macroCopied ? <Alert tone="success">Macro copiada.</Alert> : null}
-            <textarea className="textarea macro-preview" readOnly rows={7} value={movementMacro.rendered_text} />
+            <textarea className="textarea macro-preview" readOnly rows={7} value={generatedMacro.rendered_text} />
             <button
               className="button secondary"
               type="button"
-              disabled={!movementMacro.generation_id}
-              onClick={() => {
-                if (!movementMacro.generation_id) return;
-                void navigator.clipboard.writeText(movementMacro.rendered_text).then(async () => {
-                  if (movementMacro.generation_id) {
-                    await api.macroMarkCopied(token, movementMacro.generation_id);
-                  }
-                });
-                setMacroCopied(true);
-              }}
+              disabled={!generatedMacro.generation_id || isCopyingMacro}
+              onClick={() => void copyGeneratedMacro()}
             >
-              {movementMacro.generation_id ? "Copiar macro" : "Erro: Macro não persistida"}
+              {generatedMacro.generation_id ? (isCopyingMacro ? "Copiando..." : "Copiar macro") : "Erro: Macro não persistida"}
             </button>
           </div>
         ) : null}
@@ -187,8 +216,10 @@ export function MoveAssetDialog({ asset, token, users, onClose, onMoved }: MoveA
           </label>
           {form.formState.errors.explicit_confirmation ? <span className="field-error span-2">{form.formState.errors.explicit_confirmation.message}</span> : null}
           <div className="modal-actions span-2">
-            <button className="button secondary" type="button" onClick={onClose} disabled={submitting}>Cancelar</button>
-            <button className="button" type="submit" disabled={submitting}>{submitting ? "Registrando..." : "Confirmar movimentação"}</button>
+            <button className="button secondary" type="button" onClick={onClose} disabled={isSubmittingMovement}>{generatedMacro ? "Concluir" : "Cancelar"}</button>
+            <button className="button" type="submit" disabled={isSubmittingMovement || Boolean(generatedMacro)}>
+              {isSubmittingMovement ? "Registrando..." : generatedMacro ? "Movimentação registrada" : "Confirmar movimentação"}
+            </button>
           </div>
         </form>
       </section>

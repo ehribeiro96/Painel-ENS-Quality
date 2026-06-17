@@ -212,7 +212,16 @@ export const api = {
   updateAsset: (token: string, id: string, payload: Record<string, unknown>) =>
     request<Asset>(`/assets/${id}`, { method: "PUT", body: JSON.stringify(payload), token }),
   deleteAsset: (token: string, id: string) => request<void>(`/assets/${id}`, { method: "DELETE", token }),
-  users: (token: string, params = "") => request<Page<User>>(`/users?page_size=25${params}`, { token }),
+  users: (token: string, params = "") => {
+    if (!params) {
+      return request<Page<User>>("/users?page_size=25", { token });
+    }
+    const normalized = params.startsWith("?") ? params.slice(1) : params.replace(/^&/, "");
+    if (normalized.includes("page_size=")) {
+      return request<Page<User>>(`/users?${normalized}`, { token });
+    }
+    return request<Page<User>>(`/users?page_size=25&${normalized}`, { token });
+  },
   user: (token: string, id: string) => request<User>(`/users/${id}`, { token }),
   createUser: (token: string, payload: Record<string, unknown>) =>
     request<User>("/users", { method: "POST", body: JSON.stringify(payload), token }),
