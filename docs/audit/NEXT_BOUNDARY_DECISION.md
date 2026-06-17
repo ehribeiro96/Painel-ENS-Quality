@@ -13,10 +13,11 @@ Boundary atual concluída: `PRODUCT-H1 — roadmap de evolução funcional do Pa
 - `LEGACY-H2`: `GO` documental; assets remanescentes foram inventariados por metadados sem abertura de binários/imagens.
 - `TEST-H2`: `PARTIAL`; markers pytest e comandos de validação foram padronizados com ressalva conhecida de marker `ai_chat` sem testes marcados na boundary.
 - `PRODUCT-H1`: `GO documental`; roadmap, MVP, backlog, UAT scenarios, do-not-touch e sumário executivo foram criados sem alteração funcional.
+- `UAT-H1`: `GO COM RESSALVAS`; cenário ponta-a-ponta validado com dados sintéticos, com ressalva de UX porque a modal de movimentação fecha antes de manter a macro visível para cópia.
 
 ## Decisão objetiva
 
-A próxima etapa do produto deve validar operação real antes de implementar novas features. O fluxo alvo já existe em partes técnicas:
+O fluxo alvo foi validado em nível de backend e auditoria, mas a experiência operacional ainda precisa de um ajuste específico para manter a macro disponível ao operador após a movimentação.
 
 - `/assets/{asset_id}/move` salva movimentação.
 - `/assets/{asset_id}/history` lista histórico.
@@ -24,14 +25,14 @@ A próxima etapa do produto deve validar operação real antes de implementar no
 - `/macros/generations/{generation_id}/copied` marca cópia.
 - `/audit-logs` permite consulta de auditoria.
 
-Porém, o uso diário precisa ser provado ponta-a-ponta com dados sintéticos. Implementar MOV-H1 ou MACRO-H1 agora, sem UAT, arrisca corrigir a coisa errada.
+Como o UAT confirmou a lacuna de continuidade da macro, a próxima boundary deve focar esse ponto com escopo estreito.
 
 ## Próxima boundary recomendada
 
-1. `UAT-H1 — end-to-end operational scenario validation`
-   - Objetivo: validar Ativo → Movimentação → Macro → Histórico → Copiar macro → Auditoria com dados sintéticos.
-   - Escopo: execução e documentação de UAT; sem alteração funcional.
-   - Critério de GO: 10 cenários do `PRODUCT_H1_UAT_SCENARIOS.md` executados ou bloqueados com evidência clara e sem dado real.
+1. `MACRO-H1 — preserve post-movement macro visibility and copy flow`
+   - Objetivo: manter a macro gerada visível após a movimentação e permitir cópia sem sair do fluxo operacional.
+   - Escopo: ajuste de UX/fluxo do movimento, sem mudar regra de negócio, auditoria ou contrato de backend.
+   - Critério de GO: operador consegue concluir a movimentação, visualizar a macro e copiá-la na mesma jornada, com auditoria preservada.
 
 ## Boundaries seguintes condicionais
 
@@ -40,7 +41,7 @@ Porém, o uso diário precisa ser provado ponta-a-ponta com dados sintéticos. I
    - Não deve mexer em imports, IA/Ollama, legacy, Docker ou migrations.
 
 3. `MACRO-H1 — ITIL macro generation polish`
-   - Condição: UAT-H1 identificar lacuna em geração, visibilidade, pendências ou cópia da macro.
+   - Condição: a camada operacional de macro precisar de refinamento adicional após a boundary de continuidade visual.
    - Não deve trocar template oficial sem revisão humana.
 
 4. `HISTORY-H1 — history and audit traceability`
@@ -64,6 +65,6 @@ Porém, o uso diário precisa ser provado ponta-a-ponta com dados sintéticos. I
 
 ## Decisão final
 
-Próxima boundary recomendada: `UAT-H1 — end-to-end operational scenario validation`.
+Próxima boundary recomendada: `MACRO-H1 — preserve post-movement macro visibility and copy flow`.
 
-Justificativa executiva: o projeto já tem base técnica suficiente para um MVP-candidate, mas ainda precisa provar valor operacional diário com evidência. UAT-H1 é a menor próxima boundary segura e a que melhor separa produto, técnica, segurança, UX e release.
+Justificativa executiva: a validação UAT-H1 confirmou o valor operacional e isolou uma lacuna concreta e estreita. Agora a melhor próxima boundary é corrigir a continuidade da macro sem expandir escopo para imports, auditoria, IA ou migrations.
