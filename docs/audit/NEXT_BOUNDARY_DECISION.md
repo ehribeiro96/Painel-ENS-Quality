@@ -1,6 +1,6 @@
 # Next Boundary Decision
 
-Boundary atual concluída: `PRODUCT-H1 — roadmap de evolução funcional do Painel ENS-Quality`.
+Boundary atual concluída: `MACRO-H1B — frontend build/runtime unblock and revalidation`.
 
 ## Estado consolidado
 
@@ -15,10 +15,11 @@ Boundary atual concluída: `PRODUCT-H1 — roadmap de evolução funcional do Pa
 - `PRODUCT-H1`: `GO documental`; roadmap, MVP, backlog, UAT scenarios, do-not-touch e sumário executivo foram criados sem alteração funcional.
 - `UAT-H1`: `GO COM RESSALVAS`; cenário ponta-a-ponta validado com dados sintéticos, com ressalva de UX porque a modal de movimentação fecha antes de manter a macro visível para cópia.
 - `MACRO-H1`: `PARTIAL_RUNTIME_BLOCKED`; a correção de frontend foi aplicada no código-fonte, mas a revalidação do bundle atualizado ficou bloqueada pelo ambiente WSL/UNC e pela dependência opcional ausente do Rollup.
+- `MACRO-H1B`: `PARTIAL_RUNTIME_RECHECK_BLOCKED`; o bundle novo foi servido com sucesso após `npm ci` e build em Node Linux, mas o recheck autenticado não pôde ser repetido porque a sessão local/admin não estava disponível nesta boundary.
 
 ## Decisão objetiva
 
-O fluxo alvo foi validado em nível de backend e auditoria, mas a experiência operacional ainda precisa de um ajuste específico para manter a macro disponível ao operador após a movimentação.
+O fluxo alvo segue corrigido no frontend e o build foi revalidado em ambiente Linux. A execução UAT autenticada ainda depende de uma sessão local disponível para confirmar a macro visível e copiável no percurso pós-movimentação.
 
 - `/assets/{asset_id}/move` salva movimentação.
 - `/assets/{asset_id}/history` lista histórico.
@@ -30,10 +31,10 @@ O código-fonte já contém a correção conservadora, mas a revalidação visua
 
 ## Próxima boundary recomendada
 
-1. `MACRO-H1 — frontend build/runtime unblock and revalidation`
-   - Objetivo: restaurar um runtime frontend que permita validar o bundle atualizado e confirmar a macro visível após a movimentação.
-   - Escopo: desbloqueio do build/runtime local para a UI já corrigida.
-   - Critério de GO: build do frontend e revalidação visual passam com a modal permanecendo aberta até a cópia.
+1. `MACRO-H1C — runtime visual recheck only`
+   - Objetivo: repetir a validação visual autenticada do fluxo de macro pós-movimentação agora que o build foi revalidado.
+   - Escopo: recheck visual/UAT sem alterar código funcional.
+   - Critério de GO: sessão autenticada disponível e fluxo visual confirma a macro visível/copiável.
 
 ## Boundaries seguintes condicionais
 
@@ -66,6 +67,6 @@ O código-fonte já contém a correção conservadora, mas a revalidação visua
 
 ## Decisão final
 
-Próxima boundary recomendada: `MACRO-H1 — frontend build/runtime unblock and revalidation`.
+Próxima boundary recomendada: `MACRO-H1C — runtime visual recheck only`.
 
 Justificativa executiva: o ajuste está codificado, mas a garantia operacional depende de um runtime frontend funcional para provar o comportamento na UI atualizada. O próximo passo deve restaurar essa capacidade de validação antes de avançar para HISTÓRIA ou outras evoluções.
