@@ -1,6 +1,6 @@
 # Next Boundary Decision
 
-Boundary atual concluída: `AUTH-UAT-H1 — define safe local UAT authentication path`.
+Boundary atual concluída: `FRONTEND-AUTH-FREEZE-H1 — audit authenticated frontend freeze after login`.
 
 ## Estado consolidado
 
@@ -17,64 +17,51 @@ Boundary atual concluída: `AUTH-UAT-H1 — define safe local UAT authentication
 - `MACRO-H1`: `PARTIAL_RUNTIME_BLOCKED`; a correção de frontend foi aplicada no código-fonte, mas a revalidação do bundle atualizado ficou bloqueada pelo ambiente WSL/UNC e pela dependência opcional ausente do Rollup.
 - `MACRO-H1B`: `PARTIAL_RUNTIME_RECHECK_BLOCKED`; o bundle novo foi servido com sucesso após `npm ci` e build em Node Linux, mas o recheck autenticado não pôde ser repetido porque a sessão local/admin não estava disponível nesta boundary.
 - `MACRO-H1C`: `PARTIAL_AUTH_SESSION_REQUIRED`; a rechecagem visual autenticada não pôde ser completada de forma segura sem uma sessão local válida do app nesta boundary.
-- `AUTH-UAT-H1`: `PARTIAL_AUTH_SESSION_REQUIRED`; o caminho seguro foi definido via scripts documentados, mas a sessão autenticada não pôde ser obtida nesta execução.
+- `AUTH-UAT-H1`: `PARTIAL_AUTH_SESSION_REQUIRED`; o caminho seguro foi definido via scripts documentados, mas a sessão autenticada não pôde ser obtida naquela execução.
+- `FRONTEND-AUTH-FREEZE-H1`: `PARTIAL_AUTH_REQUIRED`; build e superfície pública foram validados, mas o freeze pós-login não foi reproduzido por ausência de sessão autenticada segura.
 
 ## Decisão objetiva
 
-O fluxo alvo segue corrigido no frontend e o build foi revalidado em ambiente Linux. O último bloqueio é a disponibilidade de uma sessão autenticada local segura para completar a rechecagem visual.
+O frontend atual compila e o runtime público em `127.0.0.1:8000` responde corretamente. A superfície sem sessão mostrou `/login` estável e redirecionamento de `/` para `/login` sem loop visível. Não há evidência suficiente para corrigir auth/router/dashboard/assets nesta boundary.
 
-- `/assets/{asset_id}/move` salva movimentação.
-- `/assets/{asset_id}/history` lista histórico.
-- `/movements/{movement_id}/suggested-macro` gera macro pós-movimentação.
-- `/macros/generations/{generation_id}/copied` marca cópia.
-- `/audit-logs` permite consulta de auditoria.
-
-O código-fonte já contém a correção conservadora, mas a revalidação visual depende de um runtime frontend funcional que o ambiente local não conseguiu fornecer.
+O bloqueio principal continua sendo a ausência de uma sessão autenticada local segura que permita reproduzir o estado pós-login sem imprimir ou salvar senha, cookie, token, Authorization header ou storage state.
 
 ## Próxima boundary recomendada
 
 1. `AUTH-UAT-H2 — provision documented local UAT test user`
-   - Objetivo: viabilizar um usuário/sessão local repetível sem expor segredos.
-   - Escopo: somente a trilha de autenticação local para UAT visual.
-   - Critério de GO: sessão segura disponível para recheck.
+   - Objetivo: viabilizar um usuário/sessão local repetível para auditoria visual autenticada.
+   - Escopo: somente a trilha de autenticação local/UAT, sem alteração funcional ampla.
+   - Critério de GO: sessão segura disponível para recheck, sem segredo em output, arquivo ou commit.
 
 ## Boundaries seguintes condicionais
 
-2. `MACRO-H1C — runtime visual recheck only`
-   - Condição: a sessão autenticada local segura estiver disponível.
-   - Objetivo: repetir a validação visual autenticada do fluxo de macro pós-movimentação agora que o build foi revalidado.
-   - Escopo: recheck visual/UAT sem alterar código funcional.
-   - Critério de GO: fluxo visual confirma a macro visível/copiável.
+2. `FRONTEND-AUTH-FREEZE-H1B — collect authenticated trace`
+   - Condição: sessão UAT segura disponível.
+   - Objetivo: reproduzir ou descartar o freeze após login com network/console/performance sanitizados.
+   - Critério de GO: classificar uma das causas `FREEZE_*` ou `NOT_REPRODUCED` com evidência autenticada.
 
-3. `MOV-H1 — movement creation and validation hardening`
-   - Condição: UAT-H1 identificar lacuna em criação/validação/legibilidade de movimentação.
-   - Não deve mexer em imports, IA/Ollama, legacy, Docker ou migrations.
+3. `FRONTEND-AUTH-FREEZE-H2 — fix authenticated freeze root cause`
+   - Condição: H1B identificar causa raiz objetiva.
+   - Objetivo: correção mínima do componente/rota/hook/API client afetado.
+   - Critério de GO: teste/build e recheck autenticado provam ausência do freeze.
 
-4. `MACRO-H1 — ITIL macro generation polish`
-   - Condição: o fluxo já revalidado mostrar oportunidade adicional de refinamento da macro oficial.
-   - Não deve trocar template oficial sem revisão humana.
-
-5. `HISTORY-H1 — history and audit traceability`
-   - Condição: UAT-H1 mostrar dificuldade de rastrear movimento/macro/auditoria.
-   - Deve preservar RBAC e paginação.
-
-6. `RELEASE-H1 — production readiness checklist`
-   - Condição: UAT-H1 e correções P1 concluídas ou riscos aceitos.
-   - Não deve publicar imagem, push ou rodar migrations em banco produtivo.
+4. `HISTORY-H1 — improve asset history readability and audit traceability`
+   - Condição: freeze não reproduzido ou resolvido, e prioridade voltar para legibilidade/rastreabilidade.
+   - Deve preservar RBAC, paginação, imports, IA/Ollama, Docker, migrations e package-lock.
 
 ## O que não fazer agora
 
-- Não implementar feature antes do UAT-H1.
-- Não fazer `git add .`, `git add -A` ou stage amplo.
-- Não commitar/pushar nesta boundary.
-- Não limpar untracked antigos.
-- Não mexer em `.env*`, dumps, bancos, tokens ou credenciais.
-- Não alterar backend, frontend, migrations, Docker, package-lock, assets, CI ou IA/Ollama dentro de UAT-H1.
-- Não usar dado produtivo nos cenários.
-- Não abrir DOCX/imagens/legacy assets sem boundary e decisão humana.
+- Não implementar correção de frontend sem reprodução autenticada.
+- Não alterar auth provider, router, API client, dashboard, assets ou CSS nesta boundary.
+- Não criar bypass de login.
+- Não hardcodar credencial.
+- Não ler `.env*`, dumps, bancos, tokens ou credenciais.
+- Não salvar storage state, cookies, tokens, Authorization header, screenshot sensível ou perfil de navegador.
+- Não executar `git add .`, `git add -A`, reset, checkout, clean, push, merge ou rebase.
+- Não alterar backend, migrations, Docker/Compose, package files, assets, CI ou IA/Ollama.
 
 ## Decisão final
 
 Próxima boundary recomendada: `AUTH-UAT-H2 — provision documented local UAT test user`.
 
-Justificativa executiva: o ajuste está codificado, mas a garantia operacional depende de um runtime frontend funcional para provar o comportamento na UI atualizada. O próximo passo deve restaurar essa capacidade de validação antes de avançar para HISTÓRIA ou outras evoluções.
+Justificativa executiva: o bug relatado é autenticado; sem auth path seguro, a auditoria só consegue provar que build, `/login` e redirecionamento público estão estáveis. A reprodução pós-login deve vir antes de qualquer correção funcional.
