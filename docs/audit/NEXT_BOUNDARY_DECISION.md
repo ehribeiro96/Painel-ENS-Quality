@@ -1,67 +1,68 @@
 # Next Boundary Decision
 
-Boundary atual concluída: `FRONTEND-AUTH-FREEZE-H1 — audit authenticated frontend freeze after login`.
+Boundary atual concluída: `AUTH-UAT-H2 — provision documented local UAT test user`.
 
 ## Estado consolidado
 
-- `AUDIT-H1`: `PARTIAL` por untracked antigos, mas relatórios H1 seguem como base ativa de auditoria.
-- `GIT-H2`: `PARTIAL` por grande volume de untracked, com triagem e matriz de decisão preservadas.
-- `SEC-H2`: `GO COM RESSALVAS`; artefatos locais sensíveis seguem sem abertura de conteúdo e exigem revisão humana/manual.
-- `DOCS-H2`: `GO`; consolidou documentos ativos e históricos.
-- `IGNORE-H2`: `GO`; protege artefatos locais/sensíveis já classificados.
-- `CI-H3`: `PARTIAL` aceitável por ausência de `actionlint`; workflow Docker foi endurecido como manual build-only.
-- `LEGACY-H2`: `GO` documental; assets remanescentes foram inventariados por metadados sem abertura de binários/imagens.
-- `TEST-H2`: `PARTIAL`; markers pytest e comandos de validação foram padronizados com ressalva conhecida de marker `ai_chat` sem testes marcados na boundary.
-- `PRODUCT-H1`: `GO documental`; roadmap, MVP, backlog, UAT scenarios, do-not-touch e sumário executivo foram criados sem alteração funcional.
-- `UAT-H1`: `GO COM RESSALVAS`; cenário ponta-a-ponta validado com dados sintéticos, com ressalva de UX porque a modal de movimentação fecha antes de manter a macro visível para cópia.
-- `MACRO-H1`: `PARTIAL_RUNTIME_BLOCKED`; a correção de frontend foi aplicada no código-fonte, mas a revalidação do bundle atualizado ficou bloqueada pelo ambiente WSL/UNC e pela dependência opcional ausente do Rollup.
-- `MACRO-H1B`: `PARTIAL_RUNTIME_RECHECK_BLOCKED`; o bundle novo foi servido com sucesso após `npm ci` e build em Node Linux, mas o recheck autenticado não pôde ser repetido porque a sessão local/admin não estava disponível nesta boundary.
-- `MACRO-H1C`: `PARTIAL_AUTH_SESSION_REQUIRED`; a rechecagem visual autenticada não pôde ser completada de forma segura sem uma sessão local válida do app nesta boundary.
-- `AUTH-UAT-H1`: `PARTIAL_AUTH_SESSION_REQUIRED`; o caminho seguro foi definido via scripts documentados, mas a sessão autenticada não pôde ser obtida naquela execução.
-- `FRONTEND-AUTH-FREEZE-H1`: `PARTIAL_AUTH_REQUIRED`; build e superfície pública foram validados, mas o freeze pós-login não foi reproduzido por ausência de sessão autenticada segura.
+- `FRONTEND-AUTH-FREEZE-H1`: `PARTIAL_AUTH_REQUIRED`; build e superfície pública foram validados, mas faltava sessão autenticada.
+- `AUTH-UAT-H2`: `GO_AUTH_TRACE_REPRODUCED_FREEZE`; usuário sintético local foi criado, login autenticado funcionou e o freeze pós-login foi reproduzido com trace redigido.
 
 ## Decisão objetiva
 
-O frontend atual compila e o runtime público em `127.0.0.1:8000` responde corretamente. A superfície sem sessão mostrou `/login` estável e redirecionamento de `/` para `/login` sem loop visível. Não há evidência suficiente para corrigir auth/router/dashboard/assets nesta boundary.
+A causa provável do travamento pós-login foi identificada:
 
-O bloqueio principal continua sendo a ausência de uma sessão autenticada local segura que permita reproduzir o estado pós-login sem imprimir ou salvar senha, cookie, token, Authorization header ou storage state.
+```text
+Frontend DashboardPage espera /api/v1/dashboard/assets-by-status como { status, count }, mas backend DashboardService.group_by("status") retorna { name, value }. Em / após login, item.status fica undefined e formatStatus(item.status) chama replaceAll em undefined, gerando TypeError fatal e tela em branco/congelada.
+```
+
+Evidência resumida:
+
+```text
+LOGIN_STATUS=200
+ROUTE / after login: shell=false sidebar=false header=false loading=false
+PAGE_ERROR TypeError: Cannot read properties of undefined (reading 'replaceAll')
+GET /api/v1/dashboard/assets-by-status 200
+Payload shape observed: status key absent; name/value present
+```
+
+Achado secundário:
+
+```text
+GET /api/v1/users?page_size=100 retornou 500 em /assets.
+Causa provável: usuário local prévio com e-mail example.test falha validação EmailStr em UserRead.
+```
+
+Esse achado secundário afeta seleção de usuários/movimentação, mas não é a causa primária do freeze imediatamente após login em `/`.
 
 ## Próxima boundary recomendada
 
-1. `AUTH-UAT-H2 — provision documented local UAT test user`
-   - Objetivo: viabilizar um usuário/sessão local repetível para auditoria visual autenticada.
-   - Escopo: somente a trilha de autenticação local/UAT, sem alteração funcional ampla.
-   - Critério de GO: sessão segura disponível para recheck, sem segredo em output, arquivo ou commit.
+1. `FRONTEND-AUTH-FREEZE-H2 — fix authenticated freeze root cause`
+   - Objetivo: corrigir o mismatch mínimo do dashboard e revalidar `/` autenticado.
+   - Escopo sugerido: `DashboardPage.tsx` ou contrato backend dashboard, escolhendo o menor patch compatível com o restante do app.
+   - Critério de GO: login com usuário UAT, `/` renderiza shell/dashboard sem `replaceAll` TypeError, network sem loop, docs/trace redigidos.
 
 ## Boundaries seguintes condicionais
 
-2. `FRONTEND-AUTH-FREEZE-H1B — collect authenticated trace`
-   - Condição: sessão UAT segura disponível.
-   - Objetivo: reproduzir ou descartar o freeze após login com network/console/performance sanitizados.
-   - Critério de GO: classificar uma das causas `FREEZE_*` ou `NOT_REPRODUCED` com evidência autenticada.
+2. `USERS-API-H1 — fix local users serialization failure`
+   - Condição: `/api/v1/users` continuar 500 após corrigir dashboard.
+   - Objetivo: tratar usuário local com e-mail de domínio reservado sem apagar dados reais e sem relaxar segurança de auth.
+   - Critério de GO: `/assets` carrega `api.users('?page_size=100')` sem 500.
 
-3. `FRONTEND-AUTH-FREEZE-H2 — fix authenticated freeze root cause`
-   - Condição: H1B identificar causa raiz objetiva.
-   - Objetivo: correção mínima do componente/rota/hook/API client afetado.
-   - Critério de GO: teste/build e recheck autenticado provam ausência do freeze.
-
-4. `HISTORY-H1 — improve asset history readability and audit traceability`
-   - Condição: freeze não reproduzido ou resolvido, e prioridade voltar para legibilidade/rastreabilidade.
-   - Deve preservar RBAC, paginação, imports, IA/Ollama, Docker, migrations e package-lock.
+3. `HISTORY-H1 — improve asset history readability and audit traceability`
+   - Condição: freeze autenticado resolvido e `/assets` funcional.
+   - Objetivo: retomar melhoria de histórico/rastreabilidade.
 
 ## O que não fazer agora
 
-- Não implementar correção de frontend sem reprodução autenticada.
-- Não alterar auth provider, router, API client, dashboard, assets ou CSS nesta boundary.
-- Não criar bypass de login.
-- Não hardcodar credencial.
-- Não ler `.env*`, dumps, bancos, tokens ou credenciais.
-- Não salvar storage state, cookies, tokens, Authorization header, screenshot sensível ou perfil de navegador.
-- Não executar `git add .`, `git add -A`, reset, checkout, clean, push, merge ou rebase.
-- Não alterar backend, migrations, Docker/Compose, package files, assets, CI ou IA/Ollama.
+- Não criar nova credencial em código versionado.
+- Não commitar `/tmp/painel_auth_uat_h2_credentials.txt`.
+- Não commitar storage state, cookie, token, Authorization header, trace bruto ou perfil de navegador.
+- Não apagar dados reais nem resetar banco.
+- Não alterar `.env`, `.env.*`, Docker/Compose, migrations, package files, assets, CI ou IA/Ollama.
+- Não corrigir múltiplas áreas na mesma boundary sem evidência e escopo explícito.
 
 ## Decisão final
 
-Próxima boundary recomendada: `AUTH-UAT-H2 — provision documented local UAT test user`.
+Próxima boundary recomendada: `FRONTEND-AUTH-FREEZE-H2 — fix authenticated freeze root cause`.
 
-Justificativa executiva: o bug relatado é autenticado; sem auth path seguro, a auditoria só consegue provar que build, `/login` e redirecionamento público estão estáveis. A reprodução pós-login deve vir antes de qualquer correção funcional.
+Justificativa executiva: AUTH-UAT-H2 removeu o bloqueio de autenticação, reproduziu o freeze e isolou a causa provável em contrato dashboard/frontend. A próxima boundary deve ser de correção mínima e revalidação autenticada.
