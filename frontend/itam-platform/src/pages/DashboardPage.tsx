@@ -46,8 +46,26 @@ function countBy(items: Asset[], getter: (asset: Asset) => string | null | undef
   return Array.from(counts.entries()).sort((a, b) => b[1] - a[1]);
 }
 
-function formatStatus(status: string) {
-  return STATUS_LABELS[status] ?? status.replaceAll("_", " ").toLowerCase();
+type DashboardStatusItem = {
+  status: string;
+  count: number;
+};
+
+function normalizeStatusItem(item: unknown): DashboardStatusItem {
+  const record = item && typeof item === "object" ? item as Record<string, unknown> : {};
+  const rawStatus = record.status ?? record.name ?? "Não informado";
+  const rawCount = record.count ?? record.value ?? 0;
+  const count = typeof rawCount === "number" ? rawCount : Number(rawCount);
+
+  return {
+    status: String(rawStatus || "Não informado"),
+    count: Number.isFinite(count) ? count : 0
+  };
+}
+
+function formatStatus(status: string | null | undefined) {
+  const safeStatus = status || "Não informado";
+  return STATUS_LABELS[safeStatus] ?? safeStatus.replaceAll("_", " ").toLowerCase();
 }
 
 function formatAssetType(assetType: string) {
@@ -72,14 +90,14 @@ export function DashboardPage() {
   const activeUsers = new Set(assets.map((asset) => asset.current_user_id).filter(Boolean)).size;
   const assignments = assets.filter((asset) => asset.current_user_id).length;
   const unassignedAssets = assets.filter((asset) => !asset.current_user_id && asset.status !== "DISCARDED").length;
-  const defective = statusQuery.data?.find((item) => item.status === "DEFECTIVE")?.count ?? 0;
-  const discarded = statusQuery.data?.find((item) => item.status === "DISCARDED")?.count ?? 0;
-  const maintenance = summary.maintenance ?? statusQuery.data?.find((item) => item.status === "MAINTENANCE")?.count ?? 0;
-  const stock = summary.stock ?? statusQuery.data?.find((item) => item.status === "STOCK")?.count ?? 0;
+  const byStatus = (statusQuery.data ?? []).map(normalizeStatusItem);
+  const defective = byStatus.find((item) => item.status === "DEFECTIVE")?.count ?? 0;
+  const discarded = byStatus.find((item) => item.status === "DISCARDED")?.count ?? 0;
+  const maintenance = summary.maintenance ?? byStatus.find((item) => item.status === "MAINTENANCE")?.count ?? 0;
+  const stock = summary.stock ?? byStatus.find((item) => item.status === "STOCK")?.count ?? 0;
   const totalAssets = summary.total_assets ?? assetsQuery.data?.total ?? assets.length;
   const byUnit = countBy(assets, (asset) => asset.location?.split("-")[0]?.trim());
   const byType = countBy(assets, (asset) => asset.asset_type).slice(0, 8);
-  const byStatus = statusQuery.data ?? [];
   const statusTotal = byStatus.reduce((total, item) => total + item.count, 0) || totalAssets;
   const maxUnitCount = Math.max(...byUnit.map(([, count]) => count), 1);
   const maxTypeCount = Math.max(...byType.map(([, count]) => count), 1);
