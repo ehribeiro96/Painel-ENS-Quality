@@ -1,125 +1,71 @@
 # Next Boundary Decision
 
-Boundary atual: `AUDIT-H1 — improve audit log filters and entity traceability`.
+Boundary atual: `RUNTIME-H4 - fix FastAPI startup/lifespan readiness`.
 
 ## Estado consolidado
 
-- `FRONTEND-AUTH-FREEZE-H2`: concluída; commit `0e70dd1 fix(frontend): handle dashboard status response shape`.
-- `USERS-API-H1`: concluída; commit `6c18975 fix(users): serialize legacy email values`.
-- `HISTORY-H1`: concluída; commit `1cce914 feat(history): enrich asset history traceability`.
-- `AUDIT-H1`: filtros de auditoria implementados no backend e expostos no frontend, com UAT autenticado bloqueado por ambiente/credencial.
+- Loopback WSL basico: OK.
+- `uvicorn` minimo: OK.
+- Import de `app.main`: OK.
+- `uvicorn app.main:app --lifespan off`: OK.
+- `uvicorn app.main:app --lifespan on`: deixou de travar indefinidamente e agora falha rapido com etapa clara.
+- `run.py`: deixou de travar indefinidamente e agora falha rapido com etapa clara.
 
-## Status AUDIT-H1
+## Decisao objetiva
 
-```text
-GO_AUDIT_FILTERS_TRACEABILITY_IMPROVED
-PARTIAL_AUTH_CREDENTIAL_MISSING
-PARTIAL_RUNTIME_BLOCKED
-```
-
-## Decisão objetiva
-
-A próxima boundary deve desbloquear runtime/UAT antes de avançar para release final.
+A proxima boundary deve corrigir a conectividade local de dependencias para UAT.
 
 Motivo:
 
-- `/api/v1/audit-logs` agora aceita filtros úteis usando campos existentes.
-- `AuditLogsPage` agora expõe filtros por ação, entidade, fonte, texto/ID/correlação e período.
-- Testes backend e build frontend passaram.
-- UAT autenticado real ainda não pôde ser executado porque a credencial `/tmp/painel_auth_uat_h2_credentials.txt` está ausente e as portas locais de runtime estavam fechadas.
+- O problema de runtime sem diagnostico foi resolvido.
+- A aplicacao agora registra `postgres_timeout_after_15s`.
+- O app ainda nao fica pronto porque Postgres local nao responde dentro do timeout de startup.
 
-## Evidência resumida AUDIT-H1
-
-Filtros implementados:
+## Evidencia resumida RUNTIME-H4
 
 ```text
-entity_type
-entity_id
-action
-user_id
-source
-correlation_id
-request_id
-date_from
-date_to
-search
-```
-
-Campos usados sem migration:
-
-```text
-actor_id
-action
-entity
-entity_id
-request_id
-correlation_id
-source
-created_at
+startup_step_begin step=postgres timeout_seconds=15.0
+startup_step_timeout step=postgres timeout_seconds=15.0
+startup_failed failed_step=postgres exception_type=TimeoutError exception_message=postgres_timeout_after_15s
+Application startup failed. Exiting.
 ```
 
 Validações executadas:
 
 ```text
 python -m compileall -q backend/app backend/alembic tests
-python -m unittest discover -s tests -> OK (157 tests, skipped=8)
-npm run build -> OK
+python -m unittest discover -s tests
+python -m ruff check backend/app/core/config/settings.py backend/app/core/startup.py tests/test_startup_diagnostics.py
 ```
 
-Limitação UAT:
+Resultado:
 
 ```text
-/tmp/painel_auth_uat_h2_credentials.txt ausente
-127.0.0.1:8000 fechado
-127.0.0.1:8080 fechado
-127.0.0.1:5173 fechado
-127.0.0.1:5174 fechado
+159 tests OK, skipped=8
+ruff OK
+compileall OK
 ```
 
-## Próxima boundary recomendada
+## Proxima boundary recomendada
 
-1. `RUNTIME-H1 — restore local UAT runtime and credentials`
-   - Objetivo: restaurar caminho de smoke autenticado local sem mexer em produto sem causa raiz comprovada.
-   - Escopo sugerido:
-     - recriar/fornecer credencial UAT segura em `/tmp` sem versionar segredo;
-     - validar exposição HTTP local;
-     - confirmar `/`, `/assets`, `/api/v1/users?page_size=100`, `/api/v1/assets/{id}/history` e `/api/v1/audit-logs`;
-     - validar filtros AUDIT-H1 por ação/entidade/search/período;
-     - não alterar Docker/Compose salvo boundary explícita.
+1. `DB-RUNTIME-H1 - fix local dependency connectivity for UAT`
+   Objetivo: restaurar conectividade local do Postgres/Redis necessaria para startup completo e UAT autenticado.
 
-## Boundary seguinte após runtime
+## Boundary seguinte apos dependencias
 
-2. `RELEASE-H1 — production readiness and final UAT checklist`
-   - Condição: runtime/UAT local autenticado disponível e smoke crítico aprovado.
-   - Objetivo: checklist final para release/piloto controlado.
+2. `RUNTIME-H5 - run authenticated UAT smoke on restored runtime`
+   Condicao: FastAPI pronto com `startup_complete=true` e dependencias locais saudaveis.
 
-## Pendência operacional separada
+## O que nao fazer agora
 
-```text
-OPS-DOCKER-H1 — resolve Docker build apt-get timeout
-```
+- Nao alterar frontend.
+- Nao alterar migrations sem causa DB comprovada.
+- Nao apagar dados locais.
+- Nao resetar banco.
+- Nao imprimir credenciais, tokens, cookies ou storage state.
+- Nao alterar Docker/Compose fora de boundary operacional explicita.
+- Nao misturar UAT autenticado com correcao de conectividade.
 
-Registrar separadamente se Docker build voltar a ser prioridade. Não misturar com filtros de auditoria.
+## Decisao final
 
-## Boundaries condicionais futuras
-
-3. `AUDIT-H2 — complete audit traceability filters`
-   - Condição: somente se operação N2 precisar de busca em payload JSON, nomes de usuário enriquecidos ou filtros avançados além do patch AUDIT-H1.
-
-4. `AUDIT-UX-H2 — improve audit investigation ergonomics`
-   - Condição: somente após validação UAT dos filtros atuais, caso operadores peçam melhorias visuais adicionais.
-
-## O que não fazer agora
-
-- Não reabrir `HISTORY-H1`.
-- Não reabrir `FRONTEND-AUTH-FREEZE-H2`.
-- Não reabrir `USERS-API-H1`.
-- Não alterar usuário UAT sem boundary runtime/autorização.
-- Não imprimir credenciais, tokens, cookies ou storage state.
-- Não apagar dados locais nem resetar banco.
-- Não alterar `.env`, `.env.*`, Docker/Compose, migrations, package files, assets, CI ou IA/Ollama.
-- Não transformar auditoria em módulo de relatórios/exportação nesta etapa.
-
-## Decisão final
-
-Próxima boundary recomendada: `RUNTIME-H1 — restore local UAT runtime and credentials`.
+Proxima boundary recomendada: `DB-RUNTIME-H1 - fix local dependency connectivity for UAT`.

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import re
 import traceback
 from collections.abc import Awaitable, Callable
 from pathlib import Path
@@ -23,6 +24,11 @@ from sqlalchemy import select, text
 logger = structlog.get_logger()
 T = TypeVar("T")
 
+_SENSITIVE_PATTERNS = (
+    re.compile(r"(postgresql(?:\+asyncpg)?|postgres|redis)://[^\s]+", re.IGNORECASE),
+    re.compile(r"\b(password|token|secret|authorization|cookie)=([^\s]+)", re.IGNORECASE),
+)
+
 BACKEND_DIR = Path(__file__).resolve().parents[2]
 ALEMBIC_INI = BACKEND_DIR / "alembic.ini"
 ALEMBIC_DIR = BACKEND_DIR / "alembic"
@@ -44,8 +50,9 @@ def safe_startup_config_snapshot() -> dict[str, Any]:
         "environment": settings.environment,
         "app_startup_checks": settings.app_startup_checks,
         "app_auto_migrate": settings.app_auto_migrate,
-        "admin_email": settings.admin_email,
-        "admin_name": settings.admin_name,
+        "app_startup_step_timeout_seconds": settings.app_startup_step_timeout_seconds,
+        "admin_email_set": bool(settings.admin_email),
+        "admin_name_set": bool(settings.admin_name),
         "admin_password_set": bool(settings.admin_password),
         "jwt_secret_key_set": bool(settings.jwt_secret_key),
         "database_url_set": bool(settings.database_url),
@@ -57,12 +64,24 @@ def safe_startup_config_snapshot() -> dict[str, Any]:
     }
 
 
+def _redact_sensitive_text(value: object) -> str:
+    text_value = str(value)
+    for pattern in _SENSITIVE_PATTERNS:
+        text_value = pattern.sub(
+            lambda match: f"{match.group(1)}://<REDACTED_DSN>"
+            if "://" in match.group(0)
+            else f"{match.group(1)}=<REDACTED>",
+            text_value,
+        )
+    return text_value
+
+
 def _record_startup_failure(step: str, exc: BaseException) -> None:
     error = {
         "failed_step": step,
         "exception_type": type(exc).__name__,
-        "exception_message": str(exc),
-        "traceback": "".join(traceback.format_exception(type(exc), exc, exc.__traceback__)),
+        "exception_message": _redact_sensitive_text(exc),
+        "traceback": _redact_sensitive_text("".join(traceback.format_exception(type(exc), exc, exc.__traceback__))),
     }
     runtime_state["last_startup_error"] = {
         "failed_step": error["failed_step"],
@@ -72,14 +91,35 @@ def _record_startup_failure(step: str, exc: BaseException) -> None:
     logger.error("startup_failed", **error)
 
 
-async def _run_startup_step(step: str, begin_event: str, ok_event: str, operation: Callable[[], Awaitable[T]]) -> T:
+async def _run_startup_step(
+    step: str,
+    begin_event: str,
+    ok_event: str,
+    operation: Callable[[], Awaitable[T]],
+    *,
+    timeout_seconds: float | None = None,
+) -> T:
+    timeout = timeout_seconds if timeout_seconds is not None else settings.app_startup_step_timeout_seconds
     runtime_state["current_step"] = step
+    logger.info("startup_step_begin", step=step, timeout_seconds=timeout)
     logger.info(begin_event)
     try:
-        result = await operation()
+        result = await asyncio.wait_for(operation(), timeout=timeout)
+    except TimeoutError as exc:
+        timeout_error = TimeoutError(f"{step}_timeout_after_{timeout:g}s")
+        logger.error("startup_step_timeout", step=step, timeout_seconds=timeout)
+        _record_startup_failure(step, timeout_error)
+        raise timeout_error from exc
     except Exception as exc:
+        logger.error(
+            "startup_step_error",
+            step=step,
+            exception_type=type(exc).__name__,
+            exception_message=_redact_sensitive_text(exc),
+        )
         _record_startup_failure(step, exc)
         raise
+    logger.info("startup_step_ok", step=step)
     logger.info(ok_event)
     return result
 
@@ -100,7 +140,13 @@ async def retry_async(name: str, operation, attempts: int | None = None, delay_s
             return await operation()
         except Exception as exc:  # noqa: BLE001 - startup diagnostics must preserve the root error
             last_error = exc
-            logger.warning("dependency_retry", dependency=name, attempt=attempt, max_attempts=max_attempts, error=str(exc))
+            logger.warning(
+                "dependency_retry",
+                dependency=name,
+                attempt=attempt,
+                max_attempts=max_attempts,
+                error=_redact_sensitive_text(exc),
+            )
             if attempt < max_attempts:
                 await asyncio.sleep(delay)
     raise RuntimeError(f"{name}_unavailable") from last_error
@@ -126,12 +172,18 @@ async def check_redis() -> dict[str, Any]:
 async def wait_for_dependencies() -> None:
     if not settings.app_startup_checks:
         return
-    logger.info("database_wait_begin")
-    await retry_async("postgres", check_postgres)
-    logger.info("database_wait_ok")
-    logger.info("redis_wait_begin")
-    await retry_async("redis", check_redis)
-    logger.info("redis_wait_ok")
+    await _run_startup_step(
+        "postgres",
+        "database_wait_begin",
+        "database_wait_ok",
+        lambda: retry_async("postgres", check_postgres),
+    )
+    await _run_startup_step(
+        "redis",
+        "redis_wait_begin",
+        "redis_wait_ok",
+        lambda: retry_async("redis", check_redis),
+    )
 
 
 def get_migration_status_sync() -> dict[str, Any]:

@@ -28,6 +28,7 @@ class Settings(BaseSettings):
     import_max_rows: int = 10000
     app_startup_checks: bool = True
     app_auto_migrate: bool = True
+    app_startup_step_timeout_seconds: float = 15.0
     dependency_retry_attempts: int = 30
     dependency_retry_delay_seconds: float = 2.0
     admin_email: str | None = None
