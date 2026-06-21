@@ -1,54 +1,68 @@
 # Next Boundary Decision
 
-Boundary atual: `HISTORY-H1 — improve asset history readability and audit traceability`.
+Boundary atual: `AUDIT-H1 — improve audit log filters and entity traceability`.
 
 ## Estado consolidado
 
 - `FRONTEND-AUTH-FREEZE-H2`: concluída; commit `0e70dd1 fix(frontend): handle dashboard status response shape`.
 - `USERS-API-H1`: concluída; commit `6c18975 fix(users): serialize legacy email values`.
-- `HISTORY-H1`: patch aplicado para melhorar legibilidade do histórico do ativo e enriquecer o DTO de histórico com labels humanas e rastreio de macro/cópia.
+- `HISTORY-H1`: concluída; commit `1cce914 feat(history): enrich asset history traceability`.
+- `AUDIT-H1`: filtros de auditoria implementados no backend e expostos no frontend, com UAT autenticado bloqueado por ambiente/credencial.
 
-## Status HISTORY-H1
+## Status AUDIT-H1
 
 ```text
-GO_HISTORY_READABILITY_IMPROVED
-GO_HISTORY_BACKEND_ENRICHED
-PARTIAL_AUDIT_TRACE_REMAINS_FUTURE
+GO_AUDIT_FILTERS_TRACEABILITY_IMPROVED
 PARTIAL_AUTH_CREDENTIAL_MISSING
 PARTIAL_RUNTIME_BLOCKED
 ```
 
 ## Decisão objetiva
 
-A próxima boundary deve focar auditoria, não histórico do ativo.
+A próxima boundary deve desbloquear runtime/UAT antes de avançar para release final.
 
 Motivo:
 
-- `GET /api/v1/assets/{asset_id}/history` já existe.
-- O endpoint foi enriquecido sem migration e preservando campos antigos.
-- A UI de detalhe do ativo passou a priorizar labels humanas e usar IDs apenas como detalhe secundário.
-- A auditoria ainda é genérica e carece de filtros/correlação mais úteis para prova operacional diária.
-- UAT autenticado completo precisa de desbloqueio operacional separado se a credencial UAT `/tmp/painel_auth_uat_h2_credentials.txt` não estiver disponível ou se o runtime local não expuser portas HTTP.
+- `/api/v1/audit-logs` agora aceita filtros úteis usando campos existentes.
+- `AuditLogsPage` agora expõe filtros por ação, entidade, fonte, texto/ID/correlação e período.
+- Testes backend e build frontend passaram.
+- UAT autenticado real ainda não pôde ser executado porque a credencial `/tmp/painel_auth_uat_h2_credentials.txt` está ausente e as portas locais de runtime estavam fechadas.
 
-## Evidência resumida HISTORY-H1
+## Evidência resumida AUDIT-H1
 
-Campos opcionais adicionados a `MovementRead`:
+Filtros implementados:
 
 ```text
-previous_user_name
-new_user_name
-responsible_name
-asset_label
-macro_generation_id
-macro_copied
-macro_copied_at
+entity_type
+entity_id
+action
+user_id
+source
+correlation_id
+request_id
+date_from
+date_to
+search
+```
+
+Campos usados sem migration:
+
+```text
+actor_id
+action
+entity
+entity_id
+request_id
+correlation_id
+source
+created_at
 ```
 
 Validações executadas:
 
 ```text
 python -m compileall -q backend/app backend/alembic tests
-python -m unittest discover -s tests -> OK (153 tests, skipped=8)
+python -m unittest discover -s tests -> OK (157 tests, skipped=8)
 npm run build -> OK
 ```
 
@@ -56,61 +70,56 @@ Limitação UAT:
 
 ```text
 /tmp/painel_auth_uat_h2_credentials.txt ausente
-127.0.0.1:8000/8080/5173/5174 fechados no início
-postgres/redis iniciados e healthy no docker compose ps
-uvicorn temporário não expôs /health/ready dentro do timeout
+127.0.0.1:8000 fechado
+127.0.0.1:8080 fechado
+127.0.0.1:5173 fechado
+127.0.0.1:5174 fechado
 ```
 
 ## Próxima boundary recomendada
 
-1. `AUDIT-H1 — improve audit log filters and entity traceability`
-   - Objetivo: melhorar investigação operacional em `/audit-logs` com filtros pequenos e úteis.
+1. `RUNTIME-H1 — restore local UAT runtime and credentials`
+   - Objetivo: restaurar caminho de smoke autenticado local sem mexer em produto sem causa raiz comprovada.
    - Escopo sugerido:
-     - filtro por entidade;
-     - filtro por ação;
-     - busca por `entity_id`/correlation quando disponível;
-     - preservação de payload técnico sem expor segredo;
-     - documentação de limites da auditoria.
-   - Critério de GO:
-     - `/audit-logs` permite localizar eventos de `Asset`, `AssetMovement` e `MacroGeneration` do fluxo sintético;
-     - sem alteração de auth/RBAC;
-     - sem migration, salvo justificativa explícita em boundary própria;
-     - testes/backend/frontend passam conforme aplicável.
+     - recriar/fornecer credencial UAT segura em `/tmp` sem versionar segredo;
+     - validar exposição HTTP local;
+     - confirmar `/`, `/assets`, `/api/v1/users?page_size=100`, `/api/v1/assets/{id}/history` e `/api/v1/audit-logs`;
+     - validar filtros AUDIT-H1 por ação/entidade/search/período;
+     - não alterar Docker/Compose salvo boundary explícita.
 
-## Boundary de desbloqueio condicional
+## Boundary seguinte após runtime
 
-Se for obrigatório validar UAT autenticado antes de `AUDIT-H1`, usar:
+2. `RELEASE-H1 — production readiness and final UAT checklist`
+   - Condição: runtime/UAT local autenticado disponível e smoke crítico aprovado.
+   - Objetivo: checklist final para release/piloto controlado.
+
+## Pendência operacional separada
 
 ```text
-RUNTIME-UAT-H1 — restore local authenticated runtime smoke path
+OPS-DOCKER-H1 — resolve Docker build apt-get timeout
 ```
 
-Escopo limitado:
-
-- recriar/fornecer credencial UAT segura em `/tmp` sem versionar segredo;
-- validar exposição local de portas no WSL/Docker;
-- confirmar `/`, `/api/v1/users?page_size=100`, `/api/v1/assets`, `/api/v1/assets/{id}/history` e `/api/v1/audit-logs`;
-- não alterar produto salvo se houver causa raiz comprovada.
+Registrar separadamente se Docker build voltar a ser prioridade. Não misturar com filtros de auditoria.
 
 ## Boundaries condicionais futuras
 
-2. `HISTORY-H2 — enrich backend asset history DTO`
-   - Condição: somente se forem necessários campos adicionais além dos opcionais criados em HISTORY-H1.
-   - Evitar se `AUDIT-H1` resolver a rastreabilidade restante.
+3. `AUDIT-H2 — complete audit traceability filters`
+   - Condição: somente se operação N2 precisar de busca em payload JSON, nomes de usuário enriquecidos ou filtros avançados além do patch AUDIT-H1.
 
-3. `MACRO-H2 — strengthen macro copy audit UX`
-   - Condição: se operadores precisarem de feedback visual/auditável mais forte sobre `copied=true` fora do detalhe do ativo.
+4. `AUDIT-UX-H2 — improve audit investigation ergonomics`
+   - Condição: somente após validação UAT dos filtros atuais, caso operadores peçam melhorias visuais adicionais.
 
 ## O que não fazer agora
 
+- Não reabrir `HISTORY-H1`.
 - Não reabrir `FRONTEND-AUTH-FREEZE-H2`.
 - Não reabrir `USERS-API-H1`.
-- Não alterar usuário UAT H2.
+- Não alterar usuário UAT sem boundary runtime/autorização.
 - Não imprimir credenciais, tokens, cookies ou storage state.
 - Não apagar dados locais nem resetar banco.
 - Não alterar `.env`, `.env.*`, Docker/Compose, migrations, package files, assets, CI ou IA/Ollama.
-- Não refatorar todo o audit log junto com histórico.
+- Não transformar auditoria em módulo de relatórios/exportação nesta etapa.
 
 ## Decisão final
 
-Próxima boundary recomendada: `AUDIT-H1 — improve audit log filters and entity traceability`.
+Próxima boundary recomendada: `RUNTIME-H1 — restore local UAT runtime and credentials`.

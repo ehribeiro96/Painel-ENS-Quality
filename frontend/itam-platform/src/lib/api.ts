@@ -230,7 +230,10 @@ export const api = {
   deleteUser: (token: string, id: string) => request<void>(`/users/${id}`, { method: "DELETE", token }),
   userAssets: (token: string, id: string) => request<Asset[]>(`/users/${id}/assets`, { token }),
   globalSearch: (token: string, query: string) => request<SearchResponse>(`/search?q=${encodeURIComponent(query)}&limit=8`, { token }),
-  audit: (token: string) => request<Page<AuditLog>>("/audit-logs?page_size=25", { token }),
+  audit: (token: string, params = "") => {
+    const normalized = params ? (params.startsWith("?") ? params : `?${params}`) : "?page_size=25";
+    return request<Page<AuditLog>>(`/audit-logs${normalized}`, { token });
+  },
   imports: (token: string) => request<Page<ImportJob>>("/imports?page_size=25", { token }),
   importUpload: (token: string, file: File, importMode = "INITIAL_LOAD") => {
     const form = new FormData();
