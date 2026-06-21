@@ -1,71 +1,74 @@
 # Next Boundary Decision
 
-Boundary atual: `RUNTIME-H4 - fix FastAPI startup/lifespan readiness`.
+Boundary atual: `DB-RUNTIME-H1 - fix local dependency connectivity for UAT`.
 
 ## Estado consolidado
 
-- Loopback WSL basico: OK.
-- `uvicorn` minimo: OK.
-- Import de `app.main`: OK.
-- `uvicorn app.main:app --lifespan off`: OK.
-- `uvicorn app.main:app --lifespan on`: deixou de travar indefinidamente e agora falha rapido com etapa clara.
-- `run.py`: deixou de travar indefinidamente e agora falha rapido com etapa clara.
+- `RUNTIME-H4`: concluida; commit `454af0b fix(runtime): prevent FastAPI startup readiness hang`.
+- FastAPI nao trava mais indefinidamente em startup.
+- Postgres e Redis containers estao saudaveis.
+- As portas Docker aparecem publicadas em localhost.
+- TCP do WSL para `127.0.0.1:5432` e `127.0.0.1:6379` falha por timeout.
+- TCP do WSL para IP bridge dos containers funciona.
+- FastAPI com override temporario para bridge fica pronto e responde `/health` e `/login`.
 
 ## Decisao objetiva
 
-A proxima boundary deve corrigir a conectividade local de dependencias para UAT.
+A proxima boundary deve executar smoke UAT autenticado usando o bridge path local validado.
 
 Motivo:
 
-- O problema de runtime sem diagnostico foi resolvido.
-- A aplicacao agora registra `postgres_timeout_after_15s`.
-- O app ainda nao fica pronto porque Postgres local nao responde dentro do timeout de startup.
+- O runtime completo foi restaurado por caminho operacional seguro sem alterar codigo, Compose ou `.env`.
+- `/health` retornou `startup_complete=true`, Postgres OK, Redis OK e migrations up-to-date.
+- `/login` retornou HTTP 200.
+- A causa de localhost port publishing deve ser tratada separadamente para nao bloquear UAT.
 
-## Evidencia resumida RUNTIME-H4
+## Evidencia resumida DB-RUNTIME-H1
 
 ```text
-startup_step_begin step=postgres timeout_seconds=15.0
-startup_step_timeout step=postgres timeout_seconds=15.0
-startup_failed failed_step=postgres exception_type=TimeoutError exception_message=postgres_timeout_after_15s
-Application startup failed. Exiting.
+POSTGRES_CONTAINER_READY
+REDIS_CONTAINER_READY
+POSTGRES_LOCALHOST_5432_TCP_FAIL TimeoutError
+REDIS_LOCALHOST_6379_TCP_FAIL TimeoutError
+POSTGRES_BRIDGE_5432_TCP_OK
+REDIS_BRIDGE_6379_TCP_OK
+FASTAPI_BRIDGE_SOCKET_READY=True
+GET /health -> HTTP 200
+GET /login -> HTTP 200
 ```
 
-Validações executadas:
+Startup completo via bridge:
 
 ```text
-python -m compileall -q backend/app backend/alembic tests
-python -m unittest discover -s tests
-python -m ruff check backend/app/core/config/settings.py backend/app/core/startup.py tests/test_startup_diagnostics.py
-```
-
-Resultado:
-
-```text
-159 tests OK, skipped=8
-ruff OK
-compileall OK
+database_wait_ok
+redis_wait_ok
+migrations_ok
+bootstrap_admin_ok
+frontend_check_ok
+startup_complete
 ```
 
 ## Proxima boundary recomendada
 
-1. `DB-RUNTIME-H1 - fix local dependency connectivity for UAT`
-   Objetivo: restaurar conectividade local do Postgres/Redis necessaria para startup completo e UAT autenticado.
+1. `RUNTIME-H5 - run authenticated UAT smoke using local dependency bridge path`
+   Objetivo: executar smoke autenticado usando runtime local em WSL com override temporario para bridge, sem versionar credenciais e sem imprimir segredos.
 
-## Boundary seguinte apos dependencias
+## Boundary tecnica paralela
 
-2. `RUNTIME-H5 - run authenticated UAT smoke on restored runtime`
-   Condicao: FastAPI pronto com `startup_complete=true` e dependencias locais saudaveis.
+2. `WSL-DOCKER-NET-H1 - repair Docker port publishing for local UAT`
+   Objetivo: corrigir a falha de acesso do WSL a `127.0.0.1:5432` e `127.0.0.1:6379`, preservando o caminho padrao por localhost.
 
 ## O que nao fazer agora
 
 - Nao alterar frontend.
-- Nao alterar migrations sem causa DB comprovada.
+- Nao alterar migrations.
+- Nao fixar IP bridge em `.env` ou codigo.
+- Nao imprimir credenciais, tokens, cookies ou storage state.
 - Nao apagar dados locais.
 - Nao resetar banco.
-- Nao imprimir credenciais, tokens, cookies ou storage state.
-- Nao alterar Docker/Compose fora de boundary operacional explicita.
-- Nao misturar UAT autenticado com correcao de conectividade.
+- Nao executar `docker compose down -v`.
+- Nao misturar smoke autenticado com ajuste estrutural de Docker/WSL.
 
 ## Decisao final
 
-Proxima boundary recomendada: `DB-RUNTIME-H1 - fix local dependency connectivity for UAT`.
+Proxima boundary recomendada: `RUNTIME-H5 - run authenticated UAT smoke using local dependency bridge path`.
