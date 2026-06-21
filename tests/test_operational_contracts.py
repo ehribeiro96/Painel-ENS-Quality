@@ -53,6 +53,40 @@ class OperationalContractsTest(unittest.TestCase):
 
         self.assertNotIn("role", UserUpdate.model_fields)
 
+    def test_user_read_allows_legacy_reserved_domain_email(self) -> None:
+        import sys
+        from datetime import datetime, timezone
+        from types import SimpleNamespace
+        from uuid import uuid4
+
+        backend_path = str(ROOT / "backend")
+        if backend_path not in sys.path:
+            sys.path.insert(0, backend_path)
+
+        from app.domains.users.schemas import UserRead
+        from app.shared.enums import Role, UserStatus
+
+        user = SimpleNamespace(
+            id=uuid4(),
+            name="Legacy Local User",
+            email="legacy@example.test",
+            job_title=None,
+            department=None,
+            business_unit=None,
+            manager_name=None,
+            phone=None,
+            status=UserStatus.ACTIVE,
+            role=Role.VIEWER,
+            source="legacy",
+            source_metadata=None,
+            created_at=datetime.now(timezone.utc),
+            updated_at=datetime.now(timezone.utc),
+        )
+
+        payload = UserRead.model_validate(user)
+
+        self.assertEqual("legacy@example.test", payload.email)
+
     def test_page_params_allows_operational_page_size_200(self) -> None:
         import sys
 
