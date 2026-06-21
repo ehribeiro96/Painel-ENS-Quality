@@ -18,6 +18,21 @@ function DetailItem({ label, value }: { label: string; value: string | null | un
   );
 }
 
+function formatStatusLabel(status: string | null | undefined) {
+  return status ? status.replaceAll("_", " ") : "Status não informado";
+}
+
+function shortId(id: string | null | undefined) {
+  return id ? id.slice(0, 8) : null;
+}
+
+function personLabel(name: string | null | undefined, id: string | null | undefined, fallback: string) {
+  if (name) {
+    return id ? `${name} · ID ${shortId(id)}` : name;
+  }
+  return id ? `ID ${shortId(id)}` : fallback;
+}
+
 function Timeline({ movements }: { movements: Movement[] }) {
   if (movements.length === 0) {
     return <div className="card muted-card">Nenhuma movimentacao registrada para este ativo.</div>;
@@ -25,29 +40,37 @@ function Timeline({ movements }: { movements: Movement[] }) {
 
   return (
     <ol className="timeline" id="history">
-      {movements.map((movement) => (
-        <li key={movement.id}>
-          <div className="timeline-dot" />
-          <article className="timeline-card">
-            <header>
-              <strong>{formatDateTime(movement.created_at)}</strong>
-              <span>Responsavel {movement.responsible_id?.slice(0, 8) ?? "-"}</span>
-            </header>
-            <div className="before-after">
-              <div>
-                <span className="metric-label">Antes</span>
-                <p>{movement.previous_status} | {movement.previous_location ?? "sem local"} | {movement.previous_user_id?.slice(0, 8) ?? "sem usuario"}</p>
+      {movements.map((movement) => {
+        const macroLabel = movement.macro_generation_id
+          ? `Macro ${shortId(movement.macro_generation_id)} · ${movement.macro_copied ? "copiada" : "não copiada"}`
+          : "Macro não vinculada";
+        return (
+          <li key={movement.id}>
+            <div className="timeline-dot" />
+            <article className="timeline-card">
+              <header>
+                <strong>{formatDateTime(movement.created_at)}</strong>
+                <span>{personLabel(movement.responsible_name, movement.responsible_id, "Responsável não informado")}</span>
+              </header>
+              {movement.asset_label ? <p className="metric-label">Ativo: {movement.asset_label}</p> : null}
+              <div className="before-after">
+                <div>
+                  <span className="metric-label">Antes</span>
+                  <p>{formatStatusLabel(movement.previous_status)} | {movement.previous_location ?? "Origem não informada"} | {personLabel(movement.previous_user_name, movement.previous_user_id, "Usuário não informado")}</p>
+                </div>
+                <ArrowRight size={18} aria-hidden />
+                <div>
+                  <span className="metric-label">Depois</span>
+                  <p>{formatStatusLabel(movement.new_status)} | {movement.new_location ?? "Destino não informado"} | {personLabel(movement.new_user_name, movement.new_user_id, "Usuário não informado")}</p>
+                </div>
               </div>
-              <ArrowRight size={18} aria-hidden />
-              <div>
-                <span className="metric-label">Depois</span>
-                <p>{movement.new_status} | {movement.new_location ?? "sem local"} | {movement.new_user_id?.slice(0, 8) ?? "sem usuario"}</p>
-              </div>
-            </div>
-            <p className="timeline-reason">{movement.justification}</p>
-          </article>
-        </li>
-      ))}
+              <p className="timeline-reason">{movement.justification}</p>
+              <p className="metric-label">{macroLabel}</p>
+              {movement.notes ? <p className="metric-label">Observação: {movement.notes}</p> : null}
+            </article>
+          </li>
+        );
+      })}
     </ol>
   );
 }

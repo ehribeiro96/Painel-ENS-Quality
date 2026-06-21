@@ -7,6 +7,7 @@ from app.core.database.session import get_session
 from app.domains.assets.models import Asset
 from app.domains.assets.schemas import AssetCreate, AssetMove, AssetRead, AssetUpdate
 from app.domains.assets.service import AssetService
+from app.domains.macros.models import MacroGeneration
 from app.domains.movements.models import AssetMovement
 from app.domains.movements.schemas import MovementRead
 from app.domains.users.models import User
@@ -127,6 +128,53 @@ async def move_asset(
 
 
 @router.get("/{asset_id}/history", response_model=list[MovementRead])
-async def asset_history(asset_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[AssetMovement]:
+async def asset_history(asset_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[MovementRead]:
     result = await session.execute(select(AssetMovement).where(AssetMovement.asset_id == asset_id).order_by(AssetMovement.created_at.desc()))
-    return list(result.scalars())
+    movements = list(result.scalars())
+    if not movements:
+        return []
+
+    user_ids = {
+        user_id
+        for movement in movements
+        for user_id in (movement.previous_user_id, movement.new_user_id, movement.responsible_id)
+        if user_id is not None
+    }
+    users_by_id: dict[UUID, str] = {}
+    if user_ids:
+        users_result = await session.execute(select(User.id, User.name).where(User.id.in_(user_ids)))
+        users_by_id = {user_id: name for user_id, name in users_result.all()}
+
+    movement_ids = [movement.id for movement in movements]
+    generations_result = await session.execute(
+        select(MacroGeneration)
+        .where(MacroGeneration.context_type == "asset_movement", MacroGeneration.context_id.in_(movement_ids))
+        .order_by(MacroGeneration.created_at.desc())
+    )
+    generations_by_movement: dict[UUID, MacroGeneration] = {}
+    for generation in generations_result.scalars():
+        if generation.context_id is not None and generation.context_id not in generations_by_movement:
+            generations_by_movement[generation.context_id] = generation
+
+    asset = await session.scalar(select(Asset).where(Asset.id == asset_id))
+    asset_label = None
+    if asset is not None:
+        asset_label = next((value for value in (asset.hostname, asset.patrimony, asset.serial) if value), None)
+
+    items: list[MovementRead] = []
+    for movement in movements:
+        generation = generations_by_movement.get(movement.id)
+        items.append(
+            MovementRead.model_validate(movement).model_copy(
+                update={
+                    "previous_user_name": users_by_id.get(movement.previous_user_id) if movement.previous_user_id else None,
+                    "new_user_name": users_by_id.get(movement.new_user_id) if movement.new_user_id else None,
+                    "responsible_name": users_by_id.get(movement.responsible_id) if movement.responsible_id else None,
+                    "asset_label": asset_label,
+                    "macro_generation_id": generation.id if generation else None,
+                    "macro_copied": generation.copied if generation else None,
+                    "macro_copied_at": generation.copied_at if generation else None,
+                }
+            )
+        )
+    return items

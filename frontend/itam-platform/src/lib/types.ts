@@ -135,6 +135,13 @@ export type Movement = {
   previous_location: string | null;
   new_location: string | null;
   responsible_id: string | null;
+  previous_user_name?: string | null;
+  new_user_name?: string | null;
+  responsible_name?: string | null;
+  asset_label?: string | null;
+  macro_generation_id?: string | null;
+  macro_copied?: boolean | null;
+  macro_copied_at?: string | null;
   justification: string;
   notes: string | null;
   created_at: string;

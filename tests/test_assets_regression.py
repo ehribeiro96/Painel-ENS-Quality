@@ -80,8 +80,14 @@ class AssetsRegressionTest(OperationalTestCase):
 
         history = self.client.get(f"/assets/{asset['id']}/history")
         self.assertEqual(history.status_code, 200)
-        self.assertEqual(len(history.json()), 4)
-        self.assertEqual(history.json()[0]["new_status"], "DEFECTIVE")
+        history_items = history.json()
+        self.assertEqual(len(history_items), 4)
+        self.assertEqual(history_items[0]["new_status"], "DEFECTIVE")
+        first_assignment = history_items[-1]
+        self.assertEqual(first_assignment["new_user_name"], user["name"])
+        self.assertIsNotNone(first_assignment["responsible_name"])
+        self.assertEqual(first_assignment["asset_label"], asset["hostname"])
+        self.assertIn("macro_generation_id", first_assignment)
 
         invalid = self.client.post(
             f"/assets/{asset['id']}/move",

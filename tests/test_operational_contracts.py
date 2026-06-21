@@ -87,6 +87,54 @@ class OperationalContractsTest(unittest.TestCase):
 
         self.assertEqual("legacy@example.test", payload.email)
 
+    def test_movement_read_accepts_history_traceability_fields(self) -> None:
+        import sys
+        from datetime import datetime, timezone
+        from types import SimpleNamespace
+        from uuid import uuid4
+
+        backend_path = str(ROOT / "backend")
+        if backend_path not in sys.path:
+            sys.path.insert(0, backend_path)
+
+        from app.domains.movements.schemas import MovementRead
+        from app.shared.enums import AssetStatus
+
+        movement_id = uuid4()
+        asset_id = uuid4()
+        user_id = uuid4()
+        responsible_id = uuid4()
+        generation_id = uuid4()
+        payload = MovementRead.model_validate(
+            SimpleNamespace(
+                id=movement_id,
+                asset_id=asset_id,
+                previous_user_id=None,
+                new_user_id=user_id,
+                previous_status=AssetStatus.STOCK,
+                new_status=AssetStatus.IN_USE,
+                previous_location="Estoque",
+                new_location="Matriz",
+                responsible_id=responsible_id,
+                previous_user_name=None,
+                new_user_name="Colaborador Teste",
+                responsible_name="Tecnico N2",
+                asset_label="RJMTEST-HISTORY",
+                macro_generation_id=generation_id,
+                macro_copied=True,
+                macro_copied_at=datetime.now(timezone.utc),
+                justification="Entrega controlada",
+                notes=None,
+                created_at=datetime.now(timezone.utc),
+            )
+        )
+
+        self.assertEqual(payload.new_user_name, "Colaborador Teste")
+        self.assertEqual(payload.responsible_name, "Tecnico N2")
+        self.assertEqual(payload.asset_label, "RJMTEST-HISTORY")
+        self.assertEqual(payload.macro_generation_id, generation_id)
+        self.assertTrue(payload.macro_copied)
+
     def test_page_params_allows_operational_page_size_200(self) -> None:
         import sys
 

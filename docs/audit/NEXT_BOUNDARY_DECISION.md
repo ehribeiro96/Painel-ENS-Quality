@@ -1,59 +1,116 @@
 # Next Boundary Decision
 
-Boundary atual concluída: `USERS-API-H1 — fix local users serialization failure`.
+Boundary atual: `HISTORY-H1 — improve asset history readability and audit traceability`.
 
 ## Estado consolidado
 
-- `FRONTEND-AUTH-FREEZE-H2`: `GO_FREEZE_FIXED`; commit `0e70dd1 fix(frontend): handle dashboard status response shape`.
-- `USERS-API-H1`: `GO_USERS_API_FIXED`; `/api/v1/users?page_size=100` retorna 200 após corrigir serialização de e-mail legado em `UserRead`.
+- `FRONTEND-AUTH-FREEZE-H2`: concluída; commit `0e70dd1 fix(frontend): handle dashboard status response shape`.
+- `USERS-API-H1`: concluída; commit `6c18975 fix(users): serialize legacy email values`.
+- `HISTORY-H1`: patch aplicado para melhorar legibilidade do histórico do ativo e enriquecer o DTO de histórico com labels humanas e rastreio de macro/cópia.
+
+## Status HISTORY-H1
+
+```text
+GO_HISTORY_READABILITY_IMPROVED
+GO_HISTORY_BACKEND_ENRICHED
+PARTIAL_AUDIT_TRACE_REMAINS_FUTURE
+PARTIAL_AUTH_CREDENTIAL_MISSING
+PARTIAL_RUNTIME_BLOCKED
+```
 
 ## Decisão objetiva
 
-O achado secundário de `/api/v1/users` foi corrigido sem reabrir H2 e sem alterar autenticação, Docker/Compose, migrations, package files ou dados locais.
+A próxima boundary deve focar auditoria, não histórico do ativo.
 
-Causa raiz corrigida:
+Motivo:
+
+- `GET /api/v1/assets/{asset_id}/history` já existe.
+- O endpoint foi enriquecido sem migration e preservando campos antigos.
+- A UI de detalhe do ativo passou a priorizar labels humanas e usar IDs apenas como detalhe secundário.
+- A auditoria ainda é genérica e carece de filtros/correlação mais úteis para prova operacional diária.
+- UAT autenticado completo precisa de desbloqueio operacional separado se a credencial UAT `/tmp/painel_auth_uat_h2_credentials.txt` não estiver disponível ou se o runtime local não expuser portas HTTP.
+
+## Evidência resumida HISTORY-H1
+
+Campos opcionais adicionados a `MovementRead`:
 
 ```text
-UserRead herdava email: EmailStr de UserBase. Registros locais legados com domínio especial/reservado, como example.test, falhavam durante serialização de resposta e causavam 500 em GET /api/v1/users?page_size=100.
+previous_user_name
+new_user_name
+responsible_name
+asset_label
+macro_generation_id
+macro_copied
+macro_copied_at
 ```
 
-Correção aplicada:
+Validações executadas:
 
 ```text
-UserRead.email agora é string de saída com max_length=254.
-UserCreate/UserUpdate continuam usando EmailStr para entrada.
+python -m compileall -q backend/app backend/alembic tests
+python -m unittest discover -s tests -> OK (153 tests, skipped=8)
+npm run build -> OK
 ```
 
-Evidência resumida:
+Limitação UAT:
 
 ```text
-POST /api/v1/auth/login 200
-GET /api/v1/users?page_size=100 200
-python -m unittest discover -s tests -> OK (skipped=8)
+/tmp/painel_auth_uat_h2_credentials.txt ausente
+127.0.0.1:8000/8080/5173/5174 fechados no início
+postgres/redis iniciados e healthy no docker compose ps
+uvicorn temporário não expôs /health/ready dentro do timeout
 ```
 
 ## Próxima boundary recomendada
 
-1. `HISTORY-H1 — improve asset history readability and audit traceability`
-   - Condição: freeze autenticado e `/api/v1/users` resolvidos.
-   - Objetivo: retomar melhoria de histórico/rastreabilidade de ativos.
-   - Escopo sugerido: leitura conservadora do histórico atual, UX/API somente se necessário, sem alterar movimentação append-only sem teste específico.
+1. `AUDIT-H1 — improve audit log filters and entity traceability`
+   - Objetivo: melhorar investigação operacional em `/audit-logs` com filtros pequenos e úteis.
+   - Escopo sugerido:
+     - filtro por entidade;
+     - filtro por ação;
+     - busca por `entity_id`/correlation quando disponível;
+     - preservação de payload técnico sem expor segredo;
+     - documentação de limites da auditoria.
+   - Critério de GO:
+     - `/audit-logs` permite localizar eventos de `Asset`, `AssetMovement` e `MacroGeneration` do fluxo sintético;
+     - sem alteração de auth/RBAC;
+     - sem migration, salvo justificativa explícita em boundary própria;
+     - testes/backend/frontend passam conforme aplicável.
 
-## Boundaries seguintes condicionais
+## Boundary de desbloqueio condicional
 
-2. `DASHBOARD-CONTRACT-H1 — align dashboard API/frontend typing`
-   - Condição: se for decidido padronizar contrato em vez de manter compatibilidade defensiva no frontend.
-   - Objetivo: alinhar `frontend/itam-platform/src/lib/api.ts`, tipos compartilhados e documentação do contrato dashboard.
+Se for obrigatório validar UAT autenticado antes de `AUDIT-H1`, usar:
+
+```text
+RUNTIME-UAT-H1 — restore local authenticated runtime smoke path
+```
+
+Escopo limitado:
+
+- recriar/fornecer credencial UAT segura em `/tmp` sem versionar segredo;
+- validar exposição local de portas no WSL/Docker;
+- confirmar `/`, `/api/v1/users?page_size=100`, `/api/v1/assets`, `/api/v1/assets/{id}/history` e `/api/v1/audit-logs`;
+- não alterar produto salvo se houver causa raiz comprovada.
+
+## Boundaries condicionais futuras
+
+2. `HISTORY-H2 — enrich backend asset history DTO`
+   - Condição: somente se forem necessários campos adicionais além dos opcionais criados em HISTORY-H1.
+   - Evitar se `AUDIT-H1` resolver a rastreabilidade restante.
+
+3. `MACRO-H2 — strengthen macro copy audit UX`
+   - Condição: se operadores precisarem de feedback visual/auditável mais forte sobre `copied=true` fora do detalhe do ativo.
 
 ## O que não fazer agora
 
 - Não reabrir `FRONTEND-AUTH-FREEZE-H2`.
-- Não alterar o usuário UAT H2.
+- Não reabrir `USERS-API-H1`.
+- Não alterar usuário UAT H2.
 - Não imprimir credenciais, tokens, cookies ou storage state.
 - Não apagar dados locais nem resetar banco.
 - Não alterar `.env`, `.env.*`, Docker/Compose, migrations, package files, assets, CI ou IA/Ollama.
-- Não misturar melhorias de histórico com mudanças de auth ou serialização de usuários.
+- Não refatorar todo o audit log junto com histórico.
 
 ## Decisão final
 
-Próxima boundary recomendada: `HISTORY-H1 — improve asset history readability and audit traceability`.
+Próxima boundary recomendada: `AUDIT-H1 — improve audit log filters and entity traceability`.
