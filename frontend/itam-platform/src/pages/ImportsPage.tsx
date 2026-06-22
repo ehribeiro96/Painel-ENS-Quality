@@ -345,7 +345,7 @@ export function ImportsPage() {
               { key: "total_rows", label: "Linhas" },
               { key: "conflict_rows", label: "Conflitos" },
               { key: "created_at", label: "Criada em", render: (item) => formatDateTime(item.created_at) },
-              { key: "id", label: "Ação", render: (item) => <button className="mini-button" onClick={() => setSelected(item)}>Abrir</button> }
+              { key: "id", label: "Ação", render: (item) => <button className="mini-button" type="button" onClick={() => setSelected(item)}>Abrir</button> }
             ]}
           />
         </Base44Surface>
@@ -366,7 +366,7 @@ export function ImportsPage() {
                   </select>
                 </label>
               ))}
-              <button className="button secondary" onClick={saveMapping}>Salvar mapeamento</button>
+              <button className="button secondary" type="button" onClick={saveMapping}>Salvar mapeamento</button>
             </div>
           ) : null}
         </Base44Surface>
@@ -422,10 +422,10 @@ export function ImportsPage() {
       <Base44Surface className="base44-import-footer" as="section">
         <p>Campos protegidos não são sobrescritos automaticamente: usuário atual, status, localização, observações e histórico.</p>
         <div className="base44-import-footer-actions">
-          <button className="button" onClick={applyImport} disabled={!canApply || !reportCanApply || applying}>
+          <button className="button" type="button" onClick={applyImport} disabled={!canApply || !reportCanApply || applying}>
             {applying ? <><RotateCw size={16} className="is-spinning" aria-hidden /> Aplicando...</> : <><CheckCircle2 size={16} aria-hidden /> Aplicar importação</>}
           </button>
-          <button className="button secondary" onClick={cancelImport} disabled={!canApply}><XCircle size={16} aria-hidden /> Cancelar</button>
+          <button className="button secondary" type="button" onClick={cancelImport} disabled={!canApply}><XCircle size={16} aria-hidden /> Cancelar</button>
         </div>
       </Base44Surface>
     </div>

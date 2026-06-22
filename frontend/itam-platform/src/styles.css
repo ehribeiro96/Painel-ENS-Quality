@@ -4583,17 +4583,25 @@ textarea.input,
 }
 
 .base44-macro-item:hover,
-.base44-macro-item.is-selected {
+.base44-macro-item.is-selected,
+.base44-macro-item:focus-visible,
+.base44-macro-autocomplete-item:focus-visible {
   transform: translateY(-1px);
   border-color: rgba(37, 99, 235, 0.24);
   background: rgba(239, 246, 255, 0.76);
   box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+  outline: none;
 }
 
 .base44-macro-item small,
 .base44-macro-item span {
   color: var(--color-text-muted);
   font-size: 12px;
+}
+
+.base44-shell :is(.button, .mini-button, .logout-link, .legacy-link, .nav a):focus-visible {
+  outline: 2px solid rgba(0, 229, 176, 0.38);
+  outline-offset: 2px;
 }
 
 .base44-macro-panel-titleline,
@@ -4694,6 +4702,7 @@ textarea.input,
   border-radius: 12px;
   text-align: left;
   background: rgba(241, 245, 249, 0.88);
+  cursor: pointer;
 }
 
 .base44-macro-autocomplete-item strong,
@@ -4783,6 +4792,11 @@ textarea.input,
 .base44-user-table-shell,
 .base44-operation-summary {
   overflow: hidden;
+}
+
+.base44-macro-item,
+.base44-macro-autocomplete-item {
+  border: 1px solid rgba(148, 163, 184, 0.18);
 }
 
 .base44-user-table-inner {
