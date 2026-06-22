@@ -2,12 +2,12 @@
 
 ## Next boundary
 
-UI-UAT-H2 — provide supported browser runner for WSL
+RELEASE-H2 — final release sign-off after UI smoke
 
 ## After that
 
-RELEASE-H2 — final release sign-off after UI smoke
+Optional follow-up only if the local WSL preview workflow needs cleanup: stabilize the stale `4173` preview port / local browser-serving path.
 
-## If browser remains blocked
+## If browser smoke had failed
 
-UI-UAT-WAIVER-H1 — document browser smoke waiver with manual validation plan
+WSL-BROWSER-DEPS-H1 — install Playwright system dependencies with explicit apt authorization
