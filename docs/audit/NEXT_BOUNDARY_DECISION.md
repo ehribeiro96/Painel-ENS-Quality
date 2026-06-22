@@ -1,13 +1,10 @@
 # Next Boundary Decision
 
-## Next boundary
+BASE44-VISUAL-RECOVERY-H2 — targeted page-by-page visual repair
 
-RELEASE-H2 — final release sign-off after UI smoke
+Reason:
 
-## After that
-
-Optional follow-up only if the local WSL preview workflow needs cleanup: stabilize the stale `4173` preview port / local browser-serving path.
-
-## If browser smoke had failed
-
-WSL-BROWSER-DEPS-H1 — install Playwright system dependencies with explicit apt authorization
+- The Base44 visual import is not yet visually closed.
+- The login shell remains the clearest risk area.
+- Browser replay on the temporary proxy path did not complete a stable authenticated comparison for all routes.
+- Backend/auth/API/permissions were preserved and should remain untouched in the next boundary.
