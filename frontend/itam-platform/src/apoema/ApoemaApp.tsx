@@ -1,0 +1,94 @@
+import { Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
+import { BarChart3, Brain, Layers3, Settings2, SplitSquareHorizontal, WandSparkles } from "lucide-react";
+import { ApoemaLogo } from "./components/ApoemaLogo";
+import { ThemeSelector } from "./components/ThemeSelector";
+import { useThemeMode } from "./hooks/useThemeMode";
+import { DashboardPage } from "./pages/DashboardPage";
+import { AssetsPage } from "./pages/AssetsPage";
+import { ChatPage } from "./pages/ChatPage";
+import { IntegrationsPage } from "./pages/IntegrationsPage";
+import { SettingsPage } from "./pages/SettingsPage";
+import { StatusPill } from "./components/StatusPill";
+import "./styles/apoema.css";
+
+const navItems = [
+  { to: "dashboard", label: "Visão geral", icon: BarChart3 },
+  { to: "assets", label: "Ativos", icon: Layers3 },
+  { to: "chat", label: "IA", icon: Brain },
+  { to: "integrations", label: "Integrações", icon: SplitSquareHorizontal },
+  { to: "settings", label: "Ajustes", icon: Settings2 }
+];
+
+function ApoemaShell({ theme }: { theme: ReturnType<typeof useThemeMode> }) {
+  return (
+    <div className="apoema-shell">
+      <aside className="apoema-sidebar">
+        <ApoemaLogo />
+        <nav className="apoema-nav">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <NavLink key={item.to} to={item.to} className={({ isActive }) => `apoema-nav-item ${isActive ? "is-active" : ""}`}>
+                <Icon size={16} />
+                <span>{item.label}</span>
+              </NavLink>
+            );
+          })}
+        </nav>
+
+        <div className="apoema-sidebar-card">
+          <StatusPill tone="success">
+            <WandSparkles size={14} />
+            Console pronto
+          </StatusPill>
+          <p>Layout premium, compacto e centrado em operações para N2/Admin.</p>
+        </div>
+      </aside>
+
+      <main className="apoema-main">
+        <header className="apoema-topbar">
+          <div>
+            <span className="apoema-topbar-kicker">Apoema Preview</span>
+            <strong>Console Inteligente de Operações, Inventário e Suporte N2</strong>
+          </div>
+          <div className="apoema-topbar-actions">
+            <ThemeSelector value={theme.mode} onChange={theme.setMode} />
+          </div>
+        </header>
+        <Outlet />
+      </main>
+
+      <aside className="apoema-rail">
+        <div className="apoema-rail-card">
+          <StatusPill tone="info">Saúde</StatusPill>
+          <strong>Operação estável</strong>
+          <p>Adaptadores mockados respondendo com cobertura visual e contexto operacional.</p>
+        </div>
+        <div className="apoema-rail-card">
+          <StatusPill tone="warning">Atenção</StatusPill>
+          <strong>Segredos bloqueados</strong>
+          <p>.env, tokens, bancos locais e credenciais permanecem fora do fluxo.</p>
+        </div>
+      </aside>
+    </div>
+  );
+}
+
+export function ApoemaApp() {
+  const theme = useThemeMode();
+
+  return (
+    <div className="apoema-root" data-theme={theme.resolvedTheme}>
+      <Routes>
+        <Route element={<ApoemaShell theme={theme} />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="assets" element={<AssetsPage />} />
+          <Route path="chat" element={<ChatPage />} />
+          <Route path="integrations" element={<IntegrationsPage />} />
+          <Route path="settings" element={<SettingsPage />} />
+        </Route>
+      </Routes>
+    </div>
+  );
+}

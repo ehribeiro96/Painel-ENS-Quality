@@ -1,0 +1,976 @@
+:root {
+  --apoema-ink: #0b1d33;
+  --apoema-ink-soft: #17263d;
+  --apoema-surface: rgba(255, 255, 255, 0.82);
+  --apoema-surface-strong: #ffffff;
+  --apoema-surface-muted: rgba(235, 239, 246, 0.85);
+  --apoema-border: rgba(16, 25, 41, 0.09);
+  --apoema-text: #132138;
+  --apoema-muted: #5f6b82;
+  --apoema-teal: #008d9d;
+  --apoema-cyan: #17c3d6;
+  --apoema-copper: #c8763a;
+  --apoema-shadow: 0 32px 80px rgba(9, 19, 38, 0.18);
+}
+
+.apoema-root,
+.apoema-root * {
+  box-sizing: border-box;
+}
+
+.apoema-root {
+  min-height: 100vh;
+  color: var(--apoema-text);
+  background:
+    radial-gradient(circle at top left, rgba(23, 195, 214, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(200, 118, 58, 0.12), transparent 30%),
+    linear-gradient(180deg, #f8fafc 0%, #eef3f8 100%);
+  overflow-x: hidden;
+}
+
+.apoema-root[data-theme="dark"] {
+  --apoema-surface: rgba(10, 18, 32, 0.82);
+  --apoema-surface-strong: rgba(12, 20, 36, 0.96);
+  --apoema-surface-muted: rgba(18, 28, 46, 0.9);
+  --apoema-border: rgba(153, 182, 230, 0.16);
+  --apoema-text: #edf3ff;
+  --apoema-muted: #9eb0ca;
+  background:
+    radial-gradient(circle at top left, rgba(23, 195, 214, 0.18), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(200, 118, 58, 0.14), transparent 28%),
+    linear-gradient(180deg, #08111f 0%, #0b1629 100%);
+}
+
+.apoema-shell {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) 292px;
+  gap: 18px;
+  min-height: 100vh;
+  padding: 18px;
+}
+
+.apoema-sidebar,
+.apoema-rail,
+.apoema-main {
+  min-width: 0;
+}
+
+.apoema-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 18px;
+  align-self: start;
+}
+
+.apoema-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.apoema-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 18px;
+  align-self: start;
+}
+
+.apoema-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 18px 20px;
+  border: 1px solid var(--apoema-border);
+  border-radius: 24px;
+  background: var(--apoema-surface);
+  box-shadow: var(--apoema-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.apoema-logo-mark {
+  width: 74px;
+  height: 74px;
+  flex: 0 0 auto;
+}
+
+.apoema-logo-text strong {
+  display: block;
+  font-size: 1.7rem;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  color: var(--apoema-ink);
+}
+
+.apoema-root[data-theme="dark"] .apoema-logo-text strong {
+  color: var(--apoema-text);
+}
+
+.apoema-logo-text span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--apoema-muted);
+}
+
+.apoema-nav,
+.apoema-sidebar-card,
+.apoema-rail-card,
+.apoema-panel,
+.apoema-metric-card,
+.apoema-command-card,
+.apoema-integration-card,
+.apoema-detail-card,
+.apoema-chat-sidebar-card,
+.apoema-topbar,
+.apoema-chat-message,
+.apoema-chat-dock,
+.apoema-filter-bar {
+  border: 1px solid var(--apoema-border);
+  background: var(--apoema-surface);
+  box-shadow: var(--apoema-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.apoema-nav {
+  display: grid;
+  gap: 8px;
+  border-radius: 22px;
+  padding: 10px;
+}
+
+.apoema-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--apoema-muted);
+  text-decoration: none;
+  border-radius: 14px;
+  padding: 12px 14px;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.apoema-nav-item:hover,
+.apoema-nav-item.is-active {
+  color: var(--apoema-text);
+  background: linear-gradient(135deg, rgba(23, 195, 214, 0.16), rgba(200, 118, 58, 0.12));
+  transform: translateX(2px);
+}
+
+.apoema-sidebar-card,
+.apoema-rail-card {
+  border-radius: 22px;
+  padding: 18px;
+}
+
+.apoema-sidebar-card p,
+.apoema-rail-card p {
+  margin: 14px 0 0;
+  color: var(--apoema-muted);
+  line-height: 1.55;
+}
+
+.apoema-topbar {
+  border-radius: 24px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.apoema-topbar-kicker {
+  display: inline-flex;
+  margin-bottom: 6px;
+  color: var(--apoema-teal);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.apoema-topbar strong {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.apoema-root[data-theme="dark"] .apoema-topbar strong,
+.apoema-root[data-theme="dark"] .apoema-page h1,
+.apoema-root[data-theme="dark"] .apoema-page h2,
+.apoema-root[data-theme="dark"] .apoema-page strong,
+.apoema-root[data-theme="dark"] .apoema-panel strong,
+.apoema-root[data-theme="dark"] .apoema-command-card strong,
+.apoema-root[data-theme="dark"] .apoema-integration-card strong,
+.apoema-root[data-theme="dark"] .apoema-detail-card h2 {
+  color: var(--apoema-text);
+}
+
+.apoema-page,
+.apoema-chat-layout {
+  display: grid;
+  gap: 18px;
+}
+
+.apoema-page-top,
+.apoema-hero,
+.apoema-section-grid,
+.apoema-settings-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.apoema-page-top {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+}
+
+.apoema-page-top h1,
+.apoema-hero h1,
+.apoema-chat-main h1 {
+  margin: 10px 0 0;
+  font-size: clamp(2rem, 3vw, 3.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.08em;
+}
+
+.apoema-page-top p,
+.apoema-hero p,
+.apoema-chat-main p,
+.apoema-panel p,
+.apoema-rail-card p {
+  color: var(--apoema-muted);
+  line-height: 1.6;
+}
+
+.apoema-panel {
+  border-radius: 24px;
+  padding: 18px;
+}
+
+.apoema-hero {
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  align-items: stretch;
+}
+
+.apoema-hero-copy,
+.apoema-hero-panel {
+  border-radius: 26px;
+  border: 1px solid var(--apoema-border);
+  background: var(--apoema-surface);
+  box-shadow: var(--apoema-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.apoema-hero-copy {
+  padding: 26px;
+}
+
+.apoema-hero-panel {
+  padding: 18px;
+  display: grid;
+  gap: 16px;
+}
+
+.apoema-hero-panel-top,
+.apoema-section-head,
+.apoema-integration-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.apoema-hero-panel-top span,
+.apoema-section-head span {
+  color: var(--apoema-muted);
+  font-size: 0.88rem;
+}
+
+.apoema-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.apoema-primary-button,
+.apoema-secondary-button,
+.apoema-ghost-button,
+.apoema-theme-button,
+.apoema-command-card {
+  border: none;
+  border-radius: 16px;
+  font: inherit;
+}
+
+.apoema-primary-button,
+.apoema-secondary-button,
+.apoema-ghost-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+
+.apoema-primary-button {
+  color: white;
+  background: linear-gradient(135deg, var(--apoema-teal), var(--apoema-cyan));
+  box-shadow: 0 18px 30px rgba(0, 141, 157, 0.22);
+}
+
+.apoema-secondary-button,
+.apoema-ghost-button,
+.apoema-theme-button {
+  background: var(--apoema-surface-strong);
+  color: var(--apoema-text);
+  border: 1px solid var(--apoema-border);
+}
+
+.apoema-secondary-button:hover,
+.apoema-primary-button:hover,
+.apoema-ghost-button:hover,
+.apoema-theme-button:hover,
+.apoema-command-card:hover {
+  transform: translateY(-1px);
+}
+
+.apoema-primary-button:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.apoema-hero-card-grid,
+.apoema-command-grid,
+.apoema-idea-grid,
+.apoema-mini-stats,
+.apoema-integration-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.apoema-hero-card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.apoema-mini-stats {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.apoema-command-grid,
+.apoema-integration-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.apoema-idea-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.apoema-section-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.apoema-metric-card,
+.apoema-command-card,
+.apoema-integration-card,
+.apoema-detail-card,
+.apoema-chat-sidebar-card,
+.apoema-chat-message,
+.apoema-chat-dock,
+.apoema-filter-bar,
+.apoema-empty-state {
+  border-radius: 20px;
+}
+
+.apoema-metric-card {
+  padding: 16px;
+}
+
+.apoema-metric-top,
+.apoema-score,
+.apoema-attachment-chip,
+.apoema-provider-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.apoema-metric-top {
+  justify-content: space-between;
+  color: var(--apoema-muted);
+  font-size: 0.9rem;
+}
+
+.apoema-metric-card strong {
+  display: block;
+  margin-top: 12px;
+  font-size: 1.8rem;
+  letter-spacing: -0.05em;
+}
+
+.apoema-metric-card p {
+  margin: 10px 0 0;
+  font-size: 0.92rem;
+}
+
+.apoema-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  text-transform: capitalize;
+  letter-spacing: 0.04em;
+}
+
+.tone-success {
+  background: rgba(47, 159, 109, 0.14);
+  color: #2f9f6d;
+}
+
+.tone-warning {
+  background: rgba(201, 118, 58, 0.14);
+  color: #c8763a;
+}
+
+.tone-neutral {
+  background: rgba(95, 107, 130, 0.14);
+  color: var(--apoema-muted);
+}
+
+.tone-info {
+  background: rgba(23, 195, 214, 0.14);
+  color: var(--apoema-teal);
+}
+
+.apoema-command-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  padding: 14px;
+  cursor: pointer;
+}
+
+.apoema-command-icon {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: var(--apoema-teal);
+  background: rgba(23, 195, 214, 0.12);
+}
+
+.apoema-command-content {
+  display: grid;
+  gap: 4px;
+}
+
+.apoema-command-content strong {
+  font-size: 0.98rem;
+}
+
+.apoema-command-content span,
+.apoema-command-action {
+  font-size: 0.88rem;
+  color: var(--apoema-muted);
+}
+
+.apoema-command-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: end;
+}
+
+.apoema-timeline {
+  display: grid;
+  gap: 12px;
+}
+
+.apoema-timeline-item {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--apoema-border);
+}
+
+.apoema-timeline-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.apoema-timeline-item time {
+  color: var(--apoema-muted);
+  font-size: 0.86rem;
+}
+
+.apoema-timeline-item strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.apoema-timeline-item p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.apoema-idea-grid .apoema-empty-state {
+  padding: 18px;
+  background: var(--apoema-surface-muted);
+}
+
+.apoema-empty-state strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.apoema-empty-state p {
+  margin: 0;
+}
+
+.apoema-filter-bar {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.apoema-search {
+  flex: 1 1 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--apoema-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: var(--apoema-surface-strong);
+}
+
+.apoema-search input,
+.apoema-provider-select select,
+.apoema-chat-composer textarea {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--apoema-text);
+  font: inherit;
+}
+
+.apoema-search input::placeholder,
+.apoema-chat-composer textarea::placeholder {
+  color: var(--apoema-muted);
+}
+
+.apoema-assets-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+  gap: 16px;
+}
+
+.apoema-table-wrap {
+  overflow: auto;
+  border-radius: 18px;
+}
+
+.apoema-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.apoema-table th,
+.apoema-table td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--apoema-border);
+  vertical-align: middle;
+}
+
+.apoema-table th {
+  color: var(--apoema-muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.apoema-table tbody tr {
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+
+.apoema-table tbody tr:hover,
+.apoema-table tbody tr.is-selected {
+  background: rgba(23, 195, 214, 0.08);
+}
+
+.apoema-table td strong,
+.apoema-table td span,
+.apoema-table td {
+  display: block;
+}
+
+.apoema-table td span {
+  margin-top: 4px;
+  color: var(--apoema-muted);
+  font-size: 0.84rem;
+}
+
+.apoema-score {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.apoema-score-bar {
+  width: 92px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(95, 107, 130, 0.16);
+  overflow: hidden;
+}
+
+.apoema-score-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--apoema-teal), var(--apoema-cyan));
+}
+
+.apoema-detail-card {
+  padding: 18px;
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.apoema-detail-card h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: -0.05em;
+}
+
+.apoema-detail-grid,
+.apoema-integration-card dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.apoema-detail-grid dt,
+.apoema-integration-card dt {
+  color: var(--apoema-muted);
+  font-size: 0.84rem;
+}
+
+.apoema-detail-grid dd,
+.apoema-integration-card dd {
+  margin: 4px 0 0;
+  font-weight: 600;
+}
+
+.apoema-chat-layout {
+  grid-template-columns: minmax(240px, 0.58fr) minmax(0, 1fr) minmax(260px, 0.42fr);
+  align-items: start;
+}
+
+.apoema-chat-sidebar,
+.apoema-chat-main,
+.apoema-chat-right {
+  min-width: 0;
+}
+
+.apoema-conversation-list {
+  display: grid;
+  gap: 10px;
+}
+
+.apoema-conversation-item {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--apoema-border);
+  background: var(--apoema-surface-strong);
+  border-radius: 16px;
+  padding: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.apoema-conversation-item.is-active {
+  background: linear-gradient(135deg, rgba(23, 195, 214, 0.1), rgba(200, 118, 58, 0.1));
+  border-color: rgba(23, 195, 214, 0.3);
+}
+
+.apoema-conversation-item span,
+.apoema-conversation-item small {
+  color: var(--apoema-muted);
+}
+
+.apoema-chat-sidebar-card {
+  padding: 16px;
+  border-radius: 18px;
+}
+
+.apoema-chat-sidebar-card p {
+  margin: 12px 0 0;
+}
+
+.apoema-chat-messages {
+  display: grid;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.apoema-chat-message {
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.apoema-chat-message.role-user {
+  margin-left: 6%;
+  background: linear-gradient(135deg, rgba(23, 195, 214, 0.08), rgba(23, 195, 214, 0.02));
+}
+
+.apoema-chat-message.role-assistant {
+  margin-right: 6%;
+}
+
+.apoema-chat-message-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--apoema-muted);
+  font-size: 0.88rem;
+}
+
+.apoema-chat-message p {
+  margin: 0;
+}
+
+.apoema-chat-attachments,
+.apoema-attachment-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.apoema-attachment-chip {
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: var(--apoema-surface-strong);
+  color: var(--apoema-text);
+  border: 1px solid var(--apoema-border);
+  font-size: 0.82rem;
+}
+
+.apoema-chat-dock {
+  margin-top: 16px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.apoema-dropzone {
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  border: 1px dashed rgba(23, 195, 214, 0.4);
+  border-radius: 18px;
+  padding: 18px;
+  color: var(--apoema-muted);
+  background: rgba(23, 195, 214, 0.04);
+  cursor: pointer;
+  text-align: center;
+}
+
+.apoema-dropzone.is-dragging {
+  border-color: var(--apoema-teal);
+  background: rgba(23, 195, 214, 0.12);
+}
+
+.apoema-dropzone span {
+  color: var(--apoema-text);
+  font-weight: 600;
+}
+
+.apoema-dropzone small {
+  font-size: 0.84rem;
+}
+
+.apoema-warning {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(201, 118, 58, 0.12);
+  color: var(--apoema-text);
+}
+
+.apoema-warning p,
+.apoema-warning strong {
+  margin: 0;
+}
+
+.apoema-chat-composer {
+  display: grid;
+  gap: 10px;
+}
+
+.apoema-chat-composer textarea {
+  resize: vertical;
+  min-height: 100px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--apoema-border);
+  background: var(--apoema-surface-strong);
+}
+
+.apoema-chat-composer-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.apoema-provider-select {
+  flex-direction: column;
+  align-items: stretch;
+  font-size: 0.84rem;
+  color: var(--apoema-muted);
+}
+
+.apoema-provider-select select {
+  min-width: 220px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--apoema-border);
+  background: var(--apoema-surface-strong);
+}
+
+.apoema-theme-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.apoema-theme-button {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.apoema-theme-button.is-active {
+  background: linear-gradient(135deg, rgba(23, 195, 214, 0.18), rgba(200, 118, 58, 0.12));
+  border-color: rgba(23, 195, 214, 0.28);
+}
+
+.apoema-settings-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.apoema-preference-list,
+.apoema-settings-notes {
+  display: grid;
+  gap: 12px;
+}
+
+.apoema-preference-item,
+.apoema-settings-note,
+.apoema-safety-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--apoema-surface-strong);
+  border: 1px solid var(--apoema-border);
+}
+
+.apoema-preference-icon,
+.apoema-integration-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: rgba(23, 195, 214, 0.12);
+  color: var(--apoema-teal);
+  flex: 0 0 auto;
+}
+
+.apoema-preference-item strong,
+.apoema-settings-note strong,
+.apoema-safety-item strong {
+  display: block;
+}
+
+.apoema-preference-item p,
+.apoema-settings-note p,
+.apoema-safety-item p {
+  margin: 4px 0 0;
+}
+
+.apoema-safety-list {
+  display: grid;
+  gap: 12px;
+}
+
+.apoema-integration-card {
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.apoema-integration-card p {
+  margin: 0;
+}
+
+.apoema-integration-card dl {
+  margin: 0;
+}
+
+@media (max-width: 1280px) {
+  .apoema-shell,
+  .apoema-chat-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .apoema-sidebar,
+  .apoema-rail {
+    position: static;
+  }
+}
+
+@media (max-width: 920px) {
+  .apoema-hero,
+  .apoema-section-grid,
+  .apoema-assets-layout,
+  .apoema-settings-grid,
+  .apoema-page-top {
+    grid-template-columns: 1fr;
+  }
+
+  .apoema-hero-card-grid,
+  .apoema-mini-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .apoema-topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

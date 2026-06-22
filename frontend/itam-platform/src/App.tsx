@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { AppShell } from "./components/AppShell";
+import { ApoemaApp } from "./apoema";
 import { useAuth } from "./lib/auth";
 import type { Role } from "./lib/types";
 import { AiChatPage } from "./pages/AiChatPage";
@@ -59,6 +60,8 @@ function RoleGuard({ children, roles }: { children: ReactNode; roles: Role[] }) 
 export function App() {
   return (
     <Routes>
+      <Route path="/apoema/*" element={<ApoemaApp />} />
+      <Route path="/apoema-preview/*" element={<ApoemaApp />} />
       <Route path="/login" element={<LoginPage />} />
       <Route element={<ShellRoute />}>
         <Route index element={<DashboardPage />} />
