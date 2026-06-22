@@ -16,6 +16,20 @@ import { useAuth } from "@/lib/auth";
 import { compactId, formatAssetStatus, formatDateTime } from "@/lib/format";
 import type { Asset, Movement } from "@/lib/types";
 
+function formatMaybeExcelSerial(value: string | null | undefined) {
+  if (!value) {
+    return "-";
+  }
+  const numeric = Number(value);
+  if (Number.isFinite(numeric) && /^\d+(\.\d+)?$/.test(value) && numeric > 30000 && numeric < 60000) {
+    const date = new Date((numeric - 25569) * 86400 * 1000);
+    if (!Number.isNaN(date.getTime())) {
+      return formatDateTime(date.toISOString());
+    }
+  }
+  return formatDateTime(value);
+}
+
 function statusSentence(status: string | null | undefined) {
   return formatAssetStatus(status);
 }
@@ -158,7 +172,7 @@ export function AssetDetailsPage() {
                 { label: "Modelo", value: asset.model ?? "-" },
                 { label: "Sistema", value: asset.operating_system ?? "-" },
                 { label: "IP", value: asset.ip_address ?? "-" },
-                { label: "Último login", value: asset.last_login ?? "-" },
+                { label: "Último login", value: formatMaybeExcelSerial(asset.last_login) },
                 { label: "Criado em", value: formatDateTime(asset.created_at) },
               ]}
             />

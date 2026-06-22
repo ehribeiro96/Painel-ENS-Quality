@@ -7,3 +7,4 @@ Reason:
 - The macros autocomplete dropdown received a concrete visual fix.
 - Full browser screenshot validation was not possible in this session because the in-app browser runtime trust bridge was unavailable.
 - The next pass should continue page-specific visual repair and collect manual screenshot evidence.
+- The AssetDetails dirty file was isolated and closed separately in `CLOSE-ASSETDETAILS-DIRTY-H1`.
