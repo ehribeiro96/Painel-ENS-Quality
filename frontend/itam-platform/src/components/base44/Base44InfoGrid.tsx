@@ -15,7 +15,7 @@ export function Base44InfoGrid({
 }: {
   title?: ReactNode;
   items: Base44InfoItem[];
-  columns?: 1 | 2 | 3;
+  columns?: 1 | 2 | 3 | 4;
 }) {
   return (
     <Base44Surface className={`base44-info-grid base44-info-grid-cols-${columns}`} as="section">
