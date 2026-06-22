@@ -1,38 +1,36 @@
 # Next Boundary Decision
 
-Boundary atual: `CLOSE-RUNTIME-DOCKER-H1 - close Dockerfile runtime adjustment`.
+Boundary atual: `CLOSE-DOCS-LEGACY-H1 - classify docs legacy migration artifacts before Base44 import`.
 
 ## Estado consolidado
 
 ```text
-GO_RUNTIME_DOCKER_CLOSED
-GO_BACKEND_TESTS_OK
-PARTIAL_DOCKER_BUILD_NOT_RUN
+GO_DOCS_LEGACY_CLASSIFIED
+PARTIAL_GITIGNORE_UPDATED
+PARTIAL_LEGACY_ASSETS_LEFT_UNTRACKED
 ```
 
 ## Decisao objetiva
 
-A boundary runtime/Docker foi fechada em commit separado. O worktree ainda possui grandes árvores untracked e pendências legadas que não devem ser misturadas com a importação Base44.
+Os artefatos legados e de documentação local foram classificados. A importação Base44 ainda deve aguardar até o worktree ficar limpo de alterações rastreadas fora do escopo.
 
 ## Proxima boundary principal
 
-1. `CLOSE-DOCS-LEGACY-H1 - classify docs legacy migration artifacts`
-   Objetivo: classificar e separar os artefatos legados, propostas de migração e docs auxiliares fora do frontend e fora do runtime.
+1. `BASE44-FRONTONLY-H1 - import Base44 visual frontend only`
 
-## Boundary seguinte
+## Boundaries opcionais, se houver tempo ou necessidade de governance
 
-2. `BASE44-FRONTONLY-H1 - import Base44 visual frontend only`
-   Condicao: worktree sem pendencias misturadas fora do escopo da importação visual.
+2. `LEGACY-ASSETS-H1 - decide archive policy for legacy assets`
+3. `MIGRATION-PROPOSALS-H1 - review HermesOps selective migration proposals`
 
 ## O que nao fazer agora
 
-- Nao executar Docker app build nesta boundary.
-- Nao executar `apt-get`.
-- Nao tocar em Base44.
-- Nao tocar no frontend.
-- Nao tocar em package files, migrations, Compose, assets ou data.
+- Nao importar Base44 ainda.
+- Nao tocar no frontend atual.
+- Nao tocar no backend, Dockerfile, migrations ou package files.
+- Nao commitar assets legados, screenshots ou runtime databases.
 - Nao imprimir credenciais, tokens, cookies ou storage state.
 
 ## Decisao final
 
-Proxima boundary recomendada: `CLOSE-DOCS-LEGACY-H1 - classify docs legacy migration artifacts`.
+Proxima boundary recomendada: `BASE44-FRONTONLY-H1 - import Base44 visual frontend only`.

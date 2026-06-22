@@ -20,6 +20,8 @@ exports/
 *.sqlite
 *.sqlite3
 *.sqlite-journal
+*.sqlite-shm
+*.sqlite-wal
 *.jsonl
 *.pem
 *.key
@@ -29,6 +31,13 @@ exports/
 *.cer
 *.der
 .sql
+
+# Local browser/test state
+**/storageState*.json
+**/storage-state*.json
+**/.auth/
+**/playwright-report/
+**/test-results/
 *.pyc
 *.py[cod]
 *$py.class
@@ -81,9 +90,16 @@ credentials/
 *.sql
 *.sqlite
 *.db
+*.db-shm
+*.db-wal
 _backup/
 _validation/
 exports/
+
+data/*.db-shm
+data/*.db-wal
+data/*.sqlite-shm
+data/*.sqlite-wal
 
 # --- Local logs, reports and evidence ---
 logs/
