@@ -2,8 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Archive, Eye, History, Pencil, RotateCcw, SlidersHorizontal, Trash2 } from "lucide-react";
-import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
-import { SentinelSectionHeader } from "@/components/brand/SentinelSectionHeader";
+import { Base44ActionBar } from "@/components/base44/Base44ActionBar";
+import { Base44AssetCard } from "@/components/base44/Base44AssetCard";
+import { Base44EmptyState } from "@/components/base44/Base44EmptyState";
+import { Base44MetricCard } from "@/components/base44/Base44MetricCard";
+import { Base44PageHeader } from "@/components/base44/Base44PageHeader";
+import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
+import { Base44Surface } from "@/components/base44/Base44Surface";
 import { DataTable } from "@/components/DataTable";
 import { MoveAssetDialog } from "@/components/MoveAssetDialog";
 import { Alert, LoadingBlock } from "@/components/StateBlocks";
@@ -264,8 +269,8 @@ export function AssetsPage() {
   }
 
   const page = assetsQuery.data as Page<Asset> | undefined;
-  const totalPages = page ? Math.max(1, Math.ceil(page.total / page.page_size)) : 1;
   const pageItems = page?.items ?? [];
+  const totalPages = page ? Math.max(1, Math.ceil(page.total / page.page_size)) : 1;
   const summary = useMemo(() => {
     const total = page?.total ?? 0;
     const assigned = pageItems.filter((asset) => asset.status === "IN_USE").length;
@@ -298,22 +303,7 @@ export function AssetsPage() {
         key: "status",
         label: "Status",
         sortable: true,
-        render: (asset: Asset) => {
-          const state = asset.status === "STOCK"
-            ? "Validado"
-            : asset.status === "IN_USE"
-              ? "Online"
-              : asset.status === "MAINTENANCE"
-                ? "Em revisão"
-                : asset.status === "DEFECTIVE" || asset.status === "DISCARDED"
-                  ? "Erro"
-                  : asset.status === "CONFIG_PENDING"
-                    ? "Pendente"
-                    : asset.status === "RESERVED"
-                      ? "Somente leitura"
-                      : "Auditável";
-          return <HermesStatusPill state={state}>{formatAssetStatus(asset.status)}</HermesStatusPill>;
-        }
+        render: (asset: Asset) => <Base44StatusBadge status={asset.status}>{formatAssetStatus(asset.status)}</Base44StatusBadge>
       },
       location: { key: "location", label: "Unidade", sortable: true },
       asset_type: { key: "asset_type", label: "Tipo" },
@@ -327,45 +317,37 @@ export function AssetsPage() {
   }, [visibleColumns]);
 
   return (
-    <div className="assets-page">
-      <SentinelSectionHeader
+    <div className="base44-asset-page">
+      <Base44PageHeader
         eyebrow="Inventário técnico"
-        subtitle="Busca operacional com filtros, visão salva e ações diretas por linha."
-        title="Inventário"
-      >
-        <button className="button secondary" type="button" onClick={() => setShowColumns(!showColumns)}>
-          <SlidersHorizontal size={16} aria-hidden />
-          Colunas
-        </button>
-        {canWrite ? <button className="button" type="button" onClick={openCreateAsset}>+ Novo ativo</button> : null}
-      </SentinelSectionHeader>
+        title="Ativos"
+        description="Busca operacional com filtros, visão salva e ações diretas por linha."
+        breadcrumbs={[
+          <Link key="dashboard" to="/">Dashboard</Link>,
+          <span key="sep-1">/</span>,
+          <span key="assets">Ativos</span>
+        ]}
+        actions={
+          <>
+            <button className="button secondary" type="button" onClick={() => setShowColumns(!showColumns)}>
+              <SlidersHorizontal size={16} aria-hidden />
+              Colunas
+            </button>
+            {canWrite ? <button className="button" type="button" onClick={openCreateAsset}>+ Novo ativo</button> : null}
+          </>
+        }
+      />
 
-      <section className="grid metrics page-metrics assets-metrics" aria-label="Resumo do inventário filtrado">
-        <article className="card metric-card">
-          <span className="metric-label">Total encontrado</span>
-          <strong className="metric-value">{summary.total}</strong>
-          <p className="metric-description">Quantidade total retornada pelos filtros atuais.</p>
-        </article>
-        <article className="card metric-card">
-          <span className="metric-label">Em estoque</span>
-          <strong className="metric-value">{summary.stock}</strong>
-          <p className="metric-description">Ativos prontos para nova movimentação nesta página.</p>
-        </article>
-        <article className="card metric-card">
-          <span className="metric-label">Em uso</span>
-          <strong className="metric-value">{summary.assigned}</strong>
-          <p className="metric-description">Ativos vinculados a usuários nesta página.</p>
-        </article>
-        <article className="card metric-card">
-          <span className="metric-label">Cadastro incompleto</span>
-          <strong className="metric-value">{summary.incomplete}</strong>
-          <p className="metric-description">Ativos que ainda pedem hostname, patrimônio ou serial.</p>
-        </article>
+      <section className="grid metrics base44-asset-metrics" aria-label="Resumo do inventário filtrado">
+        <Base44MetricCard title="Total encontrado" value={summary.total} description="Quantidade total retornada pelos filtros atuais." icon={Archive} />
+        <Base44MetricCard title="Em estoque" value={summary.stock} description="Ativos prontos para nova movimentação nesta página." icon={RotateCcw} />
+        <Base44MetricCard title="Em uso" value={summary.assigned} description="Ativos vinculados a usuários nesta página." icon={Eye} />
+        <Base44MetricCard title="Cadastro incompleto" value={summary.incomplete} description="Ativos que ainda pedem hostname, patrimônio ou serial." icon={History} />
       </section>
 
-      <section className="permission-note permission-note-banner">
+      <Base44Surface className="base44-asset-permission" as="section">
         <div>
-          <span className="badge info">Permissões</span>
+          <p className="base44-eyebrow">Permissões</p>
           <h2>{canWrite ? "Escrita operacional ativa" : "Modo consulta"}</h2>
           <p>
             {canWrite
@@ -373,22 +355,23 @@ export function AssetsPage() {
               : "Seu perfil pode navegar, filtrar e abrir detalhes, mas as ações de cadastro e desativação ficam ocultas."}
           </p>
         </div>
-        <div className="page-actions">
-          <HermesStatusPill state={canWrite ? "Auditável" : "Somente leitura"}>{canWrite ? "Escrita habilitada" : "Consulta"}</HermesStatusPill>
-          <HermesStatusPill state={canDelete ? "Auditável" : "Somente leitura"}>{canDelete ? "Desativação ativa" : "Sem exclusão"}</HermesStatusPill>
+        <div className="base44-chip-row">
+          <Base44StatusBadge status={canWrite ? "auditavel" : "leitura"}>{canWrite ? "Escrita habilitada" : "Consulta"}</Base44StatusBadge>
+          <Base44StatusBadge status={canDelete ? "auditavel" : "leitura"}>{canDelete ? "Desativação ativa" : "Sem exclusão"}</Base44StatusBadge>
         </div>
-      </section>
+      </Base44Surface>
 
       {assetFormOpen && canWrite ? (
-        <form className="form-card" onSubmit={submitAssetForm}>
-          <div className="form-card-header">
+        <Base44Surface className="base44-asset-form" as="form" onSubmit={submitAssetForm}>
+          <div className="base44-form-header">
             <div>
+              <p className="base44-eyebrow">Cadastro operacional</p>
               <h2>{editingAsset ? "Editar ativo" : "Novo ativo"}</h2>
               <p>Edicao cadastral. Troca de usuario, status ou local operacional deve usar Movimentar.</p>
             </div>
             <button className="button secondary" type="button" onClick={() => setAssetFormOpen(false)}>Fechar</button>
           </div>
-          <div className="form-grid">
+          <div className="form-grid base44-asset-form-grid">
             <label>Hostname<input className="input full" value={assetForm.hostname} onChange={(event) => setAssetForm({ ...assetForm, hostname: event.target.value })} /></label>
             <label>Patrimônio<input className="input full" value={assetForm.patrimony} onChange={(event) => setAssetForm({ ...assetForm, patrimony: event.target.value })} /></label>
             <label>Serial<input className="input full" value={assetForm.serial} onChange={(event) => setAssetForm({ ...assetForm, serial: event.target.value })} /></label>
@@ -404,75 +387,92 @@ export function AssetsPage() {
                 {statusOptions.map((status) => <option key={status} value={status}>{formatAssetStatus(status)}</option>)}
               </select>
             </label>
-            <label>Localizacao<input className="input full" value={assetForm.location} onChange={(event) => setAssetForm({ ...assetForm, location: event.target.value })} /></label>
+            <label>Localização<input className="input full" value={assetForm.location} onChange={(event) => setAssetForm({ ...assetForm, location: event.target.value })} /></label>
             <label>Sistema operacional<input className="input full" value={assetForm.operating_system} onChange={(event) => setAssetForm({ ...assetForm, operating_system: event.target.value })} /></label>
             <label>IP<input className="input full" value={assetForm.ip_address} onChange={(event) => setAssetForm({ ...assetForm, ip_address: event.target.value })} /></label>
             <label className="wide-field">Observações<textarea className="input full" value={assetForm.notes} onChange={(event) => setAssetForm({ ...assetForm, notes: event.target.value })} /></label>
           </div>
           <button className="button" type="submit" disabled={saveAssetMutation.isPending}>{saveAssetMutation.isPending ? "Salvando..." : editingAsset ? "Salvar ativo" : "Criar ativo"}</button>
-        </form>
+        </Base44Surface>
       ) : null}
 
-      <section className="ops-panel" aria-label="Filtros de ativos">
-        <label className="wide-field">
-          Busca unificada
-          <input
-            className="input full"
-            placeholder="Hostname, patrimônio, serial, usuário, e-mail ou localidade"
-            value={filters.search}
-            onChange={(event) => updateFilter("search", event.target.value)}
-          />
-        </label>
-        <label>
-          Status
-          <select className="select full" value={filters.status} onChange={(event) => updateFilter("status", event.target.value)}>
-            <option value="">Todos</option>
-            {statusOptions.map((status) => <option key={status} value={status}>{formatAssetStatus(status)}</option>)}
-          </select>
-        </label>
-        <label>
-          Tipo
-          <select className="select full" value={filters.assetType} onChange={(event) => updateFilter("assetType", event.target.value)}>
-            <option value="">Todos</option>
-            {typeOptions.map((type) => <option key={type} value={type}>{type}</option>)}
-          </select>
-        </label>
-        <label>
-          Localidade
-          <input className="input full" value={filters.location} onChange={(event) => updateFilter("location", event.target.value)} />
-        </label>
-        <label>
-          Disponibilidade
-          <select className="select full" value={filters.availability} onChange={(event) => updateFilter("availability", event.target.value)}>
-            <option value="">Todas</option>
-            <option value="available">Disponíveis</option>
-            <option value="assigned">Em uso</option>
-          </select>
-        </label>
-        <label>
-          Linhas
-          <select className="select full" value={filters.pageSize} onChange={(event) => updateFilter("pageSize", Number(event.target.value))}>
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-            <option value={200}>200</option>
-          </select>
-        </label>
-        <button className="button secondary" type="button" onClick={clearFilters}>
-          <RotateCcw size={16} aria-hidden />
-          Limpar
-        </button>
-      </section>
+      <Base44ActionBar
+        eyebrow="Filtros operacionais"
+        title="Recorte do inventário"
+        description="Busca, status, tipo, localidade e quantidade por página continuam usando os dados reais da API."
+        actions={
+          <button className="button secondary" type="button" onClick={clearFilters}>
+            <RotateCcw size={16} aria-hidden />
+            Limpar
+          </button>
+        }
+      >
+        <div className="base44-asset-filters-grid">
+          <label className="wide-field">
+            Busca unificada
+            <input
+              className="input full"
+              placeholder="Hostname, patrimônio, serial, usuário, e-mail ou localidade"
+              value={filters.search}
+              onChange={(event) => updateFilter("search", event.target.value)}
+            />
+          </label>
+          <label>
+            Status
+            <select className="select full" value={filters.status} onChange={(event) => updateFilter("status", event.target.value)}>
+              <option value="">Todos</option>
+              {statusOptions.map((status) => <option key={status} value={status}>{formatAssetStatus(status)}</option>)}
+            </select>
+          </label>
+          <label>
+            Tipo
+            <select className="select full" value={filters.assetType} onChange={(event) => updateFilter("assetType", event.target.value)}>
+              <option value="">Todos</option>
+              {typeOptions.map((type) => <option key={type} value={type}>{type}</option>)}
+            </select>
+          </label>
+          <label>
+            Localidade
+            <input className="input full" value={filters.location} onChange={(event) => updateFilter("location", event.target.value)} />
+          </label>
+          <label>
+            Disponibilidade
+            <select className="select full" value={filters.availability} onChange={(event) => updateFilter("availability", event.target.value)}>
+              <option value="">Todas</option>
+              <option value="available">Disponíveis</option>
+              <option value="assigned">Em uso</option>
+            </select>
+          </label>
+          <label>
+            Linhas
+            <select className="select full" value={filters.pageSize} onChange={(event) => updateFilter("pageSize", Number(event.target.value))}>
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={200}>200</option>
+            </select>
+          </label>
+        </div>
+      </Base44ActionBar>
 
       {showColumns ? (
-        <section className="column-panel" aria-label="Configuração de colunas">
-          {allColumns.map(([key, label]) => (
-            <label className="check-pill" key={key}>
-              <input type="checkbox" checked={visibleColumns.includes(key)} onChange={() => toggleColumn(key)} />
-              {label}
-            </label>
-          ))}
-        </section>
+        <Base44Surface className="base44-asset-columns-panel" as="section">
+          <div className="base44-form-header">
+            <div>
+              <p className="base44-eyebrow">Colunas</p>
+              <h2>Visibilidade da tabela</h2>
+              <p>As colunas apenas ajustam a leitura visual; os dados e a ordenação continuam sendo reais.</p>
+            </div>
+          </div>
+          <div className="base44-chip-row">
+            {allColumns.map(([key, label]) => (
+              <label className="check-pill" key={key}>
+                <input type="checkbox" checked={visibleColumns.includes(key)} onChange={() => toggleColumn(key)} />
+                {label}
+              </label>
+            ))}
+          </div>
+        </Base44Surface>
       ) : null}
 
       {stockMutation.isError ? <Alert tone="danger">Não foi possível enviar o ativo para estoque.</Alert> : null}
@@ -482,43 +482,73 @@ export function AssetsPage() {
       {assetsQuery.isError ? <Alert tone="danger">Não foi possível carregar os ativos.</Alert> : null}
       {assetsQuery.isLoading ? <LoadingBlock label="Carregando ativos com filtros server-side..." /> : null}
 
-      <section className="asset-table-shell">
-        <div className="result-summary">
+      <Base44Surface className="base44-asset-result-shell" as="section">
+        <div className="base44-asset-result-summary">
           <strong>{page?.total ?? 0}</strong> ativos encontrados
           {assetsQuery.isFetching && !assetsQuery.isLoading ? <span>Atualizando...</span> : null}
         </div>
 
-        <DataTable
-          items={page?.items ?? []}
-          columns={columns}
-          sortBy={sortBy}
-          sortOrder={sortOrder}
-          onSort={toggleSort}
-          emptyTitle="Nenhum ativo encontrado."
-          emptyDescription={canWrite
-            ? "Ajuste os filtros para encontrar um ativo existente ou crie o primeiro registro operacional."
-            : "Ajuste os filtros para ampliar a busca ou remova o recorte atual."}
-          emptyActions={canWrite ? <button className="button" type="button" onClick={openCreateAsset}>+ Novo ativo</button> : <button className="button secondary" type="button" onClick={clearFilters}>Limpar filtros</button>}
-          rowActions={(asset) => (
-            <div className="row-action-group">
-              <Link className="mini-button" to={`/assets/${asset.id}`} title="Ver detalhes" aria-label="Ver detalhes do ativo"><Eye size={15} aria-hidden /></Link>
-              {canWrite ? <button className="mini-button" type="button" title="Editar ativo" aria-label="Editar ativo" onClick={() => openEditAsset(asset)}><Pencil size={15} aria-hidden /></button> : null}
-              <button className="mini-button text-action" type="button" title="Movimentar ativo" aria-label="Movimentar ativo" onClick={() => setMovingAsset(asset)}>Movimentar</button>
-              <button className="mini-button" type="button" title="Enviar para estoque" disabled={stockMutation.isPending} onClick={() => stockMutation.mutate(asset)}>
-                <Archive size={15} aria-hidden />
-              </button>
-              {canDelete ? <button className="mini-button danger" type="button" title="Desativar ativo" aria-label="Desativar ativo" disabled={deleteAssetMutation.isPending} onClick={() => deactivateAsset(asset)}><Trash2 size={15} aria-hidden /></button> : null}
-              <Link className="mini-button" to={`/assets/${asset.id}#history`} title="Histórico" aria-label="Ver histórico do ativo"><History size={15} aria-hidden /></Link>
-            </div>
-          )}
-        />
+        {pageItems.length > 0 ? (
+          <>
+            <Base44AssetCard
+              asset={pageItems[0]}
+              actions={
+                <div className="row-action-group base44-asset-card-actions-inline">
+                  <Link className="mini-button" to={`/assets/${pageItems[0].id}`} title="Ver detalhes" aria-label="Ver detalhes do ativo"><Eye size={15} aria-hidden /></Link>
+                  {canWrite ? <button className="mini-button" type="button" title="Editar ativo" aria-label="Editar ativo" onClick={() => openEditAsset(pageItems[0])}><Pencil size={15} aria-hidden /></button> : null}
+                  <button className="mini-button text-action" type="button" title="Movimentar ativo" aria-label="Movimentar ativo" onClick={() => setMovingAsset(pageItems[0])}>Movimentar</button>
+                  <button className="mini-button" type="button" title="Enviar para estoque" disabled={stockMutation.isPending} onClick={() => stockMutation.mutate(pageItems[0])}>
+                    <Archive size={15} aria-hidden />
+                  </button>
+                  {canDelete ? <button className="mini-button danger" type="button" title="Desativar ativo" aria-label="Desativar ativo" disabled={deleteAssetMutation.isPending} onClick={() => deactivateAsset(pageItems[0])}><Trash2 size={15} aria-hidden /></button> : null}
+                  <Link className="mini-button" to={`/assets/${pageItems[0].id}#history`} title="Histórico" aria-label="Ver histórico do ativo"><History size={15} aria-hidden /></Link>
+                </div>
+              }
+            />
 
-        <nav className="pagination" aria-label="Paginação de ativos">
-          <button className="button secondary" type="button" disabled={pageNumber <= 1} onClick={() => setPageNumber(pageNumber - 1)}>Anterior</button>
-          <span>Página {pageNumber} de {totalPages}</span>
-          <button className="button secondary" type="button" disabled={pageNumber >= totalPages} onClick={() => setPageNumber(pageNumber + 1)}>Próxima</button>
-        </nav>
-      </section>
+            <div className="asset-table-shell base44-asset-table-shell">
+              <DataTable
+                items={pageItems}
+                columns={columns}
+                sortBy={sortBy}
+                sortOrder={sortOrder}
+                onSort={toggleSort}
+                emptyTitle="Nenhum ativo encontrado."
+                emptyDescription={canWrite
+                  ? "Ajuste os filtros para encontrar um ativo existente ou crie o primeiro registro operacional."
+                  : "Ajuste os filtros para ampliar a busca ou remova o recorte atual."}
+                emptyActions={canWrite ? <button className="button" type="button" onClick={openCreateAsset}>+ Novo ativo</button> : <button className="button secondary" type="button" onClick={clearFilters}>Limpar filtros</button>}
+                rowActions={(asset) => (
+                  <div className="row-action-group">
+                    <Link className="mini-button" to={`/assets/${asset.id}`} title="Ver detalhes" aria-label="Ver detalhes do ativo"><Eye size={15} aria-hidden /></Link>
+                    {canWrite ? <button className="mini-button" type="button" title="Editar ativo" aria-label="Editar ativo" onClick={() => openEditAsset(asset)}><Pencil size={15} aria-hidden /></button> : null}
+                    <button className="mini-button text-action" type="button" title="Movimentar ativo" aria-label="Movimentar ativo" onClick={() => setMovingAsset(asset)}>Movimentar</button>
+                    <button className="mini-button" type="button" title="Enviar para estoque" disabled={stockMutation.isPending} onClick={() => stockMutation.mutate(asset)}>
+                      <Archive size={15} aria-hidden />
+                    </button>
+                    {canDelete ? <button className="mini-button danger" type="button" title="Desativar ativo" aria-label="Desativar ativo" disabled={deleteAssetMutation.isPending} onClick={() => deactivateAsset(asset)}><Trash2 size={15} aria-hidden /></button> : null}
+                    <Link className="mini-button" to={`/assets/${asset.id}#history`} title="Histórico" aria-label="Ver histórico do ativo"><History size={15} aria-hidden /></Link>
+                  </div>
+                )}
+              />
+
+              <nav className="pagination" aria-label="Paginação de ativos">
+                <button className="button secondary" type="button" disabled={pageNumber <= 1} onClick={() => setPageNumber(pageNumber - 1)}>Anterior</button>
+                <span>Página {pageNumber} de {totalPages}</span>
+                <button className="button secondary" type="button" disabled={pageNumber >= totalPages} onClick={() => setPageNumber(pageNumber + 1)}>Próxima</button>
+              </nav>
+            </div>
+          </>
+        ) : (
+          <Base44EmptyState
+            title="Nenhum ativo encontrado"
+            description={canWrite
+              ? "Ajuste os filtros para encontrar um ativo existente ou crie o primeiro registro operacional."
+              : "Ajuste os filtros para ampliar a busca ou remova o recorte atual."}
+            action={canWrite ? <button className="button" type="button" onClick={openCreateAsset}>+ Novo ativo</button> : <button className="button secondary" type="button" onClick={clearFilters}>Limpar filtros</button>}
+          />
+        )}
+      </Base44Surface>
 
       <MoveAssetDialog
         asset={movingAsset}
@@ -532,4 +562,3 @@ export function AssetsPage() {
     </div>
   );
 }
-

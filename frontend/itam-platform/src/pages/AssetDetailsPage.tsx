@@ -1,78 +1,27 @@
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowRight, CheckCircle2, CircleAlert } from "lucide-react";
+import { ArrowRight, CheckCircle2, CircleAlert, History } from "lucide-react";
+import { Base44AssetCard } from "@/components/base44/Base44AssetCard";
+import { Base44AssetTimeline } from "@/components/base44/Base44AssetTimeline";
+import { Base44EmptyState } from "@/components/base44/Base44EmptyState";
+import { Base44InfoGrid } from "@/components/base44/Base44InfoGrid";
+import { Base44PageHeader } from "@/components/base44/Base44PageHeader";
+import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
+import { Base44Surface } from "@/components/base44/Base44Surface";
 import { MoveAssetDialog } from "@/components/MoveAssetDialog";
 import { Alert, LoadingBlock } from "@/components/StateBlocks";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
-import { formatDateTime } from "@/lib/format";
+import { compactId, formatAssetStatus, formatDateTime } from "@/lib/format";
 import type { Asset, Movement } from "@/lib/types";
 
-function DetailItem({ label, value }: { label: string; value: string | null | undefined }) {
-  return (
-    <>
-      <dt>{label}</dt>
-      <dd>{value || "-"}</dd>
-    </>
-  );
+function statusSentence(status: string | null | undefined) {
+  return formatAssetStatus(status);
 }
 
-function formatStatusLabel(status: string | null | undefined) {
-  return status ? status.replaceAll("_", " ") : "Status não informado";
-}
-
-function shortId(id: string | null | undefined) {
-  return id ? id.slice(0, 8) : null;
-}
-
-function personLabel(name: string | null | undefined, id: string | null | undefined, fallback: string) {
-  if (name) {
-    return id ? `${name} · ID ${shortId(id)}` : name;
-  }
-  return id ? `ID ${shortId(id)}` : fallback;
-}
-
-function Timeline({ movements }: { movements: Movement[] }) {
-  if (movements.length === 0) {
-    return <div className="card muted-card">Nenhuma movimentacao registrada para este ativo.</div>;
-  }
-
-  return (
-    <ol className="timeline" id="history">
-      {movements.map((movement) => {
-        const macroLabel = movement.macro_generation_id
-          ? `Macro ${shortId(movement.macro_generation_id)} · ${movement.macro_copied ? "copiada" : "não copiada"}`
-          : "Macro não vinculada";
-        return (
-          <li key={movement.id}>
-            <div className="timeline-dot" />
-            <article className="timeline-card">
-              <header>
-                <strong>{formatDateTime(movement.created_at)}</strong>
-                <span>{personLabel(movement.responsible_name, movement.responsible_id, "Responsável não informado")}</span>
-              </header>
-              {movement.asset_label ? <p className="metric-label">Ativo: {movement.asset_label}</p> : null}
-              <div className="before-after">
-                <div>
-                  <span className="metric-label">Antes</span>
-                  <p>{formatStatusLabel(movement.previous_status)} | {movement.previous_location ?? "Origem não informada"} | {personLabel(movement.previous_user_name, movement.previous_user_id, "Usuário não informado")}</p>
-                </div>
-                <ArrowRight size={18} aria-hidden />
-                <div>
-                  <span className="metric-label">Depois</span>
-                  <p>{formatStatusLabel(movement.new_status)} | {movement.new_location ?? "Destino não informado"} | {personLabel(movement.new_user_name, movement.new_user_id, "Usuário não informado")}</p>
-                </div>
-              </div>
-              <p className="timeline-reason">{movement.justification}</p>
-              <p className="metric-label">{macroLabel}</p>
-              {movement.notes ? <p className="metric-label">Observação: {movement.notes}</p> : null}
-            </article>
-          </li>
-        );
-      })}
-    </ol>
-  );
+function assetSummary(asset: Asset | null | undefined) {
+  return asset?.hostname ?? asset?.patrimony ?? asset?.serial ?? "Detalhe do ativo";
 }
 
 export function AssetDetailsPage() {
@@ -112,82 +61,143 @@ export function AssetDetailsPage() {
 
   return (
     <>
-      <div className="page-title">
-        <div>
-          <h1>{asset?.hostname ?? asset?.patrimony ?? "Detalhe do ativo"}</h1>
-          <p>Situacao atual, timeline operacional e auditoria do ativo.</p>
-        </div>
-        <button className="button" type="button" onClick={() => setMovingAsset(asset ?? null)} disabled={!asset}>Movimentar</button>
-      </div>
+      <Base44PageHeader
+        eyebrow="Registro operacional"
+        title={assetSummary(asset)}
+        description="Situação atual, timeline operacional e auditoria do ativo com fluxo real da API."
+        breadcrumbs={[
+          <Link key="dashboard" to="/">Dashboard</Link>,
+          <span key="sep-1">/</span>,
+          <Link key="assets" to="/assets">Ativos</Link>,
+          <span key="sep-2">/</span>,
+          <span key="detail">Detalhe do ativo</span>
+        ]}
+        actions={
+          <button className="button" type="button" onClick={() => setMovingAsset(asset ?? null)} disabled={!asset}>
+            Movimentar
+          </button>
+        }
+      />
 
-      {assetQuery.isError ? <Alert tone="danger">Nao foi possivel carregar o ativo.</Alert> : null}
+      {assetQuery.isError ? <Alert tone="danger">Não foi possível carregar o ativo.</Alert> : null}
       {assetQuery.isLoading ? <LoadingBlock /> : null}
 
       {asset ? (
         <>
-          <section className="status-strip" aria-label="Resumo operacional do ativo">
-            <div><span>Status</span><strong className={`badge status-${asset.status.toLowerCase()}`}>{asset.status}</strong></div>
-            <div><span>Local</span><strong>{asset.location ?? "-"}</strong></div>
-            <div><span>Responsavel atual</span><strong>{asset.current_user?.name ?? "Sem usuario"}</strong></div>
-            <div><span>Ultima movimentacao</span><strong>{lastMovement ? formatDateTime(lastMovement.created_at) : formatDateTime(asset.updated_at)}</strong></div>
+          <section className="base44-asset-detail-hero">
+            <Base44AssetCard
+              asset={asset}
+              title={asset.hostname ?? asset.patrimony ?? asset.serial ?? asset.id}
+              subtitle={[asset.asset_type, asset.manufacturer, asset.model].filter(Boolean).join(" · ")}
+              actions={
+                <div className="row-action-group base44-asset-card-actions-inline">
+                  <button className="mini-button" type="button" onClick={() => setMovingAsset(asset)}>
+                    <ArrowRight size={15} aria-hidden="true" /> Movimentar
+                  </button>
+                  <Link className="mini-button" to="#history">
+                    <History size={15} aria-hidden="true" /> Histórico
+                  </Link>
+                </div>
+              }
+            />
+
+            <Base44Surface className="base44-asset-detail-strip" as="aside">
+              <div>
+                <span>Status</span>
+                <Base44StatusBadge status={asset.status}>{statusSentence(asset.status)}</Base44StatusBadge>
+              </div>
+              <div>
+                <span>Local</span>
+                <strong>{asset.location ?? "-"}</strong>
+              </div>
+              <div>
+                <span>Responsável atual</span>
+                <strong>{asset.current_user?.name ?? "Sem usuário"}</strong>
+              </div>
+              <div>
+                <span>Última movimentação</span>
+                <strong>{lastMovement ? formatDateTime(lastMovement.created_at) : formatDateTime(asset.updated_at)}</strong>
+              </div>
+            </Base44Surface>
           </section>
 
           {inconsistencies.length ? (
             <Alert tone="danger">
-              <strong>Inconsistencias:</strong> {inconsistencies.join(" ")}
+              <strong>Inconsistências:</strong> {inconsistencies.join(" ")}
             </Alert>
           ) : (
-            <Alert tone="success"><CheckCircle2 size={16} aria-hidden /> Situacao operacional consistente.</Alert>
+            <Alert tone="success"><CheckCircle2 size={16} aria-hidden /> Situação operacional consistente.</Alert>
           )}
 
-          <section className="grid detail-grid">
-            <article className="card">
-              <h2>Identificacao</h2>
-              <dl className="details">
-                <DetailItem label="Hostname" value={asset.hostname} />
-                <DetailItem label="Patrimonio" value={asset.patrimony} />
-                <DetailItem label="Serial" value={asset.serial} />
-                <DetailItem label="Tipo" value={asset.asset_type} />
-              </dl>
-            </article>
-            <article className="card">
-              <h2>Situacao atual</h2>
-              <dl className="details">
-                <DetailItem label="Status" value={asset.status} />
-                <DetailItem label="Localidade" value={asset.location} />
-                <DetailItem label="Usuario" value={asset.current_user?.name ?? "Sem usuario"} />
-                <DetailItem label="E-mail" value={asset.current_user?.email} />
-              </dl>
-            </article>
-            <article className="card">
-              <h2>Informacoes tecnicas</h2>
-              <dl className="details">
-                <DetailItem label="Fabricante" value={asset.manufacturer} />
-                <DetailItem label="Modelo" value={asset.model} />
-                <DetailItem label="Sistema" value={asset.operating_system} />
-                <DetailItem label="IP" value={asset.ip_address} />
-                <DetailItem label="Ultimo login" value={asset.last_login} />
-              </dl>
-            </article>
-            <article className="card">
-              <h2>Auditoria rapida</h2>
-              <dl className="details">
-                <DetailItem label="Criado em" value={formatDateTime(asset.created_at)} />
-                <DetailItem label="Atualizado em" value={formatDateTime(asset.updated_at)} />
-                <dt>Auditoria</dt>
-                <dd><Link to="/audit-logs">Consultar logs</Link></dd>
-              </dl>
-            </article>
+          <section className="grid detail-grid base44-asset-detail-grid">
+            <Base44InfoGrid
+              title="Identificação"
+              columns={2}
+              items={[
+                { label: "Hostname", value: asset.hostname ?? "-" },
+                { label: "Patrimônio", value: asset.patrimony ?? "-" },
+                { label: "Serial", value: asset.serial ?? "-" },
+                { label: "Tipo", value: asset.asset_type },
+              ]}
+            />
+            <Base44InfoGrid
+              title="Situação atual"
+              columns={2}
+              items={[
+                { label: "Status", value: <Base44StatusBadge status={asset.status}>{formatAssetStatus(asset.status)}</Base44StatusBadge> },
+                { label: "Localidade", value: asset.location ?? "-" },
+                { label: "Usuário", value: asset.current_user?.name ?? "Sem usuário" },
+                { label: "E-mail", value: asset.current_user?.email ?? "-" },
+              ]}
+            />
+            <Base44InfoGrid
+              title="Informações técnicas"
+              columns={2}
+              items={[
+                { label: "Fabricante", value: asset.manufacturer ?? "-" },
+                { label: "Modelo", value: asset.model ?? "-" },
+                { label: "Sistema", value: asset.operating_system ?? "-" },
+                { label: "IP", value: asset.ip_address ?? "-" },
+                { label: "Último login", value: asset.last_login ?? "-" },
+                { label: "Criado em", value: formatDateTime(asset.created_at) },
+              ]}
+            />
+            <Base44InfoGrid
+              title="Auditoria rápida"
+              columns={2}
+              items={[
+                { label: "Atualizado em", value: formatDateTime(asset.updated_at) },
+                { label: "Responsável atual", value: asset.current_user?.name ?? "Sem usuário" },
+                { label: "Resumo", value: asset.notes ?? "Sem observações" },
+                {
+                  label: "Auditoria",
+                  value: <Link to="/audit-logs">Consultar logs</Link>,
+                  hint: compactId(asset.id),
+                },
+              ]}
+            />
           </section>
 
-          <section>
-            <div className="section-title">
-              <h2><CircleAlert size={18} aria-hidden /> Timeline de movimentacoes</h2>
+          <Base44Surface className="base44-asset-history-shell" as="section" id="history">
+            <div className="base44-form-header">
+              <div>
+                <p className="base44-eyebrow">Histórico operacional</p>
+                <h2><CircleAlert size={18} aria-hidden="true" /> Timeline de movimentações</h2>
+                <p>O histórico abaixo preserva rastreabilidade, geração de macro e status da cópia.</p>
+              </div>
             </div>
-            {historyQuery.isLoading ? <LoadingBlock label="Carregando historico..." /> : <Timeline movements={history} />}
-          </section>
+            {historyQuery.isLoading ? <LoadingBlock label="Carregando histórico..." /> : <Base44AssetTimeline movements={history} />}
+          </Base44Surface>
         </>
-      ) : null}
+      ) : (
+        !assetQuery.isLoading ? (
+          <Base44EmptyState
+            title="Ativo não encontrado"
+            description="O registro solicitado não existe ou não está acessível com o seu perfil."
+            action={<Link className="button secondary" to="/assets">Voltar para ativos</Link>}
+          />
+        ) : null
+      )}
 
       <MoveAssetDialog
         asset={movingAsset}

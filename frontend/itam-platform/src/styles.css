@@ -3790,13 +3790,16 @@ textarea.input,
 @media (max-width: 820px) {
   .base44-topbar,
   .base44-page-header-row,
-  .base44-shell-accent {
+  .base44-shell-accent,
+  .base44-action-bar,
+  .base44-asset-detail-hero {
     flex-direction: column;
     align-items: stretch;
   }
 
   .base44-page-actions,
-  .base44-shell-accent-extra {
+  .base44-shell-accent-extra,
+  .base44-action-bar-actions {
     justify-content: flex-start;
   }
 
@@ -3810,9 +3813,360 @@ textarea.input,
   .base44-notfound-card,
   .base44-panel,
   .base44-metric-card,
-  .base44-page-header {
+  .base44-page-header,
+  .base44-action-bar,
+  .base44-asset-card,
+  .base44-asset-detail-strip,
+  .base44-info-grid,
+  .base44-asset-form,
+  .base44-asset-columns-panel,
+  .base44-asset-result-shell,
+  .base44-asset-history-shell {
     padding-left: 18px;
     padding-right: 18px;
+  }
+}
+
+/* Base44 asset visual layer */
+.base44-asset-page {
+  display: grid;
+  gap: 16px;
+}
+
+.base44-asset-metrics {
+  margin-top: 2px;
+}
+
+.base44-asset-permission,
+.base44-asset-form,
+.base44-asset-columns-panel,
+.base44-asset-result-shell,
+.base44-asset-history-shell,
+.base44-action-bar,
+.base44-info-grid,
+.base44-asset-card,
+.base44-asset-detail-strip {
+  padding: 18px 20px;
+}
+
+.base44-asset-permission,
+.base44-action-bar,
+.base44-asset-detail-strip {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.base44-asset-permission {
+  flex-wrap: wrap;
+}
+
+.base44-asset-permission h2,
+.base44-action-bar h2,
+.base44-form-header h2,
+.base44-info-grid-title {
+  margin: 6px 0 0;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.base44-asset-permission p,
+.base44-action-bar-description,
+.base44-form-header p,
+.base44-info-grid-hint,
+.base44-asset-card-notes,
+.base44-asset-timeline-justification,
+.base44-asset-timeline-meta,
+.base44-asset-card-subtitle {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.base44-asset-form,
+.base44-asset-columns-panel,
+.base44-asset-result-shell,
+.base44-asset-history-shell {
+  display: grid;
+  gap: 16px;
+}
+
+.base44-form-header,
+.base44-asset-result-summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.base44-form-header p,
+.base44-asset-result-summary,
+.base44-asset-result-summary span {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.base44-asset-result-summary strong {
+  color: var(--color-text);
+  font-size: 18px;
+}
+
+.base44-action-bar {
+  flex-direction: column;
+}
+
+.base44-action-bar-body {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+}
+
+.base44-action-bar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.base44-asset-filters-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.base44-asset-form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.base44-asset-detail-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.base44-asset-detail-strip {
+  flex-direction: column;
+}
+
+.base44-asset-detail-strip > div {
+  display: grid;
+  gap: 6px;
+}
+
+.base44-asset-detail-strip span,
+.base44-asset-timeline-label,
+.base44-asset-card-grid dt,
+.base44-info-grid-item dt {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.base44-asset-detail-strip strong,
+.base44-asset-card-grid dd,
+.base44-info-grid-item dd,
+.base44-asset-timeline-block p,
+.base44-asset-timeline-header h3,
+.base44-asset-card h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.base44-asset-card {
+  display: grid;
+  gap: 14px;
+}
+
+.base44-asset-card-head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.base44-asset-card-grid,
+.base44-info-grid-list {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.base44-asset-card-grid > div,
+.base44-info-grid-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px 13px;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.base44-asset-card-actions,
+.base44-asset-card-actions-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.base44-asset-card-actions-inline {
+  justify-content: flex-end;
+}
+
+.base44-info-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.base44-info-grid-title {
+  margin-bottom: 2px;
+}
+
+.base44-info-grid-cols-1 .base44-info-grid-list {
+  grid-template-columns: 1fr;
+}
+
+.base44-info-grid-cols-2 .base44-info-grid-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.base44-info-grid-cols-3 .base44-info-grid-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.base44-info-grid-hint {
+  font-size: 12px;
+}
+
+.base44-asset-timeline {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.base44-asset-timeline li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.base44-asset-timeline-rail {
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+  padding-top: 14px;
+}
+
+.base44-asset-timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.base44-asset-timeline-card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.base44-asset-timeline-header {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.base44-asset-timeline-subtitle {
+  margin: 6px 0 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.base44-asset-timeline-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.base44-asset-timeline-block {
+  display: grid;
+  gap: 6px;
+  padding: 12px 13px;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.base44-asset-timeline-justification {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.base44-asset-timeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.base44-asset-timeline-copied {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.base44-asset-table-shell {
+  display: grid;
+  gap: 16px;
+}
+
+@media (max-width: 960px) {
+  .base44-asset-detail-hero,
+  .base44-info-grid-cols-2 .base44-info-grid-list,
+  .base44-info-grid-cols-3 .base44-info-grid-list {
+    grid-template-columns: 1fr;
+  }
+
+  .base44-asset-timeline-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .base44-asset-timeline li {
+    grid-template-columns: 12px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 820px) {
+  .base44-asset-permission,
+  .base44-action-bar,
+  .base44-asset-detail-strip,
+  .base44-form-header,
+  .base44-asset-result-summary,
+  .base44-asset-card-head,
+  .base44-asset-timeline-header {
+    flex-direction: column;
+  }
+
+  .base44-action-bar-actions,
+  .base44-asset-card-actions-inline {
+    justify-content: flex-start;
   }
 }
 
