@@ -2,7 +2,7 @@
 
 ## Next boundary
 
-BASE44-FRONTONLY-H4 — adapt Macros, Users and remaining operational pages
+BASE44-FRONTONLY-H5 — final visual consistency pass and regression prep
 
 ## Parallel recommendation
 

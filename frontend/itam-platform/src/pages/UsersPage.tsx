@@ -1,7 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { DataTable } from "@/components/DataTable";
-import { AlertBlock, LoadingBlock } from "@/components/StateBlocks";
+import { Alert, LoadingBlock } from "@/components/StateBlocks";
+import { Base44EmptyState } from "@/components/base44/Base44EmptyState";
+import { Base44FilterPanel } from "@/components/base44/Base44FilterPanel";
+import { Base44OperationalGrid } from "@/components/base44/Base44OperationalGrid";
+import { Base44PageHeader } from "@/components/base44/Base44PageHeader";
+import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
+import { Base44Surface } from "@/components/base44/Base44Surface";
+import { Base44UserCard } from "@/components/base44/Base44UserCard";
+import { Base44UserRoleBadge } from "@/components/base44/Base44UserRoleBadge";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { canDeleteOperationalData, canWriteOperationalData } from "@/lib/permissions";
@@ -54,13 +62,6 @@ function roleLabel(role: Role) {
     MANAGER: "Gestor"
   };
   return labels[role] ?? role;
-}
-
-function roleBadgeTone(role: Role) {
-  if (role === "ADMIN") return "danger";
-  if (role === "TECHNICIAN") return "info";
-  if (role === "MANAGER") return "warning";
-  return "neutral";
 }
 
 function formFromUser(user: User): UserForm {
@@ -151,7 +152,7 @@ export function UsersPage() {
     setSuccess(null);
   }
 
-  async function submitForm(event: React.FormEvent<HTMLFormElement>) {
+  async function submitForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!token || !canWrite) return;
     setSaving(true);
@@ -209,157 +210,214 @@ export function UsersPage() {
     return { active, admins, legacy, manual, current: userRows.length };
   }, [userRows]);
 
-  return (
-    <>
-      <header className="page-title page-header users-page-header">
-        <div>
-          <span className="badge info">Colaboradores</span>
-          <h1>Colaboradores / Usuários</h1>
-          <p>Cadastro canônico usado por ativos, assinaturas, auditoria e vínculos operacionais.</p>
-        </div>
-        <div className="page-actions">
-          {canWrite ? <button className="button" type="button" onClick={openCreate}>+ Novo colaborador</button> : null}
-        </div>
-      </header>
+  const spotlight = userRows.slice(0, 3);
 
-      <section className="grid metrics page-metrics users-metrics" aria-label="Resumo de colaboradores">
-        <article className="card metric-card">
-          <span className="metric-label">Total encontrado</span>
-          <strong className="metric-value">{totalUsers}</strong>
-          <p className="metric-description">Colaboradores retornados pela consulta atual.</p>
-        </article>
-        <article className="card metric-card">
-          <span className="metric-label">Ativos</span>
-          <strong className="metric-value">{summary.active}</strong>
-          <p className="metric-description">Registros liberados para uso operacional.</p>
-        </article>
-        <article className="card metric-card">
-          <span className="metric-label">Administradores</span>
-          <strong className="metric-value">{summary.admins}</strong>
-          <p className="metric-description">Perfis com exclusão e settings sensíveis.</p>
-        </article>
-        <article className="card metric-card">
-          <span className="metric-label">Nesta página</span>
-          <strong className="metric-value">{summary.current}</strong>
-          <p className="metric-description">Linhas visíveis na listagem atual.</p>
-        </article>
-      </section>
+  return (
+    <div className="base44-user-page">
+      <Base44PageHeader
+        eyebrow="Colaboradores"
+        title="Colaboradores / Usuários"
+        description="Cadastro canônico usado por ativos, assinaturas, auditoria e vínculos operacionais, com a identidade visual Base44 aplicada sobre os mesmos contratos reais."
+        actions={
+          <>
+            <Base44StatusBadge status={canWrite ? "auditavel" : "leitura"}>{canWrite ? "Escrita ativa" : "Modo consulta"}</Base44StatusBadge>
+            <Base44StatusBadge status={canDelete ? "auditavel" : "leitura"}>{canDelete ? "Exclusão ativa" : "Sem exclusão"}</Base44StatusBadge>
+          </>
+        }
+      />
+
+      <Base44OperationalGrid
+        title="Resumo de colaboradores"
+        description="Os indicadores abaixo vêm da página e da consulta real corrente."
+        columns={4}
+        items={[
+          { title: "Total encontrado", value: totalUsers, description: "Colaboradores retornados pela consulta atual.", accent: hasSearch ? "Busca ativa" : "Sem busca" },
+          { title: "Ativos", value: summary.active, description: "Registros liberados para uso operacional.", accent: "Operação" },
+          { title: "Administradores", value: summary.admins, description: "Perfis com settings sensíveis e exclusões.", accent: "RBAC" },
+          { title: "Legados", value: summary.legacy, description: "Registros originados do ENS legado.", accent: "Histórico" }
+        ]}
+      />
 
       {!canWrite ? (
-        <AlertBlock tone="info">
-          <strong>Modo consulta</strong>
-          <p>Seu perfil permite visualizar colaboradores, mas não criar ou editar registros.</p>
-        </AlertBlock>
+        <Alert tone="info">Seu perfil permite visualizar colaboradores, mas não criar ou editar registros.</Alert>
       ) : null}
 
-      <section className="filter-bar users-toolbar" aria-label="Busca de colaboradores">
-        <label className="wide-field">
-          Busca
-          <input
-            className="input full"
-            placeholder="Buscar por nome, identificador do e-mail, e-mail ou departamento..."
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-          />
-        </label>
-        <span className={`filter-chip ${hasSearch ? "active" : ""}`}>{hasSearch ? `Busca ativa: ${trimmedSearch}` : "Sem busca ativa"}</span>
-        <span className="filter-chip muted">Unidade: em breve</span>
-        <span className="filter-chip muted">Situação: em breve</span>
+      <Base44FilterPanel
+        eyebrow="Busca e filtros"
+        title="Localizar colaborador"
+        description="A busca textual continua ligada ao parâmetro real enviado para a API."
+        actions={<Base44StatusBadge status={hasSearch ? "warning" : "auditavel"}>{hasSearch ? `Busca: ${trimmedSearch}` : "Sem busca ativa"}</Base44StatusBadge>}
+      >
+        <div className="b44-filter-grid">
+          <label>
+            Busca
+            <input
+              className="input full"
+              placeholder="Buscar por nome, identificador do e-mail, e-mail ou departamento..."
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+            />
+          </label>
+          <div className="base44-user-filter-tags">
+            <span className="filter-chip muted">Unidade: em breve</span>
+            <span className="filter-chip muted">Situação: em breve</span>
+            <span className="filter-chip muted">RBAC real preservado</span>
+          </div>
+        </div>
+      </Base44FilterPanel>
+
+      <section className="base44-user-workspace">
+        <Base44Surface className="base44-user-form-shell" as="section">
+          {canWrite && isFormOpen ? (
+            <form className="base44-user-form" onSubmit={(event) => void submitForm(event)}>
+              <div className="base44-user-form-head">
+                <div>
+                  <p className="base44-eyebrow">Cadastro operacional</p>
+                  <h2>{formTitle}</h2>
+                  <p className="base44-user-form-description">{formDescription}</p>
+                </div>
+                <div className="base44-chip-row">
+                  <Base44StatusBadge status="auditavel">{editingUser ? "Edição" : "Criação manual"}</Base44StatusBadge>
+                  <button className="button secondary" type="button" onClick={closeForm} disabled={saving}>Cancelar</button>
+                </div>
+              </div>
+              <div className="base44-user-form-grid">
+                <label>Nome<input className="input full" required minLength={2} value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></label>
+                <label>E-mail<input className="input full" required type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></label>
+                <label>Cargo<input className="input full" value={form.job_title} onChange={(event) => setForm({ ...form, job_title: event.target.value })} /></label>
+                <label>Departamento<input className="input full" value={form.department} onChange={(event) => setForm({ ...form, department: event.target.value })} /></label>
+                <label>Unidade<input className="input full" value={form.business_unit} onChange={(event) => setForm({ ...form, business_unit: event.target.value })} /></label>
+                <label>Gestor<input className="input full" value={form.manager_name} onChange={(event) => setForm({ ...form, manager_name: event.target.value })} /></label>
+                <label>Telefone<input className="input full" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} /></label>
+                <label>Status
+                  <select className="select full" value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value as UserStatus })}>
+                    <option value="ACTIVE">Ativo</option>
+                    <option value="INACTIVE">Inativo</option>
+                    <option value="ON_LEAVE">Afastado</option>
+                  </select>
+                  <small>{statusDescription(form.status)}</small>
+                </label>
+              </div>
+              <div className="base44-user-form-actions">
+                <button className="button" type="submit" disabled={saving}>{saving ? "Salvando..." : editingUser ? "Salvar alterações" : "Criar colaborador"}</button>
+                <button className="button secondary" type="button" onClick={closeForm} disabled={saving}>Cancelar</button>
+              </div>
+            </form>
+          ) : canWrite ? (
+            <Base44EmptyState
+              title="Cadastro recolhido"
+              description="Use “Novo colaborador” para abrir o formulário. Para alterar um registro existente, escolha “Editar” na tabela."
+              action={<button className="button" type="button" onClick={openCreate}>+ Novo colaborador</button>}
+            />
+          ) : (
+            <Base44EmptyState
+              title="Modo consulta"
+              description="Seu perfil pode visualizar colaboradores, mas não pode criar ou editar registros."
+            />
+          )}
+        </Base44Surface>
+
+        <Base44Surface className="base44-user-spotlight-shell" as="section">
+          <div className="base44-user-spotlight-head">
+            <div>
+              <p className="base44-eyebrow">Destaques carregados</p>
+              <h2>Primeiros resultados</h2>
+              <p className="base44-user-spotlight-description">Uma visão rápida dos registros já carregados na consulta atual.</p>
+            </div>
+            <Base44StatusBadge status="auditavel">{summary.current} item(ns)</Base44StatusBadge>
+          </div>
+          {spotlight.length ? (
+            <div className="base44-user-spotlight-grid">
+              {spotlight.map((user) => (
+                <Base44UserCard
+                  key={user.id}
+                  user={user}
+                  actions={
+                    <div className="base44-chip-row">
+                      <Base44UserRoleBadge role={user.role} />
+                      <Link className="button secondary" to={`/users/${user.id}`}>Abrir detalhe</Link>
+                    </div>
+                  }
+                />
+              ))}
+            </div>
+          ) : (
+            <Base44EmptyState title="Sem destaques" description="Quando a consulta retornar usuários, alguns cards aparecerão aqui para inspeção rápida." />
+          )}
+        </Base44Surface>
       </section>
 
-      {canWrite && isFormOpen ? (
-        <form className="form-panel users-form-card" onSubmit={(event) => void submitForm(event)}>
-          <div className="form-panel-header">
-            <div>
-              <span className="badge neutral">{editingUser ? "Edição" : "Criação manual"}</span>
-              <h2>{formTitle}</h2>
-              <p>{formDescription}</p>
-            </div>
-            <button className="button secondary" type="button" onClick={closeForm} disabled={saving}>Cancelar</button>
-          </div>
-          <div className="form-grid users-form-grid">
-            <label>Nome<input className="input full" required minLength={2} value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></label>
-            <label>E-mail<input className="input full" required type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></label>
-            <label>Cargo<input className="input full" value={form.job_title} onChange={(event) => setForm({ ...form, job_title: event.target.value })} /></label>
-            <label>Departamento<input className="input full" value={form.department} onChange={(event) => setForm({ ...form, department: event.target.value })} /></label>
-            <label>Unidade<input className="input full" value={form.business_unit} onChange={(event) => setForm({ ...form, business_unit: event.target.value })} /></label>
-            <label>Gestor<input className="input full" value={form.manager_name} onChange={(event) => setForm({ ...form, manager_name: event.target.value })} /></label>
-            <label>Telefone<input className="input full" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} /></label>
-            <label>Status
-              <select className="select full" value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value as UserStatus })}>
-                <option value="ACTIVE">Ativo</option>
-                <option value="INACTIVE">Inativo</option>
-                <option value="ON_LEAVE">Afastado</option>
-              </select>
-              <small>{statusDescription(form.status)}</small>
-            </label>
-          </div>
-          <div className="form-panel-actions">
-            <button className="button" type="submit" disabled={saving}>{saving ? "Salvando..." : editingUser ? "Salvar alterações" : "Criar colaborador"}</button>
-            <button className="button secondary" type="button" onClick={closeForm} disabled={saving}>Cancelar</button>
-          </div>
-        </form>
-      ) : canWrite ? (
-        <div className="permission-note users-form-card">
-          <strong>Cadastro recolhido</strong>
-          <p>Use “Novo colaborador” para abrir o formulário. Para alterar um registro existente, escolha “Editar” na tabela.</p>
-        </div>
-      ) : null}
-
-      {success ? <AlertBlock tone="success"><strong>{success}</strong></AlertBlock> : null}
-      {error ? <AlertBlock tone="danger"><strong>{error}</strong></AlertBlock> : null}
+      {success ? <Alert tone="success"><strong>{success}</strong></Alert> : null}
+      {error ? <Alert tone="danger"><strong>{error}</strong></Alert> : null}
       {loading ? <LoadingBlock label="Carregando colaboradores..." /> : null}
 
-      <section className="card users-table-card">
-        <div className="card-header">
+      <Base44Surface className="base44-user-table-shell" as="section">
+        <div className="base44-user-table-head">
           <div>
             <h2 className="card-title">Lista de colaboradores</h2>
             <p className="card-description">
               {hasSearch ? "Resultado filtrado pela busca textual." : "Todos os colaboradores retornados pela API atual."}
             </p>
           </div>
-          <span className={`badge ${hasSearch ? "info" : "neutral"}`}>{totalUsers} colaborador(es)</span>
+          <Base44StatusBadge status={hasSearch ? "warning" : "auditavel"}>{totalUsers} colaborador(es)</Base44StatusBadge>
         </div>
-        <DataTable
-          items={userRows}
-          emptyMessage={emptyMessage}
-          emptyTitle={hasSearch ? "Nenhum colaborador corresponde à busca." : "Sem colaboradores cadastrados."}
-          emptyDescription={hasSearch
-            ? "Tente remover parte do termo pesquisado ou limpar o campo de busca."
-            : canWrite
-              ? "Crie o primeiro colaborador para liberar vínculos, auditoria e cadastros operacionais."
-              : "Sua sessão está em modo consulta. Quando houver dados, eles aparecerão aqui."}
-          emptyActions={hasSearch
-            ? <button className="button secondary" type="button" onClick={() => setSearch("")}>Limpar busca</button>
-            : canWrite
-              ? <button className="button" type="button" onClick={openCreate}>+ Novo colaborador</button>
-              : null}
-          columns={[
-            { key: "name", label: "Nome", render: (user) => <Link to={`/users/${user.id}`}>{user.name}</Link> },
-            { key: "login", label: "Identificador", render: (user) => <span className="cell-stack"><strong>{user.email.split("@")[0] ?? "-"}</strong><small>derivado do e-mail</small></span> },
-            { key: "email", label: "E-mail", className: "email-cell", render: (user) => <span title={user.email}>{user.email}</span> },
-            { key: "business_unit", label: "Unidade", render: (user) => user.business_unit ?? "-" },
-            { key: "department", label: "Dept.", render: (user) => user.department ?? "-" },
-            { key: "source", label: "Fonte", render: (user) => <span className="badge neutral">{sourceLabel(user.source)}</span> },
-            { key: "role", label: "Perfil", render: (user) => <span className={`badge ${roleBadgeTone(user.role)}`}>{roleLabel(user.role)}</span> },
-            {
-              key: "status",
-              label: "Situação",
-              render: (user) => (
-                <span className={`badge ${user.status === "ACTIVE" ? "success" : user.status === "INACTIVE" ? "neutral" : "warning"}`} title={statusDescription(user.status)}>
-                  {statusLabel(user.status)}
-                </span>
-              )
-            }
-          ]}
-          rowActions={(user) => (
-            <div className="row-action-group users-row-actions">
-              {canWrite ? <button className="mini-button text-action" type="button" onClick={() => openEdit(user)}>Editar</button> : null}
-              {canDelete ? <button className="mini-button danger text-action" type="button" disabled={saving} onClick={() => void deactivateUser(user)}>Desativar</button> : null}
+        <div className="base44-user-table-body">
+          {userRows.length === 0 ? (
+            <Base44EmptyState
+              title={hasSearch ? "Nenhum colaborador corresponde à busca." : "Sem colaboradores cadastrados."}
+              description={hasSearch ? "Tente remover parte do termo pesquisado ou limpar o campo de busca." : canWrite ? "Crie o primeiro colaborador para liberar vínculos, auditoria e cadastros operacionais." : "Sua sessão está em modo consulta. Quando houver dados, eles aparecerão aqui."}
+              action={hasSearch ? <button className="button secondary" type="button" onClick={() => setSearch("")}>Limpar busca</button> : canWrite ? <button className="button" type="button" onClick={openCreate}>+ Novo colaborador</button> : null}
+            />
+          ) : (
+            <div className="base44-user-table-wrap">
+              <Base44Surface className="base44-user-table-surface" as="div">
+                <div className="base44-user-table-caption">Tabela operacional preservada com os contratos reais de usuários.</div>
+                <div className="base44-user-table-inner">
+                  <DataTable
+                    items={userRows}
+                    emptyMessage={emptyMessage}
+                    emptyTitle={hasSearch ? "Nenhum colaborador corresponde à busca." : "Sem colaboradores cadastrados."}
+                    emptyDescription={hasSearch
+                      ? "Tente remover parte do termo pesquisado ou limpar o campo de busca."
+                      : canWrite
+                        ? "Crie o primeiro colaborador para liberar vínculos, auditoria e cadastros operacionais."
+                        : "Sua sessão está em modo consulta. Quando houver dados, eles aparecerão aqui."}
+                    emptyActions={hasSearch
+                      ? <button className="button secondary" type="button" onClick={() => setSearch("")}>Limpar busca</button>
+                      : canWrite
+                        ? <button className="button" type="button" onClick={openCreate}>+ Novo colaborador</button>
+                        : null}
+                    columns={[
+                      { key: "name", label: "Nome", render: (user: User) => <Link to={`/users/${user.id}`}>{user.name}</Link> },
+                      { key: "login", label: "Identificador", render: (user: User) => <span className="cell-stack"><strong>{user.email.split("@")[0] ?? "-"}</strong><small>derivado do e-mail</small></span> },
+                      { key: "email", label: "E-mail", className: "email-cell", render: (user: User) => <span title={user.email}>{user.email}</span> },
+                      { key: "business_unit", label: "Unidade", render: (user: User) => user.business_unit ?? "-" },
+                      { key: "department", label: "Dept.", render: (user: User) => user.department ?? "-" },
+                      { key: "source", label: "Fonte", render: (user: User) => <Base44StatusBadge status="leitura">{sourceLabel(user.source)}</Base44StatusBadge> },
+                      { key: "role", label: "Perfil", render: (user: User) => <Base44UserRoleBadge role={user.role} /> },
+                      {
+                        key: "status",
+                        label: "Situação",
+                        render: (user: User) => (
+                          <Base44StatusBadge status={user.status === "ACTIVE" ? "success" : user.status === "INACTIVE" ? "leitura" : "warning"} title={statusDescription(user.status)}>
+                            {statusLabel(user.status)}
+                          </Base44StatusBadge>
+                        )
+                      }
+                    ]}
+                    rowActions={(user: User) => (
+                      <div className="row-action-group users-row-actions">
+                        {canWrite ? <button className="mini-button text-action" type="button" onClick={() => openEdit(user)}>Editar</button> : null}
+                        {canDelete ? <button className="mini-button danger text-action" type="button" disabled={saving} onClick={() => void deactivateUser(user)}>Desativar</button> : null}
+                      </div>
+                    )}
+                  />
+                </div>
+              </Base44Surface>
             </div>
           )}
-        />
-      </section>
-    </>
+        </div>
+      </Base44Surface>
+    </div>
   );
 }

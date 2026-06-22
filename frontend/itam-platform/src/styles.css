@@ -4504,4 +4504,364 @@ textarea.input,
   }
 }
 
+/* Base44 macros/users/operations visual layer */
+.base44-macro-page,
+.base44-user-page,
+.base44-operation-page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.base44-macro-workspace,
+.base44-user-workspace,
+.base44-operation-columns {
+  display: grid;
+  gap: 18px;
+  align-items: start;
+}
+
+.base44-macro-workspace,
+.base44-user-workspace {
+  grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.55fr);
+}
+
+.base44-operation-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.base44-macro-list-shell,
+.base44-macro-panel,
+.base44-user-form-shell,
+.base44-user-spotlight-shell,
+.base44-user-table-shell,
+.base44-operation-panel,
+.base44-operation-summary {
+  padding: 18px;
+  display: grid;
+  gap: 14px;
+}
+
+.base44-macro-list-head,
+.base44-user-spotlight-head,
+.base44-user-table-head,
+.base44-user-form-head,
+.base44-operation-panel-head,
+.base44-operation-summary-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.base44-macro-list-description,
+.base44-user-spotlight-description,
+.base44-user-form-description,
+.base44-user-table-caption,
+.base44-operation-panel-description,
+.base44-operation-summary-description,
+.base44-macro-panel-description {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.base44-macro-list {
+  display: grid;
+  gap: 10px;
+}
+
+.base44-macro-item {
+  display: grid;
+  gap: 8px;
+  padding: 14px 15px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  text-align: left;
+  transition: transform .15s ease, border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+
+.base44-macro-item:hover,
+.base44-macro-item.is-selected {
+  transform: translateY(-1px);
+  border-color: rgba(37, 99, 235, 0.24);
+  background: rgba(239, 246, 255, 0.76);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+}
+
+.base44-macro-item small,
+.base44-macro-item span {
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.base44-macro-panel-titleline,
+.base44-user-card-head,
+.base44-user-card-actions,
+.base44-operation-actions,
+.base44-macro-preview-actions,
+.base44-copy-block-head,
+.base44-operation-select,
+.base44-user-filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.base44-macro-field-grid,
+.base44-user-form-grid,
+.base44-user-spotlight-grid,
+.base44-operational-grid-list {
+  display: grid;
+  gap: 12px;
+}
+
+.base44-macro-field-grid,
+.base44-user-form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.base44-user-spotlight-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.base44-operational-grid-list {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.base44-operational-grid-cols-2 .base44-operational-grid-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.base44-operational-grid-cols-3 .base44-operational-grid-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.base44-operational-grid-cols-4 .base44-operational-grid-list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.base44-operational-grid-title,
+.base44-copy-description,
+.base44-user-card-subtitle,
+.base44-operation-panel-description,
+.base44-operation-summary-description,
+.base44-macro-preview-description {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.base44-macro-field,
+.base44-user-form label,
+.base44-operation-select {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.base44-macro-field > span,
+.base44-user-form label > span,
+.base44-operation-select > span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.base44-macro-field-stack {
+  position: relative;
+  display: grid;
+  gap: 8px;
+}
+
+.base44-macro-autocomplete-panel {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.base44-macro-autocomplete-item {
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  text-align: left;
+  background: rgba(241, 245, 249, 0.88);
+}
+
+.base44-macro-autocomplete-item strong,
+.base44-macro-autocomplete-item span {
+  font-size: 12px;
+}
+
+.base44-macro-autocomplete-empty,
+.base44-macro-preview-empty,
+.b44-copy-empty {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.base44-macro-preview,
+.b44-copy-block,
+.base44-user-card,
+.base44-operation-summary {
+  display: grid;
+  gap: 14px;
+}
+
+.base44-macro-preview-status {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.b44-copy-value {
+  margin: 0;
+  overflow: auto;
+  padding: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(15, 23, 42, 0.04);
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.base44-user-card-grid,
+.base44-macro-preview-footer,
+.base44-user-form-actions,
+.base44-user-table-body,
+.base44-operation-preview-shell,
+.base44-operation-summary,
+.base44-operation-summary-head {
+  display: grid;
+  gap: 12px;
+}
+
+.base44-user-card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.base44-user-card-grid dt {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.base44-user-card-grid dd {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.base44-user-card-actions,
+.base44-operation-actions,
+.base44-macro-preview-actions {
+  justify-content: flex-start;
+}
+
+.base44-user-table-wrap,
+.base44-operation-preview-shell,
+.base44-macro-preview {
+  display: grid;
+  gap: 14px;
+}
+
+.base44-user-table-surface,
+.base44-operation-panel,
+.base44-macro-panel,
+.base44-macro-list-shell,
+.base44-user-form-shell,
+.base44-user-spotlight-shell,
+.base44-user-table-shell,
+.base44-operation-summary {
+  overflow: hidden;
+}
+
+.base44-user-table-inner {
+  overflow: auto;
+}
+
+.base44-operation-preview-shell iframe {
+  width: 100%;
+  min-height: 300px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: #fff;
+}
+
+.base44-operation-panel iframe {
+  width: 100%;
+}
+
+.base44-operation-badge-row {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+@media (max-width: 960px) {
+  .base44-audit-summary-grid,
+  .base44-import-summary-grid,
+  .base44-import-detail-grid,
+  .base44-import-upload-grid,
+  .base44-macro-workspace,
+  .base44-user-workspace,
+  .base44-operation-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .base44-audit-summary-grid .base44-info-grid-list {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .base44-operational-grid-cols-4 .base44-operational-grid-list,
+  .base44-operational-grid-cols-3 .base44-operational-grid-list,
+  .base44-operational-grid-cols-2 .base44-operational-grid-list {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .base44-filter-panel-head,
+  .base44-import-panel-head,
+  .base44-settings-section-head,
+  .base44-audit-collection-head,
+  .base44-import-workspace-head,
+  .base44-pagination-panel,
+  .base44-macro-list-head,
+  .base44-user-spotlight-head,
+  .base44-user-table-head,
+  .base44-user-form-head,
+  .base44-operation-panel-head,
+  .base44-operation-summary-head {
+    flex-direction: column;
+  }
+
+  .base44-import-footer,
+  .base44-import-upload-grid,
+  .base44-settings-list article,
+  .base44-operation-columns,
+  .base44-macro-workspace,
+  .base44-user-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .b44-filter-actions,
+  .base44-pagination-actions,
+  .base44-import-footer-actions,
+  .base44-import-actions,
+  .base44-operation-actions,
+  .base44-macro-preview-actions,
+  .base44-user-card-actions {
+    justify-content: flex-start;
+  }
+}
+
 }

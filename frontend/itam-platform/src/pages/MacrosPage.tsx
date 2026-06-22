@@ -1,8 +1,16 @@
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
-import { SentinelSectionHeader } from "@/components/brand/SentinelSectionHeader";
+import { ArrowRight, Search, Sparkles, TextCursorInput } from "lucide-react";
+
 import { Alert, LoadingBlock } from "@/components/StateBlocks";
+import { Base44EmptyState } from "@/components/base44/Base44EmptyState";
+import { Base44FilterPanel } from "@/components/base44/Base44FilterPanel";
+import { Base44MacroPanel } from "@/components/base44/Base44MacroPanel";
+import { Base44MacroPreview } from "@/components/base44/Base44MacroPreview";
+import { Base44OperationalGrid } from "@/components/base44/Base44OperationalGrid";
+import { Base44PageHeader } from "@/components/base44/Base44PageHeader";
+import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
+import { Base44Surface } from "@/components/base44/Base44Surface";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import type { MacroTemplate } from "@/lib/types";
@@ -18,6 +26,11 @@ function normalizeFieldLabel(value: string) {
 function isAutocompleteField(value: string) {
   const normalized = normalizeFieldLabel(value);
   return normalized.includes("nome") || normalized.includes("usuario") || normalized.includes("colaborador");
+}
+
+function formatStepLabel(template: MacroTemplate | null) {
+  if (!template) return "Selecione uma macro";
+  return template.slug === "ativos-atualizar-inventario" ? "Macro pós-movimentação" : "Macro operativa";
 }
 
 export function MacrosPage() {
@@ -98,65 +111,136 @@ export function MacrosPage() {
     setCopyStatus(null);
   }
 
+  const summaryItems = [
+    {
+      title: "Macros encontradas",
+      value: templates.length,
+      description: "Resultados da consulta atual.",
+      icon: Search,
+      accent: search.trim() ? "Busca ativa" : "Sem filtro"
+    },
+    {
+      title: "Categorias",
+      value: categories.length,
+      description: "Agrupamentos disponíveis no seed real.",
+      icon: Sparkles,
+      accent: category.trim() ? category : "Todas"
+    },
+    {
+      title: "Campos obrigatórios",
+      value: selected?.required_fields.length ?? 0,
+      description: "Campos exigidos pela macro selecionada.",
+      icon: TextCursorInput,
+      accent: selected ? formatStepLabel(selected) : "Selecione uma macro"
+    },
+    {
+      title: "Pendências",
+      value: pendingFields.length,
+      description: "Campos ainda pendentes no render atual.",
+      icon: ArrowRight,
+      accent: generationId ? `Geração ${generationId.slice(0, 8)}` : "Sem geração"
+    }
+  ];
+
   return (
-    <>
-      <SentinelSectionHeader
-        chips={selected ? <HermesStatusPill state="Auditável">{selected.slug === "ativos-atualizar-inventario" ? "Macro pós-movimentação" : "Macro operativa"}</HermesStatusPill> : null}
+    <div className="base44-macro-page">
+      <Base44PageHeader
         eyebrow="Macros ITIL"
-        subtitle="Gere textos padronizados para chamados, movimentações e atendimento."
         title="Macros ITIL"
+        description="Geração, preview e cópia continuam ligados à API real de macros, com uma camada visual Base44 para organização e hierarquia."
+        actions={
+          <>
+            <Base44StatusBadge status={selected ? "auditavel" : "leitura"}>{formatStepLabel(selected)}</Base44StatusBadge>
+            <Base44StatusBadge status={generationId ? "success" : "warning"}>{generationId ? "Geração ativa" : "Sem geração"}</Base44StatusBadge>
+          </>
+        }
       />
-      <div className="ops-panel compact-panel">
-        <label className="wide-field">
-          Busca
-          <input className="input full" placeholder="Buscar macro por nome, categoria ou slug" value={search} onChange={(event) => setSearch(event.target.value)} />
-        </label>
-        <label>
-          Categoria
-          <select className="select full" value={category} onChange={(event) => setCategory(event.target.value)}>
-            <option value="">Todas</option>
-            {categories.map((item) => <option key={item} value={item}>{item}</option>)}
-          </select>
-        </label>
-      </div>
+      <Base44OperationalGrid
+        title="Resumo operacional"
+        description="Os números abaixo vêm da consulta real de templates e do estado atual do render."
+        columns={4}
+        items={summaryItems}
+      />
+
+      <Base44FilterPanel
+        eyebrow="Busca e filtro"
+        title="Localizar macro"
+        description="Filtre por nome, categoria ou slug antes de abrir a macro desejada."
+        actions={<Base44StatusBadge status={templatesQuery.isLoading ? "warning" : "auditavel"}>{templatesQuery.isLoading ? "Carregando" : "API real"}</Base44StatusBadge>}
+      >
+        <div className="b44-filter-grid">
+          <label>
+            Busca
+            <input className="input full" placeholder="Buscar macro por nome, categoria ou slug" value={search} onChange={(event) => setSearch(event.target.value)} />
+          </label>
+          <label>
+            Categoria
+            <select className="select full" value={category} onChange={(event) => setCategory(event.target.value)}>
+              <option value="">Todas</option>
+              {categories.map((item) => <option key={item} value={item}>{item}</option>)}
+            </select>
+          </label>
+        </div>
+      </Base44FilterPanel>
+
       {templatesQuery.isError ? <Alert tone="danger">Não foi possível carregar macros.</Alert> : null}
       {templatesQuery.isLoading ? <LoadingBlock /> : null}
       {error ? <Alert tone="danger">{error}</Alert> : null}
-      <div className="macro-layout">
-        <section className="macro-list">
-          {templates.length === 0 && !templatesQuery.isLoading ? <p className="muted">Nenhuma macro encontrada. Verifique o seed oficial do quality_macros_project.</p> : null}
-          {templates.map((template) => (
-            <button
-              className={template.id === selected?.id ? "macro-item active" : "macro-item"}
-              key={template.id}
-              type="button"
-              onClick={() => {
-                setSelectedId(template.id);
-                setRendered("");
-                setGenerationId(null);
-                setPendingFields([]);
-                setCopyStatus(null);
-                setValues({});
-              }}
-            >
-              <strong>{template.name}</strong>
-              <span className="badge soft">{template.category}</span>
-              {template.slug === "ativos-atualizar-inventario" ? <small>Usada em movimentações de ativos</small> : null}
-            </button>
-          ))}
-        </section>
-        <section className="macro-workbench">
+
+      <section className="base44-macro-workspace">
+        <Base44Surface className="base44-macro-list-shell" as="aside">
+          <div className="base44-macro-list-head">
+            <div>
+              <p className="base44-eyebrow">Lista de macros</p>
+              <h2>Templates disponíveis</h2>
+              <p className="base44-macro-list-description">Selecione um template para abrir o editor de valores e o preview real.</p>
+            </div>
+            <Base44StatusBadge status="auditavel">{templates.length} item(ns)</Base44StatusBadge>
+          </div>
+          <div className="base44-macro-list">
+            {templates.length === 0 && !templatesQuery.isLoading ? (
+              <Base44EmptyState
+                title="Nenhuma macro encontrada"
+                description="Verifique o seed oficial do quality_macros_project ou refine a busca e a categoria."
+              />
+            ) : null}
+            {templates.map((template) => (
+              <button
+                className={template.id === selected?.id ? "base44-macro-item is-selected" : "base44-macro-item"}
+                key={template.id}
+                type="button"
+                onClick={() => {
+                  setSelectedId(template.id);
+                  setRendered("");
+                  setGenerationId(null);
+                  setPendingFields([]);
+                  setCopyStatus(null);
+                  setValues({});
+                }}
+              >
+                <strong>{template.name}</strong>
+                <span className="badge soft">{template.category}</span>
+                {template.slug === "ativos-atualizar-inventario" ? <small>Usada em movimentações de ativos</small> : null}
+              </button>
+            ))}
+          </div>
+        </Base44Surface>
+
+        <Base44MacroPanel
+          eyebrow="Editor de macro"
+          title={selected?.name ?? "Selecione uma macro"}
+          description={selected ? selected.description ?? selected.slug : "Abra um template para editar os valores e gerar o conteúdo real."}
+          status={selected ? formatStepLabel(selected) : "Nenhuma seleção"}
+          actions={selected ? <Base44StatusBadge status={selected.slug === "ativos-atualizar-inventario" ? "warning" : "auditavel"}>{selected.slug}</Base44StatusBadge> : null}
+        >
           {selected ? (
             <>
-              <h2>{selected.name}</h2>
-              <p className="muted">{selected.description ?? selected.slug}</p>
-              {selected.slug === "ativos-atualizar-inventario" ? <span className="badge attention">Usada em movimentações de ativos</span> : null}
-              <p className="helper-text">Preencha os campos disponíveis. Campos não preenchidos aparecerão como pendentes.</p>
-              <div className="form-grid">
+              <p className="base44-macro-panel-helper">Preencha os campos disponíveis. Campos não preenchidos aparecerão como pendentes no preview e na auditoria da geração.</p>
+              <div className="base44-macro-field-grid">
                 {selected.required_fields.map((field) => (
-                  <label className="macro-field" key={field}>
+                  <label className="base44-macro-field" key={field}>
                     <span>{field} <strong aria-hidden>*</strong></span>
-                    <div className="macro-field-stack">
+                    <div className="base44-macro-field-stack">
                       <input
                         className="input full"
                         autoComplete="off"
@@ -166,14 +250,14 @@ export function MacrosPage() {
                         onFocus={() => setFocusedField(field)}
                       />
                       {activeAutocompleteField === field ? (
-                        <div className="macro-autocomplete-panel" aria-label={`Sugestões para ${field}`}>
-                          {hintsQuery.isFetching ? <span className="macro-autocomplete-empty">Buscando sugestões...</span> : null}
+                        <div className="base44-macro-autocomplete-panel" aria-label={`Sugestões para ${field}`}>
+                          {hintsQuery.isFetching ? <span className="base44-macro-autocomplete-empty">Buscando sugestões...</span> : null}
                           {!hintsQuery.isFetching && autocompleteHints.length === 0 ? (
-                            <span className="macro-autocomplete-empty">Sem sugestões para este campo.</span>
+                            <span className="base44-macro-autocomplete-empty">Sem sugestões para este campo.</span>
                           ) : null}
                           {autocompleteHints.map((hint) => (
                             <button
-                              className="macro-autocomplete-item"
+                              className="base44-macro-autocomplete-item"
                               key={hint.id}
                               type="button"
                               onMouseDown={(event) => event.preventDefault()}
@@ -189,32 +273,26 @@ export function MacrosPage() {
                   </label>
                 ))}
               </div>
-              <div className="modal-actions">
-                <button className="button secondary" type="button" onClick={() => void generate(selected)}>Gerar preview</button>
-                <button className="button" type="button" onClick={() => void copyRendered()} disabled={!rendered || !generationId}>Copiar macro</button>
-              </div>
-              {pendingFields.length > 0 ? (
-                <Alert tone="danger">
-                  Esta macro possui campos pendentes. Revise antes de copiar.
-                  <span className="chip-row">
-                    {pendingFields.map((field) => <span className="badge pending" key={field}>{field}</span>)}
-                  </span>
-                </Alert>
-              ) : null}
-              {copyStatus ? <Alert tone="success">{copyStatus}</Alert> : null}
-              {rendered ? (
-                <textarea className="textarea macro-preview" readOnly value={rendered} rows={12} />
-              ) : (
-                <div className="empty-preview">
-                  Preencha os campos e clique em Gerar preview.
-                </div>
-              )}
+              <Base44MacroPreview
+                rendered={rendered}
+                generationId={generationId}
+                pendingFields={pendingFields}
+                copyStatus={copyStatus}
+                onGenerate={() => void generate(selected)}
+                onCopy={() => void copyRendered()}
+                footer={
+                  <div className="base44-chip-row">
+                    {pendingFields.length > 0 ? <Base44StatusBadge status="danger">{pendingFields.length} pendente(s)</Base44StatusBadge> : <Base44StatusBadge status="success">Campos completos</Base44StatusBadge>}
+                    {selected.slug === "ativos-atualizar-inventario" ? <Base44StatusBadge status="warning">Macro pós-movimentação</Base44StatusBadge> : <Base44StatusBadge status="auditavel">Macro operativa</Base44StatusBadge>}
+                  </div>
+                }
+              />
             </>
           ) : (
-            <p className="muted">Selecione uma macro para visualizar.</p>
+            <Base44EmptyState title="Selecione uma macro" description="A lista à esquerda mostra os templates reais e o editor abre ao escolher um item." />
           )}
-        </section>
-      </div>
-    </>
+        </Base44MacroPanel>
+      </section>
+    </div>
   );
 }
