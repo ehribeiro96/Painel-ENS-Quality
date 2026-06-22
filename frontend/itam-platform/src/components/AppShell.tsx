@@ -62,8 +62,15 @@ export function AppShell({ children }: { children: ReactNode }) {
   }, [query, token]);
 
   return (
-    <div className="shell base44-shell">
-      <aside className="sidebar base44-sidebar" aria-label="Menu lateral">
+    <div
+      className="shell base44-shell"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "var(--base44-shell-columns, minmax(250px, 290px) minmax(0, 1fr))",
+        minHeight: "100vh",
+      }}
+    >
+      <aside className="sidebar base44-sidebar" aria-label="Menu lateral" style={{ display: "flex", flexDirection: "column" }}>
         <Base44ShellAccent
           title="Painel ENS-Quality"
           subtitle="Fonte visual Base44, contratos reais preservados"

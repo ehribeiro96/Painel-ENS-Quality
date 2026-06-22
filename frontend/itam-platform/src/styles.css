@@ -3775,7 +3775,7 @@ textarea.input,
 
 @media (max-width: 1180px) {
   .base44-shell {
-    grid-template-columns: 1fr;
+    --base44-shell-columns: 1fr;
   }
 
   .base44-sidebar {
@@ -3784,7 +3784,7 @@ textarea.input,
   }
 
   .base44-login-shell {
-    grid-template-columns: 1fr;
+    --base44-login-columns: 1fr;
   }
 }
 

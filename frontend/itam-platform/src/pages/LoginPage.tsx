@@ -41,9 +41,18 @@ export function LoginPage() {
   }
 
   return (
-    <main className="base44-login-shell">
-      <section className="base44-login-hero">
-        <Base44Surface className="base44-login-hero-surface">
+    <main
+      className="base44-login-shell"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr))",
+        gap: "22px",
+        alignItems: "stretch",
+        width: "min(100%, 1280px)",
+      }}
+    >
+      <section className="base44-login-hero" style={{ alignSelf: "stretch" }}>
+        <Base44Surface className="base44-login-hero-surface" style={{ height: "100%" }}>
           <Base44ShellAccent
             title="HermesOps Sentinel"
             subtitle="Centro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional."
