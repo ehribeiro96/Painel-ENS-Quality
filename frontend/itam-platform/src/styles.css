@@ -3203,6 +3203,22 @@ textarea.input,
   }
 }
 
+@media (max-width: 900px) {
+  .base44-sidebar {
+    gap: 14px;
+    padding: 16px 14px;
+  }
+
+  .base44-sidebar .base44-shell-accent,
+  .base44-sidebar .sidebar-footer {
+    display: none;
+  }
+
+  .base44-nav {
+    padding-top: 0;
+  }
+}
+
 @media (max-width: 760px) {
   .sentinel-hero-text h1 {
     font-size: 2rem;
