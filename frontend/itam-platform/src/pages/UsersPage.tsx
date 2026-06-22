@@ -4,6 +4,7 @@ import { DataTable } from "@/components/DataTable";
 import { AlertBlock, LoadingBlock } from "@/components/StateBlocks";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
+import { canDeleteOperationalData, canWriteOperationalData } from "@/lib/permissions";
 import type { Page, Role, User, UserStatus } from "@/lib/types";
 
 type UserForm = {
@@ -101,8 +102,8 @@ export function UsersPage() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [form, setForm] = useState<UserForm>(emptyForm);
 
-  const canWrite = currentUser?.role === "ADMIN" || currentUser?.role === "TECHNICIAN";
-  const canDelete = currentUser?.role === "ADMIN";
+  const canWrite = canWriteOperationalData(currentUser?.role);
+  const canDelete = canDeleteOperationalData(currentUser?.role);
   const trimmedSearch = search.trim();
 
   const query = useMemo(() => {
@@ -189,14 +190,24 @@ export function UsersPage() {
   }
 
   const totalUsers = page?.total ?? 0;
+  const userRows = page?.items ?? [];
   const hasSearch = Boolean(trimmedSearch);
   const emptyMessage = hasSearch
     ? `Nenhum colaborador encontrado para “${trimmedSearch}”. Ajuste a busca e tente novamente.`
-    : "Nenhum colaborador cadastrado ainda.";
+    : canWrite
+      ? "Nenhum colaborador cadastrado ainda. Use Novo colaborador para criar o primeiro registro."
+      : "Nenhum colaborador cadastrado ainda.";
   const formTitle = editingUser ? "Editar colaborador" : "Novo colaborador";
   const formDescription = editingUser
     ? "Atualize somente dados cadastrais e status operacional. Role, senha e flags administrativas não são editadas aqui."
     : "Cadastre um colaborador manual sem alterar permissões, autenticação ou vínculos existentes.";
+  const summary = useMemo(() => {
+    const active = userRows.filter((user) => user.status === "ACTIVE").length;
+    const admins = userRows.filter((user) => user.role === "ADMIN").length;
+    const legacy = userRows.filter((user) => user.source === "legacy_ens_db").length;
+    const manual = userRows.filter((user) => user.source === "manual").length;
+    return { active, admins, legacy, manual, current: userRows.length };
+  }, [userRows]);
 
   return (
     <>
@@ -210,6 +221,29 @@ export function UsersPage() {
           {canWrite ? <button className="button" type="button" onClick={openCreate}>+ Novo colaborador</button> : null}
         </div>
       </header>
+
+      <section className="grid metrics page-metrics users-metrics" aria-label="Resumo de colaboradores">
+        <article className="card metric-card">
+          <span className="metric-label">Total encontrado</span>
+          <strong className="metric-value">{totalUsers}</strong>
+          <p className="metric-description">Colaboradores retornados pela consulta atual.</p>
+        </article>
+        <article className="card metric-card">
+          <span className="metric-label">Ativos</span>
+          <strong className="metric-value">{summary.active}</strong>
+          <p className="metric-description">Registros liberados para uso operacional.</p>
+        </article>
+        <article className="card metric-card">
+          <span className="metric-label">Administradores</span>
+          <strong className="metric-value">{summary.admins}</strong>
+          <p className="metric-description">Perfis com exclusão e settings sensíveis.</p>
+        </article>
+        <article className="card metric-card">
+          <span className="metric-label">Nesta página</span>
+          <strong className="metric-value">{summary.current}</strong>
+          <p className="metric-description">Linhas visíveis na listagem atual.</p>
+        </article>
+      </section>
 
       {!canWrite ? (
         <AlertBlock tone="info">
@@ -287,8 +321,19 @@ export function UsersPage() {
           <span className={`badge ${hasSearch ? "info" : "neutral"}`}>{totalUsers} colaborador(es)</span>
         </div>
         <DataTable
-          items={page?.items ?? []}
+          items={userRows}
           emptyMessage={emptyMessage}
+          emptyTitle={hasSearch ? "Nenhum colaborador corresponde à busca." : "Sem colaboradores cadastrados."}
+          emptyDescription={hasSearch
+            ? "Tente remover parte do termo pesquisado ou limpar o campo de busca."
+            : canWrite
+              ? "Crie o primeiro colaborador para liberar vínculos, auditoria e cadastros operacionais."
+              : "Sua sessão está em modo consulta. Quando houver dados, eles aparecerão aqui."}
+          emptyActions={hasSearch
+            ? <button className="button secondary" type="button" onClick={() => setSearch("")}>Limpar busca</button>
+            : canWrite
+              ? <button className="button" type="button" onClick={openCreate}>+ Novo colaborador</button>
+              : null}
           columns={[
             { key: "name", label: "Nome", render: (user) => <Link to={`/users/${user.id}`}>{user.name}</Link> },
             { key: "login", label: "Identificador", render: (user) => <span className="cell-stack"><strong>{user.email.split("@")[0] ?? "-"}</strong><small>derivado do e-mail</small></span> },

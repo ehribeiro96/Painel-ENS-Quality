@@ -19,6 +19,7 @@ import {
 } from "@/components/icons/HermesIcons";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
+import { accessModeLabel, canWriteOperationalData } from "@/lib/permissions";
 import type { SearchResult } from "@/lib/types";
 
 const nav = [
@@ -39,6 +40,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);
+  const canWrite = canWriteOperationalData(user?.role);
 
   useEffect(() => {
     if (!token || query.trim().length < 2) {
@@ -117,6 +119,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="toolbar topbar-status" aria-label="Status da aplicação">
             <HermesStatusPill state="Online">Agente local</HermesStatusPill>
             <HermesStatusPill state="Auditável">Inventário auditável</HermesStatusPill>
+            <HermesStatusPill state={canWrite ? "Auditável" : "Somente leitura"}>{accessModeLabel(user?.role)}</HermesStatusPill>
             <span className="topbar-user">
               <HermesCoreIcon size={16} aria-hidden="true" />
               <span>

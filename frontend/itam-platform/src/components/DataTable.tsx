@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { EmptyState } from "@/components/StateBlocks";
+
 type Column<T> = {
   key: keyof T | string;
   label: string;
@@ -12,6 +14,9 @@ export function DataTable<T extends { id: string }>({
   columns,
   items,
   emptyMessage = "Nenhum registro encontrado.",
+  emptyTitle,
+  emptyDescription,
+  emptyActions,
   sortBy,
   sortOrder,
   onSort,
@@ -20,6 +25,9 @@ export function DataTable<T extends { id: string }>({
   columns: Column<T>[];
   items: T[];
   emptyMessage?: string;
+  emptyTitle?: ReactNode;
+  emptyDescription?: ReactNode;
+  emptyActions?: ReactNode;
   sortBy?: string;
   sortOrder?: "asc" | "desc";
   onSort?: (key: string) => void;
@@ -57,8 +65,13 @@ export function DataTable<T extends { id: string }>({
           {isEmpty ? (
             <tr className="table-empty-row">
               <td colSpan={colSpan}>
-                <div className="empty-state table-empty-state">
-                  <strong>{emptyMessage}</strong>
+                <div className="table-empty-state">
+                  <EmptyState
+                    title={emptyTitle ?? emptyMessage}
+                    description={emptyDescription}
+                  >
+                    {emptyActions}
+                  </EmptyState>
                 </div>
               </td>
             </tr>

@@ -10,6 +10,7 @@ import { Alert, LoadingBlock } from "@/components/StateBlocks";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { formatAssetStatus } from "@/lib/format";
+import { canDeleteOperationalData, canWriteOperationalData } from "@/lib/permissions";
 import { useDebouncedValue } from "@/lib/useDebouncedValue";
 import { useLocalStorageState } from "@/lib/useLocalStorageState";
 import type { Asset, AssetStatus, AssetType, Page } from "@/lib/types";
@@ -124,8 +125,8 @@ export function AssetsPage() {
   const [assetFormOpen, setAssetFormOpen] = useState(false);
   const [assetMessage, setAssetMessage] = useState<string | null>(null);
   const debouncedSearch = useDebouncedValue(filters.search, 350);
-  const canWrite = currentUser?.role === "ADMIN" || currentUser?.role === "TECHNICIAN";
-  const canDelete = currentUser?.role === "ADMIN";
+  const canWrite = canWriteOperationalData(currentUser?.role);
+  const canDelete = canDeleteOperationalData(currentUser?.role);
 
   useEffect(() => {
     const nextStatus = urlParams.get("status");
@@ -264,6 +265,14 @@ export function AssetsPage() {
 
   const page = assetsQuery.data as Page<Asset> | undefined;
   const totalPages = page ? Math.max(1, Math.ceil(page.total / page.page_size)) : 1;
+  const pageItems = page?.items ?? [];
+  const summary = useMemo(() => {
+    const total = page?.total ?? 0;
+    const assigned = pageItems.filter((asset) => asset.status === "IN_USE").length;
+    const stock = pageItems.filter((asset) => asset.status === "STOCK").length;
+    const incomplete = pageItems.filter((asset) => isIncomplete(asset)).length;
+    return { total, assigned, stock, incomplete };
+  }, [page?.total, pageItems]);
 
   function isIncomplete(asset: Asset) {
     return !asset.hostname || asset.hostname === "-" || !asset.patrimony || asset.patrimony === "-";
@@ -318,7 +327,7 @@ export function AssetsPage() {
   }, [visibleColumns]);
 
   return (
-    <>
+    <div className="assets-page">
       <SentinelSectionHeader
         eyebrow="Inventário técnico"
         subtitle="Busca operacional com filtros, visão salva e ações diretas por linha."
@@ -330,6 +339,45 @@ export function AssetsPage() {
         </button>
         {canWrite ? <button className="button" type="button" onClick={openCreateAsset}>+ Novo ativo</button> : null}
       </SentinelSectionHeader>
+
+      <section className="grid metrics page-metrics assets-metrics" aria-label="Resumo do inventário filtrado">
+        <article className="card metric-card">
+          <span className="metric-label">Total encontrado</span>
+          <strong className="metric-value">{summary.total}</strong>
+          <p className="metric-description">Quantidade total retornada pelos filtros atuais.</p>
+        </article>
+        <article className="card metric-card">
+          <span className="metric-label">Em estoque</span>
+          <strong className="metric-value">{summary.stock}</strong>
+          <p className="metric-description">Ativos prontos para nova movimentação nesta página.</p>
+        </article>
+        <article className="card metric-card">
+          <span className="metric-label">Em uso</span>
+          <strong className="metric-value">{summary.assigned}</strong>
+          <p className="metric-description">Ativos vinculados a usuários nesta página.</p>
+        </article>
+        <article className="card metric-card">
+          <span className="metric-label">Cadastro incompleto</span>
+          <strong className="metric-value">{summary.incomplete}</strong>
+          <p className="metric-description">Ativos que ainda pedem hostname, patrimônio ou serial.</p>
+        </article>
+      </section>
+
+      <section className="permission-note permission-note-banner">
+        <div>
+          <span className="badge info">Permissões</span>
+          <h2>{canWrite ? "Escrita operacional ativa" : "Modo consulta"}</h2>
+          <p>
+            {canWrite
+              ? "Seu perfil pode criar, editar e movimentar ativos. A desativação continua restrita ao administrador."
+              : "Seu perfil pode navegar, filtrar e abrir detalhes, mas as ações de cadastro e desativação ficam ocultas."}
+          </p>
+        </div>
+        <div className="page-actions">
+          <HermesStatusPill state={canWrite ? "Auditável" : "Somente leitura"}>{canWrite ? "Escrita habilitada" : "Consulta"}</HermesStatusPill>
+          <HermesStatusPill state={canDelete ? "Auditável" : "Somente leitura"}>{canDelete ? "Desativação ativa" : "Sem exclusão"}</HermesStatusPill>
+        </div>
+      </section>
 
       {assetFormOpen && canWrite ? (
         <form className="form-card" onSubmit={submitAssetForm}>
@@ -434,37 +482,43 @@ export function AssetsPage() {
       {assetsQuery.isError ? <Alert tone="danger">Não foi possível carregar os ativos.</Alert> : null}
       {assetsQuery.isLoading ? <LoadingBlock label="Carregando ativos com filtros server-side..." /> : null}
 
-      <div className="result-summary">
-        <strong>{page?.total ?? 0}</strong> ativos encontrados
-        {assetsQuery.isFetching && !assetsQuery.isLoading ? <span>Atualizando...</span> : null}
-      </div>
+      <section className="asset-table-shell">
+        <div className="result-summary">
+          <strong>{page?.total ?? 0}</strong> ativos encontrados
+          {assetsQuery.isFetching && !assetsQuery.isLoading ? <span>Atualizando...</span> : null}
+        </div>
 
-      <DataTable
-        items={page?.items ?? []}
-        columns={columns}
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        onSort={toggleSort}
-        emptyMessage="Nenhum ativo encontrado com os filtros atuais. Use Limpar para remover filtros."
-        rowActions={(asset) => (
-          <div className="row-action-group">
-            <Link className="mini-button" to={`/assets/${asset.id}`} title="Ver detalhes" aria-label="Ver detalhes do ativo"><Eye size={15} aria-hidden /></Link>
-            {canWrite ? <button className="mini-button" type="button" title="Editar ativo" aria-label="Editar ativo" onClick={() => openEditAsset(asset)}><Pencil size={15} aria-hidden /></button> : null}
-            <button className="mini-button text-action" type="button" title="Movimentar ativo" aria-label="Movimentar ativo" onClick={() => setMovingAsset(asset)}>Movimentar</button>
-            <button className="mini-button" type="button" title="Enviar para estoque" disabled={stockMutation.isPending} onClick={() => stockMutation.mutate(asset)}>
-              <Archive size={15} aria-hidden />
-            </button>
-            {canDelete ? <button className="mini-button danger" type="button" title="Desativar ativo" aria-label="Desativar ativo" disabled={deleteAssetMutation.isPending} onClick={() => deactivateAsset(asset)}><Trash2 size={15} aria-hidden /></button> : null}
-            <Link className="mini-button" to={`/assets/${asset.id}#history`} title="Histórico" aria-label="Ver histórico do ativo"><History size={15} aria-hidden /></Link>
-          </div>
-        )}
-      />
+        <DataTable
+          items={page?.items ?? []}
+          columns={columns}
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          onSort={toggleSort}
+          emptyTitle="Nenhum ativo encontrado."
+          emptyDescription={canWrite
+            ? "Ajuste os filtros para encontrar um ativo existente ou crie o primeiro registro operacional."
+            : "Ajuste os filtros para ampliar a busca ou remova o recorte atual."}
+          emptyActions={canWrite ? <button className="button" type="button" onClick={openCreateAsset}>+ Novo ativo</button> : <button className="button secondary" type="button" onClick={clearFilters}>Limpar filtros</button>}
+          rowActions={(asset) => (
+            <div className="row-action-group">
+              <Link className="mini-button" to={`/assets/${asset.id}`} title="Ver detalhes" aria-label="Ver detalhes do ativo"><Eye size={15} aria-hidden /></Link>
+              {canWrite ? <button className="mini-button" type="button" title="Editar ativo" aria-label="Editar ativo" onClick={() => openEditAsset(asset)}><Pencil size={15} aria-hidden /></button> : null}
+              <button className="mini-button text-action" type="button" title="Movimentar ativo" aria-label="Movimentar ativo" onClick={() => setMovingAsset(asset)}>Movimentar</button>
+              <button className="mini-button" type="button" title="Enviar para estoque" disabled={stockMutation.isPending} onClick={() => stockMutation.mutate(asset)}>
+                <Archive size={15} aria-hidden />
+              </button>
+              {canDelete ? <button className="mini-button danger" type="button" title="Desativar ativo" aria-label="Desativar ativo" disabled={deleteAssetMutation.isPending} onClick={() => deactivateAsset(asset)}><Trash2 size={15} aria-hidden /></button> : null}
+              <Link className="mini-button" to={`/assets/${asset.id}#history`} title="Histórico" aria-label="Ver histórico do ativo"><History size={15} aria-hidden /></Link>
+            </div>
+          )}
+        />
 
-      <nav className="pagination" aria-label="Paginação de ativos">
-        <button className="button secondary" type="button" disabled={pageNumber <= 1} onClick={() => setPageNumber(pageNumber - 1)}>Anterior</button>
-        <span>Página {pageNumber} de {totalPages}</span>
-        <button className="button secondary" type="button" disabled={pageNumber >= totalPages} onClick={() => setPageNumber(pageNumber + 1)}>Próxima</button>
-      </nav>
+        <nav className="pagination" aria-label="Paginação de ativos">
+          <button className="button secondary" type="button" disabled={pageNumber <= 1} onClick={() => setPageNumber(pageNumber - 1)}>Anterior</button>
+          <span>Página {pageNumber} de {totalPages}</span>
+          <button className="button secondary" type="button" disabled={pageNumber >= totalPages} onClick={() => setPageNumber(pageNumber + 1)}>Próxima</button>
+        </nav>
+      </section>
 
       <MoveAssetDialog
         asset={movingAsset}
@@ -475,7 +529,7 @@ export function AssetsPage() {
           void queryClient.invalidateQueries({ queryKey: ["assets"] });
         }}
       />
-    </>
+    </div>
   );
 }
 

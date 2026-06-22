@@ -1,119 +1,40 @@
 # Next Boundary Decision
 
-Boundary atual: `UI-UAT-H1 - authenticated browser smoke using bridge runtime`.
+Boundary atual: `CLOSE-FRONTEND-UX-H1 - consolidate pending frontend UI changes before Base44 import`.
 
 ## Estado consolidado
 
 ```text
-GO_RELEASE_CANDIDATE_API_VALIDATED
-PARTIAL_BROWSER_TOOLING_UNAVAILABLE
-PARTIAL_RUNTIME_FRONTEND_PORT_UNAVAILABLE
-PARTIAL_DOCKER_PORT_PUBLISHING_BROKEN
-```
-
-## Evidencia RELEASE-H1
-
-Backend:
-
-```text
-python -m compileall -q backend/app backend/alembic tests -> OK
-python -m unittest discover -s tests -> 159 tests OK, 8 skipped
-```
-
-Frontend:
-
-```text
-Linux Node v22.22.3
-npm 10.9.8
-npm run build -> OK
-```
-
-API UAT autenticado:
-
-```text
-GET /health -> 200
-GET /login -> 200
-POST /api/v1/auth/login -> 200
-GET /api/v1/users?page_size=100 -> 200
-GET /api/v1/assets?page_size=20 -> 200
-GET /api/v1/dashboard/summary -> 200
-GET /api/v1/dashboard/assets-by-status -> 200
-GET /api/v1/audit-logs?page_size=20 -> 200
-GET /api/v1/assets/{id}/history -> 200
-```
-
-Filtros audit validados:
-
-```text
-action
-entity_type
-entity_id
-source
-correlation_id
-request_id
-```
-
-## Evidencia UI-UAT-H1
-
-Backend bridge:
-
-```text
-GET /health -> 200
-GET /login -> 200
-POST /api/v1/auth/login -> 200
-```
-
-Frontend/browser:
-
-```text
-Linux Node v22.22.3
-npm 10.9.8
-Vite registrou readiness em 127.0.0.1:5173
-curl 127.0.0.1:5173 -> timeout
-playwright -> ausente
-@playwright/test -> ausente
-chromium/chrome/edge no WSL -> ausentes
-```
-
-Seguranca:
-
-```text
-Senha/token/cookie/Authorization/storage state/DSN nao impressos
-Nenhum screenshot ou storage state commitado
-Processos temporarios encerrados
+GO_FRONTEND_UX_CLOSED
+GO_FRONTEND_BUILD_OK
+GO_AI_CHAT_TESTS_OK
+GO_NO_BASE44_LEAK
 ```
 
 ## Decisao objetiva
 
-A release candidate esta validada no nivel API/backend/frontend build. O full production GO segue pendente de UI smoke autenticado porque o runner de navegador esta indisponivel no WSL e o Vite dev server nao permaneceu acessivel em `127.0.0.1:5173` nesta execucao.
+A boundary de frontend atual foi consolidada e esta apta para commit. A importação Base44 deve continuar bloqueada até que as pendências restantes do worktree sejam fechadas por boundary.
 
 ## Proxima boundary principal
 
-1. `UI-UAT-H2 - provide supported browser runner for WSL`
-   Objetivo: disponibilizar browser runner suportado no WSL, estabilizar o servidor frontend local e repetir smoke visual autenticado sem expor credenciais.
-
-## Boundary paralela
-
-2. `UI-RUNTIME-H1 - stabilize Vite dev server accessibility in WSL`
-   Objetivo: investigar por que o Vite registra readiness, mas `127.0.0.1:5173` expira e a porta nao permanece acessivel.
-
-3. `WSL-DOCKER-NET-H1 - repair Docker port publishing for local UAT`
-   Objetivo: corrigir acesso WSL a `127.0.0.1:5432` e `127.0.0.1:6379`.
+1. `CLOSE-RUNTIME-DOCKER-H1 - close Dockerfile runtime adjustment`
+   Objetivo: fechar a mudança pendente em `backend/Dockerfile` sem misturar com frontend ou Base44.
 
 ## Boundary seguinte
 
-4. `RELEASE-H2 - final release sign-off after UI smoke`
-   Condicao: UI smoke autenticado aprovado ou explicitamente dispensado pelo responsavel de release.
+2. `CLOSE-DOCS-LEGACY-H1 - classify docs legacy migration artifacts`
+   Objetivo: separar e classificar os grandes artefatos legados, propostas de migração e docs auxiliares fora do frontend.
+
+3. `BASE44-FRONTONLY-H1 - import Base44 visual frontend only`
+   Condicao: worktree sem pendencias misturadas fora do escopo da importação visual.
 
 ## O que nao fazer agora
 
-- Nao fazer deploy.
-- Nao fazer push sem autorizacao.
-- Nao alterar frontend/backend/migrations.
-- Nao fixar bridge IP em `.env` ou codigo.
-- Nao imprimir credenciais, tokens, cookies ou storage state.
-- Nao executar `docker compose down -v`.
+- Nao importar Base44 ainda.
+- Nao tocar em backend fora desta boundary.
+- Nao alterar migrations, Docker/Compose, package files ou dados locais.
+- Nao abrir, imprimir ou versionar credenciais, tokens, cookies ou storage state.
 
 ## Decisao final
 
-Proxima boundary recomendada: `UI-UAT-H2 - provide supported browser runner for WSL`.
+Proxima boundary recomendada: `CLOSE-RUNTIME-DOCKER-H1 - close Dockerfile runtime adjustment`.

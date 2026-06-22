@@ -7,6 +7,19 @@ import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import type { MacroTemplate } from "@/lib/types";
 
+function normalizeFieldLabel(value: string) {
+  return value
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+function isAutocompleteField(value: string) {
+  const normalized = normalizeFieldLabel(value);
+  return normalized.includes("nome") || normalized.includes("usuario") || normalized.includes("colaborador");
+}
+
 export function MacrosPage() {
   const { token } = useAuth();
   const [search, setSearch] = useState("");
@@ -35,14 +48,16 @@ export function MacrosPage() {
   const templates = templatesQuery.data ?? [];
   const selected = templates.find((template) => template.id === selectedId) ?? templates[0] ?? null;
   const categories = useMemo(() => Array.from(new Set(templates.map((template) => template.category))).sort(), [templates]);
-  const autocompleteFields = new Set(["Nome", "Usuário Atual", "Usuário Anterior"]);
   const focusedValue = focusedField ? values[focusedField] ?? "" : "";
+  const activeAutocompleteField = focusedField && isAutocompleteField(focusedField) ? focusedField : null;
 
   const hintsQuery = useQuery({
     queryKey: ["macro-autocomplete", focusedField, focusedValue],
-    enabled: Boolean(token && focusedField && autocompleteFields.has(focusedField)),
+    enabled: Boolean(token && activeAutocompleteField),
     queryFn: () => api.macroAutocomplete(token as string, focusedValue)
   });
+
+  const autocompleteHints = activeAutocompleteField ? (hintsQuery.data ?? []).slice(0, 8) : [];
 
   function readPendingFields(inputValues: Record<string, unknown>) {
     const metadata = inputValues._metadata;
@@ -75,6 +90,12 @@ export function MacrosPage() {
     await navigator.clipboard.writeText(rendered);
     await api.macroMarkCopied(token as string, generationId);
     setCopyStatus("Macro copiada.");
+  }
+
+  function applyHint(field: string, value: string) {
+    setValues((current) => ({ ...current, [field]: value }));
+    setFocusedField(field);
+    setCopyStatus(null);
   }
 
   return (
@@ -133,22 +154,41 @@ export function MacrosPage() {
               <p className="helper-text">Preencha os campos disponíveis. Campos não preenchidos aparecerão como pendentes.</p>
               <div className="form-grid">
                 {selected.required_fields.map((field) => (
-                  <label key={field}>
+                  <label className="macro-field" key={field}>
                     <span>{field} <strong aria-hidden>*</strong></span>
-                    <input
-                      className="input full"
-                      list={autocompleteFields.has(field) ? "macro-collaborator-hints" : undefined}
-                      value={values[field] ?? ""}
-                      onBlur={() => setFocusedField((current) => (current === field ? null : current))}
-                      onChange={(event) => setValues((current) => ({ ...current, [field]: event.target.value }))}
-                      onFocus={() => setFocusedField(field)}
-                    />
+                    <div className="macro-field-stack">
+                      <input
+                        className="input full"
+                        autoComplete="off"
+                        value={values[field] ?? ""}
+                        onBlur={() => setFocusedField((current) => (current === field ? null : current))}
+                        onChange={(event) => setValues((current) => ({ ...current, [field]: event.target.value }))}
+                        onFocus={() => setFocusedField(field)}
+                      />
+                      {activeAutocompleteField === field ? (
+                        <div className="macro-autocomplete-panel" aria-label={`Sugestões para ${field}`}>
+                          {hintsQuery.isFetching ? <span className="macro-autocomplete-empty">Buscando sugestões...</span> : null}
+                          {!hintsQuery.isFetching && autocompleteHints.length === 0 ? (
+                            <span className="macro-autocomplete-empty">Sem sugestões para este campo.</span>
+                          ) : null}
+                          {autocompleteHints.map((hint) => (
+                            <button
+                              className="macro-autocomplete-item"
+                              key={hint.id}
+                              type="button"
+                              onMouseDown={(event) => event.preventDefault()}
+                              onClick={() => applyHint(field, hint.label)}
+                            >
+                              <strong>{hint.label}</strong>
+                              <span>{hint.source.replaceAll("_", " ")}</span>
+                            </button>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
                   </label>
                 ))}
               </div>
-              <datalist id="macro-collaborator-hints">
-                {(hintsQuery.data ?? []).map((hint) => <option key={hint.id} value={hint.label} />)}
-              </datalist>
               <div className="modal-actions">
                 <button className="button secondary" type="button" onClick={() => void generate(selected)}>Gerar preview</button>
                 <button className="button" type="button" onClick={() => void copyRendered()} disabled={!rendered || !generationId}>Copiar macro</button>
