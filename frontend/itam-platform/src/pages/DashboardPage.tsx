@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Archive, Box, Link2, Monitor, PackageCheck, Upload, Users, Wrench } from "lucide-react";
-import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
-import { SentinelHero } from "@/components/brand/SentinelHero";
-import { AlertBlock, EmptyState, LoadingBlock } from "@/components/StateBlocks";
+import { Link2, PackageCheck, Upload, Users } from "lucide-react";
+
+import { Base44EmptyState } from "@/components/base44/Base44EmptyState";
+import { Base44MetricCard } from "@/components/base44/Base44MetricCard";
+import { Base44PageHeader } from "@/components/base44/Base44PageHeader";
+import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
+import { Base44Surface } from "@/components/base44/Base44Surface";
+import { AlertBlock, LoadingBlock } from "@/components/StateBlocks";
 import {
   AgentOrbitIcon,
   ConflictSplitIcon,
   HermesCoreIcon,
   PackageChipIcon,
   SettingsCircuitIcon,
-  TransferCircuitIcon
+  TransferCircuitIcon,
 } from "@/components/icons/HermesIcons";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
@@ -23,7 +27,7 @@ const STATUS_LABELS: Record<string, string> = {
   DEFECTIVE: "Defeituoso",
   DISCARDED: "Para descarte",
   RESERVED: "Reservado",
-  CONFIG_PENDING: "Configuração pendente"
+  CONFIG_PENDING: "Configuração pendente",
 };
 
 const TYPE_LABELS: Record<string, string> = {
@@ -34,7 +38,7 @@ const TYPE_LABELS: Record<string, string> = {
   MOBILE: "Mobile",
   PRINTER: "Impressora",
   PERIPHERAL: "Periférico",
-  OTHER: "Outro"
+  OTHER: "Outro",
 };
 
 function countBy(items: Asset[], getter: (asset: Asset) => string | null | undefined) {
@@ -52,14 +56,14 @@ type DashboardStatusItem = {
 };
 
 function normalizeStatusItem(item: unknown): DashboardStatusItem {
-  const record = item && typeof item === "object" ? item as Record<string, unknown> : {};
+  const record = item && typeof item === "object" ? (item as Record<string, unknown>) : {};
   const rawStatus = record.status ?? record.name ?? "Não informado";
   const rawCount = record.count ?? record.value ?? 0;
   const count = typeof rawCount === "number" ? rawCount : Number(rawCount);
 
   return {
     status: String(rawStatus || "Não informado"),
-    count: Number.isFinite(count) ? count : 0
+    count: Number.isFinite(count) ? count : 0,
   };
 }
 
@@ -81,9 +85,21 @@ function percent(value: number, total: number) {
 
 export function DashboardPage() {
   const { token } = useAuth();
-  const summaryQuery = useQuery({ queryKey: ["dashboard-summary"], enabled: Boolean(token), queryFn: () => api.dashboardSummary(token as string) });
-  const statusQuery = useQuery({ queryKey: ["dashboard-status"], enabled: Boolean(token), queryFn: () => api.assetsByStatus(token as string) });
-  const assetsQuery = useQuery({ queryKey: ["dashboard-assets-overview"], enabled: Boolean(token), queryFn: () => api.assets(token as string, "?page_size=200&sort_by=updated_at&sort_order=desc") });
+  const summaryQuery = useQuery({
+    queryKey: ["dashboard-summary"],
+    enabled: Boolean(token),
+    queryFn: () => api.dashboardSummary(token as string),
+  });
+  const statusQuery = useQuery({
+    queryKey: ["dashboard-status"],
+    enabled: Boolean(token),
+    queryFn: () => api.assetsByStatus(token as string),
+  });
+  const assetsQuery = useQuery({
+    queryKey: ["dashboard-assets-overview"],
+    enabled: Boolean(token),
+    queryFn: () => api.assets(token as string, "?page_size=200&sort_by=updated_at&sort_order=desc"),
+  });
 
   const summary = summaryQuery.data ?? {};
   const assets = (assetsQuery.data as Page<Asset> | undefined)?.items ?? [];
@@ -106,12 +122,12 @@ export function DashboardPage() {
   const isError = summaryQuery.isError || assetsQuery.isError || statusQuery.isError;
 
   const metrics = [
-    { label: "Total de ativos", value: totalAssets, description: "Base operacional cadastrada", icon: HermesCoreIcon, tone: "blue", badge: "CMDB" },
-    { label: "Colaboradores ativos", value: activeUsers, description: "Com ativo vinculado na amostra", icon: AgentOrbitIcon, tone: "green", badge: "Uso" },
-    { label: "Vínculos vigentes", value: assignments, description: "Ativos atualmente atribuídos", icon: TransferCircuitIcon, tone: "purple", badge: `${percent(assignments, Math.max(assets.length, 1))}%` },
-    { label: "Em estoque", value: stock, description: "Disponíveis para operação", icon: PackageChipIcon, tone: "teal", badge: "Estoque" },
-    { label: "Em manutenção", value: maintenance, description: "Exigem acompanhamento técnico", icon: SettingsCircuitIcon, tone: "amber", badge: maintenance > 0 ? "Atenção" : "OK" },
-    { label: "Para descarte", value: discarded, description: "Itens fora do ciclo operacional", icon: ConflictSplitIcon, tone: "red", badge: discarded > 0 ? "Revisar" : "OK" }
+    { label: "Total de ativos", value: totalAssets, description: "Base operacional cadastrada", icon: HermesCoreIcon, accent: "CMDB" },
+    { label: "Colaboradores ativos", value: activeUsers, description: "Com ativo vinculado na amostra", icon: AgentOrbitIcon, accent: "Uso" },
+    { label: "Vínculos vigentes", value: assignments, description: "Ativos atualmente atribuídos", icon: TransferCircuitIcon, accent: `${percent(assignments, Math.max(assets.length, 1))}%` },
+    { label: "Em estoque", value: stock, description: "Disponíveis para operação", icon: PackageChipIcon, accent: "Estoque" },
+    { label: "Em manutenção", value: maintenance, description: "Exigem acompanhamento técnico", icon: SettingsCircuitIcon, accent: maintenance > 0 ? "Atenção" : "OK" },
+    { label: "Para descarte", value: discarded, description: "Itens fora do ciclo operacional", icon: ConflictSplitIcon, accent: discarded > 0 ? "Revisar" : "OK" },
   ];
 
   const recommendations = [
@@ -120,53 +136,61 @@ export function DashboardPage() {
       value: unassignedAssets,
       message: unassignedAssets > 0 ? "Revise estoque, reserva ou pendências de vínculo." : "Nenhum item sem usuário na amostra atual.",
       tone: unassignedAssets > 0 ? "warning" : "success",
-      href: "/assets"
+      href: "/assets",
     },
     {
       title: "Manutenção",
       value: maintenance,
       message: maintenance > 0 ? "Acompanhe reparos e próximos responsáveis." : "Sem ativos em manutenção no resumo.",
       tone: maintenance > 0 ? "warning" : "success",
-      href: "/assets"
+      href: "/assets",
     },
     {
       title: "Defeituosos",
       value: defective,
       message: defective > 0 ? "Priorize diagnóstico, troca ou descarte técnico." : "Sem ativos defeituosos informados.",
       tone: defective > 0 ? "danger" : "success",
-      href: "/assets"
+      href: "/assets",
     },
     {
       title: "Pendências operacionais",
       value: byStatus.find((item) => item.status === "CONFIG_PENDING")?.count ?? 0,
-      message: (byStatus.find((item) => item.status === "CONFIG_PENDING")?.count ?? 0) > 0 ? "Finalize configuração antes de movimentar para uso." : "Sem configuração pendente no status atual.",
+      message:
+        (byStatus.find((item) => item.status === "CONFIG_PENDING")?.count ?? 0) > 0
+          ? "Finalize configuração antes de movimentar para uso."
+          : "Sem configuração pendente no status atual.",
       tone: (byStatus.find((item) => item.status === "CONFIG_PENDING")?.count ?? 0) > 0 ? "warning" : "success",
-      href: "/assets"
-    }
+      href: "/assets",
+    },
   ];
 
   return (
-    <>
-      <SentinelHero
+    <div className="base44-dashboard-shell">
+      <Base44PageHeader
+        eyebrow="Centro de Comando"
+        title="Dashboard"
+        description="Visão operacional de inventário, vínculos, pendências e auditoria da infraestrutura."
         actions={(
-          <nav className="dashboard-actions" aria-label="Ações rápidas do dashboard">
+          <nav className="dashboard-actions base44-actions" aria-label="Ações rápidas do dashboard">
             <Link className="button secondary" to="/assets">Inventário</Link>
             <Link className="button secondary" to="/assignments">Movimentações</Link>
             <Link className="button" to="/imports">Importação Lansweeper</Link>
           </nav>
         )}
-        chips={(
-          <>
-            <HermesStatusPill state="Online">Agente local</HermesStatusPill>
-            <HermesStatusPill state="Auditável">Inventário auditável</HermesStatusPill>
-            <HermesStatusPill state="Em revisão">Macro e movimentação</HermesStatusPill>
-          </>
+        breadcrumbs={(
+          <div className="base44-breadcrumbs">
+            <span>Centro de Comando</span>
+            <span>/</span>
+            <span>Dashboard</span>
+          </div>
         )}
-        description="Visão operacional de inventário, vínculos, pendências e auditoria da infraestrutura."
-        eyebrow="Centro de Comando"
-        subtitle="Guardião local da infraestrutura"
-        title="Centro de Comando"
       />
+
+      <div className="base44-chip-row">
+        <Base44StatusBadge status="online">Agente local</Base44StatusBadge>
+        <Base44StatusBadge status="auditavel">Inventário auditável</Base44StatusBadge>
+        <Base44StatusBadge status="leitura">Macro e movimentação</Base44StatusBadge>
+      </div>
 
       {isError ? (
         <AlertBlock tone="danger">
@@ -178,40 +202,39 @@ export function DashboardPage() {
       {isLoading ? <LoadingBlock label="Carregando indicadores do dashboard..." /> : null}
 
       {!isLoading && !isError && !hasAnyData ? (
-        <EmptyState
+        <Base44EmptyState
           title="Ainda não há dados para o dashboard."
           description="Importe ativos ou cadastre registros para alimentar os indicadores operacionais."
-        >
-          <Link className="button" to="/imports">Importar dados</Link>
-          <Link className="button secondary" to="/assets">Cadastrar ativo</Link>
-        </EmptyState>
+          action={(
+            <div className="empty-state-actions">
+              <Link className="button" to="/imports">Importar dados</Link>
+              <Link className="button secondary" to="/assets">Cadastrar ativo</Link>
+            </div>
+          )}
+        />
       ) : null}
 
-      <section className="dashboard-grid dashboard-metrics" aria-label="Métricas principais">
-        {metrics.map((metric) => {
-          const Icon = metric.icon;
-          return (
-            <article className="card metric-card" key={metric.label}>
-              <div className="metric-card-header">
-                <span className={`metric-icon tone-${metric.tone}`}><Icon size={18} aria-hidden="true" /></span>
-                <HermesStatusPill state={metric.tone === "red" ? "Conflito" : metric.tone === "amber" ? "Pendente" : metric.tone === "green" ? "Validado" : "Auditável"}>{metric.badge}</HermesStatusPill>
-              </div>
-              <strong className="metric-value">{metric.value}</strong>
-              <span className="metric-label">{metric.label}</span>
-              <p className="metric-description">{metric.description}</p>
-            </article>
-          );
-        })}
+      <section className="dashboard-grid dashboard-metrics base44-metrics-grid" aria-label="Métricas principais">
+        {metrics.map((metric) => (
+          <Base44MetricCard
+            key={metric.label}
+            title={metric.label}
+            value={metric.value}
+            description={metric.description}
+            icon={metric.icon}
+            accent={metric.accent}
+          />
+        ))}
       </section>
 
-      <section className="grid dashboard-panels">
-        <article className="card chart-card">
+      <section className="grid dashboard-panels base44-panels">
+        <Base44Surface className="base44-panel">
           <div className="card-header">
             <div>
               <h2 className="card-title">Ativos por status</h2>
               <p className="card-description">Distribuição real retornada pelo backend.</p>
             </div>
-            <span className="badge neutral">{statusTotal} ativos</span>
+            <Base44StatusBadge status="auditavel">{statusTotal} ativos</Base44StatusBadge>
           </div>
           {byStatus.length ? (
             <div className="distribution-list">
@@ -231,11 +254,11 @@ export function DashboardPage() {
               })}
             </div>
           ) : (
-            <EmptyState title="Sem status para exibir." description="Os totais por status ainda não foram retornados pelo backend." />
+            <Base44EmptyState title="Sem status para exibir." description="Os totais por status ainda não foram retornados pelo backend." />
           )}
-        </article>
+        </Base44Surface>
 
-        <article className="card chart-card">
+        <Base44Surface className="base44-panel">
           <div className="card-header">
             <div>
               <h2 className="card-title">Ativos por unidade</h2>
@@ -260,11 +283,11 @@ export function DashboardPage() {
               })}
             </div>
           ) : (
-            <EmptyState title="Sem unidades identificadas." description="Preencha localização nos ativos para acompanhar a distribuição por unidade." />
+            <Base44EmptyState title="Sem unidades identificadas." description="Preencha localização nos ativos para acompanhar a distribuição por unidade." />
           )}
-        </article>
+        </Base44Surface>
 
-        <article className="card chart-card">
+        <Base44Surface className="base44-panel">
           <div className="card-header">
             <div>
               <h2 className="card-title">Top tipos de ativo</h2>
@@ -289,18 +312,18 @@ export function DashboardPage() {
               })}
             </div>
           ) : (
-            <EmptyState title="Sem tipos para exibir." description="Cadastre ou importe ativos para montar o ranking de tipos." />
+            <Base44EmptyState title="Sem tipos para exibir." description="Cadastre ou importe ativos para montar o ranking de tipos." />
           )}
-        </article>
+        </Base44Surface>
       </section>
 
-      <section className="card dashboard-recommendations">
+      <Base44Surface className="dashboard-recommendations base44-panel">
         <div className="card-header">
           <div>
             <h2 className="card-title">Ações recomendadas</h2>
             <p className="card-description">Sinais derivados apenas dos contadores já carregados nesta página.</p>
           </div>
-          <span className="badge neutral">Sem endpoint novo</span>
+          <Base44StatusBadge status="auditavel">Sem endpoint novo</Base44StatusBadge>
         </div>
         <div className="recommendation-list">
           {recommendations.map((item) => (
@@ -311,14 +334,14 @@ export function DashboardPage() {
             </Link>
           ))}
         </div>
-      </section>
+      </Base44Surface>
 
-      <section className="quick-card-grid">
+      <section className="quick-card-grid base44-quick-grid">
         <Link className="quick-card blue" to="/assets"><PackageCheck size={17} /> <span><strong>Gerenciar ativos</strong><small>Ver, filtrar e editar o inventário</small></span></Link>
         <Link className="quick-card green" to="/users"><Users size={17} /> <span><strong>Colaboradores</strong><small>Consultar vínculos por usuário</small></span></Link>
         <Link className="quick-card purple" to="/assignments"><Link2 size={17} /> <span><strong>Atribuições</strong><small>Histórico de vínculos e movimentações</small></span></Link>
         <Link className="quick-card amber" to="/imports"><Upload size={17} /> <span><strong>Importar Excel</strong><small>Atualizar dados via fluxo existente</small></span></Link>
       </section>
-    </>
+    </div>
   );
 }

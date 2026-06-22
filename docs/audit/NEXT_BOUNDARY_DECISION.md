@@ -1,36 +1,33 @@
 # Next Boundary Decision
 
-Boundary atual: `CLOSE-DOCS-LEGACY-H1 - classify docs legacy migration artifacts before Base44 import`.
+Boundary atual: `BASE44-FRONTONLY-H1 — import Base44 visual frontend only`.
 
 ## Estado consolidado
 
 ```text
-GO_DOCS_LEGACY_CLASSIFIED
-PARTIAL_GITIGNORE_UPDATED
-PARTIAL_LEGACY_ASSETS_LEFT_UNTRACKED
+GO_BASE44_VISUAL_LAYER_IMPORTED
+PARTIAL_BASE44_VISUAL_LAYER_IMPORTED
 ```
 
 ## Decisao objetiva
 
-Os artefatos legados e de documentação local foram classificados. A importação Base44 ainda deve aguardar até o worktree ficar limpo de alterações rastreadas fora do escopo.
+A importação visual Base44 H1 foi concluída sem substituir autenticação, API, rotas, permissões ou dados funcionais.
 
 ## Proxima boundary principal
 
-1. `BASE44-FRONTONLY-H1 - import Base44 visual frontend only`
+1. `BASE44-FRONTONLY-H2 — adapt Assets and AssetDetail visual pages`
 
-## Boundaries opcionais, se houver tempo ou necessidade de governance
+## Paralela recomendada
 
-2. `LEGACY-ASSETS-H1 - decide archive policy for legacy assets`
-3. `MIGRATION-PROPOSALS-H1 - review HermesOps selective migration proposals`
+2. `UI-UAT-H2 — provide supported browser runner for WSL`
 
 ## O que nao fazer agora
 
-- Nao importar Base44 ainda.
-- Nao tocar no frontend atual.
+- Nao importar Base44 funcional.
 - Nao tocar no backend, Dockerfile, migrations ou package files.
 - Nao commitar assets legados, screenshots ou runtime databases.
 - Nao imprimir credenciais, tokens, cookies ou storage state.
 
 ## Decisao final
 
-Proxima boundary recomendada: `BASE44-FRONTONLY-H1 - import Base44 visual frontend only`.
+Proxima boundary recomendada: `BASE44-FRONTONLY-H2 — adapt Assets and AssetDetail visual pages`.

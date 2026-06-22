@@ -4,6 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 import { LogOut, Search, Users } from "lucide-react";
 import { BrandMark } from "@/components/brand/BrandMark";
 import { HermesStatusPill } from "@/components/brand/HermesStatusPill";
+import { Base44ShellAccent } from "@/components/base44/Base44ShellAccent";
+import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
 import {
   AgentOrbitIcon,
   AuditReportIcon,
@@ -60,10 +62,14 @@ export function AppShell({ children }: { children: ReactNode }) {
   }, [query, token]);
 
   return (
-    <div className="shell">
-      <aside className="sidebar" aria-label="Menu lateral">
+    <div className="shell base44-shell">
+      <aside className="sidebar base44-sidebar" aria-label="Menu lateral">
+        <Base44ShellAccent
+          title="Painel ENS-Quality"
+          subtitle="Fonte visual Base44, contratos reais preservados"
+        />
         <BrandMark compact={false} />
-        <nav className="nav" aria-label="Navegação principal">
+        <nav className="nav base44-nav" aria-label="Navegação principal">
           {nav.map((item) => {
             const Icon = item.icon;
             return (
@@ -92,9 +98,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           </a>
         </div>
       </aside>
-      <main className="main">
-        <header className="topbar">
-          <div className="toolbar global-search" role="search">
+      <main className="main base44-main">
+        <header className="topbar base44-topbar">
+          <div className="toolbar global-search base44-global-search" role="search">
             <Search size={17} aria-hidden />
             <input
               className="input search"
@@ -116,10 +122,10 @@ export function AppShell({ children }: { children: ReactNode }) {
               </div>
             ) : null}
           </div>
-          <div className="toolbar topbar-status" aria-label="Status da aplicação">
+          <div className="toolbar topbar-status base44-topbar-status" aria-label="Status da aplicação">
             <HermesStatusPill state="Online">Agente local</HermesStatusPill>
             <HermesStatusPill state="Auditável">Inventário auditável</HermesStatusPill>
-            <HermesStatusPill state={canWrite ? "Auditável" : "Somente leitura"}>{accessModeLabel(user?.role)}</HermesStatusPill>
+            <Base44StatusBadge status={canWrite ? "auditavel" : "leitura"}>{accessModeLabel(user?.role)}</Base44StatusBadge>
             <span className="topbar-user">
               <HermesCoreIcon size={16} aria-hidden="true" />
               <span>
