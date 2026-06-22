@@ -1,10 +1,9 @@
 # Next Boundary Decision
 
-BASE44-VISUAL-RECOVERY-H3 — targeted page-by-page visual repair
+VISUAL-QA-FIX-H2 — continue page-specific visual repair
 
 Reason:
 
-- The login shell and authenticated shell improved materially in H2.
-- Desktop login now renders as a clear two-column composition.
-- The authenticated shell now has a more stable sidebar/topbar hierarchy.
-- Remaining work should move to targeted page-by-page visual recovery instead of shell fundamentals.
+- The macros autocomplete dropdown received a concrete visual fix.
+- Full browser screenshot validation was not possible in this session because the in-app browser runtime trust bridge was unavailable.
+- The next pass should continue page-specific visual repair and collect manual screenshot evidence.
