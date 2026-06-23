@@ -1,0 +1,32 @@
+{
+  "status": "PARTIAL_GO",
+  "gitignore_updated": true,
+  "files_deleted": false,
+  "files_moved": false,
+  "secrets_printed": false,
+  "candidates_reviewed": 17,
+  "classification_counts": {
+    "REAL_SECRET_LIKELY": 0,
+    "LOCAL_ENV_OR_BACKUP": 0,
+    "DOC_FALSE_POSITIVE": 5,
+    "LEGACY_EXAMPLE": 5,
+    "CONFIG_TEMPLATE_REVIEW": 2,
+    "DATABASE_OR_DUMP": 0,
+    "CERT_OR_KEY_MATERIAL": 0,
+    "REPORT_WITH_SENSITIVE_TERMS": 5,
+    "UNKNOWN_MANUAL_REVIEW": 0
+  },
+  "manual_actions_required": [
+    "Revisar manualmente os legacy refs com termos password/token/secret para confirmar que são apenas referência histórica.",
+    "Confirmar se as evidências e relatórios locais devem permanecer fora do Git ou serem sanitizados e versionados.",
+    "Confirmar se o env template legado deve continuar como exemplo ou ser substituído por versão explicitamente redigida."
+  ],
+  "gitignore_rules_added": [
+    "_cleanup_backup_manifest.md",
+    "*_backup_manifest.md",
+    "data/exports/",
+    "docs/audit/screenshots/",
+    "docs/apoema-visual-qa/screenshots/",
+    "docs/apoema-visual-qa/*.pid"
+  ]
+}

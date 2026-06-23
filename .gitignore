@@ -140,6 +140,14 @@ docx_template_output.md
 pptx_sample.md
 pptx_template_output.md
 
+# --- Untracked artifact safety boundary ---
+_cleanup_backup_manifest.md
+*_backup_manifest.md
+data/exports/
+docs/audit/screenshots/
+docs/apoema-visual-qa/screenshots/
+docs/apoema-visual-qa/*.pid
+
 # Local tool/audit outputs — IGNORE-H2
 _audit_findings/
 ai-lab/
