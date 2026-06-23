@@ -1,0 +1,9 @@
+52K	backups
+72K	.pytest_cache
+336K	.ruff_cache
+696K	frontend/itam-platform/dist
+9.9M	data
+12M	reports
+35M	docs
+37M	_validation
+110M	exports

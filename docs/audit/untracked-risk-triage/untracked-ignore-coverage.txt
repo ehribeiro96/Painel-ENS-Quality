@@ -1,0 +1,72 @@
+### _migration_proposals/hermesops_selective_migration/docs/hermesops/AGENTS.md
+NOT_IGNORED
+### _migration_proposals/hermesops_selective_migration/docs/hermesops/README.md
+NOT_IGNORED
+### _migration_proposals/hermesops_selective_migration/docs/hermesops/SECURITY.md
+NOT_IGNORED
+### _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_PTBR_KEYBOARD.md
+NOT_IGNORED
+### _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/certificates/certificado-a3-token-smartcard.md
+NOT_IGNORED
+### _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_CLI_SPEC.md
+NOT_IGNORED
+### _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_PERMISSION_MODEL.md
+NOT_IGNORED
+### _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_SECURITY_POLICY.md
+NOT_IGNORED
+### _migration_proposals/hermesops_selective_migration/docs/hermesops/tools/composio_plugin/README.md
+NOT_IGNORED
+### assets/legacy/Laravel/.env.example
+.gitignore:74:!.env.example	assets/legacy/Laravel/.env.example
+### assets/legacy/Laravel/app/Actions/Fortify/PasswordValidationRules.php
+NOT_IGNORED
+### assets/legacy/Laravel/app/Actions/Fortify/ResetUserPassword.php
+NOT_IGNORED
+### assets/legacy/Laravel/app/Actions/Fortify/UpdateUserPassword.php
+NOT_IGNORED
+### assets/legacy/Laravel/app/Http/Middleware/VerifyCsrfToken.php
+NOT_IGNORED
+### assets/legacy/Laravel/config/cache.php
+NOT_IGNORED
+### assets/legacy/Laravel/config/database.php
+NOT_IGNORED
+### assets/legacy/Laravel/config/filesystems.php
+NOT_IGNORED
+### assets/legacy/Laravel/config/queue.php
+NOT_IGNORED
+### assets/legacy/Laravel/config/services.php
+NOT_IGNORED
+### assets/legacy/Laravel/lang/en/passwords.php
+NOT_IGNORED
+### assets/legacy/Laravel/resources/views/api/api-token-manager.blade.php
+NOT_IGNORED
+### assets/legacy/Laravel/resources/views/auth/confirm-password.blade.php
+NOT_IGNORED
+### assets/legacy/Laravel/resources/views/auth/forgot-password.blade.php
+NOT_IGNORED
+### assets/legacy/Laravel/resources/views/auth/reset-password.blade.php
+NOT_IGNORED
+### assets/legacy/Laravel/resources/views/components/confirms-password.blade.php
+NOT_IGNORED
+### assets/legacy/Laravel/resources/views/profile/update-password-form.blade.php
+NOT_IGNORED
+### assets/legacy/Laravel/tests/Feature/ApiTokenPermissionsTest.php
+NOT_IGNORED
+### assets/legacy/Laravel/tests/Feature/CreateApiTokenTest.php
+NOT_IGNORED
+### assets/legacy/Laravel/tests/Feature/DeleteApiTokenTest.php
+NOT_IGNORED
+### assets/legacy/Laravel/tests/Feature/PasswordConfirmationTest.php
+NOT_IGNORED
+### assets/legacy/Laravel/tests/Feature/PasswordResetTest.php
+NOT_IGNORED
+### assets/legacy/Laravel/tests/Feature/UpdatePasswordTest.php
+NOT_IGNORED
+### docs/WSL_NATIVE_DOCKER_ENGINE_D1C_REPORT.md
+NOT_IGNORED
+### docs/audit/FILE_CLASSIFICATION.csv
+NOT_IGNORED
+### docs/audit/PROJECT_TREE.txt
+NOT_IGNORED
+### docs/audit/WORKTREE_BOUNDARY_COMMIT_PLAN_GIT_C1.md
+NOT_IGNORED
