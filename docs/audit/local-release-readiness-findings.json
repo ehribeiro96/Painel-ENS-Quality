@@ -1,0 +1,35 @@
+{
+  "status": "PARTIAL-GO",
+  "branch": "main",
+  "stage_empty": true,
+  "push_executed": false,
+  "gates": {
+    "unittest": "pass",
+    "ruff": "pass",
+    "compileall": "pass",
+    "frontend_build": "pass",
+    "docker_compose_config": "pass",
+    "git_diff_check": "pass"
+  },
+  "security": {
+    "tracked_env_real": false,
+    "tracked_private_keys": false,
+    "apoema_routes_protected": true,
+    "ai_chat_requires_auth": true,
+    "metrics_protected_outside_local": true,
+    "frontend_direct_ollama_call": false
+  },
+  "artifact_boundary": {
+    "gitignore_covers_exports": true,
+    "gitignore_covers_validation": true,
+    "gitignore_covers_reports": true,
+    "gitignore_covers_screenshots": true,
+    "gitignore_covers_dist_cache": true
+  },
+  "remaining_risks": [
+    "preexisting untracked artifacts remain outside scope",
+    "backend runtime at 127.0.0.1:8080 was not confirmed in this session",
+    "Vite emitted a non-blocking chunk size warning"
+  ],
+  "recommendation": "Keep the current security and artifact boundary posture, and if operational confirmation is needed, run a separate smoke session with backend runtime up on 8080."
+}

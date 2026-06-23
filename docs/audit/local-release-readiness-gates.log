@@ -1,0 +1,1406 @@
+# Git recent history
+ebf8284 chore(repo): define legacy and artifact boundary
+eb8011f chore(repo): add untracked artifact safety boundary
+870ec99 docs(audit): triage untracked repository artifacts
+283d9bc fix(security): harden p0 p1 production blockers
+bd9120e feat(apoema): connect ai chat backend and safe fallback
+d22c432 fix(frontend): improve Apoema responsive density
+0ef3b2a feat(frontend): add Apoema preview experience
+9267a38 docs(ui): prepare manual visual review package
+eab3dd7 fix(frontend): compact mobile base44 shell
+acc2f72 fix(frontend): isolate asset detail visual adjustment
+438c4c4 fix(frontend): repair macro autocomplete visual overlay
+bcca333 fix(frontend): repair Base44 login shell visuals
+de48d98 fix(frontend): recover Base44 visual import fidelity
+9ae73f8 test(ui): add authenticated browser smoke runner
+4a6de95 style(frontend): polish Base44 visual consistency
+
+# Git status
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/AGENTS.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/ARCHITECTURE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/ENVIRONMENT.hml.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/ENVIRONMENT.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/PROJECT_CONTEXT.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/ROADMAP.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/SECURITY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_ARCHITECTURE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_CODE_REVIEW_STANDARD.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_DEBUGGING_STANDARD.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_MEMORY_INTEGRATION.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_MODDING_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_PROMPTING_STANDARD.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_REFACTORING_STANDARD.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_SECURITY_BOUNDARIES.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_STACK_CATALOG.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_TESTING_STRATEGY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_TOOLCHAIN.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/CODEROS_WORKFLOW.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/evals/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/examples/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/MODDING_SAFE_BOUNDARIES.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/asset_pipeline.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/config_patch_patterns.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/game_mod_project_structure.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/packaging_release.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/plugin_architecture.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/prohibited_modding_actions.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/troubleshooting_mod_load_order.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/modding/version_compatibility.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/bugfix_workflow.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/feature_implementation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/refactor_workflow.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/repository_triage.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/playbooks/security_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/prompts/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/prompts/code_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/prompts/patch_generation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/prompts/powershell_generation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/prompts/security_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/schemas/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/ai_agents.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/docker_compose.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/m365_graph.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/modding_general.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/nextjs.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/node_typescript.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/office_automation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/postgres_sqlalchemy_alembic.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/powershell7.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/python_cli.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/python_data_tools.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/python_fastapi.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/qdrant_rag.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/react_vite.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/redis.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/coderos/stacks/windows_ad_gpo.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/DESKTOP_APP_UI_PLUGIN_PANEL_IMPLEMENTATION_PLAN.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/DESKTOP_APP_VISUAL_CHANGE_LIMITS.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/FUTURE_DESKTOP_APP_UI_PLUGIN_PANEL_PLAN.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_ARCHITECTURE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_DISCOVERY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_LOGGING.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_PROJECT_ROUTING.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_ROLLBACK.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_CLI_WRAPPER_PLAN.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_MANUAL_ACTIVATION_GUIDE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_MANUAL_ROLLBACK.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/HERMES_DESKTOP_PTBR_KEYBOARD.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/profiles/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/prompts/cli_change_request.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/prompts/cli_debugging.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/prompts/cli_release_checklist.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/prompts/cli_wrapper_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/desktop_cli/wrappers/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/docs/HERMES_DESKTOP_WSL.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/ADOBE_ACROBAT_INTEGRATION_PLAN.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/ENTERPRISE_OFFICE_SKILLS_ARCHITECTURE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/HML_DEPLOYMENT_NOTES.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/M365_OFFICE_INTEGRATION_PLAN.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/PDF_ADOBE_ACROBAT_SKILL_SPEC.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/POWERPOINT_PPTX_SKILL_SPEC.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/SECURITY_AND_DATA_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/SPREADSHEET_SKILL_SPEC.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/TEXT_EDITING_SKILL_SPEC.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/WORD_DOCX_SKILL_SPEC.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/document_redaction_and_sanitization.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/excel_base_service_desk.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/excel_data_quality_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/pdf_acrobat_standard_workflow.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/pdf_ocr_and_text_extraction.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/pdf_redaction_and_sanitization.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/pdf_signature_and_certificate_caution.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/powerpoint_executive_report_creation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/powerpoint_training_deck_creation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/word_kcs_generation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/playbooks/word_manual_creation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/corporate_text_rewrite.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/document_quality_audit.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/excel_m365_integration.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/kcs_document_generation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/pdf_acrobat_workflow.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/pdf_content_extraction.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/pdf_redaction_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/pdf_signature_certificate_handling.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/powerpoint_deck_generation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/powerpoint_deck_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/powerpoint_training_material.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/spreadsheet_analysis.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/spreadsheet_automation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/spreadsheet_data_quality.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/word_complex_revision.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/prompts/word_document_editing.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/pdf/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/pdf/pdf_audit_template.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/pdf/pdf_ocr_workflow_template.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/pdf/pdf_redaction_checklist.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/pdf/pdf_signature_validation_checklist.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/powerpoint/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/powerpoint/executive_deck_template.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/powerpoint/kcs_training_deck_template.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/powerpoint/procedure_training_deck_template.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/powerpoint/service_desk_report_deck_template.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/spreadsheet/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/word/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/word/corporate_report_template.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/word/kcs_document_template.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/word/meeting_minutes_template.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/enterprise_office_skills/templates/word/procedure_manual_template.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/infra/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/infra/qdrant/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/anydesk/anydesk-unattended-access.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/certificates/certificado-a1-nao-aparece.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/certificates/certificado-a3-token-smartcard.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/alembic-migration-debug.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/docker-compose-debug.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/git-branch-rollback.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/node-npm-dependency-conflict.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/postgresql-redis-debug.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/powershell-script-seguro.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/python-fastapi-debug.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/coding/react-vite-typescript-build.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/gpo-ad/gpo-nao-aplica.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/lansweeper/inventario-lansweeper-divergente.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/ndd-print/ndd-print-pin-portal-360.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/network/dns-incorreto.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/network/maquina-sem-rede.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/network/wake-on-lan.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/office365/office365-ativacao-licenca.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/outlook/outlook-nao-abre.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/printers/impressora-nao-imprime.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/rdp-vpn/rdp-entre-dominios-sem-trust.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/security-incidents/alerta-trend-possivel-malware.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/teams/teams-cache-corrompido.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/windows/bsod-eventos-criticos.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/windows/erro-instalacao-java.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/windows/lentidao-windows.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/windows/perfil-usuario-corrompido.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/wsus-windows-update/windows-update-wsus-travado.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/document-redaction-and-sanitization.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/excel-automation-support.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/excel-base-service-desk.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/excel-data-quality.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/excel-m365-workbook-governance.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/pdf-adobe-acrobat-standard.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/pdf-document-quality-audit.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/pdf-ocr-text-extraction.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/pdf-redaction-sanitization.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/pdf-signature-certificate-handling.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/powerpoint-executive-reporting.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/powerpoint-kcs-training.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/powerpoint-procedure-training.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/word-complex-text-editing.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/word-kcs-generation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/word-manual-creation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/enterprise_office_document_skills/word-report-generation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_CLI_MESSAGES.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_ENCODING_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_FALLBACK_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_KCS_MACRO_GUIDE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_LOCALIZATION_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_STYLE_GUIDE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/PT_BR_TERMINOLOGY_GUIDE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/code_review_ptbr.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/coding_assistant_ptbr.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/desktop_cli_ptbr.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/kcs_generation_ptbr.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/m365_excel_ptbr.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/macro_itil_ptbr.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/modding_ptbr.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/office_document_ptbr.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/pdf_acrobat_ptbr.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/localization/prompts/service_desk_ptbr.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_ARCHITECTURE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_CONFLICT_RESOLUTION.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_CONSOLIDATION_RULES.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_LIFECYCLE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/MEMORY_RETRIEVAL_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/episodic/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/evals/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/inbox/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/indexes/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/agent_behavior.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/coding_rules.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/hml_promotion_rules.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/office_document_rules.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/security_rules.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/procedural/service_desk_rules.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/rejected/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/semantic/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/semantic/coding/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/semantic/office_skills/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/memory/working/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_ARCHITECTURE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_CHANGE_PROPOSAL_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_LIFECYCLE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_LOGGING_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_REGISTRY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/PLUGIN_SECURITY_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_AUDIT_LOGGING.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_CHANGE_PROPOSAL_WORKFLOW.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_CLI_SPEC.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_HML_ACTIVATION_PLAN.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_LOG_REVIEW_WORKFLOW.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_PERMISSION_MODEL.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_PLUGIN_ARCHITECTURE.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_ROLLBACK.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_RUNTIME_LOGGING.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_SECURITY_POLICY.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/COMPOSIO_TOOLKIT_ALLOWLIST.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_audit_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_change_proposal.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_connection_triage.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_hml_activation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_log_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_permission_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/plugins/composio/prompts/composio_tool_execution_plan.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/code-review/security_review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/codex/implementation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/gemini/review.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/local-model/log_analysis.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/service-desk/first_response_from_seed_corpus.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/service-desk/kcs_generation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/service-desk/macro_generation.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/service-desk/triage.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/prompts/service-desk/troubleshooting.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/tools/coderos/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/tools/composio_plugin/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/tools/desktop_cli/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/tools/memory/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/tools/office/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/tools/plugins/README.md
+?? _migration_proposals/hermesops_selective_migration/docs/hermesops/tools/rag/README.md
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/code_context_builder.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/code_review_checker.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/coderos_audit.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/coderos_eval.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/coding_memory_capture.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/dependency_risk_scanner.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/docx_export_sample.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/docx_structure_reader.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/docx_template_builder.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/docx_text_reviewer.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/excel_fidelity_validator.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/m365_workbook_operation_plan.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_audit.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_capture.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_classify.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_conflict_check.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_consolidate.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_eval.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_index.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_query.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_retention.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/memory_sanitize.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/modding_project_analyzer.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/native_format_policy.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/office_format_router.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/office_job_router.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/office_safety_validator.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/patch_plan_builder.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pdf_acrobat_workflow_validator.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pdf_metadata_inspector.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pdf_safety_validator.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pdf_text_extraction_skeleton.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/powershell_static_checker.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pptx_deck_reviewer.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pptx_export_sample.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pptx_structure_reader.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/pptx_template_builder.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_encoding_check.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_glossary_validator.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_localization_audit.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_message_catalog_validator.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_prompt_audit.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/ptbr_text_lint.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/repo_mapper.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/spreadsheet_data_quality.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/spreadsheet_export_sample.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/spreadsheet_offline_analyzer.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/spreadsheet_schema_validator.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/stack_detector.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/python/validation_runner.py
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/code_review.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/coding_memory.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/coding_task.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/document_review.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/docx_job.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/memory_decision_schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/memory_event_schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/memory_item_schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/memory_policy_schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/memory_research_schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/modding_project.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/office_audit.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/patch_plan.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/pdf_audit.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/pdf_job.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_audit_event.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_change_proposal.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_command.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_connection.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_permission.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/plugin_runtime_log.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/pptx_job.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/presentation_review.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/repo_profile.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/spreadsheet_job.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/spreadsheet_validation.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/text_editing_job.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/toolchain_profile.schema.json
+?? _migration_proposals/hermesops_selective_migration/tools/hermesops_offline/schemas/validation_result.schema.json
+?? assets/legacy/Laravel/.editorconfig
+?? assets/legacy/Laravel/.env.example
+?? assets/legacy/Laravel/.gitattributes
+?? assets/legacy/Laravel/.gitignore
+?? assets/legacy/Laravel/README.md
+?? assets/legacy/Laravel/app/Actions/Fortify/CreateNewUser.php
+?? assets/legacy/Laravel/app/Actions/Fortify/PasswordValidationRules.php
+?? assets/legacy/Laravel/app/Actions/Fortify/ResetUserPassword.php
+?? assets/legacy/Laravel/app/Actions/Fortify/UpdateUserPassword.php
+?? assets/legacy/Laravel/app/Actions/Fortify/UpdateUserProfileInformation.php
+?? assets/legacy/Laravel/app/Actions/Jetstream/DeleteUser.php
+?? assets/legacy/Laravel/app/Console/Kernel.php
+?? assets/legacy/Laravel/app/Exceptions/Handler.php
+?? assets/legacy/Laravel/app/Http/Controllers/Controller.php
+?? assets/legacy/Laravel/app/Http/Controllers/DashboardController.php
+?? assets/legacy/Laravel/app/Http/Controllers/DataFeedController.php
+?? assets/legacy/Laravel/app/Http/Kernel.php
+?? assets/legacy/Laravel/app/Http/Middleware/Authenticate.php
+?? assets/legacy/Laravel/app/Http/Middleware/EncryptCookies.php
+?? assets/legacy/Laravel/app/Http/Middleware/PreventRequestsDuringMaintenance.php
+?? assets/legacy/Laravel/app/Http/Middleware/RedirectIfAuthenticated.php
+?? assets/legacy/Laravel/app/Http/Middleware/TrimStrings.php
+?? assets/legacy/Laravel/app/Http/Middleware/TrustHosts.php
+?? assets/legacy/Laravel/app/Http/Middleware/TrustProxies.php
+?? assets/legacy/Laravel/app/Http/Middleware/ValidateSignature.php
+?? assets/legacy/Laravel/app/Http/Middleware/VerifyCsrfToken.php
+?? assets/legacy/Laravel/app/Models/DataFeed.php
+?? assets/legacy/Laravel/app/Models/User.php
+?? assets/legacy/Laravel/app/Providers/AppServiceProvider.php
+?? assets/legacy/Laravel/app/Providers/AuthServiceProvider.php
+?? assets/legacy/Laravel/app/Providers/BroadcastServiceProvider.php
+?? assets/legacy/Laravel/app/Providers/EventServiceProvider.php
+?? assets/legacy/Laravel/app/Providers/FortifyServiceProvider.php
+?? assets/legacy/Laravel/app/Providers/JetstreamServiceProvider.php
+?? assets/legacy/Laravel/app/Providers/RouteServiceProvider.php
+?? assets/legacy/Laravel/app/View/Components/AppLayout.php
+?? assets/legacy/Laravel/app/View/Components/AuthenticationLayout.php
+?? assets/legacy/Laravel/app/View/Components/EmptyLayout.php
+?? assets/legacy/Laravel/app/View/Components/GuestLayout.php
+?? assets/legacy/Laravel/artisan
+?? assets/legacy/Laravel/bootstrap/app.php
+?? assets/legacy/Laravel/bootstrap/cache/.gitignore
+?? assets/legacy/Laravel/composer.json
+?? assets/legacy/Laravel/composer.lock
+?? assets/legacy/Laravel/config/app.php
+?? assets/legacy/Laravel/config/auth.php
+?? assets/legacy/Laravel/config/broadcasting.php
+?? assets/legacy/Laravel/config/cache.php
+?? assets/legacy/Laravel/config/cors.php
+?? assets/legacy/Laravel/config/database.php
+?? assets/legacy/Laravel/config/filesystems.php
+?? assets/legacy/Laravel/config/fortify.php
+?? assets/legacy/Laravel/config/hashing.php
+?? assets/legacy/Laravel/config/jetstream.php
+?? assets/legacy/Laravel/config/livewire.php
+?? assets/legacy/Laravel/config/logging.php
+?? assets/legacy/Laravel/config/mail.php
+?? assets/legacy/Laravel/config/queue.php
+?? assets/legacy/Laravel/config/sanctum.php
+?? assets/legacy/Laravel/config/services.php
+?? assets/legacy/Laravel/config/session.php
+?? assets/legacy/Laravel/config/view.php
+?? assets/legacy/Laravel/database/.gitignore
+?? assets/legacy/Laravel/database/factories/UserFactory.php
+?? assets/legacy/Laravel/database/migrations/2014_10_12_000000_create_users_table.php
+?? assets/legacy/Laravel/database/migrations/2014_10_12_200000_add_two_factor_columns_to_users_table.php
+?? assets/legacy/Laravel/database/migrations/2019_08_19_000000_create_failed_jobs_table.php
+?? assets/legacy/Laravel/database/migrations/2022_03_23_163443_create_sessions_table.php
+?? assets/legacy/Laravel/database/migrations/2022_05_11_154250_create_datafeeds_table.php
+?? assets/legacy/Laravel/database/seeders/DashboardTableSeeder.php
+?? assets/legacy/Laravel/database/seeders/DatabaseSeeder.php
+?? assets/legacy/Laravel/lang/en/auth.php
+?? assets/legacy/Laravel/lang/en/pagination.php
+?? assets/legacy/Laravel/lang/en/passwords.php
+?? assets/legacy/Laravel/lang/en/validation.php
+?? assets/legacy/Laravel/package.json
+?? assets/legacy/Laravel/phpunit.xml
+?? assets/legacy/Laravel/pnpm-lock.yaml
+?? assets/legacy/Laravel/postcss.config.js
+?? assets/legacy/Laravel/public/.htaccess
+?? assets/legacy/Laravel/public/favicon.ico
+?? assets/legacy/Laravel/public/images/404-illustration-dark.svg
+?? assets/legacy/Laravel/public/images/404-illustration.svg
+?? assets/legacy/Laravel/public/images/auth-image.jpg
+?? assets/legacy/Laravel/public/images/icon-01.svg
+?? assets/legacy/Laravel/public/images/icon-02.svg
+?? assets/legacy/Laravel/public/images/icon-03.svg
+?? assets/legacy/Laravel/public/images/user-36-05.jpg
+?? assets/legacy/Laravel/public/images/user-36-06.jpg
+?? assets/legacy/Laravel/public/images/user-36-07.jpg
+?? assets/legacy/Laravel/public/images/user-36-08.jpg
+?? assets/legacy/Laravel/public/images/user-36-09.jpg
+?? assets/legacy/Laravel/public/images/user-avatar-32.png
+?? assets/legacy/Laravel/public/index.php
+?? assets/legacy/Laravel/public/robots.txt
+?? assets/legacy/Laravel/resources/css/additional-styles/flatpickr.css
+?? assets/legacy/Laravel/resources/css/additional-styles/utility-patterns.css
+?? assets/legacy/Laravel/resources/css/app.css
+?? assets/legacy/Laravel/resources/js/app.js
+?? assets/legacy/Laravel/resources/js/bootstrap.js
+?? assets/legacy/Laravel/resources/js/components/dashboard-card-01.js
+?? assets/legacy/Laravel/resources/js/components/dashboard-card-02.js
+?? assets/legacy/Laravel/resources/js/components/dashboard-card-03.js
+?? assets/legacy/Laravel/resources/js/components/dashboard-card-04.js
+?? assets/legacy/Laravel/resources/js/components/dashboard-card-05.js
+?? assets/legacy/Laravel/resources/js/components/dashboard-card-06.js
+?? assets/legacy/Laravel/resources/js/components/dashboard-card-08.js
+?? assets/legacy/Laravel/resources/js/components/dashboard-card-09.js
+?? assets/legacy/Laravel/resources/js/components/dashboard-card-11.js
+?? assets/legacy/Laravel/resources/js/utils.js
+?? assets/legacy/Laravel/resources/markdown/policy.md
+?? assets/legacy/Laravel/resources/markdown/terms.md
+?? assets/legacy/Laravel/resources/views/api/api-token-manager.blade.php
+?? assets/legacy/Laravel/resources/views/api/index.blade.php
+?? assets/legacy/Laravel/resources/views/auth/confirm-password.blade.php
+?? assets/legacy/Laravel/resources/views/auth/forgot-password.blade.php
+?? assets/legacy/Laravel/resources/views/auth/login.blade.php
+?? assets/legacy/Laravel/resources/views/auth/register.blade.php
+?? assets/legacy/Laravel/resources/views/auth/reset-password.blade.php
+?? assets/legacy/Laravel/resources/views/auth/two-factor-challenge.blade.php
+?? assets/legacy/Laravel/resources/views/auth/verify-email.blade.php
+?? assets/legacy/Laravel/resources/views/components/action-message.blade.php
+?? assets/legacy/Laravel/resources/views/components/action-section.blade.php
+?? assets/legacy/Laravel/resources/views/components/app/header.blade.php
+?? assets/legacy/Laravel/resources/views/components/app/sidebar.blade.php
+?? assets/legacy/Laravel/resources/views/components/button.blade.php
+?? assets/legacy/Laravel/resources/views/components/confirmation-modal.blade.php
+?? assets/legacy/Laravel/resources/views/components/confirms-password.blade.php
+?? assets/legacy/Laravel/resources/views/components/danger-button.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-01.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-02.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-03.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-04.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-05.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-06.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-07.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-08.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-09.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-10.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-11.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-12.blade.php
+?? assets/legacy/Laravel/resources/views/components/dashboard/dashboard-card-13.blade.php
+?? assets/legacy/Laravel/resources/views/components/date-select.blade.php
+?? assets/legacy/Laravel/resources/views/components/datepicker.blade.php
+?? assets/legacy/Laravel/resources/views/components/dialog-modal.blade.php
+?? assets/legacy/Laravel/resources/views/components/dropdown-filter.blade.php
+?? assets/legacy/Laravel/resources/views/components/dropdown-help.blade.php
+?? assets/legacy/Laravel/resources/views/components/dropdown-link.blade.php
+?? assets/legacy/Laravel/resources/views/components/dropdown-notifications.blade.php
+?? assets/legacy/Laravel/resources/views/components/dropdown-profile.blade.php
+?? assets/legacy/Laravel/resources/views/components/dropdown.blade.php
+?? assets/legacy/Laravel/resources/views/components/form-section.blade.php
+?? assets/legacy/Laravel/resources/views/components/input-error.blade.php
+?? assets/legacy/Laravel/resources/views/components/input.blade.php
+?? assets/legacy/Laravel/resources/views/components/label.blade.php
+?? assets/legacy/Laravel/resources/views/components/modal-search.blade.php
+?? assets/legacy/Laravel/resources/views/components/modal.blade.php
+?? assets/legacy/Laravel/resources/views/components/nav-link.blade.php
+?? assets/legacy/Laravel/resources/views/components/pagination-classic.blade.php
+?? assets/legacy/Laravel/resources/views/components/pagination-numeric.blade.php
+?? assets/legacy/Laravel/resources/views/components/responsive-nav-link.blade.php
+?? assets/legacy/Laravel/resources/views/components/search-form.blade.php
+?? assets/legacy/Laravel/resources/views/components/secondary-button.blade.php
+?? assets/legacy/Laravel/resources/views/components/section-border.blade.php
+?? assets/legacy/Laravel/resources/views/components/section-title.blade.php
+?? assets/legacy/Laravel/resources/views/components/switchable-team.blade.php
+?? assets/legacy/Laravel/resources/views/components/theme-toggle.blade.php
+?? assets/legacy/Laravel/resources/views/components/validation-errors.blade.php
+?? assets/legacy/Laravel/resources/views/layouts/app.blade.php
+?? assets/legacy/Laravel/resources/views/layouts/authentication.blade.php
+?? assets/legacy/Laravel/resources/views/layouts/guest.blade.php
+?? assets/legacy/Laravel/resources/views/pages/dashboard/dashboard.blade.php
+?? assets/legacy/Laravel/resources/views/pages/utility/404.blade.php
+?? assets/legacy/Laravel/resources/views/policy.blade.php
+?? assets/legacy/Laravel/resources/views/profile/delete-user-form.blade.php
+?? assets/legacy/Laravel/resources/views/profile/logout-other-browser-sessions-form.blade.php
+?? assets/legacy/Laravel/resources/views/profile/show.blade.php
+?? assets/legacy/Laravel/resources/views/profile/two-factor-authentication-form.blade.php
+?? assets/legacy/Laravel/resources/views/profile/update-password-form.blade.php
+?? assets/legacy/Laravel/resources/views/profile/update-profile-information-form.blade.php
+?? assets/legacy/Laravel/resources/views/terms.blade.php
+?? assets/legacy/Laravel/resources/views/vendor/pagination/simple-tailwind.blade.php
+?? assets/legacy/Laravel/resources/views/vendor/pagination/tailwind.blade.php
+?? assets/legacy/Laravel/routes/api.php
+?? assets/legacy/Laravel/routes/channels.php
+?? assets/legacy/Laravel/routes/console.php
+?? assets/legacy/Laravel/routes/web.php
+?? assets/legacy/Laravel/storage/app/.gitignore
+?? assets/legacy/Laravel/storage/app/public/.gitignore
+?? assets/legacy/Laravel/storage/framework/.gitignore
+?? assets/legacy/Laravel/storage/framework/cache/.gitignore
+?? assets/legacy/Laravel/storage/framework/cache/data/.gitignore
+?? assets/legacy/Laravel/storage/framework/sessions/.gitignore
+?? assets/legacy/Laravel/storage/framework/testing/.gitignore
+?? assets/legacy/Laravel/storage/framework/views/.gitignore
+?? assets/legacy/Laravel/tests/CreatesApplication.php
+?? assets/legacy/Laravel/tests/Feature/ApiTokenPermissionsTest.php
+?? assets/legacy/Laravel/tests/Feature/AuthenticationTest.php
+?? assets/legacy/Laravel/tests/Feature/BrowserSessionsTest.php
+?? assets/legacy/Laravel/tests/Feature/CreateApiTokenTest.php
+?? assets/legacy/Laravel/tests/Feature/DeleteAccountTest.php
+?? assets/legacy/Laravel/tests/Feature/DeleteApiTokenTest.php
+?? assets/legacy/Laravel/tests/Feature/EmailVerificationTest.php
+?? assets/legacy/Laravel/tests/Feature/ExampleTest.php
+?? assets/legacy/Laravel/tests/Feature/PasswordConfirmationTest.php
+?? assets/legacy/Laravel/tests/Feature/PasswordResetTest.php
+?? assets/legacy/Laravel/tests/Feature/ProfileInformationTest.php
+?? assets/legacy/Laravel/tests/Feature/RegistrationTest.php
+?? assets/legacy/Laravel/tests/Feature/TwoFactorAuthenticationSettingsTest.php
+?? assets/legacy/Laravel/tests/Feature/UpdatePasswordTest.php
+?? assets/legacy/Laravel/tests/TestCase.php
+?? assets/legacy/Laravel/tests/Unit/ExampleTest.php
+?? assets/legacy/Laravel/vite.config.js
+?? assets/legacy/ens-hero-client.css
+?? assets/legacy/hero.js
+?? assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx
+?? assets/static/icons/.gitkeep
+?? assets/static/icons/Logo.png
+?? assets/static/icons/facebook.png
+?? assets/static/icons/instagram.png
+?? assets/static/icons/linkedin.png
+?? assets/static/icons/tiktok.png
+?? assets/static/icons/youtube.png
+?? docs/ADMIN_SUPPORT_PERMISSIONS.md
+?? docs/AI_CHAT_IMPLEMENTATION_REPORT.md
+?? docs/AI_CHAT_INTEGRATION_TODO.md
+?? docs/AI_CHAT_OLLAMA_LAN_B5C_RUNTIME_VALIDATION.md
+?? docs/AI_CHAT_OLLAMA_LAN_B5D2_SAME_ORIGIN_UI_SMOKE.md
+?? docs/AI_CHAT_OLLAMA_LAN_B5D_AUTH_UI_SMOKE.md
+?? docs/AI_CHAT_UX_REPORT.md
+?? docs/HERMES_LOCAL_OLLAMA_CONFIG_RECOMMENDATION.md
+?? docs/IMPLEMENTATION_REPORT_UI_UX_QA.md
+?? docs/INVENTORY_COLLABORATORS_CRUD.md
+?? docs/QA_TEST_PLAN_INVENTORY.md
+?? docs/UI_UX_QA_INVENTORY_AUDIT.md
+?? docs/UI_UX_QA_VISUAL_REPORT.md
+?? docs/WSL_NATIVE_DOCKER_ENGINE_D1C_REPORT.md
+?? docs/apoema-visual-qa/APOEMA_BROWSER_ERRORS.md
+?? docs/apoema-visual-qa/APOEMA_FUNCTIONAL_QA.md
+?? docs/apoema-visual-qa/APOEMA_QA_FINDINGS.json
+?? docs/apoema-visual-qa/APOEMA_VISUAL_QA.md
+?? docs/audit/ARCHITECTURE_AUDIT.md
+?? docs/audit/AUDIT_ENVIRONMENT.md
+?? docs/audit/B4B2_VISUAL_SMOKE_MANUAL_CHECKLIST.md
+?? docs/audit/BACKEND_AUDIT.md
+?? docs/audit/BACKEND_FINDINGS.csv
+?? docs/audit/BASE44_VISUAL_RECOVERY_H3_EXECUTIVE_SUMMARY.md
+?? docs/audit/DATABASE_FINDINGS.csv
+?? docs/audit/DATABASE_MIGRATIONS_AUDIT.md
+?? docs/audit/DESKTOP_APP_AUDIT.md
+?? docs/audit/DEVOPS_RELEASE_AUDIT.md
+?? docs/audit/FILE_CLASSIFICATION.csv
+?? docs/audit/FILE_INVENTORY.md
+?? docs/audit/FRONTEND_AUDIT.md
+?? docs/audit/FRONTEND_FINDINGS.csv
+?? docs/audit/FULL_PROJECT_AUDIT_REPORT.md
+?? docs/audit/GAP_ANALYSIS.md
+?? docs/audit/HIGH_FIX_ROUND3_REPORT.md
+?? docs/audit/PROJECT_TREE.txt
+?? docs/audit/RELEASE_HYGIENE_FINDINGS.csv
+?? docs/audit/SCRIPTS_OPS_AUDIT.md
+?? docs/audit/SCRIPTS_OPS_FINDINGS.csv
+?? docs/audit/SECURITY_AUDIT.md
+?? docs/audit/SECURITY_FINDINGS.csv
+?? docs/audit/TESTING_AUDIT.md
+?? docs/audit/TEST_RESULTS.md
+?? docs/audit/WORKTREE_BOUNDARY_COMMIT_PLAN_GIT_C1.md
+?? docs/hermesops/HERMES_TOOLS_SKILLS_AUDIT.md
+?? docs/product/BASE44_VISUAL_RECOVERY_H3_DASHBOARD_ASSETS_AUDIT.md
+?? docs/superpowers/plans/2026-06-22-importar-frontend-base44.md
+
+# Staged files
+OK 0ef3b2a
+OK d22c432
+OK bd9120ef
+OK 283d9bc
+OK 870ec99
+OK eb8011f
+OK ebf8284
+# Sensitive tracked files check
+.env.example
+config/.env.example
+frontend/itam-platform/.env.local.example
+infra/hermesops/.env.hml.example
+# .gitignore coverage
+### .env
+.gitignore:72:.env	.env
+### .env.local
+.gitignore:73:.env.*	.env.local
+### private.pem
+.gitignore:119:*.pem	private.pem
+### cert.pfx
+.gitignore:121:*.pfx	cert.pfx
+### backup.sql
+.gitignore:135:*.sql	backup.sql
+### db.sqlite
+.gitignore:130:*.sqlite	db.sqlite
+### exports/example.csv
+.gitignore:97:exports/	exports/example.csv
+### _validation/example.log
+.gitignore:96:_validation/	_validation/example.log
+### reports/example.md
+.gitignore:106:reports/	reports/example.md
+### data/previews/example.json
+.gitignore:110:data/previews/	data/previews/example.json
+### data/exports/example.csv
+.gitignore:148:data/exports/	data/exports/example.csv
+### frontend/itam-platform/dist/index.html
+.gitignore:62:frontend/itam-platform/dist/	frontend/itam-platform/dist/index.html
+### docs/audit/screenshots/example.png
+.gitignore:149:docs/audit/screenshots/	docs/audit/screenshots/example.png
+### docs/apoema-visual-qa/screenshots/example.png
+.gitignore:150:docs/apoema-visual-qa/screenshots/	docs/apoema-visual-qa/screenshots/example.png
+### docs/apoema-visual-qa/dev-frontend.pid
+.gitignore:151:docs/apoema-visual-qa/*.pid	docs/apoema-visual-qa/dev-frontend.pid
+### .pytest_cache/x
+.gitignore:45:.pytest_cache/	.pytest_cache/x
+### .ruff_cache/x
+.gitignore:47:.ruff_cache/	.ruff_cache/x
+### backend/app/__pycache__/x.pyc
+.gitignore:44:__pycache__/	backend/app/__pycache__/x.pyc
+### _cleanup_backup_manifest.md
+.gitignore:145:*_backup_manifest.md	_cleanup_backup_manifest.md
+### foo_backup_manifest.md
+.gitignore:145:*_backup_manifest.md	foo_backup_manifest.md
+### assets/legacy/hero.js.map
+.gitignore:147:assets/legacy/*.js.map	assets/legacy/hero.js.map
+# Frontend direct provider check
+
+# Insecure runtime defaults check
+backend/app/core/config/settings.py:33:    jwt_secret_key: str = Field(min_length=32, default="change-me-with-at-least-32-characters")
+docker-compose.yml:9:      - "127.0.0.1:5432:5432"
+docker-compose.yml:22:      - "127.0.0.1:6379:6379"
+
+# Apoema routes protected check
+frontend/itam-platform/src/App.tsx:23:function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role[] }) {
+frontend/itam-platform/src/App.tsx:44:    <ProtectedRoute>
+frontend/itam-platform/src/App.tsx:48:    </ProtectedRoute>
+frontend/itam-platform/src/App.tsx:63:      <Route path="/apoema/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
+frontend/itam-platform/src/App.tsx:64:      <Route path="/apoema-preview/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:171:          source: "apoema-preview",
+frontend/itam-platform/src/apoema/types.ts:100:  source: "apoema-preview";
+
+# Metrics token/protection check
+backend/app/core/config/settings.py:69:    metrics_token: str = Field(default="", validation_alias=AliasChoices("METRICS_TOKEN"))
+backend/app/main.py:17:from app.core.observability.metrics import instrument_sqlalchemy, metrics
+backend/app/main.py:39:_METRICS_TOKEN_HEADER = "x-metrics-token"
+backend/app/main.py:113:def _require_metrics_access(request: Request) -> None:
+backend/app/main.py:116:    configured_token = settings.metrics_token.strip()
+backend/app/main.py:118:        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="metrics_disabled_without_token")
+backend/app/main.py:119:    provided_token = request.headers.get(_METRICS_TOKEN_HEADER, "").strip()
+backend/app/main.py:121:        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="invalid_metrics_token")
+backend/app/main.py:141:            metrics.increment("itam_rate_limited_requests_total", {"path": request.url.path})
+backend/app/main.py:148:        metrics.increment(
+backend/app/main.py:152:        metrics.observe("itam_http_request_duration_ms", duration_ms, {"method": request.method, "path": route_path})
+backend/app/main.py:170:        metrics.increment("itam_http_requests_total", {"method": request.method, "path": request.url.path, "status": "500"})
+backend/app/main.py:204:@app.get("/metrics", response_class=PlainTextResponse)
+backend/app/main.py:205:async def prometheus_metrics(request: Request) -> PlainTextResponse:
+backend/app/main.py:206:    _require_metrics_access(request)
+backend/app/main.py:207:    return PlainTextResponse(metrics.render_prometheus(), media_type="text/plain; version=0.0.4")
+tests/test_metrics_hardening.py:23:        "path": "/metrics",
+tests/test_metrics_hardening.py:42:        self.original_metrics_token = main.settings.metrics_token
+tests/test_metrics_hardening.py:46:        main.settings.metrics_token = self.original_metrics_token
+tests/test_metrics_hardening.py:48:    async def test_metrics_is_available_in_local_without_token(self) -> None:
+tests/test_metrics_hardening.py:50:        main.settings.metrics_token = ""
+tests/test_metrics_hardening.py:52:        response = await main.prometheus_metrics(make_request())
+tests/test_metrics_hardening.py:57:    async def test_metrics_is_disabled_outside_local_without_token(self) -> None:
+tests/test_metrics_hardening.py:59:        main.settings.metrics_token = ""
+tests/test_metrics_hardening.py:62:            main._require_metrics_access(make_request())
+tests/test_metrics_hardening.py:65:        self.assertEqual("metrics_disabled_without_token", ctx.exception.detail)
+tests/test_metrics_hardening.py:67:    async def test_metrics_requires_matching_token_outside_local(self) -> None:
+tests/test_metrics_hardening.py:69:        main.settings.metrics_token = "expected-token"
+tests/test_metrics_hardening.py:72:            main._require_metrics_access(make_request({"x-metrics-token": "wrong-token"}))
+tests/test_metrics_hardening.py:75:        self.assertEqual("invalid_metrics_token", ctx.exception.detail)
+tests/test_metrics_hardening.py:77:    async def test_metrics_returns_body_with_matching_token_outside_local(self) -> None:
+tests/test_metrics_hardening.py:79:        main.settings.metrics_token = "expected-token"
+tests/test_metrics_hardening.py:80:        main.metrics.increment("itam_metrics_hardening_test")
+tests/test_metrics_hardening.py:82:        response = await main.prometheus_metrics(make_request({"x-metrics-token": "expected-token"}))
+tests/test_metrics_hardening.py:85:        self.assertIn("itam_metrics_hardening_test", response.body.decode("utf-8"))
+
+# AI auth/rate limit check
+backend/app/api/v1/routes/ai_chat.py:8:from app.domains.ai_chat.apoema import build_apoema_provider_catalog, generate_apoema_message
+backend/app/api/v1/routes/ai_chat.py:9:from app.domains.ai_chat.providers import AiProviderConfigurationError, AiProviderRequestError, get_ai_provider_health
+backend/app/api/v1/routes/ai_chat.py:10:from app.domains.ai_chat.rate_limit import get_ai_chat_rate_limiter
+backend/app/api/v1/routes/ai_chat.py:24:from fastapi import APIRouter, Depends, HTTPException, status
+backend/app/api/v1/routes/ai_chat.py:27:router = APIRouter(prefix="/ai-chat", tags=["AI Chat"])
+backend/app/api/v1/routes/ai_chat.py:29:ai_chat_user = Depends(require_role(Role.ADMIN, Role.TECHNICIAN, Role.MANAGER, Role.VIEWER))
+backend/app/api/v1/routes/ai_chat.py:30:_AI_CHAT_RATE_LIMIT = get_ai_chat_rate_limiter()._memory_store._buckets  # compatibility for existing tests
+backend/app/api/v1/routes/ai_chat.py:38:async def _apply_rate_limit(user_id: UUID) -> None:
+backend/app/api/v1/routes/ai_chat.py:40:    limiter = get_ai_chat_rate_limiter()
+backend/app/api/v1/routes/ai_chat.py:55:@router.get("/providers", response_model=ApoemaChatProvidersResponse)
+backend/app/api/v1/routes/ai_chat.py:56:async def list_apoema_providers(current_user: User = ai_chat_user) -> ApoemaChatProvidersResponse:  # noqa: ARG001
+backend/app/api/v1/routes/ai_chat.py:60:@router.post("/message", response_model=ApoemaChatMessageResponse)
+backend/app/api/v1/routes/ai_chat.py:61:async def send_apoema_message(
+backend/app/api/v1/routes/ai_chat.py:65:    if len(payload.message) > settings.ai_max_input_chars:
+backend/app/api/v1/routes/ai_chat.py:67:    await _apply_rate_limit(current_user.id)
+backend/app/api/v1/routes/ai_chat.py:68:    return await generate_apoema_message(settings, payload)
+backend/app/api/v1/routes/ai_chat.py:73:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/ai_chat.py:83:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/ai_chat.py:87:    if payload.message and len(payload.message) > settings.ai_max_input_chars:
+backend/app/api/v1/routes/ai_chat.py:89:    if payload.message:
+backend/app/api/v1/routes/ai_chat.py:90:        await _apply_rate_limit(current_user.id)
+backend/app/api/v1/routes/ai_chat.py:106:        messages = await service.repository.list_messages(conversation.id)
+backend/app/api/v1/routes/ai_chat.py:107:        return service.to_detail(conversation, messages)
+backend/app/api/v1/routes/ai_chat.py:115:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/ai_chat.py:123:    messages = await service.repository.list_messages(conversation.id)
+backend/app/api/v1/routes/ai_chat.py:124:    return service.to_detail(conversation, messages)
+backend/app/api/v1/routes/ai_chat.py:127:@router.post("/conversations/{conversation_id}/messages", response_model=AiChatConversationDetail)
+backend/app/api/v1/routes/ai_chat.py:128:async def send_message(
+backend/app/api/v1/routes/ai_chat.py:131:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/ai_chat.py:135:    await _apply_rate_limit(current_user.id)
+backend/app/api/v1/routes/ai_chat.py:143:            return await service.send_message(conversation, payload, current_user.id)
+backend/app/domains/ai_chat/apoema.py:7:from app.domains.ai_chat.providers import (
+backend/app/domains/ai_chat/apoema.py:38:    providers = [
+backend/app/domains/ai_chat/apoema.py:62:    ordered = _prioritize_default_provider(providers, default_provider)
+backend/app/domains/ai_chat/apoema.py:63:    return ApoemaChatProvidersResponse(providers=ordered)
+backend/app/domains/ai_chat/apoema.py:66:async def generate_apoema_message(settings: Settings, payload: ApoemaChatMessageCreate) -> ApoemaChatMessageResponse:
+backend/app/domains/ai_chat/apoema.py:69:    message_id = str(uuid4())
+backend/app/domains/ai_chat/apoema.py:72:    provider_messages = _compose_provider_messages(payload)
+backend/app/domains/ai_chat/apoema.py:75:        response = await MockAiProvider().generate(provider_messages)
+backend/app/domains/ai_chat/apoema.py:78:            message_id=message_id,
+backend/app/domains/ai_chat/apoema.py:93:            ).generate(provider_messages)
+backend/app/domains/ai_chat/apoema.py:96:                message_id=message_id,
+backend/app/domains/ai_chat/apoema.py:108:                message_id=message_id,
+backend/app/domains/ai_chat/apoema.py:114:                provider_messages=provider_messages,
+backend/app/domains/ai_chat/apoema.py:120:                message_id=message_id,
+backend/app/domains/ai_chat/apoema.py:126:                provider_messages=provider_messages,
+backend/app/domains/ai_chat/apoema.py:134:            message_id=message_id,
+backend/app/domains/ai_chat/apoema.py:140:            provider_messages=provider_messages,
+backend/app/domains/ai_chat/apoema.py:149:    message_id: str,
+backend/app/domains/ai_chat/apoema.py:166:            "message_id": message_id,
+backend/app/domains/ai_chat/apoema.py:185:    message_id: str,
+backend/app/domains/ai_chat/apoema.py:191:    provider_messages: list[AiProviderMessage],
+backend/app/domains/ai_chat/apoema.py:193:    fallback_response = await MockAiProvider().generate(provider_messages)
+backend/app/domains/ai_chat/apoema.py:204:        message_id=message_id,
+backend/app/domains/ai_chat/apoema.py:214:def _compose_provider_messages(payload: ApoemaChatMessageCreate) -> list[AiProviderMessage]:
+backend/app/domains/ai_chat/apoema.py:216:        f"Mensagem do usuário:\n{payload.message.strip()}",
+backend/app/domains/ai_chat/apoema.py:285:    providers: list[ApoemaChatProviderRead],
+backend/app/domains/ai_chat/apoema.py:289:        return providers
+backend/app/domains/ai_chat/apoema.py:290:    ordered = sorted(providers, key=lambda provider: provider.id != default_provider)
+backend/app/domains/ai_chat/models.py:26:    messages = relationship(
+backend/app/domains/ai_chat/models.py:36:    __tablename__ = "ai_chat_messages"
+backend/app/domains/ai_chat/models.py:38:        Index("ix_ai_chat_messages_conversation_created", "conversation_id", "created_at"),
+backend/app/domains/ai_chat/models.py:39:        CheckConstraint("role in ('system', 'user', 'assistant')", name="ck_ai_chat_messages_role"),
+backend/app/domains/ai_chat/models.py:56:    conversation = relationship("AiChatConversation", back_populates="messages")
+backend/app/domains/ai_chat/providers.py:30:GEMINI_GENERATE_CONTENT_URL_TEMPLATE = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+backend/app/domains/ai_chat/providers.py:65:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:
+backend/app/domains/ai_chat/providers.py:72:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:
+backend/app/domains/ai_chat/providers.py:73:        last_user_message = next((message.content for message in reversed(messages) if message.role == "user"), "")
+backend/app/domains/ai_chat/providers.py:74:        user_text = last_user_message.strip()
+backend/app/domains/ai_chat/providers.py:249:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:
+backend/app/domains/ai_chat/providers.py:251:            "contents": _gemini_contents(messages),
+backend/app/domains/ai_chat/providers.py:257:        system_instruction = _gemini_system_instruction(messages)
+backend/app/domains/ai_chat/providers.py:307:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:
+backend/app/domains/ai_chat/providers.py:310:            "messages": [{"role": message.role, "content": message.content} for message in messages],
+backend/app/domains/ai_chat/providers.py:361:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:  # noqa: ARG002
+backend/app/domains/ai_chat/providers.py:365:            "messages": [{"role": message.role, "content": message.content} for message in messages],
+backend/app/domains/ai_chat/providers.py:416:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:  # noqa: ARG002
+backend/app/domains/ai_chat/providers.py:420:            "messages": [{"role": message.role, "content": message.content} for message in messages],
+backend/app/domains/ai_chat/providers.py:633:    message = first.get("message")
+backend/app/domains/ai_chat/providers.py:634:    if not isinstance(message, dict):
+backend/app/domains/ai_chat/providers.py:636:    content = message.get("content")
+backend/app/domains/ai_chat/providers.py:646:    message = data.get("message")
+backend/app/domains/ai_chat/providers.py:647:    if not isinstance(message, dict):
+backend/app/domains/ai_chat/providers.py:649:    content = message.get("content")
+backend/app/domains/ai_chat/providers.py:665:    message = first.get("message")
+backend/app/domains/ai_chat/providers.py:666:    if not isinstance(message, dict):
+backend/app/domains/ai_chat/providers.py:668:    content = message.get("content")
+backend/app/domains/ai_chat/providers.py:677:def _gemini_system_instruction(messages: list[AiProviderMessage]) -> dict[str, object] | None:
+backend/app/domains/ai_chat/providers.py:678:    text = "\n\n".join(message.content for message in messages if message.role == "system" and message.content.strip())
+backend/app/domains/ai_chat/providers.py:684:def _gemini_contents(messages: list[AiProviderMessage]) -> list[dict[str, object]]:
+backend/app/domains/ai_chat/providers.py:686:    for message in messages:
+backend/app/domains/ai_chat/providers.py:687:        if message.role == "system":
+backend/app/domains/ai_chat/providers.py:689:        role = "model" if message.role == "assistant" else "user"
+backend/app/domains/ai_chat/providers.py:690:        contents.append({"role": role, "parts": [{"text": message.content}]})
+backend/app/domains/ai_chat/rate_limit.py:70:        return f"ai_chat:rate_limit:{user_hash}:{window_epoch}"
+backend/app/domains/ai_chat/rate_limit.py:73:        limit = int(self.settings.ai_chat_rate_limit_per_minute or 0)
+backend/app/domains/ai_chat/rate_limit.py:83:                    "ai_chat_rate_limit_redis_fallback",
+backend/app/domains/ai_chat/rate_limit.py:91:                    "ai_chat_rate_limit_store_unavailable",
+backend/app/domains/ai_chat/rate_limit.py:95:                raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_chat_rate_limit_unavailable") from exc
+backend/app/domains/ai_chat/rate_limit.py:98:            raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail="ai_chat_rate_limit_exceeded")
+backend/app/domains/ai_chat/rate_limit.py:125:def get_ai_chat_rate_limiter() -> AiChatRateLimiter:
+backend/app/domains/ai_chat/rate_limit.py:129:def reset_ai_chat_rate_limit_memory() -> None:
+backend/app/domains/ai_chat/repository.py:27:            .options(selectinload(AiChatConversation.messages))
+backend/app/domains/ai_chat/repository.py:35:    async def list_messages(self, conversation_id: uuid.UUID) -> list[AiChatMessage]:
+backend/app/domains/ai_chat/repository.py:68:    async def create_message(
+backend/app/domains/ai_chat/repository.py:80:        message = AiChatMessage(
+backend/app/domains/ai_chat/repository.py:92:        if message.created_at is None:
+backend/app/domains/ai_chat/repository.py:93:            message.created_at = utc_now()
+backend/app/domains/ai_chat/repository.py:94:        if message.updated_at is None:
+backend/app/domains/ai_chat/repository.py:95:            message.updated_at = message.created_at
+backend/app/domains/ai_chat/repository.py:96:        self.session.add(message)
+backend/app/domains/ai_chat/repository.py:98:        await self.session.refresh(message)
+backend/app/domains/ai_chat/repository.py:99:        return message
+backend/app/domains/ai_chat/repository.py:101:    async def update_message_metadata(self, message: AiChatMessage, extra_metadata: dict[str, object]) -> AiChatMessage:
+backend/app/domains/ai_chat/repository.py:102:        message.extra_metadata = extra_metadata
+backend/app/domains/ai_chat/repository.py:103:        message.updated_at = utc_now()
+backend/app/domains/ai_chat/repository.py:104:        self.session.add(message)
+backend/app/domains/ai_chat/repository.py:106:        await self.session.refresh(message)
+backend/app/domains/ai_chat/repository.py:107:        return message
+backend/app/domains/ai_chat/schemas.py:29:    message: str | None = Field(default=None, min_length=1)
+backend/app/domains/ai_chat/schemas.py:66:    messages: list[AiChatMessageRead] = Field(default_factory=list)
+backend/app/domains/ai_chat/schemas.py:87:    message: str = Field(min_length=1)
+backend/app/domains/ai_chat/schemas.py:101:    message_id: str
+backend/app/domains/ai_chat/schemas.py:120:    providers: list[ApoemaChatProviderRead] = Field(default_factory=list)
+backend/app/domains/ai_chat/service.py:7:from app.domains.ai_chat.providers import (
+backend/app/domains/ai_chat/service.py:84:        if payload.message:
+backend/app/domains/ai_chat/service.py:85:            await self.send_message(conversation, AiChatMessageCreate(content=payload.message, mode=payload.mode), user_id)
+backend/app/domains/ai_chat/service.py:91:    async def send_message(self, conversation: AiChatConversation, payload: AiChatMessageCreate, user_id: uuid.UUID) -> AiChatConversationDetail:
+backend/app/domains/ai_chat/service.py:108:        user_message = await self.repository.create_message(
+backend/app/domains/ai_chat/service.py:117:        history = await self.repository.list_messages(conversation.id)
+backend/app/domains/ai_chat/service.py:118:        provider_messages = [AiProviderMessage(role="system", content=build_system_prompt(mode))]
+backend/app/domains/ai_chat/service.py:119:        provider_messages.extend(AiProviderMessage(role=message.role, content=message.content) for message in history[-20:])
+backend/app/domains/ai_chat/service.py:122:                response = await provider.generate(provider_messages, mode=mode)
+backend/app/domains/ai_chat/service.py:126:                response = await provider.generate(provider_messages)
+backend/app/domains/ai_chat/service.py:133:            await self.repository.update_message_metadata(user_message, error_metadata)
+backend/app/domains/ai_chat/service.py:137:        await self.repository.update_message_metadata(user_message, user_metadata)
+backend/app/domains/ai_chat/service.py:138:        await self.repository.create_message(
+backend/app/domains/ai_chat/service.py:156:        refreshed_messages = await self.repository.list_messages(conversation.id)
+backend/app/domains/ai_chat/service.py:157:        return self.to_detail(conversation, refreshed_messages)
+backend/app/domains/ai_chat/service.py:160:    def to_detail(conversation: AiChatConversation, messages: list[object]) -> AiChatConversationDetail:
+backend/app/domains/ai_chat/service.py:172:                "messages": [AiChatMessageRead.model_validate(message) for message in messages],
+tests/test_ai_chat_api.py:17:from app.api.v1.dependencies.auth import get_current_user, require_role  # noqa: E402
+tests/test_ai_chat_api.py:21:from app.domains.ai_chat import providers as ai_chat_providers_module  # noqa: E402
+tests/test_ai_chat_api.py:23:from app.domains.ai_chat.providers import AiProviderConfigurationError  # noqa: E402
+tests/test_ai_chat_api.py:52:        self.messages: dict[uuid.UUID, list[dict[str, object]]] = {}
+tests/test_ai_chat_api.py:65:            self.messages.setdefault(entity.id, [])
+tests/test_ai_chat_api.py:73:            bucket = self.messages.setdefault(entity.conversation_id, [])
+tests/test_ai_chat_api.py:104:        elif "FROM ai_chat_messages" in text:
+tests/test_ai_chat_api.py:105:            items = [row["entity"] for row in self.messages.get(params.get("conversation_id_1"), [])]
+tests/test_ai_chat_api.py:128:            ai_chat_providers_module.urllib.request,
+tests/test_ai_chat_api.py:151:            "/ai-chat/providers",
+tests/test_ai_chat_api.py:152:            "/ai-chat/message",
+tests/test_ai_chat_api.py:153:            "/ai-chat/conversations",
+tests/test_ai_chat_api.py:154:            "/ai-chat/conversations/{conversation_id}",
+tests/test_ai_chat_api.py:155:            "/ai-chat/conversations/{conversation_id}/messages",
+tests/test_ai_chat_api.py:161:                    get_current_user in dependencies
+tests/test_ai_chat_api.py:185:    async def test_create_conversation_uses_authenticated_user_id_and_sends_message(self) -> None:
+tests/test_ai_chat_api.py:194:        detail = await ai_chat.send_message(
+tests/test_ai_chat_api.py:200:        self.assertEqual(["user", "assistant"], [message.role for message in detail.messages])
+tests/test_ai_chat_api.py:201:        self.assertIn("Olá IA", detail.messages[1].content)
+tests/test_ai_chat_api.py:202:        self.assertTrue(detail.messages[1].content.startswith("Modo mock: resposta simulada para validação do Painel ENS-Quality."))
+tests/test_ai_chat_api.py:203:        self.assertEqual("mock", detail.messages[1].provider)
+tests/test_ai_chat_api.py:205:        persisted_messages = self.session.messages[created.id]
+tests/test_ai_chat_api.py:206:        self.assertEqual(["user", "assistant"], [row["entity"].role for row in persisted_messages])
+tests/test_ai_chat_api.py:207:        self.assertIn("Olá IA", persisted_messages[1]["entity"].content)
+tests/test_ai_chat_api.py:209:    async def test_api_accepts_message_with_mode_and_persists_assistant_message(self) -> None:
+tests/test_ai_chat_api.py:216:        detail = await ai_chat.send_message(
+tests/test_ai_chat_api.py:223:        self.assertEqual(["user", "assistant"], [message.role for message in detail.messages])
+tests/test_ai_chat_api.py:224:        self.assertIn("Texto revisado", detail.messages[1].content)
+tests/test_ai_chat_api.py:225:        self.assertEqual("fix_text", detail.messages[0].extra_metadata["mode"])
+tests/test_ai_chat_api.py:226:        self.assertEqual("fix_text", detail.messages[1].extra_metadata["mode"])
+tests/test_ai_chat_api.py:228:    async def test_create_conversation_with_initial_message_returns_and_persists_assistant_message(self) -> None:
+tests/test_ai_chat_api.py:230:            ai_chat.AiChatConversationCreate(title="Inicial", message="Resumir atendimento", mode="summarize"),
+tests/test_ai_chat_api.py:236:        self.assertEqual(["user", "assistant"], [message.role for message in created.messages])
+tests/test_ai_chat_api.py:237:        self.assertIn("Resumo", created.messages[1].content)
+tests/test_ai_chat_api.py:238:        self.assertEqual("mock", created.messages[1].provider)
+tests/test_ai_chat_api.py:240:        persisted_messages = self.session.messages[created.id]
+tests/test_ai_chat_api.py:241:        self.assertEqual(["user", "assistant"], [row["entity"].role for row in persisted_messages])
+tests/test_ai_chat_api.py:242:        self.assertIn("Resumo", persisted_messages[1]["entity"].content)
+tests/test_ai_chat_api.py:244:    async def test_user_cannot_open_or_send_message_to_other_users_conversation(self) -> None:
+tests/test_ai_chat_api.py:250:            await ai_chat.send_message(created.id, ai_chat.AiChatMessageCreate(content="invadir"), self.session, self.user_a)
+tests/test_ai_chat_api.py:255:    async def test_message_above_limit_returns_422(self) -> None:
+tests/test_ai_chat_api.py:259:            await ai_chat.send_message(created.id, ai_chat.AiChatMessageCreate.model_construct(content="x" * 12001), self.session, self.user_a)
+tests/test_ai_chat_api.py:287:            async def send_message(self, conversation, payload, user_id):  # noqa: ANN001
+tests/test_ai_chat_api.py:293:                await ai_chat.send_message(created.id, ai_chat.AiChatMessageCreate(content="Olá"), self.session, self.user_a)
+tests/test_ai_chat_hardening.py:19:from app.domains.ai_chat import providers as ai_chat_providers_module  # noqa: E402
+tests/test_ai_chat_hardening.py:21:from app.domains.ai_chat.providers import AiProviderRequestError  # noqa: E402
+tests/test_ai_chat_hardening.py:22:from app.domains.ai_chat.rate_limit import reset_ai_chat_rate_limit_memory  # noqa: E402
+tests/test_ai_chat_hardening.py:56:            ai_chat_providers_module.urllib.request,
+tests/test_ai_chat_hardening.py:64:        reset_ai_chat_rate_limit_memory()
+tests/test_ai_chat_hardening.py:67:        reset_ai_chat_rate_limit_memory()
+tests/test_ai_chat_hardening.py:76:        self.assertEqual(20, fields["ai_chat_rate_limit_per_minute"].default)
+tests/test_ai_chat_hardening.py:80:            "/ai-chat/health",
+tests/test_ai_chat_hardening.py:81:            "/ai-chat/providers",
+tests/test_ai_chat_hardening.py:82:            "/ai-chat/message",
+tests/test_ai_chat_hardening.py:83:            "/ai-chat/conversations",
+tests/test_ai_chat_hardening.py:84:            "/ai-chat/conversations/{conversation_id}",
+tests/test_ai_chat_hardening.py:85:            "/ai-chat/conversations/{conversation_id}/messages",
+tests/test_ai_chat_hardening.py:112:                ai_chat.AiChatConversationCreate(title="Seguro", message="Texto sensível de teste"),
+tests/test_ai_chat_hardening.py:119:        self.assertEqual(["user", "assistant"], [message.role for message in detail.messages])
+tests/test_ai_chat_hardening.py:120:        user_metadata = detail.messages[0].extra_metadata
+tests/test_ai_chat_hardening.py:121:        assistant_metadata = detail.messages[1].extra_metadata
+tests/test_ai_chat_hardening.py:127:        self.assertEqual(len(detail.messages[1].content), assistant_metadata["output_chars"])
+tests/test_ai_chat_hardening.py:141:            async def generate(self, messages):  # noqa: ANN001
+tests/test_ai_chat_hardening.py:149:                await ai_chat.send_message(created.id, ai_chat.AiChatMessageCreate(content="Falha controlada"), self.session, self.user)
+tests/test_ai_chat_hardening.py:155:        messages = self.session.messages[created.id]
+tests/test_ai_chat_hardening.py:156:        user_message = messages[-1]["entity"]
+tests/test_ai_chat_hardening.py:157:        self.assertEqual("error", user_message.extra_metadata["status"])
+tests/test_ai_chat_hardening.py:158:        self.assertEqual("mock_failure", user_message.extra_metadata["error_type"])
+tests/test_ai_chat_hardening.py:159:        self.assertNotIn("Falha controlada", str(user_message.extra_metadata))
+tests/test_ai_chat_hardening.py:167:            health = ai_chat_providers_module.get_ai_provider_health(ai_chat.settings)
+tests/test_ai_chat_hardening.py:176:    async def test_simple_per_user_rate_limit_returns_429(self) -> None:
+tests/test_ai_chat_hardening.py:178:        original_limit = ai_chat.settings.ai_chat_rate_limit_per_minute
+tests/test_ai_chat_hardening.py:180:        ai_chat.settings.ai_chat_rate_limit_per_minute = 1
+tests/test_ai_chat_hardening.py:183:            await ai_chat.send_message(created.id, ai_chat.AiChatMessageCreate(content="primeira"), self.session, self.user)
+tests/test_ai_chat_hardening.py:185:                await ai_chat.send_message(created.id, ai_chat.AiChatMessageCreate(content="segunda"), self.session, self.user)
+tests/test_ai_chat_hardening.py:188:            ai_chat.settings.ai_chat_rate_limit_per_minute = original_limit
+tests/test_ai_chat_hardening.py:191:        self.assertEqual("ai_chat_rate_limit_exceeded", ctx.exception.detail)
+tests/test_ai_chat_hardening.py:201:        self.assertIn('href: "/ai-chat"', app_shell)
+tests/test_ai_chat_mvp.py:8:from app.domains.ai_chat import providers as ai_chat_providers_module
+tests/test_ai_chat_mvp.py:10:from app.domains.ai_chat.providers import (
+tests/test_ai_chat_mvp.py:44:            ai_chat_providers_module.urllib.request,
+tests/test_ai_chat_mvp.py:100:        conversation = AiChatConversationCreate(title="Teste", message="Olá", mode="general")
+tests/test_ai_chat_mvp.py:104:    def test_ai_chat_message_accepts_optional_mode_without_requiring_it(self) -> None:
+tests/test_ai_chat_mvp.py:162:    async def test_gemini_provider_generates_text_with_mocked_http(self) -> None:
+tests/test_ai_chat_mvp.py:185:        response = await provider.generate(
+tests/test_ai_chat_mvp.py:198:        self.assertEqual("https://generativelanguage.googleapis.com/v1beta/models/gemini-test:generateContent", captured["url"])
+tests/test_ai_chat_mvp.py:221:    async def test_openai_provider_generates_text_with_mocked_http(self) -> None:
+tests/test_ai_chat_mvp.py:227:                "choices": [{"message": {"content": "Resposta OpenAI mockada"}}],
+tests/test_ai_chat_mvp.py:239:        response = await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_ollama_provider.py:18:from app.domains.ai_chat.providers import (  # noqa: E402
+tests/test_ai_chat_ollama_provider.py:51:                "message": {"role": "assistant", "content": "Resposta via Ollama"},
+tests/test_ai_chat_ollama_provider.py:63:        response = await provider.generate(
+tests/test_ai_chat_ollama_provider.py:85:            payload["messages"],
+tests/test_ai_chat_ollama_provider.py:95:            await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_ollama_provider.py:106:            await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_ollama_provider.py:117:            await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_ollama_provider.py:123:            return {"message": {"role": "assistant"}}
+tests/test_ai_chat_ollama_provider.py:128:            await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_ollama_provider.py:161:            async def generate(self, messages, mode=None):  # noqa: ANN001, ARG002
+tests/test_ai_chat_ollama_provider.py:162:                from app.domains.ai_chat.providers import AiProviderResponse
+tests/test_ai_chat_ollama_provider.py:174:            detail = await ai_chat.send_message(
+tests/test_ai_chat_ollama_provider.py:190:        self.assertEqual(["user", "assistant"], [message.role for message in detail.messages])
+tests/test_ai_chat_ollama_provider.py:191:        self.assertEqual("OK via Ollama", detail.messages[-1].content)
+tests/test_ai_chat_ollama_provider.py:192:        self.assertNotIn("ollama_base_url", detail.messages[0].extra_metadata)
+tests/test_ai_chat_ollama_provider.py:248:                "choices": [{"message": {"role": "assistant", "content": "OK via Ollama LAN."}, "finish_reason": "stop"}],
+tests/test_ai_chat_ollama_provider.py:260:        response = await provider.generate(
+tests/test_ai_chat_ollama_provider.py:282:            payload["messages"],
+tests/test_ai_chat_ollama_provider.py:290:            return {"choices": [{"message": {"content": "OK"}}]}
+tests/test_ai_chat_ollama_provider.py:298:        await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_ollama_provider.py:322:            return {"message": {"content": "legacy api shape"}}
+tests/test_ai_chat_ollama_provider.py:331:            await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_ollama_provider.py:340:                        "message": {
+tests/test_ai_chat_ollama_provider.py:355:        response = await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_ollama_provider.py:364:                        "message": {
+tests/test_ai_chat_ollama_provider.py:379:        response = await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_ollama_provider.py:388:                        "message": {
+tests/test_ai_chat_ollama_provider.py:404:            await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_ollama_provider.py:419:            await provider.generate([AiProviderMessage(role="user", content="Olá")])
+tests/test_ai_chat_provider_mock.py:15:from app.domains.ai_chat import providers as ai_chat_providers_module  # noqa: E402
+tests/test_ai_chat_provider_mock.py:16:from app.domains.ai_chat.providers import AiProviderMessage, MockAiProvider, build_ai_provider  # noqa: E402
+tests/test_ai_chat_provider_mock.py:41:            ai_chat_providers_module.urllib.request,
+tests/test_ai_chat_provider_mock.py:48:    async def test_mock_provider_generates_generic_response_without_external_key_or_network(self) -> None:
+tests/test_ai_chat_provider_mock.py:51:        response = await provider.generate([AiProviderMessage(role="user", content="Olá IA")], mode="general")
+tests/test_ai_chat_provider_mock.py:61:    async def test_mock_provider_generates_text_correction_response(self) -> None:
+tests/test_ai_chat_provider_mock.py:64:        response = await provider.generate([AiProviderMessage(role="user", content="eu precisa configura o notebook")], mode="fix_text")
+tests/test_ai_chat_provider_mock.py:70:    async def test_mock_provider_generates_itil_draft_response(self) -> None:
+tests/test_ai_chat_provider_mock.py:73:        response = await provider.generate([AiProviderMessage(role="user", content="Gerar rascunho para abertura de chamado ITIL")], mode="draft_ticket")
+tests/test_ai_chat_provider_mock.py:84:    async def test_mock_provider_generates_ticket_update_response(self) -> None:
+tests/test_ai_chat_provider_mock.py:87:        response = await provider.generate([AiProviderMessage(role="user", content="Cliente aguardando validação")], mode="update_ticket")
+tests/test_ai_chat_provider_mock.py:93:    async def test_mock_provider_generates_resolution_response(self) -> None:
+tests/test_ai_chat_provider_mock.py:96:        response = await provider.generate([AiProviderMessage(role="user", content="Foi reinstalado o driver")], mode="resolution")
+tests/test_ai_chat_provider_mock.py:101:    async def test_mock_provider_generates_summary_response(self) -> None:
+tests/test_ai_chat_provider_mock.py:104:        response = await provider.generate([AiProviderMessage(role="user", content="Resumir a conversa")], mode="summarize")
+tests/test_ai_chat_provider_mock.py:109:    async def test_mock_provider_generates_improve_tone_response(self) -> None:
+tests/test_ai_chat_provider_mock.py:112:        response = await provider.generate([AiProviderMessage(role="user", content="manda o notebook logo")], mode="improve_tone")
+tests/test_ai_chat_provider_mock.py:117:    async def test_mock_provider_generates_service_macro_response(self) -> None:
+tests/test_ai_chat_provider_mock.py:120:        response = await provider.generate([AiProviderMessage(role="user", content="atendimento concluído")], mode="service_macro")
+tests/test_ai_chat_provider_mock.py:125:    async def test_mock_provider_generates_inventory_response(self) -> None:
+tests/test_ai_chat_provider_mock.py:128:        response = await provider.generate([AiProviderMessage(role="user", content="Orientar movimentação de notebook do inventário")], mode="asset_guidance")
+tests/test_ai_chat_rate_limit.py:14:from app.domains.ai_chat.rate_limit import AiChatRateLimiter, MemoryRateLimitStore, RedisRateLimitStore  # noqa: E402
+tests/test_ai_chat_rate_limit.py:55:        key = "ai_chat:rate_limit:test:1"
+tests/test_ai_chat_rate_limit.py:66:        key = "ai_chat:rate_limit:test:2"
+tests/test_ai_chat_rate_limit.py:77:        settings = Settings(environment="local", ai_chat_rate_limit_per_minute=1)
+tests/test_ai_chat_rate_limit.py:86:        self.assertEqual("ai_chat_rate_limit_exceeded", getattr(ctx.exception, "detail", None))
+tests/test_ai_chat_rate_limit.py:91:        settings = Settings(environment="production", ai_chat_rate_limit_per_minute=1)
+tests/test_ai_chat_rate_limit.py:105:        self.assertEqual("ai_chat_rate_limit_unavailable", getattr(ctx.exception, "detail", None))
+tests/test_ai_chat_rate_limit.py:110:        self.assertTrue(key.startswith("ai_chat:rate_limit:"))
+tests/test_apoema_ai_chat_backend.py:14:from app.api.v1.dependencies.auth import get_current_user  # noqa: E402
+tests/test_apoema_ai_chat_backend.py:17:from app.domains.ai_chat.apoema import build_apoema_provider_catalog, generate_apoema_message  # noqa: E402
+tests/test_apoema_ai_chat_backend.py:18:from app.domains.ai_chat.providers import AiProviderRequestError  # noqa: E402
+tests/test_apoema_ai_chat_backend.py:24:    def test_provider_catalog_exposes_expected_providers(self) -> None:
+tests/test_apoema_ai_chat_backend.py:29:        self.assertEqual(["mock", "ollama", "hermes"], [provider.id for provider in catalog.providers])
+tests/test_apoema_ai_chat_backend.py:30:        self.assertEqual("fallback-local", catalog.providers[0].default_model)
+tests/test_apoema_ai_chat_backend.py:31:        self.assertEqual("qwen3:4b-64k", catalog.providers[1].default_model)
+tests/test_apoema_ai_chat_backend.py:32:        self.assertEqual(["qwen3:4b-64k", "qwen2.5-coder:7b"], catalog.providers[1].models)
+tests/test_apoema_ai_chat_backend.py:33:        self.assertEqual("hermes-agent", catalog.providers[2].default_model)
+tests/test_apoema_ai_chat_backend.py:34:        self.assertEqual("unconfigured", catalog.providers[2].status)
+tests/test_apoema_ai_chat_backend.py:36:    async def test_mock_provider_message_returns_ok(self) -> None:
+tests/test_apoema_ai_chat_backend.py:42:            message="Olá Apoema",
+tests/test_apoema_ai_chat_backend.py:46:        response = await generate_apoema_message(settings, payload)
+tests/test_apoema_ai_chat_backend.py:59:            message="Teste com prompt sensível",
+tests/test_apoema_ai_chat_backend.py:63:        with patch("app.domains.ai_chat.apoema.OllamaProvider.generate", side_effect=AiProviderRequestError("ollama_timeout")):
+tests/test_apoema_ai_chat_backend.py:64:            response = await generate_apoema_message(settings, payload)
+tests/test_apoema_ai_chat_backend.py:77:            message="Resumo de atendimento",
+tests/test_apoema_ai_chat_backend.py:81:        response = await generate_apoema_message(settings, payload)
+tests/test_apoema_ai_chat_backend.py:89:        provider_route = next(route for route in ai_chat.router.routes if getattr(route, "path", None) == "/ai-chat/providers")
+tests/test_apoema_ai_chat_backend.py:90:        message_route = next(route for route in ai_chat.router.routes if getattr(route, "path", None) == "/ai-chat/message")
+tests/test_apoema_ai_chat_backend.py:93:        self.assertTrue(message_route.dependant.dependencies)
+tests/test_apoema_ai_chat_backend.py:94:        dependency_calls = {dependency.call for dependency in provider_route.dependant.dependencies + message_route.dependant.dependencies}
+tests/test_apoema_ai_chat_backend.py:97:    async def test_get_current_user_without_token_returns_401(self) -> None:
+tests/test_apoema_ai_chat_backend.py:101:            await get_current_user(request=request, credentials=None, session=SimpleNamespace())
+tests/test_import_conflict_detector.py:20:    def test_serial_duplicate_generates_conflict_with_human_fields(self) -> None:
+tests/test_import_conflict_detector.py:29:    def test_hostname_duplicate_with_different_serials_generates_conflict(self) -> None:
+tests/test_import_conflict_detector.py:35:        self.assertTrue(str(plan[0]["issue"]["message"]).startswith("Conflito real"))
+tests/test_import_pipeline_units.py:246:        for index, (raw, row) in enumerate(zip(rows, normalized, strict=True)):
+tests/test_legacy_ens_db_pre_apply_review.py:35:    def test_script_generates_masked_warning_report_without_apply(self) -> None:
+tests/test_macros_audit_operational.py:9:    def test_macro_generate_copy_and_movement_audit_flow(self) -> None:
+tests/test_macros_audit_operational.py:14:        generated = self.client.post(
+tests/test_macros_audit_operational.py:15:            "/macros/generate",
+tests/test_macros_audit_operational.py:18:        self.assertEqual(generated.status_code, 201)
+tests/test_macros_audit_operational.py:19:        generation = generated.json()
+tests/test_macros_audit_operational.py:52:        self.assertIn("macro_generated", events)
+tests/test_macros_audit_operational.py:54:        self.assertIn("asset_movement_macro_generated", events)
+tests/test_public_signature_routes.py:22:    def test_routes_require_generated_signature(self):
+tests/test_signature_html_fidelity.py:31:    def test_outlook_new_generates_dedicated_compatible_html(self):
+tests/test_startup_diagnostics.py:50:        self.assertIn("controlled startup failure", failure["exception_message"])
+tests/test_startup_diagnostics.py:118:        self.assertTrue(local.app_auto_migrate)
+tests/test_startup_diagnostics.py:120:        self.assertFalse(Settings(environment="staging", jwt_secret_key=staging_secret, app_auto_migrate=False).app_auto_migrate)
+tests/test_startup_diagnostics.py:129:            app_auto_migrate=False,
+# unittest
+{"paths": ["/admin", "/assinaturas"], "event": "legacy_signature_apps_mounted", "level": "info", "timestamp": "2026-06-23T15:14:07.147550Z"}
+test_api_accepts_message_with_mode_and_persists_assistant_message (test_ai_chat_api.AiChatApiTest.test_api_accepts_message_with_mode_and_persists_assistant_message) ... ok
+test_api_uses_mock_provider_even_when_external_environment_selects_gemini (test_ai_chat_api.AiChatApiTest.test_api_uses_mock_provider_even_when_external_environment_selects_gemini) ... ok
+test_create_conversation_uses_authenticated_user_id_and_sends_message (test_ai_chat_api.AiChatApiTest.test_create_conversation_uses_authenticated_user_id_and_sends_message) ... ok
+test_create_conversation_with_initial_message_returns_and_persists_assistant_message (test_ai_chat_api.AiChatApiTest.test_create_conversation_with_initial_message_returns_and_persists_assistant_message) ... ok
+test_health_endpoint_returns_provider_configuration_status (test_ai_chat_api.AiChatApiTest.test_health_endpoint_returns_provider_configuration_status) ... ok
+test_message_above_limit_returns_422 (test_ai_chat_api.AiChatApiTest.test_message_above_limit_returns_422) ... ok
+test_provider_configuration_error_returns_clear_503 (test_ai_chat_api.AiChatApiTest.test_provider_configuration_error_returns_clear_503) ... ok
+test_routes_depend_on_existing_current_user_authentication (test_ai_chat_api.AiChatApiTest.test_routes_depend_on_existing_current_user_authentication) ... ok
+test_user_cannot_open_or_send_message_to_other_users_conversation (test_ai_chat_api.AiChatApiTest.test_user_cannot_open_or_send_message_to_other_users_conversation) ... ok
+test_ai_chat_page_contains_required_safety_notice (test_ai_chat_hardening.AiChatFrontendHardeningTest.test_ai_chat_page_contains_required_safety_notice) ... ok
+test_frontend_reads_enable_ai_chat_flag_and_hides_menu_by_default (test_ai_chat_hardening.AiChatFrontendHardeningTest.test_frontend_reads_enable_ai_chat_flag_and_hides_menu_by_default) ... ok
+test_all_ai_chat_endpoints_are_protected_by_rbac_dependency (test_ai_chat_hardening.AiChatHardeningTest.test_all_ai_chat_endpoints_are_protected_by_rbac_dependency) ... ok
+test_feature_flag_blocks_conversation_when_disabled (test_ai_chat_hardening.AiChatHardeningTest.test_feature_flag_blocks_conversation_when_disabled) ... ok
+test_openai_without_key_returns_configuration_error_without_secret_leak (test_ai_chat_hardening.AiChatHardeningTest.test_openai_without_key_returns_configuration_error_without_secret_leak) ... ok
+test_provider_error_records_error_type_as_safe_metadata (test_ai_chat_hardening.AiChatHardeningTest.test_provider_error_records_error_type_as_safe_metadata) ... ok
+test_safe_metadata_is_recorded_without_api_key_or_full_prompt_in_metadata (test_ai_chat_hardening.AiChatHardeningTest.test_safe_metadata_is_recorded_without_api_key_or_full_prompt_in_metadata) ... ok
+test_settings_default_ai_chat_feature_flag_is_disabled_and_limits_exist (test_ai_chat_hardening.AiChatHardeningTest.test_settings_default_ai_chat_feature_flag_is_disabled_and_limits_exist) ... ok
+test_simple_per_user_rate_limit_returns_429 (test_ai_chat_hardening.AiChatHardeningTest.test_simple_per_user_rate_limit_returns_429) ... ok
+test_ai_chat_message_accepts_optional_mode_without_requiring_it (test_ai_chat_mvp.AiChatMvpContractTest.test_ai_chat_message_accepts_optional_mode_without_requiring_it) ... ok
+test_ai_provider_health_reports_configuration_without_secrets (test_ai_chat_mvp.AiChatMvpContractTest.test_ai_provider_health_reports_configuration_without_secrets) ... ok
+test_build_provider_supports_mock_default_gemini_and_openai (test_ai_chat_mvp.AiChatMvpContractTest.test_build_provider_supports_mock_default_gemini_and_openai) ... ok
+test_gemini_provider_generates_text_with_mocked_http (test_ai_chat_mvp.AiChatMvpContractTest.test_gemini_provider_generates_text_with_mocked_http) ... ok
+test_gemini_provider_health_reports_configuration_without_secrets (test_ai_chat_mvp.AiChatMvpContractTest.test_gemini_provider_health_reports_configuration_without_secrets) ... ok
+test_gemini_provider_requires_ai_gemini_api_key (test_ai_chat_mvp.AiChatMvpContractTest.test_gemini_provider_requires_ai_gemini_api_key) ... ok
+test_migration_down_revision_is_macros_module (test_ai_chat_mvp.AiChatMvpContractTest.test_migration_down_revision_is_macros_module) ... ok
+test_models_use_extra_metadata_python_attribute_for_metadata_column (test_ai_chat_mvp.AiChatMvpContractTest.test_models_use_extra_metadata_python_attribute_for_metadata_column) ... ok
+test_openai_provider_generates_text_with_mocked_http (test_ai_chat_mvp.AiChatMvpContractTest.test_openai_provider_generates_text_with_mocked_http) ... ok
+test_openai_provider_requires_openai_api_key (test_ai_chat_mvp.AiChatMvpContractTest.test_openai_provider_requires_openai_api_key) ... ok
+test_payload_limits_are_mvp_limits (test_ai_chat_mvp.AiChatMvpContractTest.test_payload_limits_are_mvp_limits) ... ok
+test_settings_bridges_external_openai_key_in_memory_only (test_ai_chat_mvp.AiChatMvpContractTest.test_settings_bridges_external_openai_key_in_memory_only) ... ok
+test_settings_contract_uses_only_approved_ai_env_names (test_ai_chat_mvp.AiChatMvpContractTest.test_settings_contract_uses_only_approved_ai_env_names) ... ok
+test_settings_prefers_panel_ai_openai_api_key (test_ai_chat_mvp.AiChatMvpContractTest.test_settings_prefers_panel_ai_openai_api_key) ... ok
+test_build_provider_supports_ai_chat_provider_alias (test_ai_chat_ollama_provider.OllamaProviderTest.test_build_provider_supports_ai_chat_provider_alias) ... ok
+test_build_provider_supports_ollama_defaults (test_ai_chat_ollama_provider.OllamaProviderTest.test_build_provider_supports_ollama_defaults) ... ok
+test_build_provider_supports_ollama_lan_openai_compatible_runtime (test_ai_chat_ollama_provider.OllamaProviderTest.test_build_provider_supports_ollama_lan_openai_compatible_runtime) ... ok
+test_endpoint_preserves_contract_and_rejects_frontend_base_url_choice (test_ai_chat_ollama_provider.OllamaProviderTest.test_endpoint_preserves_contract_and_rejects_frontend_base_url_choice) ... ok
+test_ollama_health_reports_localhost_without_secrets (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_health_reports_localhost_without_secrets) ... ok
+test_ollama_lan_base_url_without_v1_appends_v1_once (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_base_url_without_v1_appends_v1_once) ... ok
+test_ollama_lan_blocks_lan_host_without_explicit_allowlist (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_blocks_lan_host_without_explicit_allowlist) ... ok
+test_ollama_lan_blocks_public_ip_even_when_listed (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_blocks_public_ip_even_when_listed) ... ok
+test_ollama_lan_blocks_wildcard_allowlist (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_blocks_wildcard_allowlist) ... ok
+test_ollama_lan_failure_does_not_fallback_to_mock (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_failure_does_not_fallback_to_mock) ... ok
+test_ollama_lan_health_reports_provider_without_base_url (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_health_reports_provider_without_base_url) ... ok
+test_ollama_lan_invalid_choices_shape_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_invalid_choices_shape_is_controlled_error) ... ok
+test_ollama_lan_provider_sends_v1_chat_completions_payload_and_returns_text (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_provider_sends_v1_chat_completions_payload_and_returns_text) ... ok
+test_ollama_lan_raises_when_think_sanitization_removes_everything (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_raises_when_think_sanitization_removes_everything) ... ok
+test_ollama_lan_strips_think_blocks_before_returning_text (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_strips_think_blocks_before_returning_text) ... ok
+test_ollama_lan_strips_unclosed_think_block_and_preserves_final_answer (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_strips_unclosed_think_block_and_preserves_final_answer) ... ok
+test_ollama_provider_connection_failure_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_connection_failure_is_controlled_error) ... ok
+test_ollama_provider_invalid_json_shape_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_invalid_json_shape_is_controlled_error) ... ok
+test_ollama_provider_model_missing_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_model_missing_is_controlled_error) ... ok
+test_ollama_provider_sends_api_chat_payload_and_returns_text (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_sends_api_chat_payload_and_returns_text) ... ok
+test_ollama_provider_timeout_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_timeout_is_controlled_error) ... ok
+test_build_ai_provider_defaults_to_mock (test_ai_chat_provider_mock.AiChatMockProviderTest.test_build_ai_provider_defaults_to_mock) ... ok
+test_mock_provider_generates_generic_response_without_external_key_or_network (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_generic_response_without_external_key_or_network) ... ok
+test_mock_provider_generates_improve_tone_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_improve_tone_response) ... ok
+test_mock_provider_generates_inventory_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_inventory_response) ... ok
+test_mock_provider_generates_itil_draft_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_itil_draft_response) ... ok
+test_mock_provider_generates_resolution_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_resolution_response) ... ok
+test_mock_provider_generates_service_macro_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_service_macro_response) ... ok
+test_mock_provider_generates_summary_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_summary_response) ... ok
+test_mock_provider_generates_text_correction_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_text_correction_response) ... ok
+test_mock_provider_generates_ticket_update_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_ticket_update_response) ... ok
+test_build_key_hashes_user_id_and_uses_window_epoch (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_build_key_hashes_user_id_and_uses_window_epoch) ... ok
+test_limiter_is_per_user_and_enforces_limit (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_limiter_is_per_user_and_enforces_limit) ... ok
+test_memory_store_expires_keys (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_memory_store_expires_keys) ... ok
+test_production_redis_failure_returns_503 (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_production_redis_failure_returns_503) ... {"environment": "production", "error_type": "RuntimeError", "event": "ai_chat_rate_limit_store_unavailable", "level": "error", "timestamp": "2026-06-23T15:14:07.408389Z"}
+ok
+test_redis_store_fake_works_without_eval_and_sets_ttl (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_redis_store_fake_works_without_eval_and_sets_ttl) ... ok
+test_apoema_routes_require_auth_dependency (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_apoema_routes_require_auth_dependency) ... ok
+test_get_current_user_without_token_returns_401 (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_get_current_user_without_token_returns_401) ... ok
+test_hermes_placeholder_returns_safe_unconfigured_response (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_hermes_placeholder_returns_safe_unconfigured_response) ... ok
+test_mock_provider_message_returns_ok (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_mock_provider_message_returns_ok) ... ok
+test_ollama_request_failure_falls_back_without_exposing_secret_or_prompt (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_ollama_request_failure_falls_back_without_exposing_secret_or_prompt) ... ok
+test_provider_catalog_exposes_expected_providers (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_provider_catalog_exposes_expected_providers) ... ok
+test_apoema_frontend_does_not_reference_ollama_or_direct_chat_urls (test_apoema_ai_chat_backend.ApoemaFrontendStaticSafetyTest.test_apoema_frontend_does_not_reference_ollama_or_direct_chat_urls) ... ok
+setUpClass (test_assets_regression.AssetsRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+test_audit_log_model_has_expected_filterable_columns (test_audit_logs.AuditLogFiltersTest.test_audit_log_model_has_expected_filterable_columns) ... ok
+test_build_audit_filters_searches_text_and_ids_without_migration (test_audit_logs.AuditLogFiltersTest.test_build_audit_filters_searches_text_and_ids_without_migration) ... ok
+test_build_audit_filters_uses_existing_traceability_columns (test_audit_logs.AuditLogFiltersTest.test_build_audit_filters_uses_existing_traceability_columns) ... ok
+test_build_audit_filters_without_filters_preserves_default_listing (test_audit_logs.AuditLogFiltersTest.test_build_audit_filters_without_filters_preserves_default_listing) ... ok
+setUpClass (test_auth_regression.AuthRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+test_icons_do_not_use_dangerously_set_inner_html (test_hermes_icons_security.HermesIconsSecurityTest.test_icons_do_not_use_dangerously_set_inner_html) ... ok
+test_icons_whitelist_expected_svg_tags (test_hermes_icons_security.HermesIconsSecurityTest.test_icons_whitelist_expected_svg_tags) ... ok
+test_equivalent_duplicate_is_skipped_with_reason (test_import_conflict_detector.ImportConflictDetectorTest.test_equivalent_duplicate_is_skipped_with_reason) ... ok
+test_hostname_duplicate_with_different_serials_generates_conflict (test_import_conflict_detector.ImportConflictDetectorTest.test_hostname_duplicate_with_different_serials_generates_conflict) ... ok
+test_serial_duplicate_generates_conflict_with_human_fields (test_import_conflict_detector.ImportConflictDetectorTest.test_serial_duplicate_generates_conflict_with_human_fields) ... ok
+test_generic_hostname_is_not_strong_identity (test_import_identity_classifier.ImportIdentityClassifierTest.test_generic_hostname_is_not_strong_identity) ... ok
+test_hostname_valid_and_non_ip_is_accepted (test_import_identity_classifier.ImportIdentityClassifierTest.test_hostname_valid_and_non_ip_is_accepted) ... ok
+test_ip_is_not_hostname_and_ip_only_is_reviewable (test_import_identity_classifier.ImportIdentityClassifierTest.test_ip_is_not_hostname_and_ip_only_is_reviewable) ... ok
+test_missing_identity_is_not_usable (test_import_identity_classifier.ImportIdentityClassifierTest.test_missing_identity_is_not_usable) ... ok
+test_patrimony_valid_is_primary_identity_when_present (test_import_identity_classifier.ImportIdentityClassifierTest.test_patrimony_valid_is_primary_identity_when_present) ... ok
+test_serial_valid_is_primary_identity (test_import_identity_classifier.ImportIdentityClassifierTest.test_serial_valid_is_primary_identity) ... ok
+test_source_external_key_is_preserved (test_import_identity_classifier.ImportIdentityClassifierTest.test_source_external_key_is_preserved) ... ok
+test_common_fields_are_preserved (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_common_fields_are_preserved) ... ok
+test_custom1_wins_over_type (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_custom1_wins_over_type) ... ok
+test_empty_barcode_does_not_create_patrimony (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_empty_barcode_does_not_create_patrimony) ... ok
+test_lastuser_stays_in_hint_metadata_and_not_current_user (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_lastuser_stays_in_hint_metadata_and_not_current_user) ... ok
+test_name_ip_does_not_become_hostname (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_name_ip_does_not_become_hostname) ... ok
+test_name_ip_second_case_does_not_become_hostname (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_name_ip_second_case_does_not_become_hostname) ... ok
+test_not_scanned_placeholder_becomes_null (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_not_scanned_placeholder_becomes_null) ... ok
+test_numeric_placeholder_is_treated_as_null_like_current_behavior (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_numeric_placeholder_is_treated_as_null_like_current_behavior) ... ok
+test_type_fallback_is_used_when_custom1_is_empty (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_type_fallback_is_used_when_custom1_is_empty) ... ok
+test_undefined_placeholder_becomes_null (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_undefined_placeholder_becomes_null) ... ok
+test_valid_hostname_is_preserved (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_valid_hostname_is_preserved) ... ok
+test_column_aliases_and_normalization (test_import_pipeline_units.ImportPipelineUnitTest.test_column_aliases_and_normalization) ... ok
+test_duplicate_equivalent_rows_are_skipped_and_latest_lastseen_is_canonical (test_import_pipeline_units.ImportPipelineUnitTest.test_duplicate_equivalent_rows_are_skipped_and_latest_lastseen_is_canonical) ... ok
+test_formula_payload_is_blocked (test_import_pipeline_units.ImportPipelineUnitTest.test_formula_payload_is_blocked) ... ok
+test_generic_hostname_tokens_are_not_strong_identity (test_import_pipeline_units.ImportPipelineUnitTest.test_generic_hostname_tokens_are_not_strong_identity) ... ok
+test_lansweeper_corrected_shape_fixture_classification (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_corrected_shape_fixture_classification) ... ok
+test_lansweeper_ip_address_never_becomes_hostname (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_ip_address_never_becomes_hostname) ... ok
+test_lansweeper_name_ip_becomes_reviewable_source_identity_not_hostname (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_name_ip_becomes_reviewable_source_identity_not_hostname) ... ok
+test_lansweeper_normalization_custom1_state_metadata_and_confidence (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_normalization_custom1_state_metadata_and_confidence) ... ok
+test_lansweeper_preset_and_barcode_empty_warning (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_preset_and_barcode_empty_warning) ... ok
+test_missing_identity_is_invalid (test_import_pipeline_units.ImportPipelineUnitTest.test_missing_identity_is_invalid) ... ok
+test_placeholder_66_is_null_globally_for_lansweeper_shape (test_import_pipeline_units.ImportPipelineUnitTest.test_placeholder_66_is_null_globally_for_lansweeper_shape) ... ok
+test_real_duplicate_conflict_is_blocking (test_import_pipeline_units.ImportPipelineUnitTest.test_real_duplicate_conflict_is_blocking) ... ok
+test_review_required_rows_do_not_block_partial_apply_report (test_import_pipeline_units.ImportPipelineUnitTest.test_review_required_rows_do_not_block_partial_apply_report) ... ok
+test_type_fallback_invalid_serial_and_disposal_reason (test_import_pipeline_units.ImportPipelineUnitTest.test_type_fallback_invalid_serial_and_disposal_reason) ... ok
+test_conflict_preserves_reason_and_recommended_action (test_import_row_classifier.ImportRowClassifierTest.test_conflict_preserves_reason_and_recommended_action) ... ok
+test_duplicate_equivalent_row_is_skipped (test_import_row_classifier.ImportRowClassifierTest.test_duplicate_equivalent_row_is_skipped) ... ok
+test_invalid_row_stays_invalid (test_import_row_classifier.ImportRowClassifierTest.test_invalid_row_stays_invalid) ... ok
+test_review_required_is_preserved_for_ip_only_source_key (test_import_row_classifier.ImportRowClassifierTest.test_review_required_is_preserved_for_ip_only_source_key) ... ok
+test_safe_create_is_preserved (test_import_row_classifier.ImportRowClassifierTest.test_safe_create_is_preserved) ... ok
+test_safe_update_is_preserved_when_existing_asset_matches (test_import_row_classifier.ImportRowClassifierTest.test_safe_update_is_preserved_when_existing_asset_matches) ... ok
+test_csv_valid_is_loaded_without_sheet_name (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_csv_valid_is_loaded_without_sheet_name) ... ok
+test_empty_file_is_rejected (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_empty_file_is_rejected) ... ok
+test_invalid_extension_is_rejected (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_invalid_extension_is_rejected) ... ok
+test_missing_report_sheet_can_be_rejected_in_strict_mode (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_missing_report_sheet_can_be_rejected_in_strict_mode) ... ok
+test_xlsx_with_report_sheet_uses_report_sheet (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_xlsx_with_report_sheet_uses_report_sheet) ... ok
+setUpClass (test_imports_regression.ImportsRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+test_analyze_reads_sqlite_without_creating_users (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_analyze_reads_sqlite_without_creating_users) ... ok
+test_apply_requires_explicit_confirmation (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_apply_requires_explicit_confirmation) ... ok
+test_candidate_mapping_and_validation (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_candidate_mapping_and_validation) ... ok
+test_merge_does_not_overwrite_existing_non_empty_fields_with_empty_values (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_merge_does_not_overwrite_existing_non_empty_fields_with_empty_values) ... ok
+test_migration_adds_source_fields (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_migration_adds_source_fields) ... ok
+test_missing_email_and_missing_name_are_invalid (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_missing_email_and_missing_name_are_invalid) ... ok
+test_sensitive_admin_update_is_identified_for_skip (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_sensitive_admin_update_is_identified_for_skip) ... ok
+test_user_model_has_source_fields (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_user_model_has_source_fields) ... ok
+test_script_generates_masked_warning_report_without_apply (test_legacy_ens_db_pre_apply_review.LegacyEnsDbPreApplyReviewScriptTest.test_script_generates_masked_warning_report_without_apply) ... skipped 'PowerShell is required for this operational script'
+test_script_parses_without_errors (test_legacy_ens_db_pre_apply_review.LegacyEnsDbPreApplyReviewScriptTest.test_script_parses_without_errors) ... skipped 'PowerShell is required for this operational script'
+setUpClass (test_legacy_routes.LegacyAndSpaRoutesTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+setUpClass (test_macros_audit_operational.MacrosAuditOperationalTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+test_colaboradores_json_loads_as_hints_only (test_macros_module.MacrosModuleTest.test_colaboradores_json_loads_as_hints_only) ... ok
+test_macro_apply_requires_confirmation (test_macros_module.MacrosModuleTest.test_macro_apply_requires_confirmation) ... ok
+test_macro_autocomplete_query_is_accent_insensitive (test_macros_module.MacrosModuleTest.test_macro_autocomplete_query_is_accent_insensitive) ... ok
+test_macros_json_analyze_maps_real_shape (test_macros_module.MacrosModuleTest.test_macros_json_analyze_maps_real_shape) ... ok
+test_macros_json_dict_shape_preserves_all_official_templates_and_diagnostics (test_macros_module.MacrosModuleTest.test_macros_json_dict_shape_preserves_all_official_templates_and_diagnostics) ... ok
+test_renderer_can_preserve_missing_fields_when_required_list_is_empty (test_macros_module.MacrosModuleTest.test_renderer_can_preserve_missing_fields_when_required_list_is_empty) ... ok
+test_renderer_substitutes_placeholders_and_blocks_missing_required (test_macros_module.MacrosModuleTest.test_renderer_substitutes_placeholders_and_blocks_missing_required) ... ok
+test_slug_category_and_placeholders_for_asset_inventory_macro (test_macros_module.MacrosModuleTest.test_slug_category_and_placeholders_for_asset_inventory_macro) ... ok
+test_metrics_is_available_in_local_without_token (test_metrics_hardening.MetricsHardeningTest.test_metrics_is_available_in_local_without_token) ... ok
+test_metrics_is_disabled_outside_local_without_token (test_metrics_hardening.MetricsHardeningTest.test_metrics_is_disabled_outside_local_without_token) ... ok
+test_metrics_requires_matching_token_outside_local (test_metrics_hardening.MetricsHardeningTest.test_metrics_requires_matching_token_outside_local) ... ok
+test_metrics_returns_body_with_matching_token_outside_local (test_metrics_hardening.MetricsHardeningTest.test_metrics_returns_body_with_matching_token_outside_local) ... ok
+setUpClass (test_migrations_regression.MigrationsRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+test_alembic_revision_ids_fit_default_version_table (test_operational_contracts.OperationalContractsTest.test_alembic_revision_ids_fit_default_version_table) ... ok
+test_fastapi_mounts_critical_routes (test_operational_contracts.OperationalContractsTest.test_fastapi_mounts_critical_routes) ... ok
+test_legacy_requirements_wrapper_points_to_legacy_file (test_operational_contracts.OperationalContractsTest.test_legacy_requirements_wrapper_points_to_legacy_file) ... ok
+test_movement_read_accepts_history_traceability_fields (test_operational_contracts.OperationalContractsTest.test_movement_read_accepts_history_traceability_fields) ... ok
+test_page_params_allows_operational_page_size_200 (test_operational_contracts.OperationalContractsTest.test_page_params_allows_operational_page_size_200) ... ok
+test_user_read_allows_legacy_reserved_domain_email (test_operational_contracts.OperationalContractsTest.test_user_read_allows_legacy_reserved_domain_email) ... ok
+test_user_update_schema_does_not_expose_role_changes (test_operational_contracts.OperationalContractsTest.test_user_update_schema_does_not_expose_role_changes) ... ok
+test_outlook_new_and_classic_return_expected_html (test_public_signature_routes.PublicSignatureRoutesTests.test_outlook_new_and_classic_return_expected_html) ... ok
+test_routes_require_generated_signature (test_public_signature_routes.PublicSignatureRoutesTests.test_routes_require_generated_signature) ... ok
+test_legacy_routes_keep_enforced_inline_compatibility_and_report_only (test_security_headers.SecurityHeadersTest.test_legacy_routes_keep_enforced_inline_compatibility_and_report_only) ... ok
+test_spa_routes_get_hardened_csp_without_unsafe_inline_script (test_security_headers.SecurityHeadersTest.test_spa_routes_get_hardened_csp_without_unsafe_inline_script) ... ok
+test_canonical_html_contains_required_markers (test_signature_html_fidelity.SignatureHtmlFidelityTests.test_canonical_html_contains_required_markers) ... ok
+test_outlook_new_generates_dedicated_compatible_html (test_signature_html_fidelity.SignatureHtmlFidelityTests.test_outlook_new_generates_dedicated_compatible_html) ... ok
+test_docx_baseline_matches_frozen_spec (test_signature_model_spec.SignatureModelSpecTests.test_docx_baseline_matches_frozen_spec) ... ok
+test_spec_has_expected_critical_tokens (test_signature_model_spec.SignatureModelSpecTests.test_spec_has_expected_critical_tokens) ... ok
+test_renderer_rejects_user_without_email (test_signatures_postgres_flow.SignaturePostgresFlowTest.test_renderer_rejects_user_without_email) ... ok
+test_renderer_uses_canonical_user_fields_without_sqlite_dependency (test_signatures_postgres_flow.SignaturePostgresFlowTest.test_renderer_uses_canonical_user_fields_without_sqlite_dependency) ... ok
+test_failed_startup_step_logs_structured_diagnostic_without_secret (test_startup_diagnostics.StartupDiagnosticsTest.test_failed_startup_step_logs_structured_diagnostic_without_secret) ... ok
+test_redacts_sensitive_urls_and_fields_from_startup_errors (test_startup_diagnostics.StartupDiagnosticsTest.test_redacts_sensitive_urls_and_fields_from_startup_errors) ... ok
+test_safe_startup_snapshot_uses_presence_flags_for_sensitive_values (test_startup_diagnostics.StartupDiagnosticsTest.test_safe_startup_snapshot_uses_presence_flags_for_sensitive_values) ... ok
+test_settings_rejects_weak_jwt_secret_outside_local_and_keeps_local_defaults (test_startup_diagnostics.StartupDiagnosticsTest.test_settings_rejects_weak_jwt_secret_outside_local_and_keeps_local_defaults) ... ok
+test_startup_step_timeout_fails_fast_with_clear_reason (test_startup_diagnostics.StartupDiagnosticsTest.test_startup_step_timeout_fails_fast_with_clear_reason) ... ok
+test_startup_validation_rejects_weak_jwt_secret_outside_local (test_startup_diagnostics.StartupDiagnosticsTest.test_startup_validation_rejects_weak_jwt_secret_outside_local) ... {"environment": "staging", "app_startup_checks": true, "app_auto_migrate": false, "app_startup_step_timeout_seconds": 15.0, "admin_email_set": true, "admin_name_set": true, "admin_password_set": false, "jwt_secret_key_set": true, "database_url_set": true, "redis_url_set": true, "allowed_origins_count": 0, "frontend_dist_dir": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/dist", "frontend_index_exists": true, "frontend_assets_exists": true, "event": "settings_validation_snapshot", "level": "info", "timestamp": "2026-06-23T15:14:08.100370Z"}
+ok
+
+----------------------------------------------------------------------
+Ran 172 tests in 0.853s
+
+OK (skipped=8)
+unittest=0
+# ruff
+All checks passed!
+ruff=0
+# compileall
+compileall=0
+# frontend_build
+bash: line 1: cd: /frontend/itam-platform: No such file or directory
+frontend_build=1
+# docker_compose_config
+docker_compose_config=0
+# git_diff_check
+git_diff_check=0
+# route_smoke
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100   601  100   601    0     0  13224      0 --:--:-- --:--:-- --:--:-- 13355
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Tue, 23 Jun 2026 15:14:08 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 601
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HermesOps Sentinel — Guardião local da infraestrutura</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100   601  100   601    0     0  15547      0 --:--:-- --:--:-- --:--:-- 15815
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Tue, 23 Jun 2026 15:14:08 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 601
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HermesOps Sentinel — Guardião local da infraestrutura</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5039 milliseconds
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5014 milliseconds
+route_smoke=0
+# frontend build retry
+
+> ens-itam-platform@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v6.4.2 building for production...
+transforming...
+✓ 1860 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                    0.45 kB │ gzip:   0.31 kB
+dist/_assets/index-_X0dczQ1.css   92.38 kB │ gzip:  15.98 kB
+dist/_assets/index-Cb2T4_Cx.js   598.74 kB │ gzip: 173.41 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2.60s
+frontend_build_retry=0
+# docker compose config (confirmation)
+docker compose config: OK
+docker_compose_config_retry=0
+
+# Readiness summary
+- initial frontend build invocation failed because the shell command used an incorrect cd target; rerun succeeded from the correct frontend directory.
+- unit tests passed: 172 ran, 8 skipped.
+- ruff passed.
+- compileall passed.
+- docker compose config passed.
+- git diff --check passed.
+- optional /apoema-preview and /apoema frontend routes returned HTTP 200.
+- optional backend runtime smoke on 127.0.0.1:8080 timed out; runtime was not confirmed as running in this session.
+- no tracked real .env or private key files were found.
+- .gitignore coverage matched the expected local artifact patterns including exports, validation, reports, screenshots, dist, cache, backup manifests, and legacy source maps.
