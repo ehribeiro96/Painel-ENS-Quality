@@ -1,0 +1,27 @@
+{
+  "status": "PARTIAL_GO",
+  "backend_started": true,
+  "backend_port": 8080,
+  "health": {
+    "127.0.0.1:8080/health": "timeout",
+    "172.18.0.1:8080/health": "200 OK",
+    "/health/ready": "200 OK"
+  },
+  "ai_chat_without_token": {
+    "providers": "401 Unauthorized (missing_token)",
+    "message": "401 Unauthorized (missing_token)"
+  },
+  "metrics_without_token": "503 Service Unavailable (metrics_disabled_without_token)",
+  "apoema_routes_via_backend": {
+    "/apoema-preview": "200 OK (SPA shell; frontend ProtectedRoute present)",
+    "/apoema": "200 OK (SPA shell; frontend ProtectedRoute present)"
+  },
+  "secrets_printed": false,
+  "code_changed": false,
+  "limitations": [
+    "127.0.0.1:8080 timed out in the WSL shell",
+    "no authenticated session was available for the optional auth smoke",
+    "bridge-local access via 172.18.0.1:8080 was required to complete the runtime smoke"
+  ],
+  "recommendation": "Document or normalize the local access path for backend smoke in WSL; keep ai-chat auth and metrics behavior as observed."
+}
