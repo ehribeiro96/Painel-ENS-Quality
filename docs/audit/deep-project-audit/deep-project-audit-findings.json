@@ -1,0 +1,178 @@
+{
+  "status": "PARTIAL_GO",
+  "date": "2026-06-23",
+  "branch": "main",
+  "head": "16b690e",
+  "gates": {
+    "unittest": "PASS — 172 OK, 8 skipped",
+    "ruff": "PASS",
+    "compileall": "PASS",
+    "frontend_build": "PASS — chunk warning 598KB",
+    "npm_lint": "N/A — script missing",
+    "npm_test": "N/A — script missing",
+    "uat_ui_smoke": "FAIL — NO-GO_UAT_CREDENTIAL_UNAVAILABLE",
+    "docker_compose_config": "PASS",
+    "git_diff_check": "PASS",
+    "playwright_route_audit": "SKIPPED — chromium binaries missing"
+  },
+  "runtime": {
+    "backend_wsl_bridge": "SKIPPED — connection refused 172.18.0.1:8080",
+    "frontend_dev": "OK — HTTP 200 at 127.0.0.1:18086"
+  },
+  "areas": {
+    "login_auth": "PARTIAL — static OK, no authenticated run, accent bugs",
+    "dashboard": "PASS_STATIC",
+    "assets": "PASS_STATIC",
+    "imports": "PASS — accept aligned",
+    "macros": "PASS_STATIC",
+    "ai_chat": "PASS — backend auth, main UI error mapping OK",
+    "apoema": "PARTIAL — ProtectedRoute OK, mock fallback P1",
+    "users_rbac": "PASS — nav filtered, guards aligned",
+    "signatures": "PASS_STATIC",
+    "audit_logs": "PASS_STATIC",
+    "settings": "PARTIAL — visual only",
+    "backend_api": "PASS — tests green",
+    "runtime": "SKIPPED",
+    "security": "PASS_STATIC — post 283d9bc hardening",
+    "ui_ux_accessibility": "PARTIAL"
+  },
+  "findings_count": {
+    "P0_BLOCKER": 0,
+    "P1_HIGH": 3,
+    "P2_MEDIUM": 8,
+    "P3_LOW": 3,
+    "INFO": 5
+  },
+  "findings": [
+    {
+      "id": "BUG-001",
+      "title": "Apoema sendAiMessage masks API/auth failures with mock response",
+      "severity": "P1_HIGH",
+      "area": "apoema",
+      "route": "/apoema/chat",
+      "files": ["frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts"]
+    },
+    {
+      "id": "BUG-002",
+      "title": "Apoema getAiProviders hides 401 behind default catalog",
+      "severity": "P1_HIGH",
+      "area": "apoema",
+      "route": "GET /api/v1/ai-chat/providers",
+      "files": ["frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts", "frontend/itam-platform/src/apoema/pages/ChatPage.tsx"]
+    },
+    {
+      "id": "BUG-003",
+      "title": "Authenticated and runtime audit not executed",
+      "severity": "P1_HIGH",
+      "area": "qa",
+      "route": "all protected routes",
+      "files": ["docs/audit/deep-project-audit/deep-audit-runtime.log"]
+    },
+    {
+      "id": "BUG-004",
+      "title": "Global search swallows API errors",
+      "severity": "P2_MEDIUM",
+      "area": "ux",
+      "route": "shell search",
+      "files": ["frontend/itam-platform/src/components/AppShell.tsx"]
+    },
+    {
+      "id": "BUG-005",
+      "title": "Apoema mock data pages lack strong demo labeling",
+      "severity": "P2_MEDIUM",
+      "area": "apoema",
+      "route": "/apoema/assets",
+      "files": ["frontend/itam-platform/src/apoema/pages/AssetsPage.tsx", "frontend/itam-platform/src/apoema/data.ts"]
+    },
+    {
+      "id": "BUG-006",
+      "title": "PT-BR missing accents in critical messages",
+      "severity": "P2_MEDIUM",
+      "area": "ux",
+      "route": "/login",
+      "files": ["frontend/itam-platform/src/pages/LoginPage.tsx", "frontend/itam-platform/src/App.tsx"]
+    },
+    {
+      "id": "BUG-007",
+      "title": "HTTP rate limit stored in process memory",
+      "severity": "P2_MEDIUM",
+      "area": "security",
+      "route": "/api/v1/*",
+      "files": ["backend/app/main.py"]
+    },
+    {
+      "id": "BUG-008",
+      "title": "Settings page is cosmetic but suggests real configuration",
+      "severity": "P2_MEDIUM",
+      "area": "ux",
+      "route": "/settings",
+      "files": ["frontend/itam-platform/src/pages/SettingsPage.tsx"]
+    },
+    {
+      "id": "BUG-009",
+      "title": "Topbar status pills always show Online",
+      "severity": "P2_MEDIUM",
+      "area": "ux",
+      "route": "shell",
+      "files": ["frontend/itam-platform/src/components/AppShell.tsx"]
+    },
+    {
+      "id": "BUG-010",
+      "title": "No frontend lint or test scripts",
+      "severity": "P2_MEDIUM",
+      "area": "quality",
+      "route": "n/a",
+      "files": ["frontend/itam-platform/package.json"]
+    },
+    {
+      "id": "BUG-011",
+      "title": "JS bundle exceeds 500KB without code splitting",
+      "severity": "P2_MEDIUM",
+      "area": "performance",
+      "route": "all",
+      "files": ["frontend/itam-platform/vite.config.ts"]
+    },
+    {
+      "id": "BUG-012",
+      "title": "enableAiChat feature flag unused",
+      "severity": "P3_LOW",
+      "area": "frontend",
+      "route": "/ai-chat menu",
+      "files": ["frontend/itam-platform/src/lib/features.ts"]
+    },
+    {
+      "id": "BUG-013",
+      "title": "window.confirm used for destructive actions",
+      "severity": "P3_LOW",
+      "area": "accessibility",
+      "route": "assets/users/imports",
+      "files": ["frontend/itam-platform/src/pages/AssetsPage.tsx"]
+    },
+    {
+      "id": "BUG-014",
+      "title": "Legacy signatures link without RBAC context",
+      "severity": "P3_LOW",
+      "area": "ux",
+      "route": "/assinaturas",
+      "files": ["frontend/itam-platform/src/components/AppShell.tsx"]
+    }
+  ],
+  "limitations": [
+    "Backend WSL bridge unavailable at audit time",
+    "No UAT credential file",
+    "Playwright chromium not installed",
+    "No screenshots captured",
+    "No .env read",
+    "No destructive write operations tested"
+  ],
+  "recommended_fix_order": [
+    "fix(apoema): propagate auth and api errors instead of silent mock fallback",
+    "test(apoema): regression for 401 on providers and message",
+    "ops: rerun runtime smoke with backend up and UAT credentials",
+    "fix(ui): global search api error feedback",
+    "fix(ui): normalize pt-br accents",
+    "feat(ui): dynamic health status in shell",
+    "perf(frontend): lazy-load heavy routes",
+    "chore(frontend): add eslint to ci"
+  ]
+}

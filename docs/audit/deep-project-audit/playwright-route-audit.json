@@ -1,0 +1,9 @@
+{
+  "status": "SKIPPED",
+  "reason": "playwright_browser_binaries_missing",
+  "detail": "Chromium executable not found. npx playwright install required but not run per audit policy (no new dependency install).",
+  "playwrightVersion": "1.61.0",
+  "frontendUrl": "http://127.0.0.1:18086",
+  "frontendHttpProbe": 200,
+  "results": []
+}

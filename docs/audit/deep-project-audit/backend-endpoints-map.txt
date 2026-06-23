@@ -1,0 +1,259 @@
+backend/app/main.py:26:_rate_limit_buckets: dict[str, deque[float]] = defaultdict(deque)
+backend/app/main.py:70:def _rate_limit_key(request: Request) -> tuple[str, int]:
+backend/app/main.py:73:        return f"auth:{ip}", settings.auth_rate_limit_per_minute
+backend/app/main.py:74:    return f"api:{ip}", settings.rate_limit_per_minute
+backend/app/main.py:77:def _is_rate_limited(request: Request) -> bool:
+backend/app/main.py:80:    key, limit = _rate_limit_key(request)
+backend/app/main.py:84:    bucket = _rate_limit_buckets[key]
+backend/app/main.py:140:        if _is_rate_limited(request):
+backend/app/main.py:141:            metrics.increment("itam_rate_limited_requests_total", {"path": request.url.path})
+backend/app/main.py:142:            response = JSONResponse({"detail": "rate_limit_exceeded"}, status_code=429)
+backend/app/main.py:210:app.include_router(api_router, prefix=settings.api_prefix)
+backend/app/domains/macros/models.py:48:    generated_by: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), ForeignKey("users.id"))
+backend/app/domains/macros/schemas.py:60:class MacroGenerateRequest(BaseModel):
+backend/app/domains/macros/schemas.py:77:    generated_by: UUID | None
+backend/app/domains/macros/service.py:94:    async def generate(
+backend/app/domains/macros/service.py:105:        audit_event: str = "macro_generated",
+backend/app/domains/macros/service.py:119:            generated_by=actor_id,
+backend/app/domains/macros/service.py:201:    async def generate_for_movement(
+backend/app/domains/macros/service.py:220:        generation = await self.generate(
+backend/app/domains/macros/service.py:229:            audit_event="asset_movement_macro_generated",
+backend/app/domains/macros/service.py:237:                "event": "asset_movement_macro_generated",
+backend/app/domains/imports/classification/conflict_detector.py:25:        for index, row in enumerate(normalized_rows):
+backend/app/domains/imports/classification/conflict_detector.py:68:    for index, row in enumerate(normalized_rows):
+backend/app/domains/imports/service.py:120:        for index, raw_row in enumerate(raw_rows, start=2):
+backend/app/domains/imports/service.py:248:        for index, (staging, normalized) in enumerate(zip(staging_rows, normalized_rows, strict=True)):
+backend/app/domains/ai_chat/apoema.py:66:async def generate_apoema_message(settings: Settings, payload: ApoemaChatMessageCreate) -> ApoemaChatMessageResponse:
+backend/app/domains/ai_chat/apoema.py:75:        response = await MockAiProvider().generate(provider_messages)
+backend/app/domains/ai_chat/apoema.py:93:            ).generate(provider_messages)
+backend/app/domains/ai_chat/apoema.py:193:    fallback_response = await MockAiProvider().generate(provider_messages)
+backend/app/domains/ai_chat/providers.py:30:GEMINI_GENERATE_CONTENT_URL_TEMPLATE = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+backend/app/domains/ai_chat/providers.py:65:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:
+backend/app/domains/ai_chat/providers.py:72:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:
+backend/app/domains/ai_chat/providers.py:249:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:
+backend/app/domains/ai_chat/providers.py:307:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:
+backend/app/domains/ai_chat/providers.py:361:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:  # noqa: ARG002
+backend/app/domains/ai_chat/providers.py:416:    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:  # noqa: ARG002
+backend/app/domains/ai_chat/rate_limit.py:70:        return f"ai_chat:rate_limit:{user_hash}:{window_epoch}"
+backend/app/domains/ai_chat/rate_limit.py:73:        limit = int(self.settings.ai_chat_rate_limit_per_minute or 0)
+backend/app/domains/ai_chat/rate_limit.py:83:                    "ai_chat_rate_limit_redis_fallback",
+backend/app/domains/ai_chat/rate_limit.py:91:                    "ai_chat_rate_limit_store_unavailable",
+backend/app/domains/ai_chat/rate_limit.py:95:                raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_chat_rate_limit_unavailable") from exc
+backend/app/domains/ai_chat/rate_limit.py:98:            raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail="ai_chat_rate_limit_exceeded")
+backend/app/domains/ai_chat/rate_limit.py:125:def get_ai_chat_rate_limiter() -> AiChatRateLimiter:
+backend/app/domains/ai_chat/rate_limit.py:129:def reset_ai_chat_rate_limit_memory() -> None:
+backend/app/domains/ai_chat/service.py:122:                response = await provider.generate(provider_messages, mode=mode)
+backend/app/domains/ai_chat/service.py:126:                response = await provider.generate(provider_messages)
+backend/app/core/permissions/rbac.py:7:def require_roles(current_role: Role, allowed: set[Role]) -> None:
+backend/app/core/startup.py:52:        "app_auto_migrate": settings.app_auto_migrate,
+backend/app/core/startup.py:214:    if not settings.app_auto_migrate:
+backend/app/core/config/settings.py:44:    app_auto_migrate: bool = False
+backend/app/core/config/settings.py:51:    rate_limit_per_minute: int = 240
+backend/app/core/config/settings.py:52:    auth_rate_limit_per_minute: int = 20
+backend/app/core/config/settings.py:68:    ai_chat_rate_limit_per_minute: int = 20
+backend/app/core/config/settings.py:109:            self.app_auto_migrate = True
+backend/app/api/v1/router.py:4:from fastapi import APIRouter
+backend/app/api/v1/router.py:6:api_router = APIRouter()
+backend/app/api/v1/router.py:7:api_router.include_router(auth.router)
+backend/app/api/v1/router.py:8:api_router.include_router(users.router)
+backend/app/api/v1/router.py:9:api_router.include_router(assets.router)
+backend/app/api/v1/router.py:10:api_router.include_router(dashboard.router)
+backend/app/api/v1/router.py:11:api_router.include_router(imports.router)
+backend/app/api/v1/router.py:12:api_router.include_router(signatures.router)
+backend/app/api/v1/router.py:13:api_router.include_router(macros.router)
+backend/app/api/v1/router.py:14:api_router.include_router(macros.movements_router)
+backend/app/api/v1/router.py:15:api_router.include_router(ai_chat.router)
+backend/app/api/v1/router.py:16:api_router.include_router(audit.router)
+backend/app/api/v1/router.py:17:api_router.include_router(search.router)
+backend/app/api/v1/dependencies/auth.py:9:from fastapi import Depends, HTTPException, Request, status
+backend/app/api/v1/dependencies/auth.py:15:bearer_credentials = Depends(bearer)
+backend/app/api/v1/dependencies/auth.py:16:database_session = Depends(get_session)
+backend/app/api/v1/dependencies/auth.py:19:async def get_current_user(
+backend/app/api/v1/dependencies/auth.py:48:    return await get_current_user(request, credentials, session)
+backend/app/api/v1/dependencies/auth.py:51:def require_role(*roles: Role):
+backend/app/api/v1/dependencies/auth.py:52:    current_user_dependency = Depends(get_current_user)
+backend/app/api/v1/routes/imports.py:5:from app.api.v1.dependencies.auth import get_current_user, require_role
+backend/app/api/v1/routes/imports.py:23:from fastapi import APIRouter, Depends, File, Form, HTTPException, Query, Request, UploadFile, status
+backend/app/api/v1/routes/imports.py:27:router = APIRouter(prefix="/imports", tags=["Imports"])
+backend/app/api/v1/routes/imports.py:37:@router.post("/lansweeper", response_model=ImportJobRead, status_code=status.HTTP_201_CREATED)
+backend/app/api/v1/routes/imports.py:42:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/imports.py:43:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/imports.py:54:@router.post("/spreadsheet/upload", response_model=ImportJobRead, status_code=status.HTTP_201_CREATED)
+backend/app/api/v1/routes/imports.py:59:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/imports.py:60:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/imports.py:71:@router.get("", response_model=Page[ImportJobRead])
+backend/app/api/v1/routes/imports.py:75:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/imports.py:76:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/imports.py:84:@router.get("/{import_id}", response_model=ImportJobRead)
+backend/app/api/v1/routes/imports.py:85:async def get_import(import_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> ImportJob:
+backend/app/api/v1/routes/imports.py:89:@router.get("/{import_id}/preview", response_model=ImportPreview)
+backend/app/api/v1/routes/imports.py:93:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/imports.py:94:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/imports.py:112:@router.get("/{import_id}/staging", response_model=Page[ImportStagingAssetRead])
+backend/app/api/v1/routes/imports.py:118:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/imports.py:119:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/imports.py:137:@router.get("/{import_id}/conflicts", response_model=list[ImportConflictRead])
+backend/app/api/v1/routes/imports.py:138:async def get_import_conflicts(import_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[ImportConflict]:
+backend/app/api/v1/routes/imports.py:147:@router.get("/{import_id}/validation-errors", response_model=list[ImportValidationErrorRead])
+backend/app/api/v1/routes/imports.py:150:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/imports.py:151:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/imports.py:161:@router.post("/{import_id}/mapping", response_model=ImportJobRead)
+backend/app/api/v1/routes/imports.py:166:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/imports.py:167:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/imports.py:177:@router.post("/{import_id}/apply", response_model=ImportApplyResponse)
+backend/app/api/v1/routes/imports.py:181:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/imports.py:182:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/imports.py:195:@router.post("/{import_id}/cancel", response_model=ImportJobRead)
+backend/app/api/v1/routes/imports.py:199:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/imports.py:200:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/imports.py:212:@router.get("/{import_id}/report")
+backend/app/api/v1/routes/imports.py:213:async def get_import_report(import_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> dict:
+backend/app/api/v1/routes/users.py:5:from app.api.v1.dependencies.auth import get_current_user, require_role
+backend/app/api/v1/routes/users.py:16:from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response, status
+backend/app/api/v1/routes/users.py:21:router = APIRouter(prefix="/users", tags=["Users"])
+backend/app/api/v1/routes/users.py:24:@router.get("", response_model=Page[UserRead])
+backend/app/api/v1/routes/users.py:29:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/users.py:30:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/users.py:35:@router.post("", response_model=UserRead, status_code=status.HTTP_201_CREATED)
+backend/app/api/v1/routes/users.py:39:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/users.py:40:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/users.py:51:@router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT, response_class=Response, response_model=None)
+backend/app/api/v1/routes/users.py:55:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/users.py:56:    current_user: User = Depends(require_role(Role.ADMIN)),
+backend/app/api/v1/routes/users.py:71:@router.get("/{user_id}", response_model=UserRead)
+backend/app/api/v1/routes/users.py:72:async def get_user(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> User:
+backend/app/api/v1/routes/users.py:79:@router.put("/{user_id}", response_model=UserRead)
+backend/app/api/v1/routes/users.py:84:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/users.py:85:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/users.py:97:@router.get("/{user_id}/assets", response_model=list[AssetRead])
+backend/app/api/v1/routes/users.py:98:async def user_assets(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[Asset]:
+backend/app/api/v1/routes/auth.py:3:from app.api.v1.dependencies.auth import get_current_user, get_optional_current_user
+backend/app/api/v1/routes/auth.py:17:from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
+backend/app/api/v1/routes/auth.py:21:router = APIRouter(prefix="/auth", tags=["Auth"])
+backend/app/api/v1/routes/auth.py:53:@router.post("/login", response_model=TokenResponse)
+backend/app/api/v1/routes/auth.py:58:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/auth.py:90:@router.post("/refresh", response_model=TokenResponse)
+backend/app/api/v1/routes/auth.py:91:async def refresh(request: Request, response: Response, session: AsyncSession = Depends(get_session)) -> TokenResponse:
+backend/app/api/v1/routes/auth.py:121:@router.post("/logout")
+backend/app/api/v1/routes/auth.py:125:    current_user: User | None = Depends(get_optional_current_user),
+backend/app/api/v1/routes/auth.py:126:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/auth.py:147:@router.get("/me", response_model=UserRead)
+backend/app/api/v1/routes/auth.py:148:async def me(current_user: User = Depends(get_current_user)) -> User:
+backend/app/api/v1/routes/ai_chat.py:5:from app.api.v1.dependencies.auth import require_role
+backend/app/api/v1/routes/ai_chat.py:8:from app.domains.ai_chat.apoema import build_apoema_provider_catalog, generate_apoema_message
+backend/app/api/v1/routes/ai_chat.py:10:from app.domains.ai_chat.rate_limit import get_ai_chat_rate_limiter
+backend/app/api/v1/routes/ai_chat.py:24:from fastapi import APIRouter, Depends, HTTPException, status
+backend/app/api/v1/routes/ai_chat.py:27:router = APIRouter(prefix="/ai-chat", tags=["AI Chat"])
+backend/app/api/v1/routes/ai_chat.py:29:ai_chat_user = Depends(require_role(Role.ADMIN, Role.TECHNICIAN, Role.MANAGER, Role.VIEWER))
+backend/app/api/v1/routes/ai_chat.py:30:_AI_CHAT_RATE_LIMIT = get_ai_chat_rate_limiter()._memory_store._buckets  # compatibility for existing tests
+backend/app/api/v1/routes/ai_chat.py:38:async def _apply_rate_limit(user_id: UUID) -> None:
+backend/app/api/v1/routes/ai_chat.py:40:    limiter = get_ai_chat_rate_limiter()
+backend/app/api/v1/routes/ai_chat.py:49:@router.get("/health")
+backend/app/api/v1/routes/ai_chat.py:55:@router.get("/providers", response_model=ApoemaChatProvidersResponse)
+backend/app/api/v1/routes/ai_chat.py:60:@router.post("/message", response_model=ApoemaChatMessageResponse)
+backend/app/api/v1/routes/ai_chat.py:67:    await _apply_rate_limit(current_user.id)
+backend/app/api/v1/routes/ai_chat.py:68:    return await generate_apoema_message(settings, payload)
+backend/app/api/v1/routes/ai_chat.py:71:@router.get("/conversations", response_model=list[AiChatConversationRead])
+backend/app/api/v1/routes/ai_chat.py:73:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/ai_chat.py:80:@router.post("/conversations", response_model=AiChatConversationDetail, status_code=status.HTTP_201_CREATED)
+backend/app/api/v1/routes/ai_chat.py:83:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/ai_chat.py:90:        await _apply_rate_limit(current_user.id)
+backend/app/api/v1/routes/ai_chat.py:112:@router.get("/conversations/{conversation_id}", response_model=AiChatConversationDetail)
+backend/app/api/v1/routes/ai_chat.py:115:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/ai_chat.py:127:@router.post("/conversations/{conversation_id}/messages", response_model=AiChatConversationDetail)
+backend/app/api/v1/routes/ai_chat.py:131:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/ai_chat.py:135:    await _apply_rate_limit(current_user.id)
+backend/app/api/v1/routes/macros.py:5:from app.api.v1.dependencies.auth import get_current_user, require_role
+backend/app/api/v1/routes/macros.py:11:    MacroGenerateRequest,
+backend/app/api/v1/routes/macros.py:25:from fastapi import APIRouter, Depends, HTTPException, Query, Request, status
+backend/app/api/v1/routes/macros.py:29:router = APIRouter(prefix="/macros", tags=["Macros"])
+backend/app/api/v1/routes/macros.py:30:movements_router = APIRouter(prefix="/movements", tags=["Macros"])
+backend/app/api/v1/routes/macros.py:33:@router.get("/templates", response_model=list[MacroTemplateRead])
+backend/app/api/v1/routes/macros.py:37:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/macros.py:38:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/macros.py:43:@router.get("/templates/{template_id}", response_model=MacroTemplateRead)
+backend/app/api/v1/routes/macros.py:44:async def get_template(template_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)):
+backend/app/api/v1/routes/macros.py:51:@router.post("/templates", response_model=MacroTemplateRead, status_code=status.HTTP_201_CREATED)
+backend/app/api/v1/routes/macros.py:55:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/macros.py:56:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/macros.py:66:@router.put("/templates/{template_id}", response_model=MacroTemplateRead)
+backend/app/api/v1/routes/macros.py:71:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/macros.py:72:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/macros.py:85:@router.post("/render", response_model=MacroRenderResponse)
+backend/app/api/v1/routes/macros.py:88:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/macros.py:89:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/macros.py:106:@router.post("/generate", response_model=MacroGenerationRead, status_code=status.HTTP_201_CREATED)
+backend/app/api/v1/routes/macros.py:107:async def generate_macro(
+backend/app/api/v1/routes/macros.py:108:    payload: MacroGenerateRequest,
+backend/app/api/v1/routes/macros.py:110:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/macros.py:111:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/macros.py:120:            return await service.generate(
+backend/app/api/v1/routes/macros.py:135:@router.get("/generations", response_model=list[MacroGenerationRead])
+backend/app/api/v1/routes/macros.py:137:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/macros.py:138:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/macros.py:144:@router.post("/generations/{generation_id}/copied", response_model=MacroGenerationRead)
+backend/app/api/v1/routes/macros.py:148:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/macros.py:149:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/macros.py:161:@router.get("/autocomplete", response_model=list[MacroAutocompleteHintRead])
+backend/app/api/v1/routes/macros.py:165:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/macros.py:166:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/macros.py:175:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/macros.py:176:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/macros.py:180:            return await MacroService(session).generate_for_movement(
+backend/app/api/v1/routes/search.py:3:from app.api.v1.dependencies.auth import get_current_user
+backend/app/api/v1/routes/search.py:7:from fastapi import APIRouter, Depends, Query
+backend/app/api/v1/routes/search.py:11:router = APIRouter(prefix="/search", tags=["Search"])
+backend/app/api/v1/routes/search.py:14:@router.get("")
+backend/app/api/v1/routes/search.py:18:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/search.py:19:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/assets.py:5:from app.api.v1.dependencies.auth import get_current_user, require_role
+backend/app/api/v1/routes/assets.py:18:from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response, status
+backend/app/api/v1/routes/assets.py:22:router = APIRouter(prefix="/assets", tags=["Assets"])
+backend/app/api/v1/routes/assets.py:25:@router.get("", response_model=Page[AssetRead])
+backend/app/api/v1/routes/assets.py:36:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/assets.py:37:    _: User = Depends(get_current_user),
+backend/app/api/v1/routes/assets.py:51:@router.post("", response_model=AssetRead, status_code=status.HTTP_201_CREATED)
+backend/app/api/v1/routes/assets.py:55:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/assets.py:56:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/assets.py:64:@router.get("/{asset_id}", response_model=AssetRead)
+backend/app/api/v1/routes/assets.py:65:async def get_asset(asset_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> Asset:
+backend/app/api/v1/routes/assets.py:72:@router.put("/{asset_id}", response_model=AssetRead)
+backend/app/api/v1/routes/assets.py:77:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/assets.py:78:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/assets.py:90:@router.delete("/{asset_id}", status_code=status.HTTP_204_NO_CONTENT, response_class=Response, response_model=None)
+backend/app/api/v1/routes/assets.py:94:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/assets.py:95:    current_user: User = Depends(require_role(Role.ADMIN)),
+backend/app/api/v1/routes/assets.py:107:@router.post("/{asset_id}/move", response_model=MovementRead)
+backend/app/api/v1/routes/assets.py:112:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/assets.py:113:    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+backend/app/api/v1/routes/assets.py:130:@router.get("/{asset_id}/history", response_model=list[MovementRead])
+backend/app/api/v1/routes/assets.py:131:async def asset_history(asset_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[MovementRead]:
+backend/app/api/v1/routes/signatures.py:5:from app.api.v1.dependencies.auth import get_current_user
+backend/app/api/v1/routes/signatures.py:14:from fastapi import APIRouter, Depends, HTTPException, Request
+backend/app/api/v1/routes/signatures.py:18:router = APIRouter(prefix="/signatures", tags=["Signatures"])
+backend/app/api/v1/routes/signatures.py:21:@router.get("/{user_id}", response_class=HTMLResponse)
+backend/app/api/v1/routes/signatures.py:22:async def preview_signature(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> str:
+backend/app/api/v1/routes/signatures.py:29:@router.post("/generate/{user_id}", response_class=HTMLResponse)
+backend/app/api/v1/routes/signatures.py:30:async def generate_signature(
+backend/app/api/v1/routes/signatures.py:33:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/signatures.py:34:    current_user: User = Depends(get_current_user),
+backend/app/api/v1/routes/signatures.py:46:            after={"generated_for": str(user.id), "email": user.email},
+backend/app/api/v1/routes/signatures.py:54:@router.get("/{user_id}/download-html", response_class=HTMLResponse)
+backend/app/api/v1/routes/signatures.py:55:async def download_signature(user_id: UUID, session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> HTMLResponse:
+backend/app/api/v1/routes/dashboard.py:3:from app.api.v1.dependencies.auth import get_current_user
+backend/app/api/v1/routes/dashboard.py:9:from fastapi import APIRouter, Depends
+backend/app/api/v1/routes/dashboard.py:12:router = APIRouter(prefix="/dashboard", tags=["Dashboard"])
+backend/app/api/v1/routes/dashboard.py:15:@router.get("/summary")
+backend/app/api/v1/routes/dashboard.py:16:async def summary(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> dict[str, int]:
+backend/app/api/v1/routes/dashboard.py:20:@router.get("/assets-by-status")
+backend/app/api/v1/routes/dashboard.py:21:async def assets_by_status(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[dict[str, str | int]]:
+backend/app/api/v1/routes/dashboard.py:25:@router.get("/assets-by-type")
+backend/app/api/v1/routes/dashboard.py:26:async def assets_by_type(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[dict[str, str | int]]:
+backend/app/api/v1/routes/dashboard.py:30:@router.get("/recent-movements", response_model=list[MovementRead])
+backend/app/api/v1/routes/dashboard.py:31:async def recent_movements(session: AsyncSession = Depends(get_session), _: User = Depends(get_current_user)) -> list[AssetMovement]:
+backend/app/api/v1/routes/audit.py:6:from app.api.v1.dependencies.auth import require_role
+backend/app/api/v1/routes/audit.py:13:from fastapi import APIRouter, Depends, Query
+backend/app/api/v1/routes/audit.py:17:router = APIRouter(prefix="/audit-logs", tags=["Audit"])
+backend/app/api/v1/routes/audit.py:68:@router.get("", response_model=Page[AuditLogRead])
+backend/app/api/v1/routes/audit.py:82:    session: AsyncSession = Depends(get_session),
+backend/app/api/v1/routes/audit.py:83:    _: User = Depends(require_role(Role.ADMIN, Role.MANAGER)),

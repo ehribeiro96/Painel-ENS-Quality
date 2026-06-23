@@ -1,0 +1,44 @@
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:1:import { Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:82:      <Routes>
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:83:        <Route element={<ApoemaShell theme={theme} />}>
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:84:          <Route index element={<Navigate to="dashboard" replace />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:85:          <Route path="dashboard" element={<DashboardPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:86:          <Route path="assets" element={<AssetsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:87:          <Route path="chat" element={<ChatPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:88:          <Route path="integrations" element={<IntegrationsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:89:          <Route path="settings" element={<SettingsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:90:        </Route>
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:91:      </Routes>
+frontend/itam-platform/src/pages/LoginPage.tsx:2:import { Navigate, useLocation, useNavigate } from "react-router-dom";
+frontend/itam-platform/src/pages/LoginPage.tsx:13:  const navigate = useNavigate();
+frontend/itam-platform/src/pages/LoginPage.tsx:25:    return <Navigate to="/" replace />;
+frontend/itam-platform/src/App.tsx:2:import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
+frontend/itam-platform/src/App.tsx:23:function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role[] }) {
+frontend/itam-platform/src/App.tsx:32:    return <Navigate to="/login" state={{ from: location }} replace />;
+frontend/itam-platform/src/App.tsx:42:function ShellRoute() {
+frontend/itam-platform/src/App.tsx:44:    <ProtectedRoute>
+frontend/itam-platform/src/App.tsx:48:    </ProtectedRoute>
+frontend/itam-platform/src/App.tsx:62:    <Routes>
+frontend/itam-platform/src/App.tsx:63:      <Route path="/apoema/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
+frontend/itam-platform/src/App.tsx:64:      <Route path="/apoema-preview/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
+frontend/itam-platform/src/App.tsx:65:      <Route path="/login" element={<LoginPage />} />
+frontend/itam-platform/src/App.tsx:66:      <Route element={<ShellRoute />}>
+frontend/itam-platform/src/App.tsx:67:        <Route index element={<DashboardPage />} />
+frontend/itam-platform/src/App.tsx:68:        <Route path="/assets" element={<AssetsPage />} />
+frontend/itam-platform/src/App.tsx:69:        <Route path="/assets/:id" element={<AssetDetailsPage />} />
+frontend/itam-platform/src/App.tsx:70:        <Route path="/users" element={<UsersPage />} />
+frontend/itam-platform/src/App.tsx:71:        <Route path="/users/:id" element={<UserDetailsPage />} />
+frontend/itam-platform/src/App.tsx:72:        <Route path="/assignments" element={<AssignmentsPage />} />
+frontend/itam-platform/src/App.tsx:73:        <Route path="/stock" element={<StockPage />} />
+frontend/itam-platform/src/App.tsx:74:        <Route path="/imports" element={<RoleGuard roles={["ADMIN", "TECHNICIAN"]}><ImportsPage /></RoleGuard>} />
+frontend/itam-platform/src/App.tsx:75:        <Route path="/macros" element={<RoleGuard roles={["ADMIN", "TECHNICIAN"]}><MacrosPage /></RoleGuard>} />
+frontend/itam-platform/src/App.tsx:76:        <Route path="/ai-chat" element={<AiChatPage />} />
+frontend/itam-platform/src/App.tsx:77:        <Route path="/signatures" element={<SignaturesPage />} />
+frontend/itam-platform/src/App.tsx:78:        <Route path="/audit-logs" element={<RoleGuard roles={["ADMIN", "MANAGER"]}><AuditLogsPage /></RoleGuard>} />
+frontend/itam-platform/src/App.tsx:79:        <Route path="/settings" element={<RoleGuard roles={["ADMIN"]}><SettingsPage /></RoleGuard>} />
+frontend/itam-platform/src/App.tsx:80:      </Route>
+frontend/itam-platform/src/App.tsx:81:      <Route path="*" element={<NotFoundPage />} />
+frontend/itam-platform/src/App.tsx:82:    </Routes>
+frontend/itam-platform/src/main.tsx:3:import { BrowserRouter } from "react-router-dom";
+frontend/itam-platform/src/main.tsx:28:      <BrowserRouter>
+frontend/itam-platform/src/main.tsx:32:      </BrowserRouter>

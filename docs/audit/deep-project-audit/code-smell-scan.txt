@@ -1,0 +1,51 @@
+# TODO/FIXME/HACK
+
+# Broad catch swallowing errors
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:115:      .catch(() => {
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:192:    } catch {
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:50:    const detail = await response.text().catch(() => "");
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:81:  } catch {
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:96:  } catch (error) {
+frontend/itam-platform/src/pages/UsersPage.tsx:121:    } catch {
+frontend/itam-platform/src/pages/UsersPage.tsx:170:    } catch {
+frontend/itam-platform/src/pages/UsersPage.tsx:186:    } catch {
+frontend/itam-platform/src/pages/UserDetailsPage.tsx:28:      .catch(() => setError("Nao foi possivel carregar o usuario."))
+frontend/itam-platform/src/pages/LoginPage.tsx:36:    } catch {
+frontend/itam-platform/src/pages/SignaturesPage.tsx:36:      .catch(() => setError("Não foi possível carregar colaboradores para assinatura."))
+frontend/itam-platform/src/pages/SignaturesPage.tsx:49:    } catch (err) {
+frontend/itam-platform/src/pages/SignaturesPage.tsx:79:    } catch {
+frontend/itam-platform/src/pages/AiChatPage.tsx:77:  } catch {
+frontend/itam-platform/src/pages/AiChatPage.tsx:234:      .catch((err: unknown) => {
+frontend/itam-platform/src/pages/AiChatPage.tsx:246:      .catch((err: unknown) => setErrorState({ error: toApiError(err, "Erro desconhecido ao carregar conversas.") }))
+frontend/itam-platform/src/pages/AiChatPage.tsx:264:    } catch (err: unknown) {
+frontend/itam-platform/src/pages/AiChatPage.tsx:282:    } catch (err: unknown) {
+frontend/itam-platform/src/pages/AiChatPage.tsx:321:    } catch (err: unknown) {
+frontend/itam-platform/src/pages/AiChatPage.tsx:377:    } catch (err: unknown) {
+frontend/itam-platform/src/pages/AiChatPage.tsx:383:        await refreshConversations(conversationId, false).catch(() => undefined);
+frontend/itam-platform/src/pages/StockPage.tsx:31:      .catch(() => setError("Nao foi possivel carregar indicadores de estoque."))
+frontend/itam-platform/src/pages/AuditLogsPage.tsx:91:      .catch(() => setError("Não foi possível carregar auditoria."))
+frontend/itam-platform/src/pages/MacrosPage.tsx:94:    } catch {
+frontend/itam-platform/src/pages/ImportsPage.tsx:86:      .catch(() => setError("Não foi possível carregar as importações."))
+frontend/itam-platform/src/pages/ImportsPage.tsx:112:      .catch(() => setError("Não foi possível carregar preview, staging ou conflitos."));
+frontend/itam-platform/src/pages/ImportsPage.tsx:128:    } catch {
+frontend/itam-platform/src/pages/ImportsPage.tsx:142:    } catch {
+frontend/itam-platform/src/pages/ImportsPage.tsx:167:    } catch {
+frontend/itam-platform/src/pages/ImportsPage.tsx:182:    } catch {
+frontend/itam-platform/src/components/AppShell.tsx:66:        .catch(() => setResults([]))
+frontend/itam-platform/src/components/MoveAssetDialog.tsx:103:      const suggested = await api.suggestedMovementMacro(token, movement.id).catch(() => null);
+frontend/itam-platform/src/components/MoveAssetDialog.tsx:108:    } catch {
+frontend/itam-platform/src/components/MoveAssetDialog.tsx:125:    } catch {
+frontend/itam-platform/src/lib/auth.tsx:44:      .catch(() => {
+frontend/itam-platform/src/lib/auth.tsx:67:      .catch(() => {
+frontend/itam-platform/src/lib/auth.tsx:90:        await api.logout(tokenRef.current).catch(() => undefined);
+frontend/itam-platform/src/lib/useLocalStorageState.ts:11:    } catch {
+frontend/itam-platform/src/lib/api.ts:26:  } catch {
+frontend/itam-platform/src/lib/api.ts:149:    const nextToken = await refreshAccessToken().catch(() => null);
+frontend/itam-platform/src/lib/api.ts:159:    const responseText = await response.text().catch(() => "");
+frontend/itam-platform/src/lib/api.ts:164:      } catch {
+
+# alert/confirm usage
+frontend/itam-platform/src/pages/UsersPage.tsx:179:    const confirmed = window.confirm("Desativar este colaborador? Histórico, auditoria e vínculos existentes serão preservados.");
+frontend/itam-platform/src/pages/AssetsPage.tsx:266:    const confirmed = window.confirm("Este ativo possui historico operacional e sera desativado, nao removido definitivamente. Continuar?");
+frontend/itam-platform/src/pages/ImportsPage.tsx:159:    if (!window.confirm("Aplicar importação? Dados operacionais críticos não serão sobrescritos automaticamente.")) return;
+frontend/itam-platform/src/pages/ImportsPage.tsx:176:    if (!window.confirm("Cancelar importação pendente? O staging será preservado para auditoria.")) return;

@@ -1,0 +1,12 @@
+# Tracked sensitive files
+.env.example
+config/.env.example
+frontend/itam-platform/.env.local.example
+infra/hermesops/.env.hml.example
+
+# Frontend direct provider calls
+
+# Insecure defaults
+backend/app/core/config/settings.py:33:    jwt_secret_key: str = Field(min_length=32, default="change-me-with-at-least-32-characters")
+docker-compose.yml:9:      - "127.0.0.1:5432:5432"
+docker-compose.yml:22:      - "127.0.0.1:6379:6379"
