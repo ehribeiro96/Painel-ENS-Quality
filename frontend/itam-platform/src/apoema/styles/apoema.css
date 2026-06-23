@@ -238,6 +238,13 @@
   letter-spacing: -0.08em;
 }
 
+.apoema-page-top h1,
+.apoema-hero h1,
+.apoema-chat-main h1,
+.apoema-detail-card h2 {
+  text-wrap: balance;
+}
+
 .apoema-page-top p,
 .apoema-hero p,
 .apoema-chat-main p,
@@ -941,6 +948,233 @@
 
 .apoema-integration-card dl {
   margin: 0;
+}
+
+@media (max-width: 1440px) {
+  .apoema-shell {
+    grid-template-columns: 228px minmax(0, 1fr) 236px;
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .apoema-sidebar,
+  .apoema-rail {
+    gap: 14px;
+    top: 14px;
+  }
+
+  .apoema-logo {
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .apoema-logo-mark {
+    width: 64px;
+    height: 64px;
+  }
+
+  .apoema-logo-text strong {
+    font-size: 1.5rem;
+    line-height: 1.05;
+  }
+
+  .apoema-nav-item {
+    padding: 11px 12px;
+  }
+
+  .apoema-topbar,
+  .apoema-panel,
+  .apoema-sidebar-card,
+  .apoema-rail-card,
+  .apoema-hero-copy,
+  .apoema-hero-panel,
+  .apoema-chat-sidebar-card,
+  .apoema-chat-dock {
+    border-radius: 20px;
+  }
+
+  .apoema-topbar {
+    padding: 14px 16px;
+  }
+
+  .apoema-page,
+  .apoema-chat-layout {
+    gap: 14px;
+  }
+
+  .apoema-page-top h1,
+  .apoema-hero h1,
+  .apoema-chat-main h1 {
+    font-size: clamp(1.72rem, 2.35vw, 2.95rem);
+    line-height: 0.98;
+  }
+
+  .apoema-page-top p,
+  .apoema-hero p,
+  .apoema-chat-main p,
+  .apoema-panel p,
+  .apoema-rail-card p {
+    font-size: 0.96rem;
+  }
+
+  .apoema-hero {
+    grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+  }
+
+  .apoema-hero-copy {
+    padding: 22px;
+  }
+
+  .apoema-hero-panel {
+    padding: 16px;
+  }
+
+  .apoema-hero-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .apoema-section-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  }
+
+  .apoema-panel {
+    padding: 16px;
+  }
+
+  .apoema-sidebar-card,
+  .apoema-rail-card {
+    padding: 16px;
+  }
+
+  .apoema-assets-layout {
+    grid-template-columns: minmax(0, 1.7fr) minmax(230px, 0.42fr);
+    gap: 14px;
+  }
+
+  .apoema-table {
+    min-width: 760px;
+  }
+
+  .apoema-table th,
+  .apoema-table td {
+    padding: 12px 10px;
+  }
+
+  .apoema-detail-card {
+    padding: 16px;
+  }
+
+  .apoema-detail-card h2 {
+    font-size: 1.34rem;
+  }
+
+  .apoema-chat-layout {
+    grid-template-columns: minmax(206px, 0.47fr) minmax(0, 1.14fr) minmax(190px, 0.39fr);
+    gap: 14px;
+  }
+
+  .apoema-chat-sidebar-card,
+  .apoema-chat-dock {
+    padding: 14px;
+  }
+
+  .apoema-conversation-item {
+    padding: 12px;
+  }
+
+  .apoema-chat-message {
+    padding: 14px;
+  }
+
+  .apoema-chat-message.role-user,
+  .apoema-chat-message.role-assistant {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .apoema-chat-composer textarea {
+    min-height: 88px;
+  }
+
+  .apoema-chat-composer-actions {
+    gap: 10px;
+  }
+
+  .apoema-provider-select select {
+    min-width: 180px;
+  }
+
+  .apoema-warning {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 1366px) {
+  .apoema-shell {
+    grid-template-columns: 208px minmax(0, 1fr) 218px;
+  }
+
+  .apoema-page-top h1,
+  .apoema-hero h1,
+  .apoema-chat-main h1 {
+    font-size: clamp(1.56rem, 1.95vw, 2.55rem);
+  }
+
+  .apoema-sidebar-card p,
+  .apoema-rail-card p {
+    line-height: 1.5;
+  }
+
+  .apoema-hero {
+    grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+  }
+
+  .apoema-assets-layout {
+    grid-template-columns: minmax(0, 1.78fr) minmax(210px, 0.34fr);
+  }
+
+  .apoema-table {
+    min-width: 640px;
+  }
+
+  .apoema-table th:nth-child(2),
+  .apoema-table td:nth-child(2),
+  .apoema-table th:nth-child(4),
+  .apoema-table td:nth-child(4) {
+    display: none;
+  }
+
+  .apoema-filter-bar {
+    padding: 12px;
+  }
+
+  .apoema-search {
+    padding: 11px 12px;
+  }
+
+  .apoema-chat-layout {
+    grid-template-columns: minmax(188px, 0.42fr) minmax(0, 1.2fr) minmax(172px, 0.32fr);
+  }
+
+  .apoema-chat-messages {
+    gap: 12px;
+  }
+
+  .apoema-chat-message p {
+    line-height: 1.55;
+  }
+
+  .apoema-provider-select select {
+    min-width: 160px;
+  }
+
+  .apoema-settings-grid {
+    gap: 14px;
+  }
+
+  .apoema-hero-actions {
+    gap: 10px;
+  }
 }
 
 @media (max-width: 1280px) {
