@@ -1,0 +1,20 @@
+{
+  "status": "PARTIAL_GO",
+  "code_changed": false,
+  "secrets_printed": false,
+  "backend_access": {
+    "127.0.0.1:8080": "timeout",
+    "localhost:8080": "timeout",
+    "172.18.0.1:8080": "ok",
+    "host.docker.internal:8080": "unresolved",
+    "wsl_ip:8080": "connect_failed"
+  },
+  "health": {
+    "working_base_url": "http://172.18.0.1:8080",
+    "health": "200 OK",
+    "ready": "200 OK"
+  },
+  "ai_chat_auth_without_token": "401 Unauthorized (missing_token)",
+  "probable_cause": "D_WSL_LOOPBACK_FORWARDING_ISSUE",
+  "recommendation": "Documentar 172.18.0.1:8080 como bridge operacional no WSL"
+}

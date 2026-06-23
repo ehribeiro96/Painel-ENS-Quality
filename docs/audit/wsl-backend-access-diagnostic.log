@@ -1,0 +1,549 @@
+# Date
+2026-06-23T13:30:19-03:00
+
+# Kernel / OS
+Linux RJM22137 6.18.33.1-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Fri Jun  5 01:12:21 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
+# IP addresses
+172.16.0.2 192.168.0.80 172.18.0.1 172.17.0.1 2606:4700:110:8e7e:cef4:395e:1f71:d3be
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet 10.255.255.254/32 brd 10.255.255.254 scope global lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1280 qdisc mq state UP group default qlen 1000
+    link/ether 00:15:5d:ee:dd:2b brd ff:ff:ff:ff:ff:ff
+    inet 172.16.0.2/32 brd 172.16.0.2 scope global noprefixroute eth0
+       valid_lft forever preferred_lft forever
+    inet6 2606:4700:110:8e7e:cef4:395e:1f71:d3be/128 scope global nodad noprefixroute
+       valid_lft forever preferred_lft forever
+    inet6 fe80::39c2:ac59:eb7a:8510/64 scope link nodad noprefixroute
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether d0:c1:b5:7e:58:b2 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.80/23 brd 192.168.1.255 scope global noprefixroute eth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::4ed0:23f5:1ad5:d5bb/64 scope link nodad noprefixroute
+       valid_lft forever preferred_lft forever
+4: eth2: <BROADCAST,MULTICAST> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 00:50:56:c0:00:01 brd ff:ff:ff:ff:ff:ff
+5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 00:50:56:c0:00:08 brd ff:ff:ff:ff:ff:ff
+6: loopback0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:15:5d:97:c8:00 brd ff:ff:ff:ff:ff:ff
+7: eth4: <BROADCAST,MULTICAST> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether 00:15:5d:e6:ae:05 brd ff:ff:ff:ff:ff:ff
+8: br-ed61976088af: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether e2:d5:5f:7b:87:d3 brd ff:ff:ff:ff:ff:ff
+    inet 172.18.0.1/16 brd 172.18.255.255 scope global br-ed61976088af
+       valid_lft forever preferred_lft forever
+9: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether 3e:2a:68:e2:32:17 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+10: veth7d7bfe8@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-ed61976088af state UP group default
+    link/ether 02:19:42:91:87:b0 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+11: vetha604823@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-ed61976088af state UP group default
+    link/ether 32:4f:c0:ac:03:e0 brd ff:ff:ff:ff:ff:ff link-netnsid 1
+
+# Routes
+0.0.0.0/5 via 192.0.2.1 dev eth0 proto kernel metric 261
+default via 192.168.1.200 dev eth1 proto kernel metric 25
+8.0.0.0/7 via 192.0.2.1 dev eth0 proto kernel metric 261
+11.0.0.0/8 via 192.0.2.1 dev eth0 proto kernel metric 261
+12.0.0.0/6 via 192.0.2.1 dev eth0 proto kernel metric 261
+16.0.0.0/8 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.0.0.0/11 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.32.0.0/12 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.48.0.0/13 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.56.0.0/16 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.57.0.0/17 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.57.128.0/20 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.57.148.0/22 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.57.152.0/21 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.57.160.0/19 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.57.192.0/18 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.58.0.0/15 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.60.0.0/14 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.64.0.0/10 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.128.0.0/11 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.160.0.0/12 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.176.0.0/13 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.184.0.0/14 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.188.0.0/20 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.188.16.0/22 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.188.22.0/23 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.188.24.0/21 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.188.32.0/19 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.188.64.0/18 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.188.192.0/18 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.189.0.0/16 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.190.0.0/15 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.192.0.0/11 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.224.0.0/12 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.240.0.0/13 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.248.0.0/16 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.250.0.0/15 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.253.0.0/16 via 192.0.2.1 dev eth0 proto kernel metric 261
+17.254.0.0/15 via 192.0.2.1 dev eth0 proto kernel metric 261
+18.0.0.0/7 via 192.0.2.1 dev eth0 proto kernel metric 261
+20.0.0.0/6 via 192.0.2.1 dev eth0 proto kernel metric 261
+24.0.0.0/5 via 192.0.2.1 dev eth0 proto kernel metric 261
+32.0.0.0/3 via 192.0.2.1 dev eth0 proto kernel metric 261
+64.0.0.0/3 via 192.0.2.1 dev eth0 proto kernel metric 261
+96.0.0.0/6 via 192.0.2.1 dev eth0 proto kernel metric 261
+100.0.0.0/10 via 192.0.2.1 dev eth0 proto kernel metric 261
+100.128.0.0/9 via 192.0.2.1 dev eth0 proto kernel metric 261
+101.0.0.0/8 via 192.0.2.1 dev eth0 proto kernel metric 261
+102.0.0.0/7 via 192.0.2.1 dev eth0 proto kernel metric 261
+104.0.0.0/5 via 192.0.2.1 dev eth0 proto kernel metric 261
+112.0.0.0/4 via 192.0.2.1 dev eth0 proto kernel metric 261
+128.0.0.0/3 via 192.0.2.1 dev eth0 proto kernel metric 261
+160.0.0.0/7 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.0.0.0/9 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.128.0.0/12 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.144.0.0/13 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.152.0.0/14 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.156.0.0/15 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.158.0.0/16 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.0.0/17 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.128.0/18 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.192.0/22 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.196.0/23 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.198.0/31 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.198.3 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.198.4/30 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.198.8/29 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.198.16/28 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.198.32/27 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.198.64/26 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.198.128/25 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.199.0/24 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.200.0/21 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.208.0/20 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.159.224.0/19 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.160.0.0/11 via 192.0.2.1 dev eth0 proto kernel metric 261
+162.192.0.0/10 via 192.0.2.1 dev eth0 proto kernel metric 261
+163.0.0.0/8 via 192.0.2.1 dev eth0 proto kernel metric 261
+164.0.0.0/6 via 192.0.2.1 dev eth0 proto kernel metric 261
+168.0.0.0/8 via 192.0.2.1 dev eth0 proto kernel metric 261
+169.0.0.0/9 via 192.0.2.1 dev eth0 proto kernel metric 261
+169.128.0.0/10 via 192.0.2.1 dev eth0 proto kernel metric 261
+169.192.0.0/11 via 192.0.2.1 dev eth0 proto kernel metric 261
+169.224.0.0/12 via 192.0.2.1 dev eth0 proto kernel metric 261
+169.240.0.0/13 via 192.0.2.1 dev eth0 proto kernel metric 261
+169.248.0.0/14 via 192.0.2.1 dev eth0 proto kernel metric 261
+169.252.0.0/15 via 192.0.2.1 dev eth0 proto kernel metric 261
+169.255.0.0/16 via 192.0.2.1 dev eth0 proto kernel metric 261
+170.0.0.0/7 via 192.0.2.1 dev eth0 proto kernel metric 261
+172.0.0.0/12 via 192.0.2.1 dev eth0 proto kernel metric 261
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown
+172.18.0.0/16 dev br-ed61976088af proto kernel scope link src 172.18.0.1
+172.32.0.0/11 via 192.0.2.1 dev eth0 proto kernel metric 261
+172.64.0.0/10 via 192.0.2.1 dev eth0 proto kernel metric 261
+172.128.0.0/9 via 192.0.2.1 dev eth0 proto kernel metric 261
+173.0.0.0/8 via 192.0.2.1 dev eth0 proto kernel metric 261
+174.0.0.0/7 via 192.0.2.1 dev eth0 proto kernel metric 261
+176.0.0.0/4 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.0.1.0/24 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.0.2.0/23 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.0.2.1 dev eth0 proto kernel scope link metric 261
+192.0.4.0/22 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.0.8.0/21 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.0.16.0/20 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.0.32.0/19 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.0.64.0/18 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.0.128.0/17 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.1.0.0/16 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.2.0.0/15 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.4.0.0/14 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.8.0.0/13 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.16.0.0/12 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.32.0.0/11 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.64.0.0/10 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.128.0.0/11 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.160.0.0/13 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.168.0.0/23 dev eth1 proto kernel scope link metric 281
+192.168.1.200 dev eth1 proto kernel scope link metric 25
+192.169.0.0/16 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.170.0.0/15 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.172.0.0/14 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.176.0.0/12 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.192.0.0/10 via 192.0.2.1 dev eth0 proto kernel metric 261
+193.0.0.0/8 via 192.0.2.1 dev eth0 proto kernel metric 261
+194.0.0.0/7 via 192.0.2.1 dev eth0 proto kernel metric 261
+196.0.0.0/6 via 192.0.2.1 dev eth0 proto kernel metric 261
+200.0.0.0/5 via 192.0.2.1 dev eth0 proto kernel metric 261
+208.0.0.0/4 via 192.0.2.1 dev eth0 proto kernel metric 261
+
+# Resolver
+# This file was automatically generated by WSL. To stop automatic generation of this file, add the following entry to /etc/wsl.conf:
+# [network]
+# generateResolvConf = false
+nameserver 10.255.255.254
+search funenseg.org
+
+# host.docker.internal
+
+# Docker bridge candidates
+9: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether 3e:2a:68:e2:32:17 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+172.0.0.0/12 via 192.0.2.1 dev eth0 proto kernel metric 261
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown
+172.18.0.0/16 dev br-ed61976088af proto kernel scope link src 172.18.0.1
+172.32.0.0/11 via 192.0.2.1 dev eth0 proto kernel metric 261
+172.64.0.0/10 via 192.0.2.1 dev eth0 proto kernel metric 261
+172.128.0.0/9 via 192.0.2.1 dev eth0 proto kernel metric 261
+192.172.0.0/14 via 192.0.2.1 dev eth0 proto kernel metric 261
+
+# Listening ports
+LISTEN 0      4096        127.0.0.1:6379       0.0.0.0:*
+LISTEN 0      4096        127.0.0.1:5432       0.0.0.0:*
+LISTEN 0      511         127.0.0.1:18086      0.0.0.0:*    users:(("node",pid=26875,fd=22))
+
+# Docker containers
+NAMES                           IMAGE                PORTS                      STATUS
+painel-ens-quality-redis-1      redis:7-alpine       127.0.0.1:6379->6379/tcp   Up 56 minutes (healthy)
+painel-ens-quality-postgres-1   postgres:17-alpine   127.0.0.1:5432->5432/tcp   Up 56 minutes (healthy)
+
+# Docker compose ps
+NAME                            IMAGE                COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+painel-ens-quality-postgres-1   postgres:17-alpine   "docker-entrypoint.s…"   postgres   56 minutes ago   Up 56 minutes (healthy)   127.0.0.1:5432->5432/tcp
+painel-ens-quality-redis-1      redis:7-alpine       "docker-entrypoint.s…"   redis      56 minutes ago   Up 56 minutes (healthy)   127.0.0.1:6379->6379/tcp
+
+# run.py
+#!/usr/bin/env python3
+"""
+Ponto de entrada unico: builda o frontend quando necessario e sobe FastAPI + SPA.
+"""
+from __future__ import annotations
+
+import os
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+import uvicorn
+
+from src.config.settings import env_flag, load_env_files
+
+PROJECT_ROOT = Path(__file__).resolve().parent
+BACKEND_DIR = PROJECT_ROOT / "backend"
+FRONTEND_DIR = PROJECT_ROOT / "frontend" / "itam-platform"
+FRONTEND_DIST = FRONTEND_DIR / "dist"
+
+
+def _configure_pythonpath() -> None:
+    paths = [str(BACKEND_DIR), str(PROJECT_ROOT)]
+    for path in reversed(paths):
+        if path not in sys.path:
+            sys.path.insert(0, path)
+
+    current = os.environ.get("PYTHONPATH")
+    merged = os.pathsep.join(paths + ([current] if current else []))
+    os.environ["PYTHONPATH"] = merged
+
+
+def _frontend_ready() -> bool:
+    return FRONTEND_DIST.exists() and (FRONTEND_DIST / "index.html").is_file()
+
+
+def _run_frontend_command(command: list[str]) -> None:
+    print(f"[frontend] {' '.join(command)}")
+    subprocess.run(command, cwd=FRONTEND_DIR, check=True)
+
+
+def _ensure_frontend_build() -> None:
+    mode = (os.getenv("ENS_BUILD_FRONTEND") or os.getenv("APP_BUILD_FRONTEND") or "auto").strip().lower()
+    if mode in ("0", "false", "no", "off", "skip"):
+        return
+    if mode == "auto" and _frontend_ready():
+        return
+
+    npm = shutil.which("npm")
+    if not npm:
+        print("[frontend] npm nao encontrado; iniciando somente API. Gere o build manualmente em frontend/itam-platform.", file=sys.stderr)
+        return
+
+    if not (FRONTEND_DIR / "node_modules").exists():
+        _run_frontend_command([npm, "ci"])
+    _run_frontend_command([npm, "run", "build"])
+
+
+def main() -> None:
+    load_env_files()
+    _configure_pythonpath()
+    _ensure_frontend_build()
+
+    host = os.getenv("APP_HOST") or os.getenv("ENS_HOST") or "127.0.0.1"
+    port = int(os.getenv("APP_PORT") or os.getenv("ENS_PORT") or "8080")
+    reload = env_flag("APP_RELOAD") or env_flag("ENS_RELOAD")
+
+    uvicorn.run("app.main:app", host=host, port=port, reload=reload)
+
+
+if __name__ == "__main__":
+    main()
+
+# docker-compose.yml relevant lines
+8:    ports:
+9:      - "127.0.0.1:5432:5432"
+21:    ports:
+22:      - "127.0.0.1:6379:6379"
+30:  app:
+33:      dockerfile: backend/Dockerfile
+37:      APP_HOST: 0.0.0.0
+38:      APP_PORT: 8080
+55:    ports:
+56:      - "8080:8080"
+60:      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health/ready', timeout=3).read()"]
+
+# backend settings references
+backend/app/main.py:35:_STRICT_CSP_REPORT_ONLY = (
+backend/app/main.py:104:        response.headers["content-security-policy-report-only"] = _STRICT_CSP_REPORT_ONLY
+backend/app/domains/signatures/service.py:133:      <strong>IMPORTANTE:</strong> {escape(DISCLAIMER_PT)}
+backend/app/domains/signatures/service.py:135:      <strong>IMPORTANT:</strong> {escape(DISCLAIMER_EN)}
+backend/app/domains/imports/classification/identity_classifier.py:16:    "00000000",
+backend/app/domains/imports/classification/identity_classifier.py:23:GENERIC_HOSTNAME_TOKENS = {
+backend/app/domains/imports/classification/identity_classifier.py:68:    if field == "hostname" and normalized in GENERIC_HOSTNAME_TOKENS:
+backend/app/domains/imports/normalization/asset_normalizer.py:26:    "00000000",
+backend/app/domains/imports/normalization/asset_normalizer.py:32:GENERIC_HOSTNAME_TOKENS = {
+backend/app/domains/imports/normalization/asset_normalizer.py:210:    if field == "hostname" and normalized in GENERIC_HOSTNAME_TOKENS:
+backend/app/domains/imports/presets.py:9:LANSWEEPER_ASSETS_EXPORT_NAME = "Lansweeper Assets Export"
+backend/app/domains/imports/presets.py:10:LANSWEEPER_ASSETS_EXPORT_VERSION = "2026.06.ENS.1"
+backend/app/domains/imports/presets.py:22:LANSWEEPER_ASSETS_EXPORT = ImportPreset(
+backend/app/domains/imports/presets.py:23:    name=LANSWEEPER_ASSETS_EXPORT_NAME,
+backend/app/domains/imports/presets.py:24:    version=LANSWEEPER_ASSETS_EXPORT_VERSION,
+backend/app/domains/imports/presets.py:73:    if LANSWEEPER_ASSETS_EXPORT.required_detection_columns.issubset(column_set):
+backend/app/domains/imports/presets.py:74:        return LANSWEEPER_ASSETS_EXPORT
+backend/app/domains/imports/service.py:91:                "pipeline": ["UPLOAD", "RAW_IMPORT_RECORD", "STAGING_VALIDATION", "NORMALIZATION", "CONFLICT_DETECTION", "MERGE_DECISION", "AWAITING_CONFIRMATION", "APPLY_CHANGES", "AUDIT_REPORT"],
+backend/app/domains/imports/service.py:158:            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:190:            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:209:            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:290:            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:308:            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:325:        if normalized not in {"INITIAL_LOAD", "SAFE_REIMPORT", "PREVIEW_ONLY"}:
+backend/app/domains/imports/service.py:583:                            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:612:                                action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:622:                                action=AuditAction.IMPORT,
+backend/app/domains/ai_chat/providers.py:32:DEFAULT_OLLAMA_BASE_URL = "http://127.0.0.1:11434"
+backend/app/domains/ai_chat/providers.py:35:OLLAMA_LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
+backend/app/domains/ai_chat/providers.py:534:        allowed_hosts=OLLAMA_LOOPBACK_HOSTS,
+backend/app/domains/ai_chat/providers.py:583:        return set(OLLAMA_LOOPBACK_HOSTS)
+backend/app/domains/ai_chat/providers.py:584:    if "*" in values or "0.0.0.0/0" in values or "::/0" in values:
+backend/app/core/config/settings.py:70:    ollama_base_url: str = "http://127.0.0.1:11434"
+backend/app/core/config/settings.py:73:    ollama_allowed_hosts: Annotated[list[str], NoDecode] = ["localhost", "127.0.0.1", "::1"]
+backend/app/shared/enums.py:47:    IMPORT = "IMPORT"
+backend/app/main.py:35:_STRICT_CSP_REPORT_ONLY = (
+backend/app/main.py:104:        response.headers["content-security-policy-report-only"] = _STRICT_CSP_REPORT_ONLY
+backend/app/domains/signatures/service.py:133:      <strong>IMPORTANTE:</strong> {escape(DISCLAIMER_PT)}
+backend/app/domains/signatures/service.py:135:      <strong>IMPORTANT:</strong> {escape(DISCLAIMER_EN)}
+backend/app/domains/imports/classification/identity_classifier.py:16:    "00000000",
+backend/app/domains/imports/classification/identity_classifier.py:23:GENERIC_HOSTNAME_TOKENS = {
+backend/app/domains/imports/classification/identity_classifier.py:68:    if field == "hostname" and normalized in GENERIC_HOSTNAME_TOKENS:
+backend/app/domains/imports/normalization/asset_normalizer.py:26:    "00000000",
+backend/app/domains/imports/normalization/asset_normalizer.py:32:GENERIC_HOSTNAME_TOKENS = {
+backend/app/domains/imports/normalization/asset_normalizer.py:210:    if field == "hostname" and normalized in GENERIC_HOSTNAME_TOKENS:
+backend/app/domains/imports/presets.py:9:LANSWEEPER_ASSETS_EXPORT_NAME = "Lansweeper Assets Export"
+backend/app/domains/imports/presets.py:10:LANSWEEPER_ASSETS_EXPORT_VERSION = "2026.06.ENS.1"
+backend/app/domains/imports/presets.py:22:LANSWEEPER_ASSETS_EXPORT = ImportPreset(
+backend/app/domains/imports/presets.py:23:    name=LANSWEEPER_ASSETS_EXPORT_NAME,
+backend/app/domains/imports/presets.py:24:    version=LANSWEEPER_ASSETS_EXPORT_VERSION,
+backend/app/domains/imports/presets.py:73:    if LANSWEEPER_ASSETS_EXPORT.required_detection_columns.issubset(column_set):
+backend/app/domains/imports/presets.py:74:        return LANSWEEPER_ASSETS_EXPORT
+backend/app/domains/imports/service.py:91:                "pipeline": ["UPLOAD", "RAW_IMPORT_RECORD", "STAGING_VALIDATION", "NORMALIZATION", "CONFLICT_DETECTION", "MERGE_DECISION", "AWAITING_CONFIRMATION", "APPLY_CHANGES", "AUDIT_REPORT"],
+backend/app/domains/imports/service.py:158:            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:190:            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:209:            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:290:            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:308:            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:325:        if normalized not in {"INITIAL_LOAD", "SAFE_REIMPORT", "PREVIEW_ONLY"}:
+backend/app/domains/imports/service.py:583:                            action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:612:                                action=AuditAction.IMPORT,
+backend/app/domains/imports/service.py:622:                                action=AuditAction.IMPORT,
+backend/app/domains/ai_chat/providers.py:32:DEFAULT_OLLAMA_BASE_URL = "http://127.0.0.1:11434"
+backend/app/domains/ai_chat/providers.py:35:OLLAMA_LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
+backend/app/domains/ai_chat/providers.py:534:        allowed_hosts=OLLAMA_LOOPBACK_HOSTS,
+backend/app/domains/ai_chat/providers.py:583:        return set(OLLAMA_LOOPBACK_HOSTS)
+backend/app/domains/ai_chat/providers.py:584:    if "*" in values or "0.0.0.0/0" in values or "::/0" in values:
+backend/app/core/config/settings.py:70:    ollama_base_url: str = "http://127.0.0.1:11434"
+backend/app/core/config/settings.py:73:    ollama_allowed_hosts: Annotated[list[str], NoDecode] = ["localhost", "127.0.0.1", "::1"]
+backend/app/shared/enums.py:47:    IMPORT = "IMPORT"
+backend/alembic/versions/0001_initial_itam.py:28:    "LOGIN", "LOGOUT", "CREATE", "UPDATE", "DELETE", "MOVE", "IMPORT", "SIGNATURE_GENERATE", "STATUS_CHANGE", name="auditaction", create_type=False
+backend/requirements.txt:17:uvicorn[standard]==0.34.2
+backend/Dockerfile:14:    APP_HOST=0.0.0.0 \
+backend/Dockerfile:15:    APP_PORT=8080 \
+backend/Dockerfile:32:EXPOSE 8080
+
+# frontend vite proxy
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "node:path";
+
+export default defineConfig({
+  plugins: [react()],
+  base: "/",
+  envPrefix: ["VITE_", "ENABLE_"],
+  server: {
+    proxy: {
+      "/api/v1": {
+        target: "http://127.0.0.1:8080",
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src")
+    }
+  },
+  build: {
+    outDir: "dist",
+    assetsDir: "_assets",
+    emptyOutDir: true
+  }
+});
+# Curl matrix
+
+## http://127.0.0.1:8080/health
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5023 milliseconds
+
+## http://127.0.0.1:8080/health/ready
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5023 milliseconds
+
+## http://127.0.0.1:8080/api/v1/ai-chat/providers no token
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5023 milliseconds
+
+## http://localhost:8080/health
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5017 milliseconds
+
+## http://localhost:8080/health/ready
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5017 milliseconds
+
+## http://localhost:8080/api/v1/ai-chat/providers no token
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5018 milliseconds
+
+## http://172.18.0.1:8080/health
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   358  100   358    0     0  54656      0 --:--:-- --:--:-- --:--:-- 59666
+HTTP/1.1 200 OK
+date: Tue, 23 Jun 2026 16:31:15 GMT
+server: uvicorn
+content-length: 358
+content-type: application/json
+x-request-id: bd254a8b-2964-4b11-a3ee-d1b2f333b436
+x-correlation-id: bd254a8b-2964-4b11-a3ee-d1b2f333b436
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: same-origin
+permissions-policy: camera=(), microphone=(), geolocation=()
+content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
+
+{"status":"ok","service":"ENS ITAM Platform","frontend_ready":true,"legacy_mounts":["/admin","/assinaturas"],"startup":{"startup_complete":true,"postgres":"unknown","redis":"unknown","migration":{"status":"up_to_date","current_revision":"0006_ai_chat","head_revision":"0006_ai_chat"},"bootstrap_admin":"exists","current_step":null,"last_startup_error":null}}
+## http://172.18.0.1:8080/health/ready
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   265  100   265    0     0  34109      0 --:--:-- --:--:-- --:--:-- 37857
+HTTP/1.1 200 OK
+date: Tue, 23 Jun 2026 16:31:15 GMT
+server: uvicorn
+content-length: 265
+content-type: application/json
+x-request-id: 60cee48e-5f39-4120-a87c-410bada02aa8
+x-correlation-id: 60cee48e-5f39-4120-a87c-410bada02aa8
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: same-origin
+permissions-policy: camera=(), microphone=(), geolocation=()
+content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
+
+{"status":"ok","postgres":{"status":"ok","result":1},"redis":{"status":"ok","result":true},"frontend_ready":true,"migration":{"status":"up_to_date","current_revision":"0006_ai_chat","head_revision":"0006_ai_chat"},"bootstrap_admin":"exists","startup_complete":true}
+## http://172.18.0.1:8080/api/v1/ai-chat/providers no token
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    26  100    26    0     0  16839      0 --:--:-- --:--:-- --:--:-- 26000
+HTTP/1.1 401 Unauthorized
+date: Tue, 23 Jun 2026 16:31:15 GMT
+server: uvicorn
+content-length: 26
+content-type: application/json
+x-request-id: 1acd801f-eddc-4434-8334-6c3002bbcaa9
+x-correlation-id: 1acd801f-eddc-4434-8334-6c3002bbcaa9
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: same-origin
+permissions-policy: camera=(), microphone=(), geolocation=()
+content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
+
+{"detail":"missing_token"}
+## http://host.docker.internal:8080/health
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: host.docker.internal
+
+## http://host.docker.internal:8080/health/ready
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: host.docker.internal
+
+## http://host.docker.internal:8080/api/v1/ai-chat/providers no token
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: host.docker.internal
+
+## http://172.16.0.2:8080/health
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 172.16.0.2 port 8080 after 0 ms: Couldn't connect to server
+
+## http://172.16.0.2:8080/health/ready
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 172.16.0.2 port 8080 after 0 ms: Couldn't connect to server
+
+## http://172.16.0.2:8080/api/v1/ai-chat/providers no token
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 172.16.0.2 port 8080 after 0 ms: Couldn't connect to server
