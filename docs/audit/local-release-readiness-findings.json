@@ -4,12 +4,12 @@
   "stage_empty": true,
   "push_executed": false,
   "gates": {
-    "unittest": "pass",
-    "ruff": "pass",
-    "compileall": "pass",
-    "frontend_build": "pass",
-    "docker_compose_config": "pass",
-    "git_diff_check": "pass"
+    "unittest": "PASS",
+    "ruff": "PASS",
+    "compileall": "PASS",
+    "frontend_build": "PASS",
+    "docker_compose_config": "PASS",
+    "git_diff_check": "PASS"
   },
   "security": {
     "tracked_env_real": false,
@@ -27,9 +27,9 @@
     "gitignore_covers_dist_cache": true
   },
   "remaining_risks": [
-    "preexisting untracked artifacts remain outside scope",
-    "backend runtime at 127.0.0.1:8080 was not confirmed in this session",
-    "Vite emitted a non-blocking chunk size warning"
+    "Preexisting unstaged frontend edits and many untracked artifact-boundary files remain in the worktree.",
+    "Backend optional smoke timed out because the backend service was not running in this runtime.",
+    "A final release promotion should recheck state with an authenticated backend if the operator wants end-to-end smoke coverage."
   ],
-  "recommendation": "Keep the current security and artifact boundary posture, and if operational confirmation is needed, run a separate smoke session with backend runtime up on 8080."
+  "recommendation": "Release readiness is acceptable for a local validation pass, but treat the result as partial until the backend smoke can be run with the service up and the local worktree state is reconciled."
 }

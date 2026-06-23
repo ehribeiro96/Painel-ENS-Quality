@@ -1,21 +1,24 @@
 # Git recent history
+6770bdb docs(audit): add final pre-push checklist
+1ec4b02 docs(audit): record frontend bundle splitting results
+cd9c972 perf(frontend): lazy-load heavy app routes
+d2b3bf5 test(apoema): cover auth error fallback contract
+704f6cc fix(apoema): propagate auth and api errors
+9aa4d99 docs(audit): add deep project functionality audit
+16b690e docs(ops): document wsl backend smoke bridge
+d908ee7 docs(audit): document wsl backend access diagnostic
+609d59f docs(audit): add backend runtime smoke report
+5bcbebc docs(audit): add local release readiness report
 ebf8284 chore(repo): define legacy and artifact boundary
 eb8011f chore(repo): add untracked artifact safety boundary
 870ec99 docs(audit): triage untracked repository artifacts
 283d9bc fix(security): harden p0 p1 production blockers
 bd9120e feat(apoema): connect ai chat backend and safe fallback
-d22c432 fix(frontend): improve Apoema responsive density
-0ef3b2a feat(frontend): add Apoema preview experience
-9267a38 docs(ui): prepare manual visual review package
-eab3dd7 fix(frontend): compact mobile base44 shell
-acc2f72 fix(frontend): isolate asset detail visual adjustment
-438c4c4 fix(frontend): repair macro autocomplete visual overlay
-bcca333 fix(frontend): repair Base44 login shell visuals
-de48d98 fix(frontend): recover Base44 visual import fidelity
-9ae73f8 test(ui): add authenticated browser smoke runner
-4a6de95 style(frontend): polish Base44 visual consistency
 
 # Git status
+ M docs/audit/local-release-readiness-gates.log
+ M frontend/itam-platform/src/pages/LoginPage.tsx
+ M frontend/itam-platform/src/styles.css
 ?? _migration_proposals/hermesops_selective_migration/docs/hermesops/AGENTS.md
 ?? _migration_proposals/hermesops_selective_migration/docs/hermesops/ARCHITECTURE.md
 ?? _migration_proposals/hermesops_selective_migration/docs/hermesops/ENVIRONMENT.hml.md
@@ -632,11 +635,16 @@ de48d98 fix(frontend): recover Base44 visual import fidelity
 ?? docs/audit/TESTING_AUDIT.md
 ?? docs/audit/TEST_RESULTS.md
 ?? docs/audit/WORKTREE_BOUNDARY_COMMIT_PLAN_GIT_C1.md
+?? docs/audit/frontend-visual-polish/FRONTEND_VISUAL_AUDIT_20260623.md
+?? docs/audit/frontend-visual-polish/FRONTEND_VISUAL_POLISH_20260623.md
+?? docs/audit/frontend-visual-polish/frontend-visual-findings.json
 ?? docs/hermesops/HERMES_TOOLS_SKILLS_AUDIT.md
 ?? docs/product/BASE44_VISUAL_RECOVERY_H3_DASHBOARD_ASSETS_AUDIT.md
 ?? docs/superpowers/plans/2026-06-22-importar-frontend-base44.md
 
 # Staged files
+
+# Commit verification
 OK 0ef3b2a
 OK d22c432
 OK bd9120ef
@@ -649,6 +657,7 @@ OK ebf8284
 config/.env.example
 frontend/itam-platform/.env.local.example
 infra/hermesops/.env.hml.example
+
 # .gitignore coverage
 ### .env
 .gitignore:72:.env	.env
@@ -692,6 +701,7 @@ infra/hermesops/.env.hml.example
 .gitignore:145:*_backup_manifest.md	foo_backup_manifest.md
 ### assets/legacy/hero.js.map
 .gitignore:147:assets/legacy/*.js.map	assets/legacy/hero.js.map
+
 # Frontend direct provider check
 
 # Insecure runtime defaults check
@@ -700,13 +710,13 @@ docker-compose.yml:9:      - "127.0.0.1:5432:5432"
 docker-compose.yml:22:      - "127.0.0.1:6379:6379"
 
 # Apoema routes protected check
-frontend/itam-platform/src/App.tsx:23:function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role[] }) {
-frontend/itam-platform/src/App.tsx:44:    <ProtectedRoute>
-frontend/itam-platform/src/App.tsx:48:    </ProtectedRoute>
-frontend/itam-platform/src/App.tsx:63:      <Route path="/apoema/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
-frontend/itam-platform/src/App.tsx:64:      <Route path="/apoema-preview/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
-frontend/itam-platform/src/apoema/pages/ChatPage.tsx:171:          source: "apoema-preview",
-frontend/itam-platform/src/apoema/types.ts:100:  source: "apoema-preview";
+frontend/itam-platform/src/App.tsx:26:function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role[] }) {
+frontend/itam-platform/src/App.tsx:47:    <ProtectedRoute>
+frontend/itam-platform/src/App.tsx:51:    </ProtectedRoute>
+frontend/itam-platform/src/App.tsx:67:        <Route path="/apoema/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
+frontend/itam-platform/src/App.tsx:68:        <Route path="/apoema-preview/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:276:            source: "apoema-preview",
+frontend/itam-platform/src/apoema/types.ts:148:  source: "apoema-preview";
 
 # Metrics token/protection check
 backend/app/core/config/settings.py:69:    metrics_token: str = Field(default="", validation_alias=AliasChoices("METRICS_TOKEN"))
@@ -1058,6 +1068,13 @@ tests/test_apoema_ai_chat_backend.py:93:        self.assertTrue(message_route.de
 tests/test_apoema_ai_chat_backend.py:94:        dependency_calls = {dependency.call for dependency in provider_route.dependant.dependencies + message_route.dependant.dependencies}
 tests/test_apoema_ai_chat_backend.py:97:    async def test_get_current_user_without_token_returns_401(self) -> None:
 tests/test_apoema_ai_chat_backend.py:101:            await get_current_user(request=request, credentials=None, session=SimpleNamespace())
+tests/test_apoema_frontend_error_contract.py:14:        cls.message = (ROOT / "frontend/itam-platform/src/apoema/components/ChatMessage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_frontend_error_contract.py:24:            'return "rate_limited"',
+tests/test_apoema_frontend_error_contract.py:31:    def test_http_errors_are_classified_separately_from_network_fallback(self) -> None:
+tests/test_apoema_frontend_error_contract.py:55:            self.assertIn(snippet, self.page + self.message)
+tests/test_apoema_frontend_error_contract.py:57:    def test_fallback_messages_are_visually_marked(self) -> None:
+tests/test_apoema_frontend_error_contract.py:58:        self.assertIn(".apoema-chat-message.is-fallback", self.css)
+tests/test_apoema_frontend_error_contract.py:59:        self.assertIn("apoema-chat-message-source", self.message)
 tests/test_import_conflict_detector.py:20:    def test_serial_duplicate_generates_conflict_with_human_fields(self) -> None:
 tests/test_import_conflict_detector.py:29:    def test_hostname_duplicate_with_different_serials_generates_conflict(self) -> None:
 tests/test_import_conflict_detector.py:35:        self.assertTrue(str(plan[0]["issue"]["message"]).startswith("Conflito real"))
@@ -1076,221 +1093,19 @@ tests/test_startup_diagnostics.py:50:        self.assertIn("controlled startup f
 tests/test_startup_diagnostics.py:118:        self.assertTrue(local.app_auto_migrate)
 tests/test_startup_diagnostics.py:120:        self.assertFalse(Settings(environment="staging", jwt_secret_key=staging_secret, app_auto_migrate=False).app_auto_migrate)
 tests/test_startup_diagnostics.py:129:            app_auto_migrate=False,
-# unittest
-{"paths": ["/admin", "/assinaturas"], "event": "legacy_signature_apps_mounted", "level": "info", "timestamp": "2026-06-23T15:14:07.147550Z"}
-test_api_accepts_message_with_mode_and_persists_assistant_message (test_ai_chat_api.AiChatApiTest.test_api_accepts_message_with_mode_and_persists_assistant_message) ... ok
-test_api_uses_mock_provider_even_when_external_environment_selects_gemini (test_ai_chat_api.AiChatApiTest.test_api_uses_mock_provider_even_when_external_environment_selects_gemini) ... ok
-test_create_conversation_uses_authenticated_user_id_and_sends_message (test_ai_chat_api.AiChatApiTest.test_create_conversation_uses_authenticated_user_id_and_sends_message) ... ok
-test_create_conversation_with_initial_message_returns_and_persists_assistant_message (test_ai_chat_api.AiChatApiTest.test_create_conversation_with_initial_message_returns_and_persists_assistant_message) ... ok
-test_health_endpoint_returns_provider_configuration_status (test_ai_chat_api.AiChatApiTest.test_health_endpoint_returns_provider_configuration_status) ... ok
-test_message_above_limit_returns_422 (test_ai_chat_api.AiChatApiTest.test_message_above_limit_returns_422) ... ok
-test_provider_configuration_error_returns_clear_503 (test_ai_chat_api.AiChatApiTest.test_provider_configuration_error_returns_clear_503) ... ok
-test_routes_depend_on_existing_current_user_authentication (test_ai_chat_api.AiChatApiTest.test_routes_depend_on_existing_current_user_authentication) ... ok
-test_user_cannot_open_or_send_message_to_other_users_conversation (test_ai_chat_api.AiChatApiTest.test_user_cannot_open_or_send_message_to_other_users_conversation) ... ok
-test_ai_chat_page_contains_required_safety_notice (test_ai_chat_hardening.AiChatFrontendHardeningTest.test_ai_chat_page_contains_required_safety_notice) ... ok
-test_frontend_reads_enable_ai_chat_flag_and_hides_menu_by_default (test_ai_chat_hardening.AiChatFrontendHardeningTest.test_frontend_reads_enable_ai_chat_flag_and_hides_menu_by_default) ... ok
-test_all_ai_chat_endpoints_are_protected_by_rbac_dependency (test_ai_chat_hardening.AiChatHardeningTest.test_all_ai_chat_endpoints_are_protected_by_rbac_dependency) ... ok
-test_feature_flag_blocks_conversation_when_disabled (test_ai_chat_hardening.AiChatHardeningTest.test_feature_flag_blocks_conversation_when_disabled) ... ok
-test_openai_without_key_returns_configuration_error_without_secret_leak (test_ai_chat_hardening.AiChatHardeningTest.test_openai_without_key_returns_configuration_error_without_secret_leak) ... ok
-test_provider_error_records_error_type_as_safe_metadata (test_ai_chat_hardening.AiChatHardeningTest.test_provider_error_records_error_type_as_safe_metadata) ... ok
-test_safe_metadata_is_recorded_without_api_key_or_full_prompt_in_metadata (test_ai_chat_hardening.AiChatHardeningTest.test_safe_metadata_is_recorded_without_api_key_or_full_prompt_in_metadata) ... ok
-test_settings_default_ai_chat_feature_flag_is_disabled_and_limits_exist (test_ai_chat_hardening.AiChatHardeningTest.test_settings_default_ai_chat_feature_flag_is_disabled_and_limits_exist) ... ok
-test_simple_per_user_rate_limit_returns_429 (test_ai_chat_hardening.AiChatHardeningTest.test_simple_per_user_rate_limit_returns_429) ... ok
-test_ai_chat_message_accepts_optional_mode_without_requiring_it (test_ai_chat_mvp.AiChatMvpContractTest.test_ai_chat_message_accepts_optional_mode_without_requiring_it) ... ok
-test_ai_provider_health_reports_configuration_without_secrets (test_ai_chat_mvp.AiChatMvpContractTest.test_ai_provider_health_reports_configuration_without_secrets) ... ok
-test_build_provider_supports_mock_default_gemini_and_openai (test_ai_chat_mvp.AiChatMvpContractTest.test_build_provider_supports_mock_default_gemini_and_openai) ... ok
-test_gemini_provider_generates_text_with_mocked_http (test_ai_chat_mvp.AiChatMvpContractTest.test_gemini_provider_generates_text_with_mocked_http) ... ok
-test_gemini_provider_health_reports_configuration_without_secrets (test_ai_chat_mvp.AiChatMvpContractTest.test_gemini_provider_health_reports_configuration_without_secrets) ... ok
-test_gemini_provider_requires_ai_gemini_api_key (test_ai_chat_mvp.AiChatMvpContractTest.test_gemini_provider_requires_ai_gemini_api_key) ... ok
-test_migration_down_revision_is_macros_module (test_ai_chat_mvp.AiChatMvpContractTest.test_migration_down_revision_is_macros_module) ... ok
-test_models_use_extra_metadata_python_attribute_for_metadata_column (test_ai_chat_mvp.AiChatMvpContractTest.test_models_use_extra_metadata_python_attribute_for_metadata_column) ... ok
-test_openai_provider_generates_text_with_mocked_http (test_ai_chat_mvp.AiChatMvpContractTest.test_openai_provider_generates_text_with_mocked_http) ... ok
-test_openai_provider_requires_openai_api_key (test_ai_chat_mvp.AiChatMvpContractTest.test_openai_provider_requires_openai_api_key) ... ok
-test_payload_limits_are_mvp_limits (test_ai_chat_mvp.AiChatMvpContractTest.test_payload_limits_are_mvp_limits) ... ok
-test_settings_bridges_external_openai_key_in_memory_only (test_ai_chat_mvp.AiChatMvpContractTest.test_settings_bridges_external_openai_key_in_memory_only) ... ok
-test_settings_contract_uses_only_approved_ai_env_names (test_ai_chat_mvp.AiChatMvpContractTest.test_settings_contract_uses_only_approved_ai_env_names) ... ok
-test_settings_prefers_panel_ai_openai_api_key (test_ai_chat_mvp.AiChatMvpContractTest.test_settings_prefers_panel_ai_openai_api_key) ... ok
-test_build_provider_supports_ai_chat_provider_alias (test_ai_chat_ollama_provider.OllamaProviderTest.test_build_provider_supports_ai_chat_provider_alias) ... ok
-test_build_provider_supports_ollama_defaults (test_ai_chat_ollama_provider.OllamaProviderTest.test_build_provider_supports_ollama_defaults) ... ok
-test_build_provider_supports_ollama_lan_openai_compatible_runtime (test_ai_chat_ollama_provider.OllamaProviderTest.test_build_provider_supports_ollama_lan_openai_compatible_runtime) ... ok
-test_endpoint_preserves_contract_and_rejects_frontend_base_url_choice (test_ai_chat_ollama_provider.OllamaProviderTest.test_endpoint_preserves_contract_and_rejects_frontend_base_url_choice) ... ok
-test_ollama_health_reports_localhost_without_secrets (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_health_reports_localhost_without_secrets) ... ok
-test_ollama_lan_base_url_without_v1_appends_v1_once (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_base_url_without_v1_appends_v1_once) ... ok
-test_ollama_lan_blocks_lan_host_without_explicit_allowlist (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_blocks_lan_host_without_explicit_allowlist) ... ok
-test_ollama_lan_blocks_public_ip_even_when_listed (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_blocks_public_ip_even_when_listed) ... ok
-test_ollama_lan_blocks_wildcard_allowlist (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_blocks_wildcard_allowlist) ... ok
-test_ollama_lan_failure_does_not_fallback_to_mock (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_failure_does_not_fallback_to_mock) ... ok
-test_ollama_lan_health_reports_provider_without_base_url (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_health_reports_provider_without_base_url) ... ok
-test_ollama_lan_invalid_choices_shape_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_invalid_choices_shape_is_controlled_error) ... ok
-test_ollama_lan_provider_sends_v1_chat_completions_payload_and_returns_text (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_provider_sends_v1_chat_completions_payload_and_returns_text) ... ok
-test_ollama_lan_raises_when_think_sanitization_removes_everything (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_raises_when_think_sanitization_removes_everything) ... ok
-test_ollama_lan_strips_think_blocks_before_returning_text (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_strips_think_blocks_before_returning_text) ... ok
-test_ollama_lan_strips_unclosed_think_block_and_preserves_final_answer (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_strips_unclosed_think_block_and_preserves_final_answer) ... ok
-test_ollama_provider_connection_failure_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_connection_failure_is_controlled_error) ... ok
-test_ollama_provider_invalid_json_shape_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_invalid_json_shape_is_controlled_error) ... ok
-test_ollama_provider_model_missing_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_model_missing_is_controlled_error) ... ok
-test_ollama_provider_sends_api_chat_payload_and_returns_text (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_sends_api_chat_payload_and_returns_text) ... ok
-test_ollama_provider_timeout_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_timeout_is_controlled_error) ... ok
-test_build_ai_provider_defaults_to_mock (test_ai_chat_provider_mock.AiChatMockProviderTest.test_build_ai_provider_defaults_to_mock) ... ok
-test_mock_provider_generates_generic_response_without_external_key_or_network (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_generic_response_without_external_key_or_network) ... ok
-test_mock_provider_generates_improve_tone_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_improve_tone_response) ... ok
-test_mock_provider_generates_inventory_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_inventory_response) ... ok
-test_mock_provider_generates_itil_draft_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_itil_draft_response) ... ok
-test_mock_provider_generates_resolution_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_resolution_response) ... ok
-test_mock_provider_generates_service_macro_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_service_macro_response) ... ok
-test_mock_provider_generates_summary_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_summary_response) ... ok
-test_mock_provider_generates_text_correction_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_text_correction_response) ... ok
-test_mock_provider_generates_ticket_update_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_ticket_update_response) ... ok
-test_build_key_hashes_user_id_and_uses_window_epoch (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_build_key_hashes_user_id_and_uses_window_epoch) ... ok
-test_limiter_is_per_user_and_enforces_limit (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_limiter_is_per_user_and_enforces_limit) ... ok
-test_memory_store_expires_keys (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_memory_store_expires_keys) ... ok
-test_production_redis_failure_returns_503 (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_production_redis_failure_returns_503) ... {"environment": "production", "error_type": "RuntimeError", "event": "ai_chat_rate_limit_store_unavailable", "level": "error", "timestamp": "2026-06-23T15:14:07.408389Z"}
-ok
-test_redis_store_fake_works_without_eval_and_sets_ttl (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_redis_store_fake_works_without_eval_and_sets_ttl) ... ok
-test_apoema_routes_require_auth_dependency (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_apoema_routes_require_auth_dependency) ... ok
-test_get_current_user_without_token_returns_401 (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_get_current_user_without_token_returns_401) ... ok
-test_hermes_placeholder_returns_safe_unconfigured_response (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_hermes_placeholder_returns_safe_unconfigured_response) ... ok
-test_mock_provider_message_returns_ok (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_mock_provider_message_returns_ok) ... ok
-test_ollama_request_failure_falls_back_without_exposing_secret_or_prompt (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_ollama_request_failure_falls_back_without_exposing_secret_or_prompt) ... ok
-test_provider_catalog_exposes_expected_providers (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_provider_catalog_exposes_expected_providers) ... ok
-test_apoema_frontend_does_not_reference_ollama_or_direct_chat_urls (test_apoema_ai_chat_backend.ApoemaFrontendStaticSafetyTest.test_apoema_frontend_does_not_reference_ollama_or_direct_chat_urls) ... ok
-setUpClass (test_assets_regression.AssetsRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
-test_audit_log_model_has_expected_filterable_columns (test_audit_logs.AuditLogFiltersTest.test_audit_log_model_has_expected_filterable_columns) ... ok
-test_build_audit_filters_searches_text_and_ids_without_migration (test_audit_logs.AuditLogFiltersTest.test_build_audit_filters_searches_text_and_ids_without_migration) ... ok
-test_build_audit_filters_uses_existing_traceability_columns (test_audit_logs.AuditLogFiltersTest.test_build_audit_filters_uses_existing_traceability_columns) ... ok
-test_build_audit_filters_without_filters_preserves_default_listing (test_audit_logs.AuditLogFiltersTest.test_build_audit_filters_without_filters_preserves_default_listing) ... ok
-setUpClass (test_auth_regression.AuthRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
-test_icons_do_not_use_dangerously_set_inner_html (test_hermes_icons_security.HermesIconsSecurityTest.test_icons_do_not_use_dangerously_set_inner_html) ... ok
-test_icons_whitelist_expected_svg_tags (test_hermes_icons_security.HermesIconsSecurityTest.test_icons_whitelist_expected_svg_tags) ... ok
-test_equivalent_duplicate_is_skipped_with_reason (test_import_conflict_detector.ImportConflictDetectorTest.test_equivalent_duplicate_is_skipped_with_reason) ... ok
-test_hostname_duplicate_with_different_serials_generates_conflict (test_import_conflict_detector.ImportConflictDetectorTest.test_hostname_duplicate_with_different_serials_generates_conflict) ... ok
-test_serial_duplicate_generates_conflict_with_human_fields (test_import_conflict_detector.ImportConflictDetectorTest.test_serial_duplicate_generates_conflict_with_human_fields) ... ok
-test_generic_hostname_is_not_strong_identity (test_import_identity_classifier.ImportIdentityClassifierTest.test_generic_hostname_is_not_strong_identity) ... ok
-test_hostname_valid_and_non_ip_is_accepted (test_import_identity_classifier.ImportIdentityClassifierTest.test_hostname_valid_and_non_ip_is_accepted) ... ok
-test_ip_is_not_hostname_and_ip_only_is_reviewable (test_import_identity_classifier.ImportIdentityClassifierTest.test_ip_is_not_hostname_and_ip_only_is_reviewable) ... ok
-test_missing_identity_is_not_usable (test_import_identity_classifier.ImportIdentityClassifierTest.test_missing_identity_is_not_usable) ... ok
-test_patrimony_valid_is_primary_identity_when_present (test_import_identity_classifier.ImportIdentityClassifierTest.test_patrimony_valid_is_primary_identity_when_present) ... ok
-test_serial_valid_is_primary_identity (test_import_identity_classifier.ImportIdentityClassifierTest.test_serial_valid_is_primary_identity) ... ok
-test_source_external_key_is_preserved (test_import_identity_classifier.ImportIdentityClassifierTest.test_source_external_key_is_preserved) ... ok
-test_common_fields_are_preserved (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_common_fields_are_preserved) ... ok
-test_custom1_wins_over_type (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_custom1_wins_over_type) ... ok
-test_empty_barcode_does_not_create_patrimony (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_empty_barcode_does_not_create_patrimony) ... ok
-test_lastuser_stays_in_hint_metadata_and_not_current_user (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_lastuser_stays_in_hint_metadata_and_not_current_user) ... ok
-test_name_ip_does_not_become_hostname (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_name_ip_does_not_become_hostname) ... ok
-test_name_ip_second_case_does_not_become_hostname (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_name_ip_second_case_does_not_become_hostname) ... ok
-test_not_scanned_placeholder_becomes_null (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_not_scanned_placeholder_becomes_null) ... ok
-test_numeric_placeholder_is_treated_as_null_like_current_behavior (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_numeric_placeholder_is_treated_as_null_like_current_behavior) ... ok
-test_type_fallback_is_used_when_custom1_is_empty (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_type_fallback_is_used_when_custom1_is_empty) ... ok
-test_undefined_placeholder_becomes_null (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_undefined_placeholder_becomes_null) ... ok
-test_valid_hostname_is_preserved (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_valid_hostname_is_preserved) ... ok
-test_column_aliases_and_normalization (test_import_pipeline_units.ImportPipelineUnitTest.test_column_aliases_and_normalization) ... ok
-test_duplicate_equivalent_rows_are_skipped_and_latest_lastseen_is_canonical (test_import_pipeline_units.ImportPipelineUnitTest.test_duplicate_equivalent_rows_are_skipped_and_latest_lastseen_is_canonical) ... ok
-test_formula_payload_is_blocked (test_import_pipeline_units.ImportPipelineUnitTest.test_formula_payload_is_blocked) ... ok
-test_generic_hostname_tokens_are_not_strong_identity (test_import_pipeline_units.ImportPipelineUnitTest.test_generic_hostname_tokens_are_not_strong_identity) ... ok
-test_lansweeper_corrected_shape_fixture_classification (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_corrected_shape_fixture_classification) ... ok
-test_lansweeper_ip_address_never_becomes_hostname (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_ip_address_never_becomes_hostname) ... ok
-test_lansweeper_name_ip_becomes_reviewable_source_identity_not_hostname (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_name_ip_becomes_reviewable_source_identity_not_hostname) ... ok
-test_lansweeper_normalization_custom1_state_metadata_and_confidence (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_normalization_custom1_state_metadata_and_confidence) ... ok
-test_lansweeper_preset_and_barcode_empty_warning (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_preset_and_barcode_empty_warning) ... ok
-test_missing_identity_is_invalid (test_import_pipeline_units.ImportPipelineUnitTest.test_missing_identity_is_invalid) ... ok
-test_placeholder_66_is_null_globally_for_lansweeper_shape (test_import_pipeline_units.ImportPipelineUnitTest.test_placeholder_66_is_null_globally_for_lansweeper_shape) ... ok
-test_real_duplicate_conflict_is_blocking (test_import_pipeline_units.ImportPipelineUnitTest.test_real_duplicate_conflict_is_blocking) ... ok
-test_review_required_rows_do_not_block_partial_apply_report (test_import_pipeline_units.ImportPipelineUnitTest.test_review_required_rows_do_not_block_partial_apply_report) ... ok
-test_type_fallback_invalid_serial_and_disposal_reason (test_import_pipeline_units.ImportPipelineUnitTest.test_type_fallback_invalid_serial_and_disposal_reason) ... ok
-test_conflict_preserves_reason_and_recommended_action (test_import_row_classifier.ImportRowClassifierTest.test_conflict_preserves_reason_and_recommended_action) ... ok
-test_duplicate_equivalent_row_is_skipped (test_import_row_classifier.ImportRowClassifierTest.test_duplicate_equivalent_row_is_skipped) ... ok
-test_invalid_row_stays_invalid (test_import_row_classifier.ImportRowClassifierTest.test_invalid_row_stays_invalid) ... ok
-test_review_required_is_preserved_for_ip_only_source_key (test_import_row_classifier.ImportRowClassifierTest.test_review_required_is_preserved_for_ip_only_source_key) ... ok
-test_safe_create_is_preserved (test_import_row_classifier.ImportRowClassifierTest.test_safe_create_is_preserved) ... ok
-test_safe_update_is_preserved_when_existing_asset_matches (test_import_row_classifier.ImportRowClassifierTest.test_safe_update_is_preserved_when_existing_asset_matches) ... ok
-test_csv_valid_is_loaded_without_sheet_name (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_csv_valid_is_loaded_without_sheet_name) ... ok
-test_empty_file_is_rejected (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_empty_file_is_rejected) ... ok
-test_invalid_extension_is_rejected (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_invalid_extension_is_rejected) ... ok
-test_missing_report_sheet_can_be_rejected_in_strict_mode (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_missing_report_sheet_can_be_rejected_in_strict_mode) ... ok
-test_xlsx_with_report_sheet_uses_report_sheet (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_xlsx_with_report_sheet_uses_report_sheet) ... ok
-setUpClass (test_imports_regression.ImportsRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
-test_analyze_reads_sqlite_without_creating_users (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_analyze_reads_sqlite_without_creating_users) ... ok
-test_apply_requires_explicit_confirmation (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_apply_requires_explicit_confirmation) ... ok
-test_candidate_mapping_and_validation (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_candidate_mapping_and_validation) ... ok
-test_merge_does_not_overwrite_existing_non_empty_fields_with_empty_values (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_merge_does_not_overwrite_existing_non_empty_fields_with_empty_values) ... ok
-test_migration_adds_source_fields (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_migration_adds_source_fields) ... ok
-test_missing_email_and_missing_name_are_invalid (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_missing_email_and_missing_name_are_invalid) ... ok
-test_sensitive_admin_update_is_identified_for_skip (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_sensitive_admin_update_is_identified_for_skip) ... ok
-test_user_model_has_source_fields (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_user_model_has_source_fields) ... ok
-test_script_generates_masked_warning_report_without_apply (test_legacy_ens_db_pre_apply_review.LegacyEnsDbPreApplyReviewScriptTest.test_script_generates_masked_warning_report_without_apply) ... skipped 'PowerShell is required for this operational script'
-test_script_parses_without_errors (test_legacy_ens_db_pre_apply_review.LegacyEnsDbPreApplyReviewScriptTest.test_script_parses_without_errors) ... skipped 'PowerShell is required for this operational script'
-setUpClass (test_legacy_routes.LegacyAndSpaRoutesTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
-setUpClass (test_macros_audit_operational.MacrosAuditOperationalTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
-test_colaboradores_json_loads_as_hints_only (test_macros_module.MacrosModuleTest.test_colaboradores_json_loads_as_hints_only) ... ok
-test_macro_apply_requires_confirmation (test_macros_module.MacrosModuleTest.test_macro_apply_requires_confirmation) ... ok
-test_macro_autocomplete_query_is_accent_insensitive (test_macros_module.MacrosModuleTest.test_macro_autocomplete_query_is_accent_insensitive) ... ok
-test_macros_json_analyze_maps_real_shape (test_macros_module.MacrosModuleTest.test_macros_json_analyze_maps_real_shape) ... ok
-test_macros_json_dict_shape_preserves_all_official_templates_and_diagnostics (test_macros_module.MacrosModuleTest.test_macros_json_dict_shape_preserves_all_official_templates_and_diagnostics) ... ok
-test_renderer_can_preserve_missing_fields_when_required_list_is_empty (test_macros_module.MacrosModuleTest.test_renderer_can_preserve_missing_fields_when_required_list_is_empty) ... ok
-test_renderer_substitutes_placeholders_and_blocks_missing_required (test_macros_module.MacrosModuleTest.test_renderer_substitutes_placeholders_and_blocks_missing_required) ... ok
-test_slug_category_and_placeholders_for_asset_inventory_macro (test_macros_module.MacrosModuleTest.test_slug_category_and_placeholders_for_asset_inventory_macro) ... ok
-test_metrics_is_available_in_local_without_token (test_metrics_hardening.MetricsHardeningTest.test_metrics_is_available_in_local_without_token) ... ok
-test_metrics_is_disabled_outside_local_without_token (test_metrics_hardening.MetricsHardeningTest.test_metrics_is_disabled_outside_local_without_token) ... ok
-test_metrics_requires_matching_token_outside_local (test_metrics_hardening.MetricsHardeningTest.test_metrics_requires_matching_token_outside_local) ... ok
-test_metrics_returns_body_with_matching_token_outside_local (test_metrics_hardening.MetricsHardeningTest.test_metrics_returns_body_with_matching_token_outside_local) ... ok
-setUpClass (test_migrations_regression.MigrationsRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
-test_alembic_revision_ids_fit_default_version_table (test_operational_contracts.OperationalContractsTest.test_alembic_revision_ids_fit_default_version_table) ... ok
-test_fastapi_mounts_critical_routes (test_operational_contracts.OperationalContractsTest.test_fastapi_mounts_critical_routes) ... ok
-test_legacy_requirements_wrapper_points_to_legacy_file (test_operational_contracts.OperationalContractsTest.test_legacy_requirements_wrapper_points_to_legacy_file) ... ok
-test_movement_read_accepts_history_traceability_fields (test_operational_contracts.OperationalContractsTest.test_movement_read_accepts_history_traceability_fields) ... ok
-test_page_params_allows_operational_page_size_200 (test_operational_contracts.OperationalContractsTest.test_page_params_allows_operational_page_size_200) ... ok
-test_user_read_allows_legacy_reserved_domain_email (test_operational_contracts.OperationalContractsTest.test_user_read_allows_legacy_reserved_domain_email) ... ok
-test_user_update_schema_does_not_expose_role_changes (test_operational_contracts.OperationalContractsTest.test_user_update_schema_does_not_expose_role_changes) ... ok
-test_outlook_new_and_classic_return_expected_html (test_public_signature_routes.PublicSignatureRoutesTests.test_outlook_new_and_classic_return_expected_html) ... ok
-test_routes_require_generated_signature (test_public_signature_routes.PublicSignatureRoutesTests.test_routes_require_generated_signature) ... ok
-test_legacy_routes_keep_enforced_inline_compatibility_and_report_only (test_security_headers.SecurityHeadersTest.test_legacy_routes_keep_enforced_inline_compatibility_and_report_only) ... ok
-test_spa_routes_get_hardened_csp_without_unsafe_inline_script (test_security_headers.SecurityHeadersTest.test_spa_routes_get_hardened_csp_without_unsafe_inline_script) ... ok
-test_canonical_html_contains_required_markers (test_signature_html_fidelity.SignatureHtmlFidelityTests.test_canonical_html_contains_required_markers) ... ok
-test_outlook_new_generates_dedicated_compatible_html (test_signature_html_fidelity.SignatureHtmlFidelityTests.test_outlook_new_generates_dedicated_compatible_html) ... ok
-test_docx_baseline_matches_frozen_spec (test_signature_model_spec.SignatureModelSpecTests.test_docx_baseline_matches_frozen_spec) ... ok
-test_spec_has_expected_critical_tokens (test_signature_model_spec.SignatureModelSpecTests.test_spec_has_expected_critical_tokens) ... ok
-test_renderer_rejects_user_without_email (test_signatures_postgres_flow.SignaturePostgresFlowTest.test_renderer_rejects_user_without_email) ... ok
-test_renderer_uses_canonical_user_fields_without_sqlite_dependency (test_signatures_postgres_flow.SignaturePostgresFlowTest.test_renderer_uses_canonical_user_fields_without_sqlite_dependency) ... ok
-test_failed_startup_step_logs_structured_diagnostic_without_secret (test_startup_diagnostics.StartupDiagnosticsTest.test_failed_startup_step_logs_structured_diagnostic_without_secret) ... ok
-test_redacts_sensitive_urls_and_fields_from_startup_errors (test_startup_diagnostics.StartupDiagnosticsTest.test_redacts_sensitive_urls_and_fields_from_startup_errors) ... ok
-test_safe_startup_snapshot_uses_presence_flags_for_sensitive_values (test_startup_diagnostics.StartupDiagnosticsTest.test_safe_startup_snapshot_uses_presence_flags_for_sensitive_values) ... ok
-test_settings_rejects_weak_jwt_secret_outside_local_and_keeps_local_defaults (test_startup_diagnostics.StartupDiagnosticsTest.test_settings_rejects_weak_jwt_secret_outside_local_and_keeps_local_defaults) ... ok
-test_startup_step_timeout_fails_fast_with_clear_reason (test_startup_diagnostics.StartupDiagnosticsTest.test_startup_step_timeout_fails_fast_with_clear_reason) ... ok
-test_startup_validation_rejects_weak_jwt_secret_outside_local (test_startup_diagnostics.StartupDiagnosticsTest.test_startup_validation_rejects_weak_jwt_secret_outside_local) ... {"environment": "staging", "app_startup_checks": true, "app_auto_migrate": false, "app_startup_step_timeout_seconds": 15.0, "admin_email_set": true, "admin_name_set": true, "admin_password_set": false, "jwt_secret_key_set": true, "database_url_set": true, "redis_url_set": true, "allowed_origins_count": 0, "frontend_dist_dir": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/dist", "frontend_index_exists": true, "frontend_assets_exists": true, "event": "settings_validation_snapshot", "level": "info", "timestamp": "2026-06-23T15:14:08.100370Z"}
-ok
-
-----------------------------------------------------------------------
-Ran 172 tests in 0.853s
-
-OK (skipped=8)
-unittest=0
-# ruff
-All checks passed!
-ruff=0
-# compileall
-compileall=0
-# frontend_build
-bash: line 1: cd: /frontend/itam-platform: No such file or directory
-frontend_build=1
-# docker_compose_config
-docker_compose_config=0
-# git_diff_check
-git_diff_check=0
-# route_smoke
+# Optional route smoke if services are already running
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100   601  100   601    0     0  13224      0 --:--:-- --:--:-- --:--:-- 13355
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   617  100   617    0     0  14693      0 --:--:-- --:--:-- --:--:-- 15048
 HTTP/1.1 200 OK
 Vary: Origin
 Content-Type: text/html
 Cache-Control: no-cache
-Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
-Date: Tue, 23 Jun 2026 15:14:08 GMT
+Etag: W/"269-G9CDUL2Mi7Vvep+gc5YqC1oTwEU"
+Date: Tue, 23 Jun 2026 22:10:14 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
-Content-Length: 601
+Content-Length: 617
 
 <!doctype html>
 <html lang="pt-BR">
@@ -1308,24 +1123,21 @@ window.$RefreshSig$ = () => (type) => type;</script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx?t=1782243657382"></script>
   </body>
 </html>
-
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100   601  100   601    0     0  15547      0 --:--:-- --:--:-- --:--:-- 15815
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   617  100   617    0     0   115k      0 --:--:-- --:--:-- --:--:--  120k
 HTTP/1.1 200 OK
 Vary: Origin
 Content-Type: text/html
 Cache-Control: no-cache
-Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
-Date: Tue, 23 Jun 2026 15:14:08 GMT
+Etag: W/"269-G9CDUL2Mi7Vvep+gc5YqC1oTwEU"
+Date: Tue, 23 Jun 2026 22:10:14 GMT
 Connection: keep-alive
 Keep-Alive: timeout=5
-Content-Length: 601
+Content-Length: 617
 
 <!doctype html>
 <html lang="pt-BR">
@@ -1343,64 +1155,26 @@ window.$RefreshSig$ = () => (type) => type;</script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx?t=1782243657382"></script>
   </body>
 </html>
-
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5002 milliseconds
 
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
-curl: (28) Connection timed out after 5039 milliseconds
-
+# Summary
+unittest: PASS
+ruff: PASS
+compileall: PASS
+frontend build: PASS
+docker compose config: PASS
+git diff --check: PASS
+smoke /apoema-preview: HTTP 200 from running frontend
+smoke /apoema: HTTP 200 from running frontend
+smoke /health/ready: timeout, backend unavailable
+smoke /api/v1/ai-chat/providers: timeout, backend unavailable
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0
-  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
-curl: (28) Connection timed out after 5014 milliseconds
-route_smoke=0
-# frontend build retry
-
-> ens-itam-platform@0.1.0 build
-> tsc --noEmit && vite build
-
-vite v6.4.2 building for production...
-transforming...
-✓ 1860 modules transformed.
-rendering chunks...
-computing gzip size...
-dist/index.html                    0.45 kB │ gzip:   0.31 kB
-dist/_assets/index-_X0dczQ1.css   92.38 kB │ gzip:  15.98 kB
-dist/_assets/index-Cb2T4_Cx.js   598.74 kB │ gzip: 173.41 kB
-
-(!) Some chunks are larger than 500 kB after minification. Consider:
-- Using dynamic import() to code-split the application
-- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
-- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
-✓ built in 2.60s
-frontend_build_retry=0
-# docker compose config (confirmation)
-docker compose config: OK
-docker_compose_config_retry=0
-
-# Readiness summary
-- initial frontend build invocation failed because the shell command used an incorrect cd target; rerun succeeded from the correct frontend directory.
-- unit tests passed: 172 ran, 8 skipped.
-- ruff passed.
-- compileall passed.
-- docker compose config passed.
-- git diff --check passed.
-- optional /apoema-preview and /apoema frontend routes returned HTTP 200.
-- optional backend runtime smoke on 127.0.0.1:8080 timed out; runtime was not confirmed as running in this session.
-- no tracked real .env or private key files were found.
-- .gitignore coverage matched the expected local artifact patterns including exports, validation, reports, screenshots, dist, cache, backup manifests, and legacy source maps.
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:05 --:--:--     0
+curl: (28) Connection timed out after 5002 milliseconds
