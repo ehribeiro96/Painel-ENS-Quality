@@ -1,0 +1,348 @@
+# unittest
+{"paths": ["/admin", "/assinaturas"], "event": "legacy_signature_apps_mounted", "level": "info", "timestamp": "2026-06-23T19:13:42.376827Z"}
+test_api_accepts_message_with_mode_and_persists_assistant_message (test_ai_chat_api.AiChatApiTest.test_api_accepts_message_with_mode_and_persists_assistant_message) ... ok
+test_api_uses_mock_provider_even_when_external_environment_selects_gemini (test_ai_chat_api.AiChatApiTest.test_api_uses_mock_provider_even_when_external_environment_selects_gemini) ... ok
+test_create_conversation_uses_authenticated_user_id_and_sends_message (test_ai_chat_api.AiChatApiTest.test_create_conversation_uses_authenticated_user_id_and_sends_message) ... ok
+test_create_conversation_with_initial_message_returns_and_persists_assistant_message (test_ai_chat_api.AiChatApiTest.test_create_conversation_with_initial_message_returns_and_persists_assistant_message) ... ok
+test_health_endpoint_returns_provider_configuration_status (test_ai_chat_api.AiChatApiTest.test_health_endpoint_returns_provider_configuration_status) ... ok
+test_message_above_limit_returns_422 (test_ai_chat_api.AiChatApiTest.test_message_above_limit_returns_422) ... ok
+test_provider_configuration_error_returns_clear_503 (test_ai_chat_api.AiChatApiTest.test_provider_configuration_error_returns_clear_503) ... ok
+test_routes_depend_on_existing_current_user_authentication (test_ai_chat_api.AiChatApiTest.test_routes_depend_on_existing_current_user_authentication) ... ok
+test_user_cannot_open_or_send_message_to_other_users_conversation (test_ai_chat_api.AiChatApiTest.test_user_cannot_open_or_send_message_to_other_users_conversation) ... ok
+test_ai_chat_page_contains_required_safety_notice (test_ai_chat_hardening.AiChatFrontendHardeningTest.test_ai_chat_page_contains_required_safety_notice) ... ok
+test_frontend_reads_enable_ai_chat_flag_and_hides_menu_by_default (test_ai_chat_hardening.AiChatFrontendHardeningTest.test_frontend_reads_enable_ai_chat_flag_and_hides_menu_by_default) ... ok
+test_all_ai_chat_endpoints_are_protected_by_rbac_dependency (test_ai_chat_hardening.AiChatHardeningTest.test_all_ai_chat_endpoints_are_protected_by_rbac_dependency) ... ok
+test_feature_flag_blocks_conversation_when_disabled (test_ai_chat_hardening.AiChatHardeningTest.test_feature_flag_blocks_conversation_when_disabled) ... ok
+test_openai_without_key_returns_configuration_error_without_secret_leak (test_ai_chat_hardening.AiChatHardeningTest.test_openai_without_key_returns_configuration_error_without_secret_leak) ... ok
+test_provider_error_records_error_type_as_safe_metadata (test_ai_chat_hardening.AiChatHardeningTest.test_provider_error_records_error_type_as_safe_metadata) ... ok
+test_safe_metadata_is_recorded_without_api_key_or_full_prompt_in_metadata (test_ai_chat_hardening.AiChatHardeningTest.test_safe_metadata_is_recorded_without_api_key_or_full_prompt_in_metadata) ... ok
+test_settings_default_ai_chat_feature_flag_is_disabled_and_limits_exist (test_ai_chat_hardening.AiChatHardeningTest.test_settings_default_ai_chat_feature_flag_is_disabled_and_limits_exist) ... ok
+test_simple_per_user_rate_limit_returns_429 (test_ai_chat_hardening.AiChatHardeningTest.test_simple_per_user_rate_limit_returns_429) ... ok
+test_ai_chat_message_accepts_optional_mode_without_requiring_it (test_ai_chat_mvp.AiChatMvpContractTest.test_ai_chat_message_accepts_optional_mode_without_requiring_it) ... ok
+test_ai_provider_health_reports_configuration_without_secrets (test_ai_chat_mvp.AiChatMvpContractTest.test_ai_provider_health_reports_configuration_without_secrets) ... ok
+test_build_provider_supports_mock_default_gemini_and_openai (test_ai_chat_mvp.AiChatMvpContractTest.test_build_provider_supports_mock_default_gemini_and_openai) ... ok
+test_gemini_provider_generates_text_with_mocked_http (test_ai_chat_mvp.AiChatMvpContractTest.test_gemini_provider_generates_text_with_mocked_http) ... ok
+test_gemini_provider_health_reports_configuration_without_secrets (test_ai_chat_mvp.AiChatMvpContractTest.test_gemini_provider_health_reports_configuration_without_secrets) ... ok
+test_gemini_provider_requires_ai_gemini_api_key (test_ai_chat_mvp.AiChatMvpContractTest.test_gemini_provider_requires_ai_gemini_api_key) ... ok
+test_migration_down_revision_is_macros_module (test_ai_chat_mvp.AiChatMvpContractTest.test_migration_down_revision_is_macros_module) ... ok
+test_models_use_extra_metadata_python_attribute_for_metadata_column (test_ai_chat_mvp.AiChatMvpContractTest.test_models_use_extra_metadata_python_attribute_for_metadata_column) ... ok
+test_openai_provider_generates_text_with_mocked_http (test_ai_chat_mvp.AiChatMvpContractTest.test_openai_provider_generates_text_with_mocked_http) ... ok
+test_openai_provider_requires_openai_api_key (test_ai_chat_mvp.AiChatMvpContractTest.test_openai_provider_requires_openai_api_key) ... ok
+test_payload_limits_are_mvp_limits (test_ai_chat_mvp.AiChatMvpContractTest.test_payload_limits_are_mvp_limits) ... ok
+test_settings_bridges_external_openai_key_in_memory_only (test_ai_chat_mvp.AiChatMvpContractTest.test_settings_bridges_external_openai_key_in_memory_only) ... ok
+test_settings_contract_uses_only_approved_ai_env_names (test_ai_chat_mvp.AiChatMvpContractTest.test_settings_contract_uses_only_approved_ai_env_names) ... ok
+test_settings_prefers_panel_ai_openai_api_key (test_ai_chat_mvp.AiChatMvpContractTest.test_settings_prefers_panel_ai_openai_api_key) ... ok
+test_build_provider_supports_ai_chat_provider_alias (test_ai_chat_ollama_provider.OllamaProviderTest.test_build_provider_supports_ai_chat_provider_alias) ... ok
+test_build_provider_supports_ollama_defaults (test_ai_chat_ollama_provider.OllamaProviderTest.test_build_provider_supports_ollama_defaults) ... ok
+test_build_provider_supports_ollama_lan_openai_compatible_runtime (test_ai_chat_ollama_provider.OllamaProviderTest.test_build_provider_supports_ollama_lan_openai_compatible_runtime) ... ok
+test_endpoint_preserves_contract_and_rejects_frontend_base_url_choice (test_ai_chat_ollama_provider.OllamaProviderTest.test_endpoint_preserves_contract_and_rejects_frontend_base_url_choice) ... ok
+test_ollama_health_reports_localhost_without_secrets (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_health_reports_localhost_without_secrets) ... ok
+test_ollama_lan_base_url_without_v1_appends_v1_once (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_base_url_without_v1_appends_v1_once) ... ok
+test_ollama_lan_blocks_lan_host_without_explicit_allowlist (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_blocks_lan_host_without_explicit_allowlist) ... ok
+test_ollama_lan_blocks_public_ip_even_when_listed (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_blocks_public_ip_even_when_listed) ... ok
+test_ollama_lan_blocks_wildcard_allowlist (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_blocks_wildcard_allowlist) ... ok
+test_ollama_lan_failure_does_not_fallback_to_mock (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_failure_does_not_fallback_to_mock) ... ok
+test_ollama_lan_health_reports_provider_without_base_url (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_health_reports_provider_without_base_url) ... ok
+test_ollama_lan_invalid_choices_shape_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_invalid_choices_shape_is_controlled_error) ... ok
+test_ollama_lan_provider_sends_v1_chat_completions_payload_and_returns_text (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_provider_sends_v1_chat_completions_payload_and_returns_text) ... ok
+test_ollama_lan_raises_when_think_sanitization_removes_everything (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_raises_when_think_sanitization_removes_everything) ... ok
+test_ollama_lan_strips_think_blocks_before_returning_text (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_strips_think_blocks_before_returning_text) ... ok
+test_ollama_lan_strips_unclosed_think_block_and_preserves_final_answer (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_lan_strips_unclosed_think_block_and_preserves_final_answer) ... ok
+test_ollama_provider_connection_failure_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_connection_failure_is_controlled_error) ... ok
+test_ollama_provider_invalid_json_shape_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_invalid_json_shape_is_controlled_error) ... ok
+test_ollama_provider_model_missing_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_model_missing_is_controlled_error) ... ok
+test_ollama_provider_sends_api_chat_payload_and_returns_text (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_sends_api_chat_payload_and_returns_text) ... ok
+test_ollama_provider_timeout_is_controlled_error (test_ai_chat_ollama_provider.OllamaProviderTest.test_ollama_provider_timeout_is_controlled_error) ... ok
+test_build_ai_provider_defaults_to_mock (test_ai_chat_provider_mock.AiChatMockProviderTest.test_build_ai_provider_defaults_to_mock) ... ok
+test_mock_provider_generates_generic_response_without_external_key_or_network (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_generic_response_without_external_key_or_network) ... ok
+test_mock_provider_generates_improve_tone_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_improve_tone_response) ... ok
+test_mock_provider_generates_inventory_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_inventory_response) ... ok
+test_mock_provider_generates_itil_draft_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_itil_draft_response) ... ok
+test_mock_provider_generates_resolution_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_resolution_response) ... ok
+test_mock_provider_generates_service_macro_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_service_macro_response) ... ok
+test_mock_provider_generates_summary_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_summary_response) ... ok
+test_mock_provider_generates_text_correction_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_text_correction_response) ... ok
+test_mock_provider_generates_ticket_update_response (test_ai_chat_provider_mock.AiChatMockProviderTest.test_mock_provider_generates_ticket_update_response) ... ok
+test_build_key_hashes_user_id_and_uses_window_epoch (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_build_key_hashes_user_id_and_uses_window_epoch) ... ok
+test_limiter_is_per_user_and_enforces_limit (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_limiter_is_per_user_and_enforces_limit) ... ok
+test_memory_store_expires_keys (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_memory_store_expires_keys) ... ok
+test_production_redis_failure_returns_503 (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_production_redis_failure_returns_503) ... {"environment": "production", "error_type": "RuntimeError", "event": "ai_chat_rate_limit_store_unavailable", "level": "error", "timestamp": "2026-06-23T19:13:42.693218Z"}
+ok
+test_redis_store_fake_works_without_eval_and_sets_ttl (test_ai_chat_rate_limit.AiChatRateLimitStoreTest.test_redis_store_fake_works_without_eval_and_sets_ttl) ... ok
+test_apoema_routes_require_auth_dependency (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_apoema_routes_require_auth_dependency) ... ok
+test_get_current_user_without_token_returns_401 (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_get_current_user_without_token_returns_401) ... ok
+test_hermes_placeholder_returns_safe_unconfigured_response (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_hermes_placeholder_returns_safe_unconfigured_response) ... ok
+test_mock_provider_message_returns_ok (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_mock_provider_message_returns_ok) ... ok
+test_ollama_request_failure_falls_back_without_exposing_secret_or_prompt (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_ollama_request_failure_falls_back_without_exposing_secret_or_prompt) ... ok
+test_provider_catalog_exposes_expected_providers (test_apoema_ai_chat_backend.ApoemaAiChatBackendTest.test_provider_catalog_exposes_expected_providers) ... ok
+test_apoema_frontend_does_not_reference_ollama_or_direct_chat_urls (test_apoema_ai_chat_backend.ApoemaFrontendStaticSafetyTest.test_apoema_frontend_does_not_reference_ollama_or_direct_chat_urls) ... ok
+test_adapter_defines_typed_api_error_and_status_classifier (test_apoema_frontend_error_contract.ApoemaFrontendErrorContractTest.test_adapter_defines_typed_api_error_and_status_classifier) ... ok
+test_chat_page_renders_distinct_error_and_fallback_states (test_apoema_frontend_error_contract.ApoemaFrontendErrorContractTest.test_chat_page_renders_distinct_error_and_fallback_states) ... ok
+test_fallback_messages_are_visually_marked (test_apoema_frontend_error_contract.ApoemaFrontendErrorContractTest.test_fallback_messages_are_visually_marked) ... ok
+test_http_errors_are_classified_separately_from_network_fallback (test_apoema_frontend_error_contract.ApoemaFrontendErrorContractTest.test_http_errors_are_classified_separately_from_network_fallback) ... ok
+test_http_statuses_are_explicitly_handled_in_the_adapter (test_apoema_frontend_error_contract.ApoemaFrontendErrorContractTest.test_http_statuses_are_explicitly_handled_in_the_adapter) ... ok
+setUpClass (test_assets_regression.AssetsRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+test_audit_log_model_has_expected_filterable_columns (test_audit_logs.AuditLogFiltersTest.test_audit_log_model_has_expected_filterable_columns) ... ok
+test_build_audit_filters_searches_text_and_ids_without_migration (test_audit_logs.AuditLogFiltersTest.test_build_audit_filters_searches_text_and_ids_without_migration) ... ok
+test_build_audit_filters_uses_existing_traceability_columns (test_audit_logs.AuditLogFiltersTest.test_build_audit_filters_uses_existing_traceability_columns) ... ok
+test_build_audit_filters_without_filters_preserves_default_listing (test_audit_logs.AuditLogFiltersTest.test_build_audit_filters_without_filters_preserves_default_listing) ... ok
+setUpClass (test_auth_regression.AuthRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+test_icons_do_not_use_dangerously_set_inner_html (test_hermes_icons_security.HermesIconsSecurityTest.test_icons_do_not_use_dangerously_set_inner_html) ... ok
+test_icons_whitelist_expected_svg_tags (test_hermes_icons_security.HermesIconsSecurityTest.test_icons_whitelist_expected_svg_tags) ... ok
+test_equivalent_duplicate_is_skipped_with_reason (test_import_conflict_detector.ImportConflictDetectorTest.test_equivalent_duplicate_is_skipped_with_reason) ... ok
+test_hostname_duplicate_with_different_serials_generates_conflict (test_import_conflict_detector.ImportConflictDetectorTest.test_hostname_duplicate_with_different_serials_generates_conflict) ... ok
+test_serial_duplicate_generates_conflict_with_human_fields (test_import_conflict_detector.ImportConflictDetectorTest.test_serial_duplicate_generates_conflict_with_human_fields) ... ok
+test_generic_hostname_is_not_strong_identity (test_import_identity_classifier.ImportIdentityClassifierTest.test_generic_hostname_is_not_strong_identity) ... ok
+test_hostname_valid_and_non_ip_is_accepted (test_import_identity_classifier.ImportIdentityClassifierTest.test_hostname_valid_and_non_ip_is_accepted) ... ok
+test_ip_is_not_hostname_and_ip_only_is_reviewable (test_import_identity_classifier.ImportIdentityClassifierTest.test_ip_is_not_hostname_and_ip_only_is_reviewable) ... ok
+test_missing_identity_is_not_usable (test_import_identity_classifier.ImportIdentityClassifierTest.test_missing_identity_is_not_usable) ... ok
+test_patrimony_valid_is_primary_identity_when_present (test_import_identity_classifier.ImportIdentityClassifierTest.test_patrimony_valid_is_primary_identity_when_present) ... ok
+test_serial_valid_is_primary_identity (test_import_identity_classifier.ImportIdentityClassifierTest.test_serial_valid_is_primary_identity) ... ok
+test_source_external_key_is_preserved (test_import_identity_classifier.ImportIdentityClassifierTest.test_source_external_key_is_preserved) ... ok
+test_common_fields_are_preserved (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_common_fields_are_preserved) ... ok
+test_custom1_wins_over_type (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_custom1_wins_over_type) ... ok
+test_empty_barcode_does_not_create_patrimony (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_empty_barcode_does_not_create_patrimony) ... ok
+test_lastuser_stays_in_hint_metadata_and_not_current_user (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_lastuser_stays_in_hint_metadata_and_not_current_user) ... ok
+test_name_ip_does_not_become_hostname (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_name_ip_does_not_become_hostname) ... ok
+test_name_ip_second_case_does_not_become_hostname (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_name_ip_second_case_does_not_become_hostname) ... ok
+test_not_scanned_placeholder_becomes_null (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_not_scanned_placeholder_becomes_null) ... ok
+test_numeric_placeholder_is_treated_as_null_like_current_behavior (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_numeric_placeholder_is_treated_as_null_like_current_behavior) ... ok
+test_type_fallback_is_used_when_custom1_is_empty (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_type_fallback_is_used_when_custom1_is_empty) ... ok
+test_undefined_placeholder_becomes_null (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_undefined_placeholder_becomes_null) ... ok
+test_valid_hostname_is_preserved (test_import_lansweeper_normalizer.ImportLansweeperNormalizerTest.test_valid_hostname_is_preserved) ... ok
+test_column_aliases_and_normalization (test_import_pipeline_units.ImportPipelineUnitTest.test_column_aliases_and_normalization) ... ok
+test_duplicate_equivalent_rows_are_skipped_and_latest_lastseen_is_canonical (test_import_pipeline_units.ImportPipelineUnitTest.test_duplicate_equivalent_rows_are_skipped_and_latest_lastseen_is_canonical) ... ok
+test_formula_payload_is_blocked (test_import_pipeline_units.ImportPipelineUnitTest.test_formula_payload_is_blocked) ... ok
+test_generic_hostname_tokens_are_not_strong_identity (test_import_pipeline_units.ImportPipelineUnitTest.test_generic_hostname_tokens_are_not_strong_identity) ... ok
+test_lansweeper_corrected_shape_fixture_classification (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_corrected_shape_fixture_classification) ... ok
+test_lansweeper_ip_address_never_becomes_hostname (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_ip_address_never_becomes_hostname) ... ok
+test_lansweeper_name_ip_becomes_reviewable_source_identity_not_hostname (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_name_ip_becomes_reviewable_source_identity_not_hostname) ... ok
+test_lansweeper_normalization_custom1_state_metadata_and_confidence (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_normalization_custom1_state_metadata_and_confidence) ... ok
+test_lansweeper_preset_and_barcode_empty_warning (test_import_pipeline_units.ImportPipelineUnitTest.test_lansweeper_preset_and_barcode_empty_warning) ... ok
+test_missing_identity_is_invalid (test_import_pipeline_units.ImportPipelineUnitTest.test_missing_identity_is_invalid) ... ok
+test_placeholder_66_is_null_globally_for_lansweeper_shape (test_import_pipeline_units.ImportPipelineUnitTest.test_placeholder_66_is_null_globally_for_lansweeper_shape) ... ok
+test_real_duplicate_conflict_is_blocking (test_import_pipeline_units.ImportPipelineUnitTest.test_real_duplicate_conflict_is_blocking) ... ok
+test_review_required_rows_do_not_block_partial_apply_report (test_import_pipeline_units.ImportPipelineUnitTest.test_review_required_rows_do_not_block_partial_apply_report) ... ok
+test_type_fallback_invalid_serial_and_disposal_reason (test_import_pipeline_units.ImportPipelineUnitTest.test_type_fallback_invalid_serial_and_disposal_reason) ... ok
+test_conflict_preserves_reason_and_recommended_action (test_import_row_classifier.ImportRowClassifierTest.test_conflict_preserves_reason_and_recommended_action) ... ok
+test_duplicate_equivalent_row_is_skipped (test_import_row_classifier.ImportRowClassifierTest.test_duplicate_equivalent_row_is_skipped) ... ok
+test_invalid_row_stays_invalid (test_import_row_classifier.ImportRowClassifierTest.test_invalid_row_stays_invalid) ... ok
+test_review_required_is_preserved_for_ip_only_source_key (test_import_row_classifier.ImportRowClassifierTest.test_review_required_is_preserved_for_ip_only_source_key) ... ok
+test_safe_create_is_preserved (test_import_row_classifier.ImportRowClassifierTest.test_safe_create_is_preserved) ... ok
+test_safe_update_is_preserved_when_existing_asset_matches (test_import_row_classifier.ImportRowClassifierTest.test_safe_update_is_preserved_when_existing_asset_matches) ... ok
+test_csv_valid_is_loaded_without_sheet_name (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_csv_valid_is_loaded_without_sheet_name) ... ok
+test_empty_file_is_rejected (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_empty_file_is_rejected) ... ok
+test_invalid_extension_is_rejected (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_invalid_extension_is_rejected) ... ok
+test_missing_report_sheet_can_be_rejected_in_strict_mode (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_missing_report_sheet_can_be_rejected_in_strict_mode) ... ok
+test_xlsx_with_report_sheet_uses_report_sheet (test_import_spreadsheet_reader.SpreadsheetReaderTest.test_xlsx_with_report_sheet_uses_report_sheet) ... ok
+setUpClass (test_imports_regression.ImportsRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+test_analyze_reads_sqlite_without_creating_users (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_analyze_reads_sqlite_without_creating_users) ... ok
+test_apply_requires_explicit_confirmation (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_apply_requires_explicit_confirmation) ... ok
+test_candidate_mapping_and_validation (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_candidate_mapping_and_validation) ... ok
+test_merge_does_not_overwrite_existing_non_empty_fields_with_empty_values (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_merge_does_not_overwrite_existing_non_empty_fields_with_empty_values) ... ok
+test_migration_adds_source_fields (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_migration_adds_source_fields) ... ok
+test_missing_email_and_missing_name_are_invalid (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_missing_email_and_missing_name_are_invalid) ... ok
+test_sensitive_admin_update_is_identified_for_skip (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_sensitive_admin_update_is_identified_for_skip) ... ok
+test_user_model_has_source_fields (test_legacy_ens_db_importer.LegacyEnsDbImporterTest.test_user_model_has_source_fields) ... ok
+test_script_generates_masked_warning_report_without_apply (test_legacy_ens_db_pre_apply_review.LegacyEnsDbPreApplyReviewScriptTest.test_script_generates_masked_warning_report_without_apply) ... skipped 'PowerShell is required for this operational script'
+test_script_parses_without_errors (test_legacy_ens_db_pre_apply_review.LegacyEnsDbPreApplyReviewScriptTest.test_script_parses_without_errors) ... skipped 'PowerShell is required for this operational script'
+setUpClass (test_legacy_routes.LegacyAndSpaRoutesTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+setUpClass (test_macros_audit_operational.MacrosAuditOperationalTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+test_colaboradores_json_loads_as_hints_only (test_macros_module.MacrosModuleTest.test_colaboradores_json_loads_as_hints_only) ... ok
+test_macro_apply_requires_confirmation (test_macros_module.MacrosModuleTest.test_macro_apply_requires_confirmation) ... ok
+test_macro_autocomplete_query_is_accent_insensitive (test_macros_module.MacrosModuleTest.test_macro_autocomplete_query_is_accent_insensitive) ... ok
+test_macros_json_analyze_maps_real_shape (test_macros_module.MacrosModuleTest.test_macros_json_analyze_maps_real_shape) ... ok
+test_macros_json_dict_shape_preserves_all_official_templates_and_diagnostics (test_macros_module.MacrosModuleTest.test_macros_json_dict_shape_preserves_all_official_templates_and_diagnostics) ... ok
+test_renderer_can_preserve_missing_fields_when_required_list_is_empty (test_macros_module.MacrosModuleTest.test_renderer_can_preserve_missing_fields_when_required_list_is_empty) ... ok
+test_renderer_substitutes_placeholders_and_blocks_missing_required (test_macros_module.MacrosModuleTest.test_renderer_substitutes_placeholders_and_blocks_missing_required) ... ok
+test_slug_category_and_placeholders_for_asset_inventory_macro (test_macros_module.MacrosModuleTest.test_slug_category_and_placeholders_for_asset_inventory_macro) ... ok
+test_metrics_is_available_in_local_without_token (test_metrics_hardening.MetricsHardeningTest.test_metrics_is_available_in_local_without_token) ... ok
+test_metrics_is_disabled_outside_local_without_token (test_metrics_hardening.MetricsHardeningTest.test_metrics_is_disabled_outside_local_without_token) ... ok
+test_metrics_requires_matching_token_outside_local (test_metrics_hardening.MetricsHardeningTest.test_metrics_requires_matching_token_outside_local) ... ok
+test_metrics_returns_body_with_matching_token_outside_local (test_metrics_hardening.MetricsHardeningTest.test_metrics_returns_body_with_matching_token_outside_local) ... ok
+setUpClass (test_migrations_regression.MigrationsRegressionTest) ... skipped 'OPERATIONAL_BASE_URL is not set; skipping Docker-backed operational regression'
+test_alembic_revision_ids_fit_default_version_table (test_operational_contracts.OperationalContractsTest.test_alembic_revision_ids_fit_default_version_table) ... ok
+test_fastapi_mounts_critical_routes (test_operational_contracts.OperationalContractsTest.test_fastapi_mounts_critical_routes) ... ok
+test_legacy_requirements_wrapper_points_to_legacy_file (test_operational_contracts.OperationalContractsTest.test_legacy_requirements_wrapper_points_to_legacy_file) ... ok
+test_movement_read_accepts_history_traceability_fields (test_operational_contracts.OperationalContractsTest.test_movement_read_accepts_history_traceability_fields) ... ok
+test_page_params_allows_operational_page_size_200 (test_operational_contracts.OperationalContractsTest.test_page_params_allows_operational_page_size_200) ... ok
+test_user_read_allows_legacy_reserved_domain_email (test_operational_contracts.OperationalContractsTest.test_user_read_allows_legacy_reserved_domain_email) ... ok
+test_user_update_schema_does_not_expose_role_changes (test_operational_contracts.OperationalContractsTest.test_user_update_schema_does_not_expose_role_changes) ... ok
+test_outlook_new_and_classic_return_expected_html (test_public_signature_routes.PublicSignatureRoutesTests.test_outlook_new_and_classic_return_expected_html) ... ok
+test_routes_require_generated_signature (test_public_signature_routes.PublicSignatureRoutesTests.test_routes_require_generated_signature) ... ok
+test_legacy_routes_keep_enforced_inline_compatibility_and_report_only (test_security_headers.SecurityHeadersTest.test_legacy_routes_keep_enforced_inline_compatibility_and_report_only) ... ok
+test_spa_routes_get_hardened_csp_without_unsafe_inline_script (test_security_headers.SecurityHeadersTest.test_spa_routes_get_hardened_csp_without_unsafe_inline_script) ... ok
+test_canonical_html_contains_required_markers (test_signature_html_fidelity.SignatureHtmlFidelityTests.test_canonical_html_contains_required_markers) ... ok
+test_outlook_new_generates_dedicated_compatible_html (test_signature_html_fidelity.SignatureHtmlFidelityTests.test_outlook_new_generates_dedicated_compatible_html) ... ok
+test_docx_baseline_matches_frozen_spec (test_signature_model_spec.SignatureModelSpecTests.test_docx_baseline_matches_frozen_spec) ... ok
+test_spec_has_expected_critical_tokens (test_signature_model_spec.SignatureModelSpecTests.test_spec_has_expected_critical_tokens) ... ok
+test_renderer_rejects_user_without_email (test_signatures_postgres_flow.SignaturePostgresFlowTest.test_renderer_rejects_user_without_email) ... ok
+test_renderer_uses_canonical_user_fields_without_sqlite_dependency (test_signatures_postgres_flow.SignaturePostgresFlowTest.test_renderer_uses_canonical_user_fields_without_sqlite_dependency) ... ok
+test_failed_startup_step_logs_structured_diagnostic_without_secret (test_startup_diagnostics.StartupDiagnosticsTest.test_failed_startup_step_logs_structured_diagnostic_without_secret) ... ok
+test_redacts_sensitive_urls_and_fields_from_startup_errors (test_startup_diagnostics.StartupDiagnosticsTest.test_redacts_sensitive_urls_and_fields_from_startup_errors) ... ok
+test_safe_startup_snapshot_uses_presence_flags_for_sensitive_values (test_startup_diagnostics.StartupDiagnosticsTest.test_safe_startup_snapshot_uses_presence_flags_for_sensitive_values) ... ok
+test_settings_rejects_weak_jwt_secret_outside_local_and_keeps_local_defaults (test_startup_diagnostics.StartupDiagnosticsTest.test_settings_rejects_weak_jwt_secret_outside_local_and_keeps_local_defaults) ... ok
+test_startup_step_timeout_fails_fast_with_clear_reason (test_startup_diagnostics.StartupDiagnosticsTest.test_startup_step_timeout_fails_fast_with_clear_reason) ... ok
+test_startup_validation_rejects_weak_jwt_secret_outside_local (test_startup_diagnostics.StartupDiagnosticsTest.test_startup_validation_rejects_weak_jwt_secret_outside_local) ... {"environment": "staging", "app_startup_checks": true, "app_auto_migrate": false, "app_startup_step_timeout_seconds": 15.0, "admin_email_set": true, "admin_name_set": true, "admin_password_set": false, "jwt_secret_key_set": true, "database_url_set": true, "redis_url_set": true, "allowed_origins_count": 0, "frontend_dist_dir": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/frontend/itam-platform/dist", "frontend_index_exists": true, "frontend_assets_exists": true, "event": "settings_validation_snapshot", "level": "info", "timestamp": "2026-06-23T19:13:43.455207Z"}
+ok
+
+----------------------------------------------------------------------
+Ran 177 tests in 0.972s
+
+OK (skipped=8)
+# ruff
+All checks passed!
+# compileall
+# npm run build
+
+> ens-itam-platform@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v6.4.2 building for production...
+transforming...
+✓ 1863 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                   0.45 kB │ gzip:  0.31 kB
+dist/_assets/index-IqQi9Xxg.css                  18.78 kB │ gzip:  3.84 kB
+dist/_assets/index-CDQqVpDp.css                  74.42 kB │ gzip: 13.00 kB
+dist/_assets/permissions-sOGZaqXI.js              0.21 kB │ gzip:  0.18 kB
+dist/_assets/arrow-right-BmuGPXBT.js              0.35 kB │ gzip:  0.27 kB
+dist/_assets/arrow-left-c5bQIt-b.js               0.35 kB │ gzip:  0.27 kB
+dist/_assets/search-BF2HwU4M.js                   0.35 kB │ gzip:  0.28 kB
+dist/_assets/circle-check-BiQ2rIS2.js             0.36 kB │ gzip:  0.28 kB
+dist/_assets/rotate-ccw-Gi7IhXyt.js               0.38 kB │ gzip:  0.29 kB
+dist/_assets/Base44ShellAccent-DAIDthqr.js        0.39 kB │ gzip:  0.25 kB
+dist/_assets/upload-Cdb1c4sA.js                   0.41 kB │ gzip:  0.30 kB
+dist/_assets/copy-C0vZU4aE.js                     0.42 kB │ gzip:  0.32 kB
+dist/_assets/users-B2oD7LlT.js                    0.49 kB │ gzip:  0.33 kB
+dist/_assets/shield-check-WlJnrr22.js             0.50 kB │ gzip:  0.36 kB
+dist/_assets/shield-alert-BOGZ7P4_.js             0.54 kB │ gzip:  0.37 kB
+dist/_assets/trash-2-_Hh8_6P3.js                  0.54 kB │ gzip:  0.36 kB
+dist/_assets/clipboard-list-BnO3oL8b.js           0.60 kB │ gzip:  0.37 kB
+dist/_assets/Base44InfoGrid-zmVGbI6z.js           0.61 kB │ gzip:  0.33 kB
+dist/_assets/Base44OperationalGrid-CmqF9Z0O.js    0.68 kB │ gzip:  0.36 kB
+dist/_assets/sparkles-D_q7d38p.js                 0.69 kB │ gzip:  0.41 kB
+dist/_assets/wand-sparkles-C5zB6Kb5.js            0.70 kB │ gzip:  0.41 kB
+dist/_assets/HermesStatusPill-Wlaf6QL_.js         0.70 kB │ gzip:  0.42 kB
+dist/_assets/Base44StatusBadge-D1AYGL3s.js        0.75 kB │ gzip:  0.42 kB
+dist/_assets/Base44PageHeader-CLhgkkMG.js         0.77 kB │ gzip:  0.36 kB
+dist/_assets/sliders-horizontal-BaT_iyFT.js       0.77 kB │ gzip:  0.38 kB
+dist/_assets/Base44FilterPanel-CjR4t0u5.js        0.78 kB │ gzip:  0.32 kB
+dist/_assets/Base44CopyBlock-D7XD_OHT.js          0.84 kB │ gzip:  0.44 kB
+dist/_assets/format-CnhZUkEp.js                   0.85 kB │ gzip:  0.56 kB
+dist/_assets/triangle-alert-Dq2vhbWy.js           0.87 kB │ gzip:  0.44 kB
+dist/_assets/Base44MetricCard-D8vcy616.js         1.01 kB │ gzip:  0.51 kB
+dist/_assets/Base44EmptyState-BCbpcPtW.js         1.26 kB │ gzip:  0.70 kB
+dist/_assets/DataTable-BU7DApJF.js                1.46 kB │ gzip:  0.70 kB
+dist/_assets/createLucideIcon-CiiVShTE.js         1.86 kB │ gzip:  0.80 kB
+dist/_assets/UserDetailsPage-CmuumDO0.js          1.87 kB │ gzip:  0.83 kB
+dist/_assets/Base44UserCard-Dpyu_g9B.js           2.01 kB │ gzip:  0.77 kB
+dist/_assets/NotFoundPage-yKj9DAH0.js             2.04 kB │ gzip:  0.96 kB
+dist/_assets/StockPage-C10EEKIS.js                2.45 kB │ gzip:  1.22 kB
+dist/_assets/LoginPage-DY9oqdbp.js                3.81 kB │ gzip:  1.69 kB
+dist/_assets/SignaturesPage-BYsIVUaC.js           5.21 kB │ gzip:  2.04 kB
+dist/_assets/AppShell-XauusQBX.js                 5.91 kB │ gzip:  2.28 kB
+dist/_assets/SettingsPage-BN4S0b7t.js             6.63 kB │ gzip:  1.97 kB
+dist/_assets/AssignmentsPage-DE2q83VX.js          6.80 kB │ gzip:  2.42 kB
+dist/_assets/AssetDetailsPage-DFreAxlL.js         9.19 kB │ gzip:  3.28 kB
+dist/_assets/useQuery-mM6zTT5n.js                10.47 kB │ gzip:  3.72 kB
+dist/_assets/MacrosPage-CG4nLeSs.js              10.88 kB │ gzip:  3.88 kB
+dist/_assets/AuditLogsPage-bbIpAcAt.js           11.42 kB │ gzip:  3.84 kB
+dist/_assets/DashboardPage-B3jGHiEz.js           11.53 kB │ gzip:  3.93 kB
+dist/_assets/UsersPage-DEogvhYf.js               13.04 kB │ gzip:  4.08 kB
+dist/_assets/ImportsPage-C2xL93Br.js             15.75 kB │ gzip:  5.19 kB
+dist/_assets/AssetsPage-DtUboREu.js              23.09 kB │ gzip:  7.03 kB
+dist/_assets/AiChatPage-CryKKr-t.js              25.19 kB │ gzip:  7.78 kB
+dist/_assets/index-r4CCU32A.js                   42.51 kB │ gzip: 12.76 kB
+dist/_assets/MoveAssetDialog-C1BHquXk.js         99.57 kB │ gzip: 30.07 kB
+dist/_assets/index-BdA-3aNH.js                  289.01 kB │ gzip: 91.55 kB
+✓ built in 2.19s
+# docker compose config
+docker compose config: OK
+# git diff --check
+# frontend direct provider check
+# Apoema auth error contract check
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:84:      case "auth_required":
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:88:          message: "Sua sessão expirou ou não foi autenticada. Faça login novamente para usar o Chat de IA.",
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:90:      case "forbidden":
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:94:          message: "Você não tem permissão para usar este recurso.",
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:96:      case "rate_limited":
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:114:      case "network_unavailable":
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:118:          message: "Backend indisponível. Exibindo resposta local de fallback.",
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:183:          title: "Backend indisponível",
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:517:                ? "Backend indisponível. Catálogo local ativo para continuidade da prévia."
+frontend/itam-platform/src/apoema/types.ts:83:  | "auth_required"
+frontend/itam-platform/src/apoema/types.ts:84:  | "forbidden"
+frontend/itam-platform/src/apoema/types.ts:85:  | "rate_limited"
+frontend/itam-platform/src/apoema/types.ts:88:  | "network_unavailable"
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:42:    return "auth_required";
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:45:    return "forbidden";
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:48:    return "rate_limited";
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:137:    throw new ApoemaApiError("Backend indisponível por falha de rede.", "network_unavailable", undefined, error);
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:170:    if (error instanceof ApoemaApiError && error.kind === "network_unavailable") {
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:175:        notice: "Backend indisponível. Exibindo catálogo local de fallback.",
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:197:    if (error instanceof ApoemaApiError && error.kind === "network_unavailable") {
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:204:        notice: "Backend indisponível. Exibindo resposta local de fallback.",
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:218:          error: "network_unavailable",
+tests/test_apoema_frontend_error_contract.py:22:            'return "auth_required"',
+tests/test_apoema_frontend_error_contract.py:23:            'return "forbidden"',
+tests/test_apoema_frontend_error_contract.py:24:            'return "rate_limited"',
+tests/test_apoema_frontend_error_contract.py:27:            'kind === "network_unavailable"',
+tests/test_apoema_frontend_error_contract.py:32:        self.assertIn('if (error instanceof ApoemaApiError && error.kind === "network_unavailable")', self.api)
+tests/test_apoema_frontend_error_contract.py:34:        self.assertGreaterEqual(self.api.count('error.kind === "network_unavailable"'), 1)
+tests/test_apoema_frontend_error_contract.py:36:        self.assertIn("Backend indisponível. Exibindo catálogo local de fallback.", self.api)
+tests/test_apoema_frontend_error_contract.py:37:        self.assertIn("Backend indisponível. Exibindo resposta local de fallback.", self.api)
+tests/test_apoema_frontend_error_contract.py:46:            "Sua sessão expirou ou não foi autenticada. Faça login novamente para usar o Chat de IA.",
+tests/test_apoema_frontend_error_contract.py:47:            "Você não tem permissão para usar este recurso.",
+# Bundle splitting check
+frontend/itam-platform/src/App.tsx:2:import { lazy, Suspense } from "react";
+frontend/itam-platform/src/App.tsx:4:import { RouteLoading } from "./components/RouteLoading";
+frontend/itam-platform/src/App.tsx:8:const AppShell = lazy(() => import("./components/AppShell").then((module) => ({ default: module.AppShell })));
+frontend/itam-platform/src/App.tsx:9:const ApoemaApp = lazy(() => import("./apoema").then((module) => ({ default: module.ApoemaApp })));
+frontend/itam-platform/src/App.tsx:10:const AiChatPage = lazy(() => import("./pages/AiChatPage").then((module) => ({ default: module.AiChatPage })));
+frontend/itam-platform/src/App.tsx:11:const AssetDetailsPage = lazy(() => import("./pages/AssetDetailsPage").then((module) => ({ default: module.AssetDetailsPage })));
+frontend/itam-platform/src/App.tsx:12:const AssetsPage = lazy(() => import("./pages/AssetsPage").then((module) => ({ default: module.AssetsPage })));
+frontend/itam-platform/src/App.tsx:13:const AssignmentsPage = lazy(() => import("./pages/AssignmentsPage").then((module) => ({ default: module.AssignmentsPage })));
+frontend/itam-platform/src/App.tsx:14:const AuditLogsPage = lazy(() => import("./pages/AuditLogsPage").then((module) => ({ default: module.AuditLogsPage })));
+frontend/itam-platform/src/App.tsx:15:const DashboardPage = lazy(() => import("./pages/DashboardPage").then((module) => ({ default: module.DashboardPage })));
+frontend/itam-platform/src/App.tsx:16:const ImportsPage = lazy(() => import("./pages/ImportsPage").then((module) => ({ default: module.ImportsPage })));
+frontend/itam-platform/src/App.tsx:17:const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
+frontend/itam-platform/src/App.tsx:18:const MacrosPage = lazy(() => import("./pages/MacrosPage").then((module) => ({ default: module.MacrosPage })));
+frontend/itam-platform/src/App.tsx:19:const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
+frontend/itam-platform/src/App.tsx:20:const SettingsPage = lazy(() => import("./pages/SettingsPage").then((module) => ({ default: module.SettingsPage })));
+frontend/itam-platform/src/App.tsx:21:const SignaturesPage = lazy(() => import("./pages/SignaturesPage").then((module) => ({ default: module.SignaturesPage })));
+frontend/itam-platform/src/App.tsx:22:const StockPage = lazy(() => import("./pages/StockPage").then((module) => ({ default: module.StockPage })));
+frontend/itam-platform/src/App.tsx:23:const UserDetailsPage = lazy(() => import("./pages/UserDetailsPage").then((module) => ({ default: module.UserDetailsPage })));
+frontend/itam-platform/src/App.tsx:24:const UsersPage = lazy(() => import("./pages/UsersPage").then((module) => ({ default: module.UsersPage })));
+frontend/itam-platform/src/App.tsx:31:    return <RouteLoading />;
+frontend/itam-platform/src/App.tsx:42:  return <Suspense fallback={<RouteLoading />}>{children}</Suspense>;
+frontend/itam-platform/src/App.tsx:60:  return <Suspense fallback={<RouteLoading />}>{children}</Suspense>;
+frontend/itam-platform/src/App.tsx:65:    <Suspense fallback={<RouteLoading />}>
+frontend/itam-platform/src/App.tsx:67:        <Route path="/apoema/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
+frontend/itam-platform/src/App.tsx:68:        <Route path="/apoema-preview/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
+frontend/itam-platform/src/App.tsx:80:          <Route path="/ai-chat" element={<AiChatPage />} />
+frontend/itam-platform/src/App.tsx:87:    </Suspense>
+frontend/itam-platform/src/components/RouteLoading.tsx:3:export function RouteLoading() {
+# tracked sensitive files
+.env.example
+config/.env.example
+frontend/itam-platform/.env.local.example
+infra/hermesops/.env.hml.example
+# insecure runtime defaults
+backend/app/core/config/settings.py:33:    jwt_secret_key: str = Field(min_length=32, default="change-me-with-at-least-32-characters")
+docker-compose.yml:9:      - "127.0.0.1:5432:5432"
+docker-compose.yml:22:      - "127.0.0.1:6379:6379"
+# WSL bridge smoke
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 172.18.0.1 port 8080 after 1 ms: Couldn't connect to server
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 172.18.0.1 port 8080 after 0 ms: Couldn't connect to server
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to 172.18.0.1 port 8080 after 0 ms: Couldn't connect to server

@@ -1,0 +1,64 @@
+{
+  "status": "READY_FOR_PUSH",
+  "branch": "main",
+  "remote": "origin",
+  "push_authorized": false,
+  "push_executed": false,
+  "stage_empty": true,
+  "commits_confirmed": {
+    "0ef3b2a": "OK",
+    "d22c432": "OK",
+    "bd9120ef": "OK",
+    "283d9bc": "OK",
+    "870ec99": "OK",
+    "eb8011f": "OK",
+    "ebf8284": "OK",
+    "5bcbebc": "OK",
+    "609d59f": "OK",
+    "d908ee7": "OK",
+    "16b690e": "OK",
+    "9aa4d99": "OK",
+    "704f6cc": "OK",
+    "d2b3bf5": "OK",
+    "cd9c972": "OK",
+    "1ec4b02": "OK"
+  },
+  "divergence": {
+    "origin_main_to_head": "0",
+    "head_to_origin_main": "69"
+  },
+  "gates": {
+    "unittest": "PASS",
+    "ruff": "PASS",
+    "compileall": "PASS",
+    "frontend_build": "PASS",
+    "docker_compose_config": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "security": {
+    "tracked_env_real": false,
+    "tracked_private_keys": false,
+    "frontend_direct_provider_call": false,
+    "apoema_auth_fallback_fixed": true,
+    "insecure_defaults_found": true
+  },
+  "bundle": {
+    "chunk_warning_present": false,
+    "main_js_kb": "289.01",
+    "lazy_routes_confirmed": true
+  },
+  "wsl_bridge_smoke": {
+    "executed": false,
+    "base_url": "http://172.18.0.1:8080",
+    "health": "SKIPPED (connection refused)",
+    "ready": "SKIPPED (connection refused)",
+    "ai_chat_providers_without_token": "SKIPPED (connection refused)"
+  },
+  "remaining_risks": [
+    "untracked preexistentes fora do escopo permanecem no worktree",
+    "BUG-003 depende de ambiente/credencial UAT",
+    "smoke WSL bridge indisponivel nesta maquina",
+    "defaults locais controlados seguem presentes por desenho"
+  ],
+  "recommendation": "READY_FOR_PUSH — push nao executado por ausencia de autorizacao explicita."
+}
