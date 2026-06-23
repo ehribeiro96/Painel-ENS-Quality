@@ -1,0 +1,9 @@
+Boundary finalizada com política segura para legado, evidências, exports e relatórios locais.
+
+- Untracked antes: 714
+- Untracked após ignore: 627
+- Itens cobertos por ignore: exports, _validation, reports, data/exports, screenshots locais, pid locais, backup manifests, source maps de legacy
+- Itens mantidos para review: legacy Laravel, propostas de migração, CSVs/auditorias, docx de apoio, arquivos legados que podem ser versionáveis
+- Sem remoção de arquivos
+- Sem movimentação de conteúdo de produção
+- Sem abertura de segredos

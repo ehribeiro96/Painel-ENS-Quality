@@ -143,6 +143,8 @@ pptx_template_output.md
 # --- Untracked artifact safety boundary ---
 _cleanup_backup_manifest.md
 *_backup_manifest.md
+assets/legacy/*.map
+assets/legacy/*.js.map
 data/exports/
 docs/audit/screenshots/
 docs/apoema-visual-qa/screenshots/

@@ -1,0 +1,75 @@
+{
+  "status": "PARTIAL_GO",
+  "untracked_before": 714,
+  "untracked_after_ignore": 625,
+  "ignore_rules_added": [
+    "_cleanup_backup_manifest.md",
+    "*_backup_manifest.md",
+    "data/exports/",
+    "docs/audit/screenshots/",
+    "docs/apoema-visual-qa/screenshots/",
+    "docs/apoema-visual-qa/*.pid"
+  ],
+  "policy_groups": [
+    {
+      "path": "_migration_proposals/",
+      "classification": "MIGRATION_PROPOSAL",
+      "versioning_policy": "MANUAL_REVIEW",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "assets/legacy/Laravel/",
+      "classification": "LEGACY_REFERENCE",
+      "versioning_policy": "TRACK_SANITIZED",
+      "action": "MANUAL_REVIEW"
+    },
+    {
+      "path": "assets/legacy/*.map",
+      "classification": "SOURCE_MAP",
+      "versioning_policy": "IGNORE_LOCAL",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "exports/",
+      "classification": "LOCAL_EXPORT",
+      "versioning_policy": "IGNORE_LOCAL",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "_validation/",
+      "classification": "LOCAL_VALIDATION",
+      "versioning_policy": "IGNORE_LOCAL",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "reports/",
+      "classification": "LOCAL_REPORT",
+      "versioning_policy": "IGNORE_LOCAL",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "docs/audit/screenshots/",
+      "classification": "VISUAL_EVIDENCE",
+      "versioning_policy": "IGNORE_LOCAL",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "docs/apoema-visual-qa/screenshots/",
+      "classification": "VISUAL_EVIDENCE",
+      "versioning_policy": "IGNORE_LOCAL",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx",
+      "classification": "LARGE_BINARY_ASSET",
+      "versioning_policy": "EXTERNAL_STORAGE",
+      "action": "MANUAL_REVIEW"
+    }
+  ],
+  "validation_file": "docs/audit/untracked-risk-triage/post-boundary-ignore-validation.txt",
+  "remaining_risk": [
+    "Legacy reference tree still has many versionable files and should not be auto-ignored wholesale.",
+    "Large binary evidence should be moved out of Git only after explicit human approval.",
+    "Report CSVs remain review items until a sanitized promotion decision is made."
+  ]
+}
