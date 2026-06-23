@@ -72,11 +72,59 @@ export interface ApoemaMessage {
   content: string;
   time: string;
   attachments?: ApoemaAttachment[];
+  source?: "live" | "fallback";
 }
 
 export type ApoemaProviderId = "mock" | "ollama" | "hermes";
 export type ApoemaProviderStatus = "online" | "offline" | "error" | "unconfigured";
 export type ApoemaChatStatus = "ok" | "offline" | "error" | "unconfigured";
+export type ApoemaProviderLoadState = "loading" | "ready" | "fallback" | "error";
+export type ApoemaApiErrorKind =
+  | "auth_required"
+  | "forbidden"
+  | "rate_limited"
+  | "validation_error"
+  | "backend_error"
+  | "network_unavailable"
+  | "unknown_api_error";
+
+export class ApoemaApiError extends Error {
+  readonly kind: ApoemaApiErrorKind;
+  readonly status?: number;
+  readonly details?: unknown;
+
+  constructor(message: string, kind: ApoemaApiErrorKind, status?: number, details?: unknown) {
+    super(message);
+    this.name = "ApoemaApiError";
+    this.kind = kind;
+    this.status = status;
+    this.details = details;
+  }
+}
+
+export type ApoemaProviderLoadResult =
+  | {
+      kind: "online";
+      providers: ApoemaProviderOption[];
+    }
+  | {
+      kind: "fallback";
+      providers: ApoemaProviderOption[];
+      offline: true;
+      notice: string;
+    };
+
+export type ApoemaChatMessageResult =
+  | {
+      kind: "online";
+      response: ApoemaChatResponse;
+    }
+  | {
+      kind: "fallback";
+      response: ApoemaChatResponse;
+      offline: true;
+      notice: string;
+    };
 
 export interface ApoemaProviderOption {
   id: ApoemaProviderId;

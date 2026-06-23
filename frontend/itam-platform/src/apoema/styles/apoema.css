@@ -748,6 +748,12 @@
   gap: 10px;
 }
 
+.apoema-chat-message.is-fallback {
+  border: 1px solid var(--color-warning-border);
+  background: linear-gradient(135deg, rgba(201, 118, 58, 0.18), rgba(23, 195, 214, 0.05));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
 .apoema-chat-message.role-user {
   margin-left: 6%;
   background: linear-gradient(135deg, rgba(23, 195, 214, 0.08), rgba(23, 195, 214, 0.02));
@@ -763,6 +769,29 @@
   gap: 12px;
   color: var(--apoema-muted);
   font-size: 0.88rem;
+}
+
+.apoema-chat-message-meta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+}
+
+.apoema-chat-message-source {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  border-radius: 999px;
+  border: 1px solid var(--color-warning-border);
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  padding: 0 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .apoema-chat-message p {
@@ -826,6 +855,23 @@
   border-radius: 16px;
   background: rgba(201, 118, 58, 0.12);
   color: var(--apoema-text);
+}
+
+.apoema-warning.is-danger {
+  background: rgba(180, 35, 24, 0.12);
+  border: 1px solid rgba(180, 35, 24, 0.18);
+}
+
+.apoema-warning.is-warning {
+  background: rgba(201, 118, 58, 0.12);
+  border: 1px solid rgba(201, 118, 58, 0.18);
+}
+
+.apoema-warning-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .apoema-warning p,

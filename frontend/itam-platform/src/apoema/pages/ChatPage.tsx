@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, Paperclip, ShieldAlert, Sparkles } from "lucide-react";
+import { AlertTriangle, Paperclip, RotateCcw, ShieldAlert, Sparkles } from "lucide-react";
 import { ChatComposer } from "../components/ChatComposer";
 import { ChatMessage } from "../components/ChatMessage";
 import { FileDropzone } from "../components/FileDropzone";
@@ -8,13 +8,22 @@ import { apoemaConversations, apoemaInitialMessages } from "../data";
 import { attachmentWarning } from "../mockApi";
 import { getAiProviders, sendAiMessage } from "../lib/apoemaChatApi";
 import { useAuth } from "@/lib/auth";
+import { ApoemaApiError } from "../types";
 import type {
   ApoemaAttachment,
   ApoemaChatAttachmentMeta,
-  ApoemaChatStatus,
   ApoemaMessage,
+  ApoemaProviderLoadState,
   ApoemaProviderOption,
 } from "../types";
+
+type ApoemaBannerTone = "warning" | "danger";
+
+type ApoemaBanner = {
+  tone: ApoemaBannerTone;
+  title: string;
+  message: string;
+};
 
 function humanSize(bytes: number) {
   if (bytes < 1024) {
@@ -69,13 +78,60 @@ function statusTone(status?: ApoemaProviderOption["status"]) {
   }
 }
 
-const FALLBACK_PROVIDER: ApoemaProviderOption = {
-  id: "mock",
-  label: "Mock/Fallback",
-  status: "online",
-  models: ["fallback-local"],
-  default_model: "fallback-local",
-};
+function describeApoemaApiError(error: unknown): ApoemaBanner {
+  if (error instanceof ApoemaApiError) {
+    switch (error.kind) {
+      case "auth_required":
+        return {
+          tone: "danger",
+          title: "Sessão expirada",
+          message: "Sua sessão expirou ou não foi autenticada. Faça login novamente para usar o Chat de IA.",
+        };
+      case "forbidden":
+        return {
+          tone: "danger",
+          title: "Sem permissão",
+          message: "Você não tem permissão para usar este recurso.",
+        };
+      case "rate_limited":
+        return {
+          tone: "warning",
+          title: "Limite atingido",
+          message: "Limite de uso atingido. Aguarde alguns instantes e tente novamente.",
+        };
+      case "validation_error":
+        return {
+          tone: "warning",
+          title: "Requisição inválida",
+          message: "A requisição de IA é inválida. Revise os campos e tente novamente.",
+        };
+      case "backend_error":
+        return {
+          tone: "danger",
+          title: "Erro do backend",
+          message: "O backend de IA retornou um erro. Tente novamente em instantes.",
+        };
+      case "network_unavailable":
+        return {
+          tone: "warning",
+          title: "Fallback local ativo",
+          message: "Backend indisponível. Exibindo resposta local de fallback.",
+        };
+      default:
+        return {
+          tone: "danger",
+          title: "Erro da API",
+          message: "A API de IA retornou uma resposta inesperada.",
+        };
+    }
+  }
+
+  return {
+    tone: "danger",
+    title: "Erro inesperado",
+    message: "Não foi possível concluir a operação. Tente novamente em instantes.",
+  };
+}
 
 export function ChatPage() {
   const { token } = useAuth();
@@ -85,54 +141,102 @@ export function ChatPage() {
   const [attachments, setAttachments] = useState<ApoemaAttachment[]>([]);
   const [busy, setBusy] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const [providers, setProviders] = useState<ApoemaProviderOption[]>([FALLBACK_PROVIDER]);
-  const [selectedProviderId, setSelectedProviderId] = useState("mock");
-  const [selectedModel, setSelectedModel] = useState(FALLBACK_PROVIDER.default_model);
-  const [notice, setNotice] = useState<string | null>(null);
-  const [providerLoadStatus, setProviderLoadStatus] = useState<ApoemaChatStatus>("ok");
+  const [providers, setProviders] = useState<ApoemaProviderOption[]>([]);
+  const [selectedProviderId, setSelectedProviderId] = useState("");
+  const [selectedModel, setSelectedModel] = useState("");
+  const [providerLoadState, setProviderLoadState] = useState<ApoemaProviderLoadState>("loading");
+  const [providerBanner, setProviderBanner] = useState<ApoemaBanner | null>(null);
+  const [messageBanner, setMessageBanner] = useState<ApoemaBanner | null>(null);
 
   const warning = useMemo(() => attachmentWarning(attachments), [attachments]);
   const selectedProvider = useMemo(
-    () => providers.find((provider) => provider.id === selectedProviderId) ?? providers[0] ?? FALLBACK_PROVIDER,
+    () => providers.find((provider) => provider.id === selectedProviderId) ?? null,
     [providers, selectedProviderId],
   );
   const providerModels = useMemo(() => {
+    if (!selectedProvider) {
+      return [];
+    }
     const models = selectedProvider.models.length > 0 ? selectedProvider.models : [selectedProvider.default_model];
     return Array.from(new Set([selectedProvider.default_model, ...models]));
   }, [selectedProvider]);
+  const providerReady = providerLoadState === "ready" || providerLoadState === "fallback";
+
+  async function reloadProviders(guard: () => boolean = () => true) {
+    setProviderLoadState("loading");
+    setProviderBanner(null);
+
+    try {
+      const result = await getAiProviders(token);
+      if (!guard()) {
+        return;
+      }
+
+      if (result.kind === "fallback") {
+        const firstProvider = result.providers[0] ?? null;
+        setProviders(result.providers);
+        setSelectedProviderId(firstProvider?.id ?? "");
+        setSelectedModel(firstProvider?.default_model ?? "");
+        setProviderLoadState("fallback");
+        setProviderBanner({
+          tone: "warning",
+          title: "Backend indisponível",
+          message: result.notice,
+        });
+        return;
+      }
+
+      if (result.providers.length === 0) {
+        setProviders([]);
+        setSelectedProviderId("");
+        setSelectedModel("");
+        setProviderLoadState("error");
+        setProviderBanner({
+          tone: "danger",
+          title: "Catálogo indisponível",
+          message: "O backend não retornou provedores disponíveis.",
+        });
+        return;
+      }
+
+      const firstProvider = result.providers[0];
+      setProviders(result.providers);
+      setSelectedProviderId(firstProvider.id);
+      setSelectedModel(firstProvider.default_model);
+      setProviderLoadState("ready");
+      setProviderBanner(null);
+    } catch (error) {
+      if (!guard()) {
+        return;
+      }
+      const banner = describeApoemaApiError(error);
+      setProviders([]);
+      setSelectedProviderId("");
+      setSelectedModel("");
+      setProviderLoadState("error");
+      setProviderBanner(banner);
+    }
+  }
 
   useEffect(() => {
     let active = true;
-    getAiProviders(token)
-      .then((items) => {
-        if (!active) return;
-        setProviders(items.length > 0 ? items : [FALLBACK_PROVIDER]);
-        const firstProvider = items[0] ?? FALLBACK_PROVIDER;
-        setSelectedProviderId((current) => items.some((provider) => provider.id === current) ? current : firstProvider.id);
-        setSelectedModel((current) => (firstProvider.models.includes(current) ? current : firstProvider.default_model));
-        setProviderLoadStatus("ok");
-      })
-      .catch(() => {
-        if (!active) return;
-        setProviders([FALLBACK_PROVIDER]);
-        setSelectedProviderId("mock");
-        setSelectedModel(FALLBACK_PROVIDER.default_model);
-        setProviderLoadStatus("offline");
-        setNotice("Usando fallback local para manter a conversa ativa.");
-      });
+    void reloadProviders(() => active);
     return () => {
       active = false;
     };
   }, [token]);
 
   useEffect(() => {
-    if (!providerModels.includes(selectedModel)) {
+    if (selectedProvider && !providerModels.includes(selectedModel)) {
       setSelectedModel(selectedProvider.default_model);
     }
-  }, [providerModels, selectedModel, selectedProvider.default_model]);
+  }, [providerModels, selectedModel, selectedProvider]);
 
   async function sendMessage() {
-    if (busy) return;
+    if (busy || !providerReady || !selectedProvider) {
+      return;
+    }
+
     const content = prompt.trim();
     if (!content && attachments.length === 0) {
       return;
@@ -149,29 +253,53 @@ export function ChatPage() {
     setMessages((current) => [...current, userMessage]);
     setPrompt("");
     setBusy(true);
-    setNotice(null);
+    setMessageBanner(null);
 
     try {
-      const response = await sendAiMessage({
-        conversation_id: conversationId || null,
-        provider: selectedProvider.id,
-        model: selectedModel || selectedProvider.default_model,
-        message: content,
-        mode: "assistente_n2",
-        attachments: attachments.map((attachment) => ({
-          id: attachment.id,
-          name: attachment.name,
-          mime_type: attachment.mimeType,
-          size: attachment.sizeBytes,
-          kind: attachment.kind,
-          sensitive: Boolean(attachment.sensitive),
-        })),
-        context: {
-          route: "apoema-chat",
-          source: "apoema-preview",
+      const result = await sendAiMessage(
+        {
+          conversation_id: conversationId || null,
+          provider: selectedProvider.id,
+          model: selectedModel || selectedProvider.default_model,
+          message: content,
+          mode: "assistente_n2",
+          attachments: attachments.map((attachment) => ({
+            id: attachment.id,
+            name: attachment.name,
+            mime_type: attachment.mimeType,
+            size: attachment.sizeBytes,
+            kind: attachment.kind,
+            sensitive: Boolean(attachment.sensitive),
+          })),
+          context: {
+            route: "apoema-chat",
+            source: "apoema-preview",
+          },
         },
-      }, token);
+        token,
+      );
 
+      if (result.kind === "fallback") {
+        setConversationId(result.response.conversation_id);
+        setMessages((current) => [
+          ...current,
+          {
+            id: result.response.message_id,
+            role: "assistant",
+            content: result.response.content,
+            time: formatClock(result.response.created_at),
+            source: "fallback",
+          },
+        ]);
+        setMessageBanner({
+          tone: "warning",
+          title: "Fallback local ativo",
+          message: result.notice,
+        });
+        return;
+      }
+
+      const response = result.response;
       setConversationId(response.conversation_id);
       setMessages((current) => [
         ...current,
@@ -182,24 +310,19 @@ export function ChatPage() {
           time: formatClock(response.created_at),
         },
       ]);
+
       if (response.status !== "ok") {
-        setNotice(
-          response.status === "unconfigured"
-            ? "O provedor Hermes está sem configuração. Usando fallback local para manter a conversa ativa."
-            : "O provedor de IA está offline. Verifique a configuração do Ollama ou Hermes.",
-        );
+        setMessageBanner({
+          tone: response.status === "unconfigured" ? "warning" : "warning",
+          title: response.status === "unconfigured" ? "Provedor sem configuração" : "Provedor de IA indisponível",
+          message:
+            response.status === "unconfigured"
+              ? "O provedor Hermes está sem configuração. A resposta veio do backend em modo degradado."
+              : "O provedor de IA está offline. Verifique a configuração do Ollama ou Hermes.",
+        });
       }
-    } catch {
-      setMessages((current) => [
-        ...current,
-        {
-          id: `assistant-fallback-${Date.now()}`,
-          role: "assistant",
-          content: "Não foi possível enviar a mensagem. Usando fallback local para manter a conversa ativa.",
-          time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        },
-      ]);
-      setNotice("Usando fallback local para manter a conversa ativa.");
+    } catch (error) {
+      setMessageBanner(describeApoemaApiError(error));
     } finally {
       setAttachments([]);
       setBusy(false);
@@ -210,6 +333,22 @@ export function ChatPage() {
     const mapped = files.map(toAttachment);
     setAttachments((current) => [...current, ...mapped]);
   }
+
+  const providerStateTone =
+    providerLoadState === "loading"
+      ? "neutral"
+      : providerLoadState === "fallback" || providerLoadState === "error"
+        ? "warning"
+        : statusTone(selectedProvider?.status);
+
+  const providerStateLabel =
+    providerLoadState === "loading"
+      ? "Carregando provedores"
+      : providerLoadState === "fallback"
+        ? "Fallback local"
+        : providerLoadState === "error"
+          ? "Catálogo indisponível"
+          : selectedProvider?.status ?? "Sem provedor";
 
   return (
     <div className="apoema-chat-layout">
@@ -248,40 +387,73 @@ export function ChatPage() {
             <h1>Como posso ajudar?</h1>
           </div>
           <div style={{ display: "grid", gap: 10, minWidth: 320 }}>
-            <label className="apoema-provider-select">
-              Provedor
-              <select
-                value={selectedProviderId}
-                onChange={(event) => {
-                  const nextProvider = providers.find((provider) => provider.id === event.target.value) ?? FALLBACK_PROVIDER;
-                  setSelectedProviderId(nextProvider.id);
-                  setSelectedModel(nextProvider.default_model);
-                  setNotice(null);
-                }}
-              >
-                {providers.map((provider) => (
-                  <option key={provider.id} value={provider.id}>
-                    {provider.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="apoema-provider-select">
-              Modelo
-              <select
-                value={selectedModel}
-                onChange={(event) => {
-                  setSelectedModel(event.target.value);
-                  setNotice(null);
-                }}
-              >
-                {providerModels.map((model) => (
-                  <option key={model} value={model}>
-                    {model}
-                  </option>
-                ))}
-              </select>
-            </label>
+            {providerLoadState === "loading" && (
+              <div className="apoema-warning is-warning">
+                <AlertTriangle size={16} />
+                <div>
+                  <strong>Carregando provedores</strong>
+                  <p>Buscando catálogo do backend de IA.</p>
+                </div>
+              </div>
+            )}
+
+            {providerBanner && (
+              <div className={`apoema-warning ${providerBanner.tone === "danger" ? "is-danger" : "is-warning"}`}>
+                {providerBanner.tone === "danger" ? <ShieldAlert size={16} /> : <AlertTriangle size={16} />}
+                <div>
+                  <strong>{providerBanner.title}</strong>
+                  <p>{providerBanner.message}</p>
+                  <div className="apoema-warning-actions">
+                    <button type="button" className="apoema-secondary-button" onClick={() => void reloadProviders()}>
+                      <RotateCcw size={16} />
+                      Tentar novamente
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {providerReady && selectedProvider && (
+              <>
+                <label className="apoema-provider-select">
+                  Provedor
+                  <select
+                    value={selectedProviderId}
+                    onChange={(event) => {
+                      const nextProvider = providers.find((provider) => provider.id === event.target.value);
+                      if (!nextProvider) {
+                        return;
+                      }
+                      setSelectedProviderId(nextProvider.id);
+                      setSelectedModel(nextProvider.default_model);
+                      setMessageBanner(null);
+                    }}
+                  >
+                    {providers.map((provider) => (
+                      <option key={provider.id} value={provider.id}>
+                        {provider.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="apoema-provider-select">
+                  Modelo
+                  <select
+                    value={selectedModel}
+                    onChange={(event) => {
+                      setSelectedModel(event.target.value);
+                      setMessageBanner(null);
+                    }}
+                  >
+                    {providerModels.map((model) => (
+                      <option key={model} value={model}>
+                        {model}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </>
+            )}
           </div>
         </div>
 
@@ -292,12 +464,12 @@ export function ChatPage() {
         </div>
 
         <div className="apoema-chat-dock">
-          {notice && (
-            <div className="apoema-warning">
-              <AlertTriangle size={16} />
+          {messageBanner && (
+            <div className={`apoema-warning ${messageBanner.tone === "danger" ? "is-danger" : "is-warning"}`}>
+              {messageBanner.tone === "danger" ? <ShieldAlert size={16} /> : <AlertTriangle size={16} />}
               <div>
-                <strong>Fallback ativo</strong>
-                <p>{notice}</p>
+                <strong>{messageBanner.title}</strong>
+                <p>{messageBanner.message}</p>
               </div>
             </div>
           )}
@@ -310,7 +482,7 @@ export function ChatPage() {
           />
 
           {warning && (
-            <div className="apoema-warning">
+            <div className="apoema-warning is-warning">
               <ShieldAlert size={16} />
               <div>
                 <strong>{warning.title}</strong>
@@ -330,13 +502,24 @@ export function ChatPage() {
             </div>
           )}
 
-          <ChatComposer value={prompt} onChange={setPrompt} onSubmit={sendMessage} disabled={busy} />
+          <ChatComposer
+            value={prompt}
+            onChange={setPrompt}
+            onSubmit={sendMessage}
+            disabled={busy || !providerReady || !selectedProvider}
+          />
           <div className="apoema-chat-sidebar-card" aria-live="polite">
-            <StatusPill tone={statusTone(selectedProvider.status)}>
-              {providerLoadStatus === "offline" ? "Fallback local" : selectedProvider.status}
+            <StatusPill tone={providerStateTone as "success" | "warning" | "neutral" | "info"}>
+              {providerStateLabel}
             </StatusPill>
             <p>
-              Modelo atual: <strong>{selectedModel}</strong>. A conversa usa metadados de anexos e mantém o fluxo visual local.
+              {providerLoadState === "fallback"
+                ? "Backend indisponível. Catálogo local ativo para continuidade da prévia."
+                : providerLoadState === "error"
+                  ? "O catálogo de provedores não pôde ser carregado."
+                  : selectedProvider
+                    ? `Modelo atual: ${selectedModel || selectedProvider.default_model}. A conversa usa metadados de anexos e mantém o fluxo visual local.`
+                    : "Aguardando catálogo de provedores."}
             </p>
           </div>
         </div>

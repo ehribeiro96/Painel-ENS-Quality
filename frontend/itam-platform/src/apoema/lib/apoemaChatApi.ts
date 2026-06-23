@@ -1,9 +1,13 @@
 import { mockApoemaResponse } from "../mockApi";
+import { ApoemaApiError } from "../types";
 import type {
   ApoemaAttachment,
+  ApoemaApiErrorKind,
   ApoemaChatAttachmentMeta,
+  ApoemaChatMessageResult,
   ApoemaChatRequest,
   ApoemaChatResponse,
+  ApoemaProviderLoadResult,
   ApoemaProviderOption,
 } from "../types";
 
@@ -33,6 +37,56 @@ const DEFAULT_PROVIDER_OPTIONS: ApoemaProviderOption[] = [
   },
 ];
 
+function classifyStatus(status: number): ApoemaApiErrorKind {
+  if (status === 401) {
+    return "auth_required";
+  }
+  if (status === 403) {
+    return "forbidden";
+  }
+  if (status === 429) {
+    return "rate_limited";
+  }
+  if (status === 422) {
+    return "validation_error";
+  }
+  if (status >= 500 && status < 600) {
+    return "backend_error";
+  }
+  return "unknown_api_error";
+}
+
+function normalizeDetail(value: unknown): string | null {
+  if (value === null || value === undefined) {
+    return null;
+  }
+  if (typeof value === "string") {
+    return value;
+  }
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
+  }
+}
+
+function extractErrorMessage(details: unknown, status: number): string {
+  if (typeof details === "string" && details.trim()) {
+    return details;
+  }
+  if (details && typeof details === "object" && "detail" in details) {
+    const detail = normalizeDetail((details as { detail?: unknown }).detail);
+    if (detail) {
+      return detail;
+    }
+  }
+  return `API ${status}`;
+}
+
+function buildApiError(response: Response, details: unknown): ApoemaApiError {
+  return new ApoemaApiError(extractErrorMessage(details, response.status), classifyStatus(response.status), response.status, details);
+}
+
 async function requestJson<T>(path: string, init: RequestInit = {}, token?: string | null): Promise<T> {
   const headers = new Headers(init.headers);
   if (init.body && !(init.body instanceof FormData) && !headers.has("content-type")) {
@@ -41,16 +95,47 @@ async function requestJson<T>(path: string, init: RequestInit = {}, token?: stri
   if (token) {
     headers.set("authorization", `Bearer ${token}`);
   }
-  const response = await fetch(`${API_BASE}${path}`, {
-    ...init,
-    credentials: init.credentials ?? "include",
-    headers,
-  });
-  if (!response.ok) {
-    const detail = await response.text().catch(() => "");
-    throw new Error(detail || `HTTP ${response.status}`);
+
+  try {
+    const response = await fetch(`${API_BASE}${path}`, {
+      ...init,
+      credentials: init.credentials ?? "include",
+      headers,
+    });
+
+    if (!response.ok) {
+      const rawText = await response.text().catch(() => "");
+      let details: unknown = rawText || null;
+      if (rawText.trim() && (response.headers.get("content-type") ?? "").includes("application/json")) {
+        try {
+          details = JSON.parse(rawText) as unknown;
+        } catch {
+          details = rawText;
+        }
+      }
+      throw buildApiError(response, details);
+    }
+
+    if (response.status === 204) {
+      return undefined as T;
+    }
+
+    const contentType = response.headers.get("content-type") ?? "";
+    if (!contentType.includes("application/json")) {
+      return response.text() as Promise<T>;
+    }
+
+    try {
+      return (await response.json()) as T;
+    } catch (error) {
+      throw new ApoemaApiError("Resposta inválida do backend.", "unknown_api_error", response.status, error);
+    }
+  } catch (error) {
+    if (error instanceof ApoemaApiError) {
+      throw error;
+    }
+    throw new ApoemaApiError("Backend indisponível por falha de rede.", "network_unavailable", undefined, error);
   }
-  return response.json() as Promise<T>;
 }
 
 function toLocalAttachments(attachments: ApoemaChatAttachmentMeta[]): ApoemaAttachment[] {
@@ -74,18 +159,29 @@ function fallbackId(prefix: string) {
   return uuid ? `${prefix}-${uuid}` : `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
-export async function getAiProviders(token?: string | null): Promise<ApoemaProviderOption[]> {
+export async function getAiProviders(token?: string | null): Promise<ApoemaProviderLoadResult> {
   try {
     const response = await requestJson<{ providers: ApoemaProviderOption[] }>("/ai-chat/providers", {}, token);
-    return response.providers.length > 0 ? response.providers : DEFAULT_PROVIDER_OPTIONS;
-  } catch {
-    return DEFAULT_PROVIDER_OPTIONS;
+    return {
+      kind: "online",
+      providers: response.providers,
+    };
+  } catch (error) {
+    if (error instanceof ApoemaApiError && error.kind === "network_unavailable") {
+      return {
+        kind: "fallback",
+        providers: DEFAULT_PROVIDER_OPTIONS,
+        offline: true,
+        notice: "Backend indisponível. Exibindo catálogo local de fallback.",
+      };
+    }
+    throw error;
   }
 }
 
-export async function sendAiMessage(payload: ApoemaChatRequest, token?: string | null): Promise<ApoemaChatResponse> {
+export async function sendAiMessage(payload: ApoemaChatRequest, token?: string | null): Promise<ApoemaChatMessageResult> {
   try {
-    return await requestJson<ApoemaChatResponse>(
+    const response = await requestJson<ApoemaChatResponse>(
       "/ai-chat/message",
       {
         method: "POST",
@@ -93,24 +189,36 @@ export async function sendAiMessage(payload: ApoemaChatRequest, token?: string |
       },
       token,
     );
-  } catch (error) {
-    const attachments = toLocalAttachments(payload.attachments);
-    const providerLabel = fallbackProviderLabel(payload.provider);
-    const content = await mockApoemaResponse(payload.message, attachments, providerLabel);
     return {
-      conversation_id: payload.conversation_id ?? fallbackId("fallback-conversation"),
-      message_id: fallbackId("fallback-message"),
-      provider: payload.provider,
-      model: payload.model,
-      status: "offline",
-      content,
-      created_at: new Date().toISOString(),
-      usage: {
-        prompt_tokens: null,
-        completion_tokens: null,
-        total_tokens: null,
-      },
-      error: error instanceof Error ? error.message : "backend_unavailable",
+      kind: "online",
+      response,
     };
+  } catch (error) {
+    if (error instanceof ApoemaApiError && error.kind === "network_unavailable") {
+      const attachments = toLocalAttachments(payload.attachments);
+      const providerLabel = fallbackProviderLabel(payload.provider);
+      const content = await mockApoemaResponse(payload.message, attachments, providerLabel);
+      return {
+        kind: "fallback",
+        offline: true,
+        notice: "Backend indisponível. Exibindo resposta local de fallback.",
+        response: {
+          conversation_id: payload.conversation_id ?? fallbackId("fallback-conversation"),
+          message_id: fallbackId("fallback-message"),
+          provider: payload.provider,
+          model: payload.model,
+          status: "offline",
+          content,
+          created_at: new Date().toISOString(),
+          usage: {
+            prompt_tokens: null,
+            completion_tokens: null,
+            total_tokens: null,
+          },
+          error: "network_unavailable",
+        },
+      };
+    }
+    throw error;
   }
 }
