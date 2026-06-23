@@ -354,8 +354,8 @@ export function ChatPage() {
     <div className="apoema-chat-layout">
       <aside className="apoema-chat-sidebar apoema-panel">
         <div className="apoema-section-head">
-          <h2>Conversations</h2>
-          <span>Workspace</span>
+          <h2>Conversas</h2>
+          <span>Painel</span>
         </div>
         <div className="apoema-conversation-list">
           {apoemaConversations.map((conversation) => (
@@ -376,7 +376,7 @@ export function ChatPage() {
             <Sparkles size={14} />
             IA habilitada
           </StatusPill>
-          <p>{"Frontend Apoema -> Backend do Painel -> Provedor controlado no servidor."}</p>
+          <p>{"Frontend Apoema → Backend do Painel → provedor controlado no servidor."}</p>
         </div>
       </aside>
 
@@ -528,7 +528,7 @@ export function ChatPage() {
       <aside className="apoema-panel apoema-chat-right">
         <div className="apoema-section-head">
           <h2>Boas práticas</h2>
-          <span>Guard rails</span>
+          <span>Proteções</span>
         </div>
         <div className="apoema-safety-list">
           <div className="apoema-safety-item">

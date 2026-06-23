@@ -37,7 +37,7 @@ export function DashboardPage() {
         <div className="apoema-panel">
           <div className="apoema-section-head">
             <h2>Atalhos operacionais</h2>
-            <span>Mocked action lane</span>
+            <span>Ações rápidas</span>
           </div>
           <div className="apoema-command-grid">
             {apoemaCommands.map((command) => (
@@ -49,7 +49,7 @@ export function DashboardPage() {
         <div className="apoema-panel">
           <div className="apoema-section-head">
             <h2>Sinais recentes</h2>
-            <span>Telemetry feed</span>
+            <span>Linha do tempo</span>
           </div>
           <div className="apoema-timeline">
             {apoemaActivities.map((activity) => (

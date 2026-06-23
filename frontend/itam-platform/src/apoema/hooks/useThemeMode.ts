@@ -5,11 +5,11 @@ const STORAGE_KEY = "apoema.theme-mode";
 
 function readStoredTheme(): ThemeMode {
   if (typeof window === "undefined") {
-    return "auto";
+    return "dark";
   }
 
   const value = window.localStorage.getItem(STORAGE_KEY);
-  return value === "light" || value === "dark" || value === "auto" ? value : "auto";
+  return value === "light" || value === "dark" || value === "auto" ? value : "dark";
 }
 
 function getSystemTheme(): ResolvedTheme {

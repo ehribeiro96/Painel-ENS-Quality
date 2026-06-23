@@ -10,7 +10,7 @@ export function IntegrationsPage() {
       <section className="apoema-page-top">
         <div>
           <StatusPill tone="success">Integrações mockadas</StatusPill>
-          <h1>Adaptadores corporativos com visão clara de cobertura.</h1>
+          <h1>Adaptadores corporativos com cobertura clara e leitura rápida.</h1>
           <p>Monitore conectores, janelas de sincronização e qualidade de integração.</p>
         </div>
       </section>

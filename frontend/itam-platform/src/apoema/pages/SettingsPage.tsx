@@ -24,7 +24,7 @@ export function SettingsPage() {
         <article className="apoema-panel">
           <div className="apoema-section-head">
             <h2>Preferências</h2>
-            <span>UI profile</span>
+            <span>Perfil visual</span>
           </div>
           <div className="apoema-preference-list">
             {preferenceList.map((pref) => (
@@ -44,7 +44,7 @@ export function SettingsPage() {
         <article className="apoema-panel">
           <div className="apoema-section-head">
             <h2>Segurança</h2>
-            <span>Operational guard rails</span>
+            <span>Proteções operacionais</span>
           </div>
           <div className="apoema-settings-notes">
             <div className="apoema-settings-note">

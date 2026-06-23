@@ -24,7 +24,7 @@ export function ApoemaLogo({ compact = false }: { compact?: boolean }) {
           <path d="M64 44l16 16-16 16-16-16z" />
           <path d="M64 76l20 20-20 20-20-20z" />
         </g>
-        <circle cx="64" cy="64" r="4.5" fill="var(--apoema-ink)" />
+        <circle cx="64" cy="64" r="4.5" fill="var(--apoema-cyan)" />
       </svg>
       <div className="apoema-logo-text">
         <strong>Apoema</strong>
