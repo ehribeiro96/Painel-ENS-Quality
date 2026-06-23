@@ -3,12 +3,14 @@ from __future__ import annotations
 import asyncio
 import sys
 import unittest
+from types import SimpleNamespace
 
 from tests.operational_http import ROOT
 
 sys.path.insert(0, str(ROOT / "backend"))
 
 from app.core import startup  # noqa: E402
+from app.core.config.settings import Settings  # noqa: E402
 
 
 class FakeLogger:
@@ -108,3 +110,36 @@ class StartupDiagnosticsTest(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("jwt_secret_key", snapshot)
         self.assertNotIn("database_url", snapshot)
         self.assertNotIn("redis_url", snapshot)
+
+    def test_settings_rejects_weak_jwt_secret_outside_local_and_keeps_local_defaults(self) -> None:
+        local = Settings(environment="local")
+        staging_secret = "a" * 32
+
+        self.assertTrue(local.app_auto_migrate)
+        self.assertTrue(local.enable_ai_chat)
+        self.assertFalse(Settings(environment="staging", jwt_secret_key=staging_secret, app_auto_migrate=False).app_auto_migrate)
+        with self.assertRaises(ValueError):
+            Settings(environment="staging", jwt_secret_key="change-me")
+
+    async def test_startup_validation_rejects_weak_jwt_secret_outside_local(self) -> None:
+        original_settings = startup.settings
+        startup.settings = SimpleNamespace(
+            environment="staging",
+            app_startup_checks=True,
+            app_auto_migrate=False,
+            app_startup_step_timeout_seconds=15.0,
+            admin_email="admin@example.com",
+            admin_name="Admin",
+            admin_password=None,
+            jwt_secret_key="change-me-with-at-least-32-characters",
+            database_url="postgresql+asyncpg://itam:itam@localhost:5432/itam",
+            redis_url="redis://localhost:6379/0",
+            allowed_origins=[],
+        )
+        try:
+            with self.assertRaises(RuntimeError) as ctx:
+                await startup.validate_settings_for_startup()
+        finally:
+            startup.settings = original_settings
+
+        self.assertEqual("JWT_SECRET_KEY must be changed outside local", str(ctx.exception))

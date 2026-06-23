@@ -78,6 +78,8 @@ class AiChatHardeningTest(unittest.IsolatedAsyncioTestCase):
     def test_all_ai_chat_endpoints_are_protected_by_rbac_dependency(self) -> None:
         protected_paths = {
             "/ai-chat/health",
+            "/ai-chat/providers",
+            "/ai-chat/message",
             "/ai-chat/conversations",
             "/ai-chat/conversations/{conversation_id}",
             "/ai-chat/conversations/{conversation_id}/messages",

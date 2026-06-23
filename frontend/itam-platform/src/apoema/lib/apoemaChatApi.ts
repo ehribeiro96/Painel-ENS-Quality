@@ -33,10 +33,13 @@ const DEFAULT_PROVIDER_OPTIONS: ApoemaProviderOption[] = [
   },
 ];
 
-async function requestJson<T>(path: string, init: RequestInit = {}): Promise<T> {
+async function requestJson<T>(path: string, init: RequestInit = {}, token?: string | null): Promise<T> {
   const headers = new Headers(init.headers);
   if (init.body && !(init.body instanceof FormData) && !headers.has("content-type")) {
     headers.set("content-type", "application/json");
+  }
+  if (token) {
+    headers.set("authorization", `Bearer ${token}`);
   }
   const response = await fetch(`${API_BASE}${path}`, {
     ...init,
@@ -71,21 +74,25 @@ function fallbackId(prefix: string) {
   return uuid ? `${prefix}-${uuid}` : `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 }
 
-export async function getAiProviders(): Promise<ApoemaProviderOption[]> {
+export async function getAiProviders(token?: string | null): Promise<ApoemaProviderOption[]> {
   try {
-    const response = await requestJson<{ providers: ApoemaProviderOption[] }>("/ai-chat/providers");
+    const response = await requestJson<{ providers: ApoemaProviderOption[] }>("/ai-chat/providers", {}, token);
     return response.providers.length > 0 ? response.providers : DEFAULT_PROVIDER_OPTIONS;
   } catch {
     return DEFAULT_PROVIDER_OPTIONS;
   }
 }
 
-export async function sendAiMessage(payload: ApoemaChatRequest): Promise<ApoemaChatResponse> {
+export async function sendAiMessage(payload: ApoemaChatRequest, token?: string | null): Promise<ApoemaChatResponse> {
   try {
-    return await requestJson<ApoemaChatResponse>("/ai-chat/message", {
-      method: "POST",
-      body: JSON.stringify(payload),
-    });
+    return await requestJson<ApoemaChatResponse>(
+      "/ai-chat/message",
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+      },
+      token,
+    );
   } catch (error) {
     const attachments = toLocalAttachments(payload.attachments);
     const providerLabel = fallbackProviderLabel(payload.provider);

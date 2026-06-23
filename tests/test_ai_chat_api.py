@@ -148,6 +148,8 @@ class AiChatApiTest(unittest.IsolatedAsyncioTestCase):
 
     def test_routes_depend_on_existing_current_user_authentication(self) -> None:
         protected_paths = {
+            "/ai-chat/providers",
+            "/ai-chat/message",
             "/ai-chat/conversations",
             "/ai-chat/conversations/{conversation_id}",
             "/ai-chat/conversations/{conversation_id}/messages",

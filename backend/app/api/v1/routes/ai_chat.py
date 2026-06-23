@@ -53,14 +53,18 @@ async def health(current_user: User = ai_chat_user) -> dict[str, object]:  # noq
 
 
 @router.get("/providers", response_model=ApoemaChatProvidersResponse)
-async def list_apoema_providers() -> ApoemaChatProvidersResponse:
+async def list_apoema_providers(current_user: User = ai_chat_user) -> ApoemaChatProvidersResponse:  # noqa: ARG001
     return build_apoema_provider_catalog(settings)
 
 
 @router.post("/message", response_model=ApoemaChatMessageResponse)
-async def send_apoema_message(payload: ApoemaChatMessageCreate) -> ApoemaChatMessageResponse:
+async def send_apoema_message(
+    payload: ApoemaChatMessageCreate,
+    current_user: User = ai_chat_user,
+) -> ApoemaChatMessageResponse:
     if len(payload.message) > settings.ai_max_input_chars:
         raise HTTPException(status_code=422, detail="ai_chat_input_too_large")
+    await _apply_rate_limit(current_user.id)
     return await generate_apoema_message(settings, payload)
 
 

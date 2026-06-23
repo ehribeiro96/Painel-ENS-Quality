@@ -11,7 +11,7 @@ import structlog
 from alembic import command
 from alembic.config import Config
 from alembic.script import ScriptDirectory
-from app.core.config.settings import settings
+from app.core.config.settings import _is_weak_jwt_secret, settings
 from app.core.database.session import AsyncSessionLocal, engine
 from app.core.frontend import frontend_dist_dir, frontend_ready
 from app.core.security.passwords import hash_password
@@ -264,8 +264,8 @@ async def bootstrap_admin() -> None:
 
 async def validate_settings_for_startup() -> None:
     logger.info("settings_validation_snapshot", **safe_startup_config_snapshot())
-    if settings.environment == "production" and settings.jwt_secret_key == "change-me-with-at-least-32-characters":
-        raise RuntimeError("JWT_SECRET_KEY must be changed in production")
+    if settings.environment != "local" and _is_weak_jwt_secret(settings.jwt_secret_key):
+        raise RuntimeError("JWT_SECRET_KEY must be changed outside local")
     if settings.environment == "production" and settings.admin_password == "<DEFINIR_LOCALMENTE_NO_ENV>":
         raise RuntimeError("ADMIN_PASSWORD must be changed in production")
 

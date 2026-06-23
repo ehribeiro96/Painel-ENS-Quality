@@ -4,9 +4,9 @@ services:
     environment:
       POSTGRES_DB: itam
       POSTGRES_USER: itam
-      POSTGRES_PASSWORD: itam
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-DEFINE_A_LOCAL_POSTGRES_PASSWORD}
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -19,7 +19,7 @@ services:
   redis:
     image: redis:7-alpine
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -40,10 +40,11 @@ services:
       DATABASE_URL: postgresql+asyncpg://itam:itam@postgres:5432/itam
       REDIS_URL: redis://redis:6379/0
       APP_STARTUP_CHECKS: "1"
-      APP_AUTO_MIGRATE: "1"
+      APP_AUTO_MIGRATE: "0"
       ADMIN_EMAIL: ${ADMIN_EMAIL:-estevao.quality@ens.edu.br}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD locally before starting the validation/runtime stack}
       ADMIN_NAME: ${ADMIN_NAME:-Estevão Ribeiro}
+      METRICS_TOKEN: ${METRICS_TOKEN:-}
       ACCESS_TOKEN_MINUTES: ${ACCESS_TOKEN_MINUTES:-15}
       REFRESH_TOKEN_DAYS: ${REFRESH_TOKEN_DAYS:-7}
     depends_on:

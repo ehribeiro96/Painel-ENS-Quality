@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import secrets
 import time
 import uuid
 from collections import defaultdict, deque
@@ -15,7 +16,7 @@ from app.core.legacy import mount_legacy_signature_apps
 from app.core.logging.setup import configure_logging
 from app.core.observability.metrics import instrument_sqlalchemy, metrics
 from app.core.startup import enterprise_startup, runtime_state
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, PlainTextResponse
 
@@ -35,6 +36,7 @@ _STRICT_CSP_REPORT_ONLY = (
     "default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; "
     "style-src 'self'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'"
 )
+_METRICS_TOKEN_HEADER = "x-metrics-token"
 
 
 @asynccontextmanager
@@ -106,6 +108,17 @@ def _apply_security_headers(response, path: str) -> None:
             del response.headers["content-security-policy-report-only"]
     if settings.environment == "production":
         response.headers.setdefault("strict-transport-security", "max-age=31536000; includeSubDomains")
+
+
+def _require_metrics_access(request: Request) -> None:
+    if settings.environment == "local":
+        return
+    configured_token = settings.metrics_token.strip()
+    if not configured_token:
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="metrics_disabled_without_token")
+    provided_token = request.headers.get(_METRICS_TOKEN_HEADER, "").strip()
+    if not provided_token or not secrets.compare_digest(provided_token, configured_token):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="invalid_metrics_token")
 
 
 @app.middleware("http")
@@ -189,7 +202,8 @@ async def health_dependencies() -> dict[str, object]:
 
 
 @app.get("/metrics", response_class=PlainTextResponse)
-async def prometheus_metrics() -> PlainTextResponse:
+async def prometheus_metrics(request: Request) -> PlainTextResponse:
+    _require_metrics_access(request)
     return PlainTextResponse(metrics.render_prometheus(), media_type="text/plain; version=0.0.4")
 
 

@@ -60,8 +60,8 @@ function RoleGuard({ children, roles }: { children: ReactNode; roles: Role[] }) 
 export function App() {
   return (
     <Routes>
-      <Route path="/apoema/*" element={<ApoemaApp />} />
-      <Route path="/apoema-preview/*" element={<ApoemaApp />} />
+      <Route path="/apoema/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
+      <Route path="/apoema-preview/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
       <Route path="/login" element={<LoginPage />} />
       <Route element={<ShellRoute />}>
         <Route index element={<DashboardPage />} />

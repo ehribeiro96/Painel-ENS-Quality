@@ -8,6 +8,20 @@ from pydantic import AliasChoices, Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 
+def _is_weak_jwt_secret(secret: str) -> bool:
+    normalized = secret.strip()
+    if not normalized:
+        return True
+    lowered = normalized.lower()
+    if lowered == "change-me" or "change-me" in lowered:
+        return True
+    if "placeholder" in lowered:
+        return True
+    if normalized.startswith("<") and normalized.endswith(">"):
+        return True
+    return len(normalized) < 32
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore", populate_by_name=True)
 
@@ -27,7 +41,7 @@ class Settings(BaseSettings):
     upload_max_mb: int = 25
     import_max_rows: int = 10000
     app_startup_checks: bool = True
-    app_auto_migrate: bool = True
+    app_auto_migrate: bool = False
     app_startup_step_timeout_seconds: float = 15.0
     dependency_retry_attempts: int = 30
     dependency_retry_delay_seconds: float = 2.0
@@ -52,6 +66,7 @@ class Settings(BaseSettings):
     ai_max_input_chars: int = 12000
     ai_max_output_tokens: int = 1000
     ai_chat_rate_limit_per_minute: int = 20
+    metrics_token: str = Field(default="", validation_alias=AliasChoices("METRICS_TOKEN"))
     ollama_base_url: str = "http://127.0.0.1:11434"
     ollama_model: str = "qwen3:1.7b-64k"
     ollama_timeout_seconds: int = 120
@@ -91,8 +106,9 @@ class Settings(BaseSettings):
             # Local developer instances should expose AI Chat unless it is explicitly disabled
             # by a runtime configuration override.
             self.enable_ai_chat = True
-        if self.environment == "production" and self.jwt_secret_key == "change-me-with-at-least-32-characters":
-            raise ValueError("JWT_SECRET_KEY must be changed in production")
+            self.app_auto_migrate = True
+        elif _is_weak_jwt_secret(self.jwt_secret_key):
+            raise ValueError("JWT_SECRET_KEY must be changed outside local")
         if self.environment == "production" and self.admin_password == "<DEFINIR_LOCALMENTE_NO_ENV>":
             raise ValueError("ADMIN_PASSWORD must be changed in production")
         if self.refresh_cookie_samesite == "none" and not self.refresh_cookie_secure:

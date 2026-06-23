@@ -7,6 +7,7 @@ import { StatusPill } from "../components/StatusPill";
 import { apoemaConversations, apoemaInitialMessages } from "../data";
 import { attachmentWarning } from "../mockApi";
 import { getAiProviders, sendAiMessage } from "../lib/apoemaChatApi";
+import { useAuth } from "@/lib/auth";
 import type {
   ApoemaAttachment,
   ApoemaChatAttachmentMeta,
@@ -77,6 +78,7 @@ const FALLBACK_PROVIDER: ApoemaProviderOption = {
 };
 
 export function ChatPage() {
+  const { token } = useAuth();
   const [conversationId, setConversationId] = useState(apoemaConversations[0]?.id ?? "");
   const [messages, setMessages] = useState<ApoemaMessage[]>(apoemaInitialMessages);
   const [prompt, setPrompt] = useState("");
@@ -101,7 +103,7 @@ export function ChatPage() {
 
   useEffect(() => {
     let active = true;
-    getAiProviders()
+    getAiProviders(token)
       .then((items) => {
         if (!active) return;
         setProviders(items.length > 0 ? items : [FALLBACK_PROVIDER]);
@@ -121,7 +123,7 @@ export function ChatPage() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     if (!providerModels.includes(selectedModel)) {
@@ -168,7 +170,7 @@ export function ChatPage() {
           route: "apoema-chat",
           source: "apoema-preview",
         },
-      });
+      }, token);
 
       setConversationId(response.conversation_id);
       setMessages((current) => [

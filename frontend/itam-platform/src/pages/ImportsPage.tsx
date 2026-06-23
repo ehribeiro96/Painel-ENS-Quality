@@ -126,7 +126,7 @@ export function ImportsPage() {
       setMessage("Arquivo enviado para staging. Revise preview, mapeamento e conflitos antes de aplicar.");
       loadImports(job.id);
     } catch {
-      setError("Falha no upload. Verifique extensao, tamanho, formulas e permissoes.");
+      setError("Falha no upload. Verifique extensão CSV/XLSX, tamanho, fórmulas e permissões.");
     } finally {
       setUploading(false);
       event.target.value = "";
@@ -268,8 +268,8 @@ export function ImportsPage() {
           <label className={`base44-import-dropzone ${uploading ? "is-disabled" : ""}`}>
             <span className="base44-import-dropzone-icon"><Upload size={18} aria-hidden /></span>
             <strong>{uploading ? "Enviando..." : "Selecionar arquivo"}</strong>
-            <small>CSV, XLSX ou XLS. Fórmulas perigosas e macros seguem bloqueadas pelo backend.</small>
-            <input className="hidden-input" type="file" accept=".csv,.xlsx,.xls" onChange={handleFile} disabled={uploading} />
+            <small>CSV ou XLSX. Fórmulas perigosas e macros seguem bloqueadas pelo backend.</small>
+            <input className="hidden-input" type="file" accept=".csv,.xlsx" onChange={handleFile} disabled={uploading} />
           </label>
           <div className="base44-import-controls">
             <label>

@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -10,11 +11,13 @@ BACKEND = ROOT / "backend"
 if str(BACKEND) not in sys.path:
     sys.path.insert(0, str(BACKEND))
 
+from app.api.v1.dependencies.auth import get_current_user  # noqa: E402
 from app.api.v1.routes import ai_chat  # noqa: E402
 from app.core.config.settings import Settings  # noqa: E402
 from app.domains.ai_chat.apoema import build_apoema_provider_catalog, generate_apoema_message  # noqa: E402
 from app.domains.ai_chat.providers import AiProviderRequestError  # noqa: E402
 from app.domains.ai_chat.schemas import ApoemaChatMessageCreate  # noqa: E402
+from fastapi import HTTPException  # noqa: E402
 
 
 class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
@@ -82,12 +85,23 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual("hermes-agent", response.model)
         self.assertIn("Usando fallback local", response.content)
 
-    def test_public_routes_exist_without_auth_dependency(self) -> None:
+    def test_apoema_routes_require_auth_dependency(self) -> None:
         provider_route = next(route for route in ai_chat.router.routes if getattr(route, "path", None) == "/ai-chat/providers")
         message_route = next(route for route in ai_chat.router.routes if getattr(route, "path", None) == "/ai-chat/message")
 
-        self.assertEqual([], provider_route.dependant.dependencies)
-        self.assertEqual([], message_route.dependant.dependencies)
+        self.assertTrue(provider_route.dependant.dependencies)
+        self.assertTrue(message_route.dependant.dependencies)
+        dependency_calls = {dependency.call for dependency in provider_route.dependant.dependencies + message_route.dependant.dependencies}
+        self.assertTrue(any(getattr(call, "__closure__", None) for call in dependency_calls))
+
+    async def test_get_current_user_without_token_returns_401(self) -> None:
+        request = SimpleNamespace(state=SimpleNamespace())
+
+        with self.assertRaises(HTTPException) as ctx:
+            await get_current_user(request=request, credentials=None, session=SimpleNamespace())
+
+        self.assertEqual(401, ctx.exception.status_code)
+        self.assertEqual("missing_token", ctx.exception.detail)
 
 
 class ApoemaFrontendStaticSafetyTest(unittest.TestCase):

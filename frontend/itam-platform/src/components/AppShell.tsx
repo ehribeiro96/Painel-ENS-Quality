@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { LogOut, Search, Users } from "lucide-react";
@@ -22,19 +22,26 @@ import {
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { accessModeLabel, canWriteOperationalData } from "@/lib/permissions";
-import type { SearchResult } from "@/lib/types";
+import type { Role, SearchResult } from "@/lib/types";
 
-const nav = [
+type NavItem = {
+  href: string;
+  label: string;
+  icon: ElementType;
+  roles?: readonly Role[];
+};
+
+const nav: NavItem[] = [
   { href: "/", label: "Centro de Comando", icon: RadarCircuitIcon },
   { href: "/assets", label: "Inventário", icon: PackageChipIcon },
   { href: "/users", label: "Colaboradores", icon: Users },
   { href: "/assignments", label: "Movimentações", icon: TransferCircuitIcon },
   { href: "/signatures", label: "Assinaturas", icon: ShieldCheckIcon },
-  { href: "/macros", label: "Macros ITIL", icon: DocumentBoltIcon },
+  { href: "/macros", label: "Macros ITIL", icon: DocumentBoltIcon, roles: ["ADMIN", "TECHNICIAN"] as const },
   { href: "/ai-chat", label: "IA Assistiva", icon: NeuralNodeIcon },
-  { href: "/audit-logs", label: "Auditoria", icon: AuditReportIcon },
-  { href: "/imports", label: "Importação Lansweeper", icon: DatabasePulseIcon },
-  { href: "/settings", label: "Configurações", icon: SettingsCircuitIcon }
+  { href: "/audit-logs", label: "Auditoria", icon: AuditReportIcon, roles: ["ADMIN", "MANAGER"] as const },
+  { href: "/imports", label: "Importação Lansweeper", icon: DatabasePulseIcon, roles: ["ADMIN", "TECHNICIAN"] as const },
+  { href: "/settings", label: "Configurações", icon: SettingsCircuitIcon, roles: ["ADMIN"] as const }
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -43,6 +50,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);
   const canWrite = canWriteOperationalData(user?.role);
+  const visibleNav = nav.filter((item) => !item.roles || (user?.role ? item.roles.includes(user.role) : false));
 
   useEffect(() => {
     if (!token || query.trim().length < 2) {
@@ -77,7 +85,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         />
         <BrandMark compact={false} />
         <nav className="nav base44-nav" aria-label="Navegação principal">
-          {nav.map((item) => {
+          {visibleNav.map((item) => {
             const Icon = item.icon;
             return (
               <NavLink key={item.href} to={item.href} className={({ isActive }) => (isActive ? "active" : undefined)} end={item.href === "/"}>
