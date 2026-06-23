@@ -3482,9 +3482,11 @@ textarea.input,
 
 .base44-surface {
   border-radius: 22px;
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(0, 229, 176, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+    rgba(13, 17, 23, 0.96);
+  box-shadow: var(--sentinel-shadow);
   backdrop-filter: blur(16px);
 }
 
@@ -3631,6 +3633,23 @@ textarea.input,
   align-items: stretch;
 }
 
+.base44-login-shell-loading {
+  width: min(100%, 840px);
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: stretch;
+  align-content: center;
+  gap: 18px;
+}
+
+.base44-login-shell-loading .base44-login-hero,
+.base44-login-shell-loading .base44-login-card {
+  max-width: none;
+}
+
+.base44-login-shell-loading .base44-login-card {
+  justify-self: stretch;
+}
+
 .base44-login-hero,
 .base44-login-card,
 .base44-notfound-card {
@@ -3674,15 +3693,29 @@ textarea.input,
   gap: 10px;
   padding: 12px 14px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
   color: var(--color-text);
   font-size: 13px;
+}
+
+.base44-login-hero-chips > div svg {
+  color: var(--color-primary);
 }
 
 .base44-login-card,
 .base44-notfound-card {
   padding: 24px;
+}
+
+.base44-login-card {
+  gap: 18px;
+  background: rgba(13, 17, 23, 0.94);
+}
+
+.base44-login-loading-card {
+  align-self: center;
 }
 
 .base44-field {
@@ -3698,7 +3731,13 @@ textarea.input,
 }
 
 .base44-input {
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.10);
+  color: var(--color-text);
+}
+
+.base44-input::placeholder {
+  color: var(--color-text-muted);
 }
 
 .base44-inline-alert {
@@ -3707,12 +3746,19 @@ textarea.input,
   border-radius: 14px;
   font-size: 13px;
   border: 1px solid transparent;
+  backdrop-filter: blur(12px);
 }
 
 .base44-inline-alert.danger {
   background: var(--color-danger-bg);
   border-color: var(--color-danger-border);
   color: var(--color-danger);
+}
+
+.base44-inline-alert.warning {
+  background: var(--color-warning-bg);
+  border-color: var(--color-warning-border);
+  color: var(--color-warning);
 }
 
 .base44-login-footer {

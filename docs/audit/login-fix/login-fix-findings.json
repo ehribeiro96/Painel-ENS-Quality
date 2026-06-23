@@ -1,0 +1,18 @@
+[
+  {
+    "id": "LOGIN-BUG-001",
+    "status": "fixed",
+    "severity": "high",
+    "summary": "O login ficava preso em loading quando a tentativa inicial de refresh nao respondia, deixando a rota /login sem liberar o formulario.",
+    "root_cause": "A validacao inicial de sessao aguardava /api/v1/auth/refresh sem timeout e sem classificar indisponibilidade de backend.",
+    "files": [
+      "frontend/itam-platform/src/lib/auth.tsx",
+      "frontend/itam-platform/src/lib/api.ts",
+      "frontend/itam-platform/src/pages/LoginPage.tsx",
+      "frontend/itam-platform/src/styles.css"
+    ],
+    "observed_behavior": "O shell de login permanecia visivel indefinidamente quando o backend nao respondia.",
+    "new_behavior": "O formulario aparece apos timeout de boot e o submit mostra erro explicito em PT-BR quando a API nao responde.",
+    "verification": "Contrato estatico, build do frontend e smoke da rota /login com backend indisponivel."
+  }
+]

@@ -183,14 +183,17 @@ async function request<T>(path: string, init: RequestOptions = {}): Promise<T> {
 }
 
 export const api = {
-  login: (email: string, password: string) =>
+  login: (email: string, password: string, options: Pick<RequestInit, "signal"> = {}) =>
     request<TokenResponse>("/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
-      skipAuthRefresh: true
+      skipAuthRefresh: true,
+      ...options
     }),
-  refresh: () => request<TokenResponse>("/auth/refresh", { method: "POST", skipAuthRefresh: true }),
-  logout: (token?: string | null) => request<{ status: string }>("/auth/logout", { method: "POST", token, skipAuthRefresh: true }),
+  refresh: (options: Pick<RequestInit, "signal"> = {}) =>
+    request<TokenResponse>("/auth/refresh", { method: "POST", skipAuthRefresh: true, ...options }),
+  logout: (token?: string | null, options: Pick<RequestInit, "signal"> = {}) =>
+    request<{ status: string }>("/auth/logout", { method: "POST", token, skipAuthRefresh: true, ...options }),
   me: (token: string) => request<User>("/auth/me", { token }),
   dashboardSummary: (token: string) => request<Record<string, number>>("/dashboard/summary", { token }),
   assetsByStatus: (token: string) => request<Array<{ status: string; count: number }>>("/dashboard/assets-by-status", { token }),
