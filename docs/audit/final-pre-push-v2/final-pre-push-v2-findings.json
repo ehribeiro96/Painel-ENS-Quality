@@ -1,0 +1,36 @@
+{
+  "status": "READY_FOR_PUSH",
+  "branch": "main",
+  "push_authorized": false,
+  "push_executed": false,
+  "divergence": {
+    "behind": "0",
+    "ahead": "74"
+  },
+  "gates": {
+    "unittest": "PASS (188 tests, 8 skipped)",
+    "ruff": "PASS",
+    "compileall": "PASS",
+    "frontend_build": "PASS",
+    "docker_compose_config": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "regressions": {
+    "login_fix": "OK",
+    "apoema_redesign": "OK",
+    "apoema_auth_fallback": "OK",
+    "bundle_splitting": "OK",
+    "untracked_triage": "OK"
+  },
+  "security": {
+    "tracked_env_real": false,
+    "tracked_private_keys": false,
+    "frontend_direct_provider_call": false
+  },
+  "remaining_risks": [
+    "git fetch origin --prune failed with SSH public key authentication error, so remote refs were not refreshed",
+    "WSL bridge smoke to 172.18.0.1:8080 was unavailable on this machine",
+    "Preexisting untracked artifacts remain preserved by boundary"
+  ],
+  "recommendation": "READY_FOR_PUSH - push not executed because explicit authorization variables were not set."
+}
