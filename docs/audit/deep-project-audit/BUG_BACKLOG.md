@@ -17,6 +17,7 @@ _Nenhum P0 confirmado por gates automatizados e análise estática pós-commit `
 - Arquivos prováveis: `apoemaChatApi.ts`, `apoema/pages/ChatPage.tsx`
 - Recomendação: Propagar `401/403` para UI; reservar mock apenas quando backend explicitamente indisponível em modo preview dev
 - Risco de regressão: médio
+- Status da correção: corrigido em 2026-06-23; fallback local agora fica restrito a falha real de rede/offline
 
 ### BUG-002 — Lista de providers Apoema oculta falha de autenticação
 - Severidade: P1_HIGH
@@ -29,6 +30,7 @@ _Nenhum P0 confirmado por gates automatizados e análise estática pós-commit `
 - Arquivos prováveis: `apoemaChatApi.ts`, `ChatPage.tsx`
 - Recomendação: Diferenciar erro de auth (401/403) de erro de rede; não substituir por catálogo mock silenciosamente
 - Risco de regressão: baixo
+- Status da correção: corrigido em 2026-06-23; 401/403 e erros de API agora são propagados e exibidos explicitamente
 
 ### BUG-003 — Auditoria autenticada de fluxos principais não executada
 - Severidade: P1_HIGH (limitação de auditoria com impacto em confiança do GO)
