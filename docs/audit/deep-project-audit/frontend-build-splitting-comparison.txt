@@ -1,0 +1,15 @@
+# Before
+603210 dist/_assets/index-CVvzjsMO.js
+93200 dist/_assets/index-Cc64ODb4.css
+
+# After
+289006 dist/_assets/index-BdA-3aNH.js
+99573 dist/_assets/MoveAssetDialog-C1BHquXk.js
+74420 dist/_assets/index-CDQqVpDp.css
+42506 dist/_assets/index-r4CCU32A.js
+25189 dist/_assets/AiChatPage-CryKKr-t.js
+23093 dist/_assets/AssetsPage-DtUboREu.js
+18784 dist/_assets/index-IqQi9Xxg.css
+15748 dist/_assets/ImportsPage-C2xL93Br.js
+13041 dist/_assets/UsersPage-DEogvhYf.js
+11534 dist/_assets/DashboardPage-B3jGHiEz.js
