@@ -1,0 +1,7 @@
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/certificates/certificado-a1-nao-aparece.md
+_migration_proposals/hermesops_selective_migration/docs/hermesops/knowledge/service-desk/_seed/certificates/certificado-a3-token-smartcard.md
+assets/legacy/Laravel/.env.example
+assets/legacy/Laravel/app/Actions/Fortify/PasswordValidationRules.php
+assets/legacy/Laravel/lang/en/passwords.php
+assets/legacy/Laravel/tests/Feature/PasswordConfirmationTest.php
+assets/legacy/Laravel/tests/Feature/PasswordResetTest.php

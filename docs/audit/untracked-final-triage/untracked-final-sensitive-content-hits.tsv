@@ -1,0 +1,9 @@
+assets/legacy/Laravel/.env.example	POSSIBLE_SECRET_PATTERN	1
+assets/legacy/Laravel/app/Actions/Fortify/PasswordValidationRules.php	POSSIBLE_SECRET_PATTERN	1
+assets/legacy/Laravel/app/Actions/Fortify/UpdateUserPassword.php	POSSIBLE_SECRET_PATTERN	1
+assets/legacy/Laravel/app/Http/Kernel.php	POSSIBLE_SECRET_PATTERN	1
+assets/legacy/Laravel/app/Providers/FortifyServiceProvider.php	POSSIBLE_SECRET_PATTERN	1
+assets/legacy/Laravel/config/sanctum.php	POSSIBLE_SECRET_PATTERN	1
+assets/legacy/Laravel/tests/Feature/ApiTokenPermissionsTest.php	POSSIBLE_SECRET_PATTERN	1
+assets/legacy/Laravel/tests/Feature/DeleteApiTokenTest.php	POSSIBLE_SECRET_PATTERN	1
+assets/legacy/Laravel/tests/Feature/PasswordResetTest.php	POSSIBLE_SECRET_PATTERN	1

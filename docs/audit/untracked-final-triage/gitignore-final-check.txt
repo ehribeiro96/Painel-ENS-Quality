@@ -1,0 +1,6 @@
+.gitignore:74:!.env.example	assets/legacy/Laravel/.env.example
+.gitignore:149:docs/audit/screenshots/	docs/audit/screenshots/example.png
+.gitignore:150:docs/apoema-visual-qa/screenshots/	docs/apoema-visual-qa/screenshots/example.png
+.gitignore:62:frontend/itam-platform/dist/	frontend/itam-platform/dist/example.js
+.gitignore:45:.pytest_cache/	.pytest_cache/example
+.gitignore:47:.ruff_cache/	.ruff_cache/example
