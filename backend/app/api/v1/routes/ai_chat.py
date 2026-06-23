@@ -5,6 +5,7 @@ from uuid import UUID
 from app.api.v1.dependencies.auth import require_role
 from app.core.config.settings import settings
 from app.core.database.session import get_session
+from app.domains.ai_chat.apoema import build_apoema_provider_catalog, generate_apoema_message
 from app.domains.ai_chat.providers import AiProviderConfigurationError, AiProviderRequestError, get_ai_provider_health
 from app.domains.ai_chat.rate_limit import get_ai_chat_rate_limiter
 from app.domains.ai_chat.schemas import (
@@ -12,6 +13,9 @@ from app.domains.ai_chat.schemas import (
     AiChatConversationDetail,
     AiChatConversationRead,
     AiChatMessageCreate,
+    ApoemaChatMessageCreate,
+    ApoemaChatMessageResponse,
+    ApoemaChatProvidersResponse,
 )
 from app.domains.ai_chat.service import AiChatService
 from app.domains.users.models import User
@@ -46,6 +50,18 @@ def _provider_error_detail(prefix: str, exc: Exception) -> str:
 async def health(current_user: User = ai_chat_user) -> dict[str, object]:  # noqa: ARG001
     provider_health = get_ai_provider_health(settings)
     return {"enabled": settings.enable_ai_chat, **provider_health}
+
+
+@router.get("/providers", response_model=ApoemaChatProvidersResponse)
+async def list_apoema_providers() -> ApoemaChatProvidersResponse:
+    return build_apoema_provider_catalog(settings)
+
+
+@router.post("/message", response_model=ApoemaChatMessageResponse)
+async def send_apoema_message(payload: ApoemaChatMessageCreate) -> ApoemaChatMessageResponse:
+    if len(payload.message) > settings.ai_max_input_chars:
+        raise HTTPException(status_code=422, detail="ai_chat_input_too_large")
+    return await generate_apoema_message(settings, payload)
 
 
 @router.get("/conversations", response_model=list[AiChatConversationRead])

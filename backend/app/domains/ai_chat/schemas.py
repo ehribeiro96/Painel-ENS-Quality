@@ -18,6 +18,10 @@ AiChatMode = Literal[
     "service_macro",
     "asset_guidance",
 ]
+AiChatProviderId = Literal["mock", "ollama", "hermes"]
+AiChatProviderStatus = Literal["online", "offline", "error", "unconfigured"]
+AiChatResponseStatus = Literal["ok", "offline", "error", "unconfigured"]
+AiChatAttachmentKind = Literal["text", "spreadsheet", "pdf", "image", "script", "log", "unknown"]
 
 
 class AiChatConversationCreate(BaseModel):
@@ -60,3 +64,57 @@ class AiChatMessageRead(BaseModel):
 
 class AiChatConversationDetail(AiChatConversationRead):
     messages: list[AiChatMessageRead] = Field(default_factory=list)
+
+
+class ApoemaChatAttachment(BaseModel):
+    id: str = Field(min_length=1)
+    name: str = Field(min_length=1)
+    mime_type: str = Field(min_length=1)
+    size: int = Field(ge=0)
+    kind: AiChatAttachmentKind = "unknown"
+    sensitive: bool = False
+
+
+class ApoemaChatContext(BaseModel):
+    route: str = "apoema-chat"
+    source: str = "apoema-preview"
+
+
+class ApoemaChatMessageCreate(BaseModel):
+    conversation_id: str | None = None
+    provider: AiChatProviderId = "mock"
+    model: str = Field(min_length=1)
+    message: str = Field(min_length=1)
+    mode: str = "assistente_n2"
+    attachments: list[ApoemaChatAttachment] = Field(default_factory=list)
+    context: ApoemaChatContext = Field(default_factory=ApoemaChatContext)
+
+
+class ApoemaChatUsage(BaseModel):
+    prompt_tokens: int | None = None
+    completion_tokens: int | None = None
+    total_tokens: int | None = None
+
+
+class ApoemaChatMessageResponse(BaseModel):
+    conversation_id: str
+    message_id: str
+    provider: AiChatProviderId
+    model: str
+    status: AiChatResponseStatus
+    content: str
+    created_at: datetime
+    usage: ApoemaChatUsage = Field(default_factory=ApoemaChatUsage)
+    error: str | None = None
+
+
+class ApoemaChatProviderRead(BaseModel):
+    id: AiChatProviderId
+    label: str
+    status: AiChatProviderStatus
+    models: list[str] = Field(default_factory=list)
+    default_model: str
+
+
+class ApoemaChatProvidersResponse(BaseModel):
+    providers: list[ApoemaChatProviderRead] = Field(default_factory=list)

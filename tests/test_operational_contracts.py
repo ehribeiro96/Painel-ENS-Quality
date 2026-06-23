@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import unittest
+from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -55,7 +56,6 @@ class OperationalContractsTest(unittest.TestCase):
 
     def test_user_read_allows_legacy_reserved_domain_email(self) -> None:
         import sys
-        from datetime import datetime, timezone
         from types import SimpleNamespace
         from uuid import uuid4
 
@@ -79,8 +79,8 @@ class OperationalContractsTest(unittest.TestCase):
             role=Role.VIEWER,
             source="legacy",
             source_metadata=None,
-            created_at=datetime.now(timezone.utc),
-            updated_at=datetime.now(timezone.utc),
+            created_at=datetime.now(UTC),
+            updated_at=datetime.now(UTC),
         )
 
         payload = UserRead.model_validate(user)
@@ -89,7 +89,6 @@ class OperationalContractsTest(unittest.TestCase):
 
     def test_movement_read_accepts_history_traceability_fields(self) -> None:
         import sys
-        from datetime import datetime, timezone
         from types import SimpleNamespace
         from uuid import uuid4
 
@@ -122,10 +121,10 @@ class OperationalContractsTest(unittest.TestCase):
                 asset_label="RJMTEST-HISTORY",
                 macro_generation_id=generation_id,
                 macro_copied=True,
-                macro_copied_at=datetime.now(timezone.utc),
+                macro_copied_at=datetime.now(UTC),
                 justification="Entrega controlada",
                 notes=None,
-                created_at=datetime.now(timezone.utc),
+                created_at=datetime.now(UTC),
             )
         )
 

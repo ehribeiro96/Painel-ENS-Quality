@@ -1,12 +1,11 @@
 from __future__ import annotations
 
+import sys
 import unittest
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from uuid import uuid4
 
 from tests.operational_http import ROOT
-
-import sys
 
 backend_path = str(ROOT / "backend")
 if backend_path not in sys.path:
@@ -24,8 +23,8 @@ class AuditLogFiltersTest(unittest.TestCase):
     def test_build_audit_filters_uses_existing_traceability_columns(self) -> None:
         entity_id = uuid4()
         user_id = uuid4()
-        date_from = datetime(2026, 6, 1, tzinfo=timezone.utc)
-        date_to = datetime(2026, 6, 21, tzinfo=timezone.utc)
+        date_from = datetime(2026, 6, 1, tzinfo=UTC)
+        date_to = datetime(2026, 6, 21, tzinfo=UTC)
 
         filters = build_audit_filters(
             entity_type="Asset",

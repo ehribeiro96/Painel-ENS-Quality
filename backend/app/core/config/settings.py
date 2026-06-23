@@ -44,6 +44,7 @@ class Settings(BaseSettings):
         default="mock",
         validation_alias=AliasChoices("AI_CHAT_PROVIDER", "AI_PROVIDER"),
     )
+    ai_chat_default_provider: Literal["mock", "ollama", "hermes"] = "mock"
     ai_model: str = ""
     ai_gemini_api_key: str = ""
     ai_openai_api_key: str = ""
@@ -55,6 +56,8 @@ class Settings(BaseSettings):
     ollama_model: str = "qwen3:1.7b-64k"
     ollama_timeout_seconds: int = 120
     ollama_allowed_hosts: Annotated[list[str], NoDecode] = ["localhost", "127.0.0.1", "::1"]
+    hermes_base_url: str = ""
+    hermes_model: str = "hermes-agent"
 
     @property
     def openai_api_key(self) -> str:
