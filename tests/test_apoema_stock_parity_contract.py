@@ -34,7 +34,7 @@ class ApoemaStockParityContractTest(unittest.TestCase):
 
     def test_stock_route_points_to_apoema_stock_page_without_legacy_alias(self) -> None:
         self.assertIn('path="stock" element={<StockPage />}', APOEMA_APP)
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
         self.assertNotIn("legacyApoemaAliasRoutes", APP)
         self.assertNotIn("LegacyApoemaAliasRoutes", APP)
         self.assertNotIn('path: "/stock"', APP)

@@ -20,7 +20,7 @@ class ApoemaAssetDetailParityContractTest(unittest.TestCase):
 
     def test_asset_detail_route_points_to_apoema_detail_page_without_legacy_alias(self) -> None:
         self.assertIn('path="assets/:id" element={<AssetDetailPage />}', APOEMA_APP)
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
         self.assertNotIn("legacyApoemaAliasRoutes", APP)
         self.assertNotIn("LegacyApoemaAliasRoutes", APP)
         self.assertNotIn('path: "/assets/:id"', APP)

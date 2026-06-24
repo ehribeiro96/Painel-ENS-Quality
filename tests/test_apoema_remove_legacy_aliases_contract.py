@@ -16,7 +16,11 @@ class ApoemaRemoveLegacyAliasesContractTest(unittest.TestCase):
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
+        self.assertNotIn("LegacyCompatibilityRouteDefinition", APP)
+        self.assertNotIn("LegacyShellRoute", APP)
+        self.assertNotIn("LegacyRoutes", APP)
+        self.assertNotIn("AppShell", APP)
 
         for alias in (
             'path: "/ai-chat"',
@@ -48,10 +52,8 @@ class ApoemaRemoveLegacyAliasesContractTest(unittest.TestCase):
         ):
             self.assertNotIn(alias, APP)
 
-        self.assertIn("// Legacy routes are retained temporarily while Apoema becomes the primary surface.", APP)
-        self.assertIn("function LegacyShellRoute()", APP)
-        self.assertIn("function LegacyRoutes()", APP)
-        self.assertNotIn("AppShell", APP.split("function ApoemaRoutes()")[1].split("type LegacyCompatibilityRouteDefinition")[0])
+        self.assertNotIn("Outlet", APP)
+        self.assertNotIn("// Legacy routes are retained temporarily while Apoema becomes the primary surface.", APP)
 
 
 if __name__ == "__main__":

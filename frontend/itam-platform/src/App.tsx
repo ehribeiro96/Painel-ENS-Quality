@@ -1,11 +1,10 @@
 import type { ReactNode } from "react";
 import { lazy, Suspense } from "react";
-import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { RouteLoading } from "./components/RouteLoading";
 import { useAuth } from "./lib/auth";
 import type { Role } from "./lib/types";
 
-const AppShell = lazy(() => import("./components/AppShell").then((module) => ({ default: module.AppShell })));
 const ApoemaApp = lazy(() => import("./apoema").then((module) => ({ default: module.ApoemaApp })));
 const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
@@ -50,40 +49,11 @@ function ApoemaRoutes() {
   );
 }
 
-type LegacyCompatibilityRouteDefinition = {
-  path: string;
-  element: ReactNode;
-};
-
-const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];
-
-// Legacy routes are retained temporarily while Apoema becomes the primary surface.
-function LegacyShellRoute() {
-  return (
-    <ProtectedRoute>
-      <AppShell>
-        <Outlet />
-      </AppShell>
-    </ProtectedRoute>
-  );
-}
-
-function LegacyRoutes() {
-  return (
-    <Route element={<LegacyShellRoute />}>
-      {legacyCompatibilityRoutes.map((route) => (
-        <Route key={route.path} path={route.path} element={route.element} />
-      ))}
-    </Route>
-  );
-}
-
 export function App() {
   return (
     <Suspense fallback={<RouteLoading />}>
       <Routes>
         <ApoemaRoutes />
-        <LegacyRoutes />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>

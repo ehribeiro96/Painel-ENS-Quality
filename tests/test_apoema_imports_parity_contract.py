@@ -40,7 +40,7 @@ class ApoemaImportsParityContractTest(unittest.TestCase):
         self.assertNotIn("LegacyApoemaAliasRoutes", APP)
 
     def test_imports_no_longer_live_in_legacy_shell(self) -> None:
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
 
     def test_imports_page_is_apoema_native_and_api_backed(self) -> None:
         self.assertIn("Base44ImportPanel", IMPORTS_PAGE)

@@ -22,7 +22,7 @@ class ApoemaMacrosParityContractTest(unittest.TestCase):
 
     def test_macros_route_points_to_apoema_macros_page_without_legacy_alias(self) -> None:
         self.assertIn('path="macros" element={<MacrosPage />}', APOEMA_APP)
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
         self.assertNotIn("legacyApoemaAliasRoutes", APP)
         self.assertNotIn("LegacyApoemaAliasRoutes", APP)

@@ -22,7 +22,7 @@ class ApoemaAiChatParityContractTest(unittest.TestCase):
 
     def test_ai_chat_route_is_canonical_in_apoema_and_alias_is_removed(self) -> None:
         self.assertIn('path="chat" element={<ChatPage />}', (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8"))
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
         self.assertNotIn("legacyApoemaAliasRoutes", APP)
         self.assertNotIn("LegacyApoemaAliasRoutes", APP)
         self.assertNotIn('path: "/ai-chat"', APP)

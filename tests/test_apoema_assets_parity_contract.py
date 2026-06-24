@@ -23,7 +23,7 @@ class ApoemaAssetsParityContractTest(unittest.TestCase):
     def test_assets_route_is_canonical_in_apoema_and_alias_is_removed(self) -> None:
         self.assertIn('path="assets" element={<AssetsPage />}', APOEMA_APP)
         self.assertIn('path="assets/:id" element={<AssetDetailPage />}', APOEMA_APP)
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
         self.assertNotIn("legacyApoemaAliasRoutes", APP)
         self.assertNotIn("LegacyApoemaAliasRoutes", APP)
         self.assertNotIn('path: "/assets"', APP)

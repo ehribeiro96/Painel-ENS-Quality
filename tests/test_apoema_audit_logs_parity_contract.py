@@ -20,7 +20,7 @@ class ApoemaAuditLogsParityContractTest(unittest.TestCase):
 
     def test_audit_logs_route_points_to_apoema_logs_page_without_legacy_alias(self) -> None:
         self.assertIn('path="audit-logs" element={<AuditLogsPage />}', APOEMA_APP)
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
         self.assertNotIn("legacyApoemaAliasRoutes", APP)
         self.assertNotIn("LegacyApoemaAliasRoutes", APP)
         self.assertNotIn('path: "/audit-logs"', APP)

@@ -193,13 +193,13 @@ class AiChatHardeningTest(unittest.IsolatedAsyncioTestCase):
 
 class AiChatFrontendHardeningTest(unittest.TestCase):
     def test_frontend_reads_enable_ai_chat_flag_and_hides_menu_by_default(self) -> None:
-        app_shell = (ROOT / "frontend/itam-platform/src/components/AppShell.tsx").read_text(encoding="utf-8")
+        app_shell = ROOT / "frontend/itam-platform/src/components/AppShell.tsx"
         features = (ROOT / "frontend/itam-platform/src/lib/features.ts").read_text(encoding="utf-8")
         vite_config = (ROOT / "frontend/itam-platform/vite.config.ts").read_text(encoding="utf-8")
 
+        self.assertFalse(app_shell.exists())
         self.assertIn("ENABLE_AI_CHAT", features)
-        self.assertIn('href: "/ai-chat"', app_shell)
-        self.assertIn("IA Assistiva", app_shell)
+        self.assertNotIn('href: "/ai-chat"', (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8"))
         self.assertIn("envPrefix", vite_config)
         self.assertIn("ENABLE_", vite_config)
 

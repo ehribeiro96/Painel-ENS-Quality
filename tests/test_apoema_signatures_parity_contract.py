@@ -34,7 +34,7 @@ class ApoemaSignaturesParityContractTest(unittest.TestCase):
 
     def test_signatures_route_points_to_apoema_signatures_page_without_legacy_alias(self) -> None:
         self.assertIn('path="signatures" element={<SignaturesPage />}', APOEMA_APP)
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
         self.assertNotIn("legacyApoemaAliasRoutes", APP)
         self.assertNotIn("LegacyApoemaAliasRoutes", APP)
         self.assertNotIn('path: "/signatures"', APP)

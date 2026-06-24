@@ -42,7 +42,7 @@ class ApoemaUsersParityContractTest(unittest.TestCase):
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
 
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
         self.assertNotIn("legacyApoemaAliasRoutes", APP)
         self.assertNotIn("LegacyApoemaAliasRoutes", APP)
         self.assertNotIn('path: "/users"', APP)
@@ -98,8 +98,9 @@ class ApoemaUsersParityContractTest(unittest.TestCase):
     def test_lazy_loading_and_shell_boundary_remain_preserved(self) -> None:
         self.assertIn('lazy(() => import("./apoema")', APP)
         self.assertIn('Suspense fallback={<RouteLoading />}', APP)
-        self.assertIn("function LegacyShellRoute()", APP)
-        self.assertIn("<AppShell>", APP)
+        self.assertNotIn("AppShell", APP)
+        self.assertNotIn("LegacyShellRoute", APP)
+        self.assertNotIn("LegacyRoutes", APP)
 
 
 if __name__ == "__main__":

@@ -37,7 +37,7 @@ class ApoemaOnlyRouteContractTest(unittest.TestCase):
         self.assertIn("Suspense fallback={<RouteLoading />}", APP)
 
     def test_legacy_routes_remain_in_place_for_compatibility(self) -> None:
-        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyCompatibilityRoutes", APP)
         self.assertNotIn("legacyApoemaAliasRoutes", APP)
         self.assertNotIn("LegacyApoemaAliasRoutes", APP)
         self.assertNotIn('path: "/ai-chat"', APP)
