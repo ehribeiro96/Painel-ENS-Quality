@@ -1,0 +1,6 @@
+unittest: PASS
+ruff: PASS
+compileall: PASS
+frontend_build: PASS
+git_diff_check: PASS
+smoke_http: PASS

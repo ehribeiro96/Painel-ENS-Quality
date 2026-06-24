@@ -1,0 +1,25 @@
+{
+  "status": "GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_4d_audit_logs_migration",
+  "legacy_route": "/audit-logs",
+  "apoema_target_route": "/apoema/audit-logs",
+  "policy": "POLICY_A_SAFE_REDIRECT",
+  "parity_minimum_met": true,
+  "legacy_route_preserved": true,
+  "protected_route_preserved": true,
+  "login_regression": "not_checked",
+  "assets_regression": "not_checked",
+  "asset_detail_regression": "not_checked",
+  "ai_chat_regression": "not_checked",
+  "direct_provider_call": false,
+  "validations": {
+    "unittest": "pass",
+    "ruff": "pass",
+    "compileall": "pass",
+    "frontend_build": "pass",
+    "git_diff_check": "pass"
+  },
+  "smoke_http": "pass",
+  "push_executed": false
+}
