@@ -36,24 +36,18 @@ function ApoemaRoute() {
   );
 }
 
-function ApoemaRoutes() {
-  return (
-    <>
-      <Route path="/" element={<Navigate to="/apoema" replace />} />
-      <Route path="/apoema" element={<ApoemaRoute />} />
-      <Route path="/apoema/*" element={<ApoemaRoute />} />
-      <Route path="/apoema-preview" element={<ApoemaRoute />} />
-      <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
-      <Route path="/login" element={<LoginPage />} />
-    </>
-  );
-}
-
 export function App() {
   return (
     <Suspense fallback={<RouteLoading />}>
       <Routes>
-        <ApoemaRoutes />
+        <>
+          <Route path="/" element={<Navigate to="/apoema" replace />} />
+          <Route path="/apoema" element={<ApoemaRoute />} />
+          <Route path="/apoema/*" element={<ApoemaRoute />} />
+          <Route path="/apoema-preview" element={<ApoemaRoute />} />
+          <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
+          <Route path="/login" element={<LoginPage />} />
+        </>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
