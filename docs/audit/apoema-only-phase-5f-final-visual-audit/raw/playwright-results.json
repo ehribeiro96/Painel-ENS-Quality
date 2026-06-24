@@ -1,0 +1,1402 @@
+[
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 1038,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__root.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/login",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 679,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__login.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 670,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/chat",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 667,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-chat.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/assets",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 665,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-assets.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/assets/123",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 650,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-asset-detail.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/audit-logs",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 664,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-audit-logs.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/imports",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 658,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-imports.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/macros",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 678,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-macros.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/stock",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": -545,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-stock.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/signatures",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 641,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-signatures.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/assignments",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 642,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-assignments.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/users",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 651,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-users.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/users/123",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 668,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-user-detail.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema/settings",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 688,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-settings.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema-preview",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 675,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-preview.png"
+  },
+  {
+    "type": "route",
+    "viewport": "mobile-390x844",
+    "route": "/apoema-preview/chat",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 694,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "mobile-390x844__apoema-preview-chat.png"
+  },
+  {
+    "type": "viewport_summary",
+    "viewport": "mobile-390x844",
+    "consoleMessages": [],
+    "pageErrors": [],
+    "failedRequests": [
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      }
+    ]
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 827,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__root.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/login",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 685,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__login.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 702,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/chat",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 699,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-chat.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/assets",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 660,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-assets.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/assets/123",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 674,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-asset-detail.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/audit-logs",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 672,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-audit-logs.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/imports",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 680,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-imports.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/macros",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 666,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-macros.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/stock",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 676,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-stock.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/signatures",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 689,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-signatures.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/assignments",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 673,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-assignments.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/users",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 694,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-users.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/users/123",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 698,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-user-detail.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema/settings",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 684,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-settings.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema-preview",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 685,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-preview.png"
+  },
+  {
+    "type": "route",
+    "viewport": "tablet-768x1024",
+    "route": "/apoema-preview/chat",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 701,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "tablet-768x1024__apoema-preview-chat.png"
+  },
+  {
+    "type": "viewport_summary",
+    "viewport": "tablet-768x1024",
+    "consoleMessages": [],
+    "pageErrors": [],
+    "failedRequests": [
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      }
+    ]
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 879,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__root.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/login",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 736,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__login.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 714,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/chat",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 706,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-chat.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/assets",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 696,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-assets.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/assets/123",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 698,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-asset-detail.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/audit-logs",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 718,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-audit-logs.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/imports",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 714,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-imports.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/macros",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 704,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-macros.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/stock",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 705,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-stock.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/signatures",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 729,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-signatures.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/assignments",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 714,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-assignments.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/users",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 713,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-users.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/users/123",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 708,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-user-detail.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema/settings",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 711,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-settings.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema-preview",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 705,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-preview.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1366x768",
+    "route": "/apoema-preview/chat",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 744,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1366x768__apoema-preview-chat.png"
+  },
+  {
+    "type": "viewport_summary",
+    "viewport": "desktop-1366x768",
+    "consoleMessages": [],
+    "pageErrors": [],
+    "failedRequests": [
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      }
+    ]
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 912,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__root.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/login",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 760,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__login.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 740,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/chat",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": -450,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-chat.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/assets",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 711,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-assets.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/assets/123",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 740,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-asset-detail.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/audit-logs",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 734,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-audit-logs.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/imports",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 709,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-imports.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/macros",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 799,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-macros.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/stock",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 771,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-stock.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/signatures",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 729,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-signatures.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/assignments",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 715,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-assignments.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/users",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 716,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-users.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/users/123",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 710,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-user-detail.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema/settings",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 729,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-settings.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema-preview",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 735,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-preview.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1440x900",
+    "route": "/apoema-preview/chat",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 749,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1440x900__apoema-preview-chat.png"
+  },
+  {
+    "type": "viewport_summary",
+    "viewport": "desktop-1440x900",
+    "consoleMessages": [],
+    "pageErrors": [],
+    "failedRequests": [
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      }
+    ]
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 923,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__root.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/login",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 762,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__login.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 779,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/chat",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 825,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-chat.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/assets",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 786,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-assets.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/assets/123",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 741,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-asset-detail.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/audit-logs",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 768,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-audit-logs.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/imports",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 785,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-imports.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/macros",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 797,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-macros.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/stock",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 770,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-stock.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/signatures",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 784,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-signatures.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/assignments",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 787,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-assignments.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/users",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 781,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-users.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/users/123",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 763,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-user-detail.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema/settings",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 751,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-settings.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema-preview",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 781,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-preview.png"
+  },
+  {
+    "type": "route",
+    "viewport": "desktop-1920x1080",
+    "route": "/apoema-preview/chat",
+    "finalUrl": "http://127.0.0.1:18093/login",
+    "status": 200,
+    "title": "HermesOps Sentinel — Guardião local da infraestrutura",
+    "elapsedMs": 833,
+    "bodyChars": 743,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso opera",
+    "screenshot": "desktop-1920x1080__apoema-preview-chat.png"
+  },
+  {
+    "type": "viewport_summary",
+    "viewport": "desktop-1920x1080",
+    "consoleMessages": [],
+    "pageErrors": [],
+    "failedRequests": [
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:18093/api/v1/auth/refresh",
+        "failure": "net::ERR_ABORTED"
+      }
+    ]
+  }
+]

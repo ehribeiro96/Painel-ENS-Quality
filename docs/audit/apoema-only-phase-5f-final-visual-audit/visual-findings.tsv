@@ -1,0 +1,3 @@
+id	severity	route	viewport	title	evidence	recommendation	phase
+VIS-001	INFO	/login	all	Login surface rendered and responsive	Desktop and mobile screenshots show the HermesOps Sentinel login shell with no JS errors; protected routes redirect to /login under absent credentials.	Document the auth-gated limitation; obtain a safe UAT credential for a future true post-login visual pass.	5F
+VIS-002	INFO	/all protected routes	all	Protected routes returned to login without crashing	No P0/P1 visual defects remained after fixing the invalid <Routes> child composition in App.tsx; login page body text present and screenshots captured across all viewports.	No further visual code change in this phase.	5F
