@@ -1,0 +1,12 @@
+# unittest
+PASS
+# ruff
+PASS
+# compileall
+PASS
+# frontend build
+PASS
+# git diff --check
+PASS
+# smoke http
+PASS (SPA fallback returned 200 on removed aliases; absence verified by static contracts and bundle)

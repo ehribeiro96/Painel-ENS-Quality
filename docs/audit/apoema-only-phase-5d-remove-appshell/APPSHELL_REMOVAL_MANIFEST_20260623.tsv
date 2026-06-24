@@ -1,0 +1,2 @@
+path	tracked	references_found	wraps_apoema	removal_decision	risk	notes
+frontend/itam-platform/src/components/AppShell.tsx	yes	no runtime imports in frontend/itam-platform/src/App.tsx or frontend/itam-platform/src/apoema; tests only assert absence	no	REMOVE_NOW	low	AppShell is no longer part of the routed frontend surface after the Apoema-only consolidation; keep CSS, login, not found, and Apoema pages intact.

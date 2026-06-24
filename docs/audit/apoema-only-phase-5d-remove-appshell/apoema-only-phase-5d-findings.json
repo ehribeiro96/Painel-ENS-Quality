@@ -1,0 +1,24 @@
+{
+  "status": "GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_5d_remove_appshell",
+  "appshell_removed": true,
+  "appshell_references_found": [],
+  "login_preserved": true,
+  "not_found_preserved": true,
+  "css_removed": false,
+  "backend_changed": false,
+  "direct_provider_call": false,
+  "secrets_found": false,
+  "canonical_routes_preserved": true,
+  "legacy_aliases_absent": true,
+  "validations": {
+    "unittest": "pass",
+    "ruff": "pass",
+    "compileall": "pass",
+    "frontend_build": "pass",
+    "git_diff_check": "pass",
+    "smoke_http": "pass_with_spa_fallback_on_removed_aliases"
+  },
+  "push_executed": false
+}
