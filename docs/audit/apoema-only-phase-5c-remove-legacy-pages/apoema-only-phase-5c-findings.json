@@ -1,0 +1,40 @@
+{
+  "status": "GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_5c_remove_legacy_pages",
+  "legacy_pages_removed": [
+    "frontend/itam-platform/src/pages/AiChatPage.tsx",
+    "frontend/itam-platform/src/pages/AssetDetailsPage.tsx",
+    "frontend/itam-platform/src/pages/AssetsPage.tsx",
+    "frontend/itam-platform/src/pages/AssignmentsPage.tsx",
+    "frontend/itam-platform/src/pages/AuditLogsPage.tsx",
+    "frontend/itam-platform/src/pages/DashboardPage.tsx",
+    "frontend/itam-platform/src/pages/ImportsPage.tsx",
+    "frontend/itam-platform/src/pages/MacrosPage.tsx",
+    "frontend/itam-platform/src/pages/SettingsPage.tsx",
+    "frontend/itam-platform/src/pages/SignaturesPage.tsx",
+    "frontend/itam-platform/src/pages/StockPage.tsx",
+    "frontend/itam-platform/src/pages/UserDetailsPage.tsx",
+    "frontend/itam-platform/src/pages/UsersPage.tsx"
+  ],
+  "pages_preserved": [
+    "frontend/itam-platform/src/pages/LoginPage.tsx",
+    "frontend/itam-platform/src/pages/NotFoundPage.tsx"
+  ],
+  "login_preserved": true,
+  "not_found_preserved": true,
+  "appshell_removed": false,
+  "css_removed": false,
+  "backend_changed": false,
+  "direct_provider_call": false,
+  "secrets_found": false,
+  "validations": {
+    "unittest": "PASS",
+    "ruff": "PASS",
+    "compileall": "PASS",
+    "frontend_build": "PASS",
+    "git_diff_check": "PASS",
+    "smoke_http": "PASS"
+  },
+  "push_executed": false
+}

@@ -1,0 +1,15 @@
+# Apoema-only Phase 5C gates log — 2026-06-24
+
+## Validation summary
+- unittest: PASS
+- ruff: PASS
+- compileall: PASS
+- frontend build: PASS
+- git diff --check: PASS
+
+## Smoke HTTP
+- 200 responses confirmed on canonical SPA routes.
+- Removed legacy routes returned SPA fallback HTML in Vite dev server, so removal was validated through the updated App.tsx contract and production bundle scan.
+
+## Bundle scan
+- No legacy page component names remained in `frontend/itam-platform/dist/_assets` or `dist/index.html`.

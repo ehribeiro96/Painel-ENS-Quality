@@ -1,0 +1,3 @@
+path	component	reason_preserved	risk	notes
+frontend/itam-platform/src/pages/LoginPage.tsx	auth page	Required for /login and auth boot flow	low	Kept because App.tsx still routes /login here.
+frontend/itam-platform/src/pages/NotFoundPage.tsx	fallback page	Required for SPA fallback and 404 state	low	Kept because App.tsx still uses it as final fallback.
