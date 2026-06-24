@@ -11,7 +11,6 @@ const AssignmentsPage = lazy(() => import("./pages/AssignmentsPage").then((modul
 const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
 const SettingsPage = lazy(() => import("./pages/SettingsPage").then((module) => ({ default: module.SettingsPage })));
-const SignaturesPage = lazy(() => import("./pages/SignaturesPage").then((module) => ({ default: module.SignaturesPage })));
 const UserDetailsPage = lazy(() => import("./pages/UserDetailsPage").then((module) => ({ default: module.UserDetailsPage })));
 const UsersPage = lazy(() => import("./pages/UsersPage").then((module) => ({ default: module.UsersPage })));
 
@@ -95,6 +94,12 @@ const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
     redirectTo: "/apoema/macros"
   },
   {
+    path: "/signatures",
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:signatures",
+    redirectTo: "/apoema/signatures"
+  },
+  {
     path: "/stock",
     temporaryCompatibility: true,
     migrationTarget: "apoema:stock",
@@ -167,12 +172,6 @@ const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [
     element: <AssignmentsPage />,
     temporaryCompatibility: true,
     migrationTarget: "apoema:movements"
-  },
-  {
-    path: "/signatures",
-    element: <SignaturesPage />,
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:signatures"
   },
   {
     path: "/settings",

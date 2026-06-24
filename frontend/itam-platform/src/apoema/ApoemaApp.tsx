@@ -1,5 +1,5 @@
 import { Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
-import { BarChart3, Brain, FileUp, Layers3, Package, Settings2, ShieldAlert, SplitSquareHorizontal, TextCursorInput, WandSparkles } from "lucide-react";
+import { BarChart3, Brain, FileSignature, FileUp, Layers3, Package, Settings2, ShieldAlert, SplitSquareHorizontal, TextCursorInput, WandSparkles } from "lucide-react";
 import { ApoemaLogo } from "./components/ApoemaLogo";
 import { ThemeSelector } from "./components/ThemeSelector";
 import { useThemeMode } from "./hooks/useThemeMode";
@@ -11,6 +11,7 @@ import { ImportsPage } from "./pages/ImportsPage";
 import { MacrosPage } from "./pages/MacrosPage";
 import { ChatPage } from "./pages/ChatPage";
 import { IntegrationsPage } from "./pages/IntegrationsPage";
+import { SignaturesPage } from "./pages/SignaturesPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { StockPage } from "./pages/StockPage";
 import { StatusPill } from "./components/StatusPill";
@@ -19,6 +20,7 @@ import "./styles/apoema.css";
 const navItems = [
   { to: "dashboard", label: "Visão geral", icon: BarChart3 },
   { to: "assets", label: "Ativos", icon: Layers3 },
+  { to: "signatures", label: "Assinaturas", icon: FileSignature },
   { to: "stock", label: "Estoque", icon: Package },
   { to: "imports", label: "Importações", icon: FileUp },
   { to: "macros", label: "Macros ITIL", icon: TextCursorInput },
@@ -94,6 +96,7 @@ export function ApoemaApp() {
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="assets" element={<AssetsPage />} />
           <Route path="assets/:id" element={<AssetDetailPage />} />
+          <Route path="signatures" element={<SignaturesPage />} />
           <Route path="stock" element={<StockPage />} />
           <Route path="imports" element={<ImportsPage />} />
           <Route path="macros" element={<MacrosPage />} />
