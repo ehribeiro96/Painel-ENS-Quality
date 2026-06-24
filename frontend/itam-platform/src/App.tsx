@@ -41,16 +41,6 @@ function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role
   return <Suspense fallback={<RouteLoading />}>{children}</Suspense>;
 }
 
-function ShellRoute() {
-  return (
-    <ProtectedRoute>
-      <AppShell>
-        <Outlet />
-      </AppShell>
-    </ProtectedRoute>
-  );
-}
-
 function RoleGuard({ children, roles }: { children: ReactNode; roles: Role[] }) {
   const { user } = useAuth();
   if (!user || !roles.includes(user.role)) {
@@ -67,31 +57,55 @@ function ApoemaRoute() {
   );
 }
 
+function ApoemaRoutes() {
+  return (
+    <>
+      <Route path="/" element={<Navigate to="/apoema" replace />} />
+      <Route path="/apoema" element={<ApoemaRoute />} />
+      <Route path="/apoema/*" element={<ApoemaRoute />} />
+      <Route path="/apoema-preview" element={<ApoemaRoute />} />
+      <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
+      <Route path="/login" element={<LoginPage />} />
+    </>
+  );
+}
+
+// Legacy routes are retained temporarily while Apoema becomes the primary surface.
+function LegacyShellRoute() {
+  return (
+    <ProtectedRoute>
+      <AppShell>
+        <Outlet />
+      </AppShell>
+    </ProtectedRoute>
+  );
+}
+
+function LegacyRoutes() {
+  return (
+    <Route element={<LegacyShellRoute />}>
+      <Route path="/assets" element={<AssetsPage />} />
+      <Route path="/assets/:id" element={<AssetDetailsPage />} />
+      <Route path="/users" element={<UsersPage />} />
+      <Route path="/users/:id" element={<UserDetailsPage />} />
+      <Route path="/assignments" element={<AssignmentsPage />} />
+      <Route path="/stock" element={<StockPage />} />
+      <Route path="/imports" element={<RoleGuard roles={["ADMIN", "TECHNICIAN"]}><ImportsPage /></RoleGuard>} />
+      <Route path="/macros" element={<RoleGuard roles={["ADMIN", "TECHNICIAN"]}><MacrosPage /></RoleGuard>} />
+      <Route path="/ai-chat" element={<AiChatPage />} />
+      <Route path="/signatures" element={<SignaturesPage />} />
+      <Route path="/audit-logs" element={<RoleGuard roles={["ADMIN", "MANAGER"]}><AuditLogsPage /></RoleGuard>} />
+      <Route path="/settings" element={<RoleGuard roles={["ADMIN"]}><SettingsPage /></RoleGuard>} />
+    </Route>
+  );
+}
+
 export function App() {
   return (
     <Suspense fallback={<RouteLoading />}>
       <Routes>
-        <Route path="/" element={<Navigate to="/apoema" replace />} />
-        <Route path="/apoema" element={<ApoemaRoute />} />
-        <Route path="/apoema/*" element={<ApoemaRoute />} />
-        <Route path="/apoema-preview" element={<ApoemaRoute />} />
-        <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
-        <Route path="/login" element={<LoginPage />} />
-        {/* Legacy routes retained temporarily while Apoema becomes the primary surface. */}
-        <Route element={<ShellRoute />}>
-          <Route path="/assets" element={<AssetsPage />} />
-          <Route path="/assets/:id" element={<AssetDetailsPage />} />
-          <Route path="/users" element={<UsersPage />} />
-          <Route path="/users/:id" element={<UserDetailsPage />} />
-          <Route path="/assignments" element={<AssignmentsPage />} />
-          <Route path="/stock" element={<StockPage />} />
-          <Route path="/imports" element={<RoleGuard roles={["ADMIN", "TECHNICIAN"]}><ImportsPage /></RoleGuard>} />
-          <Route path="/macros" element={<RoleGuard roles={["ADMIN", "TECHNICIAN"]}><MacrosPage /></RoleGuard>} />
-          <Route path="/ai-chat" element={<AiChatPage />} />
-          <Route path="/signatures" element={<SignaturesPage />} />
-          <Route path="/audit-logs" element={<RoleGuard roles={["ADMIN", "MANAGER"]}><AuditLogsPage /></RoleGuard>} />
-          <Route path="/settings" element={<RoleGuard roles={["ADMIN"]}><SettingsPage /></RoleGuard>} />
-        </Route>
+        <ApoemaRoutes />
+        <LegacyRoutes />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
