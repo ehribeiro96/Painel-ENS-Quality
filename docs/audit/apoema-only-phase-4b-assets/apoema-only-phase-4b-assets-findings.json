@@ -1,0 +1,24 @@
+{
+  "status": "GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_4b_assets_migration",
+  "legacy_route": "/assets",
+  "apoema_target_route": "/apoema/assets",
+  "legacy_assets_route_policy": "POLICY_A_SAFE_REDIRECT",
+  "legacy_assets_route_redirect_target": "/apoema/assets",
+  "apoema_assets_route_exists": true,
+  "apoema_preview_assets_preserved": true,
+  "legacy_detail_route_kept": true,
+  "parity_minimum_met": true,
+  "login_regression": "ok",
+  "ai_chat_regression": "ok",
+  "direct_provider_call": false,
+  "validations": {
+    "unittest": "pass",
+    "ruff": "pass",
+    "compileall": "pass",
+    "frontend_build": "pass",
+    "git_diff_check": "pass"
+  },
+  "push_executed": false
+}
