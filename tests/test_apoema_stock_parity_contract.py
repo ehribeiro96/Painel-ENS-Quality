@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -33,15 +32,13 @@ class ApoemaStockParityContractTest(unittest.TestCase):
         self.assertIn("/apoema/stock", MATRIX)
         self.assertIn("Paridade", MATRIX)
 
-    def test_stock_route_points_to_apoema_stock_page(self) -> None:
+    def test_stock_route_points_to_apoema_stock_page_without_legacy_alias(self) -> None:
         self.assertIn('path="stock" element={<StockPage />}', APOEMA_APP)
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/stock"', alias_block)
-        self.assertIn('migrationTarget: "apoema:stock"', alias_block)
-        self.assertIn('redirectTo: "/apoema/stock"', alias_block)
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn('path: "/stock"', APP)
+        self.assertNotIn('redirectTo: "/apoema/stock"', APP)
 
     def test_stock_page_contains_operational_parity_surface(self) -> None:
         for term in ("Base44PageHeader", "Base44OperationalGrid", "Base44MetricCard", "Base44Surface", "Base44StatusBadge", "Base44EmptyState", "LoadingBlock"):

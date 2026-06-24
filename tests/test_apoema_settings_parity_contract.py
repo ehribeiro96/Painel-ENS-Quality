@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -35,20 +34,17 @@ class ApoemaSettingsParityContractTest(unittest.TestCase):
         self.assertIn("Segurança visual", MATRIX)
         self.assertIn("Somente leitura", MATRIX)
 
-    def test_settings_routes_move_to_apoema_and_keep_compatibility_alias(self) -> None:
+    def test_settings_routes_move_to_apoema_without_legacy_alias(self) -> None:
         normalized = APP.replace("\n", " ")
         self.assertIn('path="/apoema" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
 
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
-
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/settings"', alias_block)
-        self.assertIn('migrationTarget: "apoema:settings"', alias_block)
-        self.assertIn('redirectTo: "/apoema/settings"', alias_block)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn('path: "/settings"', APP)
+        self.assertNotIn('redirectTo: "/apoema/settings"', APP)
 
     def test_apoema_app_exposes_settings_surface(self) -> None:
         self.assertIn('path="settings" element={<SettingsPage />}', APOEMA_APP)

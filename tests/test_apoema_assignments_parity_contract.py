@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -33,15 +32,13 @@ class ApoemaAssignmentsParityContractTest(unittest.TestCase):
         self.assertIn("/apoema/assignments", MATRIX)
         self.assertIn("Paridade", MATRIX)
 
-    def test_assignments_route_points_to_apoema_movements_page(self) -> None:
+    def test_assignments_route_points_to_apoema_movements_page_without_legacy_alias(self) -> None:
         self.assertIn('path="assignments" element={<AssignmentsPage />}', APOEMA_APP)
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/assignments"', alias_block)
-        self.assertIn('migrationTarget: "apoema:movements"', alias_block)
-        self.assertIn('redirectTo: "/apoema/assignments"', alias_block)
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn('path: "/assignments"', APP)
+        self.assertNotIn('redirectTo: "/apoema/assignments"', APP)
 
     def test_assignments_page_contains_operational_and_timeline_surface(self) -> None:
         for term in (
@@ -75,8 +72,10 @@ class ApoemaAssignmentsParityContractTest(unittest.TestCase):
         self.assertIn('Suspense fallback={<RouteLoading />}', APP)
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
-
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
         for target in (
+            'path: "/assignments"',
             'redirectTo: "/apoema/assignments"',
             'redirectTo: "/apoema/signatures"',
             'redirectTo: "/apoema/stock"',
@@ -87,12 +86,8 @@ class ApoemaAssignmentsParityContractTest(unittest.TestCase):
             'redirectTo: "/apoema/assets/:id"',
             'redirectTo: "/apoema/chat"',
         ):
-            self.assertIn(target, APP)
-
-        self.assertIn('path: "/assignments"', APP)
-        self.assertIn('migrationTarget: "apoema:movements"', APP)
+            self.assertNotIn(target, APP)
         self.assertIn('path="assignments" element={<AssignmentsPage />}', APOEMA_APP)
-        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
 
 
 if __name__ == "__main__":

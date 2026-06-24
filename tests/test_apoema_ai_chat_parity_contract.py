@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -21,15 +20,13 @@ class ApoemaAiChatParityContractTest(unittest.TestCase):
         self.assertIn("POLICY_A_SAFE_REDIRECT", MATRIX)
         self.assertIn("parity_minimum_met", MATRIX)
 
-    def test_ai_chat_alias_points_to_apoema_chat(self) -> None:
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/ai-chat"', alias_block)
-        self.assertIn('migrationTarget: "apoema:chat"', alias_block)
-        self.assertIn("function LegacyApoemaAliasRoutes()", APP)
-        self.assertIn("<LegacyApoemaAliasRoutes />", APP)
-        self.assertIn('redirectTo: "/apoema/chat"', alias_block)
+    def test_ai_chat_route_is_canonical_in_apoema_and_alias_is_removed(self) -> None:
+        self.assertIn('path="chat" element={<ChatPage />}', (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8"))
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn('path: "/ai-chat"', APP)
+        self.assertNotIn('redirectTo: "/apoema/chat"', APP)
 
     def test_apoema_preview_chat_remains_preserved(self) -> None:
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP.replace("\n", " "))

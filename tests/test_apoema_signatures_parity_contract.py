@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -33,15 +32,13 @@ class ApoemaSignaturesParityContractTest(unittest.TestCase):
         self.assertIn("/apoema/signatures", MATRIX)
         self.assertIn("Paridade", MATRIX)
 
-    def test_signatures_route_points_to_apoema_signatures_page(self) -> None:
+    def test_signatures_route_points_to_apoema_signatures_page_without_legacy_alias(self) -> None:
         self.assertIn('path="signatures" element={<SignaturesPage />}', APOEMA_APP)
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/signatures"', alias_block)
-        self.assertIn('migrationTarget: "apoema:signatures"', alias_block)
-        self.assertIn('redirectTo: "/apoema/signatures"', alias_block)
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn('path: "/signatures"', APP)
+        self.assertNotIn('redirectTo: "/apoema/signatures"', APP)
 
     def test_signatures_page_contains_operational_parity_surface(self) -> None:
         for term in ("Base44CopyBlock", "Base44EmptyState", "Base44OperationalGrid", "Base44PageHeader", "Base44StatusBadge", "Base44Surface", "Base44UserCard", "LoadingBlock"):
@@ -73,11 +70,10 @@ class ApoemaSignaturesParityContractTest(unittest.TestCase):
             'redirectTo: "/apoema/assets"',
             'redirectTo: "/apoema/assets/:id"',
             'redirectTo: "/apoema/chat"',
+            'path: "/ai-chat"',
+            'path: "/signatures"',
         ):
-            self.assertIn(target, APP)
-
-        self.assertIn('path: "/ai-chat"', APP)
-        self.assertIn('migrationTarget: "apoema:chat"', APP)
+            self.assertNotIn(target, APP)
         self.assertIn('path="chat" element={<ChatPage />}', APOEMA_APP)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
 

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -19,15 +18,13 @@ class ApoemaAssetDetailParityContractTest(unittest.TestCase):
         self.assertIn("/apoema/assets/:id", MATRIX)
         self.assertIn("parity_minimum_met", MATRIX)
 
-    def test_asset_detail_route_points_to_apoema_detail_page(self) -> None:
+    def test_asset_detail_route_points_to_apoema_detail_page_without_legacy_alias(self) -> None:
         self.assertIn('path="assets/:id" element={<AssetDetailPage />}', APOEMA_APP)
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/assets/:id"', alias_block)
-        self.assertIn('migrationTarget: "apoema:assets"', alias_block)
-        self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn('path: "/assets/:id"', APP)
+        self.assertNotIn('redirectTo: "/apoema/assets/:id"', APP)
 
     def test_detail_page_contains_operational_actions_and_states(self) -> None:
         for term in ("MoveAssetDialog", "Base44AssetTimeline", "Base44EmptyState", "LoadingBlock", "Base44PageHeader", "queryClient.invalidateQueries"):

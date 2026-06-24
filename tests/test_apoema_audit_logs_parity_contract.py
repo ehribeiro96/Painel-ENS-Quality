@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -19,15 +18,13 @@ class ApoemaAuditLogsParityContractTest(unittest.TestCase):
         self.assertIn("/apoema/audit-logs", MATRIX)
         self.assertIn("Paridade", MATRIX)
 
-    def test_audit_logs_route_points_to_apoema_logs_page(self) -> None:
+    def test_audit_logs_route_points_to_apoema_logs_page_without_legacy_alias(self) -> None:
         self.assertIn('path="audit-logs" element={<AuditLogsPage />}', APOEMA_APP)
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/audit-logs"', alias_block)
-        self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
-        self.assertIn('redirectTo: "/apoema/audit-logs"', alias_block)
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn('path: "/audit-logs"', APP)
+        self.assertNotIn('redirectTo: "/apoema/audit-logs"', APP)
 
     def test_audit_logs_page_contains_operational_filters_and_states(self) -> None:
         for term in ("Base44AuditEventCard", "Base44EmptyState", "Base44FilterPanel", "Base44InfoGrid", "Base44PageHeader", "LoadingBlock", ".audit(token, query)"):

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -21,18 +20,16 @@ class ApoemaAssetsParityContractTest(unittest.TestCase):
         self.assertIn("/apoema/assets", MATRIX)
         self.assertIn("parity_minimum_met", MATRIX)
 
-    def test_assets_route_is_a_poema_target_and_legacy_assets_stays_preserved(self) -> None:
+    def test_assets_route_is_canonical_in_apoema_and_alias_is_removed(self) -> None:
         self.assertIn('path="assets" element={<AssetsPage />}', APOEMA_APP)
         self.assertIn('path="assets/:id" element={<AssetDetailPage />}', APOEMA_APP)
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/assets"', alias_block)
-        self.assertIn('path: "/assets/:id"', alias_block)
-        self.assertIn('migrationTarget: "apoema:assets"', alias_block)
-        self.assertIn('redirectTo: "/apoema/assets"', alias_block)
-        self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn('path: "/assets"', APP)
+        self.assertNotIn('path: "/assets/:id"', APP)
+        self.assertNotIn('redirectTo: "/apoema/assets"', APP)
+        self.assertNotIn('redirectTo: "/apoema/assets/:id"', APP)
 
     def test_apoema_assets_page_contains_the_operational_parity_surface(self) -> None:
         for term in ("Search", "DataTable", "StatusPill", "MetricCard", "selectedAsset", "apoemaMetrics"):

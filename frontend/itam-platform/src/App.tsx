@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { lazy, Suspense, useMemo } from "react";
-import { Navigate, Outlet, Route, Routes, useLocation, useParams } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { RouteLoading } from "./components/RouteLoading";
 import { useAuth } from "./lib/auth";
 import type { Role } from "./lib/types";
@@ -37,114 +37,6 @@ function ApoemaRoute() {
   );
 }
 
-type LegacyApoemaAliasRouteDefinition = {
-  path: string;
-  temporaryCompatibility: true;
-  migrationTarget: string;
-  redirectTo: string;
-};
-
-const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
-  {
-    path: "/ai-chat",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:chat",
-    redirectTo: "/apoema/chat"
-  },
-  {
-    path: "/audit-logs",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:audit-logs",
-    redirectTo: "/apoema/audit-logs"
-  },
-  {
-    path: "/assets",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:assets",
-    redirectTo: "/apoema/assets"
-  },
-  {
-    path: "/assets/:id",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:assets",
-    redirectTo: "/apoema/assets/:id"
-  },
-  {
-    path: "/assignments",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:movements",
-    redirectTo: "/apoema/assignments"
-  },
-  {
-    path: "/users",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:users",
-    redirectTo: "/apoema/users"
-  },
-  {
-    path: "/users/:id",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:users",
-    redirectTo: "/apoema/users/:id"
-  },
-  {
-    path: "/imports",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:imports",
-    redirectTo: "/apoema/imports"
-  },
-  {
-    path: "/macros",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:macros",
-    redirectTo: "/apoema/macros"
-  },
-  {
-    path: "/signatures",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:signatures",
-    redirectTo: "/apoema/signatures"
-  },
-  {
-    path: "/stock",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:stock",
-    redirectTo: "/apoema/stock"
-  },
-  {
-    path: "/settings",
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:settings",
-    redirectTo: "/apoema/settings"
-  }
-];
-
-function ApoemaCompatibilityAliasRoute({ to }: { to: string }) {
-  const location = useLocation();
-  const params = useParams();
-  const resolvedTo = useMemo(
-    () =>
-      Object.entries(params).reduce((accumulator, [key, value]) => accumulator.replace(`:${key}`, value ?? ""), to),
-    [params, to]
-  );
-
-  return (
-    <ProtectedRoute>
-      <Navigate to={{ pathname: resolvedTo, search: location.search, hash: location.hash }} replace />
-    </ProtectedRoute>
-  );
-}
-
-function LegacyApoemaAliasRoutes() {
-  return (
-    <>
-      {legacyApoemaAliasRoutes.map((route) => (
-        <Route key={route.path} path={route.path} element={<ApoemaCompatibilityAliasRoute to={route.redirectTo} />} />
-      ))}
-    </>
-  );
-}
-
 function ApoemaRoutes() {
   return (
     <>
@@ -153,7 +45,6 @@ function ApoemaRoutes() {
       <Route path="/apoema/*" element={<ApoemaRoute />} />
       <Route path="/apoema-preview" element={<ApoemaRoute />} />
       <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
-      <LegacyApoemaAliasRoutes />
       <Route path="/login" element={<LoginPage />} />
     </>
   );
@@ -162,8 +53,6 @@ function ApoemaRoutes() {
 type LegacyCompatibilityRouteDefinition = {
   path: string;
   element: ReactNode;
-  temporaryCompatibility: true;
-  migrationTarget: string;
 };
 
 const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -37,23 +36,19 @@ class ApoemaUsersParityContractTest(unittest.TestCase):
         self.assertIn("Status ativo/inativo", MATRIX)
         self.assertIn("Papel/perfil", MATRIX)
 
-    def test_users_routes_move_to_apoema_and_keep_compatibility_alias(self) -> None:
+    def test_users_routes_move_to_apoema_without_legacy_alias(self) -> None:
         normalized = APP.replace("\n", " ")
         self.assertIn('path="/apoema" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
-        self.assertIn("<LegacyApoemaAliasRoutes />", APP)
 
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
-
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/users"', alias_block)
-        self.assertIn('path: "/users/:id"', alias_block)
-        self.assertIn('migrationTarget: "apoema:users"', alias_block)
-        self.assertIn('redirectTo: "/apoema/users"', alias_block)
-        self.assertIn('redirectTo: "/apoema/users/:id"', alias_block)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn('path: "/users"', APP)
+        self.assertNotIn('path: "/users/:id"', APP)
+        self.assertNotIn('redirectTo: "/apoema/users"', APP)
+        self.assertNotIn('redirectTo: "/apoema/users/:id"', APP)
 
     def test_apoema_app_exposes_users_surface(self) -> None:
         self.assertIn('path="users" element={<UsersPage />}', APOEMA_APP)

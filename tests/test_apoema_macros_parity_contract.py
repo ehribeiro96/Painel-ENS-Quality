@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -21,17 +20,14 @@ class ApoemaMacrosParityContractTest(unittest.TestCase):
         self.assertIn("/apoema/macros", MATRIX)
         self.assertIn("Paridade", MATRIX)
 
-    def test_macros_route_points_to_apoema_macros_page(self) -> None:
+    def test_macros_route_points_to_apoema_macros_page_without_legacy_alias(self) -> None:
         self.assertIn('path="macros" element={<MacrosPage />}', APOEMA_APP)
-        self.assertIn('path="macros" element={<MacrosPage />}', APOEMA_APP)
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/macros"', alias_block)
-        self.assertIn('migrationTarget: "apoema:macros"', alias_block)
-        self.assertIn('redirectTo: "/apoema/macros"', alias_block)
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn('path: "/macros"', APP)
+        self.assertNotIn('redirectTo: "/apoema/macros"', APP)
 
     def test_macros_page_contains_itil_preview_and_copy_contract(self) -> None:
         for term in ("Base44MacroPanel", "Base44MacroPreview", "Base44EmptyState", "Base44FilterPanel", "Base44PageHeader", "Base44StatusBadge", "LoadingBlock"):

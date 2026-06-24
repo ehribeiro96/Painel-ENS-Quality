@@ -31,12 +31,13 @@ class ApoemaImportsParityContractTest(unittest.TestCase):
         self.assertIn("/apoema/imports", matrix_text)
 
         normalized_app = APP.replace("\n", " ")
-        self.assertIn('path: "/imports"', normalized_app)
-        self.assertIn('migrationTarget: "apoema:imports"', normalized_app)
-        self.assertIn('redirectTo: "/apoema/imports"', normalized_app)
         self.assertIn('path="imports" element={<ImportsPage />}', APOEMA_APP.replace("\n", " "))
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized_app)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized_app)
+        self.assertNotIn('path: "/imports"', normalized_app)
+        self.assertNotIn('redirectTo: "/apoema/imports"', normalized_app)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
 
     def test_imports_no_longer_live_in_legacy_shell(self) -> None:
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)

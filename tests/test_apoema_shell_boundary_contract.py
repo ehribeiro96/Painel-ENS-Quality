@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -24,15 +23,14 @@ APOEMA = read_apoema_sources()
 class ApoemaShellBoundaryContractTest(unittest.TestCase):
     def test_app_exposes_explicit_apoema_first_and_legacy_blocks(self) -> None:
         self.assertIn("function ApoemaRoutes()", APP)
-        self.assertIn("function LegacyApoemaAliasRoutes()", APP)
         self.assertIn("const legacyCompatibilityRoutes", APP)
-        self.assertIn("const legacyApoemaAliasRoutes", APP)
         self.assertIn("function LegacyShellRoute()", APP)
         self.assertIn("function LegacyRoutes()", APP)
         self.assertIn("// Legacy routes are retained temporarily while Apoema becomes the primary surface.", APP)
         self.assertIn("<ApoemaRoutes />", APP)
-        self.assertIn("<LegacyApoemaAliasRoutes />", APP)
         self.assertIn("<LegacyRoutes />", APP)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
 
     def test_root_and_apoema_routes_stay_apoema_first(self) -> None:
         normalized = APP.replace("\n", " ")
@@ -41,8 +39,17 @@ class ApoemaShellBoundaryContractTest(unittest.TestCase):
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
-        self.assertIn("<LegacyApoemaAliasRoutes />", APP)
         self.assertIn('path="/login" element={<LoginPage />} ', normalized)
+        self.assertNotIn('path: "/ai-chat"', APP)
+        self.assertNotIn('path: "/assets"', APP)
+        self.assertNotIn('path: "/audit-logs"', APP)
+        self.assertNotIn('path: "/imports"', APP)
+        self.assertNotIn('path: "/macros"', APP)
+        self.assertNotIn('path: "/stock"', APP)
+        self.assertNotIn('path: "/signatures"', APP)
+        self.assertNotIn('path: "/assignments"', APP)
+        self.assertNotIn('path: "/users"', APP)
+        self.assertNotIn('path: "/settings"', APP)
 
     def test_legacy_shell_isolated_from_apoema_route(self) -> None:
         legacy_shell_section = APP.split("function LegacyShellRoute()")[1].split("function LegacyRoutes()")[0]
@@ -55,47 +62,45 @@ class ApoemaShellBoundaryContractTest(unittest.TestCase):
 
     def test_legacy_routes_remain_preserved(self) -> None:
         self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
-
-        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(alias_match)
-        alias_block = alias_match.group(1)
-        self.assertIn('path: "/ai-chat"', alias_block)
-        self.assertIn('path: "/audit-logs"', alias_block)
-        self.assertIn('path: "/assets"', alias_block)
-        self.assertIn('path: "/assets/:id"', alias_block)
-        self.assertIn('path: "/assignments"', alias_block)
-        self.assertIn('path: "/users"', alias_block)
-        self.assertIn('path: "/users/:id"', alias_block)
-        self.assertIn('path: "/settings"', alias_block)
-        self.assertIn('path: "/imports"', alias_block)
-        self.assertIn('path: "/macros"', alias_block)
-        self.assertIn('path: "/signatures"', alias_block)
-        self.assertIn('path: "/stock"', alias_block)
-        self.assertIn('migrationTarget: "apoema:chat"', alias_block)
-        self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
-        self.assertIn('migrationTarget: "apoema:assets"', alias_block)
-        self.assertIn('migrationTarget: "apoema:movements"', alias_block)
-        self.assertIn('migrationTarget: "apoema:users"', alias_block)
-        self.assertIn('migrationTarget: "apoema:settings"', alias_block)
-        self.assertIn('migrationTarget: "apoema:imports"', alias_block)
-        self.assertIn('migrationTarget: "apoema:macros"', alias_block)
-        self.assertIn('migrationTarget: "apoema:signatures"', alias_block)
-        self.assertIn('migrationTarget: "apoema:stock"', alias_block)
-        self.assertIn('redirectTo: "/apoema/audit-logs"', alias_block)
-        self.assertIn('redirectTo: "/apoema/assets"', alias_block)
-        self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
-        self.assertIn('redirectTo: "/apoema/assignments"', alias_block)
-        self.assertIn('redirectTo: "/apoema/users"', alias_block)
-        self.assertIn('redirectTo: "/apoema/users/:id"', alias_block)
-        self.assertIn('redirectTo: "/apoema/settings"', alias_block)
-        self.assertIn('redirectTo: "/apoema/imports"', alias_block)
-        self.assertIn('redirectTo: "/apoema/macros"', alias_block)
-        self.assertIn('redirectTo: "/apoema/signatures"', alias_block)
-        self.assertIn('redirectTo: "/apoema/stock"', alias_block)
-        for target in ("apoema:assets", "apoema:users", "apoema:movements", "apoema:stock", "apoema:imports", "apoema:macros", "apoema:signatures", "apoema:audit-logs", "apoema:settings"):
-            self.assertIn(f'migrationTarget: "{target}"', APP)
-        self.assertIn("temporaryCompatibility: true", APP)
-        self.assertIn("temporaryCompatibility: true", alias_block)
+        self.assertNotIn("legacyApoemaAliasRoutes", APP)
+        self.assertNotIn("LegacyApoemaAliasRoutes", APP)
+        self.assertNotIn("temporaryCompatibility: true", APP)
+        for target in (
+            'path: "/ai-chat"',
+            'path: "/audit-logs"',
+            'path: "/assets"',
+            'path: "/assets/:id"',
+            'path: "/assignments"',
+            'path: "/users"',
+            'path: "/users/:id"',
+            'path: "/settings"',
+            'path: "/imports"',
+            'path: "/macros"',
+            'path: "/signatures"',
+            'path: "/stock"',
+            'migrationTarget: "apoema:chat"',
+            'migrationTarget: "apoema:audit-logs"',
+            'migrationTarget: "apoema:assets"',
+            'migrationTarget: "apoema:movements"',
+            'migrationTarget: "apoema:users"',
+            'migrationTarget: "apoema:settings"',
+            'migrationTarget: "apoema:imports"',
+            'migrationTarget: "apoema:macros"',
+            'migrationTarget: "apoema:signatures"',
+            'migrationTarget: "apoema:stock"',
+            'redirectTo: "/apoema/audit-logs"',
+            'redirectTo: "/apoema/assets"',
+            'redirectTo: "/apoema/assets/:id"',
+            'redirectTo: "/apoema/assignments"',
+            'redirectTo: "/apoema/users"',
+            'redirectTo: "/apoema/users/:id"',
+            'redirectTo: "/apoema/settings"',
+            'redirectTo: "/apoema/imports"',
+            'redirectTo: "/apoema/macros"',
+            'redirectTo: "/apoema/signatures"',
+            'redirectTo: "/apoema/stock"',
+        ):
+            self.assertNotIn(target, APP)
 
     def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
         forbidden_terms = (
