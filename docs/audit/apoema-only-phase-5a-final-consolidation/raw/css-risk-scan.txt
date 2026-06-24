@@ -1,0 +1,445 @@
+===== frontend/itam-platform/src/apoema/styles/apoema.css =====
+1279 frontend/itam-platform/src/apoema/styles/apoema.css
+1::root {
+2:  --apoema-ink: #08111f;
+3:  --apoema-ink-soft: #122039;
+4:  --apoema-surface: rgba(13, 20, 33, 0.94);
+5:  --apoema-surface-strong: rgba(17, 26, 41, 0.98);
+6:  --apoema-surface-muted: rgba(19, 28, 44, 0.9);
+7:  --apoema-border: rgba(146, 169, 204, 0.14);
+8:  --apoema-text: #edf4ff;
+9:  --apoema-muted: #9aa8c0;
+10:  --apoema-teal: #31d0e6;
+11:  --apoema-cyan: #7ff6ff;
+12:  --apoema-copper: #e0a163;
+13:  --apoema-shadow: 0 26px 72px rgba(1, 6, 14, 0.42);
+16:.apoema-root,
+17:.apoema-root * {
+21:.apoema-root {
+23:  color: var(--apoema-text);
+29:  color-scheme: dark;
+32:.apoema-root[data-theme="dark"] {
+33:  --apoema-surface: rgba(13, 20, 33, 0.94);
+34:  --apoema-surface-strong: rgba(17, 26, 41, 0.98);
+35:  --apoema-surface-muted: rgba(19, 28, 44, 0.9);
+36:  --apoema-border: rgba(146, 169, 204, 0.14);
+37:  --apoema-text: #edf4ff;
+38:  --apoema-muted: #9aa8c0;
+43:  color-scheme: dark;
+46:.apoema-root[data-theme="light"] {
+47:  --apoema-surface: rgba(255, 255, 255, 0.84);
+48:  --apoema-surface-strong: #ffffff;
+49:  --apoema-surface-muted: rgba(238, 243, 250, 0.92);
+50:  --apoema-border: rgba(16, 25, 41, 0.09);
+51:  --apoema-text: #132138;
+52:  --apoema-muted: #5f6b82;
+57:  color-scheme: light;
+60:.apoema-shell {
+68:.apoema-sidebar,
+69:.apoema-rail,
+70:.apoema-main {
+74:.apoema-sidebar {
+83:.apoema-main {
+90:.apoema-rail {
+99:.apoema-logo {
+104:  border: 1px solid var(--apoema-border);
+106:  background: var(--apoema-surface);
+107:  box-shadow: var(--apoema-shadow);
+111:.apoema-logo-mark {
+117:.apoema-logo-text strong {
+122:  color: var(--apoema-ink);
+125:.apoema-root[data-theme="dark"] .apoema-logo-text strong {
+126:  color: var(--apoema-text);
+129:.apoema-logo-text span {
+134:  color: var(--apoema-muted);
+137:.apoema-nav,
+138:.apoema-sidebar-card,
+139:.apoema-rail-card,
+140:.apoema-panel,
+141:.apoema-metric-card,
+142:.apoema-command-card,
+143:.apoema-integration-card,
+144:.apoema-detail-card,
+145:.apoema-chat-sidebar-card,
+146:.apoema-topbar,
+147:.apoema-chat-message,
+148:.apoema-chat-dock,
+149:.apoema-filter-bar {
+150:  border: 1px solid var(--apoema-border);
+151:  background: var(--apoema-surface);
+152:  box-shadow: var(--apoema-shadow);
+156:.apoema-nav {
+163:.apoema-nav-item {
+167:  color: var(--apoema-muted);
+174:.apoema-nav-item:hover,
+175:.apoema-nav-item.is-active {
+176:  color: var(--apoema-text);
+181:.apoema-sidebar-card,
+182:.apoema-rail-card {
+187:.apoema-sidebar-card p,
+188:.apoema-rail-card p {
+190:  color: var(--apoema-muted);
+194:.apoema-topbar {
+203:.apoema-topbar-kicker {
+206:  color: var(--apoema-teal);
+212:.apoema-topbar strong {
+218:.apoema-root[data-theme="dark"] .apoema-topbar strong,
+219:.apoema-root[data-theme="dark"] .apoema-page h1,
+220:.apoema-root[data-theme="dark"] .apoema-page h2,
+221:.apoema-root[data-theme="dark"] .apoema-page strong,
+222:.apoema-root[data-theme="dark"] .apoema-panel strong,
+223:.apoema-root[data-theme="dark"] .apoema-command-card strong,
+224:.apoema-root[data-theme="dark"] .apoema-integration-card strong,
+225:.apoema-root[data-theme="dark"] .apoema-detail-card h2 {
+226:  color: var(--apoema-text);
+229:.apoema-page,
+230:.apoema-chat-layout {
+235:.apoema-page-top,
+236:.apoema-hero,
+237:.apoema-section-grid,
+238:.apoema-settings-grid {
+243:.apoema-page-top {
+248:.apoema-page-top h1,
+249:.apoema-hero h1,
+250:.apoema-chat-main h1 {
+257:.apoema-page-top h1,
+258:.apoema-hero h1,
+259:.apoema-chat-main h1,
+260:.apoema-detail-card h2 {
+264:.apoema-page-top p,
+265:.apoema-hero p,
+266:.apoema-chat-main p,
+267:.apoema-panel p,
+268:.apoema-rail-card p {
+269:  color: var(--apoema-muted);
+273:.apoema-panel {
+278:.apoema-hero {
+283:.apoema-hero-copy,
+284:.apoema-hero-panel {
+286:  border: 1px solid var(--apoema-border);
+287:  background: var(--apoema-surface);
+288:  box-shadow: var(--apoema-shadow);
+292:.apoema-hero-copy {
+296:.apoema-hero-panel {
+302:.apoema-hero-panel-top,
+303:.apoema-section-head,
+304:.apoema-integration-head {
+311:.apoema-hero-panel-top span,
+312:.apoema-section-head span {
+313:  color: var(--apoema-muted);
+317:.apoema-hero-actions {
+324:.apoema-primary-button,
+325:.apoema-secondary-button,
+326:.apoema-ghost-button,
+327:.apoema-theme-button,
+328:.apoema-command-card {
+334:.apoema-primary-button,
+335:.apoema-secondary-button,
+336:.apoema-ghost-button {
+346:.apoema-primary-button {
+348:  background: linear-gradient(135deg, var(--apoema-teal), var(--apoema-cyan));
+352:.apoema-secondary-button,
+353:.apoema-ghost-button,
+354:.apoema-theme-button {
+355:  background: var(--apoema-surface-strong);
+356:  color: var(--apoema-text);
+357:  border: 1px solid var(--apoema-border);
+360:.apoema-secondary-button:hover,
+361:.apoema-primary-button:hover,
+362:.apoema-ghost-button:hover,
+363:.apoema-theme-button:hover,
+364:.apoema-command-card:hover {
+368:.apoema-primary-button:disabled {
+373:.apoema-hero-card-grid,
+374:.apoema-command-grid,
+375:.apoema-idea-grid,
+376:.apoema-mini-stats,
+377:.apoema-integration-grid {
+382:.apoema-hero-card-grid {
+386:.apoema-mini-stats {
+390:.apoema-command-grid,
+391:.apoema-integration-grid {
+395:.apoema-idea-grid {
+399:.apoema-section-grid {
+403:.apoema-metric-card,
+404:.apoema-command-card,
+405:.apoema-integration-card,
+406:.apoema-detail-card,
+407:.apoema-chat-sidebar-card,
+408:.apoema-chat-message,
+409:.apoema-chat-dock,
+410:.apoema-filter-bar,
+411:.apoema-empty-state {
+415:.apoema-metric-card {
+419:.apoema-metric-top,
+420:.apoema-score,
+421:.apoema-attachment-chip,
+422:.apoema-provider-select {
+428:.apoema-metric-top {
+430:  color: var(--apoema-muted);
+434:.apoema-metric-card strong {
+441:.apoema-metric-card p {
+446:.apoema-pill {
+477:.apoema-command-card {
+487:.apoema-command-icon {
+494:  color: var(--apoema-teal);
+498:.apoema-command-content {
+503:.apoema-command-content strong {
+507:.apoema-command-content span,
+508:.apoema-command-action {
+510:  color: var(--apoema-muted);
+513:.apoema-command-action {
+520:.apoema-timeline {
+525:.apoema-timeline-item {
+531:  border: 1px solid var(--apoema-border);
+533:  background: var(--apoema-surface-muted);
+536:.apoema-timeline-item:last-child {
+540:.apoema-timeline-item time {
+541:  color: var(--apoema-muted);
+545:.apoema-timeline-item strong {
+550:.apoema-timeline-item p {
+555:.apoema-idea-grid .apoema-empty-state {
+557:  background: var(--apoema-surface-muted);
+560:.apoema-empty-state strong {
+565:.apoema-empty-state p {
+569:.apoema-filter-bar {
+578:.apoema-search {
+583:  border: 1px solid var(--apoema-border);
+586:  background: var(--apoema-surface-strong);
+589:.apoema-search input,
+590:.apoema-provider-select select,
+591:.apoema-chat-composer textarea {
+596:  color: var(--apoema-text);
+600:.apoema-search input::placeholder,
+601:.apoema-chat-composer textarea::placeholder {
+602:  color: var(--apoema-muted);
+605:.apoema-assets-layout {
+611:.apoema-table-wrap {
+616:.apoema-table {
+621:.apoema-table th,
+622:.apoema-table td {
+625:  border-bottom: 1px solid var(--apoema-border);
+629:.apoema-table th {
+
+===== frontend/itam-platform/src/styles.css =====
+5006 frontend/itam-platform/src/styles.css
+5::root {
+69:.card-title {
+75:.card-description {
+117:.shell {
+121:.sidebar {
+132:.topbar,
+134:.card-header,
+146:.topbar,
+147:.card-header,
+163:.topbar {
+305:.quick-card-grid {
+363:.metric-card {
+383:.assets-page .metric-card {
+444:.assets-page .mini-button {
+449:.assets-page .mini-button.text-action {
+462:.metric-card .badge {
+592:.users-form-card {
+625:.audit-summary-card p,
+743::root {
+744:  color-scheme: dark;
+747:  --sentinel-bg-card: #111820;
+793:body {
+804:.shell {
+810:.sidebar {
+925:.legacy-link,
+937:.legacy-link:hover,
+961:.sidebar-footer {
+987:.topbar {
+1026:.topbar-status {
+1033:.topbar-user {
+1045:.topbar-user strong,
+1046:.topbar-user small {
+1051:.topbar-user small {
+1055:.topbar-logout {
+1064:.card,
+1074:.recommendation-card,
+1075:.audit-summary-card,
+1076:.assignment-summary-card,
+1077:.users-table-card,
+1078:.audit-table-card,
+1079:.assignments-table-card,
+1080:.login-card,
+1082:.hermes-card {
+1089:.card,
+1098:.recommendation-card,
+1099:.audit-summary-card,
+1100:.assignment-summary-card,
+1101:.login-card,
+1103:.hermes-card {
+1107:.card-header,
+1116:.button,
+1117:.icon-button,
+1119:.mini-button,
+1120:.sort-button {
+1124:.button,
+1125:.icon-button,
+1127:.mini-button {
+1133:.button.secondary,
+1134:.icon-button.secondary {
+1140:.button.secondary:hover:not(:disabled),
+1141:.icon-button:hover:not(:disabled),
+1143:.mini-button:hover:not(:disabled) {
+1149:.button.danger,
+1150:.mini-button.danger {
+1156:.input,
+1159:textarea.input {
+1167:.input::placeholder,
+1172:.input:focus,
+1175:textarea.input:focus {
+1270:.hermes-card,
+1276:.hermes-card::before,
+1278:.login-card::before {
+1290:.hermes-card.variant-active,
+1296:.hermes-card-header {
+1304:.hermes-card-eyebrow,
+1314:.hermes-card-title,
+1324:.hermes-card-description,
+1332:.hermes-card-icon {
+1478:.data-table tbody tr:hover {
+1487:.sort-button:hover,
+1488:.sort-button:focus-visible {
+1532:.login-card {
+1558:.ai-chat-page .card,
+1566:.dashboard-metrics .metric-card,
+1567:.audit-summary-card,
+1568:.assignment-summary-card {
+1574:.metric-card-header {
+1629:.dashboard-panels .card,
+1630:.dashboard-recommendations .card,
+1631:.chart-card {
+1641:  .shell {
+1647:  .shell {
+1651:  .sidebar {
+1660:  .topbar {
+1705:html,
+1706:body,
+1711:body {
+1721:button,
+1722:input,
+1728:button:not(:disabled),
+1746:.hidden-input {
+1764:.shell {
+1770:.sidebar {
+1816:.legacy-link,
+1833:.legacy-link svg,
+1839:.legacy-link span,
+1853:.sidebar-footer {
+1890:.topbar {
+1907:.topbar-status {
+1912:.topbar-user {
+1916:.topbar-user > span {
+1920:.topbar-user strong,
+1921:.topbar-user small {
+1928:.topbar-logout {
+1941:.hermes-card-title {
+1953:.card,
+1954:.form-card,
+1962:.audit-summary-card,
+1963:.assignment-summary-card,
+1964:.users-table-card,
+1965:.audit-table-card,
+1966:.assignments-table-card,
+1967:.login-card,
+1974:.card,
+1975:.form-card,
+1985:.login-card {
+1989:.card,
+1990:.form-card,
+1999:.state-card {
+2003:.card h2,
+2004:.form-card h2,
+2006:.state-card h2 {
+2013:.card h3,
+2014:.form-card h3 {
+2020:.card p,
+2021:.form-card p,
+2023:.state-card p {
+2028:.card p:last-child,
+2029:.form-card p:last-child,
+2031:.state-card p:last-child {
+2035:.button,
+2036:.icon-button,
+2038:.mini-button,
+2039:.sort-button,
+2040:.ai-chat-copy-button {
+2055:.button {
+2060:.icon-button,
+2062:.mini-button {
+2068:.mini-button:not(.text-action) {
+2072:.mini-button.text-action {
+2077:.sort-button {
+2084:.button.ghost {
+2089:.button.ghost.active,
+2090:.button.primary {
+2096:.button:disabled,
+2097:.icon-button:disabled,
+2099:.mini-button:disabled {
+2104:.input,
+2107:textarea.input {
+2112:textarea.input,
+2364:.quick-card-grid {
+2368:.quick-card,
+2369:.recommendation-card {
+2380:.quick-card {
+2388:.quick-card:hover,
+2389:.recommendation-card:hover {
+2395:.quick-card span,
+2396:.quick-card strong,
+2397:.quick-card small {
+2401:.quick-card small {
+2407:.quick-card.blue { border-color: rgba(56, 189, 248, 0.22); }
+2408:.quick-card.green { border-color: rgba(34, 197, 94, 0.22); }
+2409:.quick-card.purple { border-color: rgba(168, 85, 247, 0.22); }
+2410:.quick-card.amber { border-color: rgba(245, 158, 11, 0.22); }
+2416:.recommendation-card {
+2422:.recommendation-card strong {
+2427:.recommendation-card p {
+2436:.chart-card {
+2685:.ai-chat-conversation-card {
+2697:.ai-chat-conversation-card:hover,
+2698:.ai-chat-conversation-card.active {
+2844:.ai-chat-message-body p {
+2850:.ai-chat-copy-button {
+2862:.ai-chat-copy-button:hover {
+2888:.ai-chat-attachment-card-header {
+2925:.ai-chat-composer-input {
+2944:.ai-chat-attachment-card {
+2953:.ai-chat-attachment-card p {
+3109:.state-card {
+3148:  .shell {
+3158:  .shell {
+3162:  .sidebar {
+3177:  .sidebar-footer {
+3181:  .topbar {
+3187:  .topbar-status {
+3191:  .topbar-user {
+3213:  .base44-sidebar .sidebar-footer {
+3231:  .card,
+3232:  .form-card,
+3244:  .login-card {
+3262:  .topbar-status,
+3272:  .button,
+3273:  .topbar-logout,
+3274:  .modal-actions .button,
+3275:  .dashboard-actions .button {
+3295:  .ai-chat-attachment-card-header {
+3323:  .ai-chat-conversation-card {
+3359:.base44-sidebar .sidebar-footer {
+3554:.base44-metric-card {
+3558:.base44-metric-card-header {
+3613:.base44-panel .card-header {
+3645:.base44-login-shell-loading .base44-login-card {
+3649:.base44-login-shell-loading .base44-login-card {
+3654:.base44-login-card,
+3655:.base44-notfound-card {
+3707:.base44-login-card,
+3708:.base44-notfound-card {
+3712:.base44-login-card {
+3717:.base44-login-loading-card {
+3733:.base44-input {

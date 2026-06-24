@@ -1,0 +1,300 @@
+frontend/itam-platform/src/App.tsx:2:import { lazy, Suspense, useMemo } from "react";
+frontend/itam-platform/src/App.tsx:3:import { Navigate, Outlet, Route, Routes, useLocation, useParams } from "react-router-dom";
+frontend/itam-platform/src/App.tsx:4:import { RouteLoading } from "./components/RouteLoading";
+frontend/itam-platform/src/App.tsx:8:const AppShell = lazy(() => import("./components/AppShell").then((module) => ({ default: module.AppShell })));
+frontend/itam-platform/src/App.tsx:9:const ApoemaApp = lazy(() => import("./apoema").then((module) => ({ default: module.ApoemaApp })));
+frontend/itam-platform/src/App.tsx:10:const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
+frontend/itam-platform/src/App.tsx:11:const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
+frontend/itam-platform/src/App.tsx:13:function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role[] }) {
+frontend/itam-platform/src/App.tsx:18:    return <RouteLoading />;
+frontend/itam-platform/src/App.tsx:22:    return <Navigate to="/login" state={{ from: location }} replace />;
+frontend/itam-platform/src/App.tsx:29:  return <Suspense fallback={<RouteLoading />}>{children}</Suspense>;
+frontend/itam-platform/src/App.tsx:32:function ApoemaRoute() {
+frontend/itam-platform/src/App.tsx:34:    <ProtectedRoute>
+frontend/itam-platform/src/App.tsx:36:    </ProtectedRoute>
+frontend/itam-platform/src/App.tsx:40:type LegacyApoemaAliasRouteDefinition = {
+frontend/itam-platform/src/App.tsx:47:const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
+frontend/itam-platform/src/App.tsx:49:    path: "/ai-chat",
+frontend/itam-platform/src/App.tsx:52:    redirectTo: "/apoema/chat"
+frontend/itam-platform/src/App.tsx:55:    path: "/audit-logs",
+frontend/itam-platform/src/App.tsx:58:    redirectTo: "/apoema/audit-logs"
+frontend/itam-platform/src/App.tsx:61:    path: "/assets",
+frontend/itam-platform/src/App.tsx:64:    redirectTo: "/apoema/assets"
+frontend/itam-platform/src/App.tsx:67:    path: "/assets/:id",
+frontend/itam-platform/src/App.tsx:70:    redirectTo: "/apoema/assets/:id"
+frontend/itam-platform/src/App.tsx:73:    path: "/assignments",
+frontend/itam-platform/src/App.tsx:76:    redirectTo: "/apoema/assignments"
+frontend/itam-platform/src/App.tsx:79:    path: "/users",
+frontend/itam-platform/src/App.tsx:82:    redirectTo: "/apoema/users"
+frontend/itam-platform/src/App.tsx:85:    path: "/users/:id",
+frontend/itam-platform/src/App.tsx:88:    redirectTo: "/apoema/users/:id"
+frontend/itam-platform/src/App.tsx:91:    path: "/imports",
+frontend/itam-platform/src/App.tsx:94:    redirectTo: "/apoema/imports"
+frontend/itam-platform/src/App.tsx:97:    path: "/macros",
+frontend/itam-platform/src/App.tsx:100:    redirectTo: "/apoema/macros"
+frontend/itam-platform/src/App.tsx:103:    path: "/signatures",
+frontend/itam-platform/src/App.tsx:106:    redirectTo: "/apoema/signatures"
+frontend/itam-platform/src/App.tsx:109:    path: "/stock",
+frontend/itam-platform/src/App.tsx:112:    redirectTo: "/apoema/stock"
+frontend/itam-platform/src/App.tsx:115:    path: "/settings",
+frontend/itam-platform/src/App.tsx:118:    redirectTo: "/apoema/settings"
+frontend/itam-platform/src/App.tsx:132:    <ProtectedRoute>
+frontend/itam-platform/src/App.tsx:133:      <Navigate to={{ pathname: resolvedTo, search: location.search, hash: location.hash }} replace />
+frontend/itam-platform/src/App.tsx:134:    </ProtectedRoute>
+frontend/itam-platform/src/App.tsx:138:function LegacyApoemaAliasRoutes() {
+frontend/itam-platform/src/App.tsx:141:      {legacyApoemaAliasRoutes.map((route) => (
+frontend/itam-platform/src/App.tsx:142:        <Route key={route.path} path={route.path} element={<ApoemaCompatibilityAliasRoute to={route.redirectTo} />} />
+frontend/itam-platform/src/App.tsx:148:function ApoemaRoutes() {
+frontend/itam-platform/src/App.tsx:151:      <Route path="/" element={<Navigate to="/apoema" replace />} />
+frontend/itam-platform/src/App.tsx:152:      <Route path="/apoema" element={<ApoemaRoute />} />
+frontend/itam-platform/src/App.tsx:153:      <Route path="/apoema/*" element={<ApoemaRoute />} />
+frontend/itam-platform/src/App.tsx:154:      <Route path="/apoema-preview" element={<ApoemaRoute />} />
+frontend/itam-platform/src/App.tsx:155:      <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
+frontend/itam-platform/src/App.tsx:156:      <LegacyApoemaAliasRoutes />
+frontend/itam-platform/src/App.tsx:157:      <Route path="/login" element={<LoginPage />} />
+frontend/itam-platform/src/App.tsx:162:type LegacyCompatibilityRouteDefinition = {
+frontend/itam-platform/src/App.tsx:169:const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];
+frontend/itam-platform/src/App.tsx:171:// Legacy routes are retained temporarily while Apoema becomes the primary surface.
+frontend/itam-platform/src/App.tsx:172:function LegacyShellRoute() {
+frontend/itam-platform/src/App.tsx:174:    <ProtectedRoute>
+frontend/itam-platform/src/App.tsx:175:      <AppShell>
+frontend/itam-platform/src/App.tsx:177:      </AppShell>
+frontend/itam-platform/src/App.tsx:178:    </ProtectedRoute>
+frontend/itam-platform/src/App.tsx:182:function LegacyRoutes() {
+frontend/itam-platform/src/App.tsx:184:    <Route element={<LegacyShellRoute />}>
+frontend/itam-platform/src/App.tsx:185:      {legacyCompatibilityRoutes.map((route) => (
+frontend/itam-platform/src/App.tsx:186:        <Route key={route.path} path={route.path} element={route.element} />
+frontend/itam-platform/src/App.tsx:194:    <Suspense fallback={<RouteLoading />}>
+frontend/itam-platform/src/App.tsx:196:        <ApoemaRoutes />
+frontend/itam-platform/src/App.tsx:197:        <LegacyRoutes />
+frontend/itam-platform/src/App.tsx:198:        <Route path="*" element={<NotFoundPage />} />
+frontend/itam-platform/src/App.tsx:200:    </Suspense>
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:42:  if (source === "legacy_ens_db") return "Legacy ENS DB";
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:209:    const legacy = userRows.filter((user) => user.source === "legacy_ens_db").length;
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:211:    return { active, admins, legacy, manual, current: userRows.length };
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:238:          { title: "Legados", value: summary.legacy, description: "Registros originados do ENS legado.", accent: "Histórico" }
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:337:                      <Link className="button secondary" to={`/apoema/users/${user.id}`}>Abrir detalhe</Link>
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:390:                      { key: "name", label: "Nome", render: (user: User) => <Link to={`/apoema/users/${user.id}`}>{user.name}</Link> },
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:65:            <Link className="button secondary" to="/apoema/users">Voltar</Link>
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:66:            <Link className="button secondary" to="/apoema/signatures">Gerar assinatura</Link>
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:125:                emptyActions={<Link className="button secondary" to="/apoema/assets">Abrir inventário</Link>}
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:127:                  { key: "hostname", label: "Hostname", render: (asset) => <Link to={`/apoema/assets/${asset.id}`}>{asset.hostname ?? "-"}</Link> },
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:143:          action={<Link className="button secondary" to="/apoema/users">Voltar</Link>}
+frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx:222:                  value: <Link to="/apoema/audit-logs">Consultar logs</Link>,
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:118:            <Link className="button secondary" to="/assets">
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:193:                    <Link to={`/assets/${asset.id}`} title={assetDisplayName(asset)}>
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:9:import { getAiProviders, sendAiMessage } from "../lib/apoemaChatApi";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:1:import { Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:21:import "./styles/apoema.css";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:100:          <Route index element={<Navigate to="dashboard" replace />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:101:          <Route path="dashboard" element={<DashboardPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:102:          <Route path="assets" element={<AssetsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:103:          <Route path="assets/:id" element={<AssetDetailPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:104:          <Route path="users" element={<UsersPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:105:          <Route path="users/:id" element={<UserDetailsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:106:          <Route path="assignments" element={<AssignmentsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:107:          <Route path="signatures" element={<SignaturesPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:108:          <Route path="stock" element={<StockPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:109:          <Route path="imports" element={<ImportsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:110:          <Route path="macros" element={<MacrosPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:111:          <Route path="audit-logs" element={<AuditLogsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:112:          <Route path="chat" element={<ChatPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:113:          <Route path="integrations" element={<IntegrationsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:114:          <Route path="settings" element={<SettingsPage />} />
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:164:    const response = await requestJson<{ providers: ApoemaProviderOption[] }>("/ai-chat/providers", {}, token);
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:185:      "/ai-chat/message",
+frontend/itam-platform/src/pages/UsersPage.tsx:41:  if (source === "legacy_ens_db") return "Legacy ENS DB";
+frontend/itam-platform/src/pages/UsersPage.tsx:208:    const legacy = userRows.filter((user) => user.source === "legacy_ens_db").length;
+frontend/itam-platform/src/pages/UsersPage.tsx:210:    return { active, admins, legacy, manual, current: userRows.length };
+frontend/itam-platform/src/pages/UsersPage.tsx:237:          { title: "Legados", value: summary.legacy, description: "Registros originados do ENS legado.", accent: "Histórico" }
+frontend/itam-platform/src/pages/UsersPage.tsx:338:                      <Link className="button secondary" to={`/users/${user.id}`}>Abrir detalhe</Link>
+frontend/itam-platform/src/pages/UsersPage.tsx:391:                      { key: "name", label: "Nome", render: (user: User) => <Link to={`/users/${user.id}`}>{user.name}</Link> },
+frontend/itam-platform/src/pages/UserDetailsPage.tsx:57:          { key: "hostname", label: "Hostname", render: (asset) => <Link to={`/assets/${asset.id}`}>{asset.hostname ?? "-"}</Link> },
+frontend/itam-platform/src/pages/DashboardPage.tsx:139:      href: "/assets",
+frontend/itam-platform/src/pages/DashboardPage.tsx:146:      href: "/assets",
+frontend/itam-platform/src/pages/DashboardPage.tsx:153:      href: "/assets",
+frontend/itam-platform/src/pages/DashboardPage.tsx:163:      href: "/assets",
+frontend/itam-platform/src/pages/DashboardPage.tsx:175:            <Link className="button secondary" to="/assets">Inventário</Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:176:            <Link className="button secondary" to="/assignments">Movimentações</Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:177:            <Link className="button" to="/imports">Importação Lansweeper</Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:210:              <Link className="button" to="/imports">Importar dados</Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:211:              <Link className="button secondary" to="/assets">Cadastrar ativo</Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:340:        <Link className="quick-card blue" to="/assets"><PackageCheck size={17} /> <span><strong>Gerenciar ativos</strong><small>Ver, filtrar e editar o inventário</small></span></Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:341:        <Link className="quick-card green" to="/users"><Users size={17} /> <span><strong>Colaboradores</strong><small>Consultar vínculos por usuário</small></span></Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:342:        <Link className="quick-card purple" to="/assignments"><Link2 size={17} /> <span><strong>Atribuições</strong><small>Histórico de vínculos e movimentações</small></span></Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:343:        <Link className="quick-card amber" to="/imports"><Upload size={17} /> <span><strong>Importar Excel</strong><small>Atualizar dados via fluxo existente</small></span></Link>
+frontend/itam-platform/src/pages/AssetDetailsPage.tsx:85:          <Link key="assets" to="/assets">Ativos</Link>,
+frontend/itam-platform/src/pages/AssetDetailsPage.tsx:188:                  value: <Link to="/audit-logs">Consultar logs</Link>,
+frontend/itam-platform/src/pages/AssetDetailsPage.tsx:211:            action={<Link className="button secondary" to="/assets">Voltar para ativos</Link>}
+frontend/itam-platform/src/pages/LoginPage.tsx:2:import { Navigate, useLocation, useNavigate } from "react-router-dom";
+frontend/itam-platform/src/pages/LoginPage.tsx:41:  const navigate = useNavigate();
+frontend/itam-platform/src/pages/LoginPage.tsx:105:    return <Navigate to="/" replace />;
+frontend/itam-platform/src/pages/AiChatPage.tsx:4:import { AiChatIntegrationPanel } from "@/components/ai-chat/AiChatIntegrationPanel";
+frontend/itam-platform/src/pages/AiChatPage.tsx:5:import { ChatComposer } from "@/components/ai-chat/ChatComposer";
+frontend/itam-platform/src/pages/AiChatPage.tsx:6:import { ChatMessages } from "@/components/ai-chat/ChatMessages";
+frontend/itam-platform/src/pages/AiChatPage.tsx:7:import { ConversationList } from "@/components/ai-chat/ConversationList";
+frontend/itam-platform/src/pages/AiChatPage.tsx:8:import { PromptPresets } from "@/components/ai-chat/PromptPresets";
+frontend/itam-platform/src/pages/AiChatPage.tsx:9:import type { ChatAttachmentDraft } from "@/components/ai-chat/types";
+frontend/itam-platform/src/pages/AssetsPage.tsx:294:            <Link to={`/assets/${asset.id}`}>{asset.hostname && asset.hostname !== "-" ? asset.hostname : "Sem tag"}</Link>
+frontend/itam-platform/src/pages/AssetsPage.tsx:497:                  <Link className="mini-button" to={`/assets/${pageItems[0].id}`} title="Ver detalhes" aria-label="Ver detalhes do ativo"><Eye size={15} aria-hidden /></Link>
+frontend/itam-platform/src/pages/AssetsPage.tsx:504:                  <Link className="mini-button" to={`/assets/${pageItems[0].id}#history`} title="Histórico" aria-label="Ver histórico do ativo"><History size={15} aria-hidden /></Link>
+frontend/itam-platform/src/pages/AssetsPage.tsx:523:                    <Link className="mini-button" to={`/assets/${asset.id}`} title="Ver detalhes" aria-label="Ver detalhes do ativo"><Eye size={15} aria-hidden /></Link>
+frontend/itam-platform/src/pages/AssetsPage.tsx:530:                    <Link className="mini-button" to={`/assets/${asset.id}#history`} title="Histórico" aria-label="Ver histórico do ativo"><History size={15} aria-hidden /></Link>
+frontend/itam-platform/src/pages/AssignmentsPage.tsx:159:                  <Link to={`/assets/${asset.id}`} title={assetDisplayName(asset)}>{assetDisplayName(asset)}</Link>
+frontend/itam-platform/src/pages/NotFoundPage.tsx:26:              <Link className="button secondary" to="/assets">
+frontend/itam-platform/src/styles.css:2:/* Sentinel Dark Theme + Legacy Compat */
+frontend/itam-platform/src/styles.css:68:/* Legacy component styles (preserved for compatibility) */
+frontend/itam-platform/src/styles.css:925:.legacy-link,
+frontend/itam-platform/src/styles.css:937:.legacy-link:hover,
+frontend/itam-platform/src/styles.css:1816:.legacy-link,
+frontend/itam-platform/src/styles.css:1833:.legacy-link svg,
+frontend/itam-platform/src/styles.css:1839:.legacy-link span,
+frontend/itam-platform/src/styles.css:4281:/* Base44 audit/import/settings visual layer */
+frontend/itam-platform/src/styles.css:4611:/* Base44 macros/users/operations visual layer */
+frontend/itam-platform/src/styles.css:4706:.base44-shell :is(.button, .mini-button, .logout-link, .legacy-link, .nav a):focus-visible {
+frontend/itam-platform/src/assets/icons/hermesops/icon-manifest.json:64:      "svg": "svg/settings-circuit.svg",
+frontend/itam-platform/src/App.tsx:2:import { lazy, Suspense, useMemo } from "react";
+frontend/itam-platform/src/App.tsx:3:import { Navigate, Outlet, Route, Routes, useLocation, useParams } from "react-router-dom";
+frontend/itam-platform/src/App.tsx:4:import { RouteLoading } from "./components/RouteLoading";
+frontend/itam-platform/src/App.tsx:8:const AppShell = lazy(() => import("./components/AppShell").then((module) => ({ default: module.AppShell })));
+frontend/itam-platform/src/App.tsx:9:const ApoemaApp = lazy(() => import("./apoema").then((module) => ({ default: module.ApoemaApp })));
+frontend/itam-platform/src/App.tsx:10:const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
+frontend/itam-platform/src/App.tsx:11:const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
+frontend/itam-platform/src/App.tsx:13:function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role[] }) {
+frontend/itam-platform/src/App.tsx:18:    return <RouteLoading />;
+frontend/itam-platform/src/App.tsx:22:    return <Navigate to="/login" state={{ from: location }} replace />;
+frontend/itam-platform/src/App.tsx:29:  return <Suspense fallback={<RouteLoading />}>{children}</Suspense>;
+frontend/itam-platform/src/App.tsx:32:function ApoemaRoute() {
+frontend/itam-platform/src/App.tsx:34:    <ProtectedRoute>
+frontend/itam-platform/src/App.tsx:36:    </ProtectedRoute>
+frontend/itam-platform/src/App.tsx:40:type LegacyApoemaAliasRouteDefinition = {
+frontend/itam-platform/src/App.tsx:47:const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
+frontend/itam-platform/src/App.tsx:49:    path: "/ai-chat",
+frontend/itam-platform/src/App.tsx:52:    redirectTo: "/apoema/chat"
+frontend/itam-platform/src/App.tsx:55:    path: "/audit-logs",
+frontend/itam-platform/src/App.tsx:58:    redirectTo: "/apoema/audit-logs"
+frontend/itam-platform/src/App.tsx:61:    path: "/assets",
+frontend/itam-platform/src/App.tsx:64:    redirectTo: "/apoema/assets"
+frontend/itam-platform/src/App.tsx:67:    path: "/assets/:id",
+frontend/itam-platform/src/App.tsx:70:    redirectTo: "/apoema/assets/:id"
+frontend/itam-platform/src/App.tsx:73:    path: "/assignments",
+frontend/itam-platform/src/App.tsx:76:    redirectTo: "/apoema/assignments"
+frontend/itam-platform/src/App.tsx:79:    path: "/users",
+frontend/itam-platform/src/App.tsx:82:    redirectTo: "/apoema/users"
+frontend/itam-platform/src/App.tsx:85:    path: "/users/:id",
+frontend/itam-platform/src/App.tsx:88:    redirectTo: "/apoema/users/:id"
+frontend/itam-platform/src/App.tsx:91:    path: "/imports",
+frontend/itam-platform/src/App.tsx:94:    redirectTo: "/apoema/imports"
+frontend/itam-platform/src/App.tsx:97:    path: "/macros",
+frontend/itam-platform/src/App.tsx:100:    redirectTo: "/apoema/macros"
+frontend/itam-platform/src/App.tsx:103:    path: "/signatures",
+frontend/itam-platform/src/App.tsx:106:    redirectTo: "/apoema/signatures"
+frontend/itam-platform/src/App.tsx:109:    path: "/stock",
+frontend/itam-platform/src/App.tsx:112:    redirectTo: "/apoema/stock"
+frontend/itam-platform/src/App.tsx:115:    path: "/settings",
+frontend/itam-platform/src/App.tsx:118:    redirectTo: "/apoema/settings"
+frontend/itam-platform/src/App.tsx:132:    <ProtectedRoute>
+frontend/itam-platform/src/App.tsx:133:      <Navigate to={{ pathname: resolvedTo, search: location.search, hash: location.hash }} replace />
+frontend/itam-platform/src/App.tsx:134:    </ProtectedRoute>
+frontend/itam-platform/src/App.tsx:138:function LegacyApoemaAliasRoutes() {
+frontend/itam-platform/src/App.tsx:141:      {legacyApoemaAliasRoutes.map((route) => (
+frontend/itam-platform/src/App.tsx:142:        <Route key={route.path} path={route.path} element={<ApoemaCompatibilityAliasRoute to={route.redirectTo} />} />
+frontend/itam-platform/src/App.tsx:148:function ApoemaRoutes() {
+frontend/itam-platform/src/App.tsx:151:      <Route path="/" element={<Navigate to="/apoema" replace />} />
+frontend/itam-platform/src/App.tsx:152:      <Route path="/apoema" element={<ApoemaRoute />} />
+frontend/itam-platform/src/App.tsx:153:      <Route path="/apoema/*" element={<ApoemaRoute />} />
+frontend/itam-platform/src/App.tsx:154:      <Route path="/apoema-preview" element={<ApoemaRoute />} />
+frontend/itam-platform/src/App.tsx:155:      <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
+frontend/itam-platform/src/App.tsx:156:      <LegacyApoemaAliasRoutes />
+frontend/itam-platform/src/App.tsx:157:      <Route path="/login" element={<LoginPage />} />
+frontend/itam-platform/src/App.tsx:162:type LegacyCompatibilityRouteDefinition = {
+frontend/itam-platform/src/App.tsx:169:const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];
+frontend/itam-platform/src/App.tsx:171:// Legacy routes are retained temporarily while Apoema becomes the primary surface.
+frontend/itam-platform/src/App.tsx:172:function LegacyShellRoute() {
+frontend/itam-platform/src/App.tsx:174:    <ProtectedRoute>
+frontend/itam-platform/src/App.tsx:175:      <AppShell>
+frontend/itam-platform/src/App.tsx:177:      </AppShell>
+frontend/itam-platform/src/App.tsx:178:    </ProtectedRoute>
+frontend/itam-platform/src/App.tsx:182:function LegacyRoutes() {
+frontend/itam-platform/src/App.tsx:184:    <Route element={<LegacyShellRoute />}>
+frontend/itam-platform/src/App.tsx:185:      {legacyCompatibilityRoutes.map((route) => (
+frontend/itam-platform/src/App.tsx:186:        <Route key={route.path} path={route.path} element={route.element} />
+frontend/itam-platform/src/App.tsx:194:    <Suspense fallback={<RouteLoading />}>
+frontend/itam-platform/src/App.tsx:196:        <ApoemaRoutes />
+frontend/itam-platform/src/App.tsx:197:        <LegacyRoutes />
+frontend/itam-platform/src/App.tsx:198:        <Route path="*" element={<NotFoundPage />} />
+frontend/itam-platform/src/App.tsx:200:    </Suspense>
+frontend/itam-platform/src/components/RouteLoading.tsx:3:export function RouteLoading() {
+frontend/itam-platform/src/components/AppShell.tsx:36:  { href: "/assets", label: "Inventário", icon: PackageChipIcon },
+frontend/itam-platform/src/components/AppShell.tsx:37:  { href: "/users", label: "Colaboradores", icon: Users },
+frontend/itam-platform/src/components/AppShell.tsx:38:  { href: "/assignments", label: "Movimentações", icon: TransferCircuitIcon },
+frontend/itam-platform/src/components/AppShell.tsx:39:  { href: "/signatures", label: "Assinaturas", icon: ShieldCheckIcon },
+frontend/itam-platform/src/components/AppShell.tsx:40:  { href: "/macros", label: "Macros ITIL", icon: DocumentBoltIcon, roles: ["ADMIN", "TECHNICIAN"] as const },
+frontend/itam-platform/src/components/AppShell.tsx:41:  { href: "/ai-chat", label: "IA Assistiva", icon: NeuralNodeIcon },
+frontend/itam-platform/src/components/AppShell.tsx:42:  { href: "/audit-logs", label: "Auditoria", icon: AuditReportIcon, roles: ["ADMIN", "MANAGER"] as const },
+frontend/itam-platform/src/components/AppShell.tsx:43:  { href: "/imports", label: "Importação Lansweeper", icon: DatabasePulseIcon, roles: ["ADMIN", "TECHNICIAN"] as const },
+frontend/itam-platform/src/components/AppShell.tsx:44:  { href: "/settings", label: "Configurações", icon: SettingsCircuitIcon, roles: ["ADMIN"] as const }
+frontend/itam-platform/src/components/AppShell.tsx:47:export function AppShell({ children }: { children: ReactNode }) {
+frontend/itam-platform/src/components/AppShell.tsx:110:          <a className="legacy-link" href="/assinaturas/" title="Abrir módulo legado de assinaturas">
+frontend/itam-platform/src/components/base44/Base44AuditEventCard.tsx:28:  if (normalized.includes("legacy")) return "neutral";
+frontend/itam-platform/src/components/base44/Base44UserCard.tsx:11:  if (source === "legacy_ens_db") return "Legacy ENS DB";
+frontend/itam-platform/src/components/OperationalActions.tsx:5:  { label: "Localizar ativo", icon: Search, href: "/assets" },
+frontend/itam-platform/src/components/OperationalActions.tsx:6:  { label: "Movimentar", icon: Repeat2, href: "/assets" },
+frontend/itam-platform/src/components/OperationalActions.tsx:7:  { label: "Enviar estoque", icon: PackageCheck, href: "/assets?status=STOCK" },
+frontend/itam-platform/src/components/OperationalActions.tsx:8:  { label: "Historico", icon: History, href: "/audit-logs" },
+frontend/itam-platform/src/components/OperationalActions.tsx:9:  { label: "Importar", icon: Archive, href: "/imports" }
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:4:import agentOrbitSvg from "@/assets/icons/hermesops/svg/agent-orbit.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:5:import auditReportSvg from "@/assets/icons/hermesops/svg/audit-report.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:6:import bookCircuitSvg from "@/assets/icons/hermesops/svg/book-circuit.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:7:import conflictSplitSvg from "@/assets/icons/hermesops/svg/conflict-split.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:8:import databasePulseSvg from "@/assets/icons/hermesops/svg/database-pulse.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:9:import documentBoltSvg from "@/assets/icons/hermesops/svg/document-bolt.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:10:import eyeTraceSvg from "@/assets/icons/hermesops/svg/eye-trace.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:11:import hermesCoreSvg from "@/assets/icons/hermesops/svg/hermes-core.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:12:import neuralNodeSvg from "@/assets/icons/hermesops/svg/neural-node.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:13:import packageChipSvg from "@/assets/icons/hermesops/svg/package-chip.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:14:import radarCircuitSvg from "@/assets/icons/hermesops/svg/radar-circuit.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:15:import settingsCircuitSvg from "@/assets/icons/hermesops/svg/settings-circuit.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:16:import shieldCheckSvg from "@/assets/icons/hermesops/svg/shield-check.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:17:import transferCircuitSvg from "@/assets/icons/hermesops/svg/transfer-circuit.svg?raw";
+frontend/itam-platform/src/lib/api.ts:199:  assetsByStatus: (token: string) => request<Array<{ status: string; count: number }>>("/dashboard/assets-by-status", { token }),
+frontend/itam-platform/src/lib/api.ts:203:    return request<Page<Asset>>(`/assets${query}`, { token });
+frontend/itam-platform/src/lib/api.ts:205:  asset: (token: string, id: string) => request<Asset>(`/assets/${id}`, { token }),
+frontend/itam-platform/src/lib/api.ts:206:  assetHistory: (token: string, id: string) => request<Movement[]>(`/assets/${id}/history`, { token }),
+frontend/itam-platform/src/lib/api.ts:208:    request<Movement>(`/assets/${id}/move`, {
+frontend/itam-platform/src/lib/api.ts:214:    request<Asset>("/assets", { method: "POST", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:216:    request<Asset>(`/assets/${id}`, { method: "PUT", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:217:  deleteAsset: (token: string, id: string) => request<void>(`/assets/${id}`, { method: "DELETE", token }),
+frontend/itam-platform/src/lib/api.ts:220:      return request<Page<User>>("/users?page_size=25", { token });
+frontend/itam-platform/src/lib/api.ts:224:      return request<Page<User>>(`/users?${normalized}`, { token });
+frontend/itam-platform/src/lib/api.ts:226:    return request<Page<User>>(`/users?page_size=25&${normalized}`, { token });
+frontend/itam-platform/src/lib/api.ts:228:  user: (token: string, id: string) => request<User>(`/users/${id}`, { token }),
+frontend/itam-platform/src/lib/api.ts:230:    request<User>("/users", { method: "POST", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:232:    request<User>(`/users/${id}`, { method: "PUT", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:233:  deleteUser: (token: string, id: string) => request<void>(`/users/${id}`, { method: "DELETE", token }),
+frontend/itam-platform/src/lib/api.ts:234:  userAssets: (token: string, id: string) => request<Asset[]>(`/users/${id}/assets`, { token }),
+frontend/itam-platform/src/lib/api.ts:238:    return request<Page<AuditLog>>(`/audit-logs${normalized}`, { token });
+frontend/itam-platform/src/lib/api.ts:240:  imports: (token: string) => request<Page<ImportJob>>("/imports?page_size=25", { token }),
+frontend/itam-platform/src/lib/api.ts:245:    return request<ImportJob>("/imports/spreadsheet/upload", {
+frontend/itam-platform/src/lib/api.ts:254:    return request<ImportJob>("/imports/lansweeper", { method: "POST", body: form, token });
+frontend/itam-platform/src/lib/api.ts:256:  importPreview: (token: string, id: string) => request<ImportPreview>(`/imports/${id}/preview`, { token }),
+frontend/itam-platform/src/lib/api.ts:257:  importStaging: (token: string, id: string) => request<Page<ImportStagingAsset>>(`/imports/${id}/staging?page_size=50`, { token }),
+frontend/itam-platform/src/lib/api.ts:258:  importConflicts: (token: string, id: string) => request<ImportConflict[]>(`/imports/${id}/conflicts`, { token }),
+frontend/itam-platform/src/lib/api.ts:259:  importValidationErrors: (token: string, id: string) => request<ImportValidationError[]>(`/imports/${id}/validation-errors`, { token }),
+frontend/itam-platform/src/lib/api.ts:261:    request<ImportJob>(`/imports/${id}/mapping`, { method: "POST", body: JSON.stringify({ mapping, import_mode: importMode }), token }),
+frontend/itam-platform/src/lib/api.ts:262:  applyImport: (token: string, id: string) => request<{ job: ImportJob; report: Record<string, unknown> }>(`/imports/${id}/apply`, { method: "POST", token }),
+frontend/itam-platform/src/lib/api.ts:263:  cancelImport: (token: string, id: string) => request<ImportJob>(`/imports/${id}/cancel`, { method: "POST", token }),
+frontend/itam-platform/src/lib/api.ts:264:  importReport: (token: string, id: string) => request<{ import_id: string; status: string; report: Record<string, unknown> }>(`/imports/${id}/report`, { token }),
+frontend/itam-platform/src/lib/api.ts:266:    request<string>(`/signatures/${userId}`, { token, headers: { "accept": "text/html" } }),
+frontend/itam-platform/src/lib/api.ts:268:    request<string>(`/signatures/generate/${userId}`, {
+frontend/itam-platform/src/lib/api.ts:274:    request<string>(`/signatures/${userId}/download-html`, { token, headers: { "accept": "text/html" } }),
+frontend/itam-platform/src/lib/api.ts:275:  macroTemplates: (token: string, params = "") => request<MacroTemplate[]>(`/macros/templates${params}`, { token }),
+frontend/itam-platform/src/lib/api.ts:277:    request<MacroRenderResponse>("/macros/render", { method: "POST", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:279:    request<MacroGeneration>("/macros/generate", { method: "POST", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:281:    request<MacroGeneration>(`/macros/generations/${generationId}/copied`, { method: "POST", token }),
+frontend/itam-platform/src/lib/api.ts:283:    request<MacroAutocompleteHint[]>(`/macros/autocomplete?q=${encodeURIComponent(query)}&hint_type=${encodeURIComponent(hintType)}`, { token }),
+frontend/itam-platform/src/lib/api.ts:286:  aiChatHealth: (token: string) => request<AiChatProviderHealth>("/ai-chat/health", { token }),
+frontend/itam-platform/src/lib/api.ts:287:  aiChatConversations: (token: string) => request<AiChatConversation[]>("/ai-chat/conversations", { token }),
+frontend/itam-platform/src/lib/api.ts:288:  aiChatConversation: (token: string, id: string) => request<AiChatConversationDetail>(`/ai-chat/conversations/${id}`, { token }),
+frontend/itam-platform/src/lib/api.ts:290:    request<AiChatConversationDetail>("/ai-chat/conversations", { method: "POST", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:293:    return request<AiChatConversationDetail>(`/ai-chat/conversations/${id}/messages`, { method: "POST", body: JSON.stringify(payload), token });

@@ -1,0 +1,15 @@
+path	type	evidence_currently_unused	why_not_remove_now	future_phase	risk	validation_needed
+route:/ai-chat	LEGACY_ROUTE_COMPONENT	Alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and browser smoke after auth.
+route:/assets	LEGACY_ROUTE_COMPONENT	Alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and browser smoke after auth.
+route:/assets/:id	LEGACY_ROUTE_COMPONENT	Dynamic alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Dynamic redirect and detail smoke.
+route:/audit-logs	LEGACY_ROUTE_COMPONENT	Alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and list/filter smoke.
+route:/imports	LEGACY_ROUTE_COMPONENT	Alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and import flow smoke.
+route:/macros	LEGACY_ROUTE_COMPONENT	Alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and macro preview smoke.
+route:/stock	LEGACY_ROUTE_COMPONENT	Alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and inventory smoke.
+route:/signatures	LEGACY_ROUTE_COMPONENT	Alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and signature parity smoke.
+route:/assignments	LEGACY_ROUTE_COMPONENT	Alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and movement history smoke.
+route:/users	LEGACY_ROUTE_COMPONENT	Alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and users list smoke.
+route:/users/:id	LEGACY_ROUTE_COMPONENT	Dynamic alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and user detail smoke.
+route:/settings	LEGACY_ROUTE_COMPONENT	Alias only; no legacy page remains in runtime path.	Do not remove while redirect coverage and smoke remain doc-only.	5B	medium	Redirect and settings parity smoke.
+frontend/itam-platform/src/components/AppShell.tsx	LEGACY_SHELL	No legacy route currently reaches it at runtime.	Do not remove until alias cleanup and a browser smoke confirm no regressions.	5D	medium	AppShell is still referenced by the route boundary.
+frontend/itam-platform/src/styles.css	LEGACY_CSS	Global stylesheet is imported by main.tsx and shared utilities still rely on it.	Do not remove until visual QA confirms Apoema and shared pages remain stable.	5E	high	Generic selectors still affect the shell, forms, tables, and loading states.

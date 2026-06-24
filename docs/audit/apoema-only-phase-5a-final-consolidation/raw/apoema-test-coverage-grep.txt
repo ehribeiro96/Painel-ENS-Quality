@@ -1,0 +1,812 @@
+tests/test_assets_regression.py:20:        by_hostname = self.client.get("/assets", params={"search": "RJMTEST001"})
+tests/test_assets_regression.py:24:        by_serial = self.client.get("/assets", params={"search": asset["serial"]})
+tests/test_assets_regression.py:28:        by_patrimony = self.client.get("/assets", params={"search": asset["patrimony"]})
+tests/test_assets_regression.py:32:        by_status = self.client.get("/assets", params={"status": "IN_USE"})
+tests/test_assets_regression.py:36:        by_location = self.client.get("/assets", params={"location": "Matriz"})
+tests/test_assets_regression.py:40:        updated = self.client.put(f"/assets/{asset['id']}", {"location": "Matriz - QA", "notes": "updated by regression"})
+tests/test_assets_regression.py:44:        linked = self.client.get(f"/users/{user['id']}/assets")
+tests/test_assets_regression.py:60:            f"{self.client.api}/assets",
+tests/test_assets_regression.py:78:            response = self.client.post(f"/assets/{asset['id']}/move", step)
+tests/test_assets_regression.py:81:        history = self.client.get(f"/assets/{asset['id']}/history")
+tests/test_assets_regression.py:93:            f"/assets/{asset['id']}/move",
+tests/test_assets_regression.py:98:        audit = self.client.get("/audit-logs", params={"page": 1, "page_size": 100})
+tests/test_assets_regression.py:106:        deleted = self.client.delete(f"/assets/{asset['id']}")
+tests/test_assets_regression.py:108:        fetched = self.client.get(f"/assets/{asset['id']}")
+tests/test_assets_regression.py:113:        deleted = self.client.delete(f"/users/{user['id']}")
+tests/test_assets_regression.py:115:        fetched = self.client.get(f"/users/{user['id']}")
+tests/test_assets_regression.py:121:            "/assets",
+tests/test_assets_regression.py:132:    def test_without_user_filter_returns_only_unassigned_assets(self) -> None:
+tests/test_assets_regression.py:137:        response = self.client.get("/assets", params={"without_user": "true", "page_size": 200})
+tests/test_apoema_macros_parity_contract.py:9:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_macros_parity_contract.py:10:APOEMA_MACROS = (ROOT / "frontend/itam-platform/src/apoema/pages/MacrosPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_macros_parity_contract.py:13:MATRIX = (ROOT / "docs/audit/apoema-only-phase-4f-macros/MACROS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
+tests/test_apoema_macros_parity_contract.py:16:class ApoemaMacrosParityContractTest(unittest.TestCase):
+tests/test_apoema_macros_parity_contract.py:17:    def test_parity_matrix_documents_safe_redirect_policy(self) -> None:
+tests/test_apoema_macros_parity_contract.py:20:        self.assertIn("/macros", MATRIX)
+tests/test_apoema_macros_parity_contract.py:21:        self.assertIn("/apoema/macros", MATRIX)
+tests/test_apoema_macros_parity_contract.py:24:    def test_macros_route_points_to_apoema_macros_page(self) -> None:
+tests/test_apoema_macros_parity_contract.py:25:        self.assertIn('path="macros" element={<MacrosPage />}', APOEMA_APP)
+tests/test_apoema_macros_parity_contract.py:26:        self.assertIn('path="macros" element={<MacrosPage />}', APOEMA_APP)
+tests/test_apoema_macros_parity_contract.py:27:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_macros_parity_contract.py:30:        self.assertIn('path: "/macros"', alias_block)
+tests/test_apoema_macros_parity_contract.py:31:        self.assertIn('migrationTarget: "apoema:macros"', alias_block)
+tests/test_apoema_macros_parity_contract.py:32:        self.assertIn('redirectTo: "/apoema/macros"', alias_block)
+tests/test_apoema_macros_parity_contract.py:33:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_macros_parity_contract.py:34:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
+tests/test_apoema_macros_parity_contract.py:36:    def test_macros_page_contains_itil_preview_and_copy_contract(self) -> None:
+tests/test_apoema_macros_parity_contract.py:41:        self.assertIn("Apoema Macros ITIL", APOEMA_MACROS)
+tests/test_apoema_macros_parity_contract.py:48:    def test_no_direct_provider_calls_in_apoema_macros(self) -> None:
+tests/test_apoema_macros_parity_contract.py:52:    def test_legacy_macros_page_remains_available_for_compatibility(self) -> None:
+tests/test_ai_chat_mvp.py:7:from app.core.config.settings import get_settings
+tests/test_ai_chat_mvp.py:34:    get_settings.cache_clear()
+tests/test_ai_chat_mvp.py:42:        self.addCleanup(get_settings.cache_clear)
+tests/test_ai_chat_mvp.py:51:    def test_settings_contract_uses_only_approved_ai_env_names(self) -> None:
+tests/test_ai_chat_mvp.py:52:        from app.core.config.settings import Settings
+tests/test_ai_chat_mvp.py:66:    def test_settings_prefers_panel_ai_openai_api_key(self) -> None:
+tests/test_ai_chat_mvp.py:67:        from app.core.config.settings import Settings
+tests/test_ai_chat_mvp.py:74:            settings = Settings()
+tests/test_ai_chat_mvp.py:76:        self.assertEqual("panel-key", settings.ai_openai_api_key)
+tests/test_ai_chat_mvp.py:77:        self.assertEqual("panel-key", settings.openai_api_key)
+tests/test_ai_chat_mvp.py:79:    def test_settings_bridges_external_openai_key_in_memory_only(self) -> None:
+tests/test_ai_chat_mvp.py:80:        from app.core.config.settings import Settings
+tests/test_ai_chat_mvp.py:84:                settings = Settings()
+tests/test_ai_chat_mvp.py:86:        self.assertEqual("external-key", settings.ai_openai_api_key)
+tests/test_ai_chat_mvp.py:87:        self.assertEqual("external-key", settings.openai_api_key)
+tests/test_ai_chat_mvp.py:288:    def test_migration_down_revision_is_macros_module(self) -> None:
+tests/test_ai_chat_mvp.py:292:        self.assertEqual("0005_macros_module", migration.down_revision)
+tests/test_ai_chat_hardening.py:17:from app.api.v1.routes import ai_chat  # noqa: E402
+tests/test_ai_chat_hardening.py:18:from app.core.config.settings import Settings, get_settings  # noqa: E402
+tests/test_ai_chat_hardening.py:29:def force_ai_chat_mock_settings() -> patch:
+tests/test_ai_chat_hardening.py:41:    get_settings.cache_clear()
+tests/test_ai_chat_hardening.py:42:    for settings_obj in (ai_chat.settings, ai_chat_service_module.settings):
+tests/test_ai_chat_hardening.py:43:        settings_obj.ai_provider = "mock"
+tests/test_ai_chat_hardening.py:44:        settings_obj.ai_model = ""
+tests/test_ai_chat_hardening.py:45:        settings_obj.ai_gemini_api_key = ""
+tests/test_ai_chat_hardening.py:46:        settings_obj.ai_openai_api_key = ""
+tests/test_ai_chat_hardening.py:52:        self.env_patch = force_ai_chat_mock_settings()
+tests/test_ai_chat_hardening.py:54:        self.addCleanup(get_settings.cache_clear)
+tests/test_ai_chat_hardening.py:69:    def test_settings_default_ai_chat_feature_flag_is_disabled_and_limits_exist(self) -> None:
+tests/test_ai_chat_hardening.py:80:            "/ai-chat/health",
+tests/test_ai_chat_hardening.py:81:            "/ai-chat/providers",
+tests/test_ai_chat_hardening.py:82:            "/ai-chat/message",
+tests/test_ai_chat_hardening.py:83:            "/ai-chat/conversations",
+tests/test_ai_chat_hardening.py:84:            "/ai-chat/conversations/{conversation_id}",
+tests/test_ai_chat_hardening.py:85:            "/ai-chat/conversations/{conversation_id}/messages",
+tests/test_ai_chat_hardening.py:87:        for route in ai_chat.router.routes:
+tests/test_ai_chat_hardening.py:88:            if getattr(route, "path", None) in protected_paths:
+tests/test_ai_chat_hardening.py:89:                dependency_calls = {dependency.call for dependency in route.dependant.dependencies}
+tests/test_ai_chat_hardening.py:92:                    route.path,
+tests/test_ai_chat_hardening.py:96:        original_enabled = ai_chat.settings.enable_ai_chat
+tests/test_ai_chat_hardening.py:97:        ai_chat.settings.enable_ai_chat = False
+tests/test_ai_chat_hardening.py:102:            ai_chat.settings.enable_ai_chat = original_enabled
+tests/test_ai_chat_hardening.py:108:        original_enabled = ai_chat.settings.enable_ai_chat
+tests/test_ai_chat_hardening.py:109:        ai_chat.settings.enable_ai_chat = True
+tests/test_ai_chat_hardening.py:117:            ai_chat.settings.enable_ai_chat = original_enabled
+tests/test_ai_chat_hardening.py:134:        original_enabled = ai_chat.settings.enable_ai_chat
+tests/test_ai_chat_hardening.py:144:        ai_chat.settings.enable_ai_chat = True
+tests/test_ai_chat_hardening.py:145:        ai_chat_service_module.build_ai_provider = lambda _settings: BrokenProvider()
+tests/test_ai_chat_hardening.py:151:            ai_chat.settings.enable_ai_chat = original_enabled
+tests/test_ai_chat_hardening.py:162:        original_provider = ai_chat.settings.ai_provider
+tests/test_ai_chat_hardening.py:163:        original_openai_key = ai_chat.settings.ai_openai_api_key
+tests/test_ai_chat_hardening.py:164:        ai_chat.settings.ai_provider = "openai"
+tests/test_ai_chat_hardening.py:165:        ai_chat.settings.ai_openai_api_key = ""
+tests/test_ai_chat_hardening.py:167:            health = ai_chat_providers_module.get_ai_provider_health(ai_chat.settings)
+tests/test_ai_chat_hardening.py:169:            ai_chat.settings.ai_provider = original_provider
+tests/test_ai_chat_hardening.py:170:            ai_chat.settings.ai_openai_api_key = original_openai_key
+tests/test_ai_chat_hardening.py:177:        original_enabled = ai_chat.settings.enable_ai_chat
+tests/test_ai_chat_hardening.py:178:        original_limit = ai_chat.settings.ai_chat_rate_limit_per_minute
+tests/test_ai_chat_hardening.py:179:        ai_chat.settings.enable_ai_chat = True
+tests/test_ai_chat_hardening.py:180:        ai_chat.settings.ai_chat_rate_limit_per_minute = 1
+tests/test_ai_chat_hardening.py:187:            ai_chat.settings.enable_ai_chat = original_enabled
+tests/test_ai_chat_hardening.py:188:            ai_chat.settings.ai_chat_rate_limit_per_minute = original_limit
+tests/test_ai_chat_hardening.py:196:        app_shell = (ROOT / "frontend/itam-platform/src/components/AppShell.tsx").read_text(encoding="utf-8")
+tests/test_ai_chat_hardening.py:201:        self.assertIn('href: "/ai-chat"', app_shell)
+tests/test_legacy_ens_db_pre_apply_review.py:38:            dryrun = temp_path / "legacy_ens_db_dryrun_test.json"
+tests/test_legacy_routes.py:11:    def test_legacy_signature_routes_are_mounted(self) -> None:
+tests/test_legacy_routes.py:19:    def test_spa_fallback_and_vite_assets(self) -> None:
+tests/test_legacy_routes.py:24:        for path in ("/assets/example-id", "/users", "/imports", "/signatures", "/audit-logs"):
+tests/test_legacy_routes.py:29:        asset_match = re.search(r"/_assets/[^\"']+", root.text)
+tests/test_apoema_audit_logs_parity_contract.py:9:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_audit_logs_parity_contract.py:10:APOEMA_AUDIT_LOGS = (ROOT / "frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_audit_logs_parity_contract.py:11:MATRIX = (ROOT / "docs/audit/apoema-only-phase-4d-audit-logs/AUDIT_LOGS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
+tests/test_apoema_audit_logs_parity_contract.py:14:class ApoemaAuditLogsParityContractTest(unittest.TestCase):
+tests/test_apoema_audit_logs_parity_contract.py:15:    def test_parity_matrix_documents_safe_redirect_policy(self) -> None:
+tests/test_apoema_audit_logs_parity_contract.py:18:        self.assertIn("/audit-logs", MATRIX)
+tests/test_apoema_audit_logs_parity_contract.py:19:        self.assertIn("/apoema/audit-logs", MATRIX)
+tests/test_apoema_audit_logs_parity_contract.py:22:    def test_audit_logs_route_points_to_apoema_logs_page(self) -> None:
+tests/test_apoema_audit_logs_parity_contract.py:23:        self.assertIn('path="audit-logs" element={<AuditLogsPage />}', APOEMA_APP)
+tests/test_apoema_audit_logs_parity_contract.py:24:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_audit_logs_parity_contract.py:27:        self.assertIn('path: "/audit-logs"', alias_block)
+tests/test_apoema_audit_logs_parity_contract.py:28:        self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
+tests/test_apoema_audit_logs_parity_contract.py:29:        self.assertIn('redirectTo: "/apoema/audit-logs"', alias_block)
+tests/test_apoema_audit_logs_parity_contract.py:30:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_audit_logs_parity_contract.py:40:    def test_no_direct_provider_calls_in_apoema_audit_logs(self) -> None:
+tests/test_apoema_signatures_parity_contract.py:9:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_signatures_parity_contract.py:10:APOEMA_SIGNATURES = (ROOT / "frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_signatures_parity_contract.py:12:MATRIX = (ROOT / "docs/audit/apoema-only-phase-4h-signatures/SIGNATURES_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
+tests/test_apoema_signatures_parity_contract.py:15:def read_apoema_sources() -> str:
+tests/test_apoema_signatures_parity_contract.py:17:    apoema_root = ROOT / "frontend/itam-platform/src/apoema"
+tests/test_apoema_signatures_parity_contract.py:18:    for path in sorted(apoema_root.rglob("*")):
+tests/test_apoema_signatures_parity_contract.py:25:APOEMA = read_apoema_sources()
+tests/test_apoema_signatures_parity_contract.py:28:class ApoemaSignaturesParityContractTest(unittest.TestCase):
+tests/test_apoema_signatures_parity_contract.py:29:    def test_parity_matrix_documents_safe_redirect_policy(self) -> None:
+tests/test_apoema_signatures_parity_contract.py:32:        self.assertIn("/signatures", MATRIX)
+tests/test_apoema_signatures_parity_contract.py:33:        self.assertIn("/apoema/signatures", MATRIX)
+tests/test_apoema_signatures_parity_contract.py:36:    def test_signatures_route_points_to_apoema_signatures_page(self) -> None:
+tests/test_apoema_signatures_parity_contract.py:37:        self.assertIn('path="signatures" element={<SignaturesPage />}', APOEMA_APP)
+tests/test_apoema_signatures_parity_contract.py:38:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_signatures_parity_contract.py:41:        self.assertIn('path: "/signatures"', alias_block)
+tests/test_apoema_signatures_parity_contract.py:42:        self.assertIn('migrationTarget: "apoema:signatures"', alias_block)
+tests/test_apoema_signatures_parity_contract.py:43:        self.assertIn('redirectTo: "/apoema/signatures"', alias_block)
+tests/test_apoema_signatures_parity_contract.py:44:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_signatures_parity_contract.py:46:    def test_signatures_page_contains_operational_parity_surface(self) -> None:
+tests/test_apoema_signatures_parity_contract.py:49:        for term in ("signatureGenerate", "signatureDownloadHtml", "Apoema Assinaturas", "Assinaturas Corporativas", "Abrir legado", "HTML da assinatura copiado"):
+tests/test_apoema_signatures_parity_contract.py:52:    def test_legacy_signatures_page_remains_available_for_compatibility(self) -> None:
+tests/test_apoema_signatures_parity_contract.py:56:    def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
+tests/test_apoema_signatures_parity_contract.py:60:    def test_related_apoema_aliases_and_lazy_loading_remain_preserved(self) -> None:
+tests/test_apoema_signatures_parity_contract.py:62:        self.assertIn('lazy(() => import("./apoema")', normalized)
+tests/test_apoema_signatures_parity_contract.py:64:        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_signatures_parity_contract.py:65:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_signatures_parity_contract.py:68:            'redirectTo: "/apoema/signatures"',
+tests/test_apoema_signatures_parity_contract.py:69:            'redirectTo: "/apoema/stock"',
+tests/test_apoema_signatures_parity_contract.py:70:            'redirectTo: "/apoema/macros"',
+tests/test_apoema_signatures_parity_contract.py:71:            'redirectTo: "/apoema/imports"',
+tests/test_apoema_signatures_parity_contract.py:72:            'redirectTo: "/apoema/audit-logs"',
+tests/test_apoema_signatures_parity_contract.py:73:            'redirectTo: "/apoema/assets"',
+tests/test_apoema_signatures_parity_contract.py:74:            'redirectTo: "/apoema/assets/:id"',
+tests/test_apoema_signatures_parity_contract.py:75:            'redirectTo: "/apoema/chat"',
+tests/test_apoema_signatures_parity_contract.py:79:        self.assertIn('path: "/ai-chat"', APP)
+tests/test_apoema_signatures_parity_contract.py:80:        self.assertIn('migrationTarget: "apoema:chat"', APP)
+tests/test_apoema_signatures_parity_contract.py:82:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
+tests/test_import_row_classifier.py:12:from app.domains.imports.classification.conflict_detector import build_internal_duplicate_plan
+tests/test_import_row_classifier.py:13:from app.domains.imports.classification.row_classifier import classify_row
+tests/test_import_row_classifier.py:14:from app.domains.imports.normalization.lansweeper_normalizer import normalize_asset_row
+tests/test_startup_diagnostics.py:13:from app.core.config.settings import Settings  # noqa: E402
+tests/test_startup_diagnostics.py:114:    def test_settings_rejects_weak_jwt_secret_outside_local_and_keeps_local_defaults(self) -> None:
+tests/test_startup_diagnostics.py:125:        original_settings = startup.settings
+tests/test_startup_diagnostics.py:126:        startup.settings = SimpleNamespace(
+tests/test_startup_diagnostics.py:141:                await startup.validate_settings_for_startup()
+tests/test_startup_diagnostics.py:143:            startup.settings = original_settings
+tests/test_ai_chat_provider_mock.py:14:from app.core.config.settings import get_settings  # noqa: E402
+tests/test_ai_chat_provider_mock.py:31:    get_settings.cache_clear()
+tests/test_ai_chat_provider_mock.py:39:        self.addCleanup(get_settings.cache_clear)
+tests/test_apoema_imports_parity_contract.py:8:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_imports_parity_contract.py:9:IMPORTS_PAGE = (ROOT / "frontend/itam-platform/src/apoema/pages/ImportsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_imports_parity_contract.py:12:def read_apoema_sources() -> str:
+tests/test_apoema_imports_parity_contract.py:14:    apoema_root = ROOT / "frontend/itam-platform/src/apoema"
+tests/test_apoema_imports_parity_contract.py:15:    for path in sorted(apoema_root.rglob("*")):
+tests/test_apoema_imports_parity_contract.py:22:APOEMA = read_apoema_sources()
+tests/test_apoema_imports_parity_contract.py:25:class ApoemaImportsParityContractTest(unittest.TestCase):
+tests/test_apoema_imports_parity_contract.py:26:    def test_imports_matrix_and_routes_map_to_apoema(self) -> None:
+tests/test_apoema_imports_parity_contract.py:27:        matrix = ROOT / "docs/audit/apoema-only-phase-4e-imports/IMPORTS_PARITY_MATRIX_20260623.md"
+tests/test_apoema_imports_parity_contract.py:30:        self.assertIn("/imports legacy", matrix_text)
+tests/test_apoema_imports_parity_contract.py:31:        self.assertIn("/apoema/imports", matrix_text)
+tests/test_apoema_imports_parity_contract.py:34:        self.assertIn('path: "/imports"', normalized_app)
+tests/test_apoema_imports_parity_contract.py:35:        self.assertIn('migrationTarget: "apoema:imports"', normalized_app)
+tests/test_apoema_imports_parity_contract.py:36:        self.assertIn('redirectTo: "/apoema/imports"', normalized_app)
+tests/test_apoema_imports_parity_contract.py:37:        self.assertIn('path="imports" element={<ImportsPage />}', APOEMA_APP.replace("\n", " "))
+tests/test_apoema_imports_parity_contract.py:38:        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized_app)
+tests/test_apoema_imports_parity_contract.py:39:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized_app)
+tests/test_apoema_imports_parity_contract.py:41:    def test_imports_no_longer_live_in_legacy_shell(self) -> None:
+tests/test_apoema_imports_parity_contract.py:42:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_imports_parity_contract.py:44:    def test_imports_page_is_apoema_native_and_api_backed(self) -> None:
+tests/test_apoema_imports_parity_contract.py:51:        self.assertIn(".imports(token)", IMPORTS_PAGE)
+tests/README.md:4:Adicione testes de unidade/integracao aqui (ex.: pytest). Estruture por area do sistema (api, legacy, frontend).
+tests/test_apoema_settings_parity_contract.py:9:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_settings_parity_contract.py:10:APOEMA_SETTINGS_PAGE = (ROOT / "frontend/itam-platform/src/apoema/pages/SettingsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_settings_parity_contract.py:12:MATRIX = (ROOT / "docs/audit/apoema-only-phase-4k-settings/SETTINGS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
+tests/test_apoema_settings_parity_contract.py:15:def read_apoema_sources() -> str:
+tests/test_apoema_settings_parity_contract.py:17:    apoema_root = ROOT / "frontend/itam-platform/src/apoema"
+tests/test_apoema_settings_parity_contract.py:18:    for path in sorted(apoema_root.rglob("*")):
+tests/test_apoema_settings_parity_contract.py:25:APOEMA = read_apoema_sources()
+tests/test_apoema_settings_parity_contract.py:28:class ApoemaSettingsParityContractTest(unittest.TestCase):
+tests/test_apoema_settings_parity_contract.py:29:    def test_parity_matrix_documents_safe_redirect_policy(self) -> None:
+tests/test_apoema_settings_parity_contract.py:32:        self.assertIn("/settings", MATRIX)
+tests/test_apoema_settings_parity_contract.py:33:        self.assertIn("/apoema/settings", MATRIX)
+tests/test_apoema_settings_parity_contract.py:38:    def test_settings_routes_move_to_apoema_and_keep_compatibility_alias(self) -> None:
+tests/test_apoema_settings_parity_contract.py:40:        self.assertIn('path="/apoema" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_settings_parity_contract.py:41:        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_settings_parity_contract.py:42:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_settings_parity_contract.py:44:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_settings_parity_contract.py:46:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_settings_parity_contract.py:49:        self.assertIn('path: "/settings"', alias_block)
+tests/test_apoema_settings_parity_contract.py:50:        self.assertIn('migrationTarget: "apoema:settings"', alias_block)
+tests/test_apoema_settings_parity_contract.py:51:        self.assertIn('redirectTo: "/apoema/settings"', alias_block)
+tests/test_apoema_settings_parity_contract.py:53:    def test_apoema_app_exposes_settings_surface(self) -> None:
+tests/test_apoema_settings_parity_contract.py:54:        self.assertIn('path="settings" element={<SettingsPage />}', APOEMA_APP)
+tests/test_apoema_settings_parity_contract.py:56:        self.assertIn('to: "settings", label: "Ajustes"', APOEMA_APP)
+tests/test_apoema_settings_parity_contract.py:58:    def test_settings_page_preserves_theme_preferences_and_security_copy(self) -> None:
+tests/test_apoema_settings_parity_contract.py:62:            "apoemaPreferences",
+tests/test_apoema_settings_parity_contract.py:70:    def test_legacy_settings_page_remains_available_for_compatibility(self) -> None:
+tests/test_apoema_settings_parity_contract.py:80:    def test_apoema_stays_free_of_direct_provider_calls_and_secrets(self) -> None:
+tests/test_apoema_settings_parity_contract.py:85:        self.assertIn('lazy(() => import("./apoema")', APP)
+tests/test_apoema_settings_parity_contract.py:88:        self.assertIn("<AppShell>", APP)
+tests/test_import_identity_classifier.py:10:from app.domains.imports.classification.identity_classifier import (
+tests/test_import_identity_classifier.py:18:from app.domains.imports.normalization.lansweeper_normalizer import normalize_asset_row
+tests/test_ai_chat_rate_limit.py:13:from app.core.config.settings import Settings  # noqa: E402
+tests/test_ai_chat_rate_limit.py:77:        settings = Settings(environment="local", ai_chat_rate_limit_per_minute=1)
+tests/test_ai_chat_rate_limit.py:78:        limiter = AiChatRateLimiter(settings)
+tests/test_ai_chat_rate_limit.py:91:        settings = Settings(environment="production", ai_chat_rate_limit_per_minute=1)
+tests/test_ai_chat_rate_limit.py:92:        limiter = AiChatRateLimiter(settings)
+tests/test_apoema_asset_detail_parity_contract.py:9:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_asset_detail_parity_contract.py:10:APOEMA_DETAIL = (ROOT / "frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_asset_detail_parity_contract.py:11:MATRIX = (ROOT / "docs/audit/apoema-only-phase-4c-asset-detail/ASSET_DETAIL_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
+tests/test_apoema_asset_detail_parity_contract.py:14:class ApoemaAssetDetailParityContractTest(unittest.TestCase):
+tests/test_apoema_asset_detail_parity_contract.py:15:    def test_parity_matrix_documents_dynamic_redirect_policy(self) -> None:
+tests/test_apoema_asset_detail_parity_contract.py:16:        self.assertIn("Asset Detail legacy -> Apoema Detalhe de Ativo", MATRIX)
+tests/test_apoema_asset_detail_parity_contract.py:18:        self.assertIn("/assets/:id", MATRIX)
+tests/test_apoema_asset_detail_parity_contract.py:19:        self.assertIn("/apoema/assets/:id", MATRIX)
+tests/test_apoema_asset_detail_parity_contract.py:20:        self.assertIn("parity_minimum_met", MATRIX)
+tests/test_apoema_asset_detail_parity_contract.py:22:    def test_asset_detail_route_points_to_apoema_detail_page(self) -> None:
+tests/test_apoema_asset_detail_parity_contract.py:23:        self.assertIn('path="assets/:id" element={<AssetDetailPage />}', APOEMA_APP)
+tests/test_apoema_asset_detail_parity_contract.py:24:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_asset_detail_parity_contract.py:27:        self.assertIn('path: "/assets/:id"', alias_block)
+tests/test_apoema_asset_detail_parity_contract.py:28:        self.assertIn('migrationTarget: "apoema:assets"', alias_block)
+tests/test_apoema_asset_detail_parity_contract.py:29:        self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
+tests/test_apoema_asset_detail_parity_contract.py:30:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_asset_detail_parity_contract.py:40:    def test_no_direct_provider_calls_in_apoema_detail(self) -> None:
+tests/test_apoema_assignments_parity_contract.py:9:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_assignments_parity_contract.py:10:APOEMA_ASSIGNMENTS = (ROOT / "frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_assignments_parity_contract.py:12:MATRIX = (ROOT / "docs/audit/apoema-only-phase-4i-assignments/ASSIGNMENTS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
+tests/test_apoema_assignments_parity_contract.py:15:def read_apoema_sources() -> str:
+tests/test_apoema_assignments_parity_contract.py:17:    apoema_root = ROOT / "frontend/itam-platform/src/apoema"
+tests/test_apoema_assignments_parity_contract.py:18:    for path in sorted(apoema_root.rglob("*")):
+tests/test_apoema_assignments_parity_contract.py:25:APOEMA = read_apoema_sources()
+tests/test_apoema_assignments_parity_contract.py:28:class ApoemaAssignmentsParityContractTest(unittest.TestCase):
+tests/test_apoema_assignments_parity_contract.py:29:    def test_parity_matrix_documents_safe_redirect_policy(self) -> None:
+tests/test_apoema_assignments_parity_contract.py:32:        self.assertIn("/assignments", MATRIX)
+tests/test_apoema_assignments_parity_contract.py:33:        self.assertIn("/apoema/assignments", MATRIX)
+tests/test_apoema_assignments_parity_contract.py:36:    def test_assignments_route_points_to_apoema_movements_page(self) -> None:
+tests/test_apoema_assignments_parity_contract.py:37:        self.assertIn('path="assignments" element={<AssignmentsPage />}', APOEMA_APP)
+tests/test_apoema_assignments_parity_contract.py:38:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_assignments_parity_contract.py:41:        self.assertIn('path: "/assignments"', alias_block)
+tests/test_apoema_assignments_parity_contract.py:42:        self.assertIn('migrationTarget: "apoema:movements"', alias_block)
+tests/test_apoema_assignments_parity_contract.py:43:        self.assertIn('redirectTo: "/apoema/assignments"', alias_block)
+tests/test_apoema_assignments_parity_contract.py:44:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_assignments_parity_contract.py:46:    def test_assignments_page_contains_operational_and_timeline_surface(self) -> None:
+tests/test_apoema_assignments_parity_contract.py:56:            "Apoema Movimentações",
+tests/test_apoema_assignments_parity_contract.py:64:    def test_legacy_assignments_page_remains_available_for_compatibility(self) -> None:
+tests/test_apoema_assignments_parity_contract.py:68:    def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
+tests/test_apoema_assignments_parity_contract.py:72:    def test_related_apoema_aliases_and_lazy_loading_remain_preserved(self) -> None:
+tests/test_apoema_assignments_parity_contract.py:74:        self.assertIn('lazy(() => import("./apoema")', normalized)
+tests/test_apoema_assignments_parity_contract.py:76:        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_assignments_parity_contract.py:77:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_assignments_parity_contract.py:80:            'redirectTo: "/apoema/assignments"',
+tests/test_apoema_assignments_parity_contract.py:81:            'redirectTo: "/apoema/signatures"',
+tests/test_apoema_assignments_parity_contract.py:82:            'redirectTo: "/apoema/stock"',
+tests/test_apoema_assignments_parity_contract.py:83:            'redirectTo: "/apoema/macros"',
+tests/test_apoema_assignments_parity_contract.py:84:            'redirectTo: "/apoema/imports"',
+tests/test_apoema_assignments_parity_contract.py:85:            'redirectTo: "/apoema/audit-logs"',
+tests/test_apoema_assignments_parity_contract.py:86:            'redirectTo: "/apoema/assets"',
+tests/test_apoema_assignments_parity_contract.py:87:            'redirectTo: "/apoema/assets/:id"',
+tests/test_apoema_assignments_parity_contract.py:88:            'redirectTo: "/apoema/chat"',
+tests/test_apoema_assignments_parity_contract.py:92:        self.assertIn('path: "/assignments"', APP)
+tests/test_apoema_assignments_parity_contract.py:93:        self.assertIn('migrationTarget: "apoema:movements"', APP)
+tests/test_apoema_assignments_parity_contract.py:94:        self.assertIn('path="assignments" element={<AssignmentsPage />}', APOEMA_APP)
+tests/test_apoema_assignments_parity_contract.py:95:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_legacy_surface_contract.py:11:    for path in sorted((ROOT / "frontend/itam-platform/src/apoema").rglob("*"))
+tests/test_apoema_legacy_surface_contract.py:16:class ApoemaLegacySurfaceContractTest(unittest.TestCase):
+tests/test_apoema_legacy_surface_contract.py:17:    def test_legacy_compatibility_boundary_is_explicit(self) -> None:
+tests/test_apoema_legacy_surface_contract.py:18:        self.assertIn("const legacyCompatibilityRoutes", APP)
+tests/test_apoema_legacy_surface_contract.py:19:        self.assertIn("const legacyApoemaAliasRoutes", APP)
+tests/test_apoema_legacy_surface_contract.py:20:        self.assertIn("Legacy routes are retained temporarily while Apoema becomes the primary surface.", APP)
+tests/test_apoema_legacy_surface_contract.py:24:    def test_legacy_routes_document_migration_targets(self) -> None:
+tests/test_apoema_legacy_surface_contract.py:25:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_legacy_surface_contract.py:26:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_legacy_surface_contract.py:30:        self.assertIn('path: "/ai-chat"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:31:        self.assertIn('path: "/audit-logs"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:32:        self.assertIn('path: "/assets"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:33:        self.assertIn('path: "/assets/:id"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:34:        self.assertIn('path: "/assignments"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:35:        self.assertIn('path: "/users"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:36:        self.assertIn('path: "/users/:id"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:37:        self.assertIn('path: "/settings"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:38:        self.assertIn('path: "/imports"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:39:        self.assertIn('path: "/macros"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:40:        self.assertIn('path: "/signatures"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:41:        self.assertIn('path: "/stock"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:42:        self.assertIn('migrationTarget: "apoema:chat"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:43:        self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:44:        self.assertIn('migrationTarget: "apoema:assets"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:45:        self.assertIn('migrationTarget: "apoema:movements"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:46:        self.assertIn('migrationTarget: "apoema:users"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:47:        self.assertIn('migrationTarget: "apoema:settings"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:48:        self.assertIn('migrationTarget: "apoema:imports"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:49:        self.assertIn('migrationTarget: "apoema:macros"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:50:        self.assertIn('migrationTarget: "apoema:signatures"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:51:        self.assertIn('migrationTarget: "apoema:stock"', alias_block)
+tests/test_apoema_legacy_surface_contract.py:53:        self.assertIn('redirectTo: "/apoema/audit-logs"', APP)
+tests/test_apoema_legacy_surface_contract.py:54:        self.assertIn('redirectTo: "/apoema/assets"', APP)
+tests/test_apoema_legacy_surface_contract.py:55:        self.assertIn('redirectTo: "/apoema/assets/:id"', APP)
+tests/test_apoema_legacy_surface_contract.py:56:        self.assertIn('redirectTo: "/apoema/assignments"', APP)
+tests/test_apoema_legacy_surface_contract.py:57:        self.assertIn('redirectTo: "/apoema/users"', APP)
+tests/test_apoema_legacy_surface_contract.py:58:        self.assertIn('redirectTo: "/apoema/users/:id"', APP)
+tests/test_apoema_legacy_surface_contract.py:59:        self.assertIn('redirectTo: "/apoema/settings"', APP)
+tests/test_apoema_legacy_surface_contract.py:60:        self.assertIn('redirectTo: "/apoema/imports"', APP)
+tests/test_apoema_legacy_surface_contract.py:61:        self.assertIn('redirectTo: "/apoema/macros"', APP)
+tests/test_apoema_legacy_surface_contract.py:62:        self.assertIn('redirectTo: "/apoema/signatures"', APP)
+tests/test_apoema_legacy_surface_contract.py:63:        self.assertIn('redirectTo: "/apoema/stock"', APP)
+tests/test_apoema_legacy_surface_contract.py:65:    def test_apoema_surface_remains_outside_legacy_shell(self) -> None:
+tests/test_apoema_legacy_surface_contract.py:66:        apoema_routes_block = APP.split("function ApoemaRoutes()")[1].split("type LegacyCompatibilityRouteDefinition")[0]
+tests/test_apoema_legacy_surface_contract.py:67:        legacy_shell_block = APP.split("function LegacyShellRoute()")[1].split("function LegacyRoutes()")[0]
+tests/test_apoema_legacy_surface_contract.py:69:        self.assertIn('path="/" element={<Navigate to="/apoema" replace />}', APP.replace("\n", " "))
+tests/test_apoema_legacy_surface_contract.py:70:        self.assertIn('path="/apoema" element={<ApoemaRoute />}', APP.replace("\n", " "))
+tests/test_apoema_legacy_surface_contract.py:71:        self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', APP.replace("\n", " "))
+tests/test_apoema_legacy_surface_contract.py:72:        self.assertIn("<LegacyApoemaAliasRoutes />", APP)
+tests/test_apoema_legacy_surface_contract.py:73:        self.assertIn("<AppShell>", legacy_shell_block)
+tests/test_apoema_legacy_surface_contract.py:74:        self.assertIn("<Outlet />", legacy_shell_block)
+tests/test_apoema_legacy_surface_contract.py:75:        self.assertNotIn("AppShell", apoema_routes_block)
+tests/test_apoema_legacy_surface_contract.py:77:    def test_apoema_sources_do_not_call_providers_directly(self) -> None:
+tests/test_ai_chat_api.py:18:from app.api.v1.routes import ai_chat  # noqa: E402
+tests/test_ai_chat_api.py:19:from app.core.config.settings import get_settings  # noqa: E402
+tests/test_ai_chat_api.py:28:def force_ai_chat_mock_settings() -> patch:
+tests/test_ai_chat_api.py:40:    get_settings.cache_clear()
+tests/test_ai_chat_api.py:41:    for settings_obj in (ai_chat.settings, ai_chat_service_module.settings):
+tests/test_ai_chat_api.py:42:        settings_obj.ai_provider = "mock"
+tests/test_ai_chat_api.py:43:        settings_obj.ai_model = ""
+tests/test_ai_chat_api.py:44:        settings_obj.ai_gemini_api_key = ""
+tests/test_ai_chat_api.py:45:        settings_obj.ai_openai_api_key = ""
+tests/test_ai_chat_api.py:124:        self.env_patch = force_ai_chat_mock_settings()
+tests/test_ai_chat_api.py:126:        self.addCleanup(get_settings.cache_clear)
+tests/test_ai_chat_api.py:137:        self.original_enable_ai_chat = ai_chat.settings.enable_ai_chat
+tests/test_ai_chat_api.py:138:        ai_chat.settings.enable_ai_chat = True
+tests/test_ai_chat_api.py:142:        ai_chat.settings.enable_ai_chat = self.original_enable_ai_chat
+tests/test_ai_chat_api.py:149:    def test_routes_depend_on_existing_current_user_authentication(self) -> None:
+tests/test_ai_chat_api.py:151:            "/ai-chat/providers",
+tests/test_ai_chat_api.py:152:            "/ai-chat/message",
+tests/test_ai_chat_api.py:153:            "/ai-chat/conversations",
+tests/test_ai_chat_api.py:154:            "/ai-chat/conversations/{conversation_id}",
+tests/test_ai_chat_api.py:155:            "/ai-chat/conversations/{conversation_id}/messages",
+tests/test_ai_chat_api.py:157:        for route in ai_chat.router.routes:
+tests/test_ai_chat_api.py:158:            if getattr(route, "path", None) in protected_paths:
+tests/test_ai_chat_api.py:159:                dependencies = {dependency.call for dependency in route.dependant.dependencies}
+tests/test_ai_chat_api.py:164:                    route.path,
+tests/test_ai_chat_api.py:169:            get_settings.cache_clear()
+tests/test_ai_chat_api.py:170:            ai_chat.settings.ai_provider = "mock"
+tests/test_ai_chat_api.py:171:            ai_chat.settings.ai_model = ""
+tests/test_ai_chat_api.py:172:            ai_chat.settings.ai_gemini_api_key = ""
+tests/test_ai_chat_api.py:173:            ai_chat_service_module.settings.ai_provider = "mock"
+tests/test_ai_chat_api.py:174:            ai_chat_service_module.settings.ai_model = ""
+tests/test_ai_chat_api.py:175:            ai_chat_service_module.settings.ai_gemini_api_key = ""
+tests/test_ai_chat_api.py:244:    async def test_user_cannot_open_or_send_message_to_other_users_conversation(self) -> None:
+tests/test_ai_chat_api.py:265:        ai_chat.get_ai_provider_health = lambda _settings: {
+tests/test_apoema_assets_parity_contract.py:9:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_assets_parity_contract.py:10:APOEMA_ASSET_DETAIL = (ROOT / "frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_assets_parity_contract.py:11:APOEMA_ASSETS = (ROOT / "frontend/itam-platform/src/apoema/pages/AssetsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_assets_parity_contract.py:13:MATRIX = (ROOT / "docs/audit/apoema-only-phase-4b-assets/ASSETS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
+tests/test_apoema_assets_parity_contract.py:16:class ApoemaAssetsParityContractTest(unittest.TestCase):
+tests/test_apoema_assets_parity_contract.py:17:    def test_parity_matrix_documents_safe_redirect_policy(self) -> None:
+tests/test_apoema_assets_parity_contract.py:18:        self.assertIn("Assets legacy -> Apoema Ativos", MATRIX)
+tests/test_apoema_assets_parity_contract.py:20:        self.assertIn("/assets", MATRIX)
+tests/test_apoema_assets_parity_contract.py:21:        self.assertIn("/apoema/assets", MATRIX)
+tests/test_apoema_assets_parity_contract.py:22:        self.assertIn("parity_minimum_met", MATRIX)
+tests/test_apoema_assets_parity_contract.py:24:    def test_assets_route_is_a_poema_target_and_legacy_assets_stays_preserved(self) -> None:
+tests/test_apoema_assets_parity_contract.py:25:        self.assertIn('path="assets" element={<AssetsPage />}', APOEMA_APP)
+tests/test_apoema_assets_parity_contract.py:26:        self.assertIn('path="assets/:id" element={<AssetDetailPage />}', APOEMA_APP)
+tests/test_apoema_assets_parity_contract.py:27:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_assets_parity_contract.py:30:        self.assertIn('path: "/assets"', alias_block)
+tests/test_apoema_assets_parity_contract.py:31:        self.assertIn('path: "/assets/:id"', alias_block)
+tests/test_apoema_assets_parity_contract.py:32:        self.assertIn('migrationTarget: "apoema:assets"', alias_block)
+tests/test_apoema_assets_parity_contract.py:33:        self.assertIn('redirectTo: "/apoema/assets"', alias_block)
+tests/test_apoema_assets_parity_contract.py:34:        self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
+tests/test_apoema_assets_parity_contract.py:35:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_assets_parity_contract.py:37:    def test_apoema_assets_page_contains_the_operational_parity_surface(self) -> None:
+tests/test_apoema_assets_parity_contract.py:38:        for term in ("Search", "DataTable", "StatusPill", "MetricCard", "selectedAsset", "apoemaMetrics"):
+tests/test_apoema_assets_parity_contract.py:42:    def test_apoema_asset_detail_page_contains_operational_actions(self) -> None:
+tests/test_apoema_assets_parity_contract.py:48:    def test_legacy_assets_page_remains_on_disk_for_compatibility(self) -> None:
+tests/test_public_signature_routes.py:3:from src.legacy.flask_app import criar_aplicativo
+tests/test_public_signature_routes.py:22:    def test_routes_require_generated_signature(self):
+tests/test_imports_regression.py:7:FIXTURES = ROOT / "tests" / "fixtures" / "imports"
+tests/test_imports_regression.py:11:    def upload_fixture(self, filename: str, endpoint: str = "/imports/spreadsheet/upload", import_mode: str = "INITIAL_LOAD") -> dict:
+tests/test_imports_regression.py:27:            f"{self.client.api}/imports/spreadsheet/upload",
+tests/test_imports_regression.py:36:    def test_valid_duplicate_and_malicious_csv_imports(self) -> None:
+tests/test_imports_regression.py:39:        staging = self.client.get(f"/imports/{valid['id']}/staging")
+tests/test_imports_regression.py:42:        self.assertEqual(valid["created_rows"], 0, "upload must not apply assets before confirmation")
+tests/test_imports_regression.py:47:        conflicts = self.client.get(f"/imports/{duplicate['id']}/conflicts")
+tests/test_imports_regression.py:52:        errors = self.client.get(f"/imports/{malicious['id']}/validation-errors")
+tests/test_imports_regression.py:56:        imports = self.client.get("/imports")
+tests/test_imports_regression.py:57:        self.assertEqual(imports.status_code, 200)
+tests/test_imports_regression.py:58:        self.assertGreaterEqual(imports.json()["total"], 3)
+tests/test_imports_regression.py:60:        audit = self.client.get("/audit-logs", params={"page": 1, "page_size": 100})
+tests/test_imports_regression.py:75:        preview = self.client.get(f"/imports/{csv_job['id']}/preview")
+tests/test_imports_regression.py:79:            f"/imports/{csv_job['id']}/mapping",
+tests/test_imports_regression.py:89:        apply_response = self.client.post(f"/imports/{csv_job['id']}/apply")
+tests/test_imports_regression.py:94:        assets = self.client.get("/assets", params={"search": f"RJMIMP{suffix}", "page_size": 10})
+tests/test_imports_regression.py:95:        self.assertEqual(assets.status_code, 200)
+tests/test_imports_regression.py:96:        self.assertGreaterEqual(assets.json()["total"], 1)
+tests/test_imports_regression.py:103:        errors = self.client.get(f"/imports/{invalid_job['id']}/validation-errors")
+tests/test_imports_regression.py:117:        staging = self.client.get(f"/imports/{job['id']}/staging")
+tests/test_imports_regression.py:133:        applied = self.client.post(f"/imports/{initial['id']}/apply")
+tests/test_imports_regression.py:135:        assets = self.client.get("/assets", params={"search": f"RJMSAFE{suffix}", "page_size": 1})
+tests/test_imports_regression.py:136:        asset = assets.json()["items"][0]
+tests/test_imports_regression.py:142:            f"{self.client.api}/imports/spreadsheet/upload",
+tests/test_imports_regression.py:160:        reapplied = self.client.post(f"/imports/{reimport.json()['id']}/apply")
+tests/test_imports_regression.py:162:        after = self.client.get(f"/assets/{asset['id']}").json()
+tests/test_imports_regression.py:168:        duplicate_apply = self.client.post(f"/imports/{reimport.json()['id']}/apply")
+tests/test_imports_regression.py:173:        apply_response = self.client.post(f"/imports/{preview['id']}/apply")
+tests/test_imports_regression.py:177:            f"{self.client.api}/imports/spreadsheet/upload",
+tests/test_imports_regression.py:199:        staging = self.client.get(f"/imports/{job['id']}/staging")
+tests/test_imports_regression.py:203:        errors = self.client.get(f"/imports/{job['id']}/validation-errors")
+tests/test_imports_regression.py:207:        apply_response = self.client.post(f"/imports/{job['id']}/apply")
+tests/test_imports_regression.py:212:        assets = self.client.get("/assets", params={"search": f"RJMPART{suffix}", "page_size": 5})
+tests/test_imports_regression.py:213:        self.assertEqual(assets.json()["total"], 1)
+tests/test_apoema_hermes_redesign_contract.py:7:APOEMA_CSS = (ROOT / "frontend/itam-platform/src/apoema/styles/apoema.css").read_text(encoding="utf-8")
+tests/test_apoema_hermes_redesign_contract.py:8:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_hermes_redesign_contract.py:9:DASHBOARD = (ROOT / "frontend/itam-platform/src/apoema/pages/DashboardPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_hermes_redesign_contract.py:10:CHAT = (ROOT / "frontend/itam-platform/src/apoema/pages/ChatPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_hermes_redesign_contract.py:11:THEME = (ROOT / "frontend/itam-platform/src/apoema/hooks/useThemeMode.ts").read_text(encoding="utf-8")
+tests/test_apoema_hermes_redesign_contract.py:14:class ApoemaHermesRedesignContractTest(unittest.TestCase):
+tests/test_apoema_hermes_redesign_contract.py:18:        self.assertIn(".apoema-root[data-theme=\"dark\"]", APOEMA_CSS)
+tests/test_apoema_hermes_redesign_contract.py:19:        self.assertIn(".apoema-root[data-theme=\"light\"]", APOEMA_CSS)
+tests/test_apoema_hermes_redesign_contract.py:22:        self.assertIn('className="apoema-shell"', APOEMA_APP)
+tests/test_apoema_hermes_redesign_contract.py:23:        self.assertIn('className="apoema-sidebar"', APOEMA_APP)
+tests/test_apoema_hermes_redesign_contract.py:24:        self.assertIn('className="apoema-topbar"', APOEMA_APP)
+tests/test_apoema_hermes_redesign_contract.py:25:        self.assertIn('className="apoema-rail"', APOEMA_APP)
+tests/test_import_conflict_detector.py:12:from app.domains.imports.classification.conflict_detector import build_internal_duplicate_plan
+tests/test_import_conflict_detector.py:13:from app.domains.imports.normalization.lansweeper_normalizer import normalize_asset_row
+tests/test_import_conflict_detector.py:16:pytestmark = [pytest.mark.imports, pytest.mark.unit]
+tests/test_apoema_only_route_contract.py:11:def read_apoema_sources() -> str:
+tests/test_apoema_only_route_contract.py:13:    apoema_root = ROOT / "frontend/itam-platform/src/apoema"
+tests/test_apoema_only_route_contract.py:14:    for path in sorted(apoema_root.rglob("*")):
+tests/test_apoema_only_route_contract.py:21:APOEMA = read_apoema_sources()
+tests/test_apoema_only_route_contract.py:24:class ApoemaOnlyRouteContractTest(unittest.TestCase):
+tests/test_apoema_only_route_contract.py:25:    def test_root_redirects_to_apoema_and_apoema_routes_exist(self) -> None:
+tests/test_apoema_only_route_contract.py:27:        self.assertIn('path="/" element={<Navigate to="/apoema" replace />}', normalized)
+tests/test_apoema_only_route_contract.py:28:        self.assertIn('path="/apoema" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_only_route_contract.py:29:        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_only_route_contract.py:30:        self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_only_route_contract.py:31:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_only_route_contract.py:33:    def test_protected_route_wraps_apoema_and_lazy_loading_remains(self) -> None:
+tests/test_apoema_only_route_contract.py:34:        self.assertIn("function ProtectedRoute(", APP)
+tests/test_apoema_only_route_contract.py:35:        self.assertIn("function ApoemaRoute()", APP)
+tests/test_apoema_only_route_contract.py:36:        self.assertIn("<ProtectedRoute>", APP)
+tests/test_apoema_only_route_contract.py:37:        self.assertIn("lazy(() => import(\"./apoema\")", APP)
+tests/test_apoema_only_route_contract.py:40:    def test_legacy_routes_remain_in_place_for_compatibility(self) -> None:
+tests/test_apoema_only_route_contract.py:41:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_only_route_contract.py:43:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_only_route_contract.py:46:        self.assertIn('path: "/ai-chat"', alias_block)
+tests/test_apoema_only_route_contract.py:47:        self.assertIn('path: "/audit-logs"', alias_block)
+tests/test_apoema_only_route_contract.py:48:        self.assertIn('path: "/assets"', alias_block)
+tests/test_apoema_only_route_contract.py:49:        self.assertIn('path: "/assets/:id"', alias_block)
+tests/test_apoema_only_route_contract.py:50:        self.assertIn('path: "/assignments"', alias_block)
+tests/test_apoema_only_route_contract.py:51:        self.assertIn('path: "/users"', alias_block)
+tests/test_apoema_only_route_contract.py:52:        self.assertIn('path: "/users/:id"', alias_block)
+tests/test_apoema_only_route_contract.py:53:        self.assertIn('path: "/settings"', alias_block)
+tests/test_apoema_only_route_contract.py:54:        self.assertIn('path: "/imports"', alias_block)
+tests/test_apoema_only_route_contract.py:55:        self.assertIn('path: "/macros"', alias_block)
+tests/test_apoema_only_route_contract.py:56:        self.assertIn('path: "/signatures"', alias_block)
+tests/test_apoema_only_route_contract.py:57:        self.assertIn('path: "/stock"', alias_block)
+tests/test_apoema_only_route_contract.py:58:        self.assertIn('migrationTarget: "apoema:chat"', alias_block)
+tests/test_apoema_only_route_contract.py:59:        self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
+tests/test_apoema_only_route_contract.py:60:        self.assertIn('migrationTarget: "apoema:assets"', alias_block)
+tests/test_apoema_only_route_contract.py:61:        self.assertIn('migrationTarget: "apoema:movements"', alias_block)
+tests/test_apoema_only_route_contract.py:62:        self.assertIn('migrationTarget: "apoema:users"', alias_block)
+tests/test_apoema_only_route_contract.py:63:        self.assertIn('migrationTarget: "apoema:settings"', alias_block)
+tests/test_apoema_only_route_contract.py:64:        self.assertIn('migrationTarget: "apoema:imports"', alias_block)
+tests/test_apoema_only_route_contract.py:65:        self.assertIn('migrationTarget: "apoema:macros"', alias_block)
+tests/test_apoema_only_route_contract.py:66:        self.assertIn('migrationTarget: "apoema:signatures"', alias_block)
+tests/test_apoema_only_route_contract.py:67:        self.assertIn('migrationTarget: "apoema:stock"', alias_block)
+tests/test_apoema_only_route_contract.py:68:        self.assertIn('redirectTo: "/apoema/audit-logs"', alias_block)
+tests/test_apoema_only_route_contract.py:69:        self.assertIn('redirectTo: "/apoema/assets"', alias_block)
+tests/test_apoema_only_route_contract.py:70:        self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
+tests/test_apoema_only_route_contract.py:71:        self.assertIn('redirectTo: "/apoema/assignments"', alias_block)
+tests/test_apoema_only_route_contract.py:72:        self.assertIn('redirectTo: "/apoema/users"', alias_block)
+tests/test_apoema_only_route_contract.py:73:        self.assertIn('redirectTo: "/apoema/users/:id"', alias_block)
+tests/test_apoema_only_route_contract.py:74:        self.assertIn('redirectTo: "/apoema/settings"', alias_block)
+tests/test_apoema_only_route_contract.py:75:        self.assertIn('redirectTo: "/apoema/imports"', alias_block)
+tests/test_apoema_only_route_contract.py:76:        self.assertIn('redirectTo: "/apoema/macros"', alias_block)
+tests/test_apoema_only_route_contract.py:77:        self.assertIn('redirectTo: "/apoema/signatures"', alias_block)
+tests/test_apoema_only_route_contract.py:78:        self.assertIn('redirectTo: "/apoema/stock"', alias_block)
+tests/test_apoema_only_route_contract.py:81:    def test_apoema_does_not_call_providers_directly(self) -> None:
+tests/test_signature_model_spec.py:4:from src.legacy.signature_model_spec import (
+tests/test_signature_model_spec.py:12:        docx_path = Path("assets/static/ASSINATURAS DE E-MAIL (ENS_LOGO_AZUL_LGPD_semTWITTER)_v21.23.docx")
+tests/test_legacy_ens_db_importer.py:11:SCRIPT = ROOT / "scripts" / "import_legacy_ens_db_to_postgres.py"
+tests/test_legacy_ens_db_importer.py:15:    spec = importlib.util.spec_from_file_location("legacy_importer", SCRIPT)
+tests/test_legacy_ens_db_importer.py:19:    sys.modules["legacy_importer"] = module
+tests/test_legacy_ens_db_importer.py:28:    def test_analyze_reads_sqlite_without_creating_users(self) -> None:
+tests/test_legacy_ens_db_importer.py:68:        self.assertEqual("legacy_seed", candidate.metadata["import_mode"])
+tests/test_legacy_ens_db_importer.py:70:        self.assertEqual("off", candidate.metadata["status_legacy"])
+tests/test_legacy_ens_db_importer.py:85:        from app.domains.users.models import User
+tests/test_legacy_ens_db_importer.py:116:        self.assertEqual("legacy_ens_db", existing.source)
+tests/test_legacy_ens_db_importer.py:117:        self.assertEqual({"business_unit": "RJ", "source": "legacy_ens_db"}, changed)
+tests/test_legacy_ens_db_importer.py:120:        from app.domains.users.models import User
+tests/test_legacy_ens_db_importer.py:143:        policy = self.importer.ImportPolicy(skip_sensitive_existing_users=True)
+tests/test_legacy_ens_db_importer.py:161:        from app.domains.users.models import User
+tests/test_apoema_stock_parity_contract.py:9:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_stock_parity_contract.py:10:APOEMA_STOCK = (ROOT / "frontend/itam-platform/src/apoema/pages/StockPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_stock_parity_contract.py:12:MATRIX = (ROOT / "docs/audit/apoema-only-phase-4g-stock/STOCK_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
+tests/test_apoema_stock_parity_contract.py:15:def read_apoema_sources() -> str:
+tests/test_apoema_stock_parity_contract.py:17:    apoema_root = ROOT / "frontend/itam-platform/src/apoema"
+tests/test_apoema_stock_parity_contract.py:18:    for path in sorted(apoema_root.rglob("*")):
+tests/test_apoema_stock_parity_contract.py:25:APOEMA = read_apoema_sources()
+tests/test_apoema_stock_parity_contract.py:28:class ApoemaStockParityContractTest(unittest.TestCase):
+tests/test_apoema_stock_parity_contract.py:29:    def test_parity_matrix_documents_safe_redirect_policy(self) -> None:
+tests/test_apoema_stock_parity_contract.py:32:        self.assertIn("/stock", MATRIX)
+tests/test_apoema_stock_parity_contract.py:33:        self.assertIn("/apoema/stock", MATRIX)
+tests/test_apoema_stock_parity_contract.py:36:    def test_stock_route_points_to_apoema_stock_page(self) -> None:
+tests/test_apoema_stock_parity_contract.py:37:        self.assertIn('path="stock" element={<StockPage />}', APOEMA_APP)
+tests/test_apoema_stock_parity_contract.py:38:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_stock_parity_contract.py:41:        self.assertIn('path: "/stock"', alias_block)
+tests/test_apoema_stock_parity_contract.py:42:        self.assertIn('migrationTarget: "apoema:stock"', alias_block)
+tests/test_apoema_stock_parity_contract.py:43:        self.assertIn('redirectTo: "/apoema/stock"', alias_block)
+tests/test_apoema_stock_parity_contract.py:44:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_stock_parity_contract.py:46:    def test_stock_page_contains_operational_parity_surface(self) -> None:
+tests/test_apoema_stock_parity_contract.py:49:        self.assertIn("assetsByStatus(", APOEMA_STOCK)
+tests/test_apoema_stock_parity_contract.py:50:        self.assertIn("Apoema Estoque", APOEMA_STOCK)
+tests/test_apoema_stock_parity_contract.py:55:    def test_legacy_stock_page_remains_available_for_compatibility(self) -> None:
+tests/test_apoema_stock_parity_contract.py:56:        for term in ("assetsByStatus(", "Base44MetricCard", "Base44OperationalGrid", "Base44Surface"):
+tests/test_apoema_stock_parity_contract.py:59:    def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
+tests/test_apoema_stock_parity_contract.py:65:        self.assertIn('lazy(() => import("./apoema")', normalized)
+tests/test_apoema_stock_parity_contract.py:67:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_stock_parity_contract.py:68:        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_stock_parity_contract.py:69:        self.assertIn('path="/" element={<Navigate to="/apoema" replace />}', normalized)
+tests/test_apoema_frontend_error_contract.py:9:class ApoemaFrontendErrorContractTest(unittest.TestCase):
+tests/test_apoema_frontend_error_contract.py:12:        cls.api = (ROOT / "frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts").read_text(encoding="utf-8")
+tests/test_apoema_frontend_error_contract.py:13:        cls.page = (ROOT / "frontend/itam-platform/src/apoema/pages/ChatPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_frontend_error_contract.py:14:        cls.message = (ROOT / "frontend/itam-platform/src/apoema/components/ChatMessage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_frontend_error_contract.py:15:        cls.css = (ROOT / "frontend/itam-platform/src/apoema/styles/apoema.css").read_text(encoding="utf-8")
+tests/test_apoema_frontend_error_contract.py:16:        cls.types = (ROOT / "frontend/itam-platform/src/apoema/types.ts").read_text(encoding="utf-8")
+tests/test_apoema_frontend_error_contract.py:20:            "export type ApoemaApiErrorKind",
+tests/test_apoema_frontend_error_contract.py:21:            "export class ApoemaApiError extends Error",
+tests/test_apoema_frontend_error_contract.py:32:        self.assertIn('if (error instanceof ApoemaApiError && error.kind === "network_unavailable")', self.api)
+tests/test_apoema_frontend_error_contract.py:33:        self.assertGreaterEqual(self.api.count("mockApoemaResponse"), 1)
+tests/test_apoema_frontend_error_contract.py:58:        self.assertIn(".apoema-chat-message.is-fallback", self.css)
+tests/test_apoema_frontend_error_contract.py:59:        self.assertIn("apoema-chat-message-source", self.message)
+tests/test_auth_regression.py:31:    def test_invalid_login_and_protected_route_without_token(self) -> None:
+tests/test_auth_regression.py:39:        no_token = requests.get(f"{self.client.api}/assets", timeout=20)
+tests/test_import_spreadsheet_reader.py:15:from app.domains.imports.parsing import read_spreadsheet_file  # noqa: E402
+tests/test_import_spreadsheet_reader.py:17:FIXTURES = ROOT / "tests" / "fixtures" / "imports"
+tests/test_operational_contracts.py:23:    def test_legacy_requirements_wrapper_points_to_legacy_file(self) -> None:
+tests/test_operational_contracts.py:25:        self.assertIn("-r requirements-legacy.txt", wrapper)
+tests/test_operational_contracts.py:26:        self.assertTrue((ROOT / "requirements-legacy.txt").exists())
+tests/test_operational_contracts.py:28:    def test_fastapi_mounts_critical_routes(self) -> None:
+tests/test_operational_contracts.py:37:        routes = {getattr(route, "path", "") for route in app.routes}
+tests/test_operational_contracts.py:38:        self.assertIn("/health", routes)
+tests/test_operational_contracts.py:39:        self.assertIn("/health/ready", routes)
+tests/test_operational_contracts.py:40:        self.assertIn("/api/v1/auth/login", routes)
+tests/test_operational_contracts.py:41:        self.assertIn("/api/v1/assets", routes)
+tests/test_operational_contracts.py:42:        self.assertIn("/api/v1/imports/lansweeper", routes)
+tests/test_operational_contracts.py:43:        self.assertIn("/admin", routes)
+tests/test_operational_contracts.py:44:        self.assertIn("/assinaturas", routes)
+tests/test_operational_contracts.py:53:        from app.domains.users.schemas import UserUpdate
+tests/test_operational_contracts.py:57:    def test_user_read_allows_legacy_reserved_domain_email(self) -> None:
+tests/test_operational_contracts.py:66:        from app.domains.users.schemas import UserRead
+tests/test_operational_contracts.py:72:            email="legacy@example.test",
+tests/test_operational_contracts.py:80:            source="legacy",
+tests/test_operational_contracts.py:88:        self.assertEqual("legacy@example.test", payload.email)
+tests/test_login_frontend_contract.py:35:    def test_app_preserves_login_route_and_protected_routes(self) -> None:
+tests/test_login_frontend_contract.py:37:        self.assertIn('path="/" element={<Navigate to="/apoema" replace />} ', APP.replace("\n", " "))
+tests/test_login_frontend_contract.py:38:        self.assertIn('path="/apoema" element={<ApoemaRoute />}', APP.replace("\n", " "))
+tests/test_login_frontend_contract.py:39:        self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', APP.replace("\n", " "))
+tests/test_login_frontend_contract.py:40:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
+tests/test_macros_module.py:10:from app.domains.macros.renderer import MacroRenderError, extract_placeholders, render_macro
+tests/test_macros_module.py:11:from app.domains.macros.repository import normalize_query
+tests/test_macros_module.py:12:from app.domains.macros.service import category_from_name, slugify
+tests/test_macros_module.py:15:MACROS_IMPORTER = ROOT / "scripts" / "import_macros_json_to_postgres.py"
+tests/test_macros_module.py:53:    def test_macros_json_analyze_maps_real_shape(self) -> None:
+tests/test_macros_module.py:54:        importer = load_script(MACROS_IMPORTER, "macros_importer_test")
+tests/test_macros_module.py:56:            path = Path(tmp) / "macros.json"
+tests/test_macros_module.py:60:                        "macros": [
+tests/test_macros_module.py:79:    def test_macros_json_dict_shape_preserves_all_official_templates_and_diagnostics(self) -> None:
+tests/test_macros_module.py:80:        importer = load_script(MACROS_IMPORTER, "macros_importer_dict_diagnostics_test")
+tests/test_macros_module.py:82:            path = Path(tmp) / "macros.json"
+tests/test_macros_module.py:107:        self.assertEqual([], diagnostics["invalid_macros"])
+tests/test_macros_module.py:127:        importer = load_script(MACROS_IMPORTER, "macros_importer_confirm_test")
+tests/test_security_headers.py:21:    def test_spa_routes_get_hardened_csp_without_unsafe_inline_script(self) -> None:
+tests/test_security_headers.py:32:    def test_legacy_routes_keep_enforced_inline_compatibility_and_report_only(self) -> None:
+tests/test_apoema_shell_boundary_contract.py:11:def read_apoema_sources() -> str:
+tests/test_apoema_shell_boundary_contract.py:13:    apoema_root = ROOT / "frontend/itam-platform/src/apoema"
+tests/test_apoema_shell_boundary_contract.py:14:    for path in sorted(apoema_root.rglob("*")):
+tests/test_apoema_shell_boundary_contract.py:21:APOEMA = read_apoema_sources()
+tests/test_apoema_shell_boundary_contract.py:24:class ApoemaShellBoundaryContractTest(unittest.TestCase):
+tests/test_apoema_shell_boundary_contract.py:25:    def test_app_exposes_explicit_apoema_first_and_legacy_blocks(self) -> None:
+tests/test_apoema_shell_boundary_contract.py:26:        self.assertIn("function ApoemaRoutes()", APP)
+tests/test_apoema_shell_boundary_contract.py:27:        self.assertIn("function LegacyApoemaAliasRoutes()", APP)
+tests/test_apoema_shell_boundary_contract.py:28:        self.assertIn("const legacyCompatibilityRoutes", APP)
+tests/test_apoema_shell_boundary_contract.py:29:        self.assertIn("const legacyApoemaAliasRoutes", APP)
+tests/test_apoema_shell_boundary_contract.py:32:        self.assertIn("// Legacy routes are retained temporarily while Apoema becomes the primary surface.", APP)
+tests/test_apoema_shell_boundary_contract.py:33:        self.assertIn("<ApoemaRoutes />", APP)
+tests/test_apoema_shell_boundary_contract.py:34:        self.assertIn("<LegacyApoemaAliasRoutes />", APP)
+tests/test_apoema_shell_boundary_contract.py:37:    def test_root_and_apoema_routes_stay_apoema_first(self) -> None:
+tests/test_apoema_shell_boundary_contract.py:39:        self.assertIn('path="/" element={<Navigate to="/apoema" replace />}', normalized)
+tests/test_apoema_shell_boundary_contract.py:40:        self.assertIn('path="/apoema" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_shell_boundary_contract.py:41:        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_shell_boundary_contract.py:42:        self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_shell_boundary_contract.py:43:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_shell_boundary_contract.py:44:        self.assertIn("<LegacyApoemaAliasRoutes />", APP)
+tests/test_apoema_shell_boundary_contract.py:47:    def test_legacy_shell_isolated_from_apoema_route(self) -> None:
+tests/test_apoema_shell_boundary_contract.py:48:        legacy_shell_section = APP.split("function LegacyShellRoute()")[1].split("function LegacyRoutes()")[0]
+tests/test_apoema_shell_boundary_contract.py:49:        apoema_section = APP.split("function ApoemaRoutes()")[1].split("// Legacy routes are retained temporarily while Apoema becomes the primary surface.")[0]
+tests/test_apoema_shell_boundary_contract.py:51:        self.assertIn("<AppShell>", legacy_shell_section)
+tests/test_apoema_shell_boundary_contract.py:52:        self.assertIn("<Outlet />", legacy_shell_section)
+tests/test_apoema_shell_boundary_contract.py:53:        self.assertNotIn("ApoemaApp", legacy_shell_section)
+tests/test_apoema_shell_boundary_contract.py:54:        self.assertNotIn("AppShell", apoema_section)
+tests/test_apoema_shell_boundary_contract.py:56:    def test_legacy_routes_remain_preserved(self) -> None:
+tests/test_apoema_shell_boundary_contract.py:57:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_shell_boundary_contract.py:59:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_shell_boundary_contract.py:62:        self.assertIn('path: "/ai-chat"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:63:        self.assertIn('path: "/audit-logs"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:64:        self.assertIn('path: "/assets"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:65:        self.assertIn('path: "/assets/:id"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:66:        self.assertIn('path: "/assignments"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:67:        self.assertIn('path: "/users"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:68:        self.assertIn('path: "/users/:id"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:69:        self.assertIn('path: "/settings"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:70:        self.assertIn('path: "/imports"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:71:        self.assertIn('path: "/macros"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:72:        self.assertIn('path: "/signatures"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:73:        self.assertIn('path: "/stock"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:74:        self.assertIn('migrationTarget: "apoema:chat"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:75:        self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:76:        self.assertIn('migrationTarget: "apoema:assets"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:77:        self.assertIn('migrationTarget: "apoema:movements"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:78:        self.assertIn('migrationTarget: "apoema:users"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:79:        self.assertIn('migrationTarget: "apoema:settings"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:80:        self.assertIn('migrationTarget: "apoema:imports"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:81:        self.assertIn('migrationTarget: "apoema:macros"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:82:        self.assertIn('migrationTarget: "apoema:signatures"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:83:        self.assertIn('migrationTarget: "apoema:stock"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:84:        self.assertIn('redirectTo: "/apoema/audit-logs"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:85:        self.assertIn('redirectTo: "/apoema/assets"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:86:        self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:87:        self.assertIn('redirectTo: "/apoema/assignments"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:88:        self.assertIn('redirectTo: "/apoema/users"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:89:        self.assertIn('redirectTo: "/apoema/users/:id"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:90:        self.assertIn('redirectTo: "/apoema/settings"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:91:        self.assertIn('redirectTo: "/apoema/imports"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:92:        self.assertIn('redirectTo: "/apoema/macros"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:93:        self.assertIn('redirectTo: "/apoema/signatures"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:94:        self.assertIn('redirectTo: "/apoema/stock"', alias_block)
+tests/test_apoema_shell_boundary_contract.py:95:        for target in ("apoema:assets", "apoema:users", "apoema:movements", "apoema:stock", "apoema:imports", "apoema:macros", "apoema:signatures", "apoema:audit-logs", "apoema:settings"):
+tests/test_apoema_shell_boundary_contract.py:100:    def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
+tests/test_apoema_ai_chat_parity_contract.py:9:MATRIX = (ROOT / "docs/audit/apoema-only-phase-4a-ai-chat/AI_CHAT_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
+tests/test_apoema_ai_chat_parity_contract.py:12:    for path in sorted((ROOT / "frontend/itam-platform/src/apoema").rglob("*"))
+tests/test_apoema_ai_chat_parity_contract.py:17:class ApoemaAiChatParityContractTest(unittest.TestCase):
+tests/test_apoema_ai_chat_parity_contract.py:18:    def test_parity_matrix_names_the_legacy_and_apoema_targets(self) -> None:
+tests/test_apoema_ai_chat_parity_contract.py:19:        self.assertIn("/ai-chat legacy", MATRIX)
+tests/test_apoema_ai_chat_parity_contract.py:20:        self.assertIn("Apoema Chat", MATRIX)
+tests/test_apoema_ai_chat_parity_contract.py:22:        self.assertIn("parity_minimum_met", MATRIX)
+tests/test_apoema_ai_chat_parity_contract.py:24:    def test_ai_chat_alias_points_to_apoema_chat(self) -> None:
+tests/test_apoema_ai_chat_parity_contract.py:25:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_ai_chat_parity_contract.py:28:        self.assertIn('path: "/ai-chat"', alias_block)
+tests/test_apoema_ai_chat_parity_contract.py:29:        self.assertIn('migrationTarget: "apoema:chat"', alias_block)
+tests/test_apoema_ai_chat_parity_contract.py:30:        self.assertIn("function LegacyApoemaAliasRoutes()", APP)
+tests/test_apoema_ai_chat_parity_contract.py:31:        self.assertIn("<LegacyApoemaAliasRoutes />", APP)
+tests/test_apoema_ai_chat_parity_contract.py:32:        self.assertIn('redirectTo: "/apoema/chat"', alias_block)
+tests/test_apoema_ai_chat_parity_contract.py:34:    def test_apoema_preview_chat_remains_preserved(self) -> None:
+tests/test_apoema_ai_chat_parity_contract.py:35:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
+tests/test_apoema_ai_chat_parity_contract.py:36:        self.assertIn('path="chat" element={<ChatPage />}', (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8"))
+tests/test_apoema_ai_chat_parity_contract.py:38:    def test_apoema_chat_keeps_auth_and_fallback_contract(self) -> None:
+tests/test_apoema_ai_chat_parity_contract.py:46:    def test_no_direct_provider_calls_in_apoema(self) -> None:
+tests/test_apoema_ai_chat_parity_contract.py:51:        self.assertIn("lazy(() => import(\"./apoema\")", APP)
+tests/test_signatures_postgres_flow.py:16:from app.domains.signatures.service import SignatureService  # noqa: E402
+tests/test_signatures_postgres_flow.py:17:from app.domains.users.models import User  # noqa: E402
+tests/test_audit_logs.py:14:from app.api.v1.routes.audit import build_audit_filters  # noqa: E402
+tests/test_metrics_hardening.py:41:        self.original_environment = main.settings.environment
+tests/test_metrics_hardening.py:42:        self.original_metrics_token = main.settings.metrics_token
+tests/test_metrics_hardening.py:45:        main.settings.environment = self.original_environment
+tests/test_metrics_hardening.py:46:        main.settings.metrics_token = self.original_metrics_token
+tests/test_metrics_hardening.py:49:        main.settings.environment = "local"
+tests/test_metrics_hardening.py:50:        main.settings.metrics_token = ""
+tests/test_metrics_hardening.py:58:        main.settings.environment = "staging"
+tests/test_metrics_hardening.py:59:        main.settings.metrics_token = ""
+tests/test_metrics_hardening.py:68:        main.settings.environment = "production"
+tests/test_metrics_hardening.py:69:        main.settings.metrics_token = "expected-token"
+tests/test_metrics_hardening.py:78:        main.settings.environment = "production"
+tests/test_metrics_hardening.py:79:        main.settings.metrics_token = "expected-token"
+tests/test_signature_html_fidelity.py:3:from src.legacy.flask_app import (
+tests/test_signature_html_fidelity.py:8:from src.legacy.signature_model_spec import CANONICAL_HTML_REQUIRED_MARKERS
+tests/test_import_pipeline_units.py:13:from app.domains.imports.normalization.asset_normalizer import normalize_asset_row
+tests/test_import_pipeline_units.py:14:from app.domains.imports.presets import detect_import_preset, effective_mapping, empty_columns, import_warnings
+tests/test_import_pipeline_units.py:15:from app.domains.imports.service import ImportService
+tests/test_import_pipeline_units.py:16:from app.domains.imports.validators.asset_validator import validate_normalized_asset, validate_raw_row_security
+tests/test_import_pipeline_units.py:19:FIXTURES = ROOT / "tests" / "fixtures" / "imports"
+tests/test_import_pipeline_units.py:213:            filename="assets.xlsx",
+tests/operational_http.py:91:        response = self.client.post("/users", payload)
+tests/operational_http.py:108:        response = self.client.post("/assets", payload)
+tests/test_apoema_ai_chat_backend.py:15:from app.api.v1.routes import ai_chat  # noqa: E402
+tests/test_apoema_ai_chat_backend.py:16:from app.core.config.settings import Settings  # noqa: E402
+tests/test_apoema_ai_chat_backend.py:17:from app.domains.ai_chat.apoema import build_apoema_provider_catalog, generate_apoema_message  # noqa: E402
+tests/test_apoema_ai_chat_backend.py:19:from app.domains.ai_chat.schemas import ApoemaChatMessageCreate  # noqa: E402
+tests/test_apoema_ai_chat_backend.py:23:class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
+tests/test_apoema_ai_chat_backend.py:25:        settings = Settings(ai_chat_default_provider="mock")
+tests/test_apoema_ai_chat_backend.py:27:        catalog = build_apoema_provider_catalog(settings)
+tests/test_apoema_ai_chat_backend.py:37:        settings = Settings(ai_chat_default_provider="mock")
+tests/test_apoema_ai_chat_backend.py:38:        payload = ApoemaChatMessageCreate(
+tests/test_apoema_ai_chat_backend.py:39:            conversation_id="apoema-test",
+tests/test_apoema_ai_chat_backend.py:42:            message="Olá Apoema",
+tests/test_apoema_ai_chat_backend.py:46:        response = await generate_apoema_message(settings, payload)
+tests/test_apoema_ai_chat_backend.py:48:        self.assertEqual("apoema-test", response.conversation_id)
+tests/test_apoema_ai_chat_backend.py:54:        settings = Settings(ai_chat_default_provider="ollama")
+tests/test_apoema_ai_chat_backend.py:55:        payload = ApoemaChatMessageCreate(
+tests/test_apoema_ai_chat_backend.py:56:            conversation_id="apoema-ollama",
+tests/test_apoema_ai_chat_backend.py:63:        with patch("app.domains.ai_chat.apoema.OllamaProvider.generate", side_effect=AiProviderRequestError("ollama_timeout")):
+tests/test_apoema_ai_chat_backend.py:64:            response = await generate_apoema_message(settings, payload)
+tests/test_apoema_ai_chat_backend.py:72:        settings = Settings(ai_chat_default_provider="hermes", hermes_base_url="")
+tests/test_apoema_ai_chat_backend.py:73:        payload = ApoemaChatMessageCreate(
+tests/test_apoema_ai_chat_backend.py:81:        response = await generate_apoema_message(settings, payload)
+tests/test_apoema_ai_chat_backend.py:88:    def test_apoema_routes_require_auth_dependency(self) -> None:
+tests/test_apoema_ai_chat_backend.py:89:        provider_route = next(route for route in ai_chat.router.routes if getattr(route, "path", None) == "/ai-chat/providers")
+tests/test_apoema_ai_chat_backend.py:90:        message_route = next(route for route in ai_chat.router.routes if getattr(route, "path", None) == "/ai-chat/message")
+tests/test_apoema_ai_chat_backend.py:92:        self.assertTrue(provider_route.dependant.dependencies)
+tests/test_apoema_ai_chat_backend.py:93:        self.assertTrue(message_route.dependant.dependencies)
+tests/test_apoema_ai_chat_backend.py:94:        dependency_calls = {dependency.call for dependency in provider_route.dependant.dependencies + message_route.dependant.dependencies}
+tests/test_apoema_ai_chat_backend.py:107:class ApoemaFrontendStaticSafetyTest(unittest.TestCase):
+tests/test_apoema_ai_chat_backend.py:108:    def test_apoema_frontend_does_not_reference_ollama_or_direct_chat_urls(self) -> None:
+tests/test_apoema_ai_chat_backend.py:109:        chat_page = (ROOT / "frontend/itam-platform/src/apoema/pages/ChatPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_ai_chat_backend.py:110:        api_file = (ROOT / "frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts").read_text(encoding="utf-8")
+tests/test_macros_audit_operational.py:10:        templates = self.client.get("/macros/templates")
+tests/test_macros_audit_operational.py:15:            "/macros/generate",
+tests/test_macros_audit_operational.py:23:        copied = self.client.post(f"/macros/generations/{generation['id']}/copied")
+tests/test_macros_audit_operational.py:28:        no_token = requests.post(f"{self.client.api}/macros/generations/{generation['id']}/copied", timeout=20)
+tests/test_macros_audit_operational.py:33:            f"/assets/{asset['id']}/move",
+tests/test_macros_audit_operational.py:45:        audit = self.client.get("/audit-logs", params={"page": 1, "page_size": 200})
+tests/test_ai_chat_ollama_provider.py:15:from app.api.v1.routes import ai_chat  # noqa: E402
+tests/test_ai_chat_ollama_provider.py:16:from app.core.config.settings import Settings, get_settings  # noqa: E402
+tests/test_ai_chat_ollama_provider.py:34:        settings = Settings(ai_provider="ollama")
+tests/test_ai_chat_ollama_provider.py:36:        provider = build_ai_provider(settings)
+tests/test_ai_chat_ollama_provider.py:146:        self.addCleanup(get_settings.cache_clear)
+tests/test_ai_chat_ollama_provider.py:150:        original_enabled = ai_chat.settings.enable_ai_chat
+tests/test_ai_chat_ollama_provider.py:151:        original_route_provider = ai_chat.settings.ai_provider
+tests/test_ai_chat_ollama_provider.py:152:        original_route_model = ai_chat.settings.ai_model
+tests/test_ai_chat_ollama_provider.py:153:        original_service_provider = ai_chat_service_module.settings.ai_provider
+tests/test_ai_chat_ollama_provider.py:154:        original_service_model = ai_chat_service_module.settings.ai_model
+tests/test_ai_chat_ollama_provider.py:166:        ai_chat.settings.enable_ai_chat = True
+tests/test_ai_chat_ollama_provider.py:167:        ai_chat.settings.ai_provider = "ollama"
+tests/test_ai_chat_ollama_provider.py:168:        ai_chat.settings.ai_model = ""
+tests/test_ai_chat_ollama_provider.py:169:        ai_chat_service_module.settings.ai_provider = "ollama"
+tests/test_ai_chat_ollama_provider.py:170:        ai_chat_service_module.settings.ai_model = ""
+tests/test_ai_chat_ollama_provider.py:171:        ai_chat_service_module.build_ai_provider = lambda _settings: FakeOllama()
+tests/test_ai_chat_ollama_provider.py:181:            ai_chat.settings.enable_ai_chat = original_enabled
+tests/test_ai_chat_ollama_provider.py:182:            ai_chat.settings.ai_provider = original_route_provider
+tests/test_ai_chat_ollama_provider.py:183:            ai_chat.settings.ai_model = original_route_model
+tests/test_ai_chat_ollama_provider.py:184:            ai_chat_service_module.settings.ai_provider = original_service_provider
+tests/test_ai_chat_ollama_provider.py:185:            ai_chat_service_module.settings.ai_model = original_service_model
+tests/test_ai_chat_ollama_provider.py:195:        settings = Settings(ai_provider="ollama", ollama_model="qwen3:1.7b-64k")
+tests/test_ai_chat_ollama_provider.py:197:        health = get_ai_provider_health(settings)
+tests/test_ai_chat_ollama_provider.py:209:        settings = Settings(
+tests/test_ai_chat_ollama_provider.py:216:        provider = build_ai_provider(settings)
+tests/test_ai_chat_ollama_provider.py:235:            settings = Settings()
+tests/test_ai_chat_ollama_provider.py:237:        provider = build_ai_provider(settings)
+tests/test_ai_chat_ollama_provider.py:322:            return {"message": {"content": "legacy api shape"}}
+tests/test_ai_chat_ollama_provider.py:424:        settings = Settings(
+tests/test_ai_chat_ollama_provider.py:431:        health = get_ai_provider_health(settings)
+tests/test_import_lansweeper_normalizer.py:10:from app.domains.imports.normalization.lansweeper_normalizer import normalize_asset_row
+tests/test_apoema_users_parity_contract.py:9:APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+tests/test_apoema_users_parity_contract.py:10:APOEMA_USERS_PAGE = (ROOT / "frontend/itam-platform/src/apoema/pages/UsersPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_users_parity_contract.py:11:APOEMA_USER_DETAILS = (ROOT / "frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_users_parity_contract.py:14:MATRIX = (ROOT / "docs/audit/apoema-only-phase-4j-users/USERS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
+tests/test_apoema_users_parity_contract.py:17:def read_apoema_sources() -> str:
+tests/test_apoema_users_parity_contract.py:19:    apoema_root = ROOT / "frontend/itam-platform/src/apoema"
+tests/test_apoema_users_parity_contract.py:20:    for path in sorted(apoema_root.rglob("*")):
+tests/test_apoema_users_parity_contract.py:27:APOEMA = read_apoema_sources()
+tests/test_apoema_users_parity_contract.py:30:class ApoemaUsersParityContractTest(unittest.TestCase):
+tests/test_apoema_users_parity_contract.py:31:    def test_parity_matrix_documents_safe_redirect_policy(self) -> None:
+tests/test_apoema_users_parity_contract.py:34:        self.assertIn("/users", MATRIX)
+tests/test_apoema_users_parity_contract.py:35:        self.assertIn("/apoema/users", MATRIX)
+tests/test_apoema_users_parity_contract.py:40:    def test_users_routes_move_to_apoema_and_keep_compatibility_alias(self) -> None:
+tests/test_apoema_users_parity_contract.py:42:        self.assertIn('path="/apoema" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_users_parity_contract.py:43:        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_users_parity_contract.py:44:        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
+tests/test_apoema_users_parity_contract.py:45:        self.assertIn("<LegacyApoemaAliasRoutes />", APP)
+tests/test_apoema_users_parity_contract.py:47:        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
+tests/test_apoema_users_parity_contract.py:49:        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+tests/test_apoema_users_parity_contract.py:52:        self.assertIn('path: "/users"', alias_block)
+tests/test_apoema_users_parity_contract.py:53:        self.assertIn('path: "/users/:id"', alias_block)
+tests/test_apoema_users_parity_contract.py:54:        self.assertIn('migrationTarget: "apoema:users"', alias_block)
+tests/test_apoema_users_parity_contract.py:55:        self.assertIn('redirectTo: "/apoema/users"', alias_block)
+tests/test_apoema_users_parity_contract.py:56:        self.assertIn('redirectTo: "/apoema/users/:id"', alias_block)
+tests/test_apoema_users_parity_contract.py:58:    def test_apoema_app_exposes_users_surface(self) -> None:
+tests/test_apoema_users_parity_contract.py:59:        self.assertIn('path="users" element={<UsersPage />}', APOEMA_APP)
+tests/test_apoema_users_parity_contract.py:60:        self.assertIn('path="users/:id" element={<UserDetailsPage />}', APOEMA_APP)
+tests/test_apoema_users_parity_contract.py:62:        self.assertIn('to: "users", label: "Usuários"', APOEMA_APP)
+tests/test_apoema_users_parity_contract.py:64:    def test_users_page_keeps_base44_operational_surface_and_internal_links(self) -> None:
+tests/test_apoema_users_parity_contract.py:66:            "Apoema Usuários",
+tests/test_apoema_users_parity_contract.py:75:            "/apoema/users/",
+tests/test_apoema_users_parity_contract.py:83:            "Apoema Usuários",
+tests/test_apoema_users_parity_contract.py:89:            "/apoema/users",
+tests/test_apoema_users_parity_contract.py:90:            "/apoema/signatures",
+tests/test_apoema_users_parity_contract.py:95:    def test_legacy_user_files_remain_available_for_compatibility(self) -> None:
+tests/test_apoema_users_parity_contract.py:101:    def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
+tests/test_apoema_users_parity_contract.py:106:        self.assertIn('lazy(() => import("./apoema")', APP)
+tests/test_apoema_users_parity_contract.py:109:        self.assertIn("<AppShell>", APP)

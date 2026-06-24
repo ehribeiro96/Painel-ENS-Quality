@@ -1,0 +1,3 @@
+file	reference_type	still_runtime_used	risk	recommendation	notes
+frontend/itam-platform/src/App.tsx	legacy shell routing boundary	false	medium	remove after legacy aliases are retired and route smoke exists	AppShell is still lazy-imported and wrapped, but legacyCompatibilityRoutes is empty.
+frontend/itam-platform/src/components/AppShell.tsx	legacy shell implementation	false	medium	phase_5D removal candidate	Sidebar nav still contains legacy hrefs and the legacy /assinaturas link.

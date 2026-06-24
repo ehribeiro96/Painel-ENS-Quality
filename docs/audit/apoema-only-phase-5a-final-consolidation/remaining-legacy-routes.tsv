@@ -1,0 +1,19 @@
+route	current_behavior	apoema_target	legacy_component_still_used	compatibility_status	removal_readiness	risk	notes
+/	redirects to /apoema	/apoema	no	REDIRECT_TO_APOEMA	KEEP_TEMPORARILY	low	Canonical Apoema-first entry point.
+/login	auth route served by LoginPage	/login	yes	AUTH_ONLY	KEEP_TEMPORARILY	medium	Still required for session boot and refresh.
+/apoema	canonical Apoema shell	same	no	ALIAS_TO_APOEMA	KEEP_TEMPORARILY	low	Primary surface.
+/apoema/*	nested Apoema routes	same	no	ALIAS_TO_APOEMA	KEEP_TEMPORARILY	low	Nested routes under the primary surface.
+/apoema-preview	Apoema preview alias	/apoema	no	ALIAS_TO_APOEMA	KEEP_TEMPORARILY	low	Temporary preview entry point.
+/apoema-preview/*	Apoema preview nested alias	/apoema/*	no	ALIAS_TO_APOEMA	KEEP_TEMPORARILY	low	Temporary preview entry point.
+/ai-chat	redirects to /apoema/chat	/apoema/chat	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Legacy alias only; contract tests cover redirect target.
+/assets	redirects to /apoema/assets	/apoema/assets	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Legacy alias only; contract tests cover redirect target.
+/assets/:id	redirects to /apoema/assets/:id	/apoema/assets/:id	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Dynamic legacy alias only.
+/audit-logs	redirects to /apoema/audit-logs	/apoema/audit-logs	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Legacy alias only; contract tests cover redirect target.
+/imports	redirects to /apoema/imports	/apoema/imports	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Legacy alias only; contract tests cover redirect target.
+/macros	redirects to /apoema/macros	/apoema/macros	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Legacy alias only; contract tests cover redirect target.
+/stock	redirects to /apoema/stock	/apoema/stock	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Legacy alias only; contract tests cover redirect target.
+/signatures	redirects to /apoema/signatures	/apoema/signatures	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Legacy alias only; contract tests cover redirect target.
+/assignments	redirects to /apoema/assignments	/apoema/assignments	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Legacy alias only; contract tests cover redirect target.
+/users	redirects to /apoema/users	/apoema/users	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Legacy alias only; contract tests cover redirect target.
+/users/:id	redirects to /apoema/users/:id	/apoema/users/:id	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Dynamic legacy alias only.
+/settings	redirects to /apoema/settings	/apoema/settings	no	REDIRECT_TO_APOEMA	READY_FOR_PHASE_5_REMOVAL	medium	Legacy alias only; contract tests cover redirect target.

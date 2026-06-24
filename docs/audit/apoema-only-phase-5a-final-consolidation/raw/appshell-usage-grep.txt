@@ -1,0 +1,373 @@
+frontend/itam-platform/src/apoema/styles/apoema.css:68:.apoema-sidebar,
+frontend/itam-platform/src/apoema/styles/apoema.css:74:.apoema-sidebar {
+frontend/itam-platform/src/apoema/styles/apoema.css:137:.apoema-nav,
+frontend/itam-platform/src/apoema/styles/apoema.css:138:.apoema-sidebar-card,
+frontend/itam-platform/src/apoema/styles/apoema.css:145:.apoema-chat-sidebar-card,
+frontend/itam-platform/src/apoema/styles/apoema.css:156:.apoema-nav {
+frontend/itam-platform/src/apoema/styles/apoema.css:163:.apoema-nav-item {
+frontend/itam-platform/src/apoema/styles/apoema.css:174:.apoema-nav-item:hover,
+frontend/itam-platform/src/apoema/styles/apoema.css:175:.apoema-nav-item.is-active {
+frontend/itam-platform/src/apoema/styles/apoema.css:181:.apoema-sidebar-card,
+frontend/itam-platform/src/apoema/styles/apoema.css:187:.apoema-sidebar-card p,
+frontend/itam-platform/src/apoema/styles/apoema.css:407:.apoema-chat-sidebar-card,
+frontend/itam-platform/src/apoema/styles/apoema.css:715:.apoema-chat-sidebar,
+frontend/itam-platform/src/apoema/styles/apoema.css:747:.apoema-chat-sidebar-card {
+frontend/itam-platform/src/apoema/styles/apoema.css:752:.apoema-chat-sidebar-card p {
+frontend/itam-platform/src/apoema/styles/apoema.css:1029:  .apoema-sidebar,
+frontend/itam-platform/src/apoema/styles/apoema.css:1050:  .apoema-nav-item {
+frontend/itam-platform/src/apoema/styles/apoema.css:1056:  .apoema-sidebar-card,
+frontend/itam-platform/src/apoema/styles/apoema.css:1060:  .apoema-chat-sidebar-card,
+frontend/itam-platform/src/apoema/styles/apoema.css:1113:  .apoema-sidebar-card,
+frontend/itam-platform/src/apoema/styles/apoema.css:1145:  .apoema-chat-sidebar-card,
+frontend/itam-platform/src/apoema/styles/apoema.css:1192:  .apoema-sidebar-card p,
+frontend/itam-platform/src/apoema/styles/apoema.css:1255:  .apoema-sidebar,
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:42:  if (source === "legacy_ens_db") return "Legacy ENS DB";
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:209:    const legacy = userRows.filter((user) => user.source === "legacy_ens_db").length;
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:211:    return { active, admins, legacy, manual, current: userRows.length };
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:238:          { title: "Legados", value: summary.legacy, description: "Registros originados do ENS legado.", accent: "Histórico" }
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:337:                      <Link className="button secondary" to={`/apoema/users/${user.id}`}>Abrir detalhe</Link>
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:390:                      { key: "name", label: "Nome", render: (user: User) => <Link to={`/apoema/users/${user.id}`}>{user.name}</Link> },
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:65:            <Link className="button secondary" to="/apoema/users">Voltar</Link>
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:66:            <Link className="button secondary" to="/apoema/signatures">Gerar assinatura</Link>
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:125:                emptyActions={<Link className="button secondary" to="/apoema/assets">Abrir inventário</Link>}
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:127:                  { key: "hostname", label: "Hostname", render: (asset) => <Link to={`/apoema/assets/${asset.id}`}>{asset.hostname ?? "-"}</Link> },
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:143:          action={<Link className="button secondary" to="/apoema/users">Voltar</Link>}
+frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx:65:    await navigator.clipboard.writeText(preview);
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:123:  const navigationDisabled = loading || !items.length;
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:267:      <Base44Surface className="base44-pagination-panel" as="nav" aria-label="Paginação de auditoria">
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:271:          <p>Use os controles abaixo para navegar entre lotes sem alterar o contrato de dados atual.</p>
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:274:          <button className="button secondary" type="button" disabled={navigationDisabled || currentPage <= 1} onClick={() => setPageNumber((value) => Math.max(1, value - 1))}>
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:277:          <button className="button secondary" type="button" disabled={navigationDisabled || currentPage >= totalPages} onClick={() => setPageNumber((value) => Math.min(totalPages, value + 1))}>
+frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx:90:      await navigator.clipboard.writeText(
+frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx:222:                  value: <Link to="/apoema/audit-logs">Consultar logs</Link>,
+frontend/itam-platform/src/apoema/pages/MacrosPage.tsx:105:    await navigator.clipboard.writeText(rendered);
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:118:            <Link className="button secondary" to="/assets">
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:193:                    <Link to={`/assets/${asset.id}`} title={assetDisplayName(asset)}>
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:114:      case "network_unavailable":
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:355:      <aside className="apoema-chat-sidebar apoema-panel">
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:374:        <div className="apoema-chat-sidebar-card">
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:511:          <div className="apoema-chat-sidebar-card" aria-live="polite">
+frontend/itam-platform/src/apoema/components/StatusPill.tsx:5:  children
+frontend/itam-platform/src/apoema/components/StatusPill.tsx:8:  children: ReactNode;
+frontend/itam-platform/src/apoema/components/StatusPill.tsx:10:  return <span className={`apoema-pill tone-${tone}`}>{children}</span>;
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:1:import { Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:23:const navItems = [
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:41:      <aside className="apoema-sidebar">
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:43:        <nav className="apoema-nav">
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:44:          {navItems.map((item) => {
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:47:              <NavLink key={item.to} to={item.to} className={({ isActive }) => `apoema-nav-item ${isActive ? "is-active" : ""}`}>
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:53:        </nav>
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:55:        <div className="apoema-sidebar-card">
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:74:        <Outlet />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:81:          <p>Camada local e contexto operacional ativos para navegação assistida.</p>
+frontend/itam-platform/src/apoema/types.ts:88:  | "network_unavailable"
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:137:    throw new ApoemaApiError("Backend indisponível por falha de rede.", "network_unavailable", undefined, error);
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:164:    const response = await requestJson<{ providers: ApoemaProviderOption[] }>("/ai-chat/providers", {}, token);
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:170:    if (error instanceof ApoemaApiError && error.kind === "network_unavailable") {
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:185:      "/ai-chat/message",
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:197:    if (error instanceof ApoemaApiError && error.kind === "network_unavailable") {
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:218:          error: "network_unavailable",
+frontend/itam-platform/src/pages/UsersPage.tsx:41:  if (source === "legacy_ens_db") return "Legacy ENS DB";
+frontend/itam-platform/src/pages/UsersPage.tsx:208:    const legacy = userRows.filter((user) => user.source === "legacy_ens_db").length;
+frontend/itam-platform/src/pages/UsersPage.tsx:210:    return { active, admins, legacy, manual, current: userRows.length };
+frontend/itam-platform/src/pages/UsersPage.tsx:237:          { title: "Legados", value: summary.legacy, description: "Registros originados do ENS legado.", accent: "Histórico" }
+frontend/itam-platform/src/pages/UsersPage.tsx:338:                      <Link className="button secondary" to={`/users/${user.id}`}>Abrir detalhe</Link>
+frontend/itam-platform/src/pages/UsersPage.tsx:391:                      { key: "name", label: "Nome", render: (user: User) => <Link to={`/users/${user.id}`}>{user.name}</Link> },
+frontend/itam-platform/src/pages/UserDetailsPage.tsx:57:          { key: "hostname", label: "Hostname", render: (asset) => <Link to={`/assets/${asset.id}`}>{asset.hostname ?? "-"}</Link> },
+frontend/itam-platform/src/pages/DashboardPage.tsx:139:      href: "/assets",
+frontend/itam-platform/src/pages/DashboardPage.tsx:146:      href: "/assets",
+frontend/itam-platform/src/pages/DashboardPage.tsx:153:      href: "/assets",
+frontend/itam-platform/src/pages/DashboardPage.tsx:163:      href: "/assets",
+frontend/itam-platform/src/pages/DashboardPage.tsx:174:          <nav className="dashboard-actions base44-actions" aria-label="Ações rápidas do dashboard">
+frontend/itam-platform/src/pages/DashboardPage.tsx:175:            <Link className="button secondary" to="/assets">Inventário</Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:176:            <Link className="button secondary" to="/assignments">Movimentações</Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:177:            <Link className="button" to="/imports">Importação Lansweeper</Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:178:          </nav>
+frontend/itam-platform/src/pages/DashboardPage.tsx:210:              <Link className="button" to="/imports">Importar dados</Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:211:              <Link className="button secondary" to="/assets">Cadastrar ativo</Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:340:        <Link className="quick-card blue" to="/assets"><PackageCheck size={17} /> <span><strong>Gerenciar ativos</strong><small>Ver, filtrar e editar o inventário</small></span></Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:341:        <Link className="quick-card green" to="/users"><Users size={17} /> <span><strong>Colaboradores</strong><small>Consultar vínculos por usuário</small></span></Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:342:        <Link className="quick-card purple" to="/assignments"><Link2 size={17} /> <span><strong>Atribuições</strong><small>Histórico de vínculos e movimentações</small></span></Link>
+frontend/itam-platform/src/pages/DashboardPage.tsx:343:        <Link className="quick-card amber" to="/imports"><Upload size={17} /> <span><strong>Importar Excel</strong><small>Atualizar dados via fluxo existente</small></span></Link>
+frontend/itam-platform/src/pages/AssetDetailsPage.tsx:85:          <Link key="assets" to="/assets">Ativos</Link>,
+frontend/itam-platform/src/pages/AssetDetailsPage.tsx:188:                  value: <Link to="/audit-logs">Consultar logs</Link>,
+frontend/itam-platform/src/pages/AssetDetailsPage.tsx:211:            action={<Link className="button secondary" to="/assets">Voltar para ativos</Link>}
+frontend/itam-platform/src/pages/LoginPage.tsx:41:  const navigate = useNavigate();
+frontend/itam-platform/src/pages/LoginPage.tsx:117:      navigate(state?.from?.pathname || "/", { replace: true });
+frontend/itam-platform/src/pages/SignaturesPage.tsx:61:    await navigator.clipboard.writeText(preview);
+frontend/itam-platform/src/pages/AiChatPage.tsx:4:import { AiChatIntegrationPanel } from "@/components/ai-chat/AiChatIntegrationPanel";
+frontend/itam-platform/src/pages/AiChatPage.tsx:5:import { ChatComposer } from "@/components/ai-chat/ChatComposer";
+frontend/itam-platform/src/pages/AiChatPage.tsx:6:import { ChatMessages } from "@/components/ai-chat/ChatMessages";
+frontend/itam-platform/src/pages/AiChatPage.tsx:7:import { ConversationList } from "@/components/ai-chat/ConversationList";
+frontend/itam-platform/src/pages/AiChatPage.tsx:8:import { PromptPresets } from "@/components/ai-chat/PromptPresets";
+frontend/itam-platform/src/pages/AiChatPage.tsx:9:import type { ChatAttachmentDraft } from "@/components/ai-chat/types";
+frontend/itam-platform/src/pages/AiChatPage.tsx:391:    await navigator.clipboard.writeText(content);
+frontend/itam-platform/src/pages/AssetsPage.tsx:294:            <Link to={`/assets/${asset.id}`}>{asset.hostname && asset.hostname !== "-" ? asset.hostname : "Sem tag"}</Link>
+frontend/itam-platform/src/pages/AssetsPage.tsx:355:              : "Seu perfil pode navegar, filtrar e abrir detalhes, mas as ações de cadastro e desativação ficam ocultas."}
+frontend/itam-platform/src/pages/AssetsPage.tsx:497:                  <Link className="mini-button" to={`/assets/${pageItems[0].id}`} title="Ver detalhes" aria-label="Ver detalhes do ativo"><Eye size={15} aria-hidden /></Link>
+frontend/itam-platform/src/pages/AssetsPage.tsx:504:                  <Link className="mini-button" to={`/assets/${pageItems[0].id}#history`} title="Histórico" aria-label="Ver histórico do ativo"><History size={15} aria-hidden /></Link>
+frontend/itam-platform/src/pages/AssetsPage.tsx:523:                    <Link className="mini-button" to={`/assets/${asset.id}`} title="Ver detalhes" aria-label="Ver detalhes do ativo"><Eye size={15} aria-hidden /></Link>
+frontend/itam-platform/src/pages/AssetsPage.tsx:530:                    <Link className="mini-button" to={`/assets/${asset.id}#history`} title="Histórico" aria-label="Ver histórico do ativo"><History size={15} aria-hidden /></Link>
+frontend/itam-platform/src/pages/AssetsPage.tsx:535:              <nav className="pagination" aria-label="Paginação de ativos">
+frontend/itam-platform/src/pages/AssetsPage.tsx:539:              </nav>
+frontend/itam-platform/src/pages/AuditLogsPage.tsx:123:  const navigationDisabled = loading || !items.length;
+frontend/itam-platform/src/pages/AuditLogsPage.tsx:130:        description="Consulta com rastreabilidade completa, filtros preservados e navegação por página sobre os eventos expostos pela API real."
+frontend/itam-platform/src/pages/AuditLogsPage.tsx:267:      <Base44Surface className="base44-pagination-panel" as="nav" aria-label="Paginação de auditoria">
+frontend/itam-platform/src/pages/AuditLogsPage.tsx:271:          <p>Use os controles abaixo para navegar entre lotes sem alterar o contrato de dados atual.</p>
+frontend/itam-platform/src/pages/AuditLogsPage.tsx:274:          <button className="button secondary" type="button" disabled={navigationDisabled || currentPage <= 1} onClick={() => setPageNumber((value) => Math.max(1, value - 1))}>
+frontend/itam-platform/src/pages/AuditLogsPage.tsx:277:          <button className="button secondary" type="button" disabled={navigationDisabled || currentPage >= totalPages} onClick={() => setPageNumber((value) => Math.min(totalPages, value + 1))}>
+frontend/itam-platform/src/pages/MacrosPage.tsx:103:    await navigator.clipboard.writeText(rendered);
+frontend/itam-platform/src/pages/AssignmentsPage.tsx:159:                  <Link to={`/assets/${asset.id}`} title={assetDisplayName(asset)}>{assetDisplayName(asset)}</Link>
+frontend/itam-platform/src/pages/NotFoundPage.tsx:19:          description="Volte ao dashboard para continuar navegando no painel operacional."
+frontend/itam-platform/src/pages/NotFoundPage.tsx:26:              <Link className="button secondary" to="/assets">
+frontend/itam-platform/src/styles.css:2:/* Sentinel Dark Theme + Legacy Compat */
+frontend/itam-platform/src/styles.css:30:  --color-sidebar: #0f1729;
+frontend/itam-platform/src/styles.css:31:  --color-sidebar-raised: #111c31;
+frontend/itam-platform/src/styles.css:32:  --color-sidebar-text: #cbd5e1;
+frontend/itam-platform/src/styles.css:33:  --color-sidebar-muted: #9ca8ba;
+frontend/itam-platform/src/styles.css:68:/* Legacy component styles (preserved for compatibility) */
+frontend/itam-platform/src/styles.css:121:.sidebar {
+frontend/itam-platform/src/styles.css:787:  --color-sidebar: #06090D;
+frontend/itam-platform/src/styles.css:788:  --color-sidebar-raised: #0A1016;
+frontend/itam-platform/src/styles.css:789:  --color-sidebar-text: #D7DEE7;
+frontend/itam-platform/src/styles.css:790:  --color-sidebar-muted: #93A0AF;
+frontend/itam-platform/src/styles.css:810:.sidebar {
+frontend/itam-platform/src/styles.css:816:  color: var(--color-sidebar-text);
+frontend/itam-platform/src/styles.css:912:  color: var(--color-sidebar-text);
+frontend/itam-platform/src/styles.css:920:.nav {
+frontend/itam-platform/src/styles.css:924:.nav a,
+frontend/itam-platform/src/styles.css:925:.legacy-link,
+frontend/itam-platform/src/styles.css:931:  color: var(--color-sidebar-text);
+frontend/itam-platform/src/styles.css:935:.nav a:hover,
+frontend/itam-platform/src/styles.css:936:.nav a.active,
+frontend/itam-platform/src/styles.css:937:.legacy-link:hover,
+frontend/itam-platform/src/styles.css:945:.nav a.active {
+frontend/itam-platform/src/styles.css:950:.nav a.active::before {
+frontend/itam-platform/src/styles.css:961:.sidebar-footer {
+frontend/itam-platform/src/styles.css:984:  color: var(--color-sidebar-muted);
+frontend/itam-platform/src/styles.css:1007:  color: var(--color-sidebar-muted);
+frontend/itam-platform/src/styles.css:1559:.ai-chat-page .ai-chat-sidebar,
+frontend/itam-platform/src/styles.css:1651:  .sidebar {
+frontend/itam-platform/src/styles.css:1656:  .nav {
+frontend/itam-platform/src/styles.css:1770:.sidebar {
+frontend/itam-platform/src/styles.css:1808:.nav {
+frontend/itam-platform/src/styles.css:1815:.nav a,
+frontend/itam-platform/src/styles.css:1816:.legacy-link,
+frontend/itam-platform/src/styles.css:1832:.nav a svg,
+frontend/itam-platform/src/styles.css:1833:.legacy-link svg,
+frontend/itam-platform/src/styles.css:1838:.nav a span,
+frontend/itam-platform/src/styles.css:1839:.legacy-link span,
+frontend/itam-platform/src/styles.css:1853:.sidebar-footer {
+frontend/itam-platform/src/styles.css:1968:.ai-chat-sidebar,
+frontend/itam-platform/src/styles.css:2610:.ai-chat-sidebar,
+frontend/itam-platform/src/styles.css:2618:.ai-chat-sidebar {
+frontend/itam-platform/src/styles.css:2622:.ai-chat-sidebar-header,
+frontend/itam-platform/src/styles.css:2631:.ai-chat-sidebar-header h2,
+frontend/itam-platform/src/styles.css:2638:.ai-chat-sidebar-eyebrow,
+frontend/itam-platform/src/styles.css:2648:.ai-chat-sidebar-summary,
+frontend/itam-platform/src/styles.css:2658:.ai-chat-sidebar-summary span,
+frontend/itam-platform/src/styles.css:3162:  .sidebar {
+frontend/itam-platform/src/styles.css:3173:  .nav {
+frontend/itam-platform/src/styles.css:3177:  .sidebar-footer {
+frontend/itam-platform/src/styles.css:3207:  .base44-sidebar {
+frontend/itam-platform/src/styles.css:3212:  .base44-sidebar .base44-shell-accent,
+frontend/itam-platform/src/styles.css:3213:  .base44-sidebar .sidebar-footer {
+frontend/itam-platform/src/styles.css:3217:  .base44-nav {
+frontend/itam-platform/src/styles.css:3258:  .nav {
+frontend/itam-platform/src/styles.css:3289:  .ai-chat-sidebar-header,
+frontend/itam-platform/src/styles.css:3300:  .ai-chat-sidebar-summary,
+frontend/itam-platform/src/styles.css:3308:  .ai-chat-sidebar,
+frontend/itam-platform/src/styles.css:3347:.base44-sidebar {
+frontend/itam-platform/src/styles.css:3356:.base44-sidebar .brand-mark,
+frontend/itam-platform/src/styles.css:3357:.base44-sidebar .base44-shell-accent,
+frontend/itam-platform/src/styles.css:3358:.base44-sidebar .nav,
+frontend/itam-platform/src/styles.css:3359:.base44-sidebar .sidebar-footer {
+frontend/itam-platform/src/styles.css:3400:.base44-nav {
+frontend/itam-platform/src/styles.css:3404:.base44-nav a {
+frontend/itam-platform/src/styles.css:3408:.base44-nav a.active {
+frontend/itam-platform/src/styles.css:3843:  .base44-sidebar {
+frontend/itam-platform/src/styles.css:4281:/* Base44 audit/import/settings visual layer */
+frontend/itam-platform/src/styles.css:4611:/* Base44 macros/users/operations visual layer */
+frontend/itam-platform/src/styles.css:4706:.base44-shell :is(.button, .mini-button, .logout-link, .legacy-link, .nav a):focus-visible {
+frontend/itam-platform/src/assets/icons/hermesops/icon-manifest.json:64:      "svg": "svg/settings-circuit.svg",
+frontend/itam-platform/src/App.tsx:3:import { Navigate, Outlet, Route, Routes, useLocation, useParams } from "react-router-dom";
+frontend/itam-platform/src/App.tsx:8:const AppShell = lazy(() => import("./components/AppShell").then((module) => ({ default: module.AppShell })));
+frontend/itam-platform/src/App.tsx:13:function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role[] }) {
+frontend/itam-platform/src/App.tsx:29:  return <Suspense fallback={<RouteLoading />}>{children}</Suspense>;
+frontend/itam-platform/src/App.tsx:40:type LegacyApoemaAliasRouteDefinition = {
+frontend/itam-platform/src/App.tsx:47:const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
+frontend/itam-platform/src/App.tsx:49:    path: "/ai-chat",
+frontend/itam-platform/src/App.tsx:55:    path: "/audit-logs",
+frontend/itam-platform/src/App.tsx:58:    redirectTo: "/apoema/audit-logs"
+frontend/itam-platform/src/App.tsx:61:    path: "/assets",
+frontend/itam-platform/src/App.tsx:64:    redirectTo: "/apoema/assets"
+frontend/itam-platform/src/App.tsx:67:    path: "/assets/:id",
+frontend/itam-platform/src/App.tsx:70:    redirectTo: "/apoema/assets/:id"
+frontend/itam-platform/src/App.tsx:73:    path: "/assignments",
+frontend/itam-platform/src/App.tsx:76:    redirectTo: "/apoema/assignments"
+frontend/itam-platform/src/App.tsx:79:    path: "/users",
+frontend/itam-platform/src/App.tsx:82:    redirectTo: "/apoema/users"
+frontend/itam-platform/src/App.tsx:85:    path: "/users/:id",
+frontend/itam-platform/src/App.tsx:88:    redirectTo: "/apoema/users/:id"
+frontend/itam-platform/src/App.tsx:91:    path: "/imports",
+frontend/itam-platform/src/App.tsx:94:    redirectTo: "/apoema/imports"
+frontend/itam-platform/src/App.tsx:97:    path: "/macros",
+frontend/itam-platform/src/App.tsx:100:    redirectTo: "/apoema/macros"
+frontend/itam-platform/src/App.tsx:103:    path: "/signatures",
+frontend/itam-platform/src/App.tsx:106:    redirectTo: "/apoema/signatures"
+frontend/itam-platform/src/App.tsx:109:    path: "/stock",
+frontend/itam-platform/src/App.tsx:112:    redirectTo: "/apoema/stock"
+frontend/itam-platform/src/App.tsx:115:    path: "/settings",
+frontend/itam-platform/src/App.tsx:118:    redirectTo: "/apoema/settings"
+frontend/itam-platform/src/App.tsx:138:function LegacyApoemaAliasRoutes() {
+frontend/itam-platform/src/App.tsx:141:      {legacyApoemaAliasRoutes.map((route) => (
+frontend/itam-platform/src/App.tsx:156:      <LegacyApoemaAliasRoutes />
+frontend/itam-platform/src/App.tsx:162:type LegacyCompatibilityRouteDefinition = {
+frontend/itam-platform/src/App.tsx:169:const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];
+frontend/itam-platform/src/App.tsx:171:// Legacy routes are retained temporarily while Apoema becomes the primary surface.
+frontend/itam-platform/src/App.tsx:172:function LegacyShellRoute() {
+frontend/itam-platform/src/App.tsx:175:      <AppShell>
+frontend/itam-platform/src/App.tsx:176:        <Outlet />
+frontend/itam-platform/src/App.tsx:177:      </AppShell>
+frontend/itam-platform/src/App.tsx:182:function LegacyRoutes() {
+frontend/itam-platform/src/App.tsx:184:    <Route element={<LegacyShellRoute />}>
+frontend/itam-platform/src/App.tsx:185:      {legacyCompatibilityRoutes.map((route) => (
+frontend/itam-platform/src/App.tsx:197:        <LegacyRoutes />
+frontend/itam-platform/src/components/AppShell.tsx:34:const nav: NavItem[] = [
+frontend/itam-platform/src/components/AppShell.tsx:36:  { href: "/assets", label: "Inventário", icon: PackageChipIcon },
+frontend/itam-platform/src/components/AppShell.tsx:37:  { href: "/users", label: "Colaboradores", icon: Users },
+frontend/itam-platform/src/components/AppShell.tsx:38:  { href: "/assignments", label: "Movimentações", icon: TransferCircuitIcon },
+frontend/itam-platform/src/components/AppShell.tsx:39:  { href: "/signatures", label: "Assinaturas", icon: ShieldCheckIcon },
+frontend/itam-platform/src/components/AppShell.tsx:40:  { href: "/macros", label: "Macros ITIL", icon: DocumentBoltIcon, roles: ["ADMIN", "TECHNICIAN"] as const },
+frontend/itam-platform/src/components/AppShell.tsx:41:  { href: "/ai-chat", label: "IA Assistiva", icon: NeuralNodeIcon },
+frontend/itam-platform/src/components/AppShell.tsx:42:  { href: "/audit-logs", label: "Auditoria", icon: AuditReportIcon, roles: ["ADMIN", "MANAGER"] as const },
+frontend/itam-platform/src/components/AppShell.tsx:43:  { href: "/imports", label: "Importação Lansweeper", icon: DatabasePulseIcon, roles: ["ADMIN", "TECHNICIAN"] as const },
+frontend/itam-platform/src/components/AppShell.tsx:44:  { href: "/settings", label: "Configurações", icon: SettingsCircuitIcon, roles: ["ADMIN"] as const }
+frontend/itam-platform/src/components/AppShell.tsx:47:export function AppShell({ children }: { children: ReactNode }) {
+frontend/itam-platform/src/components/AppShell.tsx:53:  const visibleNav = nav.filter((item) => !item.roles || (user?.role ? item.roles.includes(user.role) : false));
+frontend/itam-platform/src/components/AppShell.tsx:81:      <aside className="sidebar base44-sidebar" aria-label="Menu lateral" style={{ display: "flex", flexDirection: "column" }}>
+frontend/itam-platform/src/components/AppShell.tsx:87:        <nav className="nav base44-nav" aria-label="Navegação principal">
+frontend/itam-platform/src/components/AppShell.tsx:97:        </nav>
+frontend/itam-platform/src/components/AppShell.tsx:98:        <div className="sidebar-footer">
+frontend/itam-platform/src/components/AppShell.tsx:110:          <a className="legacy-link" href="/assinaturas/" title="Abrir módulo legado de assinaturas">
+frontend/itam-platform/src/components/AppShell.tsx:157:        <section className="content">{children}</section>
+frontend/itam-platform/src/components/base44/Base44FilterPanel.tsx:11:  children,
+frontend/itam-platform/src/components/base44/Base44FilterPanel.tsx:18:  children?: ReactNode;
+frontend/itam-platform/src/components/base44/Base44FilterPanel.tsx:31:      {children ? <div className="base44-filter-panel-body">{children}</div> : null}
+frontend/itam-platform/src/components/base44/Base44ShellAccent.tsx:6:  children,
+frontend/itam-platform/src/components/base44/Base44ShellAccent.tsx:10:  children?: ReactNode;
+frontend/itam-platform/src/components/base44/Base44ShellAccent.tsx:18:      {children ? <div className="base44-shell-accent-extra">{children}</div> : null}
+frontend/itam-platform/src/components/base44/Base44ImportPanel.tsx:10:  children,
+frontend/itam-platform/src/components/base44/Base44ImportPanel.tsx:16:  children?: ReactNode;
+frontend/itam-platform/src/components/base44/Base44ImportPanel.tsx:28:      {children ? <div className="base44-import-panel-body">{children}</div> : null}
+frontend/itam-platform/src/components/base44/Base44AuditEventCard.tsx:28:  if (normalized.includes("legacy")) return "neutral";
+frontend/itam-platform/src/components/base44/Base44ActionBar.tsx:10:  children,
+frontend/itam-platform/src/components/base44/Base44ActionBar.tsx:16:  children?: ReactNode;
+frontend/itam-platform/src/components/base44/Base44ActionBar.tsx:26:      {children ? <div className="base44-action-bar-body">{children}</div> : null}
+frontend/itam-platform/src/components/base44/Base44StatusBadge.tsx:28:  children,
+frontend/itam-platform/src/components/base44/Base44StatusBadge.tsx:32:  children: ReactNode;
+frontend/itam-platform/src/components/base44/Base44StatusBadge.tsx:36:  const normalized = (status || String(children)).trim().toLowerCase().replaceAll(" ", "-").replaceAll("ç", "c");
+frontend/itam-platform/src/components/base44/Base44StatusBadge.tsx:41:      {children}
+frontend/itam-platform/src/components/base44/Base44SettingsSection.tsx:12:  children,
+frontend/itam-platform/src/components/base44/Base44SettingsSection.tsx:19:  children?: ReactNode;
+frontend/itam-platform/src/components/base44/Base44SettingsSection.tsx:34:      {children ? <div className="base44-settings-section-body">{children}</div> : null}
+frontend/itam-platform/src/components/base44/Base44UserCard.tsx:11:  if (source === "legacy_ens_db") return "Legacy ENS DB";
+frontend/itam-platform/src/components/base44/Base44MacroPanel.tsx:12:  children,
+frontend/itam-platform/src/components/base44/Base44MacroPanel.tsx:19:  children?: ReactNode;
+frontend/itam-platform/src/components/base44/Base44MacroPanel.tsx:34:      {children ? <div className="base44-macro-panel-body">{children}</div> : null}
+frontend/itam-platform/src/components/base44/Base44Surface.tsx:5:  children,
+frontend/itam-platform/src/components/base44/Base44Surface.tsx:10:  children: ReactNode;
+frontend/itam-platform/src/components/base44/Base44Surface.tsx:16:  return createElement(Component, { ...props, className: `base44-surface ${className}`.trim() }, children);
+frontend/itam-platform/src/components/OperationalActions.tsx:5:  { label: "Localizar ativo", icon: Search, href: "/assets" },
+frontend/itam-platform/src/components/OperationalActions.tsx:6:  { label: "Movimentar", icon: Repeat2, href: "/assets" },
+frontend/itam-platform/src/components/OperationalActions.tsx:7:  { label: "Enviar estoque", icon: PackageCheck, href: "/assets?status=STOCK" },
+frontend/itam-platform/src/components/OperationalActions.tsx:8:  { label: "Historico", icon: History, href: "/audit-logs" },
+frontend/itam-platform/src/components/OperationalActions.tsx:9:  { label: "Importar", icon: Archive, href: "/imports" }
+frontend/itam-platform/src/components/ai-chat/AiChatIntegrationPanel.tsx:109:          Os anexos são convertidos em contexto textual no navegador antes do envio. Arquivos binários não são enviados como upload.
+frontend/itam-platform/src/components/ai-chat/ConversationList.tsx:71:    <aside className="ai-chat-sidebar card">
+frontend/itam-platform/src/components/ai-chat/ConversationList.tsx:72:      <div className="ai-chat-sidebar-header">
+frontend/itam-platform/src/components/ai-chat/ConversationList.tsx:74:          <p className="ai-chat-sidebar-eyebrow">Histórico local</p>
+frontend/itam-platform/src/components/ai-chat/ConversationList.tsx:83:      <div className="ai-chat-sidebar-summary">
+frontend/itam-platform/src/components/StateBlocks.tsx:7:export function Alert({ children, tone = "neutral" }: { children: ReactNode; tone?: AlertTone }) {
+frontend/itam-platform/src/components/StateBlocks.tsx:9:  return <div className={`alert ${tone}`} role={liveRole}>{children}</div>;
+frontend/itam-platform/src/components/StateBlocks.tsx:12:export function AlertBlock({ children, tone = "neutral" }: { children: ReactNode; tone?: AlertTone }) {
+frontend/itam-platform/src/components/StateBlocks.tsx:13:  return <Alert tone={tone}>{children}</Alert>;
+frontend/itam-platform/src/components/StateBlocks.tsx:30:  children
+frontend/itam-platform/src/components/StateBlocks.tsx:34:  children?: ReactNode;
+frontend/itam-platform/src/components/StateBlocks.tsx:43:      {children ? <div className="empty-state-actions">{children}</div> : null}
+frontend/itam-platform/src/components/MoveAssetDialog.tsx:122:      await navigator.clipboard.writeText(generatedMacro.rendered_text);
+frontend/itam-platform/src/components/brand/SentinelHero.tsx:9:  children,
+frontend/itam-platform/src/components/brand/SentinelHero.tsx:17:  children?: ReactNode;
+frontend/itam-platform/src/components/brand/SentinelHero.tsx:37:          {children ? <div className="sentinel-hero-content">{children}</div> : null}
+frontend/itam-platform/src/components/brand/SentinelSectionHeader.tsx:5:  children,
+frontend/itam-platform/src/components/brand/SentinelSectionHeader.tsx:13:  children?: ReactNode;
+frontend/itam-platform/src/components/brand/SentinelSectionHeader.tsx:30:      {actions || children ? <div className="sentinel-section-actions">{actions ?? children}</div> : null}
+frontend/itam-platform/src/components/brand/HermesStatusPill.tsx:41:  children,
+frontend/itam-platform/src/components/brand/HermesStatusPill.tsx:44:  children?: string;
+frontend/itam-platform/src/components/brand/HermesStatusPill.tsx:48:  const label = children ?? state;
+frontend/itam-platform/src/components/brand/HermesCard.tsx:6:  children,
+frontend/itam-platform/src/components/brand/HermesCard.tsx:33:      {children}
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:4:import agentOrbitSvg from "@/assets/icons/hermesops/svg/agent-orbit.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:5:import auditReportSvg from "@/assets/icons/hermesops/svg/audit-report.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:6:import bookCircuitSvg from "@/assets/icons/hermesops/svg/book-circuit.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:7:import conflictSplitSvg from "@/assets/icons/hermesops/svg/conflict-split.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:8:import databasePulseSvg from "@/assets/icons/hermesops/svg/database-pulse.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:9:import documentBoltSvg from "@/assets/icons/hermesops/svg/document-bolt.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:10:import eyeTraceSvg from "@/assets/icons/hermesops/svg/eye-trace.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:11:import hermesCoreSvg from "@/assets/icons/hermesops/svg/hermes-core.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:12:import neuralNodeSvg from "@/assets/icons/hermesops/svg/neural-node.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:13:import packageChipSvg from "@/assets/icons/hermesops/svg/package-chip.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:14:import radarCircuitSvg from "@/assets/icons/hermesops/svg/radar-circuit.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:15:import settingsCircuitSvg from "@/assets/icons/hermesops/svg/settings-circuit.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:16:import shieldCheckSvg from "@/assets/icons/hermesops/svg/shield-check.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:17:import transferCircuitSvg from "@/assets/icons/hermesops/svg/transfer-circuit.svg?raw";
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:19:export type HermesIconProps = Omit<SVGProps<SVGSVGElement>, "children"> & {
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:81:    return Array.from(node.children).map((child, index) => renderSvgNode(child, `${key}-${index}`));
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:93:  const children = Array.from(node.children).map((child, index) => renderSvgNode(child, `${key}-${index}`));
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:94:  return createElement(tagName, { key, ...props }, children.length > 0 ? children : undefined);
+frontend/itam-platform/src/components/icons/HermesIcons.tsx:117:  return Array.from(root.children).map((child, index) => renderSvgNode(child, `svg-${index}`));
+frontend/itam-platform/src/lib/auth.tsx:18:function isBootUnavailableError(error: unknown) {
+frontend/itam-platform/src/lib/auth.tsx:28:export function AuthProvider({ children }: { children: ReactNode }) {
+frontend/itam-platform/src/lib/auth.tsx:70:        if (isBootUnavailableError(error)) {
+frontend/itam-platform/src/lib/auth.tsx:135:  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+frontend/itam-platform/src/lib/api.ts:199:  assetsByStatus: (token: string) => request<Array<{ status: string; count: number }>>("/dashboard/assets-by-status", { token }),
+frontend/itam-platform/src/lib/api.ts:203:    return request<Page<Asset>>(`/assets${query}`, { token });
+frontend/itam-platform/src/lib/api.ts:205:  asset: (token: string, id: string) => request<Asset>(`/assets/${id}`, { token }),
+frontend/itam-platform/src/lib/api.ts:206:  assetHistory: (token: string, id: string) => request<Movement[]>(`/assets/${id}/history`, { token }),
+frontend/itam-platform/src/lib/api.ts:208:    request<Movement>(`/assets/${id}/move`, {
+frontend/itam-platform/src/lib/api.ts:214:    request<Asset>("/assets", { method: "POST", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:216:    request<Asset>(`/assets/${id}`, { method: "PUT", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:217:  deleteAsset: (token: string, id: string) => request<void>(`/assets/${id}`, { method: "DELETE", token }),
+frontend/itam-platform/src/lib/api.ts:220:      return request<Page<User>>("/users?page_size=25", { token });
+frontend/itam-platform/src/lib/api.ts:224:      return request<Page<User>>(`/users?${normalized}`, { token });
+frontend/itam-platform/src/lib/api.ts:226:    return request<Page<User>>(`/users?page_size=25&${normalized}`, { token });
+frontend/itam-platform/src/lib/api.ts:228:  user: (token: string, id: string) => request<User>(`/users/${id}`, { token }),
+frontend/itam-platform/src/lib/api.ts:230:    request<User>("/users", { method: "POST", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:232:    request<User>(`/users/${id}`, { method: "PUT", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:233:  deleteUser: (token: string, id: string) => request<void>(`/users/${id}`, { method: "DELETE", token }),
+frontend/itam-platform/src/lib/api.ts:234:  userAssets: (token: string, id: string) => request<Asset[]>(`/users/${id}/assets`, { token }),
+frontend/itam-platform/src/lib/api.ts:238:    return request<Page<AuditLog>>(`/audit-logs${normalized}`, { token });
+frontend/itam-platform/src/lib/api.ts:240:  imports: (token: string) => request<Page<ImportJob>>("/imports?page_size=25", { token }),
+frontend/itam-platform/src/lib/api.ts:245:    return request<ImportJob>("/imports/spreadsheet/upload", {
+frontend/itam-platform/src/lib/api.ts:254:    return request<ImportJob>("/imports/lansweeper", { method: "POST", body: form, token });
+frontend/itam-platform/src/lib/api.ts:256:  importPreview: (token: string, id: string) => request<ImportPreview>(`/imports/${id}/preview`, { token }),
+frontend/itam-platform/src/lib/api.ts:257:  importStaging: (token: string, id: string) => request<Page<ImportStagingAsset>>(`/imports/${id}/staging?page_size=50`, { token }),
+frontend/itam-platform/src/lib/api.ts:258:  importConflicts: (token: string, id: string) => request<ImportConflict[]>(`/imports/${id}/conflicts`, { token }),
+frontend/itam-platform/src/lib/api.ts:259:  importValidationErrors: (token: string, id: string) => request<ImportValidationError[]>(`/imports/${id}/validation-errors`, { token }),
+frontend/itam-platform/src/lib/api.ts:261:    request<ImportJob>(`/imports/${id}/mapping`, { method: "POST", body: JSON.stringify({ mapping, import_mode: importMode }), token }),
+frontend/itam-platform/src/lib/api.ts:262:  applyImport: (token: string, id: string) => request<{ job: ImportJob; report: Record<string, unknown> }>(`/imports/${id}/apply`, { method: "POST", token }),
+frontend/itam-platform/src/lib/api.ts:263:  cancelImport: (token: string, id: string) => request<ImportJob>(`/imports/${id}/cancel`, { method: "POST", token }),
+frontend/itam-platform/src/lib/api.ts:264:  importReport: (token: string, id: string) => request<{ import_id: string; status: string; report: Record<string, unknown> }>(`/imports/${id}/report`, { token }),
+frontend/itam-platform/src/lib/api.ts:266:    request<string>(`/signatures/${userId}`, { token, headers: { "accept": "text/html" } }),
+frontend/itam-platform/src/lib/api.ts:268:    request<string>(`/signatures/generate/${userId}`, {
+frontend/itam-platform/src/lib/api.ts:274:    request<string>(`/signatures/${userId}/download-html`, { token, headers: { "accept": "text/html" } }),
+frontend/itam-platform/src/lib/api.ts:275:  macroTemplates: (token: string, params = "") => request<MacroTemplate[]>(`/macros/templates${params}`, { token }),
+frontend/itam-platform/src/lib/api.ts:277:    request<MacroRenderResponse>("/macros/render", { method: "POST", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:279:    request<MacroGeneration>("/macros/generate", { method: "POST", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:281:    request<MacroGeneration>(`/macros/generations/${generationId}/copied`, { method: "POST", token }),
+frontend/itam-platform/src/lib/api.ts:283:    request<MacroAutocompleteHint[]>(`/macros/autocomplete?q=${encodeURIComponent(query)}&hint_type=${encodeURIComponent(hintType)}`, { token }),
+frontend/itam-platform/src/lib/api.ts:286:  aiChatHealth: (token: string) => request<AiChatProviderHealth>("/ai-chat/health", { token }),
+frontend/itam-platform/src/lib/api.ts:287:  aiChatConversations: (token: string) => request<AiChatConversation[]>("/ai-chat/conversations", { token }),
+frontend/itam-platform/src/lib/api.ts:288:  aiChatConversation: (token: string, id: string) => request<AiChatConversationDetail>(`/ai-chat/conversations/${id}`, { token }),
+frontend/itam-platform/src/lib/api.ts:290:    request<AiChatConversationDetail>("/ai-chat/conversations", { method: "POST", body: JSON.stringify(payload), token }),
+frontend/itam-platform/src/lib/api.ts:293:    return request<AiChatConversationDetail>(`/ai-chat/conversations/${id}/messages`, { method: "POST", body: JSON.stringify(payload), token });

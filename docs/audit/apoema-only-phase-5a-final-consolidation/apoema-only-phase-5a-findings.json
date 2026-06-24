@@ -1,0 +1,82 @@
+{
+  "status": "GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_5a_final_consolidation_audit",
+  "canonical_apoema_routes": [
+    "/apoema",
+    "/apoema/*",
+    "/apoema-preview",
+    "/apoema-preview/*",
+    "/login"
+  ],
+  "legacy_alias_routes": [
+    "/ai-chat",
+    "/assets",
+    "/assets/:id",
+    "/audit-logs",
+    "/imports",
+    "/macros",
+    "/stock",
+    "/signatures",
+    "/assignments",
+    "/users",
+    "/users/:id",
+    "/settings",
+    "/"
+  ],
+  "legacy_routes_still_active": [],
+  "appshell": {
+    "still_used": false,
+    "wraps_apoema": false,
+    "future_removal_candidate": true
+  },
+  "css": {
+    "global_css_risk": "medium-high",
+    "apoema_isolation": "partial"
+  },
+  "security": {
+    "direct_provider_call": false,
+    "secrets_found": false,
+    "env_read_or_printed": false
+  },
+  "tests": {
+    "route_contracts_present": true,
+    "parity_contracts_present": true,
+    "missing_contracts": [
+      "browser smoke for redirect aliases",
+      "browser smoke proving AppShell is not rendered in any current route",
+      "visual QA for CSS legacy removal candidates"
+    ]
+  },
+  "validations": {
+    "unittest": "OK (skipped=8)",
+    "ruff": "All checks passed!",
+    "compileall": "OK",
+    "frontend_build": "PASS",
+    "git_diff_check": "PASS",
+    "smoke_http": "PASS"
+  },
+  "removal_readiness": {
+    "ready_candidates": [
+      "/ai-chat",
+      "/assets",
+      "/assets/:id",
+      "/audit-logs",
+      "/imports",
+      "/macros",
+      "/stock",
+      "/signatures",
+      "/assignments",
+      "/users",
+      "/users/:id",
+      "/settings"
+    ],
+    "blocked_candidates": [
+      "frontend/itam-platform/src/components/AppShell.tsx",
+      "frontend/itam-platform/src/styles.css",
+      "frontend/itam-platform/src/pages/LoginPage.tsx",
+      "frontend/itam-platform/src/pages/NotFoundPage.tsx"
+    ]
+  },
+  "push_executed": false
+}

@@ -1,0 +1,2 @@
+frontend/itam-platform/src/apoema/styles/apoema.css
+frontend/itam-platform/src/styles.css

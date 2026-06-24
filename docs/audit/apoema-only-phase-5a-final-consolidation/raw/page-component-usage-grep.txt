@@ -1,0 +1,90 @@
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:95:export function UsersPage() {
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:24:export function UserDetailsPage() {
+frontend/itam-platform/src/apoema/pages/DashboardPage.tsx:7:export function DashboardPage() {
+frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx:15:export function SignaturesPage() {
+frontend/itam-platform/src/apoema/pages/SettingsPage.tsx:8:export function SettingsPage() {
+frontend/itam-platform/src/apoema/pages/AssetsPage.tsx:10:export function AssetsPage() {
+frontend/itam-platform/src/apoema/pages/StockPage.tsx:22:export function StockPage() {
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:71:export function AuditLogsPage() {
+frontend/itam-platform/src/apoema/pages/MacrosPage.tsx:38:export function MacrosPage() {
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:39:export function AssignmentsPage() {
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:59:export function ImportsPage() {
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:6:import { DashboardPage } from "./pages/DashboardPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:7:import { AssetsPage } from "./pages/AssetsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:9:import { AssignmentsPage } from "./pages/AssignmentsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:10:import { AuditLogsPage } from "./pages/AuditLogsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:11:import { ImportsPage } from "./pages/ImportsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:12:import { MacrosPage } from "./pages/MacrosPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:15:import { UserDetailsPage } from "./pages/UserDetailsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:16:import { UsersPage } from "./pages/UsersPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:17:import { SignaturesPage } from "./pages/SignaturesPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:18:import { SettingsPage } from "./pages/SettingsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:19:import { StockPage } from "./pages/StockPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:101:          <Route path="dashboard" element={<DashboardPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:102:          <Route path="assets" element={<AssetsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:104:          <Route path="users" element={<UsersPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:105:          <Route path="users/:id" element={<UserDetailsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:106:          <Route path="assignments" element={<AssignmentsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:107:          <Route path="signatures" element={<SignaturesPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:108:          <Route path="stock" element={<StockPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:109:          <Route path="imports" element={<ImportsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:110:          <Route path="macros" element={<MacrosPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:111:          <Route path="audit-logs" element={<AuditLogsPage />} />
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:114:          <Route path="settings" element={<SettingsPage />} />
+frontend/itam-platform/src/pages/UsersPage.tsx:94:export function UsersPage() {
+frontend/itam-platform/src/pages/UserDetailsPage.tsx:9:export function UserDetailsPage() {
+frontend/itam-platform/src/pages/DashboardPage.tsx:86:export function DashboardPage() {
+frontend/itam-platform/src/pages/AssetDetailsPage.tsx:41:export function AssetDetailsPage() {
+frontend/itam-platform/src/pages/LoginPage.tsx:39:export function LoginPage() {
+frontend/itam-platform/src/pages/SignaturesPage.tsx:14:export function SignaturesPage() {
+frontend/itam-platform/src/pages/AiChatPage.tsx:159:export function AiChatPage() {
+frontend/itam-platform/src/pages/SettingsPage.tsx:8:export function SettingsPage() {
+frontend/itam-platform/src/pages/AssetsPage.tsx:117:export function AssetsPage() {
+frontend/itam-platform/src/pages/StockPage.tsx:14:export function StockPage() {
+frontend/itam-platform/src/pages/AuditLogsPage.tsx:71:export function AuditLogsPage() {
+frontend/itam-platform/src/pages/MacrosPage.tsx:36:export function MacrosPage() {
+frontend/itam-platform/src/pages/AssignmentsPage.tsx:31:export function AssignmentsPage() {
+frontend/itam-platform/src/pages/ImportsPage.tsx:59:export function ImportsPage() {
+frontend/itam-platform/src/pages/NotFoundPage.tsx:8:export function NotFoundPage() {
+frontend/itam-platform/src/App.tsx:10:const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
+frontend/itam-platform/src/App.tsx:11:const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
+frontend/itam-platform/src/App.tsx:157:      <Route path="/login" element={<LoginPage />} />
+frontend/itam-platform/src/App.tsx:198:        <Route path="*" element={<NotFoundPage />} />
+tests/test_apoema_macros_parity_contract.py:10:APOEMA_MACROS = (ROOT / "frontend/itam-platform/src/apoema/pages/MacrosPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_macros_parity_contract.py:12:LEGACY_MACROS = (ROOT / "frontend/itam-platform/src/pages/MacrosPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_macros_parity_contract.py:25:        self.assertIn('path="macros" element={<MacrosPage />}', APOEMA_APP)
+tests/test_apoema_macros_parity_contract.py:26:        self.assertIn('path="macros" element={<MacrosPage />}', APOEMA_APP)
+tests/test_ai_chat_hardening.py:207:        page = (ROOT / "frontend/itam-platform/src/pages/AiChatPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_audit_logs_parity_contract.py:10:APOEMA_AUDIT_LOGS = (ROOT / "frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_audit_logs_parity_contract.py:23:        self.assertIn('path="audit-logs" element={<AuditLogsPage />}', APOEMA_APP)
+tests/test_apoema_signatures_parity_contract.py:10:APOEMA_SIGNATURES = (ROOT / "frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_signatures_parity_contract.py:11:LEGACY_SIGNATURES = (ROOT / "frontend/itam-platform/src/pages/SignaturesPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_signatures_parity_contract.py:37:        self.assertIn('path="signatures" element={<SignaturesPage />}', APOEMA_APP)
+tests/test_apoema_imports_parity_contract.py:9:IMPORTS_PAGE = (ROOT / "frontend/itam-platform/src/apoema/pages/ImportsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_imports_parity_contract.py:37:        self.assertIn('path="imports" element={<ImportsPage />}', APOEMA_APP.replace("\n", " "))
+tests/test_apoema_settings_parity_contract.py:10:APOEMA_SETTINGS_PAGE = (ROOT / "frontend/itam-platform/src/apoema/pages/SettingsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_settings_parity_contract.py:11:LEGACY_SETTINGS_PAGE = (ROOT / "frontend/itam-platform/src/pages/SettingsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_settings_parity_contract.py:54:        self.assertIn('path="settings" element={<SettingsPage />}', APOEMA_APP)
+tests/test_apoema_settings_parity_contract.py:55:        self.assertIn('SettingsPage', APOEMA_APP)
+tests/test_apoema_assignments_parity_contract.py:10:APOEMA_ASSIGNMENTS = (ROOT / "frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_assignments_parity_contract.py:11:LEGACY_ASSIGNMENTS = (ROOT / "frontend/itam-platform/src/pages/AssignmentsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_assignments_parity_contract.py:37:        self.assertIn('path="assignments" element={<AssignmentsPage />}', APOEMA_APP)
+tests/test_apoema_assignments_parity_contract.py:94:        self.assertIn('path="assignments" element={<AssignmentsPage />}', APOEMA_APP)
+tests/test_apoema_assets_parity_contract.py:11:APOEMA_ASSETS = (ROOT / "frontend/itam-platform/src/apoema/pages/AssetsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_assets_parity_contract.py:12:LEGACY_ASSETS = (ROOT / "frontend/itam-platform/src/pages/AssetsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_assets_parity_contract.py:25:        self.assertIn('path="assets" element={<AssetsPage />}', APOEMA_APP)
+tests/test_apoema_hermes_redesign_contract.py:9:DASHBOARD = (ROOT / "frontend/itam-platform/src/apoema/pages/DashboardPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_only_route_contract.py:79:        self.assertNotIn('element={<DashboardPage />}', APP)
+tests/test_apoema_stock_parity_contract.py:10:APOEMA_STOCK = (ROOT / "frontend/itam-platform/src/apoema/pages/StockPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_stock_parity_contract.py:11:LEGACY_STOCK = (ROOT / "frontend/itam-platform/src/pages/StockPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_stock_parity_contract.py:37:        self.assertIn('path="stock" element={<StockPage />}', APOEMA_APP)
+tests/test_login_frontend_contract.py:7:LOGIN = (ROOT / "frontend/itam-platform/src/pages/LoginPage.tsx").read_text(encoding="utf-8")
+tests/test_login_frontend_contract.py:16:        self.assertIn("export function LoginPage()", LOGIN)
+tests/test_login_frontend_contract.py:36:        self.assertIn('path="/login" element={<LoginPage />} ', APP.replace("\n", " "))
+tests/test_apoema_shell_boundary_contract.py:45:        self.assertIn('path="/login" element={<LoginPage />} ', normalized)
+tests/test_apoema_users_parity_contract.py:10:APOEMA_USERS_PAGE = (ROOT / "frontend/itam-platform/src/apoema/pages/UsersPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_users_parity_contract.py:11:APOEMA_USER_DETAILS = (ROOT / "frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_users_parity_contract.py:12:LEGACY_USERS_PAGE = (ROOT / "frontend/itam-platform/src/pages/UsersPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_users_parity_contract.py:13:LEGACY_USER_DETAILS = (ROOT / "frontend/itam-platform/src/pages/UserDetailsPage.tsx").read_text(encoding="utf-8")
+tests/test_apoema_users_parity_contract.py:59:        self.assertIn('path="users" element={<UsersPage />}', APOEMA_APP)
+tests/test_apoema_users_parity_contract.py:60:        self.assertIn('path="users/:id" element={<UserDetailsPage />}', APOEMA_APP)

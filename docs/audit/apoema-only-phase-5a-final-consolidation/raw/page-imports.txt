@@ -1,0 +1,16 @@
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:6:import { DashboardPage } from "./pages/DashboardPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:7:import { AssetsPage } from "./pages/AssetsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:8:import { AssetDetailPage } from "./pages/AssetDetailPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:9:import { AssignmentsPage } from "./pages/AssignmentsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:10:import { AuditLogsPage } from "./pages/AuditLogsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:11:import { ImportsPage } from "./pages/ImportsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:12:import { MacrosPage } from "./pages/MacrosPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:13:import { ChatPage } from "./pages/ChatPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:14:import { IntegrationsPage } from "./pages/IntegrationsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:15:import { UserDetailsPage } from "./pages/UserDetailsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:16:import { UsersPage } from "./pages/UsersPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:17:import { SignaturesPage } from "./pages/SignaturesPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:18:import { SettingsPage } from "./pages/SettingsPage";
+frontend/itam-platform/src/apoema/ApoemaApp.tsx:19:import { StockPage } from "./pages/StockPage";
+frontend/itam-platform/src/App.tsx:10:const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
+frontend/itam-platform/src/App.tsx:11:const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
