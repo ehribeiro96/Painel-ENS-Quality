@@ -1,0 +1,3 @@
+id	severity	route	viewport	title	evidence	recommendation	phase
+F5G-001	INFO	/login	desktop-1366x768	Login renderizou sem sessão segura	Screenshot baseline mostra formulário visível e copy consistente; backend respondeu 200 no smoke pré-auth.	Obter AUTH_MODE=EXISTING_STORAGE_STATE ou AUTH_MODE=UI_LOGIN_ENV para repetir a auditoria autenticada.	phase_5g_authenticated_visual_audit
+F5G-002	INFO	/apoema/*	all	Rotas protegidas redirecionaram para login por ausência de auth segura	Playwright sem storageState retornou login em todas as rotas protegidas; 85/85 entradas ficaram redirecionadas.	Fornecer sessão segura temporária fora do repositório e repetir a captura autenticada.	phase_5g_authenticated_visual_audit
