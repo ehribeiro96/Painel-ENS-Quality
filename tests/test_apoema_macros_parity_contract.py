@@ -8,7 +8,7 @@ APP = (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8")
 APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
 APOEMA_MACROS = (ROOT / "frontend/itam-platform/src/apoema/pages/MacrosPage.tsx").read_text(encoding="utf-8")
 MACRO_PREVIEW = (ROOT / "frontend/itam-platform/src/components/base44/Base44MacroPreview.tsx").read_text(encoding="utf-8")
-LEGACY_MACROS = (ROOT / "frontend/itam-platform/src/pages/MacrosPage.tsx").read_text(encoding="utf-8")
+LEGACY_MACROS = ROOT / "frontend/itam-platform/src/pages/MacrosPage.tsx"
 MATRIX = (ROOT / "docs/audit/apoema-only-phase-4f-macros/MACROS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
 
 
@@ -45,10 +45,8 @@ class ApoemaMacrosParityContractTest(unittest.TestCase):
         for term in ("localhost:11434", "127.0.0.1:11434", "OLLAMA_BASE_URL", "HERMES_BASE_URL", "COMPOSIO", "/api/chat"):
             self.assertNotIn(term, APOEMA_MACROS)
 
-    def test_legacy_macros_page_remains_available_for_compatibility(self) -> None:
-        for term in ("useQuery", "macroGenerate", "macroAutocomplete", "macroMarkCopied", "Base44MacroPreview"):
-            self.assertIn(term, LEGACY_MACROS)
-        self.assertIn("Macro pós-movimentação", LEGACY_MACROS)
+    def test_legacy_macros_page_was_removed_from_disk(self) -> None:
+        self.assertFalse(LEGACY_MACROS.exists())
 
 
 if __name__ == "__main__":

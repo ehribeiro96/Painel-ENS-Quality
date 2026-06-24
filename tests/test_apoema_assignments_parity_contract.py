@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 APP = (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8")
 APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
 APOEMA_ASSIGNMENTS = (ROOT / "frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx").read_text(encoding="utf-8")
-LEGACY_ASSIGNMENTS = (ROOT / "frontend/itam-platform/src/pages/AssignmentsPage.tsx").read_text(encoding="utf-8")
+LEGACY_ASSIGNMENTS = ROOT / "frontend/itam-platform/src/pages/AssignmentsPage.tsx"
 MATRIX = (ROOT / "docs/audit/apoema-only-phase-4i-assignments/ASSIGNMENTS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
 
 
@@ -58,9 +58,8 @@ class ApoemaAssignmentsParityContractTest(unittest.TestCase):
         ):
             self.assertIn(term, APOEMA_ASSIGNMENTS)
 
-    def test_legacy_assignments_page_remains_available_for_compatibility(self) -> None:
-        for term in ("DataTable", "EmptyState", "LoadingBlock", "Visão operacional dos vínculos atuais"):
-            self.assertIn(term, LEGACY_ASSIGNMENTS)
+    def test_legacy_assignments_page_was_removed_from_disk(self) -> None:
+        self.assertFalse(LEGACY_ASSIGNMENTS.exists())
 
     def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
         for term in ("localhost:11434", "127.0.0.1:11434", "OLLAMA_BASE_URL", "HERMES_BASE_URL", "COMPOSIO", "/api/chat"):

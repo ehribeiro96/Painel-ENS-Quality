@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 APP = (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8")
 APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
 APOEMA_SIGNATURES = (ROOT / "frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx").read_text(encoding="utf-8")
-LEGACY_SIGNATURES = (ROOT / "frontend/itam-platform/src/pages/SignaturesPage.tsx").read_text(encoding="utf-8")
+LEGACY_SIGNATURES = ROOT / "frontend/itam-platform/src/pages/SignaturesPage.tsx"
 MATRIX = (ROOT / "docs/audit/apoema-only-phase-4h-signatures/SIGNATURES_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
 
 
@@ -46,9 +46,8 @@ class ApoemaSignaturesParityContractTest(unittest.TestCase):
         for term in ("signatureGenerate", "signatureDownloadHtml", "Apoema Assinaturas", "Assinaturas Corporativas", "Abrir legado", "HTML da assinatura copiado"):
             self.assertIn(term, APOEMA_SIGNATURES)
 
-    def test_legacy_signatures_page_remains_available_for_compatibility(self) -> None:
-        for term in ("signatureGenerate", "signatureDownloadHtml", "Base44CopyBlock", "Base44UserCard"):
-            self.assertIn(term, LEGACY_SIGNATURES)
+    def test_legacy_signatures_page_was_removed_from_disk(self) -> None:
+        self.assertFalse(LEGACY_SIGNATURES.exists())
 
     def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
         for term in ("localhost:11434", "127.0.0.1:11434", "OLLAMA_BASE_URL", "HERMES_BASE_URL", "COMPOSIO", "/api/chat"):

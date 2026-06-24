@@ -8,7 +8,7 @@ APP = (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8")
 APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
 APOEMA_ASSET_DETAIL = (ROOT / "frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx").read_text(encoding="utf-8")
 APOEMA_ASSETS = (ROOT / "frontend/itam-platform/src/apoema/pages/AssetsPage.tsx").read_text(encoding="utf-8")
-LEGACY_ASSETS = (ROOT / "frontend/itam-platform/src/pages/AssetsPage.tsx").read_text(encoding="utf-8")
+LEGACY_ASSETS = ROOT / "frontend/itam-platform/src/pages/AssetsPage.tsx"
 MATRIX = (ROOT / "docs/audit/apoema-only-phase-4b-assets/ASSETS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
 
 
@@ -42,10 +42,8 @@ class ApoemaAssetsParityContractTest(unittest.TestCase):
         self.assertIn('to=".."', APOEMA_ASSET_DETAIL)
         self.assertIn("Movimentar", APOEMA_ASSET_DETAIL)
 
-    def test_legacy_assets_page_remains_on_disk_for_compatibility(self) -> None:
-        for term in ("useQuery", "saveAssetMutation", "deleteAssetMutation", "MoveAssetDialog", "DataTable"):
-            self.assertIn(term, LEGACY_ASSETS)
-        self.assertIn("Historico preservado.", LEGACY_ASSETS)
+    def test_legacy_assets_page_was_removed_from_disk(self) -> None:
+        self.assertFalse(LEGACY_ASSETS.exists())
 
 
 if __name__ == "__main__":

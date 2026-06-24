@@ -204,8 +204,13 @@ class AiChatFrontendHardeningTest(unittest.TestCase):
         self.assertIn("ENABLE_", vite_config)
 
     def test_ai_chat_page_contains_required_safety_notice(self) -> None:
-        page = (ROOT / "frontend/itam-platform/src/pages/AiChatPage.tsx").read_text(encoding="utf-8")
-        self.assertIn("A IA não executa ações no sistema. Use apenas para apoio textual.", page)
+        legacy_page = ROOT / "frontend/itam-platform/src/pages/AiChatPage.tsx"
+        apoema_page = (ROOT / "frontend/itam-platform/src/apoema/pages/ChatPage.tsx").read_text(encoding="utf-8")
+
+        self.assertFalse(legacy_page.exists())
+        self.assertIn("Proteções", apoema_page)
+        self.assertIn("Sem segredos", apoema_page)
+        self.assertIn("Backend indisponível. Exibindo resposta local de fallback.", apoema_page)
 
 
 if __name__ == "__main__":

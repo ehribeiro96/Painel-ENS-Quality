@@ -8,8 +8,8 @@ APP = (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8")
 APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
 APOEMA_USERS_PAGE = (ROOT / "frontend/itam-platform/src/apoema/pages/UsersPage.tsx").read_text(encoding="utf-8")
 APOEMA_USER_DETAILS = (ROOT / "frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx").read_text(encoding="utf-8")
-LEGACY_USERS_PAGE = (ROOT / "frontend/itam-platform/src/pages/UsersPage.tsx").read_text(encoding="utf-8")
-LEGACY_USER_DETAILS = (ROOT / "frontend/itam-platform/src/pages/UserDetailsPage.tsx").read_text(encoding="utf-8")
+LEGACY_USERS_PAGE = ROOT / "frontend/itam-platform/src/pages/UsersPage.tsx"
+LEGACY_USER_DETAILS = ROOT / "frontend/itam-platform/src/pages/UserDetailsPage.tsx"
 MATRIX = (ROOT / "docs/audit/apoema-only-phase-4j-users/USERS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
 
 
@@ -87,11 +87,9 @@ class ApoemaUsersParityContractTest(unittest.TestCase):
         ):
             self.assertIn(term, APOEMA_USER_DETAILS)
 
-    def test_legacy_user_files_remain_available_for_compatibility(self) -> None:
-        for term in ("Colaboradores / Usuários", "Abrir detalhe"):
-            self.assertIn(term, LEGACY_USERS_PAGE)
-        for term in ("Detalhe do usuario", "Gerar assinatura"):
-            self.assertIn(term, LEGACY_USER_DETAILS)
+    def test_legacy_user_files_were_removed_from_disk(self) -> None:
+        self.assertFalse(LEGACY_USERS_PAGE.exists())
+        self.assertFalse(LEGACY_USER_DETAILS.exists())
 
     def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
         for term in ("localhost:11434", "127.0.0.1:11434", "OLLAMA_BASE_URL", "HERMES_BASE_URL", "COMPOSIO", "/api/chat"):

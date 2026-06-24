@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 APP = (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8")
 APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
 APOEMA_SETTINGS_PAGE = (ROOT / "frontend/itam-platform/src/apoema/pages/SettingsPage.tsx").read_text(encoding="utf-8")
-LEGACY_SETTINGS_PAGE = (ROOT / "frontend/itam-platform/src/pages/SettingsPage.tsx").read_text(encoding="utf-8")
+LEGACY_SETTINGS_PAGE = ROOT / "frontend/itam-platform/src/pages/SettingsPage.tsx"
 MATRIX = (ROOT / "docs/audit/apoema-only-phase-4k-settings/SETTINGS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
 
 
@@ -63,15 +63,8 @@ class ApoemaSettingsParityContractTest(unittest.TestCase):
         ):
             self.assertIn(term, APOEMA_SETTINGS_PAGE)
 
-    def test_legacy_settings_page_remains_available_for_compatibility(self) -> None:
-        for term in (
-            "Base44PageHeader",
-            "Base44SettingsSection",
-            "Lansweeper API",
-            "Microsoft Entra ID",
-            "Nenhum token, senha, cookie ou header é renderizado nesta interface.",
-        ):
-            self.assertIn(term, LEGACY_SETTINGS_PAGE)
+    def test_legacy_settings_page_was_removed_from_disk(self) -> None:
+        self.assertFalse(LEGACY_SETTINGS_PAGE.exists())
 
     def test_apoema_stays_free_of_direct_provider_calls_and_secrets(self) -> None:
         for term in ("localhost:11434", "127.0.0.1:11434", "OLLAMA_BASE_URL", "HERMES_BASE_URL", "COMPOSIO", "/api/chat", "PASSWORD=", "TOKEN=", "SECRET="):

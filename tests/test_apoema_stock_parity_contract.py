@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 APP = (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8")
 APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
 APOEMA_STOCK = (ROOT / "frontend/itam-platform/src/apoema/pages/StockPage.tsx").read_text(encoding="utf-8")
-LEGACY_STOCK = (ROOT / "frontend/itam-platform/src/pages/StockPage.tsx").read_text(encoding="utf-8")
+LEGACY_STOCK = ROOT / "frontend/itam-platform/src/pages/StockPage.tsx"
 MATRIX = (ROOT / "docs/audit/apoema-only-phase-4g-stock/STOCK_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
 
 
@@ -49,9 +49,8 @@ class ApoemaStockParityContractTest(unittest.TestCase):
         self.assertIn("Sem mock", APOEMA_STOCK)
         self.assertIn("total", APOEMA_STOCK)
 
-    def test_legacy_stock_page_remains_available_for_compatibility(self) -> None:
-        for term in ("assetsByStatus(", "Base44MetricCard", "Base44OperationalGrid", "Base44Surface"):
-            self.assertIn(term, LEGACY_STOCK)
+    def test_legacy_stock_page_was_removed_from_disk(self) -> None:
+        self.assertFalse(LEGACY_STOCK.exists())
 
     def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
         for term in ("localhost:11434", "127.0.0.1:11434", "OLLAMA_BASE_URL", "HERMES_BASE_URL", "COMPOSIO", "/api/chat"):
