@@ -1,0 +1,7 @@
+# Gates log for Apoema-only Phase 4G Stock migration
+unittest: pass
+ruff: pass
+compileall: pass
+frontend_build: pass
+git_diff_check: pass
+smoke_http: pass
