@@ -52,6 +52,7 @@ ruff check backend tests scripts: pass
 compileall backend/app backend/alembic tests scripts: pass
 frontend build: pass
 git diff --check: pass
+Commit de código/teste: 0a5143d
 
 ## 12. Limitações
 O histórico recente depende da disponibilidade real do backend.
