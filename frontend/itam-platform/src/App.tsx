@@ -7,7 +7,6 @@ import type { Role } from "./lib/types";
 
 const AppShell = lazy(() => import("./components/AppShell").then((module) => ({ default: module.AppShell })));
 const ApoemaApp = lazy(() => import("./apoema").then((module) => ({ default: module.ApoemaApp })));
-const AiChatPage = lazy(() => import("./pages/AiChatPage").then((module) => ({ default: module.AiChatPage })));
 const AssetDetailsPage = lazy(() => import("./pages/AssetDetailsPage").then((module) => ({ default: module.AssetDetailsPage })));
 const AssetsPage = lazy(() => import("./pages/AssetsPage").then((module) => ({ default: module.AssetsPage })));
 const AssignmentsPage = lazy(() => import("./pages/AssignmentsPage").then((module) => ({ default: module.AssignmentsPage })));
@@ -57,6 +56,38 @@ function ApoemaRoute() {
   );
 }
 
+type LegacyApoemaAliasRouteDefinition = {
+  path: string;
+  temporaryCompatibility: true;
+  migrationTarget: string;
+};
+
+const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
+  {
+    path: "/ai-chat",
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:chat"
+  }
+];
+
+function ApoemaChatAliasRoute() {
+  return (
+    <ProtectedRoute>
+      <Navigate to="/apoema/chat" replace />
+    </ProtectedRoute>
+  );
+}
+
+function LegacyApoemaAliasRoutes() {
+  return (
+    <>
+      {legacyApoemaAliasRoutes.map((route) => (
+        <Route key={route.path} path={route.path} element={<ApoemaChatAliasRoute />} />
+      ))}
+    </>
+  );
+}
+
 function ApoemaRoutes() {
   return (
     <>
@@ -65,6 +96,7 @@ function ApoemaRoutes() {
       <Route path="/apoema/*" element={<ApoemaRoute />} />
       <Route path="/apoema-preview" element={<ApoemaRoute />} />
       <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
+      <LegacyApoemaAliasRoutes />
       <Route path="/login" element={<LoginPage />} />
     </>
   );
@@ -133,12 +165,6 @@ const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [
     ),
     temporaryCompatibility: true,
     migrationTarget: "apoema:macros"
-  },
-  {
-    path: "/ai-chat",
-    element: <AiChatPage />,
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:chat"
   },
   {
     path: "/signatures",

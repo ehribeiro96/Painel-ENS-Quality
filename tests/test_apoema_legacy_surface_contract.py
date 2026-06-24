@@ -16,6 +16,7 @@ APOEMA = "\n".join(
 class ApoemaLegacySurfaceContractTest(unittest.TestCase):
     def test_legacy_compatibility_boundary_is_explicit(self) -> None:
         self.assertIn("const legacyCompatibilityRoutes", APP)
+        self.assertIn("const legacyApoemaAliasRoutes", APP)
         self.assertIn("Legacy routes are retained temporarily while Apoema becomes the primary surface.", APP)
         self.assertIn("function LegacyShellRoute()", APP)
         self.assertIn("function LegacyRoutes()", APP)
@@ -24,6 +25,9 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(match)
         legacy_block = match.group(1)
+        alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+        self.assertIsNotNone(alias_match)
+        alias_block = alias_match.group(1)
 
         expected_routes = {
             "/assets": "apoema:assets",
@@ -34,7 +38,6 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
             "/stock": "apoema:stock",
             "/imports": "apoema:imports",
             "/macros": "apoema:macros",
-            "/ai-chat": "apoema:chat",
             "/signatures": "apoema:signatures",
             "/audit-logs": "apoema:audit-logs",
             "/settings": "apoema:settings",
@@ -45,6 +48,10 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
             self.assertIn(f'migrationTarget: "{target}"', legacy_block)
             self.assertIn("temporaryCompatibility: true", legacy_block)
 
+        self.assertIn('path: "/ai-chat"', alias_block)
+        self.assertIn('migrationTarget: "apoema:chat"', alias_block)
+        self.assertIn("temporaryCompatibility: true", alias_block)
+
     def test_apoema_surface_remains_outside_legacy_shell(self) -> None:
         apoema_routes_block = APP.split("function ApoemaRoutes()")[1].split("type LegacyCompatibilityRouteDefinition")[0]
         legacy_shell_block = APP.split("function LegacyShellRoute()")[1].split("function LegacyRoutes()")[0]
@@ -52,6 +59,7 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertIn('path="/" element={<Navigate to="/apoema" replace />}', APP.replace("\n", " "))
         self.assertIn('path="/apoema" element={<ApoemaRoute />}', APP.replace("\n", " "))
         self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', APP.replace("\n", " "))
+        self.assertIn("<LegacyApoemaAliasRoutes />", APP)
         self.assertIn("<AppShell>", legacy_shell_block)
         self.assertIn("<Outlet />", legacy_shell_block)
         self.assertNotIn("AppShell", apoema_routes_block)
