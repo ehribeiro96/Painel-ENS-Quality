@@ -1,0 +1,53 @@
+{
+  "status": "PARTIAL_GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_5b_remove_legacy_aliases",
+  "aliases_removed": [
+    "/ai-chat",
+    "/assets",
+    "/assets/:id",
+    "/audit-logs",
+    "/imports",
+    "/macros",
+    "/stock",
+    "/signatures",
+    "/assignments",
+    "/users",
+    "/users/:id",
+    "/settings"
+  ],
+  "aliases_preserved": [
+    "/",
+    "/login",
+    "/apoema",
+    "/apoema/*",
+    "/apoema-preview",
+    "/apoema-preview/*"
+  ],
+  "canonical_routes_preserved": [
+    "/",
+    "/login",
+    "/apoema",
+    "/apoema/*",
+    "/apoema-preview",
+    "/apoema-preview/*"
+  ],
+  "appshell_removed": false,
+  "legacy_files_removed": false,
+  "css_removed": false,
+  "direct_provider_call": false,
+  "secrets_found": false,
+  "validations": {
+    "unittest": "passed",
+    "ruff": "passed",
+    "compileall": "passed",
+    "frontend_build": "passed",
+    "git_diff_check": "passed",
+    "smoke_http": "executed; curl-only due SPA fallback",
+    "bundle_scan": "passed"
+  },
+  "push_executed": false,
+  "limitations": [
+    "No browser automation tool was available in this thread to assert the client-side NotFound rendering directly."
+  ]
+}
