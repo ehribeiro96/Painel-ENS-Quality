@@ -1,0 +1,9 @@
+# placeholder
+2026-06-24
+- unittest discover: PASS
+- ruff check backend tests scripts: PASS
+- compileall backend/app backend/alembic tests scripts: PASS
+- npm run build: PASS
+- git diff --check: PASS
+- smoke HTTP: PASS on http://127.0.0.1:18092
+- smoke visual: NOT RUN
