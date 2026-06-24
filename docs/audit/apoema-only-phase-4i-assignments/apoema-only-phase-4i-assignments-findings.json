@@ -1,0 +1,27 @@
+{
+  "status": "GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_4i_assignments_migration",
+  "legacy_route": "/assignments",
+  "apoema_target_route": "/apoema/assignments",
+  "policy": "POLICY_A_SAFE_REDIRECT",
+  "parity_minimum_met": true,
+  "legacy_route_preserved": true,
+  "protected_route_preserved": true,
+  "login_regression": "passed",
+  "assets_regression": "passed",
+  "signatures_regression": "passed",
+  "stock_regression": "passed",
+  "imports_regression": "passed",
+  "audit_logs_regression": "passed",
+  "ai_chat_regression": "passed",
+  "direct_provider_call": false,
+  "validations": {
+    "unittest": "pass (246 tests, 8 skipped)",
+    "ruff": "pass",
+    "compileall": "pass",
+    "frontend_build": "pass",
+    "git_diff_check": "pass"
+  },
+  "push_executed": false
+}

@@ -7,7 +7,6 @@ import type { Role } from "./lib/types";
 
 const AppShell = lazy(() => import("./components/AppShell").then((module) => ({ default: module.AppShell })));
 const ApoemaApp = lazy(() => import("./apoema").then((module) => ({ default: module.ApoemaApp })));
-const AssignmentsPage = lazy(() => import("./pages/AssignmentsPage").then((module) => ({ default: module.AssignmentsPage })));
 const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
 const SettingsPage = lazy(() => import("./pages/SettingsPage").then((module) => ({ default: module.SettingsPage })));
@@ -80,6 +79,12 @@ const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
     temporaryCompatibility: true,
     migrationTarget: "apoema:assets",
     redirectTo: "/apoema/assets/:id"
+  },
+  {
+    path: "/assignments",
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:movements",
+    redirectTo: "/apoema/assignments"
   },
   {
     path: "/imports",
@@ -166,12 +171,6 @@ const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [
     element: <UserDetailsPage />,
     temporaryCompatibility: true,
     migrationTarget: "apoema:users"
-  },
-  {
-    path: "/assignments",
-    element: <AssignmentsPage />,
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:movements"
   },
   {
     path: "/settings",
