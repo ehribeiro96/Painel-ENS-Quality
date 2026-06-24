@@ -22,32 +22,10 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertIn("function LegacyRoutes()", APP)
 
     def test_legacy_routes_document_migration_targets(self) -> None:
-        match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(match)
-        legacy_block = match.group(1)
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
         alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(alias_match)
         alias_block = alias_match.group(1)
-
-        expected_routes = {
-            "/settings": "apoema:settings",
-        }
-
-        self.assertNotIn('path: "/assets"', legacy_block)
-        self.assertNotIn('path: "/assets/:id"', legacy_block)
-        self.assertNotIn('path: "/audit-logs"', legacy_block)
-        self.assertNotIn('path: "/assignments"', legacy_block)
-        self.assertNotIn('path: "/imports"', legacy_block)
-        self.assertNotIn('path: "/macros"', legacy_block)
-        self.assertNotIn('path: "/signatures"', legacy_block)
-        self.assertNotIn('path: "/stock"', legacy_block)
-        self.assertNotIn('path: "/users"', legacy_block)
-        self.assertNotIn('path: "/users/:id"', legacy_block)
-
-        for path, target in expected_routes.items():
-            self.assertIn(f'path: "{path}"', legacy_block)
-            self.assertIn(f'migrationTarget: "{target}"', legacy_block)
-            self.assertIn("temporaryCompatibility: true", legacy_block)
 
         self.assertIn('path: "/ai-chat"', alias_block)
         self.assertIn('path: "/audit-logs"', alias_block)
@@ -56,6 +34,7 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertIn('path: "/assignments"', alias_block)
         self.assertIn('path: "/users"', alias_block)
         self.assertIn('path: "/users/:id"', alias_block)
+        self.assertIn('path: "/settings"', alias_block)
         self.assertIn('path: "/imports"', alias_block)
         self.assertIn('path: "/macros"', alias_block)
         self.assertIn('path: "/signatures"', alias_block)
@@ -65,6 +44,7 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn('migrationTarget: "apoema:movements"', alias_block)
         self.assertIn('migrationTarget: "apoema:users"', alias_block)
+        self.assertIn('migrationTarget: "apoema:settings"', alias_block)
         self.assertIn('migrationTarget: "apoema:imports"', alias_block)
         self.assertIn('migrationTarget: "apoema:macros"', alias_block)
         self.assertIn('migrationTarget: "apoema:signatures"', alias_block)
@@ -76,6 +56,7 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertIn('redirectTo: "/apoema/assignments"', APP)
         self.assertIn('redirectTo: "/apoema/users"', APP)
         self.assertIn('redirectTo: "/apoema/users/:id"', APP)
+        self.assertIn('redirectTo: "/apoema/settings"', APP)
         self.assertIn('redirectTo: "/apoema/imports"', APP)
         self.assertIn('redirectTo: "/apoema/macros"', APP)
         self.assertIn('redirectTo: "/apoema/signatures"', APP)

@@ -54,12 +54,7 @@ class ApoemaShellBoundaryContractTest(unittest.TestCase):
         self.assertNotIn("AppShell", apoema_section)
 
     def test_legacy_routes_remain_preserved(self) -> None:
-        match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(match)
-        legacy_block = match.group(1)
-        self.assertIn('path: "/settings"', legacy_block)
-        self.assertNotIn('path: "/users"', legacy_block)
-        self.assertNotIn('path: "/users/:id"', legacy_block)
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
 
         alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(alias_match)
@@ -71,6 +66,7 @@ class ApoemaShellBoundaryContractTest(unittest.TestCase):
         self.assertIn('path: "/assignments"', alias_block)
         self.assertIn('path: "/users"', alias_block)
         self.assertIn('path: "/users/:id"', alias_block)
+        self.assertIn('path: "/settings"', alias_block)
         self.assertIn('path: "/imports"', alias_block)
         self.assertIn('path: "/macros"', alias_block)
         self.assertIn('path: "/signatures"', alias_block)
@@ -80,6 +76,7 @@ class ApoemaShellBoundaryContractTest(unittest.TestCase):
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn('migrationTarget: "apoema:movements"', alias_block)
         self.assertIn('migrationTarget: "apoema:users"', alias_block)
+        self.assertIn('migrationTarget: "apoema:settings"', alias_block)
         self.assertIn('migrationTarget: "apoema:imports"', alias_block)
         self.assertIn('migrationTarget: "apoema:macros"', alias_block)
         self.assertIn('migrationTarget: "apoema:signatures"', alias_block)
@@ -90,6 +87,7 @@ class ApoemaShellBoundaryContractTest(unittest.TestCase):
         self.assertIn('redirectTo: "/apoema/assignments"', alias_block)
         self.assertIn('redirectTo: "/apoema/users"', alias_block)
         self.assertIn('redirectTo: "/apoema/users/:id"', alias_block)
+        self.assertIn('redirectTo: "/apoema/settings"', alias_block)
         self.assertIn('redirectTo: "/apoema/imports"', alias_block)
         self.assertIn('redirectTo: "/apoema/macros"', alias_block)
         self.assertIn('redirectTo: "/apoema/signatures"', alias_block)

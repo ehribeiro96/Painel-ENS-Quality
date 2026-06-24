@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 import unittest
 from pathlib import Path
 
@@ -40,10 +39,7 @@ class ApoemaImportsParityContractTest(unittest.TestCase):
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized_app)
 
     def test_imports_no_longer_live_in_legacy_shell(self) -> None:
-        legacy_match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(legacy_match)
-        legacy_block = legacy_match.group(1)
-        self.assertNotIn('path: "/imports"', legacy_block)
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
 
     def test_imports_page_is_apoema_native_and_api_backed(self) -> None:
         self.assertIn("Base44ImportPanel", IMPORTS_PAGE)

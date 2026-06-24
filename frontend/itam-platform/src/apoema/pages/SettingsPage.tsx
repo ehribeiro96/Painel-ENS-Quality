@@ -13,9 +13,9 @@ export function SettingsPage() {
     <div className="apoema-page">
       <section className="apoema-page-top">
         <div>
-          <StatusPill tone="info">Ajustes de experiência</StatusPill>
-          <h1>Tema, segurança e densidade operacional.</h1>
-          <p>Configure a aparência do console e as salvaguardas de fluxo assistido.</p>
+          <StatusPill tone="info">Configurações</StatusPill>
+          <h1>Configurações</h1>
+          <p>Tema, segurança e densidade operacional do console Apoema.</p>
         </div>
         <ThemeSelector value={theme.mode} onChange={theme.setMode} />
       </section>
@@ -62,6 +62,10 @@ export function SettingsPage() {
               </div>
             </div>
           </div>
+          <p className="apoema-settings-footnote">
+            Somente leitura para integrações sensíveis e sem exposição de token, senha, cookie ou header.
+            Nenhum token, senha, cookie ou header é renderizado nesta interface.
+          </p>
         </article>
       </section>
     </div>

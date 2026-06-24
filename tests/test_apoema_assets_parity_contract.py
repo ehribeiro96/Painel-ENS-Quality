@@ -32,11 +32,7 @@ class ApoemaAssetsParityContractTest(unittest.TestCase):
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn('redirectTo: "/apoema/assets"', alias_block)
         self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
-        legacy_match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(legacy_match)
-        legacy_block = legacy_match.group(1)
-        self.assertNotIn('path: "/assets"', legacy_block)
-        self.assertNotIn('path: "/assets/:id"', legacy_block)
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
 
     def test_apoema_assets_page_contains_the_operational_parity_surface(self) -> None:
         for term in ("Search", "DataTable", "StatusPill", "MetricCard", "selectedAsset", "apoemaMetrics"):

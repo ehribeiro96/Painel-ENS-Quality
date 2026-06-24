@@ -9,7 +9,6 @@ const AppShell = lazy(() => import("./components/AppShell").then((module) => ({ 
 const ApoemaApp = lazy(() => import("./apoema").then((module) => ({ default: module.ApoemaApp })));
 const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
-const SettingsPage = lazy(() => import("./pages/SettingsPage").then((module) => ({ default: module.SettingsPage })));
 
 function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role[] }) {
   const { token, user, loading } = useAuth();
@@ -27,14 +26,6 @@ function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role
     return <main className="screen-center">Acesso nao autorizado.</main>;
   }
 
-  return <Suspense fallback={<RouteLoading />}>{children}</Suspense>;
-}
-
-function RoleGuard({ children, roles }: { children: ReactNode; roles: Role[] }) {
-  const { user } = useAuth();
-  if (!user || !roles.includes(user.role)) {
-    return <main className="screen-center">Acesso nao autorizado.</main>;
-  }
   return <Suspense fallback={<RouteLoading />}>{children}</Suspense>;
 }
 
@@ -119,6 +110,12 @@ const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
     temporaryCompatibility: true,
     migrationTarget: "apoema:stock",
     redirectTo: "/apoema/stock"
+  },
+  {
+    path: "/settings",
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:settings",
+    redirectTo: "/apoema/settings"
   }
 ];
 
@@ -169,18 +166,7 @@ type LegacyCompatibilityRouteDefinition = {
   migrationTarget: string;
 };
 
-const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [
-  {
-    path: "/settings",
-    element: (
-      <RoleGuard roles={["ADMIN"]}>
-        <SettingsPage />
-      </RoleGuard>
-    ),
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:settings"
-  }
-];
+const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];
 
 // Legacy routes are retained temporarily while Apoema becomes the primary surface.
 function LegacyShellRoute() {

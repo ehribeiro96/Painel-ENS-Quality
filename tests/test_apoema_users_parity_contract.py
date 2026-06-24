@@ -44,11 +44,7 @@ class ApoemaUsersParityContractTest(unittest.TestCase):
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
         self.assertIn("<LegacyApoemaAliasRoutes />", APP)
 
-        legacy_match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(legacy_match)
-        legacy_block = legacy_match.group(1)
-        self.assertNotIn('path: "/users"', legacy_block)
-        self.assertNotIn('path: "/users/:id"', legacy_block)
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
 
         alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(alias_match)

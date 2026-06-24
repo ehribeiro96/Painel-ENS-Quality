@@ -41,10 +41,7 @@ class ApoemaAssignmentsParityContractTest(unittest.TestCase):
         self.assertIn('path: "/assignments"', alias_block)
         self.assertIn('migrationTarget: "apoema:movements"', alias_block)
         self.assertIn('redirectTo: "/apoema/assignments"', alias_block)
-        legacy_match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(legacy_match)
-        legacy_block = legacy_match.group(1)
-        self.assertNotIn('path: "/assignments"', legacy_block)
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
 
     def test_assignments_page_contains_operational_and_timeline_surface(self) -> None:
         for term in (

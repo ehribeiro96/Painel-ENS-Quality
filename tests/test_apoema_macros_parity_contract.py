@@ -30,10 +30,7 @@ class ApoemaMacrosParityContractTest(unittest.TestCase):
         self.assertIn('path: "/macros"', alias_block)
         self.assertIn('migrationTarget: "apoema:macros"', alias_block)
         self.assertIn('redirectTo: "/apoema/macros"', alias_block)
-        legacy_match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(legacy_match)
-        legacy_block = legacy_match.group(1)
-        self.assertNotIn('path: "/macros"', legacy_block)
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
 
     def test_macros_page_contains_itil_preview_and_copy_contract(self) -> None:

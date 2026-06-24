@@ -41,10 +41,7 @@ class ApoemaStockParityContractTest(unittest.TestCase):
         self.assertIn('path: "/stock"', alias_block)
         self.assertIn('migrationTarget: "apoema:stock"', alias_block)
         self.assertIn('redirectTo: "/apoema/stock"', alias_block)
-        legacy_match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(legacy_match)
-        legacy_block = legacy_match.group(1)
-        self.assertNotIn('path: "/stock"', legacy_block)
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
 
     def test_stock_page_contains_operational_parity_surface(self) -> None:
         for term in ("Base44PageHeader", "Base44OperationalGrid", "Base44MetricCard", "Base44Surface", "Base44StatusBadge", "Base44EmptyState", "LoadingBlock"):

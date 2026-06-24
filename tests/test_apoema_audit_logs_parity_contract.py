@@ -27,10 +27,7 @@ class ApoemaAuditLogsParityContractTest(unittest.TestCase):
         self.assertIn('path: "/audit-logs"', alias_block)
         self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
         self.assertIn('redirectTo: "/apoema/audit-logs"', alias_block)
-        legacy_match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(legacy_match)
-        legacy_block = legacy_match.group(1)
-        self.assertNotIn('path: "/audit-logs"', legacy_block)
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
 
     def test_audit_logs_page_contains_operational_filters_and_states(self) -> None:
         for term in ("Base44AuditEventCard", "Base44EmptyState", "Base44FilterPanel", "Base44InfoGrid", "Base44PageHeader", "LoadingBlock", ".audit(token, query)"):

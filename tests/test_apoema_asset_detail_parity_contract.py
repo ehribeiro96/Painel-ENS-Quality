@@ -27,10 +27,7 @@ class ApoemaAssetDetailParityContractTest(unittest.TestCase):
         self.assertIn('path: "/assets/:id"', alias_block)
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
-        legacy_match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
-        self.assertIsNotNone(legacy_match)
-        legacy_block = legacy_match.group(1)
-        self.assertNotIn('path: "/assets/:id"', legacy_block)
+        self.assertIn("const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [];", APP)
 
     def test_detail_page_contains_operational_actions_and_states(self) -> None:
         for term in ("MoveAssetDialog", "Base44AssetTimeline", "Base44EmptyState", "LoadingBlock", "Base44PageHeader", "queryClient.invalidateQueries"):
