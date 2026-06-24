@@ -34,8 +34,10 @@ class LoginFrontendContractTest(unittest.TestCase):
 
     def test_app_preserves_login_route_and_protected_routes(self) -> None:
         self.assertIn('path="/login" element={<LoginPage />} ', APP.replace("\n", " "))
-        self.assertIn('path="/apoema/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>}', APP.replace("\n", " "))
-        self.assertIn('path="/apoema-preview/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>}', APP.replace("\n", " "))
+        self.assertIn('path="/" element={<Navigate to="/apoema" replace />} ', APP.replace("\n", " "))
+        self.assertIn('path="/apoema" element={<ApoemaRoute />}', APP.replace("\n", " "))
+        self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', APP.replace("\n", " "))
+        self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
         self.assertIn("RouteLoading", APP)
 
     def test_auth_context_has_timeout_and_boot_error_handling(self) -> None:

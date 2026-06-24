@@ -1,0 +1,20 @@
+{
+  "status": "GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_1_primary_entry",
+  "root_route_policy": "redirect_to_apoema",
+  "apoema_route": "/apoema",
+  "apoema_preview_policy": "temporary_alias",
+  "legacy_routes_preserved": true,
+  "protected_route_preserved": true,
+  "login_regression": "passed",
+  "apoema_chat_fallback_regression": "passed",
+  "validations": {
+    "unittest": "pass",
+    "ruff": "pass",
+    "compileall": "pass",
+    "frontend_build": "pass",
+    "git_diff_check": "pass"
+  },
+  "push_executed": false
+}
