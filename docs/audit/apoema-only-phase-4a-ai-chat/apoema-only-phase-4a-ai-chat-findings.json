@@ -1,0 +1,22 @@
+{
+  "status": "GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_4a_ai_chat_migration",
+  "legacy_route": "/ai-chat",
+  "apoema_target_route": "/apoema/chat",
+  "policy": "POLICY_A_SAFE_REDIRECT",
+  "parity_minimum_met": true,
+  "legacy_route_preserved": true,
+  "protected_route_preserved": true,
+  "login_regression": "passed",
+  "apoema_chat_fallback_regression": "passed",
+  "direct_provider_call": false,
+  "validations": {
+    "unittest": "",
+    "ruff": "",
+    "compileall": "",
+    "frontend_build": "",
+    "git_diff_check": ""
+  },
+  "push_executed": false
+}
