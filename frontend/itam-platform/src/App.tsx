@@ -12,7 +12,6 @@ const AssetDetailsPage = lazy(() => import("./pages/AssetDetailsPage").then((mod
 const AssetsPage = lazy(() => import("./pages/AssetsPage").then((module) => ({ default: module.AssetsPage })));
 const AssignmentsPage = lazy(() => import("./pages/AssignmentsPage").then((module) => ({ default: module.AssignmentsPage })));
 const AuditLogsPage = lazy(() => import("./pages/AuditLogsPage").then((module) => ({ default: module.AuditLogsPage })));
-const DashboardPage = lazy(() => import("./pages/DashboardPage").then((module) => ({ default: module.DashboardPage })));
 const ImportsPage = lazy(() => import("./pages/ImportsPage").then((module) => ({ default: module.ImportsPage })));
 const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
 const MacrosPage = lazy(() => import("./pages/MacrosPage").then((module) => ({ default: module.MacrosPage })));
@@ -60,15 +59,26 @@ function RoleGuard({ children, roles }: { children: ReactNode; roles: Role[] }) 
   return <Suspense fallback={<RouteLoading />}>{children}</Suspense>;
 }
 
+function ApoemaRoute() {
+  return (
+    <ProtectedRoute>
+      <ApoemaApp />
+    </ProtectedRoute>
+  );
+}
+
 export function App() {
   return (
     <Suspense fallback={<RouteLoading />}>
       <Routes>
-        <Route path="/apoema/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
-        <Route path="/apoema-preview/*" element={<ProtectedRoute><ApoemaApp /></ProtectedRoute>} />
+        <Route path="/" element={<Navigate to="/apoema" replace />} />
+        <Route path="/apoema" element={<ApoemaRoute />} />
+        <Route path="/apoema/*" element={<ApoemaRoute />} />
+        <Route path="/apoema-preview" element={<ApoemaRoute />} />
+        <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
         <Route path="/login" element={<LoginPage />} />
+        {/* Legacy routes retained temporarily while Apoema becomes the primary surface. */}
         <Route element={<ShellRoute />}>
-          <Route index element={<DashboardPage />} />
           <Route path="/assets" element={<AssetsPage />} />
           <Route path="/assets/:id" element={<AssetDetailsPage />} />
           <Route path="/users" element={<UsersPage />} />
