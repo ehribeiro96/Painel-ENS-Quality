@@ -33,7 +33,6 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
             "/users": "apoema:users",
             "/users/:id": "apoema:users",
             "/assignments": "apoema:movements",
-            "/stock": "apoema:stock",
             "/signatures": "apoema:signatures",
             "/settings": "apoema:settings",
         }
@@ -43,6 +42,7 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertNotIn('path: "/audit-logs"', legacy_block)
         self.assertNotIn('path: "/imports"', legacy_block)
         self.assertNotIn('path: "/macros"', legacy_block)
+        self.assertNotIn('path: "/stock"', legacy_block)
 
         for path, target in expected_routes.items():
             self.assertIn(f'path: "{path}"', legacy_block)
@@ -55,17 +55,20 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertIn('path: "/assets/:id"', alias_block)
         self.assertIn('path: "/imports"', alias_block)
         self.assertIn('path: "/macros"', alias_block)
+        self.assertIn('path: "/stock"', alias_block)
         self.assertIn('migrationTarget: "apoema:chat"', alias_block)
         self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn('migrationTarget: "apoema:imports"', alias_block)
         self.assertIn('migrationTarget: "apoema:macros"', alias_block)
+        self.assertIn('migrationTarget: "apoema:stock"', alias_block)
         self.assertIn("temporaryCompatibility: true", alias_block)
         self.assertIn('redirectTo: "/apoema/audit-logs"', APP)
         self.assertIn('redirectTo: "/apoema/assets"', APP)
         self.assertIn('redirectTo: "/apoema/assets/:id"', APP)
         self.assertIn('redirectTo: "/apoema/imports"', APP)
         self.assertIn('redirectTo: "/apoema/macros"', APP)
+        self.assertIn('redirectTo: "/apoema/stock"', APP)
 
     def test_apoema_surface_remains_outside_legacy_shell(self) -> None:
         apoema_routes_block = APP.split("function ApoemaRoutes()")[1].split("type LegacyCompatibilityRouteDefinition")[0]
