@@ -1,11 +1,12 @@
 import { Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
-import { BarChart3, Brain, Layers3, Settings2, SplitSquareHorizontal, WandSparkles } from "lucide-react";
+import { BarChart3, Brain, Layers3, Settings2, ShieldAlert, SplitSquareHorizontal, WandSparkles } from "lucide-react";
 import { ApoemaLogo } from "./components/ApoemaLogo";
 import { ThemeSelector } from "./components/ThemeSelector";
 import { useThemeMode } from "./hooks/useThemeMode";
 import { DashboardPage } from "./pages/DashboardPage";
 import { AssetsPage } from "./pages/AssetsPage";
 import { AssetDetailPage } from "./pages/AssetDetailPage";
+import { AuditLogsPage } from "./pages/AuditLogsPage";
 import { ChatPage } from "./pages/ChatPage";
 import { IntegrationsPage } from "./pages/IntegrationsPage";
 import { SettingsPage } from "./pages/SettingsPage";
@@ -15,6 +16,7 @@ import "./styles/apoema.css";
 const navItems = [
   { to: "dashboard", label: "Visão geral", icon: BarChart3 },
   { to: "assets", label: "Ativos", icon: Layers3 },
+  { to: "audit-logs", label: "Auditoria", icon: ShieldAlert },
   { to: "chat", label: "IA", icon: Brain },
   { to: "integrations", label: "Integrações", icon: SplitSquareHorizontal },
   { to: "settings", label: "Ajustes", icon: Settings2 }
@@ -86,6 +88,7 @@ export function ApoemaApp() {
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="assets" element={<AssetsPage />} />
           <Route path="assets/:id" element={<AssetDetailPage />} />
+          <Route path="audit-logs" element={<AuditLogsPage />} />
           <Route path="chat" element={<ChatPage />} />
           <Route path="integrations" element={<IntegrationsPage />} />
           <Route path="settings" element={<SettingsPage />} />

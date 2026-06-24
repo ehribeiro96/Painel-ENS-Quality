@@ -219,7 +219,7 @@ export function AssetDetailPage() {
                 { label: "Resumo", value: asset.notes ?? "Sem observações" },
                 {
                   label: "Auditoria",
-                  value: <Link to="/audit-logs">Consultar logs</Link>,
+                  value: <Link to="/apoema/audit-logs">Consultar logs</Link>,
                   hint: compactId(asset.id)
                 }
               ]}

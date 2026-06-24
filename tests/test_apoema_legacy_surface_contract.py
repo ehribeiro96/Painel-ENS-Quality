@@ -37,12 +37,12 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
             "/imports": "apoema:imports",
             "/macros": "apoema:macros",
             "/signatures": "apoema:signatures",
-            "/audit-logs": "apoema:audit-logs",
             "/settings": "apoema:settings",
         }
 
         self.assertNotIn('path: "/assets"', legacy_block)
         self.assertNotIn('path: "/assets/:id"', legacy_block)
+        self.assertNotIn('path: "/audit-logs"', legacy_block)
 
         for path, target in expected_routes.items():
             self.assertIn(f'path: "{path}"', legacy_block)
@@ -50,11 +50,14 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
             self.assertIn("temporaryCompatibility: true", legacy_block)
 
         self.assertIn('path: "/ai-chat"', alias_block)
+        self.assertIn('path: "/audit-logs"', alias_block)
         self.assertIn('path: "/assets"', alias_block)
         self.assertIn('path: "/assets/:id"', alias_block)
         self.assertIn('migrationTarget: "apoema:chat"', alias_block)
+        self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn("temporaryCompatibility: true", alias_block)
+        self.assertIn('redirectTo: "/apoema/audit-logs"', APP)
         self.assertIn('redirectTo: "/apoema/assets"', APP)
         self.assertIn('redirectTo: "/apoema/assets/:id"', APP)
 
