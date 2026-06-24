@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import unittest
 from pathlib import Path
 
@@ -37,8 +38,11 @@ class ApoemaOnlyRouteContractTest(unittest.TestCase):
         self.assertIn("Suspense fallback={<RouteLoading />}", APP)
 
     def test_legacy_routes_remain_in_place_for_compatibility(self) -> None:
+        match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+        self.assertIsNotNone(match)
+        legacy_block = match.group(1)
         for path in ("/ai-chat", "/assets", "/imports", "/macros", "/settings", "/audit-logs", "/users", "/signatures", "/stock"):
-            self.assertIn(f'path="{path}"', APP)
+            self.assertIn(f'path: "{path}"', legacy_block)
         self.assertNotIn('element={<DashboardPage />}', APP)
 
     def test_apoema_does_not_call_providers_directly(self) -> None:

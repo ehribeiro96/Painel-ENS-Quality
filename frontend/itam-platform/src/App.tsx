@@ -70,6 +70,104 @@ function ApoemaRoutes() {
   );
 }
 
+type LegacyCompatibilityRouteDefinition = {
+  path: string;
+  element: ReactNode;
+  temporaryCompatibility: true;
+  migrationTarget: string;
+};
+
+const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [
+  {
+    path: "/assets",
+    element: <AssetsPage />,
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:assets"
+  },
+  {
+    path: "/assets/:id",
+    element: <AssetDetailsPage />,
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:assets"
+  },
+  {
+    path: "/users",
+    element: <UsersPage />,
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:users"
+  },
+  {
+    path: "/users/:id",
+    element: <UserDetailsPage />,
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:users"
+  },
+  {
+    path: "/assignments",
+    element: <AssignmentsPage />,
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:movements"
+  },
+  {
+    path: "/stock",
+    element: <StockPage />,
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:stock"
+  },
+  {
+    path: "/imports",
+    element: (
+      <RoleGuard roles={["ADMIN", "TECHNICIAN"]}>
+        <ImportsPage />
+      </RoleGuard>
+    ),
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:imports"
+  },
+  {
+    path: "/macros",
+    element: (
+      <RoleGuard roles={["ADMIN", "TECHNICIAN"]}>
+        <MacrosPage />
+      </RoleGuard>
+    ),
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:macros"
+  },
+  {
+    path: "/ai-chat",
+    element: <AiChatPage />,
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:chat"
+  },
+  {
+    path: "/signatures",
+    element: <SignaturesPage />,
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:signatures"
+  },
+  {
+    path: "/audit-logs",
+    element: (
+      <RoleGuard roles={["ADMIN", "MANAGER"]}>
+        <AuditLogsPage />
+      </RoleGuard>
+    ),
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:audit-logs"
+  },
+  {
+    path: "/settings",
+    element: (
+      <RoleGuard roles={["ADMIN"]}>
+        <SettingsPage />
+      </RoleGuard>
+    ),
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:settings"
+  }
+];
+
 // Legacy routes are retained temporarily while Apoema becomes the primary surface.
 function LegacyShellRoute() {
   return (
@@ -84,18 +182,9 @@ function LegacyShellRoute() {
 function LegacyRoutes() {
   return (
     <Route element={<LegacyShellRoute />}>
-      <Route path="/assets" element={<AssetsPage />} />
-      <Route path="/assets/:id" element={<AssetDetailsPage />} />
-      <Route path="/users" element={<UsersPage />} />
-      <Route path="/users/:id" element={<UserDetailsPage />} />
-      <Route path="/assignments" element={<AssignmentsPage />} />
-      <Route path="/stock" element={<StockPage />} />
-      <Route path="/imports" element={<RoleGuard roles={["ADMIN", "TECHNICIAN"]}><ImportsPage /></RoleGuard>} />
-      <Route path="/macros" element={<RoleGuard roles={["ADMIN", "TECHNICIAN"]}><MacrosPage /></RoleGuard>} />
-      <Route path="/ai-chat" element={<AiChatPage />} />
-      <Route path="/signatures" element={<SignaturesPage />} />
-      <Route path="/audit-logs" element={<RoleGuard roles={["ADMIN", "MANAGER"]}><AuditLogsPage /></RoleGuard>} />
-      <Route path="/settings" element={<RoleGuard roles={["ADMIN"]}><SettingsPage /></RoleGuard>} />
+      {legacyCompatibilityRoutes.map((route) => (
+        <Route key={route.path} path={route.path} element={route.element} />
+      ))}
     </Route>
   );
 }

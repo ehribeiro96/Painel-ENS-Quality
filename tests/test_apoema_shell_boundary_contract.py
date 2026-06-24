@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import unittest
 from pathlib import Path
 
@@ -23,6 +24,7 @@ APOEMA = read_apoema_sources()
 class ApoemaShellBoundaryContractTest(unittest.TestCase):
     def test_app_exposes_explicit_apoema_first_and_legacy_blocks(self) -> None:
         self.assertIn("function ApoemaRoutes()", APP)
+        self.assertIn("const legacyCompatibilityRoutes", APP)
         self.assertIn("function LegacyShellRoute()", APP)
         self.assertIn("function LegacyRoutes()", APP)
         self.assertIn("// Legacy routes are retained temporarily while Apoema becomes the primary surface.", APP)
@@ -48,8 +50,14 @@ class ApoemaShellBoundaryContractTest(unittest.TestCase):
         self.assertNotIn("AppShell", apoema_section)
 
     def test_legacy_routes_remain_preserved(self) -> None:
+        match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
+        self.assertIsNotNone(match)
+        legacy_block = match.group(1)
         for path in ("/assets", "/assets/:id", "/users", "/users/:id", "/assignments", "/stock", "/imports", "/macros", "/ai-chat", "/signatures", "/audit-logs", "/settings"):
-            self.assertIn(f'path="{path}"', APP)
+            self.assertIn(f'path: "{path}"', legacy_block)
+        for target in ("apoema:assets", "apoema:users", "apoema:movements", "apoema:stock", "apoema:imports", "apoema:macros", "apoema:chat", "apoema:signatures", "apoema:audit-logs", "apoema:settings"):
+            self.assertIn(f'migrationTarget: "{target}"', APP)
+        self.assertIn("temporaryCompatibility: true", APP)
 
     def test_apoema_stays_free_of_direct_provider_calls(self) -> None:
         forbidden_terms = (
