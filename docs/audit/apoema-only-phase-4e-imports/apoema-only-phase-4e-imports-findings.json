@@ -1,0 +1,21 @@
+{
+  "status": "GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_4e_imports_migration",
+  "legacy_route": "/imports",
+  "apoema_target_route": "/apoema/imports",
+  "policy": "POLICY_A_SAFE_REDIRECT",
+  "parity_minimum_met": true,
+  "legacy_route_preserved": true,
+  "protected_route_preserved": true,
+  "login_regression": "passed",
+  "imports_regression": "passed",
+  "validations": {
+    "unittest": "passed",
+    "ruff": "passed",
+    "compileall": "passed",
+    "frontend_build": "passed",
+    "git_diff_check": "passed"
+  },
+  "push_executed": false
+}
