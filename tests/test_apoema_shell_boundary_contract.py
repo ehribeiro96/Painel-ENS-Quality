@@ -57,13 +57,16 @@ class ApoemaShellBoundaryContractTest(unittest.TestCase):
         match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(match)
         legacy_block = match.group(1)
-        for path in ("/assets", "/assets/:id", "/users", "/users/:id", "/assignments", "/stock", "/imports", "/macros", "/signatures", "/audit-logs", "/settings"):
+        for path in ("/assets/:id", "/users", "/users/:id", "/assignments", "/stock", "/imports", "/macros", "/signatures", "/audit-logs", "/settings"):
             self.assertIn(f'path: "{path}"', legacy_block)
         alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(alias_match)
         alias_block = alias_match.group(1)
         self.assertIn('path: "/ai-chat"', alias_block)
+        self.assertIn('path: "/assets"', alias_block)
         self.assertIn('migrationTarget: "apoema:chat"', alias_block)
+        self.assertIn('migrationTarget: "apoema:assets"', alias_block)
+        self.assertIn('redirectTo: "/apoema/assets"', alias_block)
         for target in ("apoema:assets", "apoema:users", "apoema:movements", "apoema:stock", "apoema:imports", "apoema:macros", "apoema:signatures", "apoema:audit-logs", "apoema:settings"):
             self.assertIn(f'migrationTarget: "{target}"', APP)
         self.assertIn("temporaryCompatibility: true", APP)

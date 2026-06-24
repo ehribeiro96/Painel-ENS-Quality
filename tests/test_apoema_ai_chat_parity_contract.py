@@ -29,7 +29,7 @@ class ApoemaAiChatParityContractTest(unittest.TestCase):
         self.assertIn('migrationTarget: "apoema:chat"', alias_block)
         self.assertIn("function LegacyApoemaAliasRoutes()", APP)
         self.assertIn("<LegacyApoemaAliasRoutes />", APP)
-        self.assertIn('to="/apoema/chat"', APP)
+        self.assertIn('redirectTo: "/apoema/chat"', alias_block)
 
     def test_apoema_preview_chat_remains_preserved(self) -> None:
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP.replace("\n", " "))

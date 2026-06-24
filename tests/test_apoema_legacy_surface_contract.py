@@ -30,7 +30,6 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         alias_block = alias_match.group(1)
 
         expected_routes = {
-            "/assets": "apoema:assets",
             "/assets/:id": "apoema:assets",
             "/users": "apoema:users",
             "/users/:id": "apoema:users",
@@ -43,14 +42,19 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
             "/settings": "apoema:settings",
         }
 
+        self.assertNotIn('path: "/assets"', legacy_block)
+
         for path, target in expected_routes.items():
             self.assertIn(f'path: "{path}"', legacy_block)
             self.assertIn(f'migrationTarget: "{target}"', legacy_block)
             self.assertIn("temporaryCompatibility: true", legacy_block)
 
         self.assertIn('path: "/ai-chat"', alias_block)
+        self.assertIn('path: "/assets"', alias_block)
         self.assertIn('migrationTarget: "apoema:chat"', alias_block)
+        self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn("temporaryCompatibility: true", alias_block)
+        self.assertIn('redirectTo: "/apoema/assets"', APP)
 
     def test_apoema_surface_remains_outside_legacy_shell(self) -> None:
         apoema_routes_block = APP.split("function ApoemaRoutes()")[1].split("type LegacyCompatibilityRouteDefinition")[0]
