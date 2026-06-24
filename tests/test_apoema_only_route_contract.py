@@ -41,7 +41,7 @@ class ApoemaOnlyRouteContractTest(unittest.TestCase):
         match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(match)
         legacy_block = match.group(1)
-        for path in ("/macros", "/settings", "/users", "/signatures", "/stock"):
+        for path in ("/settings", "/users", "/signatures", "/stock"):
             self.assertIn(f'path: "{path}"', legacy_block)
         alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(alias_match)
@@ -51,14 +51,17 @@ class ApoemaOnlyRouteContractTest(unittest.TestCase):
         self.assertIn('path: "/assets"', alias_block)
         self.assertIn('path: "/assets/:id"', alias_block)
         self.assertIn('path: "/imports"', alias_block)
+        self.assertIn('path: "/macros"', alias_block)
         self.assertIn('migrationTarget: "apoema:chat"', alias_block)
         self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn('migrationTarget: "apoema:imports"', alias_block)
+        self.assertIn('migrationTarget: "apoema:macros"', alias_block)
         self.assertIn('redirectTo: "/apoema/audit-logs"', alias_block)
         self.assertIn('redirectTo: "/apoema/assets"', alias_block)
         self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
         self.assertIn('redirectTo: "/apoema/imports"', alias_block)
+        self.assertIn('redirectTo: "/apoema/macros"', alias_block)
         self.assertNotIn('element={<DashboardPage />}', APP)
 
     def test_apoema_does_not_call_providers_directly(self) -> None:

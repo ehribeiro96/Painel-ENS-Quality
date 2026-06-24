@@ -9,7 +9,6 @@ const AppShell = lazy(() => import("./components/AppShell").then((module) => ({ 
 const ApoemaApp = lazy(() => import("./apoema").then((module) => ({ default: module.ApoemaApp })));
 const AssignmentsPage = lazy(() => import("./pages/AssignmentsPage").then((module) => ({ default: module.AssignmentsPage })));
 const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
-const MacrosPage = lazy(() => import("./pages/MacrosPage").then((module) => ({ default: module.MacrosPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
 const SettingsPage = lazy(() => import("./pages/SettingsPage").then((module) => ({ default: module.SettingsPage })));
 const SignaturesPage = lazy(() => import("./pages/SignaturesPage").then((module) => ({ default: module.SignaturesPage })));
@@ -89,6 +88,12 @@ const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
     temporaryCompatibility: true,
     migrationTarget: "apoema:imports",
     redirectTo: "/apoema/imports"
+  },
+  {
+    path: "/macros",
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:macros",
+    redirectTo: "/apoema/macros"
   }
 ];
 
@@ -163,16 +168,6 @@ const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [
     element: <StockPage />,
     temporaryCompatibility: true,
     migrationTarget: "apoema:stock"
-  },
-  {
-    path: "/macros",
-    element: (
-      <RoleGuard roles={["ADMIN", "TECHNICIAN"]}>
-        <MacrosPage />
-      </RoleGuard>
-    ),
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:macros"
   },
   {
     path: "/signatures",

@@ -57,7 +57,7 @@ class ApoemaShellBoundaryContractTest(unittest.TestCase):
         match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(match)
         legacy_block = match.group(1)
-        for path in ("/users", "/users/:id", "/assignments", "/stock", "/macros", "/signatures", "/settings"):
+        for path in ("/users", "/users/:id", "/assignments", "/stock", "/signatures", "/settings"):
             self.assertIn(f'path: "{path}"', legacy_block)
         alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(alias_match)
@@ -67,14 +67,17 @@ class ApoemaShellBoundaryContractTest(unittest.TestCase):
         self.assertIn('path: "/assets"', alias_block)
         self.assertIn('path: "/assets/:id"', alias_block)
         self.assertIn('path: "/imports"', alias_block)
+        self.assertIn('path: "/macros"', alias_block)
         self.assertIn('migrationTarget: "apoema:chat"', alias_block)
         self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn('migrationTarget: "apoema:imports"', alias_block)
+        self.assertIn('migrationTarget: "apoema:macros"', alias_block)
         self.assertIn('redirectTo: "/apoema/audit-logs"', alias_block)
         self.assertIn('redirectTo: "/apoema/assets"', alias_block)
         self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
         self.assertIn('redirectTo: "/apoema/imports"', alias_block)
+        self.assertIn('redirectTo: "/apoema/macros"', alias_block)
         for target in ("apoema:assets", "apoema:users", "apoema:movements", "apoema:stock", "apoema:imports", "apoema:macros", "apoema:signatures", "apoema:audit-logs", "apoema:settings"):
             self.assertIn(f'migrationTarget: "{target}"', APP)
         self.assertIn("temporaryCompatibility: true", APP)
