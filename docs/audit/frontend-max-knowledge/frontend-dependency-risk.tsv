@@ -1,0 +1,12 @@
+path	risk	level	reason
+frontend/itam-platform/src/styles.css	global CSS coupling	high	one large stylesheet can spread regressions across all routes
+frontend/itam-platform/src/lib/api.ts	auth/session coupling	high	central request wrapper controls login, refresh, and unauthorized handling
+frontend/itam-platform/src/lib/auth.tsx	session boot coupling	medium	boot timeout and refresh logic drive app readiness
+frontend/itam-platform/vite.config.ts	hardcoded backend proxy	medium	dev proxy points to 127.0.0.1:8080 and can drift from WSL/runtime reality
+frontend/itam-platform/src/components/icons/HermesIcons.tsx	raw SVG parsing	medium	asset parsing is controlled but still a special rendering surface
+frontend/itam-platform/src/lib/features.ts	env-gated feature flag	low	ENABLE_AI_CHAT can hide menu behavior if misconfigured
+frontend/itam-platform/src/apoema/styles/apoema.css	scoped but large CSS	medium	visual scope is good, but the file is still substantial
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts	explicit fallback contract	high	401/403 must remain hard errors and not fall back to mock content
+frontend/itam-platform/src/apoema/types.ts	typed error contract	medium	the error model must stay aligned with chat UI and provider loading
+assets/legacy/Laravel/package.json	separate legacy stack	medium	old frontend dependency tree should stay isolated from the active app
+imports/HermesOps-Final-Transfer/releases/20260608-091540/hermes-agent-hermesops/web/package.json	imported external stack	medium	this is not the owned product frontend and should not drive target decisions

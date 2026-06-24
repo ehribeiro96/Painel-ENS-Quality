@@ -1,0 +1,16 @@
+surface	classification	evidence	conclusion
+frontend/itam-platform	active product frontend	package.json; vite.config.ts; src/main.tsx; src/App.tsx	build/runtime target
+frontend/itam-platform/src/apoema	target experience	scoped CSS; dedicated chat adapter; isolated shell	primary consolidation target
+frontend/itam-platform/src/pages	compatibility shell	root routes and operational pages	active, but legacy in shape
+frontend/itam-platform/src/components/base44	legacy compatibility layer	Base44-prefixed UI pieces	retain while migrating
+frontend/itam-platform/src/components/brand	legacy brand layer	Hermes/Sentinel brand components	support only
+frontend/itam-platform/src/components/ai-chat	legacy chat surface	old /ai-chat UI	support only
+frontend/itam-platform/src/components/icons	shared asset plumbing	Hermes SVG pack	asset plumbing, not target UX
+frontend/itam-platform/src/styles.css	global shared CSS	large cross-surface stylesheet	main styling risk
+assets/legacy/Laravel	legacy archive frontend	own package.json and vite.config.js	preserve as archive
+imports/HermesOps-Final-Transfer/releases/20260608-091540/hermes-agent-hermesops	imported external project	multiple apps plus web frontend	reference only
+exports/final_release_candidate_v2_staging/Painel-ENS-Quality-RC/frontend/itam-platform	frozen export snapshot	exported React/Vite copy	read-only evidence
+exports/final_release_candidate_v2_1_staging/Painel-ENS-Quality-RC/frontend/itam-platform	frozen export snapshot	exported React/Vite copy	read-only evidence
+_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform	frozen validation snapshot	cleanroom copy	read-only evidence
+_validation/rc21_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform	frozen validation snapshot	cleanroom copy	read-only evidence
+frontend/legacy	empty placeholder	no files found	ignore for product planning

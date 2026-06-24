@@ -1,0 +1,13 @@
+path	category	reason	recommendation
+frontend/legacy	empty placeholder	no files found	ignore in product planning
+assets/legacy/Laravel	legacy archive	older Vite/Laravel frontend stack	preserve as archive
+imports/HermesOps-Final-Transfer/releases/20260608-091540/hermes-agent-hermesops	imported external project	multi-app bundle not owned by current product	reference only
+exports/final_release_candidate_v2_staging/Painel-ENS-Quality-RC/frontend/itam-platform	frozen snapshot	export copy of the frontend	read-only evidence
+exports/final_release_candidate_v2_1_staging/Painel-ENS-Quality-RC/frontend/itam-platform	frozen snapshot	export copy of the frontend	read-only evidence
+_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform	frozen snapshot	cleanroom validation copy	read-only evidence
+_validation/rc21_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform	frozen snapshot	cleanroom validation copy	read-only evidence
+frontend/itam-platform/src/components/base44	compatibility UI	legacy visual system still active	retain until migration completes
+frontend/itam-platform/src/components/brand	compatibility UI	Hermes/Sentinel branding layer	retain until migration completes
+frontend/itam-platform/src/components/ai-chat	compatibility UI	old AI chat surface	retain until migration completes
+frontend/itam-platform/src/styles.css	global coupling	large shared stylesheet	risk reduction target
+frontend/itam-platform/src/components/icons/HermesIcons.tsx	asset plumbing	raw SVG icon pack	rendered asset helper, not target UX

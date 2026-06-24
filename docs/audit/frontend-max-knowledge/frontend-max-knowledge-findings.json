@@ -1,0 +1,72 @@
+{
+  "status": "GO",
+  "date": "2026-06-23",
+  "branch": "main",
+  "active_frontend": {
+    "path": "frontend/itam-platform",
+    "entrypoints": [
+      "frontend/itam-platform/src/main.tsx",
+      "frontend/itam-platform/src/App.tsx"
+    ],
+    "file_counts": {
+      "src_files": 103,
+      "apoema_files": 23,
+      "root_pages": 15,
+      "root_components": 38
+    }
+  },
+  "apoema_target": {
+    "path": "frontend/itam-platform/src/apoema",
+    "route_aliases": [
+      "/apoema/*",
+      "/apoema-preview/*"
+    ],
+    "conclusion": "Apoema is the cleanest consolidation target because it is isolated, scoped, and already carries the explicit AI fallback contract."
+  },
+  "legacy_support": [
+    "frontend/itam-platform/src/pages",
+    "frontend/itam-platform/src/components/base44",
+    "frontend/itam-platform/src/components/brand",
+    "frontend/itam-platform/src/components/ai-chat",
+    "frontend/itam-platform/src/styles.css"
+  ],
+  "snapshot_and_import_noise": [
+    "assets/legacy/Laravel",
+    "imports/HermesOps-Final-Transfer/releases/20260608-091540/hermes-agent-hermesops",
+    "_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform",
+    "_validation/rc21_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform",
+    "exports/final_release_candidate_v2_staging/Painel-ENS-Quality-RC/frontend/itam-platform",
+    "exports/final_release_candidate_v2_1_staging/Painel-ENS-Quality-RC/frontend/itam-platform",
+    "frontend/legacy"
+  ],
+  "route_ownership": {
+    "root_shell_routes": [
+      "/",
+      "/assets",
+      "/assets/:id",
+      "/users",
+      "/users/:id",
+      "/assignments",
+      "/stock",
+      "/imports",
+      "/macros",
+      "/ai-chat",
+      "/signatures",
+      "/audit-logs",
+      "/settings"
+    ],
+    "apoema_routes": [
+      "/apoema/dashboard",
+      "/apoema/assets",
+      "/apoema/chat",
+      "/apoema/integrations",
+      "/apoema/settings"
+    ]
+  },
+  "risks": [
+    "Global stylesheet coupling in frontend/itam-platform/src/styles.css",
+    "Legacy compatibility shell still owns many product routes",
+    "Imported and exported snapshot frontends can confuse target planning"
+  ],
+  "recommendation": "Treat Apoema as the canonical target and keep the root shell as compatibility until migration parity is confirmed."
+}

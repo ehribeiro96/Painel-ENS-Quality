@@ -1,0 +1,9 @@
+Apoema route map
+
+/apoema/*              -> Apoema target subtree
+/apoema-preview/*      -> Apoema target subtree alias
+/apoema/dashboard      -> overview
+/apoema/assets         -> assets panel
+/apoema/chat           -> AI chat panel
+/apoema/integrations   -> integrations panel
+/apoema/settings       -> settings panel

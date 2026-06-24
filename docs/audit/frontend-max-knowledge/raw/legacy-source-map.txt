@@ -1,0 +1,5 @@
+Legacy compatibility shell: src/components/AppShell.tsx
+Legacy pages: src/pages/*
+Legacy component families: src/components/base44, src/components/brand, src/components/ai-chat
+Legacy asset pack: src/components/icons/HermesIcons.tsx
+Legacy global style: src/styles.css

@@ -1,0 +1,6 @@
+Frozen validation copies: _validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform
+Frozen validation copies: _validation/rc21_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform
+Frozen export copies: exports/final_release_candidate_v2_staging/Painel-ENS-Quality-RC/frontend/itam-platform
+Frozen export copies: exports/final_release_candidate_v2_1_staging/Painel-ENS-Quality-RC/frontend/itam-platform
+Imported external bundle: imports/HermesOps-Final-Transfer/releases/20260608-091540/hermes-agent-hermesops
+Legacy archive: assets/legacy/Laravel

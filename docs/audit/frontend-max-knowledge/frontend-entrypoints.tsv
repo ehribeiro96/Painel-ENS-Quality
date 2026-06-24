@@ -1,0 +1,15 @@
+path	project	role	status	notes
+frontend/itam-platform/src/main.tsx	frontend/itam-platform	app bootstrap	active	BrowserRouter + QueryClient + AuthProvider
+frontend/itam-platform/src/App.tsx	frontend/itam-platform	root route dispatcher	active	lazy routes and guards
+frontend/itam-platform/src/apoema/index.ts	frontend/itam-platform	Apoema export	active	re-exports ApoemaApp
+frontend/itam-platform/src/apoema/ApoemaApp.tsx	frontend/itam-platform	Apoema router	active	owns the target subtree
+frontend/itam-platform/src/components/AppShell.tsx	frontend/itam-platform	root shell	active	compatibility shell with global search
+assets/legacy/Laravel/resources/js/app.js	assets/legacy/Laravel	legacy frontend bootstrap	archive	Vite/Laravel stack
+imports/HermesOps-Final-Transfer/releases/20260608-091540/hermes-agent-hermesops/web/src/main.tsx	imported HermesOps	web app bootstrap	imported	standalone external project
+imports/HermesOps-Final-Transfer/releases/20260608-091540/hermes-agent-hermesops/web/src/App.tsx	imported HermesOps	web route dispatcher	imported	standalone external project
+imports/HermesOps-Final-Transfer/releases/20260608-091540/hermes-agent-hermesops/apps/desktop/src/main.tsx	imported HermesOps	desktop bootstrap	imported	electron/desktop entrypoint
+imports/HermesOps-Final-Transfer/releases/20260608-091540/hermes-agent-hermesops/apps/bootstrap-installer/src/main.tsx	imported HermesOps	installer bootstrap	imported	external installer app
+exports/final_release_candidate_v2_staging/Painel-ENS-Quality-RC/frontend/itam-platform/src/main.tsx	export snapshot	snapshot bootstrap	frozen	compare-only evidence
+exports/final_release_candidate_v2_1_staging/Painel-ENS-Quality-RC/frontend/itam-platform/src/main.tsx	export snapshot	snapshot bootstrap	frozen	compare-only evidence
+_validation/rc2_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform/src/main.tsx	validation snapshot	snapshot bootstrap	frozen	compare-only evidence
+_validation/rc21_cleanroom_20260608/Painel-ENS-Quality-RC/frontend/itam-platform/src/main.tsx	validation snapshot	snapshot bootstrap	frozen	compare-only evidence

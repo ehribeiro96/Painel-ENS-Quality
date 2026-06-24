@@ -1,0 +1,23 @@
+route	surface	shell	guard	status	notes
+/	root shell	root	ProtectedRoute	active	legacy dashboard shell
+/login	auth	public	none	active	shared login screen
+/assets	root shell	root	ProtectedRoute	active	operational inventory
+/assets/:id	root shell	root	ProtectedRoute	active	asset detail view
+/users	root shell	root	ProtectedRoute	active	user inventory
+/users/:id	root shell	root	ProtectedRoute	active	user detail view
+/assignments	root shell	root	ProtectedRoute	active	movement workflow
+/stock	root shell	root	ProtectedRoute	active	stock view
+/imports	root shell	root	ProtectedRoute + role guard	active	import workflow
+/macros	root shell	root	ProtectedRoute + role guard	active	macro workflow
+/ai-chat	root shell	root	ProtectedRoute	active	legacy AI chat
+/signatures	root shell	root	ProtectedRoute	active	signature module
+/audit-logs	root shell	root	ProtectedRoute + role guard	active	admin audit log
+/settings	root shell	root	ProtectedRoute + role guard	active	admin settings
+/apoema/*	Apoema target	apoema	ProtectedRoute	active	target subtree alias
+/apoema-preview/*	Apoema target	apoema	ProtectedRoute	active	preview alias for the same subtree
+/apoema/dashboard	Apoema target	apoema	ProtectedRoute	active	apoema overview
+/apoema/assets	Apoema target	apoema	ProtectedRoute	active	apoema asset view
+/apoema/chat	Apoema target	apoema	ProtectedRoute	active	apoema ai chat
+/apoema/integrations	Apoema target	apoema	ProtectedRoute	active	apoema integrations
+/apoema/settings	Apoema target	apoema	ProtectedRoute	active	apoema settings
+*	not found	public	none	active	fallback route

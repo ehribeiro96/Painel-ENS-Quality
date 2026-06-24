@@ -1,0 +1,17 @@
+Root shell route map
+
+/                      -> dashboard shell
+/login                 -> auth screen
+/assets                -> assets list
+/assets/:id            -> asset details
+/users                 -> users list
+/users/:id             -> user details
+/assignments           -> movement workflow
+/stock                 -> stock view
+/imports               -> imports workflow
+/macros                -> macro workflow
+/ai-chat               -> legacy AI chat
+/signatures            -> signatures module
+/audit-logs            -> audit log admin view
+/settings              -> settings admin view
+*                      -> not found

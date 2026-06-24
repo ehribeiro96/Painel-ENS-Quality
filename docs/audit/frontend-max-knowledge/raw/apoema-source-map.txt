@@ -1,0 +1,5 @@
+Apoema entrypoint: src/apoema/index.ts -> src/apoema/ApoemaApp.tsx
+Routes: dashboard, assets, chat, integrations, settings
+Support files: src/apoema/lib/apoemaChatApi.ts, src/apoema/types.ts, src/apoema/mockApi.ts
+Scoped styles: src/apoema/styles/apoema.css
+Component set: ApoemaLogo, ChatComposer, ChatMessage, FileDropzone, ThemeSelector, StatusPill, MetricCard, DataTable, CommandCard, EmptyState

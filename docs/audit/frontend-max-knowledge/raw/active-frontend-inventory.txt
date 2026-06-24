@@ -1,0 +1,6 @@
+Active frontend: frontend/itam-platform
+Entry files: src/main.tsx, src/App.tsx
+Target subtree: src/apoema
+Compatibility shell: src/pages, src/components/base44, src/components/brand, src/components/ai-chat
+Shared services: src/lib/api.ts, src/lib/auth.tsx, src/lib/features.ts
+Global stylesheet: src/styles.css

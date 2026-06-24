@@ -1,0 +1,7 @@
+Executive summary
+
+The product frontend is split between a compatibility shell and an isolated target experience.
+
+The compatibility shell is still active and owns broad operational routes, but Apoema is the clearer long-term target because it already has a scoped shell, a separate route subtree, and a dedicated chat adapter with explicit fallback rules.
+
+Most other frontend surfaces are either support layers, archives, or frozen snapshots. They should remain documented but should not be treated as the target shape of the product.
