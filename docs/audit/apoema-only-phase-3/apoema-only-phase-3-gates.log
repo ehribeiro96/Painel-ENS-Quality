@@ -1,0 +1,6 @@
+# apoema-only phase 3 gates
+unittest: PASS (201 tests, 8 skipped)
+ruff: PASS
+compileall: PASS
+frontend build: PASS
+git diff --check: PASS

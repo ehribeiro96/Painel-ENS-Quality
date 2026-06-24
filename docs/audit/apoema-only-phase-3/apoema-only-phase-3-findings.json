@@ -1,0 +1,21 @@
+{
+  "status": "GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_3_reduce_legacy_surface",
+  "root_route_policy": "/ -> /apoema",
+  "apoema_route_isolated_from_legacy_shell": true,
+  "legacy_routes_preserved": true,
+  "legacy_surface_reduced": true,
+  "legacy_migration_map_created": true,
+  "protected_route_preserved": true,
+  "login_regression": "passed",
+  "apoema_chat_fallback_regression": "passed",
+  "validations": {
+    "unittest": "pass",
+    "ruff": "pass",
+    "compileall": "pass",
+    "frontend_build": "pass",
+    "git_diff_check": "pass"
+  },
+  "push_executed": false
+}
