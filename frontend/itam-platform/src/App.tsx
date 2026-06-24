@@ -1,13 +1,12 @@
 import type { ReactNode } from "react";
-import { lazy, Suspense } from "react";
-import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { lazy, Suspense, useMemo } from "react";
+import { Navigate, Outlet, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { RouteLoading } from "./components/RouteLoading";
 import { useAuth } from "./lib/auth";
 import type { Role } from "./lib/types";
 
 const AppShell = lazy(() => import("./components/AppShell").then((module) => ({ default: module.AppShell })));
 const ApoemaApp = lazy(() => import("./apoema").then((module) => ({ default: module.ApoemaApp })));
-const AssetDetailsPage = lazy(() => import("./pages/AssetDetailsPage").then((module) => ({ default: module.AssetDetailsPage })));
 const AssignmentsPage = lazy(() => import("./pages/AssignmentsPage").then((module) => ({ default: module.AssignmentsPage })));
 const AuditLogsPage = lazy(() => import("./pages/AuditLogsPage").then((module) => ({ default: module.AuditLogsPage })));
 const ImportsPage = lazy(() => import("./pages/ImportsPage").then((module) => ({ default: module.ImportsPage })));
@@ -74,15 +73,27 @@ const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
     temporaryCompatibility: true,
     migrationTarget: "apoema:assets",
     redirectTo: "/apoema/assets"
+  },
+  {
+    path: "/assets/:id",
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:assets",
+    redirectTo: "/apoema/assets/:id"
   }
 ];
 
 function ApoemaCompatibilityAliasRoute({ to }: { to: string }) {
   const location = useLocation();
+  const params = useParams();
+  const resolvedTo = useMemo(
+    () =>
+      Object.entries(params).reduce((accumulator, [key, value]) => accumulator.replace(`:${key}`, value ?? ""), to),
+    [params, to]
+  );
 
   return (
     <ProtectedRoute>
-      <Navigate to={{ pathname: to, search: location.search }} replace />
+      <Navigate to={{ pathname: resolvedTo, search: location.search, hash: location.hash }} replace />
     </ProtectedRoute>
   );
 }
@@ -119,12 +130,6 @@ type LegacyCompatibilityRouteDefinition = {
 };
 
 const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [
-  {
-    path: "/assets/:id",
-    element: <AssetDetailsPage />,
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:assets"
-  },
   {
     path: "/users",
     element: <UsersPage />,

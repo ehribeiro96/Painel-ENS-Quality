@@ -41,16 +41,18 @@ class ApoemaOnlyRouteContractTest(unittest.TestCase):
         match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(match)
         legacy_block = match.group(1)
-        for path in ("/assets/:id", "/imports", "/macros", "/settings", "/audit-logs", "/users", "/signatures", "/stock"):
+        for path in ("/imports", "/macros", "/settings", "/audit-logs", "/users", "/signatures", "/stock"):
             self.assertIn(f'path: "{path}"', legacy_block)
         alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(alias_match)
         alias_block = alias_match.group(1)
         self.assertIn('path: "/ai-chat"', alias_block)
         self.assertIn('path: "/assets"', alias_block)
+        self.assertIn('path: "/assets/:id"', alias_block)
         self.assertIn('migrationTarget: "apoema:chat"', alias_block)
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn('redirectTo: "/apoema/assets"', alias_block)
+        self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
         self.assertNotIn('element={<DashboardPage />}', APP)
 
     def test_apoema_does_not_call_providers_directly(self) -> None:

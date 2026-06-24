@@ -5,6 +5,7 @@ import { ThemeSelector } from "./components/ThemeSelector";
 import { useThemeMode } from "./hooks/useThemeMode";
 import { DashboardPage } from "./pages/DashboardPage";
 import { AssetsPage } from "./pages/AssetsPage";
+import { AssetDetailPage } from "./pages/AssetDetailPage";
 import { ChatPage } from "./pages/ChatPage";
 import { IntegrationsPage } from "./pages/IntegrationsPage";
 import { SettingsPage } from "./pages/SettingsPage";
@@ -84,6 +85,7 @@ export function ApoemaApp() {
           <Route index element={<Navigate to="dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="assets" element={<AssetsPage />} />
+          <Route path="assets/:id" element={<AssetDetailPage />} />
           <Route path="chat" element={<ChatPage />} />
           <Route path="integrations" element={<IntegrationsPage />} />
           <Route path="settings" element={<SettingsPage />} />

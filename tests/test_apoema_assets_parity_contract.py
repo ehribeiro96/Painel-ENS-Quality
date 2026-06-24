@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 APP = (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8")
 APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
+APOEMA_ASSET_DETAIL = (ROOT / "frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx").read_text(encoding="utf-8")
 APOEMA_ASSETS = (ROOT / "frontend/itam-platform/src/apoema/pages/AssetsPage.tsx").read_text(encoding="utf-8")
 LEGACY_ASSETS = (ROOT / "frontend/itam-platform/src/pages/AssetsPage.tsx").read_text(encoding="utf-8")
 MATRIX = (ROOT / "docs/audit/apoema-only-phase-4b-assets/ASSETS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
@@ -22,22 +23,31 @@ class ApoemaAssetsParityContractTest(unittest.TestCase):
 
     def test_assets_route_is_a_poema_target_and_legacy_assets_stays_preserved(self) -> None:
         self.assertIn('path="assets" element={<AssetsPage />}', APOEMA_APP)
+        self.assertIn('path="assets/:id" element={<AssetDetailPage />}', APOEMA_APP)
         alias_match = re.search(r"const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(alias_match)
         alias_block = alias_match.group(1)
         self.assertIn('path: "/assets"', alias_block)
+        self.assertIn('path: "/assets/:id"', alias_block)
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn('redirectTo: "/apoema/assets"', alias_block)
+        self.assertIn('redirectTo: "/apoema/assets/:id"', alias_block)
         legacy_match = re.search(r"const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition\[] = \[(.*?)\n\];", APP, re.S)
         self.assertIsNotNone(legacy_match)
         legacy_block = legacy_match.group(1)
         self.assertNotIn('path: "/assets"', legacy_block)
-        self.assertIn('path: "/assets/:id"', legacy_block)
+        self.assertNotIn('path: "/assets/:id"', legacy_block)
 
     def test_apoema_assets_page_contains_the_operational_parity_surface(self) -> None:
         for term in ("Search", "DataTable", "StatusPill", "MetricCard", "selectedAsset", "apoemaMetrics"):
             self.assertIn(term, APOEMA_ASSETS)
         self.assertIn("Filtre, revise e priorize a base de ativos", APOEMA_ASSETS)
+
+    def test_apoema_asset_detail_page_contains_operational_actions(self) -> None:
+        for term in ("MoveAssetDialog", "Base44AssetTimeline", "LoadingBlock", "Base44EmptyState", "queryClient.invalidateQueries"):
+            self.assertIn(term, APOEMA_ASSET_DETAIL)
+        self.assertIn('to=".."', APOEMA_ASSET_DETAIL)
+        self.assertIn("Movimentar", APOEMA_ASSET_DETAIL)
 
     def test_legacy_assets_page_remains_on_disk_for_compatibility(self) -> None:
         for term in ("useQuery", "saveAssetMutation", "deleteAssetMutation", "MoveAssetDialog", "DataTable"):
