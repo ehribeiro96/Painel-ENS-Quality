@@ -30,8 +30,6 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         alias_block = alias_match.group(1)
 
         expected_routes = {
-            "/users": "apoema:users",
-            "/users/:id": "apoema:users",
             "/settings": "apoema:settings",
         }
 
@@ -43,6 +41,8 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertNotIn('path: "/macros"', legacy_block)
         self.assertNotIn('path: "/signatures"', legacy_block)
         self.assertNotIn('path: "/stock"', legacy_block)
+        self.assertNotIn('path: "/users"', legacy_block)
+        self.assertNotIn('path: "/users/:id"', legacy_block)
 
         for path, target in expected_routes.items():
             self.assertIn(f'path: "{path}"', legacy_block)
@@ -54,6 +54,8 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertIn('path: "/assets"', alias_block)
         self.assertIn('path: "/assets/:id"', alias_block)
         self.assertIn('path: "/assignments"', alias_block)
+        self.assertIn('path: "/users"', alias_block)
+        self.assertIn('path: "/users/:id"', alias_block)
         self.assertIn('path: "/imports"', alias_block)
         self.assertIn('path: "/macros"', alias_block)
         self.assertIn('path: "/signatures"', alias_block)
@@ -62,6 +64,7 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertIn('migrationTarget: "apoema:audit-logs"', alias_block)
         self.assertIn('migrationTarget: "apoema:assets"', alias_block)
         self.assertIn('migrationTarget: "apoema:movements"', alias_block)
+        self.assertIn('migrationTarget: "apoema:users"', alias_block)
         self.assertIn('migrationTarget: "apoema:imports"', alias_block)
         self.assertIn('migrationTarget: "apoema:macros"', alias_block)
         self.assertIn('migrationTarget: "apoema:signatures"', alias_block)
@@ -71,6 +74,8 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
         self.assertIn('redirectTo: "/apoema/assets"', APP)
         self.assertIn('redirectTo: "/apoema/assets/:id"', APP)
         self.assertIn('redirectTo: "/apoema/assignments"', APP)
+        self.assertIn('redirectTo: "/apoema/users"', APP)
+        self.assertIn('redirectTo: "/apoema/users/:id"', APP)
         self.assertIn('redirectTo: "/apoema/imports"', APP)
         self.assertIn('redirectTo: "/apoema/macros"', APP)
         self.assertIn('redirectTo: "/apoema/signatures"', APP)

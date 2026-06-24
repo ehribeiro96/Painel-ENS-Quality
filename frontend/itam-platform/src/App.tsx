@@ -10,8 +10,6 @@ const ApoemaApp = lazy(() => import("./apoema").then((module) => ({ default: mod
 const LoginPage = lazy(() => import("./pages/LoginPage").then((module) => ({ default: module.LoginPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((module) => ({ default: module.NotFoundPage })));
 const SettingsPage = lazy(() => import("./pages/SettingsPage").then((module) => ({ default: module.SettingsPage })));
-const UserDetailsPage = lazy(() => import("./pages/UserDetailsPage").then((module) => ({ default: module.UserDetailsPage })));
-const UsersPage = lazy(() => import("./pages/UsersPage").then((module) => ({ default: module.UsersPage })));
 
 function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role[] }) {
   const { token, user, loading } = useAuth();
@@ -87,6 +85,18 @@ const legacyApoemaAliasRoutes: LegacyApoemaAliasRouteDefinition[] = [
     redirectTo: "/apoema/assignments"
   },
   {
+    path: "/users",
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:users",
+    redirectTo: "/apoema/users"
+  },
+  {
+    path: "/users/:id",
+    temporaryCompatibility: true,
+    migrationTarget: "apoema:users",
+    redirectTo: "/apoema/users/:id"
+  },
+  {
     path: "/imports",
     temporaryCompatibility: true,
     migrationTarget: "apoema:imports",
@@ -160,18 +170,6 @@ type LegacyCompatibilityRouteDefinition = {
 };
 
 const legacyCompatibilityRoutes: LegacyCompatibilityRouteDefinition[] = [
-  {
-    path: "/users",
-    element: <UsersPage />,
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:users"
-  },
-  {
-    path: "/users/:id",
-    element: <UserDetailsPage />,
-    temporaryCompatibility: true,
-    migrationTarget: "apoema:users"
-  },
   {
     path: "/settings",
     element: (

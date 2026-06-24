@@ -1,5 +1,5 @@
 import { Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
-import { ArrowLeftRight, BarChart3, Brain, FileSignature, FileUp, Layers3, Package, Settings2, ShieldAlert, SplitSquareHorizontal, TextCursorInput, WandSparkles } from "lucide-react";
+import { ArrowLeftRight, BarChart3, Brain, FileSignature, FileUp, Layers3, Package, Settings2, ShieldAlert, SplitSquareHorizontal, TextCursorInput, Users, WandSparkles } from "lucide-react";
 import { ApoemaLogo } from "./components/ApoemaLogo";
 import { ThemeSelector } from "./components/ThemeSelector";
 import { useThemeMode } from "./hooks/useThemeMode";
@@ -12,6 +12,8 @@ import { ImportsPage } from "./pages/ImportsPage";
 import { MacrosPage } from "./pages/MacrosPage";
 import { ChatPage } from "./pages/ChatPage";
 import { IntegrationsPage } from "./pages/IntegrationsPage";
+import { UserDetailsPage } from "./pages/UserDetailsPage";
+import { UsersPage } from "./pages/UsersPage";
 import { SignaturesPage } from "./pages/SignaturesPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { StockPage } from "./pages/StockPage";
@@ -21,6 +23,7 @@ import "./styles/apoema.css";
 const navItems = [
   { to: "dashboard", label: "Visão geral", icon: BarChart3 },
   { to: "assets", label: "Ativos", icon: Layers3 },
+  { to: "users", label: "Usuários", icon: Users },
   { to: "assignments", label: "Movimentações", icon: ArrowLeftRight },
   { to: "signatures", label: "Assinaturas", icon: FileSignature },
   { to: "stock", label: "Estoque", icon: Package },
@@ -98,6 +101,8 @@ export function ApoemaApp() {
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="assets" element={<AssetsPage />} />
           <Route path="assets/:id" element={<AssetDetailPage />} />
+          <Route path="users" element={<UsersPage />} />
+          <Route path="users/:id" element={<UserDetailsPage />} />
           <Route path="assignments" element={<AssignmentsPage />} />
           <Route path="signatures" element={<SignaturesPage />} />
           <Route path="stock" element={<StockPage />} />
