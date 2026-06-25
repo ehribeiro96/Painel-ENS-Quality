@@ -1,0 +1,2 @@
+id	severity	route	viewport	title	evidence	recommendation	phase
+RERUN-001	INFO	/login	all	Login rendered but auth session was not completed	Manual login wait timed out without a completed secure session	Obtain a valid temporary storageState or usable UAT credential and rerun	phase_5g_authenticated_visual_rerun

@@ -1,0 +1,9 @@
+# rerun gates summary
+AUTH_MODE=MANUAL_LOGIN
+secure_session: not obtained
+storage_state: not created
+playwright: available
+authenticated_visual_audit: not completed
+login_page: rendered
+protected_routes: remained gated by design
+security_scan: no real secrets or committed auth artifacts

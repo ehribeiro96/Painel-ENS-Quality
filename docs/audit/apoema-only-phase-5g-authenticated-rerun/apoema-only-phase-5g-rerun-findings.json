@@ -1,0 +1,51 @@
+{
+  "status": "PARTIAL_GO",
+  "target_frontend": "Apoema",
+  "phase": "phase_5g_authenticated_visual_rerun",
+  "auth_mode": "MANUAL_LOGIN",
+  "authenticated": false,
+  "storage_state_committed": false,
+  "credentials_printed": false,
+  "playwright_available": true,
+  "screenshots_created": false,
+  "viewports": [
+    "390x844",
+    "768x1024",
+    "1366x768",
+    "1440x900",
+    "1920x1080"
+  ],
+  "routes_audited": [
+    "/login"
+  ],
+  "visual_status": "PARTIAL_GO",
+  "p0_count": 0,
+  "p1_count": 0,
+  "p2_count": 0,
+  "p3_count": 0,
+  "redirected_to_login_count": 0,
+  "mobile_status": "NOT_TESTED",
+  "desktop_status": "NOT_TESTED",
+  "chat_status": "NOT_TESTED",
+  "assets_status": "NOT_TESTED",
+  "users_status": "NOT_TESTED",
+  "settings_status": "NOT_TESTED",
+  "canonical_routes_preserved": true,
+  "legacy_aliases_absent": true,
+  "appshell_absent": true,
+  "legacy_pages_absent": true,
+  "css_removed": false,
+  "backend_changed": false,
+  "direct_provider_call": false,
+  "secrets_found": false,
+  "validations": {
+    "unittest": "PASS (reused from 5G)",
+    "ruff": "PASS (reused from 5G)",
+    "compileall": "PASS (reused from 5G)",
+    "frontend_build": "PASS (reused from 5G)",
+    "git_diff_check": "PASS",
+    "smoke_http": "PASS (reused from 5G)",
+    "smoke_visual_authenticated": "NOT_EXECUTED_NO_AUTH"
+  },
+  "push_executed": false
+}

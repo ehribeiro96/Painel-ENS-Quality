@@ -1,0 +1,11 @@
+route	viewport	status	redirected_to_login	critical_issue	screenshot	notes
+/login	390x844	GO	false		login-noauth.png	Login page rendered; no authenticated session completed.
+/login	768x1024	GO	false		login-noauth.png	Login page rendered; no authenticated session completed.
+/login	1366x768	GO	false		login-noauth.png	Login page rendered; no authenticated session completed.
+/login	1440x900	GO	false		login-noauth.png	Login page rendered; no authenticated session completed.
+/login	1920x1080	GO	false		login-noauth.png	Login page rendered; no authenticated session completed.
+/apoema	390x844	NOT_TESTED	true		auth-required	no authenticated session
+/apoema	768x1024	NOT_TESTED	true		auth-required	no authenticated session
+/apoema	1366x768	NOT_TESTED	true		auth-required	no authenticated session
+/apoema	1440x900	NOT_TESTED	true		auth-required	no authenticated session
+/apoema	1920x1080	NOT_TESTED	true		auth-required	no authenticated session
