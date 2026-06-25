@@ -1,0 +1,51 @@
+[
+  {
+    "route": "/apoema",
+    "status": 200,
+    "finalPath": "/login",
+    "redirectedToLogin": true,
+    "bodyChars": 743
+  },
+  {
+    "route": "/apoema/chat",
+    "status": 200,
+    "finalPath": "/login",
+    "redirectedToLogin": true,
+    "bodyChars": 743
+  },
+  {
+    "route": "/apoema/assets",
+    "status": 200,
+    "finalPath": "/login",
+    "redirectedToLogin": true,
+    "bodyChars": 743
+  },
+  {
+    "route": "/apoema/assets/123",
+    "status": 200,
+    "finalPath": "/login",
+    "redirectedToLogin": true,
+    "bodyChars": 743
+  },
+  {
+    "route": "/apoema/users",
+    "status": 200,
+    "finalPath": "/login",
+    "redirectedToLogin": true,
+    "bodyChars": 743
+  },
+  {
+    "route": "/apoema/users/123",
+    "status": 200,
+    "finalPath": "/login",
+    "redirectedToLogin": true,
+    "bodyChars": 743
+  },
+  {
+    "route": "/apoema/settings",
+    "status": 200,
+    "finalPath": "/login",
+    "redirectedToLogin": true,
+    "bodyChars": 743
+  }
+]

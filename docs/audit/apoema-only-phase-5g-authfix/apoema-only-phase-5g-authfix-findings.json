@@ -1,0 +1,42 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "phase_5g_authfix",
+  "auth_method": "COOKIE_NORMALIZED_SAME_ORIGIN",
+  "storage_state_created": true,
+  "storage_state_outside_repo": true,
+  "storage_state_refresh_validated": true,
+  "storage_state_route_validated": false,
+  "routes_validated": [
+    "/apoema",
+    "/apoema/chat",
+    "/apoema/assets",
+    "/apoema/assets/123",
+    "/apoema/users",
+    "/apoema/users/123",
+    "/apoema/settings"
+  ],
+  "redirected_to_login": [
+    "/apoema",
+    "/apoema/chat",
+    "/apoema/assets",
+    "/apoema/assets/123",
+    "/apoema/users",
+    "/apoema/users/123",
+    "/apoema/settings"
+  ],
+  "credentials_printed": false,
+  "sensitive_artifact_in_repo": false,
+  "backend_changed": false,
+  "code_changed": false,
+  "validations": {
+    "unittest": "PASS",
+    "ruff": "PASS",
+    "compileall": "PASS",
+    "frontend_build": "PASS",
+    "git_diff_check": "PASS",
+    "refresh_same_origin": "PASS",
+    "protected_route_navigation": "FAIL_REDIRECTED_TO_LOGIN"
+  },
+  "probable_cause": "Vite dev boot aborts POST /api/v1/auth/refresh during React StrictMode auth initialization, leaving ProtectedRoute without in-memory token/user.",
+  "push_executed": false
+}
