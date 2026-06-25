@@ -1,0 +1,32 @@
+{
+  "status": "GO",
+  "phase": "phase_5h_authprovider_boot",
+  "root_cause": "React StrictMode/Vite dev aborted an initial refresh request that could still rotate the backend refresh session; the next boot reused an old cookie and treated the failed refresh as logout.",
+  "abort_error_neutral": true,
+  "protected_route_waits_for_checking": true,
+  "refresh_cookie_valid": true,
+  "protected_routes_validated": [
+    "/apoema",
+    "/apoema/chat",
+    "/apoema/assets",
+    "/apoema/assets/123",
+    "/apoema/users",
+    "/apoema/users/123",
+    "/apoema/settings"
+  ],
+  "redirected_to_login": [],
+  "backend_changed": false,
+  "rbac_changed": false,
+  "api_contract_changed": false,
+  "storage_state_committed": false,
+  "secrets_found": false,
+  "validations": {
+    "unittest": "PASS",
+    "ruff": "PASS",
+    "compileall": "PASS",
+    "frontend_build": "PASS",
+    "git_diff_check": "PASS",
+    "authprovider_boot_validation": "PASS"
+  },
+  "push_executed": false
+}

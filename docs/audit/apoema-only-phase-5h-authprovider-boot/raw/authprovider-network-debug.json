@@ -1,0 +1,125 @@
+{
+  "routeResults": [
+    {
+      "route": "/apoema",
+      "finalPath": "/login",
+      "redirectedToLogin": true
+    },
+    {
+      "route": "/apoema/chat",
+      "finalPath": "/login",
+      "redirectedToLogin": true
+    },
+    {
+      "route": "/apoema/assets",
+      "finalPath": "/login",
+      "redirectedToLogin": true
+    },
+    {
+      "route": "/apoema/assets/123",
+      "finalPath": "/login",
+      "redirectedToLogin": true
+    },
+    {
+      "route": "/apoema/users",
+      "finalPath": "/login",
+      "redirectedToLogin": true
+    },
+    {
+      "route": "/apoema/users/123",
+      "finalPath": "/login",
+      "redirectedToLogin": true
+    },
+    {
+      "route": "/apoema/settings",
+      "finalPath": "/login",
+      "redirectedToLogin": true
+    }
+  ],
+  "events": [
+    {
+      "type": "failed",
+      "url": "/api/v1/auth/refresh",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "type": "response",
+      "status": 401,
+      "url": "/api/v1/auth/refresh"
+    },
+    {
+      "type": "failed",
+      "url": "/api/v1/auth/refresh",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "type": "response",
+      "status": 401,
+      "url": "/api/v1/auth/refresh"
+    },
+    {
+      "type": "failed",
+      "url": "/api/v1/auth/refresh",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "type": "response",
+      "status": 429,
+      "url": "/api/v1/auth/refresh"
+    },
+    {
+      "type": "failed",
+      "url": "/api/v1/auth/refresh",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "type": "response",
+      "status": 429,
+      "url": "/api/v1/auth/refresh"
+    },
+    {
+      "type": "failed",
+      "url": "/api/v1/auth/refresh",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "type": "response",
+      "status": 429,
+      "url": "/api/v1/auth/refresh"
+    },
+    {
+      "type": "failed",
+      "url": "/api/v1/auth/refresh",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "type": "response",
+      "status": 429,
+      "url": "/api/v1/auth/refresh"
+    },
+    {
+      "type": "failed",
+      "url": "/api/v1/auth/refresh",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "type": "response",
+      "status": 429,
+      "url": "/api/v1/auth/refresh"
+    }
+  ]
+}

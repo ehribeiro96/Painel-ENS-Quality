@@ -1,0 +1,100 @@
+[
+  {
+    "type": "console",
+    "level": "warning",
+    "text": "You rendered descendant <Routes> (or called `useRoutes()`) at \"/apoema\" (under <Route path=\"/apoema\">) but the parent route path has no trailing \"*\". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.\n\nPlease change the parent <Route path=\"/apoema\"> to <Route path=\"/apoema/*\">."
+  },
+  {
+    "type": "route",
+    "route": "/apoema",
+    "status": 200,
+    "finalPath": "/apoema/dashboard",
+    "redirectedToLogin": false,
+    "elapsedMs": 973,
+    "bodyChars": 2131
+  },
+  {
+    "type": "route",
+    "route": "/apoema/chat",
+    "status": 200,
+    "finalPath": "/apoema/chat",
+    "redirectedToLogin": false,
+    "elapsedMs": 962,
+    "bodyChars": 1718
+  },
+  {
+    "type": "route",
+    "route": "/apoema/assets",
+    "status": 200,
+    "finalPath": "/apoema/assets",
+    "redirectedToLogin": false,
+    "elapsedMs": 615,
+    "bodyChars": 1434
+  },
+  {
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)"
+  },
+  {
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)"
+  },
+  {
+    "type": "route",
+    "route": "/apoema/assets/123",
+    "status": 200,
+    "finalPath": "/apoema/assets/123",
+    "redirectedToLogin": false,
+    "elapsedMs": 1023,
+    "bodyChars": 808
+  },
+  {
+    "type": "route",
+    "route": "/apoema/users",
+    "status": 200,
+    "finalPath": "/apoema/users",
+    "redirectedToLogin": false,
+    "elapsedMs": 984,
+    "bodyChars": 6482
+  },
+  {
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)"
+  },
+  {
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)"
+  },
+  {
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)"
+  },
+  {
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)"
+  },
+  {
+    "type": "route",
+    "route": "/apoema/users/123",
+    "status": 200,
+    "finalPath": "/apoema/users/123",
+    "redirectedToLogin": false,
+    "elapsedMs": 923,
+    "bodyChars": 1086
+  },
+  {
+    "type": "route",
+    "route": "/apoema/settings",
+    "status": 200,
+    "finalPath": "/apoema/settings",
+    "redirectedToLogin": false,
+    "elapsedMs": 621,
+    "bodyChars": 1367
+  }
+]

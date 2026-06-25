@@ -1,0 +1,239 @@
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:15:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:96:  const { token, user: currentUser } = useAuth();
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:99:  const [loading, setLoading] = useState(true);
+frontend/itam-platform/src/apoema/pages/UsersPage.tsx:351:      {loading ? <LoadingBlock label="Carregando colaboradores..." /> : null}
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:14:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:26:  const { token } = useAuth();
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:27:  const [user, setUser] = useState<User | null>(null);
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:29:  const [loading, setLoading] = useState(true);
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:39:        setUser(userData);
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:88:      {loading ? <LoadingBlock /> : null}
+frontend/itam-platform/src/apoema/pages/UserDetailsPage.tsx:139:      {user === null && !loading && !error ? (
+frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx:12:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx:16:  const { token } = useAuth();
+frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx:17:  const [users, setUsers] = useState<User[]>([]);
+frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx:20:  const [loading, setLoading] = useState(true);
+frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx:34:        setUsers(data.items);
+frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx:54:      setError(detail.includes("422") ? "O colaborador precisa ter e-mail para gerar assinatura." : "Não foi possível gerar o preview de assinatura.");
+frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx:91:    { title: "Colaboradores", value: users.length, description: "Registros carregados para assinatura.", accent: loading ? "Carregando" : "API real" },
+frontend/itam-platform/src/apoema/pages/SignaturesPage.tsx:121:      {loading ? <LoadingBlock /> : null}
+frontend/itam-platform/src/apoema/pages/AssetsPage.tsx:24:        .includes(normalized)
+frontend/itam-platform/src/apoema/pages/StockPage.tsx:11:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/apoema/pages/StockPage.tsx:23:  const { token } = useAuth();
+frontend/itam-platform/src/apoema/pages/StockPage.tsx:25:  const [loading, setLoading] = useState(true);
+frontend/itam-platform/src/apoema/pages/StockPage.tsx:54:          <Base44StatusBadge status={loading ? "warning" : "auditavel"}>{loading ? "Atualizando" : "API real"}</Base44StatusBadge>
+frontend/itam-platform/src/apoema/pages/StockPage.tsx:64:      {loading ? <LoadingBlock label="Carregando indicadores de estoque..." /> : null}
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:13:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:72:  const { token } = useAuth();
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:74:  const [loading, setLoading] = useState(true);
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:123:  const navigationDisabled = loading || !items.length;
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:163:            <Base44StatusBadge status={loading ? "alerta" : "auditavel"}>{loading ? "Atualizando" : "API real"}</Base44StatusBadge>
+frontend/itam-platform/src/apoema/pages/AuditLogsPage.tsx:238:      {loading ? <LoadingBlock label="Carregando logs de auditoria..." /> : null}
+frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx:15:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx:16:import { compactId, formatAssetStatus, formatDateTime } from "@/lib/format";
+frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx:34:  return formatAssetStatus(status);
+frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx:43:  const { token } = useAuth();
+frontend/itam-platform/src/apoema/pages/AssetDetailPage.tsx:195:                { label: "Status", value: <Base44StatusBadge status={asset.status}>{formatAssetStatus(asset.status)}</Base44StatusBadge> },
+frontend/itam-platform/src/apoema/pages/MacrosPage.tsx:15:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/apoema/pages/MacrosPage.tsx:28:  return normalized.includes("nome") || normalized.includes("usuario") || normalized.includes("colaborador");
+frontend/itam-platform/src/apoema/pages/MacrosPage.tsx:39:  const { token, user } = useAuth();
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:15:import { formatAssetStatus, formatDateTime } from "@/lib/format";
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:16:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:40:  const { token } = useAuth();
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:42:  const [status, setStatus] = useState("current");
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:175:              <select className="select full" value={status} onChange={(event) => setStatus(event.target.value)}>
+frontend/itam-platform/src/apoema/pages/AssignmentsPage.tsx:228:                render: (asset) => <span className={`badge assignment-status-badge ${statusTone(asset.status)}`}>{formatAssetStatus(asset.status)}</span>
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:13:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:60:  const { token } = useAuth();
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:69:  const [loading, setLoading] = useState(true);
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:70:  const [uploading, setUploading] = useState(false);
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:121:    setUploading(true);
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:131:      setUploading(false);
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:204:  const canApply = selected && !["APPLIED", "APPLIED_WITH_ISSUES", "CANCELLED"].includes(selected.status);
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:227:            <Base44StatusBadge status={uploading ? "warning" : "auditavel"}>{uploading ? "Enviando" : "Upload ativo"}</Base44StatusBadge>
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:265:        actions={<Base44StatusBadge status={uploading ? "warning" : "leitura"}>{uploading ? "Upload em andamento" : "Fluxo controlado"}</Base44StatusBadge>}
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:268:          <label className={`base44-import-dropzone ${uploading ? "is-disabled" : ""}`}>
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:270:            <strong>{uploading ? "Enviando..." : "Selecionar arquivo"}</strong>
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:272:            <input className="hidden-input" type="file" accept=".csv,.xlsx" onChange={handleFile} disabled={uploading} />
+frontend/itam-platform/src/apoema/pages/ImportsPage.tsx:296:      {loading ? <LoadingBlock /> : null}
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:10:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:40:  if (file.type.includes("spreadsheet") || /\.(csv|xls|xlsx|ods|tsv)$/i.test(lowerName)) return "spreadsheet";
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:137:  const { token } = useAuth();
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:147:  const [providerLoadState, setProviderLoadState] = useState<ApoemaProviderLoadState>("loading");
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:166:    setProviderLoadState("loading");
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:230:    if (selectedProvider && !providerModels.includes(selectedModel)) {
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:338:    providerLoadState === "loading"
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:345:    providerLoadState === "loading"
+frontend/itam-platform/src/apoema/pages/ChatPage.tsx:390:            {providerLoadState === "loading" && (
+frontend/itam-platform/src/apoema/components/CommandCard.tsx:8:  "refresh-cw": <RefreshCw size={18} />
+frontend/itam-platform/src/apoema/types.ts:81:export type ApoemaProviderLoadState = "loading" | "ready" | "fallback" | "error";
+frontend/itam-platform/src/apoema/data.ts:60:    icon: "refresh-cw"
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:102:      credentials: init.credentials ?? "include",
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:109:      if (rawText.trim() && (response.headers.get("content-type") ?? "").includes("application/json")) {
+frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts:124:    if (!contentType.includes("application/json")) {
+frontend/itam-platform/src/pages/LoginPage.tsx:11:import { useAuth } from "@/lib/auth";
+frontend/itam-platform/src/pages/LoginPage.tsx:16:  if (error instanceof DOMException && error.name === "AbortError") {
+frontend/itam-platform/src/pages/LoginPage.tsx:40:  const { token, login, loading, bootError } = useAuth();
+frontend/itam-platform/src/pages/LoginPage.tsx:48:  if (loading) {
+frontend/itam-platform/src/pages/LoginPage.tsx:51:        className="base44-login-shell base44-login-shell-loading"
+frontend/itam-platform/src/pages/LoginPage.tsx:89:        <Base44Surface className="base44-login-card base44-login-loading-card">
+frontend/itam-platform/src/pages/LoginPage.tsx:112:    const controller = new AbortController();
+frontend/itam-platform/src/pages/LoginPage.tsx:115:      await login(email, password, controller.signal);
+frontend/itam-platform/src/pages/LoginPage.tsx:173:        {error ? <div className="base44-inline-alert danger">{error}</div> : bootError ? <div className="base44-inline-alert warning">{bootError}</div> : null}
+frontend/itam-platform/src/styles.css:89:.loading-dot {
+frontend/itam-platform/src/styles.css:95:  animation: loading-pulse 1s ease-in-out infinite;
+frontend/itam-platform/src/styles.css:98:@keyframes loading-pulse {
+frontend/itam-platform/src/styles.css:368:.loading-state,
+frontend/itam-platform/src/styles.css:392:.loading-state,
+frontend/itam-platform/src/styles.css:720:.sentinel-loading {
+frontend/itam-platform/src/styles.css:726:.loading-mark,
+frontend/itam-platform/src/styles.css:733:.loading-mark {
+frontend/itam-platform/src/styles.css:1028:.loading-state,
+frontend/itam-platform/src/styles.css:1048:.loading-state {
+frontend/itam-platform/src/styles.css:1063:.loading-state,
+frontend/itam-platform/src/styles.css:2226:  .loading-state,
+frontend/itam-platform/src/styles.css:2614:.base44-login-shell-loading {
+frontend/itam-platform/src/styles.css:2622:.base44-login-shell-loading .base44-login-hero,
+frontend/itam-platform/src/styles.css:2623:.base44-login-shell-loading .base44-login-card {
+frontend/itam-platform/src/styles.css:2627:.base44-login-shell-loading .base44-login-card {
+frontend/itam-platform/src/styles.css:2695:.base44-login-loading-card {
+frontend/itam-platform/src/styles.css:3684:.base44-shell :is(.button, .mini-button, .logout-link, .legacy-link, .nav a):focus-visible {
+frontend/itam-platform/src/App.tsx:5:import { useAuth } from "./lib/auth";
+frontend/itam-platform/src/App.tsx:12:function ProtectedRoute({ children, roles }: { children: ReactNode; roles?: Role[] }) {
+frontend/itam-platform/src/App.tsx:13:  const { token, user, loading } = useAuth();
+frontend/itam-platform/src/App.tsx:16:  if (loading) {
+frontend/itam-platform/src/App.tsx:24:  if (roles && !roles.includes(user.role)) {
+frontend/itam-platform/src/App.tsx:33:    <ProtectedRoute>
+frontend/itam-platform/src/App.tsx:35:    </ProtectedRoute>
+frontend/itam-platform/src/main.tsx:1:import { StrictMode } from "react";
+frontend/itam-platform/src/main.tsx:6:import { AuthProvider } from "./lib/auth";
+frontend/itam-platform/src/main.tsx:26:  <StrictMode>
+frontend/itam-platform/src/main.tsx:29:        <AuthProvider>
+frontend/itam-platform/src/main.tsx:31:        </AuthProvider>
+frontend/itam-platform/src/main.tsx:34:  </StrictMode>
+frontend/itam-platform/src/components/base44/Base44AssetTimeline.tsx:3:import { compactId, formatAssetStatus, formatDateTime } from "@/lib/format";
+frontend/itam-platform/src/components/base44/Base44AssetTimeline.tsx:47:                <Base44StatusBadge status={movement.new_status}>{formatAssetStatus(movement.new_status)}</Base44StatusBadge>
+frontend/itam-platform/src/components/base44/Base44AssetTimeline.tsx:54:                    {formatAssetStatus(movement.previous_status)} · {movement.previous_location ?? "Origem não informada"} · {personLabel(movement.previous_user_name, movement.previous_user_id, "Usuário não informado")}
+frontend/itam-platform/src/components/base44/Base44AssetTimeline.tsx:61:                    {formatAssetStatus(movement.new_status)} · {movement.new_location ?? "Destino não informado"} · {personLabel(movement.new_user_name, movement.new_user_id, "Usuário não informado")}
+frontend/itam-platform/src/components/base44/Base44AssetCard.tsx:3:import { formatAssetStatus, formatDateTime } from "@/lib/format";
+frontend/itam-platform/src/components/base44/Base44AssetCard.tsx:31:        <Base44StatusBadge status={asset.status}>{formatAssetStatus(asset.status)}</Base44StatusBadge>
+frontend/itam-platform/src/components/base44/Base44AuditEventCard.tsx:18:  if (normalized.includes("DELETE")) return "danger";
+frontend/itam-platform/src/components/base44/Base44AuditEventCard.tsx:19:  if (normalized.includes("STATUS_CHANGE")) return "warning";
+frontend/itam-platform/src/components/base44/Base44AuditEventCard.tsx:20:  if (normalized.includes("UPDATE") || normalized.includes("MOVE") || normalized.includes("IMPORT")) return "warning";
+frontend/itam-platform/src/components/base44/Base44AuditEventCard.tsx:21:  if (normalized.includes("CREATE") || normalized.includes("LOGIN") || normalized.includes("SIGNATURE_GENERATE")) return "success";
+frontend/itam-platform/src/components/base44/Base44AuditEventCard.tsx:27:  if (normalized.includes("auth") || normalized.includes("security")) return "warning";
+frontend/itam-platform/src/components/base44/Base44AuditEventCard.tsx:28:  if (normalized.includes("legacy")) return "neutral";
+frontend/itam-platform/src/components/ai-chat/ConversationList.tsx:11:  loading?: boolean;
+frontend/itam-platform/src/components/ai-chat/ConversationList.tsx:64:  loading,
+frontend/itam-platform/src/components/ai-chat/ConversationList.tsx:77:        <button className="button primary" type="button" onClick={onNewConversation} disabled={loading}>
+frontend/itam-platform/src/components/ai-chat/ConversationList.tsx:105:            actionDisabled={loading}
+frontend/itam-platform/src/components/ai-chat/ConversationList.tsx:126:                actionDisabled={loading}
+frontend/itam-platform/src/components/ai-chat/ChatMessages.tsx:7:  loading?: boolean;
+frontend/itam-platform/src/components/ai-chat/ChatMessages.tsx:35:export function ChatMessages({ messages, loading, onCopy }: Props) {
+frontend/itam-platform/src/components/ai-chat/ChatMessages.tsx:68:      {loading ? (
+frontend/itam-platform/src/components/StateBlocks.tsx:18:    <div className="loading-state card muted-card sentinel-loading" aria-busy="true" aria-live="polite">
+frontend/itam-platform/src/components/StateBlocks.tsx:19:      <span className="loading-mark" aria-hidden="true">
+frontend/itam-platform/src/components/MoveAssetDialog.tsx:7:import type { Asset, AssetStatus, Page, SuggestedMovementMacro, User } from "@/lib/types";
+frontend/itam-platform/src/components/MoveAssetDialog.tsx:37:const statuses: AssetStatus[] = ["IN_USE", "STOCK", "MAINTENANCE", "DEFECTIVE", "DISCARDED", "RESERVED", "CONFIG_PENDING"];
+frontend/itam-platform/src/lib/auth.tsx:9:  loading: boolean;
+frontend/itam-platform/src/lib/auth.tsx:10:  bootError: string | null;
+frontend/itam-platform/src/lib/auth.tsx:11:  login: (email: string, password: string, signal?: AbortSignal) => Promise<void>;
+frontend/itam-platform/src/lib/auth.tsx:12:  logout: () => Promise<void>;
+frontend/itam-platform/src/lib/auth.tsx:19:  if (error instanceof DOMException && error.name === "AbortError") {
+frontend/itam-platform/src/lib/auth.tsx:28:export function AuthProvider({ children }: { children: ReactNode }) {
+frontend/itam-platform/src/lib/auth.tsx:30:  const [user, setUser] = useState<User | null>(null);
+frontend/itam-platform/src/lib/auth.tsx:31:  const [loading, setLoading] = useState(true);
+frontend/itam-platform/src/lib/auth.tsx:32:  const [bootError, setBootError] = useState<string | null>(null);
+frontend/itam-platform/src/lib/auth.tsx:34:  const refreshPromiseRef = useRef<Promise<string | null> | null>(null);
+frontend/itam-platform/src/lib/auth.tsx:43:    setUser(null);
+frontend/itam-platform/src/lib/auth.tsx:46:  async function refreshSession(signal?: AbortSignal) {
+frontend/itam-platform/src/lib/auth.tsx:47:    if (refreshPromiseRef.current) {
+frontend/itam-platform/src/lib/auth.tsx:48:      return refreshPromiseRef.current;
+frontend/itam-platform/src/lib/auth.tsx:50:    const controller = new AbortController();
+frontend/itam-platform/src/lib/auth.tsx:52:    if (signal) {
+frontend/itam-platform/src/lib/auth.tsx:53:      if (signal.aborted) {
+frontend/itam-platform/src/lib/auth.tsx:56:        signal.addEventListener("abort", abortFromCaller, { once: true });
+frontend/itam-platform/src/lib/auth.tsx:60:    refreshPromiseRef.current = api
+frontend/itam-platform/src/lib/auth.tsx:61:      .refresh({ signal: controller.signal })
+frontend/itam-platform/src/lib/auth.tsx:64:        setUser(result.user);
+frontend/itam-platform/src/lib/auth.tsx:79:        if (signal) {
+frontend/itam-platform/src/lib/auth.tsx:80:          signal.removeEventListener("abort", abortFromCaller);
+frontend/itam-platform/src/lib/auth.tsx:82:        refreshPromiseRef.current = null;
+frontend/itam-platform/src/lib/auth.tsx:84:    return refreshPromiseRef.current;
+frontend/itam-platform/src/lib/auth.tsx:89:    const controller = new AbortController();
+frontend/itam-platform/src/lib/auth.tsx:91:      refreshAccessToken: refreshSession,
+frontend/itam-platform/src/lib/auth.tsx:95:    refreshSession(controller.signal)
+frontend/itam-platform/src/lib/auth.tsx:118:      loading,
+frontend/itam-platform/src/lib/auth.tsx:119:      bootError,
+frontend/itam-platform/src/lib/auth.tsx:120:      async login(email: string, password: string, signal?: AbortSignal) {
+frontend/itam-platform/src/lib/auth.tsx:121:        const result = await api.login(email, password, { signal });
+frontend/itam-platform/src/lib/auth.tsx:123:        setUser(result.user);
+frontend/itam-platform/src/lib/auth.tsx:126:      async logout() {
+frontend/itam-platform/src/lib/auth.tsx:127:        await api.logout(tokenRef.current).catch(() => undefined);
+frontend/itam-platform/src/lib/auth.tsx:132:    [bootError, loading, token, user]
+frontend/itam-platform/src/lib/auth.tsx:138:export function useAuth() {
+frontend/itam-platform/src/lib/auth.tsx:141:    throw new Error("useAuth must be used within AuthProvider");
+frontend/itam-platform/src/lib/format.ts:24:const assetStatusLabels: Record<string, string> = {
+frontend/itam-platform/src/lib/format.ts:46:export function formatAssetStatus(value: string | null | undefined) {
+frontend/itam-platform/src/lib/format.ts:48:  return assetStatusLabels[value] ?? value;
+frontend/itam-platform/src/lib/permissions.ts:6:  return Boolean(role && WRITE_ROLES.includes(role));
+frontend/itam-platform/src/lib/api.ts:48:  if (detailStr.includes("provider_http_429")) {
+frontend/itam-platform/src/lib/api.ts:56:  if (detailStr.includes("ai_chat_disabled")) {
+frontend/itam-platform/src/lib/api.ts:63:  if (status === 503 || detailStr.includes("ai_provider_configuration_error")) {
+frontend/itam-platform/src/lib/api.ts:114:let refreshAccessToken: (() => Promise<string | null>) | null = null;
+frontend/itam-platform/src/lib/api.ts:118:  refreshAccessToken: () => Promise<string | null>;
+frontend/itam-platform/src/lib/api.ts:121:  refreshAccessToken = options.refreshAccessToken;
+frontend/itam-platform/src/lib/api.ts:141:      credentials: fetchInit.credentials ?? "include",
+frontend/itam-platform/src/lib/api.ts:148:  if (response.status === 401 && !skipAuthRefresh && refreshAccessToken) {
+frontend/itam-platform/src/lib/api.ts:149:    const nextToken = await refreshAccessToken().catch(() => null);
+frontend/itam-platform/src/lib/api.ts:178:  if (!response.headers.get("content-type")?.includes("application/json")) {
+frontend/itam-platform/src/lib/api.ts:186:  login: (email: string, password: string, options: Pick<RequestInit, "signal"> = {}) =>
+frontend/itam-platform/src/lib/api.ts:193:  refresh: (options: Pick<RequestInit, "signal"> = {}) =>
+frontend/itam-platform/src/lib/api.ts:194:    request<TokenResponse>("/auth/refresh", { method: "POST", skipAuthRefresh: true, ...options }),
+frontend/itam-platform/src/lib/api.ts:195:  logout: (token?: string | null, options: Pick<RequestInit, "signal"> = {}) =>
+frontend/itam-platform/src/lib/api.ts:196:    request<{ status: string }>("/auth/logout", { method: "POST", token, skipAuthRefresh: true, ...options }),
+frontend/itam-platform/src/lib/api.ts:223:    if (normalized.includes("page_size=")) {
+frontend/itam-platform/src/lib/types.ts:1:export type AssetStatus = "IN_USE" | "STOCK" | "MAINTENANCE" | "DEFECTIVE" | "DISCARDED" | "RESERVED" | "CONFIG_PENDING";
+frontend/itam-platform/src/lib/types.ts:21:  status: AssetStatus;
+frontend/itam-platform/src/lib/types.ts:133:  previous_status: AssetStatus;
+frontend/itam-platform/src/lib/types.ts:134:  new_status: AssetStatus;
+tests/test_apoema_signatures_parity_contract.py:56:    def test_related_apoema_aliases_and_lazy_loading_remain_preserved(self) -> None:
+tests/test_startup_diagnostics.py:40:                await startup._run_startup_step("bootstrap_admin", "bootstrap_admin_begin", "bootstrap_admin_ok", failing_operation)
+tests/test_startup_diagnostics.py:45:        self.assertIn("bootstrap_admin_begin", events)
+tests/test_startup_diagnostics.py:48:        self.assertEqual(failure["failed_step"], "bootstrap_admin")
+tests/test_apoema_settings_parity_contract.py:73:    def test_lazy_loading_and_shell_boundary_remain_preserved(self) -> None:
+tests/test_apoema_assignments_parity_contract.py:68:    def test_related_apoema_aliases_and_lazy_loading_remain_preserved(self) -> None:
+tests/test_ai_chat_api.py:80:    async def refresh(self, entity: object) -> None:
+tests/test_ai_chat_api.py:185:    async def test_create_conversation_uses_authenticated_user_id_and_sends_message(self) -> None:
+tests/test_apoema_only_route_contract.py:32:    def test_protected_route_wraps_apoema_and_lazy_loading_remains(self) -> None:
+tests/test_apoema_only_route_contract.py:33:        self.assertIn("function ProtectedRoute(", APP)
+tests/test_apoema_only_route_contract.py:35:        self.assertIn("<ProtectedRoute>", APP)
+tests/test_apoema_stock_parity_contract.py:59:    def test_lazy_loading_and_preview_boundary_remain_preserved(self) -> None:
+tests/test_auth_regression.py:11:    def test_login_me_refresh_logout_and_refresh_after_logout(self) -> None:
+tests/test_auth_regression.py:15:        self.assertIn("ens_itam_refresh", self.client.session.cookies)
+tests/test_auth_regression.py:21:        refresh = self.client.session.post(f"{self.client.api}/auth/refresh", timeout=20)
+tests/test_auth_regression.py:22:        self.assertEqual(refresh.status_code, 200)
+tests/test_auth_regression.py:23:        self.assertIn("access_token", refresh.json())
+tests/test_auth_regression.py:25:        logout = self.client.session.post(f"{self.client.api}/auth/logout", headers=self.client.headers(), timeout=20)
+tests/test_auth_regression.py:26:        self.assertEqual(logout.status_code, 200)
+tests/test_auth_regression.py:28:        refresh_after_logout = self.client.session.post(f"{self.client.api}/auth/refresh", timeout=20)
+tests/test_auth_regression.py:29:        self.assertEqual(refresh_after_logout.status_code, 401)
+tests/test_operational_contracts.py:100:        from app.shared.enums import AssetStatus
+tests/test_operational_contracts.py:113:                previous_status=AssetStatus.STOCK,
+tests/test_operational_contracts.py:114:                new_status=AssetStatus.IN_USE,
+tests/test_login_frontend_contract.py:22:    def test_login_page_handles_loading_and_error_states(self) -> None:
+tests/test_login_frontend_contract.py:23:        self.assertIn("if (loading)", LOGIN)
+tests/test_login_frontend_contract.py:28:        self.assertIn("bootError", LOGIN)
+tests/test_login_frontend_contract.py:43:    def test_auth_context_has_timeout_and_boot_error_handling(self) -> None:
+tests/test_login_frontend_contract.py:45:        self.assertIn("AbortController", AUTH)
+tests/test_login_frontend_contract.py:46:        self.assertIn("refreshSession(controller.signal)", AUTH)
+tests/test_login_frontend_contract.py:48:        self.assertIn("bootError", AUTH)
+tests/test_login_frontend_contract.py:49:        self.assertIn("api.login(email, password, { signal })", AUTH)
+tests/test_login_frontend_contract.py:50:        self.assertIn(".refresh({ signal: controller.signal })", AUTH)
+tests/test_login_frontend_contract.py:52:    def test_api_auth_methods_accept_abort_signals(self) -> None:
+tests/test_login_frontend_contract.py:53:        self.assertIn('login: (email: string, password: string, options: Pick<RequestInit, "signal"> = {})', API)
+tests/test_login_frontend_contract.py:54:        self.assertIn('refresh: (options: Pick<RequestInit, "signal"> = {})', API)
+tests/test_login_frontend_contract.py:55:        self.assertIn('logout: (token?: string | null, options: Pick<RequestInit, "signal"> = {})', API)
+tests/test_apoema_ai_chat_parity_contract.py:47:    def test_lazy_loading_and_suspense_remain(self) -> None:
+tests/test_apoema_ai_chat_backend.py:101:            await get_current_user(request=request, credentials=None, session=SimpleNamespace())
+tests/test_apoema_users_parity_contract.py:98:    def test_lazy_loading_and_shell_boundary_remain_preserved(self) -> None:
