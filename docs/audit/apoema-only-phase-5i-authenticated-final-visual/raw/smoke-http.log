@@ -1,0 +1,169 @@
+===== / =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:41 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /login =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/chat =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/assets =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/assets/123 =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/audit-logs =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/imports =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/macros =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/stock =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/signatures =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/assignments =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/users =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/users/123 =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema/settings =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema-preview =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+===== /apoema-preview/chat =====
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Thu, 25 Jun 2026 15:23:43 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
