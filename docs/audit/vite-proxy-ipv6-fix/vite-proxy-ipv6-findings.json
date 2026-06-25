@@ -1,0 +1,15 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "vite_proxy_ipv6_fix",
+  "root_cause": "vite_proxy_target_used_broken_ipv4_loopback",
+  "proxy_target_before": "http://127.0.0.1:8080",
+  "proxy_target_after": "http://[::1]:8080",
+  "backend_127001_ready": false,
+  "backend_localhost_ready": true,
+  "backend_ipv6_ready": true,
+  "vite_proxy_no_reset": false,
+  "windows_vite_access": false,
+  "frontend_app_code_changed": false,
+  "backend_changed": false,
+  "push_executed": false
+}
