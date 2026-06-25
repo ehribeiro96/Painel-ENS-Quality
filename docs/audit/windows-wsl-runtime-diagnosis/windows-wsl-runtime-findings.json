@@ -1,0 +1,56 @@
+{
+  "date": "2026-06-25",
+  "status": "PARTIAL-GO",
+  "classification": "M_MULTIPLE_CAUSES",
+  "observed_symptoms": [
+    "Windows Chrome timed out on http://172.18.0.1:5173/apoema",
+    "Windows browser reset on http://localhost:8080/apoema"
+  ],
+  "wsl_results": {
+    "vite": {
+      "listening": true,
+      "bind": "0.0.0.0:5173",
+      "probe": "http://172.18.0.1:5173/apoema -> 200 OK"
+    },
+    "backend": {
+      "listening": true,
+      "bind": "0.0.0.0:8080",
+      "health": "200 OK",
+      "ready": "200 OK",
+      "apoema": "http://localhost:8080/apoema -> 200 OK"
+    }
+  },
+  "windows_results": {
+    "localhost_5173": "failed to connect",
+    "localhost_8080": "connection reset",
+    "wsl_ip_5173": "failed to connect",
+    "wsl_ip_8080": "failed to connect",
+    "docker_bridge_5173": "timed out",
+    "docker_bridge_8080": "timed out"
+  },
+  "docker": {
+    "app": "healthy",
+    "postgres": "healthy",
+    "redis": "healthy",
+    "published_ports": [
+      "0.0.0.0:8080->8080/tcp"
+    ]
+  },
+  "portproxy": {
+    "iphlpsvc": "RUNNING",
+    "listeners": [
+      {
+        "listen": "127.0.0.1:8080",
+        "target": "172.16.0.2:18080"
+      },
+      {
+        "listen": "127.0.0.1:18086",
+        "target": "172.16.0.2:18085"
+      }
+    ]
+  },
+  "firewall": {
+    "explicit_rules_found": false
+  },
+  "safe_next_step": "Recreate or remove the Windows portproxy so 127.0.0.1:8080 targets the real WSL service port, then retest from Windows. If Vite access is still required, expose 5173 explicitly or use the backend-hosted SPA on 8080."
+}

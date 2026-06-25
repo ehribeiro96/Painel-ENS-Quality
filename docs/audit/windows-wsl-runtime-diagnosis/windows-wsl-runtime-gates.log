@@ -1,0 +1,29 @@
+# Windows ⇄ WSL Runtime Gates Log
+
+## Diagnostics run
+- `docker compose ps` → app/postgres/redis healthy
+- `docker ps --format ...` → app publishes `0.0.0.0:8080->8080/tcp`
+- `ss -ltnp` → `0.0.0.0:5173` and `0.0.0.0:8080` listening in WSL
+- `hostname -I` / `ip route` → WSL IPs include `192.168.0.80`, Docker bridge `172.18.0.1`, gateway `192.168.1.200`
+- `curl` from WSL:
+  - `172.18.0.1:5173/apoema` → `200 OK`
+  - `localhost:8080/apoema` → `200 OK`
+  - `127.0.0.1:8080/apoema` → `connection reset`
+- `cmd.exe /c curl` from Windows:
+  - `127.0.0.1:5173/apoema` → could not connect
+  - `localhost:5173/apoema` → could not connect
+  - `127.0.0.1:8080/apoema` → connection reset
+  - `localhost:8080/apoema` → connection reset
+  - `192.168.0.80:5173/apoema` → could not connect
+  - `192.168.0.80:8080/apoema` → could not connect
+  - `172.18.0.1:5173/apoema` → timed out
+  - `172.18.0.1:8080/apoema` → timed out
+- `cmd.exe /c netsh interface portproxy show all` → `127.0.0.1:8080 -> 172.16.0.2:18080`
+- `powershell.exe Get-NetTCPConnection -State Listen ...` → only `127.0.0.1:8080` listening on Windows
+- `powershell.exe Get-Process -Id 3760` → `svchost.exe`
+- `powershell.exe Get-NetFirewallRule ...` → no explicit matching rules returned
+
+## Gate result
+- WSL runtime: OK
+- Windows access: BROKEN
+- Root cause class: `M_MULTIPLE_CAUSES`
