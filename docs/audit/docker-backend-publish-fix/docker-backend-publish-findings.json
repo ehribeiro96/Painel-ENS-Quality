@@ -1,0 +1,16 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "docker_backend_publish_fix",
+  "root_cause": "host_wsl_ipv4_publish_mismatch",
+  "backend_bind_inside_container": "0.0.0.0/:: reachable internally; not 127.0.0.1-only",
+  "docker_publish_8080": "0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp",
+  "container_internal_ready": true,
+  "wsl_host_ready": false,
+  "wsl_host_spa": false,
+  "vite_proxy_no_reset": false,
+  "windows_backend_ready": false,
+  "code_changed": false,
+  "backend_business_logic_changed": false,
+  "docker_or_dev_runtime_changed": false,
+  "push_executed": false
+}
