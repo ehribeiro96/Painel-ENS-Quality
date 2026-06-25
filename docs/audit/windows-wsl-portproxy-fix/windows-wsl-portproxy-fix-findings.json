@@ -1,0 +1,17 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "windows_wsl_portproxy_fix",
+  "root_cause": "stale_windows_portproxy",
+  "wsl_ip": "192.168.0.80",
+  "frontend_port": 5173,
+  "backend_port": 8080,
+  "portproxy_updated": true,
+  "windows_frontend_ok": false,
+  "windows_backend_ready_ok": false,
+  "windows_backend_spa_ok": false,
+  "wsl_frontend_ok": false,
+  "wsl_backend_ready_ok": false,
+  "code_changed": false,
+  "backend_changed": false,
+  "push_executed": false
+}
