@@ -1,0 +1,17 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "runtime_access_fix",
+  "root_cause": "Windows browser was pointed at the Docker bridge IP 172.18.0.1:5173; Vite is running on the WSL host at 0.0.0.0:5173, but Windows-side TCP reachability to that listener failed in this session.",
+  "vite_runtime": "wsl_host",
+  "vite_port": "5173",
+  "vite_bind": "0.0.0.0:5173",
+  "windows_frontend_url": "http://localhost:8080/apoema",
+  "windows_backend_url": "http://localhost:8080/health/ready",
+  "backend_ready": true,
+  "containers_healthy": true,
+  "runtime_changed": false,
+  "backend_changed": false,
+  "frontend_app_changed": false,
+  "secrets_found": false,
+  "push_executed": false
+}

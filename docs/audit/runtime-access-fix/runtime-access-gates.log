@@ -1,0 +1,35 @@
+2026-06-25 runtime-access fix gates
+
+Initial repo state:
+- branch: main
+- ahead of origin/main: 121
+- staged files before task: none
+- untracked files preserved: yes
+
+Runtime discovery:
+- docker compose ps: app/postgres/redis healthy
+- app container ports: 8080 published to host
+- Vite process: running on WSL host, pid 17470, command includes --host 0.0.0.0 --port 5173
+- Vite bind: 0.0.0.0:5173
+- WSL curl to http://172.18.0.1:5173/apoema: 200 OK
+- WSL curl to http://localhost:5173/apoema: timeout
+- Windows PowerShell Test-NetConnection to localhost/127.0.0.1/WSL IPs on 5173: failed
+- Windows PowerShell Test-NetConnection to localhost/127.0.0.1/WSL IPs on 8080: failed
+- browser-tool navigate to http://localhost:8080/apoema: success
+- browser-tool console on /apoema: no JS errors
+
+Backend checks:
+- http://localhost:8080/health/ready: 200 OK
+- http://172.18.0.1:8080/health/ready: 200 OK
+- health response reports postgres ok, redis ok, frontend_ready true, startup_complete true
+
+Validation gates:
+- unittest: PASS
+- ruff: PASS
+- compileall: PASS
+- frontend build: PASS
+- git diff --check: PASS
+
+Decision:
+- status: PARTIAL_GO
+- push_executed: no
