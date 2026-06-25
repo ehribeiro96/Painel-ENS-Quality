@@ -43,11 +43,12 @@ class LoginFrontendContractTest(unittest.TestCase):
     def test_auth_context_has_timeout_and_boot_error_handling(self) -> None:
         self.assertIn("AUTH_BOOT_TIMEOUT_MS", AUTH)
         self.assertIn("AbortController", AUTH)
-        self.assertIn("refreshSession(controller.signal)", AUTH)
+        self.assertIn("sharedRefreshRequest", AUTH)
+        self.assertIn("refreshSession()", AUTH)
         self.assertIn("setBootError", AUTH)
         self.assertIn("bootError", AUTH)
         self.assertIn("api.login(email, password, { signal })", AUTH)
-        self.assertIn(".refresh({ signal: controller.signal })", AUTH)
+        self.assertIn("requestRefresh(signal ? controller.signal : undefined)", AUTH)
 
     def test_api_auth_methods_accept_abort_signals(self) -> None:
         self.assertIn('login: (email: string, password: string, options: Pick<RequestInit, "signal"> = {})', API)

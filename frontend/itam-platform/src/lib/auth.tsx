@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { ApiError, api, configureApiAuth } from "./api";
-import type { User } from "./types";
+import type { TokenResponse, User } from "./types";
 
 type AuthContextValue = {
   token: string | null;
@@ -14,9 +14,14 @@ type AuthContextValue = {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 const AUTH_BOOT_TIMEOUT_MS = 8000;
+let sharedRefreshRequest: Promise<TokenResponse> | null = null;
+
+function isAbortError(error: unknown) {
+  return error instanceof DOMException && error.name === "AbortError";
+}
 
 function isBootUnavailableError(error: unknown) {
-  if (error instanceof DOMException && error.name === "AbortError") {
+  if (isAbortError(error)) {
     return true;
   }
   if (!(error instanceof ApiError)) {
@@ -25,13 +30,28 @@ function isBootUnavailableError(error: unknown) {
   return error.status >= 500;
 }
 
+function requestRefresh(signal?: AbortSignal) {
+  if (!signal && sharedRefreshRequest) {
+    return sharedRefreshRequest;
+  }
+  const refreshRequest = api.refresh({ signal }).finally(() => {
+    if (sharedRefreshRequest === refreshRequest) {
+      sharedRefreshRequest = null;
+    }
+  });
+  if (!signal) {
+    sharedRefreshRequest = refreshRequest;
+  }
+  return refreshRequest;
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setTokenState] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [bootError, setBootError] = useState<string | null>(null);
   const tokenRef = useRef<string | null>(null);
-  const refreshPromiseRef = useRef<Promise<string | null> | null>(null);
+  const bootSeqRef = useRef(0);
 
   function setAccessToken(nextToken: string | null) {
     tokenRef.current = nextToken;
@@ -44,9 +64,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function refreshSession(signal?: AbortSignal) {
-    if (refreshPromiseRef.current) {
-      return refreshPromiseRef.current;
-    }
     const controller = new AbortController();
     const abortFromCaller = () => controller.abort();
     if (signal) {
@@ -56,9 +73,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signal.addEventListener("abort", abortFromCaller, { once: true });
       }
     }
-    const timeoutId = window.setTimeout(() => controller.abort(), AUTH_BOOT_TIMEOUT_MS);
-    refreshPromiseRef.current = api
-      .refresh({ signal: controller.signal })
+    const timeoutId = signal ? window.setTimeout(() => controller.abort(), AUTH_BOOT_TIMEOUT_MS) : null;
+    const refreshPromise = requestRefresh(signal ? controller.signal : undefined)
       .then((result) => {
         setAccessToken(result.access_token);
         setUser(result.user);
@@ -66,40 +82,47 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return result.access_token;
       })
       .catch((error: unknown) => {
-        clearSession();
+        if (isAbortError(error)) {
+          throw error;
+        }
+        if (error instanceof ApiError && (error.status === 401 || error.status === 403)) {
+          clearSession();
+          setBootError(null);
+          return null;
+        }
         if (isBootUnavailableError(error)) {
           setBootError("Backend indisponível. O formulário de login continua disponível.");
-        } else {
-          setBootError(null);
         }
-        return null;
+        throw error;
       })
       .finally(() => {
-        window.clearTimeout(timeoutId);
+        if (timeoutId !== null) {
+          window.clearTimeout(timeoutId);
+        }
         if (signal) {
           signal.removeEventListener("abort", abortFromCaller);
         }
-        refreshPromiseRef.current = null;
       });
-    return refreshPromiseRef.current;
+    return refreshPromise;
   }
 
   useEffect(() => {
     let active = true;
     const controller = new AbortController();
+    const bootSeq = ++bootSeqRef.current;
     configureApiAuth({
       refreshAccessToken: refreshSession,
       handleUnauthorized: clearSession
     });
     setLoading(true);
-    refreshSession(controller.signal)
+    refreshSession()
       .then(() => {
-        if (active) {
+        if (active && bootSeq === bootSeqRef.current) {
           setLoading(false);
         }
       })
-      .catch(() => {
-        if (active) {
+      .catch((error: unknown) => {
+        if (active && bootSeq === bootSeqRef.current && !isAbortError(error)) {
           clearSession();
           setLoading(false);
         }

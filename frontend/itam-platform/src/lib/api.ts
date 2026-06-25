@@ -146,9 +146,15 @@ async function request<T>(path: string, init: RequestOptions = {}): Promise<T> {
   let response = await execute(token);
 
   if (response.status === 401 && !skipAuthRefresh && refreshAccessToken) {
-    const nextToken = await refreshAccessToken().catch(() => null);
+    let refreshError: unknown = null;
+    const nextToken = await refreshAccessToken().catch((error: unknown) => {
+      refreshError = error;
+      return null;
+    });
     if (nextToken) {
       response = await execute(nextToken);
+    } else if (refreshError) {
+      throw refreshError;
     } else if (handleUnauthorized) {
       handleUnauthorized();
     }
