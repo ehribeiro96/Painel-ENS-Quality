@@ -7,6 +7,7 @@ from app.api.v1.routes import (
     dashboard,
     imports,
     macros,
+    rag,
     search,
     signatures,
     users,
@@ -24,5 +25,6 @@ api_router.include_router(signatures.router)
 api_router.include_router(macros.router)
 api_router.include_router(macros.movements_router)
 api_router.include_router(ai_chat.router)
+api_router.include_router(rag.router)
 api_router.include_router(audit.router)
 api_router.include_router(search.router)
