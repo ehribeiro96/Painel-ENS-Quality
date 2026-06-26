@@ -1,0 +1,36 @@
+external_name	module	exposure	current_usage	sensitive	target_name	target_location	migration_action	notes
+VITE_	apps/chat-web	public build-time env prefix	public build-time env prefix	PUBLIC_FRONTEND_ALLOWED	frontend build env	frontend build env	keep as frontend-only prefix	Only safe for non-secret values.
+NEXT_PUBLIC_	apps/chat-web	legacy public build-time env prefix	legacy public build-time env prefix	PUBLIC_FRONTEND_ALLOWED	frontend build env	frontend build env	keep as frontend-only prefix	Do not use for secrets.
+GEMINI_API_KEY	apps/designer-api	server AI provider key	AI provider secret	SERVER_ONLY_SECRET	runtime secret store / VPS env	runtime secret store / VPS env	SERVER_ONLY_SECRET	Never place on frontend.
+GOOGLE_API_KEY	apps/designer-api	legacy server AI provider key	AI provider secret	SERVER_ONLY_SECRET	runtime secret store / VPS env	runtime secret store / VPS env	SERVER_ONLY_SECRET	Maintain compatibility only if truly needed.
+SUPABASE_URL	apps/designer-api	server output backend URL	non-secret URL	UNKNOWN_REVIEW_REQUIRED	backend env	backend env	map explicitly	Potentially public but still backend-owned.
+SUPABASE_SERVICE_ROLE_KEY	apps/designer-api	Supabase privileged key	privileged backend credential	SERVER_ONLY_SECRET	runtime secret store / VPS env	runtime secret store / VPS env	SERVER_ONLY_SECRET	Must remain server-side.
+OUTPUTS_DIR	apps/designer-api	local output directory	filesystem path	LOCAL_DEV_ONLY	container/local env	container/local env	preserve	Safe but environment-specific.
+TMP_DIR	apps/designer-api	local temp directory	filesystem path	LOCAL_DEV_ONLY	container/local env	container/local env	preserve	Safe but environment-specific.
+ARTIFACT_PORT	services/artifact-server	service listen port	internal port	LOCAL_DEV_ONLY	backend/container env	backend/container env	keep	Default 8095.
+ARTIFACT_INTERNAL_KEY	services/artifact-server	internal auth key	internal bearer/header secret	SERVER_ONLY_SECRET	backend secret store	backend secret store	server secret	Do not expose to frontend.
+ARTIFACT_ACCESS_TOKEN_SECRET	services/artifact-server	signed URL secret	content access token secret	SERVER_ONLY_SECRET	backend secret store	backend secret store	server secret	If absent, falls back to internal key.
+ARTIFACT_PUBLIC_BASE_URL	services/artifact-server	public link base URL	public URL	UNKNOWN_REVIEW_REQUIRED	backend config	backend config	map explicitly	Used for returned content URLs.
+ARTIFACT_ALLOWED_ORIGINS	services/artifact-server	CORS allowlist	allowlist not secret	PUBLIC_FRONTEND_ALLOWED	backend config	backend config	allowlist	Should be strict and explicit.
+ARTIFACT_MAX_UPLOAD_BYTES	services/artifact-server	upload limit	size limit	LOCAL_DEV_ONLY	backend config	backend config	keep	Operational config.
+BRIDGE_PORT	services/chat-bridge	bridge listen port	internal port	LOCAL_DEV_ONLY	backend/container env	backend/container env	keep	Default 8080.
+BRIDGE_ALLOWED_ORIGINS	services/chat-bridge	CORS allowlist	allowlist not secret	PUBLIC_FRONTEND_ALLOWED	backend config	backend config	allowlist	Must remain backend-owned.
+SUPABASE_URL	services/chat-bridge	Supabase URL	backend URL	UNKNOWN_REVIEW_REQUIRED	backend config	backend config	map explicitly	Used for repository access.
+SUPABASE_SERVICE_ROLE_KEY	services/chat-bridge	Supabase privileged key	privileged backend credential	SERVER_ONLY_SECRET	backend secret store	backend secret store	server secret	Never front-end.
+HERMES_API_BASE_URL	services/chat-bridge	Hermes runtime URL	backend-to-backend URL	UNKNOWN_REVIEW_REQUIRED	backend config	backend config	map explicitly	Used to call Hermes session APIs.
+HERMES_API_KEY	services/chat-bridge	Hermes API key	backend auth secret	SERVER_ONLY_SECRET	backend secret store	backend secret store	server secret	Do not surface to UI.
+ARTIFACT_INTERNAL_URL	services/chat-bridge	artifact service internal URL	backend URL	UNKNOWN_REVIEW_REQUIRED	backend config	backend config	map explicitly	Used for artifact access links.
+ARTIFACT_INTERNAL_KEY	services/chat-bridge	artifact service auth key	backend auth secret	SERVER_ONLY_SECRET	backend secret store	backend secret store	server secret	Bridge-only.
+SUPABASE_URL	services/rag-mcp	Supabase URL	backend URL	UNKNOWN_REVIEW_REQUIRED	backend config	backend config	map explicitly	Loaded via config loader.
+SUPABASE_SERVICE_ROLE_KEY	services/rag-mcp	Supabase privileged key	privileged backend credential	SERVER_ONLY_SECRET	backend secret store	backend secret store	server secret	Server-side only.
+COMPOSE_PROJECT_NAME	services/hermes-runtime	compose project name	compose metadata	LOCAL_DEV_ONLY	compose env	compose env	keep	Deployment naming only.
+HERMES_API_KEY_CORE	services/hermes-runtime	Hermes API key	runtime auth secret	SERVER_ONLY_SECRET	runtime secret store	runtime secret store	server secret	Example file shows placeholder only.
+HERMES_KANBAN_AUTH_PASSWORD_HASH	services/hermes-runtime	basic auth hash	hash secret	SERVER_ONLY_SECRET	runtime secret store	runtime secret store	server secret	Keep out of repo when real.
+OPENROUTER_API_KEY	services/hermes-runtime	LLM provider key	provider secret	SERVER_ONLY_SECRET	runtime secret store	runtime secret store	server secret	Example placeholder only.
+ANTHROPIC_API_KEY	services/hermes-runtime	LLM provider key	provider secret	SERVER_ONLY_SECRET	runtime secret store	runtime secret store	server secret	Example placeholder only.
+GOOGLE_API_KEY	services/hermes-runtime	LLM provider key	provider secret	SERVER_ONLY_SECRET	runtime secret store	runtime secret store	server secret	Example placeholder only.
+OPENROUTER_API_KEY	services/hermes-runtime/vendor/hermes-agent	LLM provider key	provider secret example	SERVER_ONLY_SECRET	runtime secret store	runtime secret store	server secret	Vendored upstream example only.
+GEMINI_API_KEY	services/hermes-runtime/vendor/hermes-agent	LLM provider key	provider secret example	SERVER_ONLY_SECRET	runtime secret store	runtime secret store	server secret	Vendored upstream example only.
+OLLAMA_API_KEY	services/hermes-runtime/vendor/hermes-agent	LLM provider key	provider secret example	SERVER_ONLY_SECRET	runtime secret store	runtime secret store	server secret	Vendored upstream example only.
+GLM_API_KEY	services/hermes-runtime/vendor/hermes-agent	LLM provider key	provider secret example	SERVER_ONLY_SECRET	runtime secret store	runtime secret store	server secret	Vendored upstream example only.
+KIMI_API_KEY	services/hermes-runtime/vendor/hermes-agent	LLM provider key	provider secret example	SERVER_ONLY_SECRET	runtime secret store	runtime secret store	server secret	Vendored upstream example only.

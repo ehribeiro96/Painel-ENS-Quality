@@ -1,0 +1,14 @@
+path	reason	risk	if_needed_future_action
+apps/chat-web/src/App.tsx	conflict with Apoema	frontend shell and route ownership	do not migrate; use only as reference surface
+apps/chat-web/src/pages/Login.tsx	conflict with auth current	auth flow duplication	do not migrate; keep current AuthProvider/ProtectedRoute
+apps/chat-web/src/contexts/AuthContext.tsx	conflict with auth current	auth state ownership	do not migrate; keep existing auth contract
+apps/chat-web/src/components/Sidebar.tsx	shell visual duplicate	visual shell duplication	do not migrate; adapt only if design contract is explicit
+apps/chat-web/src/components/TopBar.tsx	shell visual duplicate	visual shell duplication	do not migrate; adapt only if design contract is explicit
+apps/chat-web/src/pages/admin/UserManagement.tsx	conflict with auth current	admin permission surface	do not migrate; preserve current RBAC mapping
+apps/chat-web/src/index.css	shell visual duplicate	global style collision	do not migrate; avoid reintroducing legacy global CSS
+services/hermes-runtime/vendor/hermes-agent/**	vendor large	large upstream subtree	quarantine and review narrow interfaces only
+.env	possible secret/env	secret leak risk	never migrate or commit real env files
+.env.*	possible secret/env	secret leak risk	keep example-only files redacted and local env out of repo
+node_modules/**	artifact generated	dependency cache	never migrate; regenerated locally
+dist/**	artifact generated	build output	never migrate; rebuild from source
+build/**	artifact generated	build output	never migrate; rebuild from source

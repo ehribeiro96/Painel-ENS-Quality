@@ -1,0 +1,42 @@
+{
+  "status": "GO",
+  "phase": "external_ens_unified_migration_m0",
+  "external_zip_windows_path": "C:\\Users\\estevao.quality\\Desktop\\projeto-ens-unificado-main.zip",
+  "external_zip_wsl_path": "/mnt/c/Users/estevao.quality/Desktop/projeto-ens-unificado-main.zip",
+  "external_extract_root": "/tmp/ens-unificado-analysis",
+  "runtime_port": 5175,
+  "runtime_helper": "scripts/dev-apoema-vite.sh",
+  "runtime_changed": false,
+  "backend_changed": false,
+  "frontend_changed": false,
+  "zip_committed": false,
+  "secrets_found": false,
+  "direct_migration_allowed": false,
+  "approved_modules": [
+    "services/artifact-server",
+    "services/chat-bridge",
+    "services/rag-mcp",
+    "apps/designer-api"
+  ],
+  "blocked_modules": [
+    "apps/chat-web",
+    "services/hermes-runtime",
+    "services/hermes-runtime/vendor/hermes-agent"
+  ],
+  "migration_phases": [
+    "M1_ARTIFACT_SERVER_CONTRACT",
+    "M2_CHAT_BRIDGE_HERMES_ADAPTER",
+    "M3_RAG_MCP_EXTERNAL_SERVICE",
+    "M4_DESIGNER_API_MODULE",
+    "M5_APOEMA_UI_ENTRYPOINTS",
+    "M6_AUTHENTICATED_UAT",
+    "M7_PRE_PUSH_CHECKLIST"
+  ],
+  "security_blockers": [
+    "R-001",
+    "R-002",
+    "R-004"
+  ],
+  "next_recommended_phase": "M1_ARTIFACT_SERVER_CONTRACT",
+  "push_executed": false
+}
