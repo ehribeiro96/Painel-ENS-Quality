@@ -1,0 +1,15 @@
+tool	required	implemented	evidence	status
+AUTH_REQUIRED	yes	yes	All rag routes require get_current_user or require_role	PASS
+RBAC_OR_ROLE_GATE	yes	yes	GET /rag/audit/recent uses require_role(Role.ADMIN, Role.MANAGER)	PASS
+RATE_LIMIT_IF_PATTERN_EXISTS	yes	yes	Inherited API middleware rate limiting remains active	PASS
+AUDIT_LOG_IF_PATTERN_EXISTS	yes	yes	Requests still flow through backend request audit logging	PASS
+TOOL_ALLOWLIST	yes	yes	Mock service exports explicit allowlisted tools	PASS
+COLLECTION_ALLOWLIST	yes	yes	Mock service exports explicit allowlisted collections	PASS
+QUERY_SIZE_LIMIT	yes	yes	Service caps query length at 1000	PASS
+RESULT_SIZE_LIMIT	yes	yes	Service caps results at 10 and audit entries at 50	PASS
+NO_DIRECT_FRONTEND_MCP_CALL	yes	yes	Frontend Apoema files do not reference direct MCP/provider wiring	PASS
+SERVER_SIDE_PROVIDER_KEYS_ONLY	yes\yes	No provider keys or secrets exposed in DTOs or tests	PASS
+STRUCTURED_ERRORS	yes\yes	Mock errors map to stable HTTP detail codes	PASS
+NO_NETWORK_CALLS	yes\yes	Service is in-memory and deterministic	PASS
+NO_PROVIDER_REAL	yes\yes	No provider integration added	PASS
+NO_VECTOR_STORE_REAL	yes\yes	No vector store integration added	PASS
