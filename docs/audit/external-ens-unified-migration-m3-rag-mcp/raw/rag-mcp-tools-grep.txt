@@ -1,0 +1,3 @@
+README.md:18-28 tool names ens_rag_search, ens_rag_get_document, ens_rag_get_course_context, ens_rag_ingest_courses, ens_rag_ingest_institutional, ens_rag_ingest_marketing, ens_rag_ingest_insights, ens_rag_save_insight, ens_rag_save_marketing_memory, ens_rag_list_collections, ens_rag_audit_recent
+src/mcp/createServer.ts:37-532 registerTool calls for all ENS-first tools
+src/mcp/ensToolSchemas.ts:3-50 collectionSchema, searchIntentSchema, marketingCategorySchema, courseFiltersSchema

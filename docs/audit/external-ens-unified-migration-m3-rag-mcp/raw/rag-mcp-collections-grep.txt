@@ -1,0 +1,4 @@
+README.md:7-12 collections courses, insights, institutional, marketing
+src/rag/types.ts:3 EnsRagCollection = courses | insights | institutional | marketing
+src/policy/collectionPolicy.ts:3 ENS_RAG_COLLECTIONS
+src/mcp/createServer.ts:596-606 collectionPurpose()

@@ -1,0 +1,2 @@
+resource_name_or_uri	source_file	purpose	mime_or_type	collection_scope	auth_sensitivity	target_mapping	migration_action	notes
+(none)	src/mcp/createServer.ts	No MCP resources are registered in the external service.	N/A	server-side context only	HIGH	None found during inventory; do not expose document paths as public URIs.	DOCS_ONLY	search_files found zero registerResource/server.resource calls.

@@ -1,0 +1,7 @@
+chat_bridge_need	rag_tool_or_endpoint	required_for	status	blocker	notes
+context retrieval for runs	POST /api/v1/rag/search	Yes	BLOCKED_UNTIL_MCP_ADAPTER	The bridge can only request grounding once the backend adapter exists.
+course context lookup	GET /api/v1/rag/course-context/{course_id}	Yes	BLOCKED_UNTIL_MCP_ADAPTER	Required for course-specific responses and citations.
+document citation retrieval	GET /api/v1/rag/documents/{document_id}	Yes	BLOCKED_UNTIL_MCP_ADAPTER	Needed to cite retrieved evidence inside chat replies.
+collection listing	GET /api/v1/rag/collections	Yes	BLOCKED_UNTIL_MCP_ADAPTER	Used for capability discovery and UX hints.
+audit trace for RAG calls	GET /api/v1/rag/audit/recent	Yes	BLOCKED_UNTIL_MCP_ADAPTER	Needed for safe traceability and admin review.
+artifact link handoff if generated output creates files	M1 artifact endpoints	Yes	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	Keep artifact handoff on the backend side, not in the frontend.

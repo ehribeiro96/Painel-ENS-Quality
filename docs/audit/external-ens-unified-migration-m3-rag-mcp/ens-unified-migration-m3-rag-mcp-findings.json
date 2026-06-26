@@ -1,0 +1,68 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "m3_rag_mcp_external_service",
+  "mode": "M3A_CONTRACT_ONLY",
+  "external_module": "services/rag-mcp",
+  "runtime_port": 5175,
+  "zip_committed": false,
+  "external_code_committed": false,
+  "backend_changed": false,
+  "frontend_changed": false,
+  "docker_changed": false,
+  "migration_direct_copy": false,
+  "target_endpoints": [
+    "/api/v1/rag/collections",
+    "/api/v1/rag/search",
+    "/api/v1/rag/documents/{document_id}",
+    "/api/v1/rag/course-context/{course_id}",
+    "/api/v1/rag/ingestions/courses",
+    "/api/v1/rag/ingestions/institutional",
+    "/api/v1/rag/ingestions/marketing",
+    "/api/v1/rag/ingestions/insights",
+    "/api/v1/rag/insights",
+    "/api/v1/rag/marketing-memory",
+    "/api/v1/rag/audit/recent"
+  ],
+  "external_tools": [
+    "ens_rag_search",
+    "ens_rag_get_document",
+    "ens_rag_get_course_context",
+    "ens_rag_ingest_courses",
+    "ens_rag_ingest_institutional",
+    "ens_rag_ingest_marketing",
+    "ens_rag_ingest_insights",
+    "ens_rag_save_insight",
+    "ens_rag_save_marketing_memory",
+    "ens_rag_list_collections",
+    "ens_rag_audit_recent"
+  ],
+  "external_resources": [],
+  "collections": [
+    "courses",
+    "institutional",
+    "marketing",
+    "insights"
+  ],
+  "chat_bridge_dependency_status": "M2A_CONTRACT_ONLY",
+  "security_controls": {
+    "auth_required": false,
+    "rbac_required": false,
+    "audit_log_required": false,
+    "rate_limit_required": false,
+    "tool_allowlist": false,
+    "collection_allowlist": false,
+    "no_direct_frontend_mcp_call": false,
+    "server_side_provider_keys_only": false,
+    "ingestion_admin_only": false
+  },
+  "validations": {
+    "pytest": "PASS: 275 passed, 22 skipped",
+    "ruff": "PASS",
+    "compileall": "PASS",
+    "frontend_build": "PASS",
+    "git_diff_check": "PASS",
+    "secret_scan": "PASS"
+  },
+  "next_recommended_phase": "M4_DESIGNER_API_MODULE",
+  "push_executed": false
+}

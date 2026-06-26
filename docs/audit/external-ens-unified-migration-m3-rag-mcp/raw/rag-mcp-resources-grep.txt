@@ -1,0 +1,2 @@
+NO_REGISTER_RESOURCE_FOUND
+source: search_files("registerResource|server.resource|mcp.resource") returned zero matches under src/

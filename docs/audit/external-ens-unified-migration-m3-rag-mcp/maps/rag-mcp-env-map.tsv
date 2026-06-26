@@ -1,0 +1,19 @@
+external_name	source_file	current_usage	sensitive	target_name	target_default	target_location	migration_action	notes
+ENS_RAG_MCP_CONFIG	package.json; src/config/loadConfig.ts	Config file path for the MCP server.	No	ENS_RAG_MCP_CONFIG	config/ens-rag-mcp.yaml	server only	DOCS_ONLY	Runtime config path; safe to override locally.
+NODE_ENV	.env.example	Node runtime mode.	No	NODE_ENV	production	server only	DOCS_ONLY	Used for local/runtime behavior.
+SUPABASE_URL	.env.example; README.md; src/rag/ragRepository.ts	Supabase project URL used by repository.	No	SUPABASE_URL	replace-me / unset	server only	ALLOWLIST_ADAPTER	Required for live repository access.
+SUPABASE_SERVICE_ROLE_KEY	.env.example; README.md; src/rag/ragRepository.ts	Supabase service role key.	Yes	SUPABASE_SERVICE_ROLE_KEY	replace-me / unset	server only	ALLOWLIST_ADAPTER	Server-only secret; never expose to frontend.
+ENS_API_URL	.env.example; README.md; src/ingestion/sources/ens/ensCoursesSource.ts	ENS course source endpoint.	No	ENS_API_URL	replace-me / unset	server only	ALLOWLIST_ADAPTER	Used only for courses ingestion.
+ENS_API_KEY	.env.example; README.md; src/ingestion/sources/ens/ensCoursesSource.ts	ENS course source API key.	Yes	ENS_API_KEY	replace-me / unset	server only	ALLOWLIST_ADAPTER	Server-only secret; header name configurable.
+ENS_API_KEY_HEADER	.env.example; src/ingestion/sources/ens/ensCoursesSource.ts	Header name for ENS course source auth.	No	ENS_API_KEY_HEADER	key	server only	ALLOWLIST_ADAPTER	Useful for compatible upstream auth.
+OPENAI_API_KEY	.env.example; README.md; src/ingestion/embeddings/embeddingProvider.ts	Optional embedding provider key.	Yes	OPENAI_API_KEY	replace-me / unset	server only	ALLOWLIST_ADAPTER	If missing, embeddings are disabled and the service still starts.
+OPENAI_EMBEDDING_MODEL	.env.example; README.md; src/ingestion/embeddings/embeddingProvider.ts	Embedding model name.	No	OPENAI_EMBEDDING_MODEL	text-embedding-3-small	server only	ALLOWLIST_ADAPTER	Server-side only; not a frontend prefix.
+OPENAI_EMBEDDING_BASE_URL	.env.example; src/ingestion/embeddings/embeddingProvider.ts	Embedding API base URL.	No	OPENAI_EMBEDDING_BASE_URL	https://api.openai.com/v1	server only	ALLOWLIST_ADAPTER	Server-only transport config.
+OPENAI_CHAT_BASE_URL	.env.example	Chat API base URL for optional provider plumbing.	No	OPENAI_CHAT_BASE_URL	https://api.openai.com/v1	server only	DOCS_ONLY	No frontend exposure.
+ENS_RAG_RERANKER_MODE	.env.example	Reranker mode.	No	ENS_RAG_RERANKER_MODE	local	server only	ALLOWLIST_ADAPTER	Search reranking remains backend-owned.
+ENS_RAG_RERANKER_MODEL	.env.example	Reranker model identifier.	No	ENS_RAG_RERANKER_MODEL	gpt-4o-mini	server only	ALLOWLIST_ADAPTER	Server-side only.
+MCP_ACTOR_PROFILE	.env.example	Default actor profile for ingestion scripts.	No	MCP_ACTOR_PROFILE	ceo	server only	ALLOWLIST_ADAPTER	Used by scripts, not by frontend.
+RAG_INGEST_CRON_SCHEDULE	.env.example	Weekly ingestion schedule.	No	RAG_INGEST_CRON_SCHEDULE	0 7 * * 1	server only	DOCS_ONLY	Cron scheduling belongs in the service runtime.
+ENS_INSTITUTIONAL_CONTENT_DIR	.env.example; README.md; src/ingestion/sources/ens/ensInstitutionalManualSource.ts	Institutional Markdown content directory.	No	ENS_INSTITUTIONAL_CONTENT_DIR	data/institutional	server only	ALLOWLIST_ADAPTER	Server-controlled content path.
+ENS_MARKETING_CONTENT_DIR	.env.example; README.md; src/ingestion/sources/ens/ensInstitutionalManualSource.ts	Marketing Markdown content directory.	No	ENS_MARKETING_CONTENT_DIR	data/marketing	server only	ALLOWLIST_ADAPTER	Server-controlled content path.
+ENS_INSIGHTS_CONTENT_DIR	.env.example; README.md; src/ingestion/sources/ens/ensInstitutionalManualSource.ts	Insights Markdown content directory.	No	ENS_INSIGHTS_CONTENT_DIR	data/insights	server only	ALLOWLIST_ADAPTER	Server-controlled content path.
