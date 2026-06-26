@@ -16,7 +16,7 @@ const API_BASE = (import.meta.env.VITE_API_URL || "/api/v1").replace(/\/$/, "");
 const DEFAULT_PROVIDER_OPTIONS: ApoemaProviderOption[] = [
   {
     id: "mock",
-    label: "Mock/Fallback",
+    label: "Mock adapter",
     status: "online",
     models: ["fallback-local"],
     default_model: "fallback-local",

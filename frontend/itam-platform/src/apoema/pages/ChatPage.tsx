@@ -376,7 +376,11 @@ export function ChatPage() {
             <Sparkles size={14} />
             IA habilitada
           </StatusPill>
-          <p>{"Frontend Apoema → Backend do Painel → provedor controlado no servidor."}</p>
+          <p>
+            {selectedProvider?.id === "mock"
+              ? "Frontend Apoema → Backend do Painel → adaptador mock local determinístico para UAT."
+              : "Frontend Apoema → Backend do Painel → provedor controlado no servidor."}
+          </p>
         </div>
       </aside>
 
@@ -517,7 +521,9 @@ export function ChatPage() {
                 ? "Backend indisponível. Catálogo local ativo para continuidade da prévia."
                 : providerLoadState === "error"
                   ? "O catálogo de provedores não pôde ser carregado."
-                  : selectedProvider
+                  : selectedProvider?.id === "mock"
+                    ? `Adaptador mock local ativo. A resposta vem do backend em modo determinístico para validação de contrato.`
+                    : selectedProvider
                     ? `Modelo atual: ${selectedModel || selectedProvider.default_model}. A conversa usa metadados de anexos e mantém o fluxo visual local.`
                     : "Aguardando catálogo de provedores."}
             </p>

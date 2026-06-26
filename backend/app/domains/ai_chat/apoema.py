@@ -38,7 +38,7 @@ def build_apoema_provider_catalog(settings: Settings) -> ApoemaChatProvidersResp
     providers = [
         ApoemaChatProviderRead(
             id="mock",
-            label="Mock/Fallback",
+            label="Mock adapter",
             status="online",
             models=[APOEMA_DEFAULT_FALLBACK_MODEL],
             default_model=APOEMA_DEFAULT_FALLBACK_MODEL,

@@ -210,6 +210,7 @@ class AiChatFrontendHardeningTest(unittest.TestCase):
         self.assertFalse(legacy_page.exists())
         self.assertIn("Proteções", apoema_page)
         self.assertIn("Sem segredos", apoema_page)
+        self.assertIn("adaptador mock local determinístico", apoema_page)
         self.assertIn("Backend indisponível. Exibindo resposta local de fallback.", apoema_page)
 
 
