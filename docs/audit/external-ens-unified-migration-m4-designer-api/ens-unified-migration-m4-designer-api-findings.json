@@ -1,0 +1,100 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "m4_designer_api_module",
+  "mode": "M4A_CONTRACT_ONLY",
+  "external_module": "apps/designer-api",
+  "runtime_port": 5175,
+  "zip_committed": false,
+  "external_code_committed": false,
+  "backend_changed": false,
+  "frontend_changed": false,
+  "docker_changed": false,
+  "migration_direct_copy": false,
+  "target_endpoints": [
+    "/api/v1/designer/health",
+    "/api/v1/designer/templates",
+    "/api/v1/designer/form-options",
+    "/api/v1/designer/banners",
+    "/api/v1/designer/banners/json",
+    "/api/v1/designer/jobs/{job_id}",
+    "/api/v1/designer/jobs/{job_id}/download-url",
+    "/api/v1/designer/jobs/{job_id}/items/{item_id}/adjust",
+    "/api/v1/designer/jobs/{job_id}/items/{item_id}/refresh-url",
+    "/api/v1/designer/jobs/{job_id}/cancel"
+  ],
+  "external_endpoints": [
+    "GET /health",
+    "POST /banners",
+    "POST /banners/json",
+    "GET /templates",
+    "GET /banners/form-options",
+    "GET /banners/{job_id}",
+    "GET /banners/{job_id}/download",
+    "GET /banners/metrics/enxoval",
+    "POST /banners/{job_id}/items/{item_id}/adjust",
+    "POST /banners/{job_id}/items/{item_id}/refresh-url"
+  ],
+  "job_states": [
+    "queued",
+    "running",
+    "completed",
+    "failed",
+    "cancelled",
+    "expired"
+  ],
+  "template_options": {
+    "modo_geracao": [
+      "peca_unica",
+      "enxoval"
+    ],
+    "channels": [
+      "01_feed_instagram",
+      "02_story_instagram",
+      "03_banner_interno_desktop",
+      "04_banner_interno_mobile",
+      "05_AIDA_whatsapp",
+      "05_whatsapp",
+      "08_topo_email"
+    ],
+    "kvs": [
+      "graduacao",
+      "imersoes",
+      "institucional",
+      "pos",
+      "qualificacoes",
+      "tudo-sobre-seguros"
+    ],
+    "box2_optional": true,
+    "persona_image_upload": [
+      "png",
+      "jpg",
+      "jpeg"
+    ]
+  },
+  "artifact_dependency_status": "M1A_CONTRACT_ONLY",
+  "chat_bridge_dependency_status": "M2A_CONTRACT_ONLY",
+  "rag_dependency_status": "M3A_CONTRACT_ONLY",
+  "security_controls": {
+    "auth_required": false,
+    "rbac_required": false,
+    "audit_log_required": false,
+    "rate_limit_required": false,
+    "job_ownership_check": false,
+    "server_side_provider_keys_only": false,
+    "no_direct_frontend_provider_call": false,
+    "template_allowlist": false,
+    "prompt_input_validation": false,
+    "private_output_storage": false,
+    "signed_download_url": false
+  },
+  "validations": {
+    "pytest": "PASS (278 passed, 22 skipped)",
+    "ruff": "PASS",
+    "compileall": "PASS",
+    "frontend_build": "PASS",
+    "git_diff_check": "PASS",
+    "secret_scan": "PASS (no matches)"
+  },
+  "next_recommended_phase": "M5_MIGRATION_CONSOLIDATION_DECISION",
+  "push_executed": false
+}

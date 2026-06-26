@@ -1,0 +1,8 @@
+designer_need	artifact_endpoint_or_policy	required_for	status	blocker	notes
+generated image output storage	/api/v1/artifacts + private storage policy	persist generated PNGs and derivatives	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	M1 is contract-only	Cannot depend on public /files in target.
+download URL	/api/v1/artifacts/{artifact_id}/download-url	safe preview/download	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	No implemented artifact service yet	Target designer contract should only mint via Artifact M1.
+metadata	artifact metadata schema / ownership	list, status, audit trace	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	M1 contract only	Store job_id, item_id, owner, ttl, mime, size.
+retention policy	artifact retention/delete policy	cleanup on cancel/expire/delete	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	No implemented policy	Must be explicit before live generation.
+delete/cancel cleanup	DELETE /api/v1/artifacts/{artifact_id}	remove failed or cancelled outputs	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	Artifact deletion not implemented	Avoid orphaned public outputs.
+artifact ownership	ownership check in artifact service	read/download/update safety	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	Ownership policy missing	Must be enforced server-side only.
+signed URL expiration	signed download URL ttl policy	temporary sharing of outputs	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	Artifact M1 contract only	Should be short-lived and audited.

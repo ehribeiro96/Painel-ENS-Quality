@@ -1,0 +1,26 @@
+external_name	source_file	current_usage	sensitive	target_name	target_default	target_location	migration_action	notes
+GEMINI_API_KEY	.env.example; main.py	Google GenAI key for image generation/orchestration	yes	DESIGNER_PROVIDER_KEY	server-only secret	backend secret store / env	SERVER_ONLY_SECRET	Never expose to VITE_*. Backend-owned only.
+GOOGLE_API_KEY	main.py; .env.example	Legacy alias for Gemini API key	yes	DESIGNER_PROVIDER_KEY	none	backend secret store / env	REMOVE_OR_SANITIZE	Keep only for compatibility in external app; not frontend.
+IMAGEN_MODEL	main.py; .env.example	Imagen model id for image edits	no	DESIGNER_IMAGE_MODEL	server choice	backend config	ADOPT_CONTRACT	Model selection must stay server-side.
+GEMINI_MODEL	main.py; .env.example	Orchestrator / planner model id	no	DESIGNER_ORCHESTRATOR_MODEL	server choice	backend config	ADOPT_CONTRACT	Never sent to frontend.
+GEMINI_REFINER_MODEL	main.py	Planner/refiner fallback model	no	DESIGNER_REFINER_MODEL	server choice	backend config	ADOPT_CONTRACT	Internal tuning only.
+GEMINI_VALIDATOR_MODEL	main.py	Validator model id	no	DESIGNER_VALIDATOR_MODEL	server choice	backend config	ADOPT_CONTRACT	Internal tuning only.
+GEMINI_PLANNER_MODEL	main.py	Planner model id	no	DESIGNER_PLANNER_MODEL	server choice	backend config	ADOPT_CONTRACT	Server decides planner behavior.
+GENAI_MAX_RETRIES	main.py	Retry budget for GenAI calls	no	DESIGNER_PROVIDER_RETRY_MAX	server choice	backend config	ADOPT_CONTRACT	Rate/cost guardrail remains server-only.
+GENAI_RETRY_BASE_SECONDS	main.py	Retry backoff base	no	DESIGNER_PROVIDER_RETRY_BACKOFF_BASE	server choice	backend config	ADOPT_CONTRACT	Server-side only.
+GENAI_MAX_RETRIES_RESOURCE_EXHAUSTED	main.py	Special retry budget for 429 RESOURCE_EXHAUSTED	no	DESIGNER_PROVIDER_RETRY_RESOURCE_EXHAUSTED	server choice	backend config	ADOPT_CONTRACT	Server-side only.
+OUTPUTS_DIR	.env.example; api/app.py; main.py	Local public output dir	no	DESIGNER_OUTPUT_STORAGE	private artifact store	backend storage policy	BLOCKED_PROVIDER_SECRET	Should move behind Artifact M1 / private storage.
+TMP_DIR	.env.example	Temp directory for intermediate files	no	DESIGNER_TMP_DIR	.tmp	backend runtime	DOCS_ONLY	Safe to keep backend-side only.
+MAX_SAFETY_RETRIES	.env.example	Safety retry budget in docs	no	DESIGNER_PROMPT_RETRY_MAX	3	backend config	ADOPT_CONTRACT	Use server-side content safety policy.
+STEP3_MAX_CORRECTION_ROUNDS	main.py	Validator correction loop limit	no	DESIGNER_CORRECTION_ROUNDS_MAX	2	backend config	ADOPT_CONTRACT	Keeps editing bounded.
+EXECUTOR_SINGLE_IMAGE_MODE	main.py	Single-image executor mode	no	DESIGNER_EXECUTOR_SINGLE_IMAGE_MODE	1	backend config	ADOPT_CONTRACT	Provider routing remains backend-side.
+SUPABASE_URL	.env.example; api/supabase_outputs.py	Supabase endpoint for outputs/metadata	yes	ARTIFACT_STORAGE_URL	none	backend secret store / env	BLOCKED_PROVIDER_SECRET	Artifact M1 dependency; server-only.
+SUPABASE_SERVICE_ROLE_KEY	.env.example; api/supabase_outputs.py	Privileged Supabase service key	yes	ARTIFACT_STORAGE_SERVICE_KEY	none	backend secret store / env	BLOCKED_PROVIDER_SECRET	Never exposed to frontend.
+SUPABASE_OUTPUTS_BUCKET	.env.example; api/supabase_outputs.py	Outputs bucket name	no	ARTIFACT_BUCKET_NAME	image-gen-outputs	backend storage policy	BLOCKED_PROVIDER_SECRET	Depends on Artifact M1 storage decisions.
+SUPABASE_OUTPUTS_METADATA_ENABLED	.env.example; api/supabase_outputs.py	Toggle metadata persistence	no	ARTIFACT_METADATA_ENABLED	false	backend config	BLOCKED_PROVIDER_SECRET	Target should replace with artifact metadata policy.
+SUPABASE_SIGNED_URL_EXPIRES_SECONDS	.env.example; api/supabase_outputs.py	Signed URL expiry	no	ARTIFACT_SIGNED_URL_TTL_SECONDS	3600	backend config	BLOCKED_PROVIDER_SECRET	Artifact policy only.
+SUPABASE_UPLOAD_MAX_ATTEMPTS	.env.example; api/supabase_outputs.py	Upload retry budget	no	ARTIFACT_UPLOAD_RETRIES	3	backend config	BLOCKED_PROVIDER_SECRET	Artifact upload policy only.
+SUPABASE_UPLOAD_BACKOFF_SECONDS	.env.example; api/supabase_outputs.py	Upload retry backoff	no	ARTIFACT_UPLOAD_BACKOFF_SECONDS	1	backend config	BLOCKED_PROVIDER_SECRET	Artifact upload policy only.
+ALLOWED_ORIGINS	api/app.py	CORS allowlist for API	no	API_CORS_ORIGINS	*	backend config	DOCS_ONLY	Frontend should not get provider credentials.
+WORKER_THREADS	api/job_service.py; cloudflare_tunnel.md	Thread pool size for pipeline jobs	no	DESIGNER_WORKER_THREADS	2	backend config	ADOPT_CONTRACT	Capacity guardrail remains server-side.
+MIN_SECONDS_BETWEEN_PIECES	api/job_service.py	Throttle between pieces	no	DESIGNER_THROTTLE_SECONDS	3	backend config	ADOPT_CONTRACT	Cost control and abuse prevention on server.

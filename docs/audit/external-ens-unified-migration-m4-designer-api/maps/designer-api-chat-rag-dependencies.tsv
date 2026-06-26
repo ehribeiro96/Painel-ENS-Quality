@@ -1,0 +1,6 @@
+designer_need	chat_or_rag_contract	required_for	status	blocker	notes
+prompt assistance from chat	M2 Chat Bridge run/create/stream/cancel contract	campaign creation assistance and prompt refinement	BLOCKED_UNTIL_CHAT_ADAPTER	M2 is contract-only	No direct provider call from frontend.
+campaign context from RAG	M3 RAG MCP search/get context contract	brand/context retrieval and template guidance	BLOCKED_UNTIL_RAG_ADAPTER	M3 is contract-only	Use backend-owned adapter only.
+brand/context retrieval	RAG collections/tool allowlist	allowed template semantics and copy	BLOCKED_UNTIL_RAG_ADAPTER	M3 implementation not present	Never expose MCP tools directly to frontend.
+generated asset explanation	Chat bridge event trace / audit trail	explain generation decisions and adjustments	BLOCKED_UNTIL_CHAT_ADAPTER	M2 adapter missing	Should write to audit log and AI chat trace.
+audit trace in ai-chat	Chat bridge conversation/run contract	assistant-assisted designer workflows	BLOCKED_UNTIL_CHAT_ADAPTER	M2 contract only	Preserve backend ownership and privacy.

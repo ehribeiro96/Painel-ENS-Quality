@@ -1,0 +1,13 @@
+external_state_or_field	source_file	purpose	target_state_or_field	persistence_needed	artifact_dependency	status	notes
+job.status=pending	api/job_service.py	Job criado e ainda não executado	queued	yes	future artifact metadata	READY_AS_CONTRACT	Server-generated job_id and in-memory queue.
+job.status=running	api/job_service.py	Pipeline em execução	running	yes	progress + output refs	READY_AS_CONTRACT	Should be tenant-owned and auditable.
+job.status=done	api/job_service.py	Todos os itens concluídos com sucesso	completed	yes	download-url + output metadata	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	Download real depends on M1 artifact storage.
+job.status=partial_done	api/job_service.py	Mistura de itens concluídos e falhados	completed_with_errors	yes	partial artifact metadata	READY_AS_CONTRACT	Target may surface warning/error summary.
+job.status=failed	api/job_service.py	Job falhou antes ou durante execução	failed	yes	cleanup/retention on failure	READY_AS_CONTRACT	Error messages should be redacted.
+job.itens[].status=pending/running/done/failed	api/job_service.py	Estado por item/canal	item states mirror job lifecycle	yes	per-item artifact refs	READY_AS_CONTRACT	Future target should standardize item DTOs.
+job.job_id	api/job_service.py	Identificador do job	server-generated UUID	yes	artifact ownership key	READY_AS_CONTRACT	Must be generated server-side only.
+job.requested_by	api/job_service.py; api/app.py	Ownership hint from x-user-id	owner_user_id	yes	ownership join for artifacts	PARTIAL	External code trusts request header too much.
+item.file_url	api/job_service.py; api/supabase_outputs.py	Location to preview/download the output	download_url or artifact reference	yes	Artifact M1 signed URL	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	Local public /files is not acceptable in target.
+item.storage_path	api/job_service.py; api/supabase_outputs.py	Internal storage key/path	artifact storage key	yes	private storage policy	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	Requires private artifact storage and retention policy.
+item.signed_url_expires_at	api/job_service.py; api/supabase_outputs.py	Expiry of signed download URL	signed_url_expires_at	yes	signed download URL policy	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	Must be managed by Artifact M1 policy.
+progress	api/job_service.py	Completion ratio string	progress percent or ratio	yes	none	READY_AS_CONTRACT	Target should prefer structured numeric progress.

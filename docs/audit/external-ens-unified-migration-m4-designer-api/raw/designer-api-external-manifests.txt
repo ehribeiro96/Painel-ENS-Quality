@@ -1,0 +1,17 @@
+.env.example
+requirements.txt
+AGENTS.md
+Dockerfile
+main.py
+prd.md
+api/app.py
+api/job_service.py
+api/supabase_outputs.py
+execution/select_template.py
+execution/prompts.py
+directives/banner_generation.md
+directives/api_frontend_integration.md
+directives/cloudflare_tunnel.md
+directives/fluxo_operacional_melhorias.md
+tests/test_integration_mock.py
+tests/test_template_payloads_consistency.py

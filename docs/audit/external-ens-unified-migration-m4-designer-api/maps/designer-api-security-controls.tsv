@@ -1,0 +1,25 @@
+control	required	current_external_evidence	target_design	status	notes
+AUTH_REQUIRED	yes	Only x-user-id header hints ownership; no auth middleware in api/app.py	Require backend auth/session before any designer action	MISSING	Target must not trust the client header.
+RBAC_REQUIRED	yes	Adjust endpoint only compares requested_by vs x-user-id	Role-aware backend checks for create/adjust/cancel/download	PARTIAL	Ownership is not a substitute for RBAC.
+RATE_LIMIT_REQUIRED	yes	No dedicated designer rate limit found	Per-user and per-provider throttles on create/adjust/download-url	MISSING	Needed for abuse/cost control.
+AUDIT_LOG_REQUIRED	yes	No designer audit writes found	Audit create, adjust, cancel, artifact mint, download	MISSING	Must be persisted in backend audit log.
+JOB_OWNERSHIP_CHECK	yes	requested_by compared to x-user-id only on adjust	Enforce owner checks on every job mutation/read of private assets	PARTIAL	Create/status/download paths still need ownership enforcement.
+ARTIFACT_OWNERSHIP_CHECK	yes	Supabase metadata has requested_by but no central ownership service	Artifact records must be owned by job/user and validated on access	MISSING	Blocked until M1 artifact contract exists as implementation.
+SERVER_SIDE_PROVIDER_KEYS_ONLY	yes	.env.example keeps provider keys server-side; app.py reads env in backend only	Backend adapter selects provider/model; frontend never sees keys	COVERED	Keep env secrets off VITE_*.
+NO_DIRECT_FRONTEND_PROVIDER_CALL	yes	Frontend docs point to /banners JSON API; no direct provider call surfaced in frontend search	Frontend only calls /api/v1/designer routes	COVERED	Preserve backend-owned boundary.
+TEMPLATE_ALLOWLIST	yes	select_template() resolves only templates_library/{canal}/{kv}	Allowlist derived from backend catalog only	COVERED	Good foundation; keep server-owned.
+FORM_OPTION_ALLOWLIST	yes	form-options returns catalog from templates, but JSON input still accepts raw strings	Backend validates channels/KVs/options against allowlists	PARTIAL	JSON and multipart payloads need explicit allowlist checks.
+PROMPT_INPUT_VALIDATION	yes	Pydantic models validate required text fields and file extensions	Strict schema + length/charset restrictions + redaction	PARTIAL	Free-form prompt content remains broad.
+PROMPT_OUTPUT_REDACTION	yes	Exceptions often bubble raw messages in api/app.py and job_service.py	Redact provider/tool output and return safe summaries	MISSING	Important for provider abuse and leak prevention.
+PROVIDER_TIMEOUT	yes	Retry logic exists, but explicit request/stream timeout policy is not exposed	Hard timeouts per provider call and per job step	PARTIAL	Use server-side time budgets.
+REQUEST_SIZE_LIMIT	yes	No request body size gate found	Cap multipart/body size and upload size	MISSING	Needed for image uploads and prompt abuse.
+IMAGE_SIZE_LIMIT	yes	External upload only checks extension (.png/.jpg/.jpeg)	Validate pixel dimensions and file size before processing	MISSING	Extension-only checks are not enough.
+OUTPUT_FORMAT_ALLOWLIST	yes	Outputs are PNG; persona input is restricted to image formats	Permit only declared output formats per template/job	PARTIAL	Target should codify output format and preview policy.
+SAFE_DOWNLOAD	yes	Download route returns local file or redirect directly	Signed URLs or authenticated artifact download only	MISSING	Public /files exposure is not safe for target.
+PRIVATE_OUTPUT_STORAGE	yes	Local outputs are mounted at /files and public; Supabase storage is optional	Private artifact storage with retention and cleanup	MISSING	Blocked on Artifact M1 implementation.
+SIGNED_DOWNLOAD_URL	yes	Supabase signed URLs exist when enabled; otherwise local public file URL	Download-url minted server-side from Artifact M1	PARTIAL	Current local public URLs are not enough.
+ERROR_REDACTION	yes	Raw exception text is frequently returned/logged	Sanitize provider/internal errors before API response	MISSING	Avoid leaking stack traces or provider details.
+ABUSE_PREVENTION_NOTE	yes	No explicit abuse note or quota policy in API	User/job quotas and provider budget policy	MISSING	Needed before opening provider-backed generation.
+COST_CONTROL_NOTE	yes	Retry loops and planner toggles exist, but no user quota policy	Quota, per-job caps, and provider fallback policy	PARTIAL	Must be enforced server-side.
+CONTENT_POLICY_GATE	yes	Safety retries and prompt-shaping docs exist	Explicit content policy gate before provider calls	PARTIAL	Should be a backend decision, not frontend input.
+OBSERVABILITY	yes	Logging exists in main.py/app.py/job_service.py	Structured logs + metrics for jobs/provider/artifacts	PARTIAL	Add audit-specific observability in target.
