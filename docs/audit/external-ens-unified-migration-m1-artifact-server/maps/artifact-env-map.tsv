@@ -1,0 +1,10 @@
+external_name	source_file	current_usage	sensitive	target_name	target_default	target_location	migration_action	notes
+ARTIFACT_DATA_DIR	src/server.js	local storage root	no	artifact_data_dir	data/artifacts/private	backend config	ADAPT_CONTRACT	Server-owned private filesystem path.
+ARTIFACT_INTERNAL_KEY	src/server.js	internal bearer/header secret	yes	artifact_internal_key	backend secret store	backend secret store	SERVER_ONLY_SECRET	Never expose to frontend.
+ARTIFACT_ACCESS_TOKEN_SECRET	src/server.js	signed URL secret	yes	artifact_access_token_secret	backend secret store	backend secret store	SERVER_ONLY_SECRET	May fall back to internal key in external service, but target should separate it.
+ARTIFACT_PUBLIC_BASE_URL	src/server.js	public link base URL	no	artifact_public_base_url	backend config	backend config	ADAPT_CONTRACT	Must not reveal internal filesystem path.
+ARTIFACT_ALLOWED_ORIGINS	src/server.js	CORS allowlist	no	artifact_allowed_origins	strict explicit allowlist	backend config	ADAPT_CONTRACT	Keep backend-owned.
+ARTIFACT_MAX_UPLOAD_BYTES	src/server.js	upload size limit	no	artifact_max_upload_bytes	52428800	backend config	ADAPT_CONTRACT	Use a safe default in local/dev.
+ARTIFACT_ACCESS_TOKEN_TTL_SECONDS	src/server.js	signed URL TTL	no	artifact_access_token_ttl_seconds	900	backend config	ADAPT_CONTRACT	Short-lived by default.
+ARTIFACT_MAX_ACCESS_TOKEN_TTL_SECONDS	src/server.js	upper TTL bound	no	artifact_max_access_token_ttl_seconds	3600	backend config	ADAPT_CONTRACT	Prevents overly long links.
+ARTIFACT_PORT	src/server.js	listen port	no	artifact_port	8095	backend config	KEEP	Operational only.

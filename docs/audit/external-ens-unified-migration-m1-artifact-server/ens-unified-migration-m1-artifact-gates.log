@@ -1,0 +1,17 @@
+M1 Artifact Server Contract gates summary
+
+Date: 2026-06-26
+Status: PASS for contract docs/test phase (M1A_CONTRACT_ONLY)
+
+Validated commands:
+- git diff --check -> pass
+- PYTHONPATH=backend .venv/bin/python -m pytest -> pass (271 passed, 22 skipped)
+- .venv/bin/python -m ruff check backend tests scripts -> pass
+- .venv/bin/python -m compileall -q backend/app backend/alembic tests scripts -> pass
+- PATH="/home/estevaoqualityadm/.nvm/versions/node/v22.22.3/bin:$PATH" npm run build (frontend/itam-platform) -> pass
+- secret scan of new M1 docs/test files -> no matches
+
+Notes:
+- No backend, frontend, or Docker code was changed in this phase.
+- No ZIP or external service code was committed.
+- The phase stayed within the documentation/test boundary.

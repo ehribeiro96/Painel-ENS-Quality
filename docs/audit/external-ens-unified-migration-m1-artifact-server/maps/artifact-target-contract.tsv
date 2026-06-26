@@ -1,0 +1,7 @@
+target_method	target_path	purpose	request	response	auth	rbac	audit	rate_limit	implementation_phase	notes
+POST	/api/v1/artifacts	upload artifact	multipart/form-data or upload bytes with metadata	201 JSON artifact DTO	required	required	required	required	M1A_CONTRACT_ONLY	Backend-owned upload; no raw storage paths.
+GET	/api/v1/artifacts	list artifacts	query pagination + filters	200 JSON page of DTOs	required	required	required	required	M1A_CONTRACT_ONLY	Useful for management and future UI integration.
+GET	/api/v1/artifacts/{artifact_id}	fetch artifact metadata	path artifact_id	200 JSON artifact DTO	required	required	required	required	M1A_CONTRACT_ONLY	Never return private filesystem paths.
+GET	/api/v1/artifacts/{artifact_id}/download-url	mint download URL	path artifact_id	200 JSON { url, expires_at }	required	required	required	required	M1A_CONTRACT_ONLY	Signed token must be short-lived.
+GET	/api/v1/artifacts/download/{signed_token}	download bytes via signed token	path signed_token	200/206 bytes stream	token-signed	no	required	required	M1A_CONTRACT_ONLY	Content delivery stays backend-side.
+DELETE	/api/v1/artifacts/{artifact_id}	delete artifact	path artifact_id	200 JSON { ok: true }	required	required	required	required	M1A_CONTRACT_ONLY	Prefer audit-first deletion policy.

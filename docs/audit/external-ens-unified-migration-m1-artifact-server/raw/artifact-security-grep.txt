@@ -1,0 +1,10 @@
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: sanitizeFileName
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: timingSafeEqual
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: createHmac
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: randomUUID
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: writeFile
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: createWriteStream
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: Content-Disposition
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: Cache-Control
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: Access-Control-Allow-Origin
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: Access-Control-Allow-Headers

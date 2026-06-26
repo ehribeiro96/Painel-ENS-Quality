@@ -1,0 +1,7 @@
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: GET /health
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: POST /v1/artifacts
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: GET /v1/artifacts/:id
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: POST /v1/artifacts/:id/access-link
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: GET /v1/artifacts/:id/content
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: HEAD /v1/artifacts/:id/content
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: DELETE /v1/artifacts/:id

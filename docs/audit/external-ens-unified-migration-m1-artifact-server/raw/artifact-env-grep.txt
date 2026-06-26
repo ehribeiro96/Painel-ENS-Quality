@@ -1,0 +1,9 @@
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: ARTIFACT_DATA_DIR
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: ARTIFACT_INTERNAL_KEY
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: ARTIFACT_ACCESS_TOKEN_SECRET
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: ARTIFACT_PUBLIC_BASE_URL
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: ARTIFACT_ALLOWED_ORIGINS
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: ARTIFACT_MAX_UPLOAD_BYTES
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: ARTIFACT_ACCESS_TOKEN_TTL_SECONDS
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: ARTIFACT_MAX_ACCESS_TOKEN_TTL_SECONDS
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src/server.js: ARTIFACT_PORT

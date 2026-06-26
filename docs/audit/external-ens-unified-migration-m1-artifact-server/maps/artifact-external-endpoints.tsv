@@ -1,0 +1,8 @@
+source_file	method	path	purpose	input_type	output_type	auth_evidence	storage_effect	signed_url_effect	migration_action	notes
+src/server.js	GET	/health	health probe	none	JSON { ok: true }	public route	no storage effect	no	ADOPT_CONTRACT	Keep stable for service orchestration and smoke checks.
+src/server.js	POST	/v1/artifacts	upload/create artifact	bytes + auth headers + metadata headers	JSON artifact metadata DTO	internal bearer + owner header	write blob + metadata	no	ADOPT_CONTRACT	Backend-owned upload; no frontend exposure.
+src/server.js	GET	/v1/artifacts/:id	metadata fetch	path param	JSON artifact metadata DTO	internal bearer or signed content access model	reads metadata	no	ADOPT_CONTRACT	Expose DTOs only; never raw storage objects.
+src/server.js	POST	/v1/artifacts/:id/access-link	mint signed access link	path param + JSON owner_id/expires_in_seconds	JSON { url, expires_at }	internal bearer	writes no blob, signs token	yes	ADOPT_CONTRACT	Required for link rewriting and browser-safe downloads.
+src/server.js	GET	/v1/artifacts/:id/content	artifact download/content stream	path param + optional token/range	bytes stream	internal bearer or signed token	reads blob	yes	ADOPT_CONTRACT	Keep binary delivery off the frontend boundary.
+src/server.js	HEAD	/v1/artifacts/:id/content	artifact download headers	path param + optional token/range	headers only	internal bearer or signed token	reads blob metadata	yes	ADOPT_CONTRACT	Useful for preview checks and cache validation.
+src/server.js	DELETE	/v1/artifacts/:id	delete artifact	path param	JSON { ok: true }	internal bearer	removes metadata and maybe blob	no	SECURITY_REVIEW_REQUIRED	Preserve audit trail and retention policy.

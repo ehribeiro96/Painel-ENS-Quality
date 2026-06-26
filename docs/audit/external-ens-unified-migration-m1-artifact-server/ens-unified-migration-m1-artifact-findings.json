@@ -1,0 +1,42 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "m1_artifact_server_contract",
+  "mode": "M1A_CONTRACT_ONLY",
+  "external_module": "services/artifact-server",
+  "runtime_port": 5175,
+  "zip_committed": false,
+  "external_code_committed": false,
+  "backend_changed": false,
+  "frontend_changed": false,
+  "docker_changed": false,
+  "migration_direct_copy": false,
+  "target_endpoints": [
+    "POST /api/v1/artifacts",
+    "GET /api/v1/artifacts",
+    "GET /api/v1/artifacts/{artifact_id}",
+    "GET /api/v1/artifacts/{artifact_id}/download-url",
+    "GET /api/v1/artifacts/download/{signed_token}",
+    "DELETE /api/v1/artifacts/{artifact_id}"
+  ],
+  "security_controls": {
+    "auth_required": false,
+    "rbac_required": false,
+    "audit_log_required": false,
+    "private_storage": false,
+    "signed_url_expiration": false,
+    "hmac_signature": false,
+    "max_file_size": false,
+    "allowlist_mime": false,
+    "safe_filename": false
+  },
+  "validations": {
+    "pytest": "",
+    "ruff": "",
+    "compileall": "",
+    "frontend_build": "",
+    "git_diff_check": "",
+    "secret_scan": ""
+  },
+  "next_recommended_phase": "M2_CHAT_BRIDGE_HERMES_ADAPTER",
+  "push_executed": false
+}

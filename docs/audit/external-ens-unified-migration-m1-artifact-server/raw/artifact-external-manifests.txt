@@ -1,0 +1,4 @@
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/.dockerignore
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/Dockerfile
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/docker-entrypoint.sh
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/package.json

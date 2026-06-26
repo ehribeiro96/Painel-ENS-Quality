@@ -1,0 +1,3 @@
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/src
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/artifact-server/test

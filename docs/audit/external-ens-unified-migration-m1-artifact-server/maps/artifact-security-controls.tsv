@@ -1,0 +1,21 @@
+control	required	current_external_evidence	target_design	status	notes
+AUTH_REQUIRED	yes	internal bearer auth on upload, metadata, access-link, content, and delete	backend auth required on upload/metadata/delete; signed token for content download	COVERED	External service already gates all sensitive routes.
+RBAC_REQUIRED	yes	no distinct role checks in external service	backend RBAC for upload/delete and any future management routes	PARTIAL	Needs backend policy once integrated.
+AUDIT_LOG_REQUIRED	yes	no explicit audit persistence observed	backend audit log on upload, link minting, download, and delete	MISSING	Must be added in the target backend.
+RATE_LIMIT_REQUIRED	yes	none observed	backend rate limit on upload and access-link minting	MISSING	Important for abuse resistance.
+MAX_FILE_SIZE	yes	DEFAULT_MAX_UPLOAD_BYTES = 5 GiB; configurable	backend-safe default with explicit override	PARTIAL	External default is too large for a conservative first rollout.
+ALLOWED_MIME_TYPES	yes	none observed	allowlist required in backend	MISSING	Should be explicit, narrow, and tested.
+ALLOWED_EXTENSIONS	yes	none observed	allowlist required in backend	MISSING	Use alongside MIME validation.
+SAFE_FILENAME	yes	sanitizeFileName removes path separators and control chars	server-generated storage name plus sanitized display name	PARTIAL	Good baseline but should be paired with strict storage IDs.
+SERVER_GENERATED_ID	yes	randomUUID for metadata IDs	UUID generated server-side	COVERED	No client-controlled identifiers.
+NO_PATH_TRAVERSAL	yes	object path derived from sha256, filename sanitized	private storage root with no user-controlled path joins	COVERED	Blob path is content-addressed.
+PRIVATE_STORAGE	yes	/app/data with metadata/object separation	private on-disk storage under controlled backend path	COVERED	Do not mount any public directory.
+NO_PUBLIC_DIRECTORY_EXPOSURE	yes	no static asset mount observed	no frontend-exposed blob directory	COVERED	Keep downloads behind backend route.
+SIGNED_DOWNLOAD_URL	yes	access-link issues tokenized content URL	short-lived signed download URL	COVERED	Core contract to preserve.
+SIGNED_URL_EXPIRATION	yes	access-link returns expires_at and TTL bounded	short TTL with upper bound	COVERED	Default 15 minutes, capped at 1 hour.
+HMAC_SIGNATURE	yes	createHmac sha256 over base64url payload	HMAC-SHA256 signed token	COVERED	Matches secure token pattern.
+CONSTANT_TIME_SIGNATURE_COMPARE	yes	timingSafeEqual used in token verification	constant-time compare in verifier	COVERED	Prevents trivial timing leaks.
+CONTENT_DISPOSITION_SAFE	yes	sanitized filename and UTF-8 header construction	quoted filename plus safe fallback	PARTIAL	Keep escaping and header validation strict.
+METADATA_SEPARATE_FROM_BLOB	yes	metadata JSON files separate from blob files	metadata repository separate from blob storage	COVERED	Good basis for future DB migration.
+DELETE_OR_RETENTION_POLICY	yes	delete removes metadata and only removes blob if unreferenced	backend retention policy with audit trail	PARTIAL	Needs product decision for retention vs hard delete.
+VIRUS_SCAN_FUTURE_HOOK	yes	none observed	pluggable scanner hook before activation	NEEDS_IMPLEMENTATION	Reserve interface for later.
