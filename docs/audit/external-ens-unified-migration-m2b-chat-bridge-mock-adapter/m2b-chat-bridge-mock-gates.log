@@ -1,0 +1,22 @@
+M2B_CHAT_BRIDGE_MOCK_ADAPTER gates
+
+Repository: /home/estevaoqualityadm/projects/Painel-ENS-Quality
+Branch: main
+Boundary: M2B chat bridge mock adapter only
+
+Executed validations:
+- git diff --check → OK
+- PYTHONPATH=backend .venv/bin/python -m pytest → 293 passed, 22 skipped, 1 warning
+- .venv/bin/python -m ruff check backend tests scripts → OK
+- .venv/bin/python -m compileall -q backend/app backend/alembic tests scripts → OK
+- cd frontend/itam-platform && PATH="/home/estevaoqualityadm/.nvm/versions/node/v22.22.3/bin:$PATH" npm run build → OK
+- Targeted AI-chat tests → 49 passed
+
+Observed contract facts:
+- Mock adapter is explicit in backend and frontend labels.
+- Frontend only calls backend `/api/v1/ai-chat/*`.
+- No direct provider integration was introduced in this phase.
+- Auth/RBAC remain intact; 401 missing_token behavior is preserved.
+- Local fallback remains explicit and honest in the UI.
+
+Final gate: GO

@@ -1,0 +1,19 @@
+{
+  "status": "GO",
+  "phase": "m2b_chat_bridge_mock_adapter",
+  "mode": "M2B_MOCK_BACKEND_ADAPTER",
+  "backend_changed": true,
+  "frontend_changed": true,
+  "docker_changed": false,
+  "migrations_changed": false,
+  "provider_real_enabled": false,
+  "direct_frontend_provider_call": false,
+  "mock_adapter_label_explicit": true,
+  "auth_required_preserved": true,
+  "missing_token_preserved": true,
+  "streaming_enabled": false,
+  "artifact_dependency_used": false,
+  "tests_passed": true,
+  "push_executed": false,
+  "next_recommended_phase": "M3B_RAG_MCP_MOCK_ADAPTER"
+}
