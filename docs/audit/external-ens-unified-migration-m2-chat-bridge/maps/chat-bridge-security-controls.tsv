@@ -1,0 +1,21 @@
+control	required	current_external_evidence	target_design	status	notes
+AUTH_REQUIRED	yes	verifyUser() rejects missing bearer tokens and validates Supabase user identity	Require bearer auth for all /api/v1/ai-chat management and run endpoints	COVERED	bridge already gates management calls server-side
+RBAC_REQUIRED	yes	current source enforces auth but not explicit role tiers beyond user ownership	Add role-scoped checks on conversation/run attachment mutations	PARTIAL	backend must keep ownership checks even if RBAC remains coarse
+RATE_LIMIT_REQUIRED	yes	no dedicated rate limiter in bridge source	Per-user/per-route limiter on run creation, attachment minting and streaming start	MISSING	current target backend rate limiter can be reused conceptually
+AUDIT_LOG_REQUIRED	yes	no audit log emission observed in bridge source	Audit conversation create/update/delete, run create/cancel, attachment mint, artifact access	MISSING	must exist before any durable mutation is considered complete
+NO_DIRECT_FRONTEND_PROVIDER_CALL	yes	provider keys and Hermes API calls are in backend code paths only	Frontend consumes only /api/v1 and never receives provider secrets	COVERED	match the existing Apoema boundary
+SERVER_SIDE_PROVIDER_KEYS_ONLY	yes	HERMES_API_KEY and artifact keys live in server env only	Keep provider secrets in backend env / credential store	COVERED	no VITE_* exposure
+CONVERSATION_OWNERSHIP_CHECK	yes	state repository keys by user_id + chat_session_id	Conversation lookups must verify owner before detail or mutation	COVERED	must remain true if adapter is implemented later
+RUN_OWNERSHIP_CHECK	yes	run store saves user_id and run queries filter by owner	Run detail, cancel and event replay must verify owner	COVERED	important for SSE replay and cancel
+ARTIFACT_OWNERSHIP_CHECK	yes	attachment access validates userId/sessionId prefix	Artifact reads/mints must verify owner and session binding	PARTIAL	needs final artifact server contract implementation
+ATTACHMENT_POLICY	yes	max count, MIME allowlist and size caps exist in attachments.js	Only allow explicit types/sizes and block raw storage exposure	PARTIAL	policy is good enough for contract docs, not for durable storage yet
+STREAM_CANCELLATION	yes	streaming events are terminal-aware but no explicit cancel route evidence	POST /runs/{run_id}/cancel must cancel upstream Hermes execution and stop SSE	MISSING	reserved target contract term
+STREAM_TIMEOUT	yes	poll loop exists, but explicit timeout is not visible in inspected source	Bound run duration and SSE idle time with server timeout and fail-safe cancellation	MISSING	required before public streaming rollout
+HEARTBEAT	yes	server injects status text while Hermes keeps running	Emit heartbeat events during long-running runs and while replaying SSE	PARTIAL	current status loop is the conceptual heartbeat
+BACKPRESSURE_OR_RATE_CONTROL	yes	no explicit backpressure strategy observed	Throttle event fan-out and bounded replay windows	MISSING	needed for large outputs
+ERROR_REDACTION	yes	error codes are sanitized and truncated in event parsing	Strip prompt content, secrets and raw upstream provider payloads from user-facing errors	PARTIAL	the bridge already shortens error excerpts
+PROMPT_INJECTION_NOTE	yes	no prompt-injection note mechanism is visible	Mark attachment-originated text as untrusted and keep model/system prompts explicit	MISSING	must be documented in the adapter contract
+TOOL_ALLOWLIST	yes	tool events are normalized but no allowlist enforcement is visible	Allow only approved tool names in target adapter contract	MISSING	required for safer Hermes integration
+PROVIDER_TIMEOUT	yes	poll interval is explicit but timeout boundary not evidenced	Hard timeout the upstream provider request and fail gracefully	PARTIAL	needs explicit timeout config in target
+REQUEST_SIZE_LIMIT	yes	readJsonBody caps payloads at 1_000_000 bytes	Reject oversized run/attachment requests with 413	COVERED	current bridge already has a request cap
+SESSION_STATE_ISOLATION	yes	per-user state repository and Hermes session binding exist	Isolate conversation/run state per user and per session id	PARTIAL	adapter must preserve ownership and run scopes

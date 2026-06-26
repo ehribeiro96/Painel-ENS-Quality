@@ -1,0 +1,16 @@
+external_event	source_file	purpose	payload_fields	target_event	target_payload_fields	streaming_required	artifact_dependency	notes
+run.created	src/server.js	bridge-created run lifecycle marker	provider,event,run_id,session_id	run.created	run_id,session_id,provider	yes	no	emitted as meta event when the run is persisted
+run.started	src/hermes-events.js	upstream Hermes execution start or session bootstrap	provider,event,run_id,session_id	run.started	run_id,session_id,conversation_id	yes	no	current source exposes this as status/meta rather than a dedicated event frame
+message.delta	src/hermes-events.js	streamed assistant token delta	delta	delta	delta	yes	no	core token streaming primitive
+assistant.delta	src/hermes-events.js	alias for assistant token delta	delta	delta	delta	yes	no	alias normalized to message.delta in target
+response.output_text.delta	src/hermes-events.js	Responses API text delta	delta	delta	delta	yes	no	alias normalized to message.delta in target
+message.completed	src/hermes-events.js	assistant message completion	run_id,session_id,id,output	message.completed	message_id,run_id,session_id	yes	no	completion may also carry files via files event
+assistant.completed	src/hermes-events.js	alias for assistant completion	run_id,session_id,id,content	message.completed	message_id,run_id,session_id	yes	no	alias normalized to message.completed in target
+run.completed	src/hermes-events.js	terminal successful run completion	run_id,session_id,id,output,files	run.completed	run_id,session_id,response_id	yes	maybe	can also emit files and done markers
+response.completed	src/hermes-events.js	Responses API terminal completion	id,run_id,session_id,output	run.completed	run_id,session_id,response_id	yes	maybe	target keeps run.completed as the canonical terminal marker
+run.failed	src/hermes-events.js	terminal run failure	run_id,session_id,error	run.failed	run_id,session_id,error_code	yes	no	may still emit assistant text before failure
+response.failed	src/hermes-events.js	Responses API terminal failure	id,run_id,session_id,error	run.failed	run_id,session_id,error_code	yes	no	canonical failure is run.failed
+error	src/hermes-events.js	unrecoverable upstream error	error	error	error	yes	no	serialized error text is redacted/truncated in target
+status	src/server.js	bridge progress / heartbeat loop	text,tone	heartbeat	text,tone	yes	no	used when Hermes is still working and no terminal event arrived
+tool.completed	src/hermes-events.js	upstream tool completion with file extraction	tool_name,result	tool.call.completed	tool_call_id,tool_name,result	yes	maybe	current source emits tool.completed; target reserves tool.call.*
+done	src/hermes-events.js	terminal marker for stream consumers	request_id	run.completed	request_id	no	no	local end-of-stream sentinel

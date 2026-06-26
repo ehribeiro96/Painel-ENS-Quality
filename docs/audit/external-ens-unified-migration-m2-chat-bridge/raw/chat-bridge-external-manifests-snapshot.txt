@@ -1,0 +1,43 @@
+===== /tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge/Dockerfile =====
+FROM node:20-alpine
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci --omit=dev
+COPY src ./src
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
+CMD ["node", "src/server.js"]
+
+===== /tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge/docker-entrypoint.sh =====
+#!/bin/sh
+set -eu
+exec "$@"
+
+===== /tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge/package.json =====
+{
+  "name": "nexus-hermes-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "fflate": "^0.8.3"
+  }
+}
+
+===== /tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge/package-lock.json =====
+{
+  "name": "nexus-hermes-bridge",
+  "lockfileVersion": 3,
+  "packages": {
+    "": {
+      "name": "nexus-hermes-bridge",
+      "version": "0.1.0",
+      "dependencies": {
+        "fflate": "^0.8.3"
+      }
+    }
+  }
+}

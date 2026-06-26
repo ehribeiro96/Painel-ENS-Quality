@@ -1,0 +1,18 @@
+src/attachments.js:138:export const assertAttachmentAccess = ({ attachment, userId, sessionId }) => {
+src/attachments.js:149:  const expectedPrefix = `${userId}/${sessionId}/`;
+src/attachments.js:202:export const prepareHermesAttachments = async ({
+src/attachments.js:225:  return await Promise.all(normalizedAttachments.map(async (attachment) => {
+src/artifacts.js:69:export const collectArtifactUrlReplacements = (sourceFiles = [], importedFiles = []) => {
+src/artifacts.js:144:const uploadToArtifactServer = async ({
+src/artifacts.js:179:export const createArtifactAccessLink = async ({
+src/artifacts.js:237:export const importHermesFileToArtifact = async ({
+src/artifacts.js:287:export const importHermesFilesToArtifacts = async ({
+src/server.js:667:    if (event.event !== "delta" || typeof event.data?.delta !== "string") return event;
+src/server.js:697:      if (existingEvent.event !== "delta" || typeof existingEvent.data?.delta !== "string") return existingEvent;
+src/server.js:711:    run.events.push(normalizedEvent);
+src/server.js:712:    if (normalizedEvent.event === "delta" && typeof normalizedEvent.data?.delta === "string") {
+src/server.js:713:      run.output_text += normalizedEvent.data.delta;
+src/server.js:1039:      const response = await fetch(new URL(`/api/sessions/${encodeURIComponent(run.hermes_session_id)}/chat/stream`, hermesBaseUrl.origin), {
+src/server.js:1087:          event: "status",
+src/server.js:1165:        this.appendEvent(run, {
+src/server.js:1421:    const hermesSessionIds = new Set([

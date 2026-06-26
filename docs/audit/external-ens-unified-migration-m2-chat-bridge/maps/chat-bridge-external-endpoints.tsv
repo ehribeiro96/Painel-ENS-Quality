@@ -1,0 +1,8 @@
+source_file	method	path	purpose	input_type	output_type	streaming	auth_evidence	state_effect	artifact_effect	migration_action	notes
+src/server.js	GET	/health	bridge readiness and upstream configuration probe	query	json	no	none	none	none	DOCS_ONLY	internal service health only
+src/server.js	POST	/api/artifacts/{artifact_id}/access-link	mint a safe artifact download URL on the bridge	path+json	json	no	verifyUser + artifactInternalKey	none	safe download link mint	SECURITY_REVIEW_REQUIRED	blocked until M1 artifact implementation exists
+src/server.js	POST	/api/chat/session/delete	delete chat session and linked Hermes sessions	json	json	no	verifyUser	delete session state and run references	delete generated artifact traces	ADAPT_CONTRACT	ownership cleanup is server-owned
+src/server.js	POST	/api/chat/runs	create a chat run with optional attachments	json	json	no	verifyUser	create run record	may import attachments and rewrite URLs	ADOPT_CONTRACT	canonical non-stream fallback entry point
+src/server.js	POST	/api/chat/stream	create a chat run and subscribe to SSE stream	json	sse	yes	verifyUser	create run record and stream events	may import attachments and rewrite URLs	ADAPT_CONTRACT	bridge streaming entry point
+src/server.js	GET	/api/chat/runs/{run_id}	read run snapshot	path	json	no	verifyUser	none	none	ADOPT_CONTRACT	current run detail contract
+src/server.js	GET	/api/chat/runs/{run_id}/events	read SSE event history with cursor	path+query	sse	yes	verifyUser	none	none	ADOPT_CONTRACT	cursor-based replay of run events

@@ -1,0 +1,7 @@
+src/server.js:1362:  if (req.method === "GET" && url.pathname === "/health") {
+src/server.js:1375:  const artifactAccessMatch = url.pathname.match(/^\/api\/artifacts\/([^/]+)\/access-link$/);
+src/server.js:1398:  if (req.method === "POST" && url.pathname === "/api/chat/session/delete") {
+src/server.js:1442:  if (req.method === "POST" && url.pathname === "/api/chat/runs") {
+src/server.js:1450:  if (req.method === "POST" && url.pathname === "/api/chat/stream") {
+src/server.js:1459:  const runMatch = url.pathname.match(/^\/api\/chat\/runs\/([^/]+)(?:\/events)?$/);
+src/server.js:1469:    if (url.pathname.endsWith("/events")) {

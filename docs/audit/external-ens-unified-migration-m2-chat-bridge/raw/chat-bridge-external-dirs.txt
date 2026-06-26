@@ -1,0 +1,3 @@
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge/src
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge/test

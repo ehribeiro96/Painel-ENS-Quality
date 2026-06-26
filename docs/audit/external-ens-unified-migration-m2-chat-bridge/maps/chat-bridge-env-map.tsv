@@ -1,0 +1,22 @@
+external_name	source_file	current_usage	sensitive	target_name	target_default	target_location	migration_action	notes
+BRIDGE_PORT	src/server.js	bridge listen port	no	AI_CHAT_BRIDGE_PORT	8080	server env	ADOPT	bridge runtime only
+BRIDGE_DATA_DIR	src/server.js	private bridge data root	no	AI_CHAT_BRIDGE_DATA_DIR	/app/data	server env	ADOPT	private bridge storage root
+BRIDGE_ALLOWED_ORIGINS	src/server.js	CORS allowlist	no	AI_CHAT_BRIDGE_ALLOWED_ORIGINS	https://chat.solucoes-nexus.tech	server env	ADOPT	never expose provider tokens to the frontend
+SUPABASE_URL	src/server.js	backend storage/auth base URL	yes	AI_CHAT_SUPABASE_URL	"" 	server env	ADOPT	server-only
+SUPABASE_ANON_KEY	src/server.js	storage/auth anonymous key	yes	AI_CHAT_SUPABASE_ANON_KEY	"" 	server env	ADOPT	server-only and never in VITE_
+SUPABASE_SERVICE_ROLE_KEY	src/server.js	storage admin key	yes	AI_CHAT_SUPABASE_SERVICE_ROLE_KEY	"" 	server env	ADOPT	server-only
+CHAT_ATTACHMENTS_BUCKET	src/server.js	attachment bucket name	no	AI_CHAT_ATTACHMENTS_BUCKET	chat-attachments	server env	ADOPT	bucket naming only
+SUPABASE_OUTPUTS_BUCKET	src/server.js	generated image output bucket	no	AI_CHAT_SUPABASE_OUTPUTS_BUCKET	image-gen-outputs	server env	ADOPT	server-only bucket routing
+SUPABASE_GENERATED_IMAGES_PREFIX	src/server.js	output path prefix	no	AI_CHAT_SUPABASE_GENERATED_IMAGES_PREFIX	hermes-chat-images	server env	ADOPT	server-only prefix routing
+HERMES_IMAGE_INPUTS_BRIDGE_DIR	src/server.js	bridge-side temp directory	no	AI_CHAT_HERMES_IMAGE_INPUTS_BRIDGE_DIR	/app/data/hermes-image-inputs	server env	ADOPT	server-only
+HERMES_IMAGE_INPUTS_HERMES_DIR	src/server.js	Hermes-side temp directory	no	AI_CHAT_HERMES_IMAGE_INPUTS_HERMES_DIR	/opt/data/nexus-image-inputs	server env	ADOPT	server-only
+HERMES_ARTIFACTS_BRIDGE_DIR	src/server.js	bridge artifact temp directory	no	AI_CHAT_HERMES_ARTIFACTS_BRIDGE_DIR	/app/data/hermes-artifacts	server env	ADOPT	server-only
+HERMES_ARTIFACTS_HERMES_DIR	src/server.js	Hermes artifact temp directory	no	AI_CHAT_HERMES_ARTIFACTS_HERMES_DIR	/opt/data/nexus-artifacts	server env	ADOPT	server-only
+ARTIFACT_INTERNAL_URL	src/server.js	internal artifact server URL	yes	AI_CHAT_ARTIFACT_INTERNAL_URL	"" 	server env	ADOPT	server-to-server only
+ARTIFACT_INTERNAL_KEY	src/server.js	internal artifact server key	yes	AI_CHAT_ARTIFACT_INTERNAL_KEY	"" 	server env	ADOPT	never sent to the frontend
+ARTIFACT_ACCESS_TOKEN_TTL_SECONDS	src/server.js	artifact access URL TTL	no	AI_CHAT_ARTIFACT_ACCESS_TOKEN_TTL_SECONDS	900	server env	ADOPT	short-lived signed links only
+HERMES_API_BASE_URL	src/server.js	Hermes runtime base URL	yes	AI_CHAT_HERMES_API_BASE_URL	"" 	server env	ADOPT	server-side provider isolation
+HERMES_API_KEY	src/server.js	Hermes runtime API key	yes	AI_CHAT_HERMES_API_KEY	"" 	server env	ADOPT	server-only provider secret
+HERMES_MODEL_NAME	src/server.js	Hermes model selector	no	AI_CHAT_HERMES_MODEL_NAME	hermes-agent	server env	ADOPT	no frontend hardcoding
+HERMES_RUN_POLL_MS	src/server.js	bridge poll interval	no	AI_CHAT_HERMES_RUN_POLL_MS	2000	server env	ADOPT	used for status/heartbeat loop
+HERMES_SESSIONS_API_ENABLED	src/server.js	enable Hermes sessions API	no	AI_CHAT_HERMES_SESSIONS_API_ENABLED	true	server env	ADOPT	controls session recreation fallback

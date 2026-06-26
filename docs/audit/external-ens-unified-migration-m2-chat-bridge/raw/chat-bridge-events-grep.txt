@@ -1,0 +1,14 @@
+src/hermes-events.js:289:    return {
+src/hermes-events.js:297:  if (eventName === "run.started" || eventName === "run.created") {
+src/hermes-events.js:301:  if (eventName === "run.completed") {
+src/hermes-events.js:305:  if (eventName === "run.failed") {
+src/hermes-events.js:326:  if (payload === "[DONE]") {
+src/hermes-events.js:344:  if (eventName === "message.delta" || eventName === "assistant.delta" || eventName === "response.output_text.delta") {
+src/hermes-events.js:362:  if (eventName === "assistant.completed" || eventName === "message.completed" || eventName === "run.completed" || eventName === "response.completed" || eventName === "response.output_item.done") {
+src/hermes-events.js:409:  if (eventName === "run.failed" || eventName === "response.failed" || eventName === "error") {
+src/hermes-events.js:463:  const status = describeStatusEvent(eventName, parsedPayload);
+src/hermes-events.js:464:  if (status) events.push({ event: "status", data: status });
+src/hermes-events.js:465:  if (extractedFiles.length > 0) events.push({ event: "files", data: { files: extractedFiles } });
+src/server.js:971:      event: "meta",
+src/server.js:975:        event: "run.created",
+src/server.js:990:      this.appendEvent(run, { event: "status", data: { text: "Hermes segue executando a tarefa...", tone: "info" } });

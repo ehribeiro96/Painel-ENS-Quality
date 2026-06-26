@@ -1,0 +1,10 @@
+target_method	target_path	purpose	request	response	streaming	auth	rbac	audit	rate_limit	artifact_dependency	implementation_phase	notes
+POST	/api/v1/ai-chat/conversations	create a conversation and optionally seed the first message	title,message,mode,attachments? (DTO)	conversation detail DTO	no	yes	yes	yes	yes	NONE	M2A_CONTRACT_ONLY	frontend must remain on /api/v1 only
+GET	/api/v1/ai-chat/conversations	list user conversations	query filters	conversation list DTO	no	yes	yes	yes	yes	NONE	M2A_CONTRACT_ONLY	ownership filter required
+GET	/api/v1/ai-chat/conversations/{conversation_id}	read conversation detail	conversation_id path	conversation detail DTO	no	yes	yes	yes	no	NONE	M2A_CONTRACT_ONLY	must verify owner before returning messages
+POST	/api/v1/ai-chat/runs	create a new run for a conversation	conversation_id,message,mode,attachments?,stream?	run DTO	no	yes	yes	yes	yes	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	M2A_CONTRACT_ONLY	fallback JSON response is the safe baseline
+GET	/api/v1/ai-chat/runs/{run_id}	read run snapshot	run_id path	run DTO	no	yes	yes	yes	no	NONE	M2A_CONTRACT_ONLY	read-only snapshot endpoint
+GET	/api/v1/ai-chat/runs/{run_id}/events	stream or replay run events	cursor? and run_id path	event stream / event list	yes	yes	yes	yes	no	PARTIAL	M2A_CONTRACT_ONLY	SSE preferred, JSON fallback accepted
+POST	/api/v1/ai-chat/runs/{run_id}/cancel	cancel an in-flight run	run_id path	updated run DTO	no	yes	yes	yes	yes	NONE	M2A_CONTRACT_ONLY	must cancel upstream execution and close the stream
+POST	/api/v1/ai-chat/runs/{run_id}/attachments	attach files to an existing run	run_id path + attachment DTOs	attachment DTOs / run DTO	no	yes	yes	yes	yes	BLOCKED_UNTIL_ARTIFACT_IMPLEMENTATION	M2A_CONTRACT_ONLY	requires M1 artifact implementation before durable upload
+GET	/api/v1/ai-chat/providers	list backend provider catalog	no body	provider list DTO	no	yes	yes	yes	no	NONE	M2A_CONTRACT_ONLY	providers must be backend-owned, not hardcoded in the frontend

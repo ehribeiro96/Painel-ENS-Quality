@@ -1,0 +1,62 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "m2_chat_bridge_hermes_adapter",
+  "mode": "M2A_CONTRACT_ONLY",
+  "external_module": "services/chat-bridge",
+  "runtime_port": 5175,
+  "zip_committed": false,
+  "external_code_committed": false,
+  "backend_changed": false,
+  "frontend_changed": false,
+  "docker_changed": false,
+  "migration_direct_copy": false,
+  "target_endpoints": [
+    "POST /api/v1/ai-chat/conversations",
+    "GET /api/v1/ai-chat/conversations",
+    "GET /api/v1/ai-chat/conversations/{conversation_id}",
+    "POST /api/v1/ai-chat/runs",
+    "GET /api/v1/ai-chat/runs/{run_id}",
+    "GET /api/v1/ai-chat/runs/{run_id}/events",
+    "POST /api/v1/ai-chat/runs/{run_id}/cancel",
+    "POST /api/v1/ai-chat/runs/{run_id}/attachments",
+    "GET /api/v1/ai-chat/providers"
+  ],
+  "target_events": [
+    "run.created",
+    "run.started",
+    "message.delta",
+    "message.completed",
+    "tool.call.started",
+    "tool.call.delta",
+    "tool.call.completed",
+    "artifact.created",
+    "artifact.updated",
+    "run.completed",
+    "run.failed",
+    "run.cancelled",
+    "error",
+    "heartbeat"
+  ],
+  "artifact_dependency_status": "M1A_CONTRACT_ONLY",
+  "security_controls": {
+    "auth_required": false,
+    "rbac_required": false,
+    "audit_log_required": false,
+    "rate_limit_required": false,
+    "no_direct_frontend_provider_call": false,
+    "server_side_provider_keys_only": false,
+    "stream_timeout": false,
+    "heartbeat": false,
+    "tool_allowlist": false
+  },
+  "validations": {
+    "pytest": "PASS: 272 passed, 22 skipped",
+    "ruff": "PASS: All checks passed!",
+    "compileall": "PASS",
+    "frontend_build": "PASS",
+    "git_diff_check": "PASS",
+    "secret_scan": "PASS"
+  },
+  "next_recommended_phase": "M3_RAG_MCP_EXTERNAL_SERVICE",
+  "push_executed": false
+}

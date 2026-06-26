@@ -1,0 +1,4 @@
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge/Dockerfile
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge/docker-entrypoint.sh
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge/package-lock.json
+/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge/package.json

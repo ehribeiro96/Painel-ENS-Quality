@@ -1,0 +1,5 @@
+docs/audit/external-ens-unified-migration-m2-chat-bridge/ENS_UNIFIED_MIGRATION_M2_CHAT_BRIDGE_20260625.md:1:# ENS Unified Migration M2 — Chat Bridge Hermes Adapter
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-api-contract.md:1:# Chat Bridge API Contract
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-event-contract.md:1:# Chat Bridge Event Contract
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-state-contract.md:1:# Chat Bridge State Contract
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-artifact-integration-contract.md:1:# Chat Bridge Artifact Integration Contract
