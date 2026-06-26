@@ -5,6 +5,7 @@ from app.api.v1.routes import (
     audit,
     auth,
     dashboard,
+    designer,
     imports,
     macros,
     rag,
@@ -20,6 +21,7 @@ api_router.include_router(users.router)
 api_router.include_router(assets.router)
 api_router.include_router(artifacts.router)
 api_router.include_router(dashboard.router)
+api_router.include_router(designer.router)
 api_router.include_router(imports.router)
 api_router.include_router(signatures.router)
 api_router.include_router(macros.router)
