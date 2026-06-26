@@ -1,0 +1,11 @@
+M1B gates (artifact implementation)
+- git diff --check: PASS
+- PYTHONPATH=backend .venv/bin/python -m pytest: PASS (292 passed, 22 skipped)
+- .venv/bin/python -m ruff check backend tests scripts: PASS
+- .venv/bin/python -m compileall -q backend/app backend/alembic tests scripts: PASS
+- cd frontend/itam-platform && PATH="/home/estevaoqualityadm/.nvm/versions/node/v22.22.3/bin:$PATH" npm run build: PASS
+- secret scan over artifact docs/tests: PASS
+- backend changed: yes
+- frontend changed: no
+- docker changed: no
+- migrations changed: no

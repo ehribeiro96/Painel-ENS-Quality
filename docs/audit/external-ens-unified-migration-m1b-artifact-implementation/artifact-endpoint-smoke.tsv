@@ -1,0 +1,7 @@
+method	path	auth_expected	status_expected	purpose	notes
+POST	/api/v1/artifacts	yes	201 or 4xx	upload artifact	Multipart upload, size and allowlist checks.
+GET	/api/v1/artifacts	yes	200	list artifacts	Returns owned artifacts or admin scope.
+GET	/api/v1/artifacts/{artifact_id}	yes	200 or 404/403	read metadata	No internal path exposed.
+GET	/api/v1/artifacts/{artifact_id}/download-url	yes	200 or 404/403	mint signed url	Returns short-lived HMAC token.
+GET	/api/v1/artifacts/download/{signed_token}	no (token only)	200 or 403/410	downstream download	Optional auth may be present but is not required.
+DELETE	/api/v1/artifacts/{artifact_id}	yes	204 or 404/403	delete artifact	Removes blob and marks manifest deleted.

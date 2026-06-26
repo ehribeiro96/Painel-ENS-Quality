@@ -1,0 +1,19 @@
+id	requirement	status	evidence	notes
+ART-001	AUTH_REQUIRED	PASS	Routes depend on get_current_user or optional signed-token auth for download	Metadata and mutation routes are protected.
+ART-002	RBAC_OR_OWNERSHIP_REQUIRED	PASS	Storage enforces owner checks with admin override	Ownership is the primary control.
+ART-003	MAX_FILE_SIZE	PASS	Storage rejects uploads above 10 MiB by default	Returns 413 on overflow.
+ART-004	ALLOWED_MIME_TYPES	PASS	Storage allowlist in backend/app/services/artifact_storage.py	Only explicit MIME types are accepted.
+ART-005	ALLOWED_EXTENSIONS	PASS	Storage allowlist in backend/app/services/artifact_storage.py	Only explicit filename extensions are accepted.
+ART-006	SAFE_FILENAME	PASS	Basename validation + sanitization before storage	Path separators and traversal are rejected.
+ART-007	SERVER_GENERATED_ID	PASS	UUID generated server-side on upload	No client-controlled IDs.
+ART-008	NO_PATH_TRAVERSAL	PASS	Rejects ../ and path separators in upload filename	Prevents path joins outside the private root.
+ART-009	PRIVATE_STORAGE	PASS	Blob root is data/artifacts/private/	No public webroot exposure.
+ART-010	NO_PUBLIC_DIRECTORY_EXPOSURE	PASS	No static mount for artifacts paths	Downloads stay backend-side.
+ART-011	SIGNED_DOWNLOAD_URL	PASS	backend/app/services/artifact_signing.py	Tokenized download URL is minted server-side.
+ART-012	SIGNED_URL_EXPIRATION	PASS	300-second expiry encoded in the token	Short-lived by default.
+ART-013	HMAC_SIGNATURE	PASS	HMAC-SHA256 signing in signer service	Secret stays server-side.
+ART-014	CONSTANT_TIME_COMPARE	PASS	hmac.compare_digest used for signature verification	Protects signature check timing.
+ART-015	CONTENT_DISPOSITION_SAFE	PASS	Sanitized ASCII filename in response headers	Avoids unsafe header injection.
+ART-016	METADATA_SEPARATE_FROM_BLOB	PASS	metadata.json manifest separate from private blob files	Metadata does not expose internal path.
+ART-017	DELETE_POLICY	PASS	Delete removes blob and marks manifest deleted_at	Retains history while removing content.
+ART-018	ERROR_REDACTION	PASS	HTTPException detail codes are stable and non-sensitive	No internal paths or stack traces are returned.
