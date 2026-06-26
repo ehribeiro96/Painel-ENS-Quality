@@ -1,0 +1,19 @@
+control	required	status	notes
+AUTH_REQUIRED	yes	covered	Preserved by get_current_user on all public routes
+RBAC_OR_ROLE_GATE	yes	covered	Write routes require role gate
+RATE_LIMIT_IF_PATTERN_EXISTS	yes	covered	Inherited from global API middleware
+AUDIT_LOG_IF_PATTERN_EXISTS	yes	partial	Mock store keeps deterministic in-memory history; no DB persistence in this phase
+JOB_OWNERSHIP_CHECK	yes	covered	Owner-or-admin guard on job mutations and read
+TEMPLATE_ALLOWLIST	yes	covered	Server-side allowlist only
+FORM_OPTION_ALLOWLIST	yes	covered	Server-side allowlist only
+PROMPT_INPUT_VALIDATION	yes	covered	Length and allowlist checks enforced
+REQUEST_SIZE_LIMIT	yes	covered	Prompt/copy/item count caps enforced
+NO_DIRECT_FRONTEND_PROVIDER_CALL	yes	covered	Frontend remains backend-owned
+SERVER_SIDE_PROVIDER_KEYS_ONLY	yes	covered	No provider keys exposed in DTOs
+NO_PROVIDER_REAL	yes	covered	Mock only; no external provider integration
+NO_IMAGE_GENERATION_REAL	yes	covered	No image generation backend call
+NO_BLOB_OUTPUT	yes	covered	No blob/file output created
+STRUCTURED_ERRORS	yes	covered	Errors use redacted codes/messages
+ERROR_REDACTION	yes	covered	No raw provider payloads returned
+COST_CONTROL_NOTE	yes	covered	Mock phase avoids provider spend entirely
+CONTENT_POLICY_NOTE	yes	covered	No live generation path in this adapter
