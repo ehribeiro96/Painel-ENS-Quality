@@ -1,0 +1,14 @@
+step	expected	actual	result	evidence
+runtime_health	200	200	PASS	/health/ready
+openapi_artifacts_routes	present	present	PASS	/api/v1/artifacts paths in OpenAPI
+no_token_auth_gate	401_or_403	404_not_found	FAIL	GET /api/v1/artifacts without token
+login_admin	200	200	PASS	/api/v1/auth/login
+upload_allowed_file	201	201	PASS	allowed.txt
+metadata_read	200	200	PASS	artifact metadata response
+mint_download_url	200	200	PASS	artifact download-url response
+signed_download	200	200	PASS	body match + safe content-disposition
+reject_bad_extension	400_415_422	400	PASS	blocked.exe
+reject_bad_mime	400_415_422	400	PASS	allowed.txt with application/octet-stream
+reject_traversal_filename	400_415_422	400	PASS	filename=../traversal.txt
+delete_artifact	200_or_204	200	PASS	artifact delete response
+post_delete_download	403_404_410	404	PASS	artifact_not_found after delete

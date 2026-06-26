@@ -1,0 +1,6 @@
+check	expected	actual	result	notes
+TestClient/OpenAPI route registration	artifact routes present	present	PASS	backend/app main imports api_router and OpenAPI lists artifact paths
+live runtime health	200	200	PASS	docker compose app healthy
+live runtime GET /api/v1/artifacts without token	401_or_403	401_missing_token	PASS	current runtime returns missing_token as expected
+live runtime authenticated artifact upload	201	201	PASS	confirmed route is active in runtime
+live runtime authenticated delete	200_or_204	200	PASS	confirmed delete works in runtime
