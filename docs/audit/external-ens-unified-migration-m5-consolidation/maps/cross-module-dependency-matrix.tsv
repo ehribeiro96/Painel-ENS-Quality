@@ -1,0 +1,9 @@
+module	depends_on	dependency_type	required_for	status	blocker	notes
+Chat Bridge	Artifact	attachment storage, signed download URLs, imported files	assistant runs with attachments and artifact rewrites	BLOCKED_UNTIL_IMPLEMENTATION	Artifact M1 remains contract-only	No direct storage exposure to the frontend.
+Designer API	Artifact	private output storage and download URLs	banners/job output persistence	BLOCKED_UNTIL_IMPLEMENTATION	Artifact M1 must exist before live outputs	Do not route generated files through public /files.
+Designer API	Chat Bridge	prompt assistance and conversation trace	assistant-assisted campaign creation	BLOCKED_UNTIL_IMPLEMENTATION	No backend-owned chat adapter yet	Frontend must never call providers directly.
+Designer API	RAG MCP	context retrieval and brand/copy grounding	template guidance and semantic copy	BLOCKED_UNTIL_IMPLEMENTATION	No backend-owned RAG adapter yet	Only expose a backend API surface.
+RAG MCP	Chat Bridge	grounded responses and citations in chat workflows	chat runs that need retrieval support	BLOCKED_UNTIL_IMPLEMENTATION	Bridge integration is still contract-only	Keep MCP tools server-side.
+RAG MCP	provider/vector store	backend knowledge retrieval backend	search, ingest, audit and memory writes	BLOCKED_BY_SECRETS	Provider keys and store credentials stay server-side	Treat provider/vector store as hidden implementation detail.
+Artifact	storage/private files/HMAC	private blobs, metadata separation, signed URLs	upload/download/delete lifecycle	BLOCKED_BY_STORAGE	Private storage and signing must be implemented first	Storage must remain outside the webroot.
+Apoema UI	backend adapters	feature entrypoints and API-backed UX	any new UI affordance for migration modules	BLOCKED_UNTIL_IMPLEMENTATION	UI must wait for real backend contracts	Apoema may only surface entries after adapters are real.

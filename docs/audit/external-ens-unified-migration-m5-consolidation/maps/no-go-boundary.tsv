@@ -1,0 +1,14 @@
+path_or_action	reason	status	future_condition_to_reconsider
+apps/chat-web/**	Legacy chat-web is explicitly blocked by M0 and must not be copied into Apoema runtime.	NO_GO	Only reconsider if a future contract-only adapter is written without vendoring the app.
+services/hermes-runtime/**	Hermes runtime is an external orchestration bundle, not a migration target.	NO_GO	Reconsider only if a separate adapter contract is approved and the service remains external.
+services/hermes-runtime/vendor/hermes-agent/**	Vendored Hermes agent subtree is high-risk and excluded from direct migration.	NO_GO	Reconsider only via security-reviewed adapter boundaries, never by copying the subtree.
+services/artifact-server/**	External upstream service; do not vendor the whole tree into runtime.	NO_GO	Reconsider only as backend-owned contract or adapter work, not as a copied service directory.
+services/chat-bridge/**	External upstream service; migration must happen via contract/adapters, not vendored runtime.	NO_GO	Reconsider only when M1 exists and M2 is implemented server-side.
+services/rag-mcp/**	External upstream service; use backend-owned contract and allowlist mapping only.	NO_GO	Reconsider only after RAG adapter boundaries are implemented server-side.
+apps/designer-api/**	External upstream app; do not copy the app tree into the current runtime.	NO_GO	Reconsider only as a backend-owned adapter with explicit contract tests.
+frontend/itam-platform/src/apoema/**	Apoema UI boundary is frozen for M5; this phase cannot alter runtime UI entrypoints.	NO_GO	Reconsider after backend adapters exist and a later UI gate is explicitly approved.
+frontend/itam-platform/src/lib/auth.tsx	Auth provider boundary is frozen by the task and must remain unchanged.	NO_GO	Reconsider only with a separate auth migration plan and explicit authorization.
+frontend/itam-platform/vite.config.ts	Vite proxy/runtime boundary is frozen; no proxy changes in this phase.	NO_GO	Reconsider only in a dedicated runtime/networking task.
+docker-compose.yml	Docker Compose is out of scope for the M5 consolidation decision.	NO_GO	Reconsider only after the implementation path is selected and separately approved.
+.env*	Secrets and local environment files must never be opened, copied or committed.	NO_GO	Reconsider only via the credential store, never in repository files.
+*.zip	External archives must not be committed or copied into runtime.	NO_GO	Reconsider only as read-only analysis artifacts outside the repository boundary.

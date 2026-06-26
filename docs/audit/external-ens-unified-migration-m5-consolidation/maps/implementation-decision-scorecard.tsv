@@ -1,0 +1,7 @@
+path	title	value_score	risk_score	dependency_score	testability_score	security_score	total_recommendation	decision	reason
+PATH_A_IMPLEMENT_ARTIFACT_FIRST	Implement Artifact first	5	4	5	5	5	24	RECOMMENDED	Artifact is the shared base for attachments, outputs, downloads and signed storage, reducing downstream coupling.
+PATH_B_IMPLEMENT_CHAT_MOCK_FIRST	Implement Chat mock adapter first	3	2	2	3	2	12	NOT_RECOMMENDED	Chat still depends on artifact storage and would force placeholder flows.
+PATH_C_IMPLEMENT_RAG_MOCK_FIRST	Implement RAG mock adapter first	3	2	2	3	2	12	NOT_RECOMMENDED	RAG adds value later, but safe grounding still needs the artifact base and server-side secrets policy.
+PATH_D_IMPLEMENT_DESIGNER_MOCK_FIRST	Implement Designer mock adapter first	3	2	2	3	2	12	NOT_RECOMMENDED	Designer depends on Artifact plus chat/RAG semantics and would create public-output pressure too early.
+PATH_E_KEEP_CONTRACT_ONLY_AND_PREPARE_SECURITY	Stay contract-only and harden security first	2	5	3	4	5	19	CONTINGENCY_ONLY	Useful if validation failed, but the current evidence is enough to choose a safe first implementation.
+PATH_F_NO_GO_NEEDS_REWORK	No-go; rework migration framing	1	5	1	1	5	13	NO_GO	Reserved for ambiguous or unsafe evidence; current reports are sufficiently aligned to avoid this path.

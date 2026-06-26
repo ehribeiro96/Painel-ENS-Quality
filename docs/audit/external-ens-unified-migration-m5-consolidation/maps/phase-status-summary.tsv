@@ -1,0 +1,6 @@
+phase	status	mode	backend_changed	frontend_changed	docker_changed	contract_defined	implementation_done	main_blocker	commits	next_recommended
+M0_MASTER_PLAN	GO	PLAN_ONLY	false	false	false	true	false	external source analysis; no runtime changes	af184b7	M1_ARTIFACT_SERVER_CONTRACT
+M1_ARTIFACT_SERVER	PARTIAL_GO	M1A_CONTRACT_ONLY	false	false	false	true	false	storage, RBAC, audit trail, signed URL design not yet implemented	e7841cb, eb71649	M1B_ARTIFACT_IMPLEMENTATION
+M2_CHAT_BRIDGE	PARTIAL_GO	M2A_CONTRACT_ONLY	false	false	false	true	false	depends on artifact storage and SSE/cancel semantics; implementation deferred	5df11cd, 44a94c1	M2B_CHAT_BRIDGE_MOCK_ADAPTER
+M3_RAG_MCP	PARTIAL_GO	M3A_CONTRACT_ONLY	false	false	false	true	false	server-side secrets and allowlist/timeout policy keep it contract-only	0cb9ae3, c13f449	M3B_RAG_MCP_MOCK_ADAPTER
+M4_DESIGNER_API	PARTIAL_GO	M4A_CONTRACT_ONLY	false	false	false	true	false	depends on artifact storage and backend-owned chat/RAG adapters	bfa57e4, 3ec0c42	M4B_DESIGNER_MOCK_ADAPTER
