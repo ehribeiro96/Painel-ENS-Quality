@@ -1,0 +1,15 @@
+{
+  "status": "GO",
+  "phase": "vite_stable_port_selection",
+  "ports_tested": [5174, 5175, 5176],
+  "selected_port": 5175,
+  "proxy_target": "http://[::1]:8080",
+  "wsl_vite_ok": true,
+  "wsl_proxy_no_reset": true,
+  "windows_selected_port_ok": true,
+  "helper_created": true,
+  "frontend_app_code_changed": false,
+  "backend_changed": false,
+  "docker_changed": false,
+  "push_executed": false
+}
