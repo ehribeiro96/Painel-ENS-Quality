@@ -171,6 +171,20 @@
   transition: transform 160ms ease, background 160ms ease, color 160ms ease;
 }
 
+.apoema-nav-item span {
+  min-width: 0;
+}
+
+.apoema-nav-badge {
+  margin-left: auto;
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: rgba(49, 208, 230, 0.12);
+  color: var(--apoema-teal);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
 .apoema-nav-item:hover,
 .apoema-nav-item.is-active {
   color: var(--apoema-text);
@@ -932,6 +946,120 @@
   background: var(--apoema-surface-strong);
 }
 
+.apoema-stub-page {
+  align-content: start;
+}
+
+.apoema-stub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.apoema-card-list,
+.apoema-form-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.apoema-stub-card {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--apoema-border);
+  border-radius: 16px;
+  background: var(--apoema-surface-strong);
+  color: var(--apoema-text);
+  text-align: left;
+}
+
+button.apoema-stub-card {
+  cursor: pointer;
+}
+
+.apoema-stub-card.is-active {
+  border-color: rgba(49, 208, 230, 0.34);
+  background: linear-gradient(135deg, rgba(49, 208, 230, 0.14), rgba(224, 161, 99, 0.07));
+}
+
+.apoema-stub-card span,
+.apoema-stub-card small {
+  color: var(--apoema-muted);
+}
+
+.apoema-card-headline,
+.apoema-row-actions,
+.apoema-secure-link-panel,
+.apoema-file-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.apoema-card-headline,
+.apoema-secure-link-panel {
+  justify-content: space-between;
+}
+
+.apoema-row-actions {
+  flex-wrap: wrap;
+}
+
+.apoema-secure-link-panel {
+  align-items: start;
+}
+
+.apoema-file-action {
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(49, 208, 230, 0.28);
+  background: linear-gradient(135deg, rgba(49, 208, 230, 0.18), rgba(224, 161, 99, 0.1));
+  color: var(--apoema-text);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.apoema-file-action input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.apoema-field {
+  display: grid;
+  gap: 7px;
+  color: var(--apoema-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.apoema-field input,
+.apoema-field select,
+.apoema-field textarea {
+  width: 100%;
+  border: 1px solid var(--apoema-border);
+  border-radius: 14px;
+  padding: 11px 12px;
+  background: var(--apoema-surface-strong);
+  color: var(--apoema-text);
+  font: inherit;
+}
+
+.apoema-field textarea {
+  min-height: 104px;
+  resize: vertical;
+}
+
+.apoema-stub-table td {
+  display: table-cell;
+}
+
 .apoema-theme-selector {
   display: flex;
   flex-wrap: wrap;
@@ -1263,6 +1391,7 @@
   .apoema-section-grid,
   .apoema-assets-layout,
   .apoema-settings-grid,
+  .apoema-stub-grid,
   .apoema-page-top {
     grid-template-columns: 1fr;
   }

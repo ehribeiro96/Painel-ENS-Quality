@@ -1,5 +1,5 @@
 import { Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
-import { ArrowLeftRight, BarChart3, Brain, FileSignature, FileUp, Layers3, Package, Settings2, ShieldAlert, SplitSquareHorizontal, TextCursorInput, Users, WandSparkles } from "lucide-react";
+import { Archive, ArrowLeftRight, BarChart3, Brain, FileSignature, FileUp, Layers3, Package, Palette, Search, Settings2, ShieldAlert, SplitSquareHorizontal, TextCursorInput, Users, WandSparkles } from "lucide-react";
 import { ApoemaLogo } from "./components/ApoemaLogo";
 import { ThemeSelector } from "./components/ThemeSelector";
 import { useThemeMode } from "./hooks/useThemeMode";
@@ -11,6 +11,9 @@ import { AuditLogsPage } from "./pages/AuditLogsPage";
 import { ImportsPage } from "./pages/ImportsPage";
 import { MacrosPage } from "./pages/MacrosPage";
 import { ChatPage } from "./pages/ChatPage";
+import { ArtifactsPage } from "./pages/ArtifactsPage";
+import { RagPage } from "./pages/RagPage";
+import { DesignerPage } from "./pages/DesignerPage";
 import { IntegrationsPage } from "./pages/IntegrationsPage";
 import { UserDetailsPage } from "./pages/UserDetailsPage";
 import { UsersPage } from "./pages/UsersPage";
@@ -31,6 +34,9 @@ const navItems = [
   { to: "macros", label: "Macros ITIL", icon: TextCursorInput },
   { to: "audit-logs", label: "Auditoria", icon: ShieldAlert },
   { to: "chat", label: "IA", icon: Brain },
+  { to: "artifacts", label: "Artefatos", icon: Archive, badge: "Backend" },
+  { to: "rag", label: "RAG", icon: Search, badge: "Mock" },
+  { to: "designer", label: "Designer", icon: Palette, badge: "Beta controlado" },
   { to: "integrations", label: "Integrações", icon: SplitSquareHorizontal },
   { to: "settings", label: "Ajustes", icon: Settings2 }
 ];
@@ -47,6 +53,7 @@ function ApoemaShell({ theme }: { theme: ReturnType<typeof useThemeMode> }) {
               <NavLink key={item.to} to={item.to} className={({ isActive }) => `apoema-nav-item ${isActive ? "is-active" : ""}`}>
                 <Icon size={16} />
                 <span>{item.label}</span>
+                {"badge" in item ? <small className="apoema-nav-badge">{item.badge}</small> : null}
               </NavLink>
             );
           })}
@@ -110,6 +117,9 @@ export function ApoemaApp() {
           <Route path="macros" element={<MacrosPage />} />
           <Route path="audit-logs" element={<AuditLogsPage />} />
           <Route path="chat" element={<ChatPage />} />
+          <Route path="artifacts" element={<ArtifactsPage />} />
+          <Route path="rag" element={<RagPage />} />
+          <Route path="designer" element={<DesignerPage />} />
           <Route path="integrations" element={<IntegrationsPage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
