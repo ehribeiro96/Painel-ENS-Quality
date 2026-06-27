@@ -1,0 +1,205 @@
+{
+  "real_secret_found": false,
+  "hits": [
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2321:    \"file\": \"docs/audit/untracked-risk-triage/legacy-artifact-boundary-findings.json\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2328:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-git-status.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2335:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-git-status.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2342:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-git-status.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2349:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-git-status.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2356:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-git-status.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2363:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-git-status.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2370:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-git-status.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2377:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-git-status.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2384:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-git-status.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2391:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-large-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2398:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-large-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2405:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-large-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2412:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-large-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2419:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-large-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2426:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2433:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2440:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2447:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2454:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2461:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2468:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2475:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2482:    \"file\": \"docs/audit/untracked-risk-triage/post-boundary-untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2489:    \"file\": \"docs/audit/untracked-risk-triage/UNTRACKED_RISK_TRIAGE_20260623.md\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2496:    \"file\": \"docs/audit/untracked-risk-triage/git-status-untracked.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2503:    \"file\": \"docs/audit/untracked-risk-triage/git-status-untracked.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2510:    \"file\": \"docs/audit/untracked-risk-triage/git-status-untracked.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2517:    \"file\": \"docs/audit/untracked-risk-triage/git-status-untracked.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2524:    \"file\": \"docs/audit/untracked-risk-triage/git-status-untracked.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2531:    \"file\": \"docs/audit/untracked-risk-triage/git-status-untracked.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2538:    \"file\": \"docs/audit/untracked-risk-triage/git-status-untracked.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2545:    \"file\": \"docs/audit/untracked-risk-triage/untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2552:    \"file\": \"docs/audit/untracked-risk-triage/untracked-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2559:    \"file\": \"docs/audit/untracked-risk-triage/untracked-large-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2566:    \"file\": \"docs/audit/untracked-risk-triage/untracked-large-files.txt\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2573:    \"file\": \"docs/audit/untracked-risk-triage/untracked-risk-findings.json\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2580:    \"file\": \"docs/audit/untracked-risk-triage/untracked-risk-findings.json\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2587:    \"file\": \"docs/audit/untracked-risk-triage/untracked-risk-findings.json\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    },
+    {
+      "line": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/history-rescan-redacted.json:2594:    \"file\": \"docs/audit/untracked-risk-triage/untracked-risk-findings.json\",",
+      "classification": "false_positive_documentary_marker_or_path",
+      "real_secret": false
+    }
+  ]
+}

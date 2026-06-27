@@ -1,0 +1,62 @@
+{
+  "ok": true,
+  "refreshStatus": 200,
+  "result": [
+    {
+      "name": "Artifacts list",
+      "method": "GET",
+      "url": "/api/v1/artifacts",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "AI providers",
+      "method": "GET",
+      "url": "/api/v1/ai-chat/providers",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "RAG collections",
+      "method": "GET",
+      "url": "/api/v1/rag/collections",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "Designer health",
+      "method": "GET",
+      "url": "/api/v1/designer/health",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "Designer templates",
+      "method": "GET",
+      "url": "/api/v1/designer/templates",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "Designer form options",
+      "method": "GET",
+      "url": "/api/v1/designer/form-options",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "RAG search",
+      "method": "POST",
+      "url": "/api/v1/rag/search",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "Designer job",
+      "method": "POST",
+      "url": "/api/v1/designer/banners/json",
+      "status": 200,
+      "ok": true
+    }
+  ]
+}

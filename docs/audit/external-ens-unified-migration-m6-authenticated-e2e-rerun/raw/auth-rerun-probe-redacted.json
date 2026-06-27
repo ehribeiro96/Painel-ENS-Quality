@@ -1,0 +1,39 @@
+{
+  "authStateExists": true,
+  "base": "http://127.0.0.1:5175",
+  "refreshStatus": 200,
+  "finalUrls": {
+    "/apoema": "http://127.0.0.1:5175/apoema/dashboard",
+    "/apoema/chat": "http://127.0.0.1:5175/apoema/chat",
+    "/apoema/assets": "http://127.0.0.1:5175/apoema/assets",
+    "/apoema/settings": "http://127.0.0.1:5175/apoema/settings"
+  },
+  "redirectedToLogin": {
+    "/apoema": false,
+    "/apoema/chat": false,
+    "/apoema/assets": false,
+    "/apoema/settings": false
+  },
+  "events": [
+    {
+      "type": "response",
+      "url": "http://127.0.0.1:5175/api/v1/auth/refresh",
+      "status": 200
+    },
+    {
+      "type": "response",
+      "url": "http://127.0.0.1:5175/api/v1/auth/refresh",
+      "status": 200
+    },
+    {
+      "type": "response",
+      "url": "http://127.0.0.1:5175/api/v1/auth/refresh",
+      "status": 200
+    },
+    {
+      "type": "response",
+      "url": "http://127.0.0.1:5175/api/v1/auth/refresh",
+      "status": 200
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+route	final_url	redirected_to_login	refresh_status
+/apoema	http://127.0.0.1:5175/apoema/dashboard	False	200
+/apoema/chat	http://127.0.0.1:5175/apoema/chat	False	200
+/apoema/assets	http://127.0.0.1:5175/apoema/assets	False	200
+/apoema/settings	http://127.0.0.1:5175/apoema/settings	False	200

@@ -1,0 +1,32 @@
+{
+  "status": "GO",
+  "phase": "m6_authenticated_e2e_rerun",
+  "credential_rotated_or_invalidated": true,
+  "old_uat_active_sessions_revoked": 82,
+  "storage_state_created": true,
+  "storage_state_committed": false,
+  "browser_auth_validated": true,
+  "refresh_status": 200,
+  "apoema_redirected_to_login": false,
+  "api_smoke_authenticated_ok": true,
+  "artifacts_ok": true,
+  "ai_chat_ok": true,
+  "rag_ok": true,
+  "designer_ok": true,
+  "screenshots_created": true,
+  "ui_gate_decision": "READY_FOR_UI_STUBS",
+  "backend_changed": false,
+  "frontend_changed": false,
+  "docker_changed": false,
+  "migrations_changed": false,
+  "secrets_found": false,
+  "history_scan_findings_total": 460,
+  "history_scan_patterns": {
+    "generic_secret": 241,
+    "credential_key_pattern": 219
+  },
+  "history_scan_jwt_like": 0,
+  "history_scan_bearer_like": 0,
+  "push_executed": false,
+  "next_recommended_phase": "M6B_APOEMA_UI_STUBS"
+}

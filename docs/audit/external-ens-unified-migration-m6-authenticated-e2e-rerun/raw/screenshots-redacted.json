@@ -1,0 +1,101 @@
+{
+  "ok": true,
+  "result": [
+    {
+      "route": "/apoema",
+      "viewport": "390x844",
+      "finalUrl": "http://127.0.0.1:5175/apoema/dashboard",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/390x844-apoema.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema/chat",
+      "viewport": "390x844",
+      "finalUrl": "http://127.0.0.1:5175/apoema/chat",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/390x844-apoema_chat.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema/assets",
+      "viewport": "390x844",
+      "finalUrl": "http://127.0.0.1:5175/apoema/assets",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/390x844-apoema_assets.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema/settings",
+      "viewport": "390x844",
+      "finalUrl": "http://127.0.0.1:5175/apoema/settings",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/390x844-apoema_settings.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema",
+      "viewport": "1366x768",
+      "finalUrl": "http://127.0.0.1:5175/apoema/dashboard",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/1366x768-apoema.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema/chat",
+      "viewport": "1366x768",
+      "finalUrl": "http://127.0.0.1:5175/apoema/chat",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/1366x768-apoema_chat.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema/assets",
+      "viewport": "1366x768",
+      "finalUrl": "http://127.0.0.1:5175/apoema/assets",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/1366x768-apoema_assets.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema/settings",
+      "viewport": "1366x768",
+      "finalUrl": "http://127.0.0.1:5175/apoema/settings",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/1366x768-apoema_settings.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema",
+      "viewport": "1920x1080",
+      "finalUrl": "http://127.0.0.1:5175/apoema/dashboard",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/1920x1080-apoema.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema/chat",
+      "viewport": "1920x1080",
+      "finalUrl": "http://127.0.0.1:5175/apoema/chat",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/1920x1080-apoema_chat.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema/assets",
+      "viewport": "1920x1080",
+      "finalUrl": "http://127.0.0.1:5175/apoema/assets",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/1920x1080-apoema_assets.png",
+      "ok": true
+    },
+    {
+      "route": "/apoema/settings",
+      "viewport": "1920x1080",
+      "finalUrl": "http://127.0.0.1:5175/apoema/settings",
+      "redirectedToLogin": false,
+      "file": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-rerun/screenshots/1920x1080-apoema_settings.png",
+      "ok": true
+    }
+  ]
+}

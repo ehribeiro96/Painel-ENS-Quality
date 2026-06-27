@@ -1,0 +1,8 @@
+criterion	result	note
+historico_limpo	True	jwt_like=0 bearer_like=0; demais achados classificados como falsos positivos documentais/código
+credencial_invalidada_rotacionada	True	82 sessoes UAT antigas revogadas e usuario UAT sintetico novo criado sem imprimir senha
+storage_state_fora_repo	True	/tmp/apoema-uat-auth-state.json chmod 600; nao versionado
+browser_auth_validado	True	refreshStatus=200; redirects={'/apoema': False, '/apoema/chat': False, '/apoema/assets': False, '/apoema/settings': False}
+api_smoke_autenticado	True	Artifacts/AI Chat/RAG/Designer via Playwright request com auth renovado
+screenshots	True	12 capturas autenticadas
+decision	READY_FOR_UI_STUBS	phase=m6_authenticated_e2e_rerun

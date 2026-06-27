@@ -1,0 +1,9 @@
+name	method	url	status	ok
+Artifacts list	GET	/api/v1/artifacts	200	True
+AI providers	GET	/api/v1/ai-chat/providers	200	True
+RAG collections	GET	/api/v1/rag/collections	200	True
+Designer health	GET	/api/v1/designer/health	200	True
+Designer templates	GET	/api/v1/designer/templates	200	True
+Designer form options	GET	/api/v1/designer/form-options	200	True
+RAG search	POST	/api/v1/rag/search	200	True
+Designer job	POST	/api/v1/designer/banners/json	200	True
