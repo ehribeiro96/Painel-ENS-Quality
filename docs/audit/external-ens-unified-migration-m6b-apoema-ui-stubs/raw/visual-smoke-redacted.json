@@ -1,0 +1,587 @@
+{
+  "matrix": [
+    {
+      "viewport": "390x844",
+      "route": "/apoema",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "390x844-apoema.png"
+    },
+    {
+      "viewport": "390x844",
+      "route": "/apoema/artifacts",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "390x844-apoema_artifacts.png"
+    },
+    {
+      "viewport": "390x844",
+      "route": "/apoema/rag",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "390x844-apoema_rag.png"
+    },
+    {
+      "viewport": "390x844",
+      "route": "/apoema/designer",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "390x844-apoema_designer.png"
+    },
+    {
+      "viewport": "390x844",
+      "route": "/apoema/chat",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "390x844-apoema_chat.png"
+    },
+    {
+      "viewport": "390x844",
+      "route": "/apoema/settings",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "390x844-apoema_settings.png"
+    },
+    {
+      "viewport": "390x844",
+      "route": "/apoema-preview/artifacts",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "390x844-apoema-preview_artifacts.png"
+    },
+    {
+      "viewport": "390x844",
+      "route": "/apoema-preview/rag",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "390x844-apoema-preview_rag.png"
+    },
+    {
+      "viewport": "390x844",
+      "route": "/apoema-preview/designer",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "390x844-apoema-preview_designer.png"
+    },
+    {
+      "viewport": "1366x768",
+      "route": "/apoema",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1366x768-apoema.png"
+    },
+    {
+      "viewport": "1366x768",
+      "route": "/apoema/artifacts",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1366x768-apoema_artifacts.png"
+    },
+    {
+      "viewport": "1366x768",
+      "route": "/apoema/rag",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1366x768-apoema_rag.png"
+    },
+    {
+      "viewport": "1366x768",
+      "route": "/apoema/designer",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1366x768-apoema_designer.png"
+    },
+    {
+      "viewport": "1366x768",
+      "route": "/apoema/chat",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1366x768-apoema_chat.png"
+    },
+    {
+      "viewport": "1366x768",
+      "route": "/apoema/settings",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1366x768-apoema_settings.png"
+    },
+    {
+      "viewport": "1366x768",
+      "route": "/apoema-preview/artifacts",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1366x768-apoema-preview_artifacts.png"
+    },
+    {
+      "viewport": "1366x768",
+      "route": "/apoema-preview/rag",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1366x768-apoema-preview_rag.png"
+    },
+    {
+      "viewport": "1366x768",
+      "route": "/apoema-preview/designer",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1366x768-apoema-preview_designer.png"
+    },
+    {
+      "viewport": "1920x1080",
+      "route": "/apoema",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1920x1080-apoema.png"
+    },
+    {
+      "viewport": "1920x1080",
+      "route": "/apoema/artifacts",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1920x1080-apoema_artifacts.png"
+    },
+    {
+      "viewport": "1920x1080",
+      "route": "/apoema/rag",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1920x1080-apoema_rag.png"
+    },
+    {
+      "viewport": "1920x1080",
+      "route": "/apoema/designer",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1920x1080-apoema_designer.png"
+    },
+    {
+      "viewport": "1920x1080",
+      "route": "/apoema/chat",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1920x1080-apoema_chat.png"
+    },
+    {
+      "viewport": "1920x1080",
+      "route": "/apoema/settings",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1920x1080-apoema_settings.png"
+    },
+    {
+      "viewport": "1920x1080",
+      "route": "/apoema-preview/artifacts",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1920x1080-apoema-preview_artifacts.png"
+    },
+    {
+      "viewport": "1920x1080",
+      "route": "/apoema-preview/rag",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1920x1080-apoema-preview_rag.png"
+    },
+    {
+      "viewport": "1920x1080",
+      "route": "/apoema-preview/designer",
+      "redirected_to_login": false,
+      "blank": false,
+      "label_ok": true,
+      "screenshot": "1920x1080-apoema-preview_designer.png"
+    }
+  ],
+  "api": [
+    {
+      "path": "/api/v1/auth/refresh",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/ai-chat/providers",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/ai-chat/providers",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/ai-chat/providers",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/ai-chat/providers",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/ai-chat/providers",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/ai-chat/providers",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/artifacts",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/course-context/apoema-onboarding",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/collections",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rag/audit/recent",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/form-options",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/designer/templates",
+      "status": 200
+    }
+  ],
+  "fatalErrors": []
+}

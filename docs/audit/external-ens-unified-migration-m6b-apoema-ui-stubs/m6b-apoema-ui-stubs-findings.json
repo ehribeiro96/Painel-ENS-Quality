@@ -1,0 +1,33 @@
+{
+  "status": "GO",
+  "phase": "m6b_apoema_ui_stubs",
+  "frontend_changed": true,
+  "backend_changed": false,
+  "docker_changed": false,
+  "migrations_changed": false,
+  "routes_added": [
+    "/apoema/artifacts",
+    "/apoema/rag",
+    "/apoema/designer"
+  ],
+  "preview_routes_added": [
+    "/apoema-preview/artifacts",
+    "/apoema-preview/rag",
+    "/apoema-preview/designer"
+  ],
+  "legacy_aliases_added": false,
+  "artifacts_ui_stub": true,
+  "rag_ui_stub": true,
+  "designer_ui_stub": true,
+  "direct_frontend_provider_call": false,
+  "provider_real_enabled": false,
+  "mcp_runtime_real_enabled": false,
+  "vector_store_real_enabled": false,
+  "image_generation_real_enabled": false,
+  "storage_state_committed": false,
+  "authenticated_playwright_ok": true,
+  "screenshots_created": true,
+  "tests_passed": true,
+  "push_executed": false,
+  "next_recommended_phase": "M6C_APOEMA_UI_STUBS_UAT"
+}

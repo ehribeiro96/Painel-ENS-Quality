@@ -1,0 +1,11 @@
+route	canonical	preview	legacy_alias	component	status
+/apoema/artifacts	true	false	false	ArtifactsPage	implemented
+/apoema/rag	true	false	false	RagPage	implemented
+/apoema/designer	true	false	false	DesignerPage	implemented
+/apoema-preview/artifacts	false	true	false	ArtifactsPage	implemented_via_controlled_apoema_preview
+/apoema-preview/rag	false	true	false	RagPage	implemented_via_controlled_apoema_preview
+/apoema-preview/designer	false	true	false	DesignerPage	implemented_via_controlled_apoema_preview
+/artifacts	false	false	true	none	absent
+/rag	false	false	true	none	absent
+/designer	false	false	true	none	absent
+/files	false	false	true	none	absent

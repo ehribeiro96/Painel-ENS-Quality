@@ -1,0 +1,17 @@
+M6B_APOEMA_UI_STUBS gates
+
+initial_m6_status=GO
+ui_gate_decision=READY_FOR_UI_STUBS
+storage_state_path=/tmp/apoema-uat-auth-state.json
+storage_state_mode=600
+unauthenticated_api_gate=401_missing_token_for_artifacts_rag_designer
+frontend_contract_tests=11_passed
+pytest_full=336_passed_22_skipped
+ruff=passed
+compileall=passed
+frontend_build=passed
+playwright_authenticated_routes=27
+playwright_failed=0
+playwright_fatal_errors=0
+screenshots=27
+push_executed=false
