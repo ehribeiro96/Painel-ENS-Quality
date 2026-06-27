@@ -1,0 +1,7 @@
+gate	result	notes
+git_diff_check	PASS	No diff check issues.
+pytest	PASS	Rerun with -s passed: 336 passed, 22 skipped.
+unittest	PASS	325 tests passed, 8 skipped.
+ruff	PASS	No lint issues.
+compileall	PASS	No compile errors.
+frontend_build	PASS	Vite/TypeScript build passed.

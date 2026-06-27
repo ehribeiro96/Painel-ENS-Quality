@@ -1,0 +1,49 @@
+{
+  "authStateExists": true,
+  "base": "http://127.0.0.1:5175",
+  "refreshStatus": 200,
+  "routes": {
+    "/apoema": {
+      "finalUrl": "http://127.0.0.1:5175/apoema/dashboard",
+      "redirectedToLogin": false
+    },
+    "/apoema/artifacts": {
+      "finalUrl": "http://127.0.0.1:5175/apoema/artifacts",
+      "redirectedToLogin": false
+    },
+    "/apoema/rag": {
+      "finalUrl": "http://127.0.0.1:5175/apoema/rag",
+      "redirectedToLogin": false
+    },
+    "/apoema/designer": {
+      "finalUrl": "http://127.0.0.1:5175/apoema/designer",
+      "redirectedToLogin": false
+    }
+  },
+  "api": [
+    {
+      "name": "Artifacts",
+      "url": "/api/v1/artifacts",
+      "status": 401,
+      "ok": false
+    },
+    {
+      "name": "AI Chat Providers",
+      "url": "/api/v1/ai-chat/providers",
+      "status": 401,
+      "ok": false
+    },
+    {
+      "name": "RAG Collections",
+      "url": "/api/v1/rag/collections",
+      "status": 401,
+      "ok": false
+    },
+    {
+      "name": "Designer Templates",
+      "url": "/api/v1/designer/templates",
+      "status": 401,
+      "ok": false
+    }
+  ]
+}

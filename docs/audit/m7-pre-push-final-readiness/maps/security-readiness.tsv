@@ -1,0 +1,7 @@
+check	result	notes
+history_secret_scan	PASS_WITH_FALSE_POSITIVES	Matches were limited to prior audit artifacts, docs, and test assertions; no real secret value found in code or local history.
+tree_secret_scan	PASS_WITH_FALSE_POSITIVES	Current tree matched only documentation/test text such as secret-like examples and filenames; no real secret value found.
+storage_state_not_in_repo	PASS	/tmp/apoema-uat-auth-state.json exists outside repo; no storageState/cookie/token file found in repo.
+credential_rotation_confirmed	NOT_REVALIDATED	This phase verified absence of secret material and repo hygiene; prior UAT credential rotation was not re-run here.
+signed_urls_redacted	PASS	No complete signed URL leaked into M7 docs.
+provider_direct_call_absent	PASS	No direct provider import or call found in Apoema frontend.

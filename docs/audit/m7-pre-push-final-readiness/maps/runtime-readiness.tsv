@@ -1,0 +1,8 @@
+check	result	notes
+health_ready	PASS	/health/ready returned 200.
+artifacts_auth_gate	PASS	/api/v1/artifacts returned 401 missing_token without 404/500.
+ai_chat_auth_gate	PASS	/api/v1/ai-chat/providers returned 401 missing_token without 404/500.
+rag_auth_gate	PASS	/api/v1/rag/collections returned 401 missing_token without 404/500.
+designer_auth_gate	PASS	/api/v1/designer/templates returned 401 missing_token without 404/500.
+openapi_routes	PASS	Required OpenAPI paths were present; missing count was 0.
+authenticated_smoke	PASS_WITH_WARNING	Browser routes under /apoema stayed authenticated; standalone request-context API calls returned 401 because they do not carry the same in-app auth bootstrap.

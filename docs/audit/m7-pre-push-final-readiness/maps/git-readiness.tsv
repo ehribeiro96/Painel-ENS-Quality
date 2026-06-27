@@ -1,0 +1,7 @@
+check	result	notes
+branch_current	PASS	main
+ahead_behind	PASS	0 behind / 157 ahead of origin/main
+stage_empty	PASS	No staged changes before M7 and none after validation.
+tracked_diff_empty	PASS	No tracked diff outside docs generated for M7.
+untracked_preserved	PASS	Preexisting untracked files remained untouched.
+push_executed_no	PASS	No push executed.

@@ -1,0 +1,5 @@
+path_or_group	count	status	notes
+_migration_proposals/hermesops_selective_migration	349	UNTRACKED_PREEXISTING	Preservado fora do stage; não mexido nesta fase.
+assets	223	UNTRACKED_PREEXISTING	Preservado fora do stage; não mexido nesta fase.
+docs	53	UNTRACKED_PREEXISTING	Preservado fora do stage; não mexido nesta fase.
+frontend	3	UNTRACKED_PREEXISTING	Preservado fora do stage; não mexido nesta fase.
