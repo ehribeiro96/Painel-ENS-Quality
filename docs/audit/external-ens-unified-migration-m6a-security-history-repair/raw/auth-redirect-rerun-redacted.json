@@ -1,0 +1,10 @@
+{
+  "authStateExists": false,
+  "authStatePath": "/tmp/apoema-uat-auth-state.json",
+  "base": "http://127.0.0.1:5175",
+  "refreshStatus": null,
+  "finalUrlApoema": null,
+  "redirectedToLogin": null,
+  "probeExecuted": false,
+  "reason": "storage_state_missing"
+}

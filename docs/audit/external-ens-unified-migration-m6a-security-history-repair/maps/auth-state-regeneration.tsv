@@ -1,0 +1,6 @@
+step	status	evidence	notes
+runtime_check	PARTIAL	docker_compose_no_running_services; health_ready_connection_reset	Runtime local nao ficou pronto neste ciclo.
+credential_env	MISSING	APOEMA_UAT_EMAIL_PRESENT:0; APOEMA_UAT_USER_PRESENT:0; APOEMA_UAT_PASSWORD_PRESENT:0	Valores nao impressos.
+credential_file	MISSING	/tmp/painel_runtime_h5_credentials.txt absent	Arquivo temporario esperado nao existe.
+storage_state	NOT_CREATED	/tmp/apoema-uat-auth-state.json absent	Nao foi possivel regenerar sem credencial local.
+browser_auth	NOT_RUN	storage_state_missing	Playwright autenticado nao executado.

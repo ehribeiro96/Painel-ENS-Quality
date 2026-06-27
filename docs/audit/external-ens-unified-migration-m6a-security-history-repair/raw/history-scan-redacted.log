@@ -1,0 +1,3215 @@
+[
+  {
+    "commit": "d9309da19f35",
+    "file": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/raw/playwright-results.json",
+    "line": 14,
+    "pattern": "jwt_like",
+    "line_sha256_16": "a142bcb146f1f183"
+  },
+  {
+    "commit": "d9309da19f35",
+    "file": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-apoema_settings.png",
+    "line": 6799,
+    "pattern": "generic_marker",
+    "line_sha256_16": "52516d291317c77c"
+  },
+  {
+    "commit": "d9309da19f35",
+    "file": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-apoema_chat.png",
+    "line": 1875,
+    "pattern": "generic_marker",
+    "line_sha256_16": "aade86f75065803a"
+  },
+  {
+    "commit": "d9309da19f35",
+    "file": "docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-apoema_settings.png",
+    "line": 3999,
+    "pattern": "generic_marker",
+    "line_sha256_16": "6c0a591cd29c8a49"
+  },
+  {
+    "commit": "fc0cde8573b7",
+    "file": "tests/test_ai_chat_hardening.py",
+    "line": 174,
+    "pattern": "generic_marker",
+    "line_sha256_16": "6a45a66d690dca28"
+  },
+  {
+    "commit": "370ca86efe3d",
+    "file": "backend/app/api/v1/routes/artifacts.py",
+    "line": 164,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "d7915e324fdc9459"
+  },
+  {
+    "commit": "370ca86efe3d",
+    "file": "tests/test_artifacts_security_contract.py",
+    "line": 67,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5adbb7bd8b2ac21a"
+  },
+  {
+    "commit": "3ec0c4266fe3",
+    "file": "docs/audit/external-ens-unified-migration-m4-designer-api/raw/designer-api-external-manifests-snapshot.txt",
+    "line": 4221,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "1025cac56c53c1be"
+  },
+  {
+    "commit": "3ec0c4266fe3",
+    "file": "docs/audit/external-ens-unified-migration-m4-designer-api/raw/designer-api-external-manifests-snapshot.txt",
+    "line": 4257,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "96d35d0063c0f364"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 242,
+    "pattern": "generic_marker",
+    "line_sha256_16": "88f1949c4a48134c"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 243,
+    "pattern": "generic_marker",
+    "line_sha256_16": "13952107ef2167e9"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 244,
+    "pattern": "generic_marker",
+    "line_sha256_16": "b3f7374a345a823f"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 245,
+    "pattern": "generic_marker",
+    "line_sha256_16": "b9ab3aae9d4bcb0b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 246,
+    "pattern": "generic_marker",
+    "line_sha256_16": "61a30be45a382ba9"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 453,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a94325eed85aa2a4"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 568,
+    "pattern": "generic_marker",
+    "line_sha256_16": "8951f1edfd7339d5"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 569,
+    "pattern": "generic_marker",
+    "line_sha256_16": "94eeeb0aa08dbfb3"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 908,
+    "pattern": "generic_marker",
+    "line_sha256_16": "41414efb72a21609"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 1289,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "443b07a513eddd69"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-env-grep.txt",
+    "line": 1289,
+    "pattern": "generic_marker",
+    "line_sha256_16": "443b07a513eddd69"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-files.txt",
+    "line": 2158,
+    "pattern": "generic_marker",
+    "line_sha256_16": "c2a48925359b906d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-files.txt",
+    "line": 2159,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a032d0ded4242d1b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-files.txt",
+    "line": 2160,
+    "pattern": "generic_marker",
+    "line_sha256_16": "1c8fc372f559dd8d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-files.txt",
+    "line": 2161,
+    "pattern": "generic_marker",
+    "line_sha256_16": "0efc814c2faf5d5e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 1135,
+    "pattern": "generic_marker",
+    "line_sha256_16": "dbe922e3fef6f74b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3514,
+    "pattern": "generic_marker",
+    "line_sha256_16": "2322bdf24c5338cc"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3515,
+    "pattern": "generic_marker",
+    "line_sha256_16": "e2ee362288e8f4da"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3548,
+    "pattern": "generic_marker",
+    "line_sha256_16": "0281f83da96d5ae6"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3549,
+    "pattern": "generic_marker",
+    "line_sha256_16": "584b2aa5acaff6bf"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3550,
+    "pattern": "generic_marker",
+    "line_sha256_16": "741d8c737b6bafde"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3551,
+    "pattern": "generic_marker",
+    "line_sha256_16": "385834f4f18da04b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3552,
+    "pattern": "generic_marker",
+    "line_sha256_16": "f8d3a59e9d5a61a7"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3553,
+    "pattern": "generic_marker",
+    "line_sha256_16": "427dc3da6dfafd07"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3560,
+    "pattern": "generic_marker",
+    "line_sha256_16": "4f47888033981cde"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3647,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a5f5b5edfcb314cd"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 3657,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a5f5b5edfcb314cd"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 4416,
+    "pattern": "generic_marker",
+    "line_sha256_16": "65ae6d737284717d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests-snapshot.txt",
+    "line": 4627,
+    "pattern": "generic_marker",
+    "line_sha256_16": "aa0b05525fe798b6"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-manifests.txt",
+    "line": 34,
+    "pattern": "generic_marker",
+    "line_sha256_16": "c2a48925359b906d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 54,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "0547ddb9bf5f0a6d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 67,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e68df5cfb65e7370"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 70,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "11deb09fe6808c9a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 163,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "56f31038a08fd841"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 164,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "b30e6114a145c1bc"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 165,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "2cf77270228d3a10"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 166,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "00677e14990436a7"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 179,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "443b07a513eddd69"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 179,
+    "pattern": "generic_marker",
+    "line_sha256_16": "443b07a513eddd69"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 223,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "a0aec12a261b10fe"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 224,
+    "pattern": "generic_marker",
+    "line_sha256_16": "bb5670938616278e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 225,
+    "pattern": "generic_marker",
+    "line_sha256_16": "ea14f20a6bf5e983"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 239,
+    "pattern": "generic_marker",
+    "line_sha256_16": "82e470024146eecf"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 261,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "acf1dc8ab3b04105"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 262,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "28a5691b306119a8"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 272,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "4398568aad67ce95"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 309,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "736ecb501adbb082"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 310,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "867d037ff4677b92"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 311,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "aa4d373fce441f5a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 341,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "a65f0d5af7a48cfe"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 355,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a75a316d696f4231"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 399,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "b73f075657403bfd"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 426,
+    "pattern": "generic_marker",
+    "line_sha256_16": "d4b78bbc2a41dcb6"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 429,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "c50a9a98ee33a72d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 432,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "c08a1fc2a3bf037d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 461,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e047cb66f5eb85f4"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 473,
+    "pattern": "generic_marker",
+    "line_sha256_16": "6c415fbb57161d5c"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 481,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "18073b3d57fa67d1"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 482,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "38c02feba3b5cf96"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 483,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "91accb0ddeec433a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 496,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "851abc262137a697"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 497,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "37864e71c9bb916c"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 498,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "1751acc634bbcc9e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 499,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "af6aff4b042f4621"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 535,
+    "pattern": "generic_marker",
+    "line_sha256_16": "f4f4d9882f0f6627"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 538,
+    "pattern": "generic_marker",
+    "line_sha256_16": "cd73ebac26c94e98"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 540,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5850a3bf76fa4825"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 541,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "80a133ee111d804c"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 545,
+    "pattern": "generic_marker",
+    "line_sha256_16": "072d140765193b7a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 557,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "66712df11919e17e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 558,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "0514af23347fb943"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 563,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ef1ef8740d6bf8f8"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 564,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "38e31b371a6fbeac"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 565,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "b5209c98b686a943"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 581,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "3adcda1364f38c0a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 588,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "2a969c34fd715f69"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 600,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "6619c23f692f1255"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 601,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "48286b848fc0dd16"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 616,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "a467259bc049903e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 628,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "b7d0945a6d31976a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 641,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5aa87f52a2890a51"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 642,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "f8c9fb5dc5342dd9"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 666,
+    "pattern": "generic_marker",
+    "line_sha256_16": "b9ad3e86a19647ff"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 680,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ea360fa17e042e57"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 697,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "541564b36943974d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 706,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "2967a5c3e8bb76b3"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 745,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "b7c39fc7bbb4031c"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 748,
+    "pattern": "generic_marker",
+    "line_sha256_16": "eb667c888b20710b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 777,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "8214190f873e8582"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 787,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "a38d062a7bfb6687"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 834,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5f664bd59825f624"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 840,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ac228a9739ee567c"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 841,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "51d696eecc6377eb"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 842,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "2272e10645e8408e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 845,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "75c9b7b6baa6b7be"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 859,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "987895b161d133e2"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 863,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "865db99f4974d154"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 867,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "d0aad35837f6333a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 868,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e2e35c9770909e52"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 875,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5fae3c55afa8334e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 909,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "03abb3522c78f3e9"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 914,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "700ef60619b940e9"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 923,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "24937a0a4fb11ee7"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 924,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "8dcf9aa0362947b5"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 926,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "eaab717da908bc86"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 927,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "2f01a1cb47792d8f"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 928,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "128895a06f179760"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 929,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "3571b8746a2e84d4"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 932,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "25cad2115b92bdf1"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 935,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "f4ee589c9687ee69"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 936,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "579cf8220952a03a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 937,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "3040aab5f39f8052"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 939,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "262e38062b1a78fd"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 943,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "7fad1a9220727d93"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 945,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5bf2eb7832619ba3"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 949,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "0370102f7f9c32c0"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 951,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "098a34fe6c1a21ec"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 962,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "246389327fdc0463"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 967,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "1e63edfb93249192"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 990,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "95435c4e66e881f4"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1011,
+    "pattern": "generic_marker",
+    "line_sha256_16": "c5bb2c7e2bc5dc6b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1024,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "30f869d157f4e3c0"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1025,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "eb0f2b30b78bf81a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1026,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ab7dd15b15ccd69d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1027,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "6830ddbe6fbe1600"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1028,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "25d96154b1ab2274"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1029,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "0b082a41319968a6"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1030,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "11e69844cf5d5366"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1040,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5665d5db03a9cbc4"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1041,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "4a395b9918cfe0d4"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1042,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e391d245a8f2cd4b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1043,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5da15448acea3539"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1045,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "11d8f7e83fe74920"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1046,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "68847737e5271088"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1047,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "53ebbf8a71d3e333"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1048,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "825d4c05668f07ae"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1049,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5820bcb8f592e63d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1050,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "49cf522f16a73a73"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1054,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "b70c5b8f6e3dd184"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1055,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "71da70b8935d4270"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1056,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "f13421d10d9d4d6f"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1060,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "4300df5b0ad063f8"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1061,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "d965b5a9e2b06b1e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1066,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "547ed883003a53f4"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1069,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "cd28b8811d84aa2a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1074,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "6804c97896aa2772"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1075,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "29309e2a32e870f6"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1078,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "dc6ad2bcb7561295"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1079,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "656f84e6bcdadf5c"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1081,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "c8576b656266ea64"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1082,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "f716aaa012e301b7"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1096,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "a4d00f6ecab664bc"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1097,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "2fff27bd0c16ad85"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1138,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "3972cf07d9b8026a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1153,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "98f9e7a95d13b9df"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1156,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "bec5b73cfe9191a5"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1157,
+    "pattern": "generic_marker",
+    "line_sha256_16": "874180e1cbcfa667"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1160,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ae42d8cb8b7583e1"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1162,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5a817baa0d5f7f5a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1163,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "1e90d8402a0d4f06"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1189,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "1d9162e387b0546b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1190,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "94e9a3ec2594168b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1191,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "3602c89694fd10fd"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1198,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "f1ae43c142386845"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1199,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "1ddd7d7779ade677"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1200,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "314f2b5103b8a283"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1203,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "04fd45dd578c859a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1204,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "0a49b0e3d21a643f"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1207,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "8f378fa385222f36"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1208,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "18ae469dd56fae61"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1212,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e48ee6a8bea6691d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1215,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "d4c3b5a3443115d6"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1221,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "2cb42c8c39bed285"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1225,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "af6f883547302dcf"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1238,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "9c048016ce666fcb"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1259,
+    "pattern": "generic_marker",
+    "line_sha256_16": "dfa31d03ada1b93f"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1267,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "14a9b3065fcc4352"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1270,
+    "pattern": "generic_marker",
+    "line_sha256_16": "0b5a20ef04e61014"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1293,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "d917f7acb840cdc1"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1297,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "6ce2d707f929006b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1298,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "0acf7fa242677ba9"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1299,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e30e4d556746f4d4"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1366,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "2d87ba1bb2194e6b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1416,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "0ac347e215a9a1fe"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1417,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "0e61bf31e2519347"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1418,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e342f25ebbc11ec5"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1419,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ba8b6ef5b87277cd"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1424,
+    "pattern": "generic_marker",
+    "line_sha256_16": "951567b605998521"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1499,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "969286fb18c1013e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1526,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "3d30e76e9bdc362c"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1534,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "de46cd14764204fc"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1536,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "26c878964bc4b2ac"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1537,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "253e76a9ca9840ae"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1538,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "288cdb83645b6cc5"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1559,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e2b73aad65a4c493"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1574,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "83ddb81b9731708e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1575,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "65f04ac573a22417"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1577,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "4faaae51cdb72dfd"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1581,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "41348c297fb58cb0"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1583,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "aed94ee1f9095c88"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1584,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "6be66ee1b890eb09"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1587,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "c6b77620c728f66b"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1588,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "52fa574ff4095cc9"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1590,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "1c6d04443c83f0ef"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1591,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ca11b7bc5cd35d5e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1657,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "976944660a651dc8"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1659,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "773d252a2f675bae"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1660,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e76c7f6348133f3c"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1665,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "3db9d84ba0ce4d41"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1678,
+    "pattern": "generic_marker",
+    "line_sha256_16": "8909946cd3cf7e7d"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1679,
+    "pattern": "generic_marker",
+    "line_sha256_16": "78c854bce87e0484"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1683,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "6a07f724e3e26176"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1720,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "8de2ec550fed111a"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1725,
+    "pattern": "generic_marker",
+    "line_sha256_16": "d7ba44a52b5791b0"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1748,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "1d2e49c077e5d8c2"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1750,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "bb0aa159f464f806"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1752,
+    "pattern": "generic_marker",
+    "line_sha256_16": "63535e431ecc2f91"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1753,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "9fa1ca82008d4bd2"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1762,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "37f1f9e5daa58606"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1766,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ae63b294149a8b5e"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1767,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ade22043174224f1"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1773,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "f71f1c6f1f7e72db"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1782,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "25368fc0f7a9d214"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1783,
+    "pattern": "generic_marker",
+    "line_sha256_16": "363d21265f00d6be"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1784,
+    "pattern": "generic_marker",
+    "line_sha256_16": "ec175046233488a4"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1785,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "a01bedc0fcb0b56c"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1790,
+    "pattern": "generic_marker",
+    "line_sha256_16": "e45708edefc299ac"
+  },
+  {
+    "commit": "af184b7ac2d9",
+    "file": "docs/audit/external-ens-unified-migration-m0/raw/external-secret-candidates.txt",
+    "line": 1791,
+    "pattern": "generic_marker",
+    "line_sha256_16": "77f9a22e7c4cd4fa"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-asset-detail.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-assets.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-assignments.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-audit-logs.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-chat.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-home.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-imports.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-macros.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-preview-chat.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-preview.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-settings.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-signatures.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-stock.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-user-detail.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__apoema-users.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__login.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "b370cb6281ce",
+    "file": "docs/audit/apoema-only-phase-5i-authenticated-final-visual/screenshots/desktop-1366x768__auth-final__root.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "6ad2f4efd348",
+    "file": "docs/audit/apoema-only-phase-5h-authprovider-boot/raw/auth-grep.txt",
+    "line": 164,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "46cec2f47ddce182"
+  },
+  {
+    "commit": "6ad2f4efd348",
+    "file": "docs/audit/apoema-only-phase-5h-authprovider-boot/raw/auth-grep.txt",
+    "line": 185,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "0ee5dd243ac1e22d"
+  },
+  {
+    "commit": "e459685277c9",
+    "file": "frontend/itam-platform/src/lib/api.ts",
+    "line": 121,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "b03510848f5bfde1"
+  },
+  {
+    "commit": "e459685277c9",
+    "file": "frontend/itam-platform/src/lib/auth.tsx",
+    "line": 114,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "fd8243dc69744518"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-asset-detail.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-assets.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-assignments.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-audit-logs.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-chat.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-home.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-imports.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-macros.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-preview-chat.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-preview.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-settings.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-signatures.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-stock.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-user-detail.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__apoema-users.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__login.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "9b8179be5531",
+    "file": "docs/audit/apoema-only-phase-5g-authenticated-visual-audit/screenshots/desktop-1366x768__noauth__root.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-asset-detail.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-assets.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-assignments.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-audit-logs.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-chat.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-imports.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-macros.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-preview-chat.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-preview.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-settings.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-signatures.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-stock.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-user-detail.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema-users.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__apoema.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__login.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "30402e8c5a58",
+    "file": "docs/audit/apoema-only-phase-5f-final-visual-audit/screenshots/desktop-1366x768__root.png",
+    "line": 865,
+    "pattern": "generic_marker",
+    "line_sha256_16": "74a18540778ae3e2"
+  },
+  {
+    "commit": "4836c9c1b75e",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 581,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "218a6eaf094d",
+    "file": "tests/test_ai_chat_hardening.py",
+    "line": 174,
+    "pattern": "generic_marker",
+    "line_sha256_16": "6a45a66d690dca28"
+  },
+  {
+    "commit": "f80b6093b5e5",
+    "file": "tests/test_ai_chat_hardening.py",
+    "line": 174,
+    "pattern": "generic_marker",
+    "line_sha256_16": "6a45a66d690dca28"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/apoema-test-coverage-grep.txt",
+    "line": 556,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "a475e4f3cabb98af"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/apoema-test-coverage-grep.txt",
+    "line": 686,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "8e664f94e518f682"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/apoema-test-coverage-grep.txt",
+    "line": 688,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5b77fd064d911ca4"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/apoema-test-coverage-grep.txt",
+    "line": 694,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "f30d12f7a44ebdf5"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/apoema-test-coverage-grep.txt",
+    "line": 696,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "762b46610aeab943"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/apoema-test-coverage-grep.txt",
+    "line": 741,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ee0fa83574690a45"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/frontend-provider-secret-scan.txt",
+    "line": 306,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "fdb60190c0e121c2"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/frontend-provider-secret-scan.txt",
+    "line": 332,
+    "pattern": "generic_marker",
+    "line_sha256_16": "73b2a42f2345e854"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/frontend-provider-secret-scan.txt",
+    "line": 362,
+    "pattern": "generic_marker",
+    "line_sha256_16": "4d0ba6a8e70535a7"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/frontend-provider-secret-scan.txt",
+    "line": 367,
+    "pattern": "generic_marker",
+    "line_sha256_16": "630e643a7c18c765"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/frontend-provider-secret-scan.txt",
+    "line": 466,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "a475e4f3cabb98af"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/frontend-provider-secret-scan.txt",
+    "line": 481,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "8e664f94e518f682"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/frontend-provider-secret-scan.txt",
+    "line": 482,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5b77fd064d911ca4"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/frontend-provider-secret-scan.txt",
+    "line": 489,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "f30d12f7a44ebdf5"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/frontend-provider-secret-scan.txt",
+    "line": 493,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "762b46610aeab943"
+  },
+  {
+    "commit": "0c96851abf41",
+    "file": "docs/audit/apoema-only-phase-5a-final-consolidation/raw/frontend-provider-secret-scan.txt",
+    "line": 518,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "ee0fa83574690a45"
+  },
+  {
+    "commit": "d5f1233d5cf3",
+    "file": "docs/audit/untracked-final-triage/untracked-final-classification.tsv",
+    "line": 143,
+    "pattern": "generic_marker",
+    "line_sha256_16": "26b1b9fc2460d06e"
+  },
+  {
+    "commit": "d5f1233d5cf3",
+    "file": "docs/audit/untracked-final-triage/untracked-final-files.txt",
+    "line": 142,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a3417ec2ecdb0354"
+  },
+  {
+    "commit": "4b1095734e2c",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 163,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a3417ec2ecdb0354"
+  },
+  {
+    "commit": "4b1095734e2c",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 726,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e7cb9892c4cb7a12"
+  },
+  {
+    "commit": "4b1095734e2c",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 728,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "17d1cabf3ef5cbd0"
+  },
+  {
+    "commit": "4b1095734e2c",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 739,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "8e664f94e518f682"
+  },
+  {
+    "commit": "4b1095734e2c",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 740,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5b77fd064d911ca4"
+  },
+  {
+    "commit": "4b1095734e2c",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 749,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "f30d12f7a44ebdf5"
+  },
+  {
+    "commit": "4b1095734e2c",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 753,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "762b46610aeab943"
+  },
+  {
+    "commit": "8cf7f892edb9",
+    "file": "frontend/itam-platform/src/lib/api.ts",
+    "line": 121,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "b03510848f5bfde1"
+  },
+  {
+    "commit": "8cf7f892edb9",
+    "file": "frontend/itam-platform/src/lib/auth.tsx",
+    "line": 91,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "fd8243dc69744518"
+  },
+  {
+    "commit": "8cf7f892edb9",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "5bcbebcb50d0",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 160,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a3417ec2ecdb0354"
+  },
+  {
+    "commit": "5bcbebcb50d0",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 716,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "e7cb9892c4cb7a12"
+  },
+  {
+    "commit": "5bcbebcb50d0",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 718,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "17d1cabf3ef5cbd0"
+  },
+  {
+    "commit": "5bcbebcb50d0",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 729,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "8e664f94e518f682"
+  },
+  {
+    "commit": "5bcbebcb50d0",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 730,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "5b77fd064d911ca4"
+  },
+  {
+    "commit": "5bcbebcb50d0",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 739,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "f30d12f7a44ebdf5"
+  },
+  {
+    "commit": "5bcbebcb50d0",
+    "file": "docs/audit/local-release-readiness-gates.log",
+    "line": 743,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "762b46610aeab943"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/legacy-artifact-boundary-findings.json",
+    "line": 69,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a1530b4bf129d60a"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-git-status.txt",
+    "line": 143,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a3417ec2ecdb0354"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-git-status.txt",
+    "line": 618,
+    "pattern": "generic_marker",
+    "line_sha256_16": "638dff1beaf86fa5"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-git-status.txt",
+    "line": 619,
+    "pattern": "generic_marker",
+    "line_sha256_16": "95f51b987a33500d"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-git-status.txt",
+    "line": 620,
+    "pattern": "generic_marker",
+    "line_sha256_16": "cb79ac5e6b5e312b"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-git-status.txt",
+    "line": 621,
+    "pattern": "generic_marker",
+    "line_sha256_16": "0963db32abb30785"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-git-status.txt",
+    "line": 622,
+    "pattern": "generic_marker",
+    "line_sha256_16": "8bd173f5439598bf"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-git-status.txt",
+    "line": 623,
+    "pattern": "generic_marker",
+    "line_sha256_16": "621d525009f1125e"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-git-status.txt",
+    "line": 624,
+    "pattern": "generic_marker",
+    "line_sha256_16": "eaa9efb32c8f6370"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-git-status.txt",
+    "line": 625,
+    "pattern": "generic_marker",
+    "line_sha256_16": "8ffd2384f34f96a1"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-large-files.txt",
+    "line": 8,
+    "pattern": "generic_marker",
+    "line_sha256_16": "2e2a381ae0af9c07"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-large-files.txt",
+    "line": 9,
+    "pattern": "generic_marker",
+    "line_sha256_16": "22af92736a4c315c"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-large-files.txt",
+    "line": 34,
+    "pattern": "generic_marker",
+    "line_sha256_16": "90899f2f772fd688"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-large-files.txt",
+    "line": 73,
+    "pattern": "generic_marker",
+    "line_sha256_16": "5678caed724095df"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-large-files.txt",
+    "line": 96,
+    "pattern": "generic_marker",
+    "line_sha256_16": "9b8bf1c9dfa8e0e0"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-untracked-files.txt",
+    "line": 142,
+    "pattern": "generic_marker",
+    "line_sha256_16": "1e785c717f3456b8"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-untracked-files.txt",
+    "line": 617,
+    "pattern": "generic_marker",
+    "line_sha256_16": "219f3ec6433c792e"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-untracked-files.txt",
+    "line": 618,
+    "pattern": "generic_marker",
+    "line_sha256_16": "7a82414834dd3848"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-untracked-files.txt",
+    "line": 619,
+    "pattern": "generic_marker",
+    "line_sha256_16": "c1618bde3f613125"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-untracked-files.txt",
+    "line": 620,
+    "pattern": "generic_marker",
+    "line_sha256_16": "406aa2dec93c22db"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-untracked-files.txt",
+    "line": 621,
+    "pattern": "generic_marker",
+    "line_sha256_16": "c93c5842359142e6"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-untracked-files.txt",
+    "line": 622,
+    "pattern": "generic_marker",
+    "line_sha256_16": "e91efc50baf233f5"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-untracked-files.txt",
+    "line": 623,
+    "pattern": "generic_marker",
+    "line_sha256_16": "aed29ff5154b6653"
+  },
+  {
+    "commit": "ebf82840810e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/post-boundary-untracked-files.txt",
+    "line": 624,
+    "pattern": "generic_marker",
+    "line_sha256_16": "8e93076164f1b71c"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/UNTRACKED_R_I_S_K_TRIAGE_20260623.md",
+    "line": 98,
+    "pattern": "generic_marker",
+    "line_sha256_16": "2bbb18049cca7dcd"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/git-status-untracked.txt",
+    "line": 143,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a3417ec2ecdb0354"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/git-status-untracked.txt",
+    "line": 711,
+    "pattern": "generic_marker",
+    "line_sha256_16": "8a4d5e5e2935290e"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/git-status-untracked.txt",
+    "line": 712,
+    "pattern": "generic_marker",
+    "line_sha256_16": "fd129de576c80374"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/git-status-untracked.txt",
+    "line": 713,
+    "pattern": "generic_marker",
+    "line_sha256_16": "0e9754df191e4d6c"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/git-status-untracked.txt",
+    "line": 714,
+    "pattern": "generic_marker",
+    "line_sha256_16": "3dcbb048eedfb67a"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/git-status-untracked.txt",
+    "line": 715,
+    "pattern": "generic_marker",
+    "line_sha256_16": "83f65ce77cd5900c"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/git-status-untracked.txt",
+    "line": 716,
+    "pattern": "generic_marker",
+    "line_sha256_16": "0531818b5451e112"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/untracked-files.txt",
+    "line": 143,
+    "pattern": "generic_marker",
+    "line_sha256_16": "1e785c717f3456b8"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/untracked-files.txt",
+    "line": 711,
+    "pattern": "generic_marker",
+    "line_sha256_16": "03350f892cc57f05"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/untracked-large-files.txt",
+    "line": 71,
+    "pattern": "generic_marker",
+    "line_sha256_16": "598ea4757a269b40"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/untracked-large-files.txt",
+    "line": 175,
+    "pattern": "generic_marker",
+    "line_sha256_16": "68bf5627ee3fd95e"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/untracked-r_i_s_k-findings.json",
+    "line": 358,
+    "pattern": "generic_marker",
+    "line_sha256_16": "b0636b2eccd0e41d"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/untracked-r_i_s_k-findings.json",
+    "line": 878,
+    "pattern": "generic_marker",
+    "line_sha256_16": "09e6e28fa9c0b026"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/untracked-r_i_s_k-findings.json",
+    "line": 1498,
+    "pattern": "generic_marker",
+    "line_sha256_16": "1d42e7410a3f79f9"
+  },
+  {
+    "commit": "870ec9997c2e",
+    "file": "docs/audit/untracked-r_i_s_k-triage/untracked-r_i_s_k-findings.json",
+    "line": 1856,
+    "pattern": "generic_marker",
+    "line_sha256_16": "f4b1432b26faf1c7"
+  },
+  {
+    "commit": "283d9bc9c4b5",
+    "file": "backend/app/main.py",
+    "line": 116,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "6868cd5a3e7e39ec"
+  },
+  {
+    "commit": "283d9bc9c4b5",
+    "file": "backend/app/main.py",
+    "line": 119,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "0e6d500ef537192e"
+  },
+  {
+    "commit": "283d9bc9c4b5",
+    "file": "tests/test_ai_chat_hardening.py",
+    "line": 174,
+    "pattern": "generic_marker",
+    "line_sha256_16": "6a45a66d690dca28"
+  },
+  {
+    "commit": "283d9bc9c4b5",
+    "file": "tests/test_metrics_hardening.py",
+    "line": 42,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "1bc1d15b9a769681"
+  },
+  {
+    "commit": "283d9bc9c4b5",
+    "file": "tests/test_metrics_hardening.py",
+    "line": 46,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "051f46f11a8e8486"
+  },
+  {
+    "commit": "283d9bc9c4b5",
+    "file": "tests/test_metrics_hardening.py",
+    "line": 69,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "37bbe4923733c79c"
+  },
+  {
+    "commit": "283d9bc9c4b5",
+    "file": "tests/test_metrics_hardening.py",
+    "line": 79,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "37bbe4923733c79c"
+  },
+  {
+    "commit": "d22c4323a12b",
+    "file": "docs/apoema-visual-qa/screenshots/after-polish/1920-assets.png",
+    "line": 1032,
+    "pattern": "generic_marker",
+    "line_sha256_16": "ac8f11f561136841"
+  },
+  {
+    "commit": "eab3dd7bee9b",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "438c4c40d1e8",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "bcca333fbeb3",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "de48d9826e71",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "4a6de95681db",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "9c77b4c9e100",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "714f9cb2d4fe",
+    "file": "frontend/itam-platform/src/components/base44/Base44AuditEventCard.tsx",
+    "line": 46,
+    "pattern": "generic_marker",
+    "line_sha256_16": "1693c09f0568e988"
+  },
+  {
+    "commit": "714f9cb2d4fe",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "bbf10c3c052c",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "269e1926ba93",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "b66a0052c42e",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1286,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "110f22d0907a",
+    "file": "frontend/itam-platform/src/lib/api.ts",
+    "line": 121,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "b03510848f5bfde1"
+  },
+  {
+    "commit": "110f22d0907a",
+    "file": "frontend/itam-platform/src/pages/AuditLogsPage.tsx",
+    "line": 89,
+    "pattern": "generic_marker",
+    "line_sha256_16": "1693c09f0568e988"
+  },
+  {
+    "commit": "1cce91423e20",
+    "file": "tests/test_assets_regression.py",
+    "line": 58,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "a4f4ff5d9402e401"
+  },
+  {
+    "commit": "9967f226816b",
+    "file": "docs/product/MACRO_H1C_RUNTIME_VISUAL_RECHECK.md",
+    "line": 41,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "2e8b8a1ea0f0edc4"
+  },
+  {
+    "commit": "8241f0090a73",
+    "file": "frontend/itam-platform/src/lib/api.ts",
+    "line": 121,
+    "pattern": "auth_field_key",
+    "line_sha256_16": "b03510848f5bfde1"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/GIT_H2_UNTRACKED_INVENTORY.csv",
+    "line": 148,
+    "pattern": "generic_marker",
+    "line_sha256_16": "e8141de0b4976a77"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_FULL_PROJECT_AUDIT_H1_REPORT.md",
+    "line": 165,
+    "pattern": "generic_marker",
+    "line_sha256_16": "d0389ac87aa3bafa"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 3,
+    "pattern": "generic_marker",
+    "line_sha256_16": "60f430741d0595f7"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 4,
+    "pattern": "generic_marker",
+    "line_sha256_16": "5ba1af649e41aa14"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 14,
+    "pattern": "generic_marker",
+    "line_sha256_16": "903d7acf419f710b"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 15,
+    "pattern": "generic_marker",
+    "line_sha256_16": "cbe3af81a17e5442"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 25,
+    "pattern": "generic_marker",
+    "line_sha256_16": "2965da303e5ced68"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 26,
+    "pattern": "generic_marker",
+    "line_sha256_16": "1aa7a5ac14f990c3"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 36,
+    "pattern": "generic_marker",
+    "line_sha256_16": "06e13de902231dfd"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 37,
+    "pattern": "generic_marker",
+    "line_sha256_16": "7e852c993e065455"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 47,
+    "pattern": "generic_marker",
+    "line_sha256_16": "ba2a18d248fa038b"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 48,
+    "pattern": "generic_marker",
+    "line_sha256_16": "d59fbd8e997a52ab"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 58,
+    "pattern": "generic_marker",
+    "line_sha256_16": "b47e1cc8d7c36f0c"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 59,
+    "pattern": "generic_marker",
+    "line_sha256_16": "c4c99c43c8276914"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 69,
+    "pattern": "generic_marker",
+    "line_sha256_16": "d06f355ad192e524"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 70,
+    "pattern": "generic_marker",
+    "line_sha256_16": "ac8cced3ec533c59"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 80,
+    "pattern": "generic_marker",
+    "line_sha256_16": "c9aa4455daedaac9"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 81,
+    "pattern": "generic_marker",
+    "line_sha256_16": "24735d87de824f21"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 91,
+    "pattern": "generic_marker",
+    "line_sha256_16": "3f1f0d3ecd291767"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 92,
+    "pattern": "generic_marker",
+    "line_sha256_16": "b6bab095bd931f1e"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 102,
+    "pattern": "generic_marker",
+    "line_sha256_16": "c05ef8fb616b824e"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 103,
+    "pattern": "generic_marker",
+    "line_sha256_16": "5377bb6d7dd627e4"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 113,
+    "pattern": "generic_marker",
+    "line_sha256_16": "59b9ca8fe371c4db"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 114,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a693c0f965de9ca7"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 124,
+    "pattern": "generic_marker",
+    "line_sha256_16": "970d570b109521be"
+  },
+  {
+    "commit": "5aaf0701d859",
+    "file": "docs/audit/HERMES_R_I_S_K_REGISTER_H1.md",
+    "line": 125,
+    "pattern": "generic_marker",
+    "line_sha256_16": "85f0782d727df610"
+  },
+  {
+    "commit": "d0fb175effc3",
+    "file": "docs/audit/LEGACY_ASSETS_TRIAGE_GIT_C5_REPORT.md",
+    "line": 114,
+    "pattern": "generic_marker",
+    "line_sha256_16": "041116c928b5a7fc"
+  },
+  {
+    "commit": "b77cc95b245b",
+    "file": "docs/audit/screenshots/b4e-legacy-csp/after/admin-login.png",
+    "line": 47,
+    "pattern": "generic_marker",
+    "line_sha256_16": "11c9aeb16e954447"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "docs/FRONTEND_AUTHENTICATED_VISUAL_SMOKE_B4D_REPORT.md",
+    "line": 234,
+    "pattern": "generic_marker",
+    "line_sha256_16": "228aa2963cdac5f6"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "docs/FRONTEND_AUTHENTICATED_VISUAL_SMOKE_B4D_REPORT.md",
+    "line": 244,
+    "pattern": "generic_marker",
+    "line_sha256_16": "d1c0dfa02ffc67c7"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "docs/FRONTEND_VISUAL_REPAIR_B4C_REPORT.md",
+    "line": 180,
+    "pattern": "generic_marker",
+    "line_sha256_16": "228aa2963cdac5f6"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "docs/FRONTEND_VISUAL_REPAIR_B4C_REPORT.md",
+    "line": 190,
+    "pattern": "generic_marker",
+    "line_sha256_16": "4e249f04e3fd333b"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/mockups/command-center-mockup.png",
+    "line": 18104,
+    "pattern": "generic_marker",
+    "line_sha256_16": "9ab3f3ee3a004d24"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/mockups/command-center-mockup.png",
+    "line": 26870,
+    "pattern": "generic_marker",
+    "line_sha256_16": "1091b8402b95b9f2"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/mockups/command-center-mockup.png",
+    "line": 29549,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a34afec13bd98cb3"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/reference/guardian.png",
+    "line": 28761,
+    "pattern": "generic_marker",
+    "line_sha256_16": "f74bae67bcc4d832"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/reference/guardian.png",
+    "line": 44691,
+    "pattern": "generic_marker",
+    "line_sha256_16": "c51cfa0c325a44d4"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/reference/guardian.png",
+    "line": 47499,
+    "pattern": "generic_marker",
+    "line_sha256_16": "897f82bcb075c977"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/reference/guardian.png",
+    "line": 65331,
+    "pattern": "generic_marker",
+    "line_sha256_16": "b3cddaa48dd0f7a2"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/reference/guardiao-original.png",
+    "line": 28761,
+    "pattern": "generic_marker",
+    "line_sha256_16": "f74bae67bcc4d832"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/reference/guardiao-original.png",
+    "line": 44691,
+    "pattern": "generic_marker",
+    "line_sha256_16": "c51cfa0c325a44d4"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/reference/guardiao-original.png",
+    "line": 47499,
+    "pattern": "generic_marker",
+    "line_sha256_16": "897f82bcb075c977"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/reference/guardiao-original.png",
+    "line": 65331,
+    "pattern": "generic_marker",
+    "line_sha256_16": "b3cddaa48dd0f7a2"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/reference/sentinel-logo-reference.png",
+    "line": 56252,
+    "pattern": "generic_marker",
+    "line_sha256_16": "71fdab19240dcc9c"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/brand/reference/sentinel-logo-reference.png",
+    "line": 65010,
+    "pattern": "generic_marker",
+    "line_sha256_16": "cf3e5d420302f4f7"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-5173-home-1366x768.png",
+    "line": 105,
+    "pattern": "generic_marker",
+    "line_sha256_16": "caafe6c87c38afa3"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-5173-home-1366x768.png",
+    "line": 566,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a2f9bfda3e72c789"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-ai-chat-1366x768.png",
+    "line": 1593,
+    "pattern": "generic_marker",
+    "line_sha256_16": "63dabc49baef7dc2"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-home-1920x1080.png",
+    "line": 2593,
+    "pattern": "generic_marker",
+    "line_sha256_16": "89501ddfaa49a4fb"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-login-1366x768.png",
+    "line": 105,
+    "pattern": "generic_marker",
+    "line_sha256_16": "caafe6c87c38afa3"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-login-1366x768.png",
+    "line": 566,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a2f9bfda3e72c789"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-settings-1366x768.png",
+    "line": 1612,
+    "pattern": "generic_marker",
+    "line_sha256_16": "e453683147a064fe"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/local-crawl/screenshots/20260609-local-users-1366x768.png",
+    "line": 3749,
+    "pattern": "generic_marker",
+    "line_sha256_16": "03825ea100790fdd"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/ui-audit/screenshots/20260609-ai-chat-1920x1080.png",
+    "line": 2924,
+    "pattern": "generic_marker",
+    "line_sha256_16": "9da1b7d51c76eaa1"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/ui-audit/screenshots/20260609-login-1366x768.png",
+    "line": 105,
+    "pattern": "generic_marker",
+    "line_sha256_16": "caafe6c87c38afa3"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/docs/ui-audit/screenshots/20260609-login-1366x768.png",
+    "line": 566,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a2f9bfda3e72c789"
+  },
+  {
+    "commit": "c2ec6179c910",
+    "file": "frontend/itam-platform/src/styles.css",
+    "line": 1174,
+    "pattern": "generic_marker",
+    "line_sha256_16": "527aa474775b54e2"
+  },
+  {
+    "commit": "b88f4130db59",
+    "file": "docs/IMPORT_PIPELINE_STAGING_B3_REPORT.md",
+    "line": 187,
+    "pattern": "generic_marker",
+    "line_sha256_16": "dab09de871c4d2a8"
+  },
+  {
+    "commit": "4d8fb3e65b60",
+    "file": "docs/AI_CHAT_BACKEND_HARDENING_B2_REPORT.md",
+    "line": 127,
+    "pattern": "generic_marker",
+    "line_sha256_16": "17b7bcc2a01354ed"
+  },
+  {
+    "commit": "4d8fb3e65b60",
+    "file": "tests/test_ai_chat_hardening.py",
+    "line": 172,
+    "pattern": "generic_marker",
+    "line_sha256_16": "6a45a66d690dca28"
+  },
+  {
+    "commit": "b8aef417b10c",
+    "file": "docs/SECURITY_HYGIENE_B0_REPORT.md",
+    "line": 53,
+    "pattern": "generic_marker",
+    "line_sha256_16": "acbcc4a094fc848c"
+  },
+  {
+    "commit": "b8aef417b10c",
+    "file": "docs/WORKTREE_TRIAGE_REPORT.md",
+    "line": 309,
+    "pattern": "generic_marker",
+    "line_sha256_16": "b3cd5d955345add5"
+  },
+  {
+    "commit": "b8aef417b10c",
+    "file": "docs/WORKTREE_TRIAGE_REPORT.md",
+    "line": 972,
+    "pattern": "generic_marker",
+    "line_sha256_16": "142404543420cada"
+  },
+  {
+    "commit": "b8aef417b10c",
+    "file": "docs/WORKTREE_TRIAGE_REPORT.md",
+    "line": 974,
+    "pattern": "generic_marker",
+    "line_sha256_16": "e6c7ca4c183b6a65"
+  },
+  {
+    "commit": "b8aef417b10c",
+    "file": "docs/WORKTREE_TRIAGE_REPORT.md",
+    "line": 979,
+    "pattern": "generic_marker",
+    "line_sha256_16": "a0847d2864721b88"
+  }
+]
