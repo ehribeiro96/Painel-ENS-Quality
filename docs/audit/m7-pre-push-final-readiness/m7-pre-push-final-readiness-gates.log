@@ -1,0 +1,35 @@
+M7 Pre-Push Final Readiness gates
+
+Git:
+- branch: main
+- ahead/behind: 157/0
+- stage: empty
+- tracked diff: empty
+- untracked preserved: yes
+
+Security:
+- history secret scan: pass (false positives only)
+- tree secret scan: pass (false positives only)
+- storageState in repo: no
+- signed URLs redacted: yes
+- provider direct call absent: yes
+
+Runtime:
+- /health/ready: 200
+- artifacts auth gate: 401 missing_token
+- ai-chat auth gate: 401 missing_token
+- rag auth gate: 401 missing_token
+- designer auth gate: 401 missing_token
+- OpenAPI required routes: all present
+
+Auth smoke:
+- browser-authenticated routes /apoema, /apoema/artifacts, /apoema/rag, /apoema/designer: stayed authenticated
+- request-context API calls: 401 warning only
+
+Tests/build:
+- git diff --check: OK
+- pytest: OK (rerun with -s, 336 passed, 22 skipped)
+- unittest: OK (325 passed, 8 skipped)
+- ruff: OK
+- compileall: OK
+- frontend build: OK
