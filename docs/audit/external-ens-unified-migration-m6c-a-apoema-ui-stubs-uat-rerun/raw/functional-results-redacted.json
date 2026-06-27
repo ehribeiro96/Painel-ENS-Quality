@@ -1,0 +1,93 @@
+{
+  "artifacts": [
+    [
+      "loaded",
+      true,
+      "artifact heading visible"
+    ],
+    [
+      "input",
+      true,
+      "file input present"
+    ],
+    [
+      "upload",
+      true,
+      "upload response visible"
+    ],
+    [
+      "download",
+      true,
+      "signed link controlled"
+    ],
+    [
+      "delete",
+      false,
+      "delete controlled"
+    ]
+  ],
+  "rag": [
+    [
+      "loaded",
+      true,
+      "rag heading visible"
+    ],
+    [
+      "collections",
+      true,
+      "collections visible"
+    ],
+    [
+      "context",
+      true,
+      "course context visible"
+    ],
+    [
+      "audit",
+      true,
+      "audit visible"
+    ],
+    [
+      "boundary",
+      true,
+      "mock boundary visible"
+    ],
+    [
+      "search",
+      true,
+      "search result or controlled state visible"
+    ]
+  ],
+  "designer": [
+    [
+      "heading",
+      true,
+      "designer heading visible"
+    ],
+    [
+      "boundary",
+      true,
+      "provider/image boundary visible"
+    ],
+    [
+      "created",
+      true,
+      "mock job visible"
+    ],
+    [
+      "adjust",
+      true,
+      "adjust action visible"
+    ],
+    [
+      "refresh",
+      true,
+      "refresh action visible"
+    ],
+    [
+      "cancel",
+      true,
+      "cancel action visible"
+    ]
+  ]
+}

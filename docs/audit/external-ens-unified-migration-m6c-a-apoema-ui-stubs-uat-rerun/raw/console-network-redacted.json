@@ -1,0 +1,967 @@
+[
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/auth/refresh",
+    "status": 401
+  },
+  {
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/auth/login",
+    "status": 200
+  },
+  {
+    "type": "console",
+    "level": "warning",
+    "text": "You rendered descendant <Routes> (or called `useRoutes()`) at \"/apoema\" (under <Route path=\"/apoema\">) but the parent route path has no trailing \"*\". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.\n\nPlease change"
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/auth/refresh",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/ai-chat/providers",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/ai-chat/providers",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/ai-chat/providers",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/ai-chat/providers",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/ai-chat/providers",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/ai-chat/providers",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/ai-chat/providers",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/ai-chat/providers",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/ai-chat/providers",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/ai-chat/providers",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 201
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts/0503c015-9ae2-49f8-8e1d-125ceab3f7c1/download-url",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts/0503c015-9ae2-49f8-8e1d-125ceab3f7c1",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/search",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/banners/json",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/jobs/22626fad-9ceb-56b0-80d4-51f3834c89fa/items/7352627b-9c46-5fb7-bb48-7f8093db3d09/adjust",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/jobs/22626fad-9ceb-56b0-80d4-51f3834c89fa/items/7352627b-9c46-5fb7-bb48-7f8093db3d09/refresh-url",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/jobs/22626fad-9ceb-56b0-80d4-51f3834c89fa/cancel",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/artifacts",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/collections",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/course-context/apoema-onboarding",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/rag/audit/recent",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/templates",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/form-options",
+    "status": 200
+  },
+  {
+    "type": "response",
+    "url": "http://127.0.0.1:5175/api/v1/designer/health",
+    "status": 200
+  }
+]

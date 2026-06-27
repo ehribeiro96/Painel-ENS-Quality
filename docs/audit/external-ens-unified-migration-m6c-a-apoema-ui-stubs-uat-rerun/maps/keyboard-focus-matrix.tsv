@@ -1,0 +1,4 @@
+route	focusable_controls_seen	focus_visual_detected	focus_order_sample
+/apoema/artifacts	9	true	INPUT: > BUTTON:Recarregar > BUTTON:Obter link > BUTTON:Excluir > BODY:Apoema Console Inteligente de Operações, Inventário e Suporte N2 Visão geral Ati > A:Visão geral > A:Ativos > A:Usuários > A:Movimentações > A:Assinaturas
+/apoema/rag	10	true	A:Estoque > A:Importações > A:Macros ITIL > A:Auditoria > A:IA > A:Artefatos Backend > A:RAG Mock > A:Designer Beta controlado > A:Integrações > A:Ajustes
+/apoema/designer	10	true	BUTTON:Claro > BUTTON:Escuro > BUTTON:Automático > BUTTON:Recarregar > SELECT:Feed Instagram · Graduação Story Instagram · Pós-graduação Banner interno deskto > SELECT:01_feed_instagram 02_story_instagram 03_banner_interno_desktop 04_banner_interno > SELECT:graduacao imersoes institucional pos qualificacoes tudo-sobre-seguros > SELECT:peca_unica enxoval > TEXTAREA:Banner institucional determinísti

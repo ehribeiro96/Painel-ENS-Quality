@@ -1,0 +1,10 @@
+{
+  "authState": "/tmp/apoema-uat-auth-state.json",
+  "authStateExists": true,
+  "authStateMode": "600",
+  "refreshStatus": 200,
+  "refreshOk": true,
+  "finalUrl": "http://127.0.0.1:5175/apoema/dashboard",
+  "redirectedToLogin": false,
+  "bodyChars": 2183
+}
