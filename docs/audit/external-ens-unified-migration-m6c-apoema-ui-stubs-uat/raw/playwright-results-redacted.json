@@ -1,0 +1,37 @@
+{
+  "base": "http://127.0.0.1:5175",
+  "auth_state_path": "<tmp-auth-state>",
+  "routes": [
+    "/apoema",
+    "/apoema/artifacts",
+    "/apoema/rag",
+    "/apoema/designer",
+    "/apoema/chat",
+    "/apoema/settings",
+    "/apoema-preview/artifacts",
+    "/apoema-preview/rag",
+    "/apoema-preview/designer"
+  ],
+  "viewports": [
+    "390x844",
+    "768x1024",
+    "1366x768",
+    "1440x900",
+    "1920x1080"
+  ],
+  "route_count": 45,
+  "redirects": 0,
+  "screenshots": 45,
+  "fatal_console_count": 2,
+  "request_failed_critical": 2,
+  "direct_provider_call": false,
+  "signed_url_or_secret_logged": false,
+  "artifacts_ok": false,
+  "artifacts_note": "upload=ok(safety-copy-visible); download-url=ok(signed-url-not-rendered-full); delete=fail(controlled-state)",
+  "rag_ok": false,
+  "rag_note": "collections=true; fonte_mock=false; contexto=false; boundary=true",
+  "designer_ok": false,
+  "designer_note": "created=true; no_real_image=false; provider_disabled=true; actions_attempted=true",
+  "keyboard_ok": true,
+  "backend_unavailable_synthetic_recorded": true
+}
