@@ -1,0 +1,164 @@
+[
+  {
+    "viewport": "1366x768",
+    "route": "/apoema/artifacts",
+    "before": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel Centro de comando local para inventário, automação controlada"
+    },
+    "sequence": [
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "text": "Entrar"
+      },
+      {
+        "tag": "BODY",
+        "role": null,
+        "aria": null,
+        "text": "HermesOps Sentinel Centro de comando local para inventário, automação controlada"
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      }
+    ]
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema/rag",
+    "before": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel Centro de comando local para inventário, automação controlada"
+    },
+    "sequence": [
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "text": "Entrar"
+      },
+      {
+        "tag": "BODY",
+        "role": null,
+        "aria": null,
+        "text": "HermesOps Sentinel Centro de comando local para inventário, automação controlada"
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      }
+    ]
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema/designer",
+    "before": {
+      "tag": "BODY",
+      "role": null,
+      "aria": null,
+      "text": "HermesOps Sentinel Centro de comando local para inventário, automação controlada"
+    },
+    "sequence": [
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "text": "Entrar"
+      },
+      {
+        "tag": "BODY",
+        "role": null,
+        "aria": null,
+        "text": "HermesOps Sentinel Centro de comando local para inventário, automação controlada"
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      },
+      {
+        "tag": "INPUT",
+        "role": null,
+        "aria": null,
+        "text": ""
+      }
+    ]
+  }
+]

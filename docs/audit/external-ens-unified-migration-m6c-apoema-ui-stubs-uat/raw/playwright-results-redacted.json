@@ -1,37 +1,920 @@
-{
-  "base": "http://127.0.0.1:5175",
-  "auth_state_path": "<tmp-auth-state>",
-  "routes": [
-    "/apoema",
-    "/apoema/artifacts",
-    "/apoema/rag",
-    "/apoema/designer",
-    "/apoema/chat",
-    "/apoema/settings",
-    "/apoema-preview/artifacts",
-    "/apoema-preview/rag",
-    "/apoema-preview/designer"
-  ],
-  "viewports": [
-    "390x844",
-    "768x1024",
-    "1366x768",
-    "1440x900",
-    "1920x1080"
-  ],
-  "route_count": 45,
-  "redirects": 0,
-  "screenshots": 45,
-  "fatal_console_count": 2,
-  "request_failed_critical": 2,
-  "direct_provider_call": false,
-  "signed_url_or_secret_logged": false,
-  "artifacts_ok": false,
-  "artifacts_note": "upload=ok(safety-copy-visible); download-url=ok(signed-url-not-rendered-full); delete=fail(controlled-state)",
-  "rag_ok": false,
-  "rag_note": "collections=true; fonte_mock=false; contexto=false; boundary=true",
-  "designer_ok": false,
-  "designer_note": "created=true; no_real_image=false; provider_disabled=true; actions_attempted=true",
-  "keyboard_ok": true,
-  "backend_unavailable_synthetic_recorded": true
-}
+[
+  {
+    "type": "console",
+    "viewport": "390x844",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "390x844",
+    "route": "/apoema",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 1117,
+    "screenshot": "390x844__apoema.png"
+  },
+  {
+    "type": "console",
+    "viewport": "390x844",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "390x844",
+    "route": "/apoema/artifacts",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 945,
+    "screenshot": "390x844__apoema_artifacts.png"
+  },
+  {
+    "type": "console",
+    "viewport": "390x844",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "390x844",
+    "route": "/apoema/rag",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 931,
+    "screenshot": "390x844__apoema_rag.png"
+  },
+  {
+    "type": "console",
+    "viewport": "390x844",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "390x844",
+    "route": "/apoema/designer",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 936,
+    "screenshot": "390x844__apoema_designer.png"
+  },
+  {
+    "type": "console",
+    "viewport": "390x844",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "390x844",
+    "route": "/apoema/chat",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 933,
+    "screenshot": "390x844__apoema_chat.png"
+  },
+  {
+    "type": "console",
+    "viewport": "390x844",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "390x844",
+    "route": "/apoema/settings",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 943,
+    "screenshot": "390x844__apoema_settings.png"
+  },
+  {
+    "type": "console",
+    "viewport": "390x844",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "390x844",
+    "route": "/apoema-preview/artifacts",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 944,
+    "screenshot": "390x844__apoema_preview_artifacts.png"
+  },
+  {
+    "type": "console",
+    "viewport": "390x844",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "390x844",
+    "route": "/apoema-preview/rag",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 930,
+    "screenshot": "390x844__apoema_preview_rag.png"
+  },
+  {
+    "type": "console",
+    "viewport": "390x844",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "390x844",
+    "route": "/apoema-preview/designer",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 934,
+    "screenshot": "390x844__apoema_preview_designer.png"
+  },
+  {
+    "type": "console",
+    "viewport": "768x1024",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "768x1024",
+    "route": "/apoema",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 1060,
+    "screenshot": "768x1024__apoema.png"
+  },
+  {
+    "type": "console",
+    "viewport": "768x1024",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "768x1024",
+    "route": "/apoema/artifacts",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 941,
+    "screenshot": "768x1024__apoema_artifacts.png"
+  },
+  {
+    "type": "console",
+    "viewport": "768x1024",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "768x1024",
+    "route": "/apoema/rag",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 936,
+    "screenshot": "768x1024__apoema_rag.png"
+  },
+  {
+    "type": "console",
+    "viewport": "768x1024",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "768x1024",
+    "route": "/apoema/designer",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 943,
+    "screenshot": "768x1024__apoema_designer.png"
+  },
+  {
+    "type": "console",
+    "viewport": "768x1024",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "768x1024",
+    "route": "/apoema/chat",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 916,
+    "screenshot": "768x1024__apoema_chat.png"
+  },
+  {
+    "type": "console",
+    "viewport": "768x1024",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "768x1024",
+    "route": "/apoema/settings",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 936,
+    "screenshot": "768x1024__apoema_settings.png"
+  },
+  {
+    "type": "console",
+    "viewport": "768x1024",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "768x1024",
+    "route": "/apoema-preview/artifacts",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 939,
+    "screenshot": "768x1024__apoema_preview_artifacts.png"
+  },
+  {
+    "type": "console",
+    "viewport": "768x1024",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "768x1024",
+    "route": "/apoema-preview/rag",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 925,
+    "screenshot": "768x1024__apoema_preview_rag.png"
+  },
+  {
+    "type": "console",
+    "viewport": "768x1024",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "768x1024",
+    "route": "/apoema-preview/designer",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 939,
+    "screenshot": "768x1024__apoema_preview_designer.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 1086,
+    "screenshot": "1366x768__apoema.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema/artifacts",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 959,
+    "screenshot": "1366x768__apoema_artifacts.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema/rag",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 949,
+    "screenshot": "1366x768__apoema_rag.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema/designer",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 950,
+    "screenshot": "1366x768__apoema_designer.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema/chat",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 953,
+    "screenshot": "1366x768__apoema_chat.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema/settings",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 952,
+    "screenshot": "1366x768__apoema_settings.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema-preview/artifacts",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 951,
+    "screenshot": "1366x768__apoema_preview_artifacts.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema-preview/rag",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 4088,
+    "screenshot": "1366x768__apoema_preview_rag.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1366x768",
+    "route": "/apoema-preview/designer",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 951,
+    "screenshot": "1366x768__apoema_preview_designer.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "type": "console",
+    "viewport": "1366x768",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "type": "console",
+    "viewport": "1440x900",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1440x900",
+    "route": "/apoema",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 1099,
+    "screenshot": "1440x900__apoema.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1440x900",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1440x900",
+    "route": "/apoema/artifacts",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 984,
+    "screenshot": "1440x900__apoema_artifacts.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1440x900",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1440x900",
+    "route": "/apoema/rag",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 972,
+    "screenshot": "1440x900__apoema_rag.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1440x900",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1440x900",
+    "route": "/apoema/designer",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 972,
+    "screenshot": "1440x900__apoema_designer.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1440x900",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1440x900",
+    "route": "/apoema/chat",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 983,
+    "screenshot": "1440x900__apoema_chat.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1440x900",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1440x900",
+    "route": "/apoema/settings",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 989,
+    "screenshot": "1440x900__apoema_settings.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1440x900",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1440x900",
+    "route": "/apoema-preview/artifacts",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 987,
+    "screenshot": "1440x900__apoema_preview_artifacts.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1440x900",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1440x900",
+    "route": "/apoema-preview/rag",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 970,
+    "screenshot": "1440x900__apoema_preview_rag.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1440x900",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1440x900",
+    "route": "/apoema-preview/designer",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 966,
+    "screenshot": "1440x900__apoema_preview_designer.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1920x1080",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1920x1080",
+    "route": "/apoema",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 1127,
+    "screenshot": "1920x1080__apoema.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1920x1080",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1920x1080",
+    "route": "/apoema/artifacts",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 982,
+    "screenshot": "1920x1080__apoema_artifacts.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1920x1080",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1920x1080",
+    "route": "/apoema/rag",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 966,
+    "screenshot": "1920x1080__apoema_rag.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1920x1080",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1920x1080",
+    "route": "/apoema/designer",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 973,
+    "screenshot": "1920x1080__apoema_designer.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1920x1080",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1920x1080",
+    "route": "/apoema/chat",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 1003,
+    "screenshot": "1920x1080__apoema_chat.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1920x1080",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1920x1080",
+    "route": "/apoema/settings",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 996,
+    "screenshot": "1920x1080__apoema_settings.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1920x1080",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1920x1080",
+    "route": "/apoema-preview/artifacts",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 1003,
+    "screenshot": "1920x1080__apoema_preview_artifacts.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1920x1080",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1920x1080",
+    "route": "/apoema-preview/rag",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 969,
+    "screenshot": "1920x1080__apoema_preview_rag.png"
+  },
+  {
+    "type": "console",
+    "viewport": "1920x1080",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 429 (Too Many Requests)"
+  },
+  {
+    "viewport": "1920x1080",
+    "route": "/apoema-preview/designer",
+    "status": 200,
+    "finalUrl": "http://127.0.0.1:5175/login",
+    "redirectedToLogin": true,
+    "bodyChars": 678,
+    "blankBody": false,
+    "hasErrorText": false,
+    "bodySnippet": "HermesOps Sentinel\n\nCentro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional.\n\nRASTREABILIDADE ATIVA\nAGENTE LOCAL\n\nACESSO AO HERMESOPS SENTINEL\n\nGuardião local da infraestrutura\n\nO acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 ",
+    "htmlSnippet": "\n    <div id=\"root\"><main class=\"base44-login-shell\" style=\"display: grid; grid-template-columns: var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr)); gap: 22px; align-items: stretch; width: min(100%, 1280px);\"><section class=\"base44-login-hero\" style=\"align-self: stretch;\"><section class=\"base44-surfa",
+    "elapsedMs": 1010,
+    "screenshot": "1920x1080__apoema_preview_designer.png"
+  }
+]
