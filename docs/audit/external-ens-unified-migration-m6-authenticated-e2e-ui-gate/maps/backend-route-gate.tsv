@@ -1,0 +1,5 @@
+module	endpoint	openapi_present	runtime_no_token_status	expected_no_token_status	result	notes
+Artifacts	/api/v1/artifacts	true	401	401	PASS	missing_token on live runtime
+AI Chat	/api/v1/ai-chat/providers	true	401	401	PASS	missing_token on live runtime
+RAG	/api/v1/rag/collections	true	401	401	PASS	missing_token on live runtime
+Designer	/api/v1/designer/templates	true	401	401	PASS	missing_token on live runtime

@@ -1,0 +1,24 @@
+module	endpoint	method	auth_mode	status	expected	result	notes
+Auth	/api/v1/auth/me	GET	storageState	200	200	PASS
+Auth	/api/v1/auth/refresh	POST	storageState	200	200	PASS
+Artifacts	/api/v1/artifacts	GET	storageState	200	200	PASS
+Artifacts	/api/v1/artifacts	POST	storageState	201	201	PASS	artifact_id=a04e60d4-98d6-4964-b63e-8d0a8b1edb3d
+Artifacts	/api/v1/artifacts/{artifact_id}	GET	storageState	200	200	PASS	artifact_id=a04e60d4-98d6-4964-b63e-8d0a8b1edb3d
+Artifacts	/api/v1/artifacts/{artifact_id}/download-url	GET	storageState	200	200	PASS	url=http://127.0.0.1:5175/api/v1/artifacts/download/[REDACTED_SIGNED_URL]
+Artifacts	/api/v1/artifacts/download/[REDACTED_SIGNED_URL]	GET	storageState	200	200	PASS	signed url fetch
+Artifacts	/api/v1/artifacts/{artifact_id}	DELETE	storageState	200	200	PASS	artifact_id=a04e60d4-98d6-4964-b63e-8d0a8b1edb3d
+AI Chat	/api/v1/ai-chat/providers	GET	storageState	200	200	PASS
+AI Chat	/api/v1/ai-chat/message	POST	storageState	200	200	PASS
+RAG	/api/v1/rag/collections	GET	storageState	200	200	PASS
+RAG	/api/v1/rag/search	POST	storageState	200	200	PASS
+RAG	/api/v1/rag/documents/{document_id}	GET	storageState	200	200	PASS
+RAG	/api/v1/rag/course-context/{course_id}	GET	storageState	200	200	PASS
+RAG	/api/v1/rag/audit/recent	GET	storageState	200	200	PASS
+Designer	/api/v1/designer/health	GET	storageState	200	200	PASS
+Designer	/api/v1/designer/templates	GET	storageState	200	200	PASS
+Designer	/api/v1/designer/form-options	GET	storageState	200	200	PASS
+Designer	/api/v1/designer/banners/json	POST	storageState	200	200	PASS	job_id=7df1efa8-2fa0-5bd9-a515-4d15805bcab7
+Designer	/api/v1/designer/jobs/{job_id}	GET	storageState	200	200	PASS	job_id=7df1efa8-2fa0-5bd9-a515-4d15805bcab7
+Designer	/api/v1/designer/jobs/{job_id}/items/{item_id}/adjust	POST	storageState	200	200	PASS	job_id=7df1efa8-2fa0-5bd9-a515-4d15805bcab7
+Designer	/api/v1/designer/jobs/{job_id}/items/{item_id}/refresh-url	POST	storageState	200	200	PASS	job_id=7df1efa8-2fa0-5bd9-a515-4d15805bcab7
+Designer	/api/v1/designer/jobs/{job_id}/cancel	POST	storageState	200	200	PASS	job_id=7df1efa8-2fa0-5bd9-a515-4d15805bcab7

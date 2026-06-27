@@ -1,0 +1,452 @@
+{
+  "login": {
+    "loginOk": true,
+    "finalUrl": "/apoema/dashboard",
+    "bodyLength": 2131,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "authState": {
+      "path": "/tmp/apoema-uat-auth-state.json",
+      "exists": true,
+      "mode": "600",
+      "size": 507
+    },
+    "accessToken": "[REDACTED_SENSITIVE_VALUE]"
+  },
+  "routeMatrix": {
+    "results": [
+      {
+        "viewport": "390x844",
+        "route": "/",
+        "final_url": "http://127.0.0.1:5175/apoema/dashboard",
+        "redirected_to_login": false,
+        "console_errors": 0,
+        "status": "ok",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-root.png",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "viewport": "390x844",
+        "route": "/apoema",
+        "final_url": "http://127.0.0.1:5175/apoema/dashboard",
+        "redirected_to_login": false,
+        "console_errors": 0,
+        "status": "ok",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-apoema.png",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "viewport": "390x844",
+        "route": "/apoema/chat",
+        "final_url": "http://127.0.0.1:5175/apoema/chat",
+        "redirected_to_login": false,
+        "console_errors": 0,
+        "status": "ok",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-apoema_chat.png",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "viewport": "390x844",
+        "route": "/apoema/assets",
+        "final_url": "http://127.0.0.1:5175/apoema/assets",
+        "redirected_to_login": false,
+        "console_errors": 0,
+        "status": "ok",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-apoema_assets.png",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "viewport": "390x844",
+        "route": "/apoema/settings",
+        "final_url": "http://127.0.0.1:5175/apoema/settings",
+        "redirected_to_login": false,
+        "console_errors": 0,
+        "status": "ok",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-apoema_settings.png",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "viewport": "1366x768",
+        "route": "/",
+        "final_url": "http://127.0.0.1:5175/apoema/dashboard",
+        "redirected_to_login": false,
+        "console_errors": 0,
+        "status": "ok",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-root.png",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "viewport": "1366x768",
+        "route": "/apoema",
+        "final_url": "http://127.0.0.1:5175/apoema/dashboard",
+        "redirected_to_login": false,
+        "console_errors": 0,
+        "status": "ok",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-apoema.png",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "viewport": "1366x768",
+        "route": "/apoema/chat",
+        "final_url": "http://127.0.0.1:5175/apoema/chat",
+        "redirected_to_login": false,
+        "console_errors": 0,
+        "status": "ok",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-apoema_chat.png",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "viewport": "1366x768",
+        "route": "/apoema/assets",
+        "final_url": "http://127.0.0.1:5175/apoema/assets",
+        "redirected_to_login": false,
+        "console_errors": 0,
+        "status": "ok",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-apoema_assets.png",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "viewport": "1366x768",
+        "route": "/apoema/settings",
+        "final_url": "http://127.0.0.1:5175/apoema/settings",
+        "redirected_to_login": false,
+        "console_errors": 0,
+        "status": "ok",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-apoema_settings.png",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "viewport": "1920x1080",
+        "route": "/",
+        "final_url": "http://127.0.0.1:5175/login",
+        "redirected_to_login": true,
+        "console_errors": 1,
+        "status": "redirected_to_login",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-root.png",
+        "result": "WARN",
+        "notes": ""
+      },
+      {
+        "viewport": "1920x1080",
+        "route": "/apoema",
+        "final_url": "http://127.0.0.1:5175/login",
+        "redirected_to_login": true,
+        "console_errors": 1,
+        "status": "redirected_to_login",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-apoema.png",
+        "result": "WARN",
+        "notes": ""
+      },
+      {
+        "viewport": "1920x1080",
+        "route": "/apoema/chat",
+        "final_url": "http://127.0.0.1:5175/login",
+        "redirected_to_login": true,
+        "console_errors": 1,
+        "status": "redirected_to_login",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-apoema_chat.png",
+        "result": "WARN",
+        "notes": ""
+      },
+      {
+        "viewport": "1920x1080",
+        "route": "/apoema/assets",
+        "final_url": "http://127.0.0.1:5175/login",
+        "redirected_to_login": true,
+        "console_errors": 1,
+        "status": "redirected_to_login",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-apoema_assets.png",
+        "result": "WARN",
+        "notes": ""
+      },
+      {
+        "viewport": "1920x1080",
+        "route": "/apoema/settings",
+        "final_url": "http://127.0.0.1:5175/login",
+        "redirected_to_login": true,
+        "console_errors": 1,
+        "status": "redirected_to_login",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-apoema_settings.png",
+        "result": "WARN",
+        "notes": ""
+      },
+      {
+        "viewport": "1920x1080",
+        "route": "/login",
+        "final_url": "http://127.0.0.1:5175/login",
+        "redirected_to_login": true,
+        "console_errors": 1,
+        "status": "redirected_to_login",
+        "screenshot": "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-login.png",
+        "result": "WARN",
+        "notes": "authenticated session should not remain on login"
+      }
+    ],
+    "allScreenshotFiles": [
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-root.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-apoema.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-apoema_chat.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-apoema_assets.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/390x844-apoema_settings.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-root.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-apoema.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-apoema_chat.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-apoema_assets.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1366x768-apoema_settings.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-root.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-apoema.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-apoema_chat.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-apoema_assets.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-apoema_settings.png",
+      "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m6-authenticated-e2e-ui-gate/screenshots/1920x1080-login.png"
+    ]
+  },
+  "api": {
+    "rows": [
+      {
+        "module": "Auth",
+        "endpoint": "/api/v1/auth/me",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "Auth",
+        "endpoint": "/api/v1/auth/refresh",
+        "method": "POST",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "Artifacts",
+        "endpoint": "/api/v1/artifacts",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "Artifacts",
+        "endpoint": "/api/v1/artifacts",
+        "method": "POST",
+        "auth_mode": "storageState",
+        "status": 201,
+        "expected": "201",
+        "result": "PASS",
+        "notes": "artifact_id=a04e60d4-98d6-4964-b63e-8d0a8b1edb3d"
+      },
+      {
+        "module": "Artifacts",
+        "endpoint": "/api/v1/artifacts/{artifact_id}",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": "artifact_id=a04e60d4-98d6-4964-b63e-8d0a8b1edb3d"
+      },
+      {
+        "module": "Artifacts",
+        "endpoint": "/api/v1/artifacts/{artifact_id}/download-url",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": "url=http://127.0.0.1:5175/api/v1/artifacts/download/[REDACTED_SIGNED_URL]"
+      },
+      {
+        "module": "Artifacts",
+        "endpoint": "/api/v1/artifacts/download/[REDACTED_SIGNED_URL]",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": "signed url fetch"
+      },
+      {
+        "module": "Artifacts",
+        "endpoint": "/api/v1/artifacts/{artifact_id}",
+        "method": "DELETE",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": "artifact_id=a04e60d4-98d6-4964-b63e-8d0a8b1edb3d"
+      },
+      {
+        "module": "AI Chat",
+        "endpoint": "/api/v1/ai-chat/providers",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "AI Chat",
+        "endpoint": "/api/v1/ai-chat/message",
+        "method": "POST",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "RAG",
+        "endpoint": "/api/v1/rag/collections",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "RAG",
+        "endpoint": "/api/v1/rag/search",
+        "method": "POST",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "RAG",
+        "endpoint": "/api/v1/rag/documents/{document_id}",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "RAG",
+        "endpoint": "/api/v1/rag/course-context/{course_id}",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "RAG",
+        "endpoint": "/api/v1/rag/audit/recent",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "Designer",
+        "endpoint": "/api/v1/designer/health",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "Designer",
+        "endpoint": "/api/v1/designer/templates",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "Designer",
+        "endpoint": "/api/v1/designer/form-options",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": ""
+      },
+      {
+        "module": "Designer",
+        "endpoint": "/api/v1/designer/banners/json",
+        "method": "POST",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": "job_id=7df1efa8-2fa0-5bd9-a515-4d15805bcab7"
+      },
+      {
+        "module": "Designer",
+        "endpoint": "/api/v1/designer/jobs/{job_id}",
+        "method": "GET",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": "job_id=7df1efa8-2fa0-5bd9-a515-4d15805bcab7"
+      },
+      {
+        "module": "Designer",
+        "endpoint": "/api/v1/designer/jobs/{job_id}/items/{item_id}/adjust",
+        "method": "POST",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": "job_id=7df1efa8-2fa0-5bd9-a515-4d15805bcab7"
+      },
+      {
+        "module": "Designer",
+        "endpoint": "/api/v1/designer/jobs/{job_id}/items/{item_id}/refresh-url",
+        "method": "POST",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": "job_id=7df1efa8-2fa0-5bd9-a515-4d15805bcab7"
+      },
+      {
+        "module": "Designer",
+        "endpoint": "/api/v1/designer/jobs/{job_id}/cancel",
+        "method": "POST",
+        "auth_mode": "storageState",
+        "status": 200,
+        "expected": "200",
+        "result": "PASS",
+        "notes": "job_id=7df1efa8-2fa0-5bd9-a515-4d15805bcab7"
+      }
+    ],
+    "artifactId": "a04e60d4-98d6-4964-b63e-8d0a8b1edb3d",
+    "downloadUrl": "http://127.0.0.1:5175/api/v1/artifacts/download/[REDACTED_SIGNED_URL]"
+  },
+  "authState": "/tmp/apoema-uat-auth-state.json",
+  "baseUrl": "http://127.0.0.1:5175"
+}
