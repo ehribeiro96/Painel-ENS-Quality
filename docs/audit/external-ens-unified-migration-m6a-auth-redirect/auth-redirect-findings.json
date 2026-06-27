@@ -1,0 +1,21 @@
+{
+  "status": "NO_GO",
+  "phase": "m6a_auth_redirect_fix",
+  "root_cause": "A_STORAGE_STATE_STALE_AUTH_STATE_MISSING_AFTER_M6",
+  "storage_state_committed": false,
+  "sensitive_material_detected_in_m6_local_commit": true,
+  "sensitive_material_redacted_in_followup_commit": true,
+  "secrets_found_in_current_worktree": false,
+  "playwright_redirect_before": true,
+  "playwright_redirect_after": null,
+  "browser_refresh_status": "not_run_auth_state_missing",
+  "uat_session_validated_in_browser": false,
+  "frontend_changed": false,
+  "backend_changed": false,
+  "docker_changed": false,
+  "migrations_changed": false,
+  "apoema_ui_changed": false,
+  "ui_gate_decision": "PARTIAL_READY_BACKEND_ONLY",
+  "push_executed": false,
+  "next_recommended_phase": "M6A_SECURITY_HISTORY_REPAIR_AND_AUTH_STATE_REGEN"
+}

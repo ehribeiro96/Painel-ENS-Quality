@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "reason": "AUTH_STATE_MISSING",
+  "auth_state_path": "/tmp/apoema-uat-auth-state.json",
+  "base": "http://127.0.0.1:5175",
+  "port_5175_open": false,
+  "probe_executed": false,
+  "notes": "Probe Playwright autenticado nao foi executado porque o storageState temporario nao existe mais no runtime M6A."
+}

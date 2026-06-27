@@ -1,0 +1,24 @@
+# M6A auth redirect gates
+date=2026-06-27T17:06:42-03:00
+
+git_diff_check=PASS
+
+pytest_command=PYTHONPATH=backend .venv/bin/python -m pytest -s tests
+pytest=PASS
+pytest_summary=325 passed, 22 skipped, 1 warning
+
+ruff_command=.venv/bin/python -m ruff check backend tests scripts
+ruff=PASS
+
+compileall_command=.venv/bin/python -m compileall -q backend/app backend/alembic tests scripts
+compileall=PASS
+
+frontend_build_command=PATH="/home/estevaoqualityadm/.nvm/versions/node/v22.22.3/bin:$PATH" npm run build
+frontend_build=PASS
+
+auth_state_check=AUTH_STATE_FOUND=0
+port_5175_check=PORT_5175_OPEN=0
+playwright_probe=NOT_RUN_AUTH_STATE_MISSING
+
+security_status=NO_GO_LOCAL_COMMIT_REDACTED
+notes=M6 raw evidence initially committed locally included sensitive material and was redacted in a follow-up commit before any push.
