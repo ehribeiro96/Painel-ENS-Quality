@@ -1,75 +1,9 @@
-=== health ===
-HTTP/1.1 200 OK
-date: Sat, 27 Jun 2026 23:21:22 GMT
-server: uvicorn
-content-length: 265
-content-type: application/json
-x-request-id: fc373504-aa09-4416-951d-3940516235d5
-x-correlation-id: fc373504-aa09-4416-951d-3940516235d5
-x-content-type-options: nosniff
-x-frame-options: SAMEORIGIN
-referrer-policy: same-origin
-permissions-policy: camera=(), microphone=(), geolocation=()
-content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
+M7 runtime smoke summary
 
-{"status":"ok","postgres":{"status":"ok","result":1},"redis":{"status":"ok","result":true},"frontend_ready":true,"migration":{"status":"up_to_date","current_revision":"0006_ai_chat","head_revision":"0006_ai_chat"},"bootstrap_admin":"exists","startup_complete":true}
-=== artifacts no token ===
-HTTP/1.1 401 Unauthorized
-date: Sat, 27 Jun 2026 23:21:22 GMT
-server: uvicorn
-content-length: 26
-content-type: application/json
-x-request-id: 994d0154-62ab-4268-b6ee-273750909957
-x-correlation-id: 994d0154-62ab-4268-b6ee-273750909957
-x-content-type-options: nosniff
-x-frame-options: SAMEORIGIN
-referrer-policy: same-origin
-permissions-policy: camera=(), microphone=(), geolocation=()
-content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
+health/ready: 200 OK
+artifacts auth gate: 401 missing_token
+ai-chat auth gate: 401 missing_token
+rag auth gate: 401 missing_token
+designer auth gate: 401 missing_token
 
-{"detail":"missing_token"}
-=== ai-chat no token ===
-HTTP/1.1 401 Unauthorized
-date: Sat, 27 Jun 2026 23:21:22 GMT
-server: uvicorn
-content-length: 26
-content-type: application/json
-x-request-id: f9d2ac09-fe61-4ee5-ab4f-949306896916
-x-correlation-id: f9d2ac09-fe61-4ee5-ab4f-949306896916
-x-content-type-options: nosniff
-x-frame-options: SAMEORIGIN
-referrer-policy: same-origin
-permissions-policy: camera=(), microphone=(), geolocation=()
-content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
-
-{"detail":"missing_token"}
-=== rag no token ===
-HTTP/1.1 401 Unauthorized
-date: Sat, 27 Jun 2026 23:21:22 GMT
-server: uvicorn
-content-length: 26
-content-type: application/json
-x-request-id: f5db1cd1-0ad3-4cde-bb76-b07c9cf05fab
-x-correlation-id: f5db1cd1-0ad3-4cde-bb76-b07c9cf05fab
-x-content-type-options: nosniff
-x-frame-options: SAMEORIGIN
-referrer-policy: same-origin
-permissions-policy: camera=(), microphone=(), geolocation=()
-content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
-
-{"detail":"missing_token"}
-=== designer no token ===
-HTTP/1.1 401 Unauthorized
-date: Sat, 27 Jun 2026 23:21:22 GMT
-server: uvicorn
-content-length: 26
-content-type: application/json
-x-request-id: bdcaddb2-f0ed-4955-84e2-8d858ac81a1c
-x-correlation-id: bdcaddb2-f0ed-4955-84e2-8d858ac81a1c
-x-content-type-options: nosniff
-x-frame-options: SAMEORIGIN
-referrer-policy: same-origin
-permissions-policy: camera=(), microphone=(), geolocation=()
-content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
-
-{"detail":"missing_token"}
+No 404/500 responses were observed.
