@@ -1,0 +1,11 @@
+commit 14aeae7a4a87506a76875510f789602e95c1354b
+Author: HML Migration Auditor <hml-migration-auditor.local@example.invalid>
+Date:   Sat Jun 27 20:30:13 2026 -0300
+
+    docs(audit): normalize pre-push readiness logs
+
+commit 080579c3ee66f39d1c4bf9afee593e10b110556d
+Author: HML Migration Auditor <hml-migration-auditor.local@example.invalid>
+Date:   Sat Jun 27 20:29:25 2026 -0300
+
+    docs(audit): complete pre-push readiness artifacts

@@ -1,0 +1,22 @@
+{
+  "status": "GO",
+  "phase": "m8_remove_giant_blob_from_history",
+  "push_executed": false,
+  "target_path": "docs/audit/m7-pre-push-final-readiness/raw/tree-secret-scan-redacted.log",
+  "backup_bundle_created": true,
+  "backup_bundle_path": "/home/estevaoqualityadm/projects/_git-history-backups/Painel-ENS-Quality-before-m8-20260629-114538.bundle",
+  "backup_bundle_verified": true,
+  "filter_repo_executed": true,
+  "filter_repo_tool": ".venv/bin/python -m git_filter_repo",
+  "target_path_removed_from_history": true,
+  "largest_blob_after_bytes": 11700117,
+  "blobs_over_100mb_remaining": 0,
+  "gitignore_updated": false,
+  "remote_restored": true,
+  "ssh_ok": true,
+  "tests_ok": true,
+  "secrets_found": false,
+  "storage_state_committed": false,
+  "decision": "GO",
+  "next_recommended_phase": "INITIAL_PUSH_AUTHORIZATION_RETRY"
+}

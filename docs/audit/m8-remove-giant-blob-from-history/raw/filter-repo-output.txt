@@ -1,0 +1,11 @@
+warning: refs/codex/turn-diffs/captures/1782744297137/8aad27c1-406e-4256-805b-8340427a8b52/base: Unexpected object of type tree, skipping.
+warning: refs/codex/turn-diffs/checkpoints/fb358036b0091a11961cca0a25c9bd022b5b743cbcaa5367a902215cc89a4abd/918bd7ea85edf01feb181dd8d724291567dc5eed5c528446efb717724615aa8c/1782744034751/37c0aae2-0846-439c-bcfc-159b763a32bc: Unexpected object of type tree, skipping.
+warning: refs/codex/turn-diffs/checkpoints/fb4073ef3209b4bb73ae288fe684310b8e4f81829babf5e972cd9e41bf02334b/d58715e79dc09dcd4cc728a2c6f924fdedc5d69e19a49875add8bfd835e96db6/1782234016015/77849580-5a12-4f7b-9126-3a5f5d8a09cf: Unexpected object of type tree, skipping.
+NOTICE: Removing 'origin' remote; see 'Why is my origin removed?'
+        in the manual if you want to push back there.
+        (was git@github.com:ehribeiro96/Painel-ENS-Quality.git)
+Parsed 138 commitsParsed 186 commitsHEAD is now at fac4a08 docs(audit): validate remote repo existence and SSH auth
+
+New history written in 0.15 seconds; now repacking/cleaning...
+Repacking your repo and cleaning out old unneeded objects
+Completely finished after 2.72 seconds.
