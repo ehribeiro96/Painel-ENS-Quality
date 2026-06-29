@@ -1,0 +1,29 @@
+=== date ===
+2026-06-29T09:48:20-03:00
+=== REAL_GITHUB_REMOTE_URL validation ===
+REAL_GITHUB_REMOTE_URL_PRESENT=0
+NO-GO: REAL_GITHUB_REMOTE_URL não foi definido. Exemplo: export REAL_GITHUB_REMOTE_URL='git@github.com:OWNER/REPO.git'
+=== getent hosts github.com ===
+4.228.31.150    github.com
+=== nslookup github.com ===
+/usr/bin/bash: line 115: nslookup: command not found
+=== ping github.com one shot ===
+PING github.com (4.228.31.150) 56(84) bytes of data.
+64 bytes from 4.228.31.150: icmp_seq=1 ttl=115 time=12.2 ms
+
+--- github.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 12.154/12.154/12.154/0.000 ms
+=== ssh public files only ===
+id_ed25519_painel_ens_quality_github.pub
+known_hosts
+=== private key names only ===
+id_ed25519_painel_ens_quality_github
+=== expected key ===
+EXPECTED_KEY_FOUND=1
+=== ssh-add list before ===
+Could not open a connection to your authentication agent.
+Identity added: REDACTED
+256 SHA256:lM0Vv6m2U+2MNioLq6uc63czAA5uIKNT4CwnTaw7Zy4 WSL-Painel-ENS-Quality-RJM22137 (ED25519)
+=== ssh -T git@github.com ===
+git@github.com: Permission denied (publickey).

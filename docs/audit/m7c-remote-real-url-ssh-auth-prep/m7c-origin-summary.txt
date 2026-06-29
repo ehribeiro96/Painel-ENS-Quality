@@ -1,0 +1,2 @@
+ORIGIN_BEFORE=git@github.com:OWNER/REPO.git
+ORIGIN_AFTER=git@github.com:OWNER/REPO.git
