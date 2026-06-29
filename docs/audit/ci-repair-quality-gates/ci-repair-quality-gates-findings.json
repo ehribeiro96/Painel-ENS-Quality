@@ -1,0 +1,21 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "ci_repair_quality_gates",
+  "run_id": 28381078282,
+  "job_id": 84083542556,
+  "workflow": "Quality Gates",
+  "failed_job": "quality",
+  "failed_step": "Backend regression tests",
+  "root_cause": "B_CI_WRONG_PYTEST_COMMAND_AND_C_CI_MISSING_DEPENDENCIES",
+  "workflow_changed": true,
+  "backend_changed": false,
+  "tests_changed": false,
+  "frontend_changed": false,
+  "docs_changed": true,
+  "secrets_found": false,
+  "local_gates_ok": true,
+  "push_executed": false,
+  "actions_rechecked": false,
+  "actions_status_after_push": "NOT_CHECKED",
+  "next_recommended_phase": "POST_CI_REPAIR_PUSH"
+}

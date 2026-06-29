@@ -22,12 +22,13 @@ jobs:
           pip install -r backend/requirements.txt
           pip install -r requirements-legacy.txt
           pip install -r requirements-dev.txt
+          pip install pytest
 
       - name: Python compile
         run: python -m compileall -q backend/app backend/alembic tests
 
       - name: Backend regression tests
-        run: python -m unittest discover -s tests
+        run: PYTHONPATH=backend python -m pytest -s -q
 
       - name: Ruff check
         run: ruff check backend/app tests

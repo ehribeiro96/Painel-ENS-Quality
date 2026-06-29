@@ -1,0 +1,7 @@
+M4 Designer API gates
+- git diff --check: PASS
+- pytest: PASS (278 passed, 22 skipped)
+- ruff: PASS
+- compileall: PASS
+- frontend build: PASS
+- secret scan: PASS (no matches)
