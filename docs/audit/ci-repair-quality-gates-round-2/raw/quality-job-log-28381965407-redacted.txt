@@ -1,0 +1,585 @@
+quality	Set up job	﻿2026-06-29T15:06:34.9973386Z Current runner version: '2.335.1'
+quality	Set up job	2026-06-29T15:06:35.0008890Z ##[group]Runner Image Provisioner
+quality	Set up job	2026-06-29T15:06:35.0010234Z Hosted Compute Agent
+quality	Set up job	2026-06-29T15:06:35.0011243Z Version: 20260611.554
+quality	Set up job	2026-06-29T15:06:35.0012396Z Commit: 5e0782fdc9014723d3be820dd114dd31555c2bd1
+quality	Set up job	2026-06-29T15:06:35.0013600Z Build Date: 2026-06-11T21:40:46Z
+quality	Set up job	2026-06-29T15:06:35.0014834Z Worker ID: {8c8064a5-57bf-4263-ba16-cde09f338858}
+quality	Set up job	2026-06-29T15:06:35.0016035Z Azure Region: northcentralus
+quality	Set up job	2026-06-29T15:06:35.0017088Z ##[endgroup]
+quality	Set up job	2026-06-29T15:06:35.0019425Z ##[group]Operating System
+quality	Set up job	2026-06-29T15:06:35.0020530Z Ubuntu
+quality	Set up job	2026-06-29T15:06:35.0021516Z 24.04.4
+quality	Set up job	2026-06-29T15:06:35.0022341Z LTS
+quality	Set up job	2026-06-29T15:06:35.0023185Z ##[endgroup]
+quality	Set up job	2026-06-29T15:06:35.0024221Z ##[group]Runner Image
+quality	Set up job	2026-06-29T15:06:35.0025251Z Image: ubuntu-24.04
+quality	Set up job	2026-06-29T15:06:35.0026216Z Version: 20260622.220.1
+quality	Set up job	2026-06-29T15:06:35.0028012Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260622.220/images/ubuntu/Ubuntu2404-Readme.md
+quality	Set up job	2026-06-29T15:06:35.0031164Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260622.220
+quality	Set up job	2026-06-29T15:06:35.0032843Z ##[endgroup]
+quality	Set up job	2026-06-29T15:06:35.0035526Z ##[group]GITHUB_TOKEN Permissions
+quality	Set up job	2026-06-29T15:06:35.0038421Z Contents: read
+quality	Set up job	2026-06-29T15:06:35.0039683Z Metadata: read
+quality	Set up job	2026-06-29T15:06:35.0040619Z Packages: read
+quality	Set up job	2026-06-29T15:06:35.0041593Z ##[endgroup]
+quality	Set up job	2026-06-29T15:06:35.0045156Z Secret source: Actions
+quality	Set up job	2026-06-29T15:06:35.0046807Z Prepare workflow directory
+quality	Set up job	2026-06-29T15:06:35.0436249Z Prepare all required actions
+quality	Set up job	2026-06-29T15:06:35.0490012Z Getting action download info
+quality	Set up job	2026-06-29T15:06:35.2959992Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+quality	Set up job	2026-06-29T15:06:35.3762200Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+quality	Set up job	2026-06-29T15:06:35.4543882Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+quality	Set up job	2026-06-29T15:06:35.6535451Z Complete job name: quality
+quality	Run actions/checkout@v4	﻿2026-06-29T15:06:35.7272006Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7280896Z ##[group]Run actions/checkout@v4
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7281610Z with:
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7282081Z   repository: ehribeiro96/Painel-ENS-Quality
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7286442Z   token: ***
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7286873Z   ssh-strict: true
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7287309Z   ssh-user: git
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7287750Z   persist-credentials: true
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7288225Z   clean: true
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7288914Z   sparse-checkout-cone-mode: true
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7289435Z   fetch-depth: 1
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7289860Z   fetch-tags: false
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7290294Z   show-progress: true
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7290762Z   lfs: false
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7291165Z   submodules: false
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7291654Z   set-safe-directory: true
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.7292338Z ##[endgroup]
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8275106Z Syncing repository: ehribeiro96/Painel-ENS-Quality
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8277202Z ##[group]Getting Git version info
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8278157Z Working directory is '/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality'
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8279582Z [command]/usr/bin/git version
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8309536Z git version 2.54.0
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8360293Z ##[endgroup]
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8374129Z Temporarily overriding HOME='/home/runner/work/_temp/bbbfadce-438d-42c3-812c-db07385cf16b' before making global git config changes
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8375981Z Adding repository directory to the temporary git global config as a safe directory
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8379347Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8422391Z Deleting the contents of '/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality'
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8426068Z ##[group]Initializing the repository
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8430632Z [command]/usr/bin/git init /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8505063Z hint: Using 'master' as the name for the initial branch. This default branch name
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8506618Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8507777Z hint: to use in all of your new repositories, which will suppress this warning,
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8508520Z hint: call:
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8509482Z hint:
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8510242Z hint: 	git config --global init.defaultBranch <name>
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8511165Z hint:
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8512025Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8513273Z hint: 'development'. The just-created branch can be renamed via this command:
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8514000Z hint:
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8514435Z hint: 	git branch -m <name>
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8514913Z hint:
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8515516Z hint: Disable this message with "git config set advice.defaultBranchName false"
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8517097Z Initialized empty Git repository in /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/.git/
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8520680Z [command]/usr/bin/git remote add origin https://github.com/ehribeiro96/Painel-ENS-Quality
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8559277Z ##[endgroup]
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8560525Z ##[group]Disabling automatic garbage collection
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8563810Z [command]/usr/bin/git config --local gc.auto 0
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8592823Z ##[endgroup]
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8593957Z ##[group]Setting up auth
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8600412Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8633345Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8936380Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.8966352Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.9195798Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.9226762Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.9456300Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.9490626Z ##[endgroup]
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.9498489Z ##[group]Fetching the repository
+quality	Run actions/checkout@v4	2026-06-29T15:06:35.9500085Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +a3fa6c303fad3ef9ba8f2a9cbe82d1a0ea284368:refs/remotes/origin/main
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.0137935Z From https://github.com/ehribeiro96/Painel-ENS-Quality
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.0139965Z  * [new ref]         a3fa6c303fad3ef9ba8f2a9cbe82d1a0ea284368 -> origin/main
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.0172916Z ##[endgroup]
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.0174118Z ##[group]Determining the checkout info
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.0175543Z ##[endgroup]
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.0180672Z [command]/usr/bin/git sparse-checkout disable
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.0224908Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.0253925Z ##[group]Checking out the ref
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.0257437Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.7811577Z Switched to a new branch 'main'
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.7816474Z branch 'main' set up to track 'origin/main'.
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.7842811Z ##[endgroup]
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.7888315Z [command]/usr/bin/git log -1 --format=%H
+quality	Run actions/checkout@v4	2026-06-29T15:06:38.7913437Z a3fa6c303fad3ef9ba8f2a9cbe82d1a0ea284368
+quality	Run actions/setup-python@v5	﻿2026-06-29T15:06:38.8171267Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.8173065Z ##[group]Run actions/setup-python@v5
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.8173388Z with:
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.8173662Z   python-version: 3.12
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.8173948Z   check-latest: false
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.8176664Z   token: ***
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.8176931Z   update-environment: true
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.8177232Z   allow-prereleases: false
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.8177509Z   freethreaded: false
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.8249627Z ##[endgroup]
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.9571934Z ##[group]Installed versions
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.9653748Z (node:2290) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.9655099Z (Use `node --trace-deprecation ...` to show where the warning was created)
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.9655918Z Successfully set up CPython (3.12.13)
+quality	Run actions/setup-python@v5	2026-06-29T15:06:38.9656837Z ##[endgroup]
+quality	Install Python dependencies	﻿2026-06-29T15:06:38.9801366Z ##[group]Run python -m pip install --upgrade pip
+quality	Install Python dependencies	2026-06-29T15:06:38.9801985Z ^[[36;1mpython -m pip install --upgrade pip^[[0m
+quality	Install Python dependencies	2026-06-29T15:06:38.9802412Z ^[[36;1mpip install -r backend/requirements.txt^[[0m
+quality	Install Python dependencies	2026-06-29T15:06:38.9802825Z ^[[36;1mpip install -r requirements-legacy.txt^[[0m
+quality	Install Python dependencies	2026-06-29T15:06:38.9803193Z ^[[36;1mpip install -r requirements-dev.txt^[[0m
+quality	Install Python dependencies	2026-06-29T15:06:38.9803534Z ^[[36;1mpip install pytest^[[0m
+quality	Install Python dependencies	2026-06-29T15:06:38.9942150Z shell: /usr/bin/bash -e {0}
+quality	Install Python dependencies	2026-06-29T15:06:38.9942526Z env:
+quality	Install Python dependencies	2026-06-29T15:06:38.9942868Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Install Python dependencies	2026-06-29T15:06:38.9943367Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib/pkgconfig
+quality	Install Python dependencies	2026-06-29T15:06:38.9943881Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Install Python dependencies	2026-06-29T15:06:38.9944307Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Install Python dependencies	2026-06-29T15:06:38.9944730Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Install Python dependencies	2026-06-29T15:06:38.9945153Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib
+quality	Install Python dependencies	2026-06-29T15:06:38.9945567Z ##[endgroup]
+quality	Install Python dependencies	2026-06-29T15:06:43.0675900Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (26.1.2)
+quality	Install Python dependencies	2026-06-29T15:06:44.2751643Z Collecting alembic==1.15.2 (from -r backend/requirements.txt (line 1))
+quality	Install Python dependencies	2026-06-29T15:06:44.3239626Z   Downloading alembic-1.15.2-py3-none-any.whl.metadata (7.3 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.3657793Z Collecting asyncpg==0.31.0 (from -r backend/requirements.txt (line 2))
+quality	Install Python dependencies	2026-06-29T15:06:44.3696421Z   Downloading asyncpg-0.31.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (4.4 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.4009361Z Collecting bcrypt==4.3.0 (from -r backend/requirements.txt (line 3))
+quality	Install Python dependencies	2026-06-29T15:06:44.4045892Z   Downloading bcrypt-4.3.0-cp39-abi3-manylinux_2_34_x86_64.whl.metadata (10 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.4169595Z Collecting email-validator==2.2.0 (from -r backend/requirements.txt (line 4))
+quality	Install Python dependencies	2026-06-29T15:06:44.4208031Z   Downloading email_validator-2.2.0-py3-none-any.whl.metadata (25 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.4667864Z Collecting fastapi==0.115.12 (from -r backend/requirements.txt (line 5))
+quality	Install Python dependencies	2026-06-29T15:06:44.4703710Z   Downloading fastapi-0.115.12-py3-none-any.whl.metadata (27 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.5901792Z Collecting greenlet==3.2.4 (from -r backend/requirements.txt (line 6))
+quality	Install Python dependencies	2026-06-29T15:06:44.5939239Z   Downloading greenlet-3.2.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (4.1 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.6077924Z Collecting openpyxl==3.1.5 (from -r backend/requirements.txt (line 7))
+quality	Install Python dependencies	2026-06-29T15:06:44.6114453Z   Downloading openpyxl-3.1.5-py2.py3-none-any.whl.metadata (2.5 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.7032086Z Collecting pandas==2.2.3 (from -r backend/requirements.txt (line 8))
+quality	Install Python dependencies	2026-06-29T15:06:44.7070612Z   Downloading pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (89 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.8222239Z Collecting pydantic==2.11.5 (from -r backend/requirements.txt (line 9))
+quality	Install Python dependencies	2026-06-29T15:06:44.8263148Z   Downloading pydantic-2.11.5-py3-none-any.whl.metadata (67 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.8414694Z Collecting pydantic-settings==2.10.1 (from -r backend/requirements.txt (line 10))
+quality	Install Python dependencies	2026-06-29T15:06:44.8448383Z   Downloading pydantic_settings-2.10.1-py3-none-any.whl.metadata (3.4 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.8556631Z Collecting python-jose==3.4.0 (from python-jose[cryptography]==3.4.0->-r backend/requirements.txt (line 11))
+quality	Install Python dependencies	2026-06-29T15:06:44.8590236Z   Downloading python_jose-3.4.0-py2.py3-none-any.whl.metadata (5.5 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.8706283Z Collecting python-multipart==0.0.20 (from -r backend/requirements.txt (line 12))
+quality	Install Python dependencies	2026-06-29T15:06:44.8742294Z   Downloading python_multipart-0.0.20-py3-none-any.whl.metadata (1.8 kB)
+quality	Install Python dependencies	2026-06-29T15:06:44.8935474Z Collecting redis==5.2.1 (from -r backend/requirements.txt (line 13))
+quality	Install Python dependencies	2026-06-29T15:06:44.8969043Z   Downloading redis-5.2.1-py3-none-any.whl.metadata (9.1 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.1420773Z Collecting SQLAlchemy==2.0.49 (from -r backend/requirements.txt (line 14))
+quality	Install Python dependencies	2026-06-29T15:06:45.1465307Z   Downloading sqlalchemy-2.0.49-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.1699373Z Collecting starlette==0.46.2 (from -r backend/requirements.txt (line 15))
+quality	Install Python dependencies	2026-06-29T15:06:45.1733104Z   Downloading starlette-0.46.2-py3-none-any.whl.metadata (6.2 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.1859942Z Collecting structlog==25.3.0 (from -r backend/requirements.txt (line 16))
+quality	Install Python dependencies	2026-06-29T15:06:45.1901540Z   Downloading structlog-25.3.0-py3-none-any.whl.metadata (8.0 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.2104186Z Collecting uvicorn==0.34.2 (from uvicorn[standard]==0.34.2->-r backend/requirements.txt (line 17))
+quality	Install Python dependencies	2026-06-29T15:06:45.2138179Z   Downloading uvicorn-0.34.2-py3-none-any.whl.metadata (6.5 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.2300793Z Collecting Mako (from alembic==1.15.2->-r backend/requirements.txt (line 1))
+quality	Install Python dependencies	2026-06-29T15:06:45.2334197Z   Downloading mako-1.3.12-py3-none-any.whl.metadata (2.9 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.2472130Z Collecting typing-extensions>=4.12 (from alembic==1.15.2->-r backend/requirements.txt (line 1))
+quality	Install Python dependencies	2026-06-29T15:06:45.2509513Z   Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.2634154Z Collecting dnspython>=2.0.0 (from email-validator==2.2.0->-r backend/requirements.txt (line 4))
+quality	Install Python dependencies	2026-06-29T15:06:45.2669566Z   Downloading dnspython-2.8.0-py3-none-any.whl.metadata (5.7 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.2810619Z Collecting idna>=2.0.0 (from email-validator==2.2.0->-r backend/requirements.txt (line 4))
+quality	Install Python dependencies	2026-06-29T15:06:45.2846119Z   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.2986331Z Collecting annotated-types>=0.6.0 (from pydantic==2.11.5->-r backend/requirements.txt (line 9))
+quality	Install Python dependencies	2026-06-29T15:06:45.3023072Z   Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.8906764Z Collecting pydantic-core==2.33.2 (from pydantic==2.11.5->-r backend/requirements.txt (line 9))
+quality	Install Python dependencies	2026-06-29T15:06:45.8951337Z   Downloading pydantic_core-2.33.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.9063191Z Collecting typing-inspection>=0.4.0 (from pydantic==2.11.5->-r backend/requirements.txt (line 9))
+quality	Install Python dependencies	2026-06-29T15:06:45.9097455Z   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.9252808Z Collecting anyio<5,>=3.6.2 (from starlette==0.46.2->-r backend/requirements.txt (line 15))
+quality	Install Python dependencies	2026-06-29T15:06:45.9288190Z   Downloading anyio-4.14.1-py3-none-any.whl.metadata (4.6 kB)
+quality	Install Python dependencies	2026-06-29T15:06:45.9391038Z Collecting et-xmlfile (from openpyxl==3.1.5->-r backend/requirements.txt (line 7))
+quality	Install Python dependencies	2026-06-29T15:06:45.9425395Z   Downloading et_xmlfile-2.0.0-py3-none-any.whl.metadata (2.7 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.1033524Z Collecting numpy>=1.26.0 (from pandas==2.2.3->-r backend/requirements.txt (line 8))
+quality	Install Python dependencies	2026-06-29T15:06:46.1071593Z   Downloading numpy-2.5.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.1185714Z Collecting python-dateutil>=2.8.2 (from pandas==2.2.3->-r backend/requirements.txt (line 8))
+quality	Install Python dependencies	2026-06-29T15:06:46.1220452Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.1518880Z Collecting pytz>=2020.1 (from pandas==2.2.3->-r backend/requirements.txt (line 8))
+quality	Install Python dependencies	2026-06-29T15:06:46.1553525Z   Downloading pytz-2026.2-py2.py3-none-any.whl.metadata (22 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.1681520Z Collecting tzdata>=2022.7 (from pandas==2.2.3->-r backend/requirements.txt (line 8))
+quality	Install Python dependencies	2026-06-29T15:06:46.1715051Z   Downloading tzdata-2026.2-py2.py3-none-any.whl.metadata (1.4 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.1862332Z Collecting python-dotenv>=0.21.0 (from pydantic-settings==2.10.1->-r backend/requirements.txt (line 10))
+quality	Install Python dependencies	2026-06-29T15:06:46.1897880Z   Downloading python_dotenv-1.2.2-py3-none-any.whl.metadata (27 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.2036265Z Collecting ecdsa!=0.15 (from python-jose==3.4.0->python-jose[cryptography]==3.4.0->-r backend/requirements.txt (line 11))
+quality	Install Python dependencies	2026-06-29T15:06:46.2071279Z   Downloading ecdsa-0.19.2-py2.py3-none-any.whl.metadata (29 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.2206800Z Collecting rsa!=4.1.1,!=4.4,<5.0,>=4.0 (from python-jose==3.4.0->python-jose[cryptography]==3.4.0->-r backend/requirements.txt (line 11))
+quality	Install Python dependencies	2026-06-29T15:06:46.2241558Z   Downloading rsa-4.9.1-py3-none-any.whl.metadata (5.6 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.2424116Z Collecting pyasn1<0.5.0,>=0.4.1 (from python-jose==3.4.0->python-jose[cryptography]==3.4.0->-r backend/requirements.txt (line 11))
+quality	Install Python dependencies	2026-06-29T15:06:46.2457622Z   Downloading pyasn1-0.4.8-py2.py3-none-any.whl.metadata (1.5 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.2646875Z Collecting click>=7.0 (from uvicorn==0.34.2->uvicorn[standard]==0.34.2->-r backend/requirements.txt (line 17))
+quality	Install Python dependencies	2026-06-29T15:06:46.2680243Z   Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.2775991Z Collecting h11>=0.8 (from uvicorn==0.34.2->uvicorn[standard]==0.34.2->-r backend/requirements.txt (line 17))
+quality	Install Python dependencies	2026-06-29T15:06:46.2810978Z   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.4339946Z Collecting cryptography>=3.4.0 (from python-jose[cryptography]==3.4.0->-r backend/requirements.txt (line 11))
+quality	Install Python dependencies	2026-06-29T15:06:46.4376844Z   Downloading cryptography-49.0.0-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.3 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.4653121Z Collecting httptools>=0.6.3 (from uvicorn[standard]==0.34.2->-r backend/requirements.txt (line 17))
+quality	Install Python dependencies	2026-06-29T15:06:46.4688241Z   Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.5006270Z Collecting pyyaml>=5.1 (from uvicorn[standard]==0.34.2->-r backend/requirements.txt (line 17))
+quality	Install Python dependencies	2026-06-29T15:06:46.5043384Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.5356270Z Collecting uvloop!=0.15.0,!=0.15.1,>=0.14.0 (from uvicorn[standard]==0.34.2->-r backend/requirements.txt (line 17))
+quality	Install Python dependencies	2026-06-29T15:06:46.5392205Z   Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (4.9 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.6015079Z Collecting watchfiles>=0.13 (from uvicorn[standard]==0.34.2->-r backend/requirements.txt (line 17))
+quality	Install Python dependencies	2026-06-29T15:06:46.6053979Z   Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.7053970Z Collecting websockets>=10.4 (from uvicorn[standard]==0.34.2->-r backend/requirements.txt (line 17))
+quality	Install Python dependencies	2026-06-29T15:06:46.7092380Z   Downloading websockets-16.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.8 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.7958396Z Collecting cffi>=2.0.0 (from cryptography>=3.4.0->python-jose[cryptography]==3.4.0->-r backend/requirements.txt (line 11))
+quality	Install Python dependencies	2026-06-29T15:06:46.7994875Z   Downloading cffi-2.0.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.6 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.8102162Z Collecting pycparser (from cffi>=2.0.0->cryptography>=3.4.0->python-jose[cryptography]==3.4.0->-r backend/requirements.txt (line 11))
+quality	Install Python dependencies	2026-06-29T15:06:46.8135531Z   Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.8259683Z Collecting six>=1.9.0 (from ecdsa!=0.15->python-jose==3.4.0->python-jose[cryptography]==3.4.0->-r backend/requirements.txt (line 11))
+quality	Install Python dependencies	2026-06-29T15:06:46.8293739Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.8800231Z Collecting MarkupSafe>=0.9.2 (from Mako->alembic==1.15.2->-r backend/requirements.txt (line 1))
+quality	Install Python dependencies	2026-06-29T15:06:46.8836738Z   Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.8922301Z Downloading alembic-1.15.2-py3-none-any.whl (231 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.9000344Z Downloading asyncpg-0.31.0-cp312-cp312-manylinux_2_28_x86_64.whl (3.5 MB)
+quality	Install Python dependencies	2026-06-29T15:06:46.9197738Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.5/3.5 MB 208.3 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:06:46.9232389Z Downloading bcrypt-4.3.0-cp39-abi3-manylinux_2_34_x86_64.whl (284 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.9292071Z Downloading email_validator-2.2.0-py3-none-any.whl (33 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.9343955Z Downloading fastapi-0.115.12-py3-none-any.whl (95 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.9398826Z Downloading pydantic-2.11.5-py3-none-any.whl (444 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.9466398Z Downloading starlette-0.46.2-py3-none-any.whl (72 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.9519057Z Downloading greenlet-3.2.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (607 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.9568925Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 607.6/607.6 kB 125.4 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:06:46.9603136Z Downloading openpyxl-3.1.5-py2.py3-none-any.whl (250 kB)
+quality	Install Python dependencies	2026-06-29T15:06:46.9661680Z Downloading pandas-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.7 MB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0089191Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.7/12.7 MB 308.3 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:06:47.0123434Z Downloading pydantic_settings-2.10.1-py3-none-any.whl (45 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0179263Z Downloading python_jose-3.4.0-py2.py3-none-any.whl (34 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0232849Z Downloading python_multipart-0.0.20-py3-none-any.whl (24 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0282938Z Downloading redis-5.2.1-py3-none-any.whl (261 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0339603Z Downloading sqlalchemy-2.0.49-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.4 MB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0458338Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 321.3 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:06:47.0491956Z Downloading structlog-25.3.0-py3-none-any.whl (68 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0544430Z Downloading uvicorn-0.34.2-py3-none-any.whl (62 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0599046Z Downloading pydantic_core-2.33.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0688543Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 265.3 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:06:47.0724118Z Downloading anyio-4.14.1-py3-none-any.whl (124 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0779245Z Downloading pyasn1-0.4.8-py2.py3-none-any.whl (77 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0837606Z Downloading rsa-4.9.1-py3-none-any.whl (34 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0889088Z Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0938754Z Downloading click-8.4.2-py3-none-any.whl (119 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.0993749Z Downloading cryptography-49.0.0-cp311-abi3-manylinux_2_34_x86_64.whl (4.7 MB)
+quality	Install Python dependencies	2026-06-29T15:06:47.1146868Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 341.6 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:06:47.1181843Z Downloading cffi-2.0.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (219 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.1240046Z Downloading dnspython-2.8.0-py3-none-any.whl (331 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.1296270Z Downloading ecdsa-0.19.2-py2.py3-none-any.whl (150 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.1351365Z Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.1403092Z Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (523 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.1467428Z Downloading idna-3.18-py3-none-any.whl (65 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.1522168Z Downloading numpy-2.5.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+quality	Install Python dependencies	2026-06-29T15:06:47.1995706Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 364.8 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:06:47.2031994Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2091231Z Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2144902Z Downloading pytz-2026.2-py2.py3-none-any.whl (510 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2212120Z Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2266646Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 168.8 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:06:47.2301162Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2355497Z Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2406918Z Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2471038Z Downloading tzdata-2026.2-py2.py3-none-any.whl (349 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2549642Z Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.4 MB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2708926Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 316.5 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:06:47.2749334Z Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (456 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2814423Z Downloading websockets-16.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (184 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2874067Z Downloading et_xmlfile-2.0.0-py3-none-any.whl (18 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2928287Z Downloading mako-1.3.12-py3-none-any.whl (78 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.2984535Z Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.3036720Z Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+quality	Install Python dependencies	2026-06-29T15:06:47.5012668Z Installing collected packages: pytz, pyasn1, websockets, uvloop, tzdata, typing-extensions, structlog, six, rsa, redis, pyyaml, python-multipart, python-dotenv, pycparser, numpy, MarkupSafe, idna, httptools, h11, greenlet, et-xmlfile, dnspython, click, bcrypt, asyncpg, annotated-types, uvicorn, typing-inspection, SQLAlchemy, python-dateutil, pydantic-core, openpyxl, Mako, email-validator, ecdsa, cffi, anyio, watchfiles, starlette, python-jose, pydantic, pandas, cryptography, alembic, pydantic-settings, fastapi
+quality	Install Python dependencies	2026-06-29T15:06:58.9003986Z
+quality	Install Python dependencies	2026-06-29T15:06:58.9043026Z Successfully installed Mako-1.3.12 MarkupSafe-3.0.3 SQLAlchemy-2.0.49 alembic-1.15.2 annotated-types-0.7.0 anyio-4.14.1 asyncpg-0.31.0 bcrypt-4.3.0 cffi-2.0.0 click-8.4.2 cryptography-49.0.0 dnspython-2.8.0 ecdsa-0.19.2 email-validator-2.2.0 et-xmlfile-2.0.0 fastapi-0.115.12 greenlet-3.2.4 h11-0.16.0 httptools-0.8.0 idna-3.18 numpy-2.5.0 openpyxl-3.1.5 pandas-2.2.3 pyasn1-0.4.8 pycparser-3.0 pydantic-2.11.5 pydantic-core-2.33.2 pydantic-settings-2.10.1 python-dateutil-2.9.0.post0 python-dotenv-1.2.2 python-jose-3.4.0 python-multipart-0.0.20 pytz-2026.2 pyyaml-6.0.3 redis-5.2.1 rsa-4.9.1 six-1.17.0 starlette-0.46.2 structlog-25.3.0 typing-extensions-4.15.0 typing-inspection-0.4.2 tzdata-2026.2 uvicorn-0.34.2 uvloop-0.22.1 watchfiles-1.2.0 websockets-16.0
+quality	Install Python dependencies	2026-06-29T15:06:59.9309518Z Collecting Flask==3.1.2 (from -r requirements-legacy.txt (line 6))
+quality	Install Python dependencies	2026-06-29T15:06:59.9798284Z   Downloading flask-3.1.2-py3-none-any.whl.metadata (3.2 kB)
+quality	Install Python dependencies	2026-06-29T15:06:59.9928167Z Collecting Jinja2==3.1.6 (from -r requirements-legacy.txt (line 7))
+quality	Install Python dependencies	2026-06-29T15:06:59.9960610Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+quality	Install Python dependencies	2026-06-29T15:06:59.9995824Z Requirement already satisfied: MarkupSafe==3.0.3 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from -r requirements-legacy.txt (line 8)) (3.0.3)
+quality	Install Python dependencies	2026-06-29T15:07:00.0159974Z Collecting Werkzeug==3.1.8 (from -r requirements-legacy.txt (line 9))
+quality	Install Python dependencies	2026-06-29T15:07:00.0193663Z   Downloading werkzeug-3.1.8-py3-none-any.whl.metadata (4.0 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.0229869Z Requirement already satisfied: pandas==2.2.3 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from -r requirements-legacy.txt (line 11)) (2.2.3)
+quality	Install Python dependencies	2026-06-29T15:07:00.0234239Z Requirement already satisfied: openpyxl==3.1.5 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from -r requirements-legacy.txt (line 12)) (3.1.5)
+quality	Install Python dependencies	2026-06-29T15:07:00.0313671Z Collecting python-docx>=0.8.11 (from -r requirements-legacy.txt (line 13))
+quality	Install Python dependencies	2026-06-29T15:07:00.0346407Z   Downloading python_docx-1.2.0-py3-none-any.whl.metadata (2.0 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.0483971Z Collecting msal==1.36.0 (from -r requirements-legacy.txt (line 15))
+quality	Install Python dependencies	2026-06-29T15:07:00.0515542Z   Downloading msal-1.36.0-py3-none-any.whl.metadata (11 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.0699192Z Collecting requests==2.34.2 (from -r requirements-legacy.txt (line 16))
+quality	Install Python dependencies	2026-06-29T15:07:00.0731111Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.0770917Z Requirement already satisfied: python-dotenv==1.2.2 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from -r requirements-legacy.txt (line 17)) (1.2.2)
+quality	Install Python dependencies	2026-06-29T15:07:00.0842108Z Collecting blinker>=1.9.0 (from Flask==3.1.2->-r requirements-legacy.txt (line 6))
+quality	Install Python dependencies	2026-06-29T15:07:00.0874382Z   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.0906478Z Requirement already satisfied: click>=8.1.3 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from Flask==3.1.2->-r requirements-legacy.txt (line 6)) (8.4.2)
+quality	Install Python dependencies	2026-06-29T15:07:00.0975189Z Collecting itsdangerous>=2.2.0 (from Flask==3.1.2->-r requirements-legacy.txt (line 6))
+quality	Install Python dependencies	2026-06-29T15:07:00.1006834Z   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.1113268Z Requirement already satisfied: numpy>=1.26.0 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from pandas==2.2.3->-r requirements-legacy.txt (line 11)) (2.5.0)
+quality	Install Python dependencies	2026-06-29T15:07:00.1118250Z Requirement already satisfied: python-dateutil>=2.8.2 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from pandas==2.2.3->-r requirements-legacy.txt (line 11)) (2.9.0.post0)
+quality	Install Python dependencies	2026-06-29T15:07:00.1122960Z Requirement already satisfied: pytz>=2020.1 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from pandas==2.2.3->-r requirements-legacy.txt (line 11)) (2026.2)
+quality	Install Python dependencies	2026-06-29T15:07:00.1127334Z Requirement already satisfied: tzdata>=2022.7 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from pandas==2.2.3->-r requirements-legacy.txt (line 11)) (2026.2)
+quality	Install Python dependencies	2026-06-29T15:07:00.1177290Z Requirement already satisfied: et-xmlfile in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from openpyxl==3.1.5->-r requirements-legacy.txt (line 12)) (2.0.0)
+quality	Install Python dependencies	2026-06-29T15:07:00.1317874Z Collecting PyJWT<3,>=1.0.0 (from PyJWT[crypto]<3,>=1.0.0->msal==1.36.0->-r requirements-legacy.txt (line 15))
+quality	Install Python dependencies	2026-06-29T15:07:00.1349926Z   Downloading pyjwt-2.13.0-py3-none-any.whl.metadata (3.4 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.3016221Z Collecting cryptography<49,>=2.5 (from msal==1.36.0->-r requirements-legacy.txt (line 15))
+quality	Install Python dependencies	2026-06-29T15:07:00.3053719Z   Downloading cryptography-48.0.1-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.3 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.3839934Z Collecting charset_normalizer<4,>=2 (from requests==2.34.2->-r requirements-legacy.txt (line 16))
+quality	Install Python dependencies	2026-06-29T15:07:00.3876310Z   Downloading charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.3947613Z Requirement already satisfied: idna<4,>=2.5 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from requests==2.34.2->-r requirements-legacy.txt (line 16)) (3.18)
+quality	Install Python dependencies	2026-06-29T15:07:00.4095058Z Collecting urllib3<3,>=1.26 (from requests==2.34.2->-r requirements-legacy.txt (line 16))
+quality	Install Python dependencies	2026-06-29T15:07:00.4129009Z   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.4277084Z Collecting certifi>=2023.5.7 (from requests==2.34.2->-r requirements-legacy.txt (line 16))
+quality	Install Python dependencies	2026-06-29T15:07:00.4308944Z   Downloading certifi-2026.6.17-py3-none-any.whl.metadata (2.5 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.4364855Z Requirement already satisfied: cffi>=2.0.0 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from cryptography<49,>=2.5->msal==1.36.0->-r requirements-legacy.txt (line 15)) (2.0.0)
+quality	Install Python dependencies	2026-06-29T15:07:00.6296686Z Collecting lxml>=3.1.0 (from python-docx>=0.8.11->-r requirements-legacy.txt (line 13))
+quality	Install Python dependencies	2026-06-29T15:07:00.6332798Z   Downloading lxml-6.1.1-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.5 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.6376640Z Requirement already satisfied: typing_extensions>=4.9.0 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from python-docx>=0.8.11->-r requirements-legacy.txt (line 13)) (4.15.0)
+quality	Install Python dependencies	2026-06-29T15:07:00.6396581Z Requirement already satisfied: pycparser in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from cffi>=2.0.0->cryptography<49,>=2.5->msal==1.36.0->-r requirements-legacy.txt (line 15)) (3.0)
+quality	Install Python dependencies	2026-06-29T15:07:00.6429118Z Requirement already satisfied: six>=1.5 in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (from python-dateutil>=2.8.2->pandas==2.2.3->-r requirements-legacy.txt (line 11)) (1.17.0)
+quality	Install Python dependencies	2026-06-29T15:07:00.6503618Z Downloading flask-3.1.2-py3-none-any.whl (103 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.6571098Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.6640340Z Downloading werkzeug-3.1.8-py3-none-any.whl (226 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.6707544Z Downloading msal-1.36.0-py3-none-any.whl (121 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.6759510Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.6810888Z Downloading charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (216 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.6863522Z Downloading cryptography-48.0.1-cp311-abi3-manylinux_2_34_x86_64.whl (4.7 MB)
+quality	Install Python dependencies	2026-06-29T15:07:00.7065202Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 259.1 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:07:00.7096847Z Downloading pyjwt-2.13.0-py3-none-any.whl (31 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.7147165Z Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.7199114Z Downloading python_docx-1.2.0-py3-none-any.whl (252 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.7253719Z Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.7302018Z Downloading certifi-2026.6.17-py3-none-any.whl (133 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.7352548Z Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+quality	Install Python dependencies	2026-06-29T15:07:00.7401062Z Downloading lxml-6.1.1-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+quality	Install Python dependencies	2026-06-29T15:07:00.7584185Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 313.2 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:07:00.8333991Z Installing collected packages: Werkzeug, urllib3, PyJWT, lxml, Jinja2, itsdangerous, charset_normalizer, certifi, blinker, requests, python-docx, Flask, cryptography, msal
+quality	Install Python dependencies	2026-06-29T15:07:01.5996756Z   Attempting uninstall: cryptography
+quality	Install Python dependencies	2026-06-29T15:07:01.6031278Z     Found existing installation: cryptography 49.0.0
+quality	Install Python dependencies	2026-06-29T15:07:01.6120440Z     Uninstalling cryptography-49.0.0:
+quality	Install Python dependencies	2026-06-29T15:07:01.6142016Z       Successfully uninstalled cryptography-49.0.0
+quality	Install Python dependencies	2026-06-29T15:07:01.8382769Z
+quality	Install Python dependencies	2026-06-29T15:07:01.8425804Z Successfully installed Flask-3.1.2 Jinja2-3.1.6 PyJWT-2.13.0 Werkzeug-3.1.8 blinker-1.9.0 certifi-2026.6.17 charset_normalizer-3.4.7 cryptography-48.0.1 itsdangerous-2.2.0 lxml-6.1.1 msal-1.36.0 python-docx-1.2.0 requests-2.34.2 urllib3-2.7.0
+quality	Install Python dependencies	2026-06-29T15:07:03.0937031Z Collecting ruff==0.11.13 (from -r requirements-dev.txt (line 7))
+quality	Install Python dependencies	2026-06-29T15:07:03.1426208Z   Downloading ruff-0.11.13-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (25 kB)
+quality	Install Python dependencies	2026-06-29T15:07:03.1868835Z Downloading ruff-0.11.13-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.6 MB)
+quality	Install Python dependencies	2026-06-29T15:07:03.3255818Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.6/11.6 MB 95.3 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:07:03.3854244Z Installing collected packages: ruff
+quality	Install Python dependencies	2026-06-29T15:07:03.5288891Z Successfully installed ruff-0.11.13
+quality	Install Python dependencies	2026-06-29T15:07:04.4861551Z Collecting pytest
+quality	Install Python dependencies	2026-06-29T15:07:04.5366789Z   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+quality	Install Python dependencies	2026-06-29T15:07:04.5476525Z Collecting iniconfig>=1.0.1 (from pytest)
+quality	Install Python dependencies	2026-06-29T15:07:04.5508255Z   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+quality	Install Python dependencies	2026-06-29T15:07:04.5630400Z Collecting packaging>=22 (from pytest)
+quality	Install Python dependencies	2026-06-29T15:07:04.5661102Z   Downloading packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+quality	Install Python dependencies	2026-06-29T15:07:04.5763541Z Collecting pluggy<2,>=1.5 (from pytest)
+quality	Install Python dependencies	2026-06-29T15:07:04.5794900Z   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+quality	Install Python dependencies	2026-06-29T15:07:04.5951786Z Collecting pygments>=2.7.2 (from pytest)
+quality	Install Python dependencies	2026-06-29T15:07:04.5983279Z   Downloading pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+quality	Install Python dependencies	2026-06-29T15:07:04.6054355Z Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+quality	Install Python dependencies	2026-06-29T15:07:04.6256522Z Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+quality	Install Python dependencies	2026-06-29T15:07:04.6303591Z Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+quality	Install Python dependencies	2026-06-29T15:07:04.6354461Z Downloading packaging-26.2-py3-none-any.whl (100 kB)
+quality	Install Python dependencies	2026-06-29T15:07:04.6406122Z Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
+quality	Install Python dependencies	2026-06-29T15:07:04.6506286Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 160.8 MB/s  0:00:00
+quality	Install Python dependencies	2026-06-29T15:07:04.7125060Z Installing collected packages: pygments, pluggy, packaging, iniconfig, pytest
+quality	Install Python dependencies	2026-06-29T15:07:05.8511541Z
+quality	Install Python dependencies	2026-06-29T15:07:05.8557557Z Successfully installed iniconfig-2.3.0 packaging-26.2 pluggy-1.6.0 pygments-2.20.0 pytest-9.1.1
+quality	Python compile	﻿2026-06-29T15:07:05.9098330Z ##[group]Run python -m compileall -q backend/app backend/alembic tests
+quality	Python compile	2026-06-29T15:07:05.9099175Z ^[[36;1mpython -m compileall -q backend/app backend/alembic tests^[[0m
+quality	Python compile	2026-06-29T15:07:05.9134413Z shell: /usr/bin/bash -e {0}
+quality	Python compile	2026-06-29T15:07:05.9134670Z env:
+quality	Python compile	2026-06-29T15:07:05.9134945Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Python compile	2026-06-29T15:07:05.9135384Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib/pkgconfig
+quality	Python compile	2026-06-29T15:07:05.9135806Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Python compile	2026-06-29T15:07:05.9136183Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Python compile	2026-06-29T15:07:05.9136552Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Python compile	2026-06-29T15:07:05.9136929Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib
+quality	Python compile	2026-06-29T15:07:05.9137249Z ##[endgroup]
+quality	Backend regression tests	﻿2026-06-29T15:07:06.1551639Z ##[group]Run PYTHONPATH=backend python -m pytest -s -q
+quality	Backend regression tests	2026-06-29T15:07:06.1552232Z ^[[36;1mPYTHONPATH=backend python -m pytest -s -q^[[0m
+quality	Backend regression tests	2026-06-29T15:07:06.1587090Z shell: /usr/bin/bash -e {0}
+quality	Backend regression tests	2026-06-29T15:07:06.1587353Z env:
+quality	Backend regression tests	2026-06-29T15:07:06.1587632Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Backend regression tests	2026-06-29T15:07:06.1588074Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib/pkgconfig
+quality	Backend regression tests	2026-06-29T15:07:06.1588494Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Backend regression tests	2026-06-29T15:07:06.1589073Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Backend regression tests	2026-06-29T15:07:06.1589441Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+quality	Backend regression tests	2026-06-29T15:07:06.1589816Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib
+quality	Backend regression tests	2026-06-29T15:07:06.1590134Z ##[endgroup]
+quality	Backend regression tests	2026-06-29T15:07:11.5136150Z {"paths": ["/admin", "/assinaturas"], "event": "legacy_signature_apps_mounted", "level": "info", "timestamp": "2026-06-29T15:07:11.513314Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4321164Z ..................................................................F..........................................................................................................{"method": "GET", "status_code": 401, "user_id": null, "action": "GET", "entity": "artifacts", "duration_ms": 1.07, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "e4980415-dfe9-4fea-a49c-6eccc9813b22", "correlation_id": "e4980415-dfe9-4fea-a49c-6eccc9813b22", "path": "/api/v1/artifacts", "level": "info", "timestamp": "2026-06-29T15:07:12.431685Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4817656Z .........sssssss....sss......{"method": "POST", "status_code": 200, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 3.19, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "58736770-7ec4-4a1f-a8d6-4e0dbab5dd47", "correlation_id": "58736770-7ec4-4a1f-a8d6-4e0dbab5dd47", "path": "/api/v1/designer/banners/json", "level": "info", "timestamp": "2026-06-29T15:07:12.481424Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4840480Z {"method": "POST", "status_code": 200, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 1.66, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "fe94a7f3-617b-4451-af1a-7abe66a83b89", "correlation_id": "fe94a7f3-617b-4451-af1a-7abe66a83b89", "path": "/api/v1/designer/jobs/524afd93-cf42-51c9-a2b8-b900dcdb36d0/items/dbf4c31c-8a82-5bdf-bb70-5f4afb58bae6/adjust", "level": "info", "timestamp": "2026-06-29T15:07:12.483697Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4858551Z {"method": "POST", "status_code": 200, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 1.26, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "9494036c-e6bb-4b82-af3e-7d4955774b11", "correlation_id": "9494036c-e6bb-4b82-af3e-7d4955774b11", "path": "/api/v1/designer/jobs/524afd93-cf42-51c9-a2b8-b900dcdb36d0/items/dbf4c31c-8a82-5bdf-bb70-5f4afb58bae6/refresh-url", "level": "info", "timestamp": "2026-06-29T15:07:12.485521Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4870928Z {"method": "POST", "status_code": 200, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 0.7, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "8f651ea9-3567-4a48-80e4-4fe273f598ff", "correlation_id": "8f651ea9-3567-4a48-80e4-4fe273f598ff", "path": "/api/v1/designer/jobs/524afd93-cf42-51c9-a2b8-b900dcdb36d0/cancel", "level": "info", "timestamp": "2026-06-29T15:07:12.486773Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4887605Z .{"method": "GET", "status_code": 401, "user_id": null, "action": "GET", "entity": "designer", "duration_ms": 0.48, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "9b1d1039-bc0c-4e43-a061-407ef6495b61", "correlation_id": "9b1d1039-bc0c-4e43-a061-407ef6495b61", "path": "/api/v1/designer/health", "level": "info", "timestamp": "2026-06-29T15:07:12.488479Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4897090Z {"method": "GET", "status_code": 401, "user_id": null, "action": "GET", "entity": "designer", "duration_ms": 0.42, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "741e5059-c230-4fa5-a03b-bc567ee6cd56", "correlation_id": "741e5059-c230-4fa5-a03b-bc567ee6cd56", "path": "/api/v1/designer/templates", "level": "info", "timestamp": "2026-06-29T15:07:12.489434Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4906598Z {"method": "GET", "status_code": 401, "user_id": null, "action": "GET", "entity": "designer", "duration_ms": 0.43, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "d0456ed4-894e-439e-9a53-fa8e28f6d03f", "correlation_id": "d0456ed4-894e-439e-9a53-fa8e28f6d03f", "path": "/api/v1/designer/form-options", "level": "info", "timestamp": "2026-06-29T15:07:12.490383Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4924304Z .{"method": "POST", "status_code": 501, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 0.62, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "c5e29882-055a-4399-b86d-fad240383653", "correlation_id": "c5e29882-055a-4399-b86d-fad240383653", "path": "/api/v1/designer/banners", "level": "info", "timestamp": "2026-06-29T15:07:12.492149Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4933442Z {"method": "GET", "status_code": 409, "user_id": null, "action": "GET", "entity": "designer", "duration_ms": 0.39, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "baa867f2-215d-489b-83aa-3c13e25e3911", "correlation_id": "baa867f2-215d-489b-83aa-3c13e25e3911", "path": "/api/v1/designer/jobs/00000000-0000-0000-0000-000000000999/download-url", "level": "info", "timestamp": "2026-06-29T15:07:12.493047Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4955170Z .{"method": "POST", "status_code": 200, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 1.02, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "481c2305-4b3f-4b6c-8e14-de6ce75b8496", "correlation_id": "481c2305-4b3f-4b6c-8e14-de6ce75b8496", "path": "/api/v1/designer/banners/json", "level": "info", "timestamp": "2026-06-29T15:07:12.495229Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4972792Z {"method": "POST", "status_code": 200, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 1.23, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "38444844-b166-4993-b2f1-1ce48ec3bc8a", "correlation_id": "38444844-b166-4993-b2f1-1ce48ec3bc8a", "path": "/api/v1/designer/banners/json", "level": "info", "timestamp": "2026-06-29T15:07:12.496995Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.4994796Z .{"method": "POST", "status_code": 200, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 0.95, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "bfe20d62-a492-4047-b49d-da2fa6f965e7", "correlation_id": "bfe20d62-a492-4047-b49d-da2fa6f965e7", "path": "/api/v1/designer/banners/json", "level": "info", "timestamp": "2026-06-29T15:07:12.499190Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.5003814Z {"method": "GET", "status_code": 403, "user_id": null, "action": "GET", "entity": "designer", "duration_ms": 0.39, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "f511bff1-2d95-4a71-909f-ccdcf2ffcfd6", "correlation_id": "f511bff1-2d95-4a71-909f-ccdcf2ffcfd6", "path": "/api/v1/designer/jobs/af621300-23cc-5590-a5c2-5575457ea561", "level": "info", "timestamp": "2026-06-29T15:07:12.500089Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.5013204Z {"method": "GET", "status_code": 200, "user_id": null, "action": "GET", "entity": "designer", "duration_ms": 0.45, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "dc4e97f6-9eae-4550-a007-70e8360d028f", "correlation_id": "dc4e97f6-9eae-4550-a007-70e8360d028f", "path": "/api/v1/designer/jobs/af621300-23cc-5590-a5c2-5575457ea561", "level": "info", "timestamp": "2026-06-29T15:07:12.501030Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.5032694Z .{"method": "POST", "status_code": 422, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 0.78, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "9df8767d-c927-4ea0-8a49-64984b2551e5", "correlation_id": "9df8767d-c927-4ea0-8a49-64984b2551e5", "path": "/api/v1/designer/banners/json", "level": "info", "timestamp": "2026-06-29T15:07:12.502982Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.5045955Z {"method": "POST", "status_code": 422, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 0.81, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "fdd643ea-b305-4e79-ba65-357475198ff0", "correlation_id": "fdd643ea-b305-4e79-ba65-357475198ff0", "path": "/api/v1/designer/banners/json", "level": "info", "timestamp": "2026-06-29T15:07:12.504312Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.5061599Z {"method": "POST", "status_code": 422, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 1.03, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "b9d6e224-ea51-422d-b79e-40307c77e432", "correlation_id": "b9d6e224-ea51-422d-b79e-40307c77e432", "path": "/api/v1/designer/banners/json", "level": "info", "timestamp": "2026-06-29T15:07:12.505855Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.5075464Z {"method": "POST", "status_code": 422, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 0.84, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "9850f879-ca8a-4cd6-a002-aa1741771a3b", "correlation_id": "9850f879-ca8a-4cd6-a002-aa1741771a3b", "path": "/api/v1/designer/banners/json", "level": "info", "timestamp": "2026-06-29T15:07:12.507263Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.5088874Z {"method": "POST", "status_code": 422, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 0.81, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "049bd939-0f26-48af-87dc-3da49ffb88b3", "correlation_id": "049bd939-0f26-48af-87dc-3da49ffb88b3", "path": "/api/v1/designer/banners/json", "level": "info", "timestamp": "2026-06-29T15:07:12.508580Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.5102076Z {"method": "POST", "status_code": 422, "user_id": null, "action": "POST", "entity": "designer", "duration_ms": 0.78, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "94c927a1-f4f5-4c21-8392-29e54542fc7d", "correlation_id": "94c927a1-f4f5-4c21-8392-29e54542fc7d", "path": "/api/v1/designer/banners/json", "level": "info", "timestamp": "2026-06-29T15:07:12.509929Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.5127232Z ...{"method": "GET", "status_code": 200, "user_id": null, "action": "GET", "entity": "designer", "duration_ms": 0.36, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "081518e1-b2b3-4da9-839d-854049531fd4", "correlation_id": "081518e1-b2b3-4da9-839d-854049531fd4", "path": "/api/v1/designer/templates", "level": "info", "timestamp": "2026-06-29T15:07:12.512424Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.5136801Z {"method": "GET", "status_code": 200, "user_id": null, "action": "GET", "entity": "designer", "duration_ms": 0.33, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "f7d45aed-1c60-40cb-841e-5566bbb414f7", "correlation_id": "f7d45aed-1c60-40cb-841e-5566bbb414f7", "path": "/api/v1/designer/form-options", "level": "info", "timestamp": "2026-06-29T15:07:12.513388Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.6909977Z .....................................................sssss........ssss...........F.........s............ss.........{"method": "GET", "status_code": 403, "user_id": null, "action": "GET", "entity": "rag", "duration_ms": 0.78, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "3b445bf2-5323-4092-885e-edc05f2f05f6", "correlation_id": "3b445bf2-5323-4092-885e-edc05f2f05f6", "path": "/api/v1/rag/audit/recent", "level": "info", "timestamp": "2026-06-29T15:07:12.690559Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.6922420Z {"method": "GET", "status_code": 200, "user_id": null, "action": "GET", "entity": "rag", "duration_ms": 0.83, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "3eded85d-2639-4b7a-b2d2-661bdd20c723", "correlation_id": "3eded85d-2639-4b7a-b2d2-661bdd20c723", "path": "/api/v1/rag/audit/recent", "level": "info", "timestamp": "2026-06-29T15:07:12.691963Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.6937823Z .{"method": "GET", "status_code": 200, "user_id": null, "action": "GET", "entity": "rag", "duration_ms": 0.38, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "f2a36aa9-5c4b-4a07-82fa-2af8dacb2cc9", "correlation_id": "f2a36aa9-5c4b-4a07-82fa-2af8dacb2cc9", "path": "/api/v1/rag/collections", "level": "info", "timestamp": "2026-06-29T15:07:12.693504Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.6954579Z .{"method": "GET", "status_code": 401, "user_id": null, "action": "GET", "entity": "rag", "duration_ms": 0.52, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "3941df4e-7072-45ad-a538-48bc0bcbdc7f", "correlation_id": "3941df4e-7072-45ad-a538-48bc0bcbdc7f", "path": "/api/v1/rag/collections", "level": "info", "timestamp": "2026-06-29T15:07:12.695179Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.6970104Z .{"method": "GET", "status_code": 200, "user_id": null, "action": "GET", "entity": "rag", "duration_ms": 0.37, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "2ababfae-b19b-4715-bd71-05bf5c424d5a", "correlation_id": "2ababfae-b19b-4715-bd71-05bf5c424d5a", "path": "/api/v1/rag/course-context/itil-foundations", "level": "info", "timestamp": "2026-06-29T15:07:12.696703Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.6985600Z .{"method": "GET", "status_code": 200, "user_id": null, "action": "GET", "entity": "rag", "duration_ms": 0.41, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "0ef411b1-b2b7-4d12-9c7f-fb46435877a4", "correlation_id": "0ef411b1-b2b7-4d12-9c7f-fb46435877a4", "path": "/api/v1/rag/documents/course-onboarding-01", "level": "info", "timestamp": "2026-06-29T15:07:12.698260Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.6994437Z {"method": "GET", "status_code": 404, "user_id": null, "action": "GET", "entity": "rag", "duration_ms": 0.43, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "58c9279c-2273-4546-ad0a-7b6fdf7de3b2", "correlation_id": "58c9279c-2273-4546-ad0a-7b6fdf7de3b2", "path": "/api/v1/rag/documents/unknown-document", "level": "info", "timestamp": "2026-06-29T15:07:12.699162Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.7043220Z ....{"method": "POST", "status_code": 200, "user_id": null, "action": "POST", "entity": "rag", "duration_ms": 2.05, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "891a1963-a966-4bc2-910c-61849d578a22", "correlation_id": "891a1963-a966-4bc2-910c-61849d578a22", "path": "/api/v1/rag/search", "level": "info", "timestamp": "2026-06-29T15:07:12.704032Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.7054867Z {"method": "POST", "status_code": 200, "user_id": null, "action": "POST", "entity": "rag", "duration_ms": 0.66, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "a061dfdd-ddb2-45c4-a1e5-d562c83e3e16", "correlation_id": "a061dfdd-ddb2-45c4-a1e5-d562c83e3e16", "path": "/api/v1/rag/search", "level": "info", "timestamp": "2026-06-29T15:07:12.705218Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.7071592Z .{"method": "POST", "status_code": 422, "user_id": null, "action": "POST", "entity": "rag", "duration_ms": 0.5, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "461ac73d-9fdb-4e39-970a-06fc4a79935b", "correlation_id": "461ac73d-9fdb-4e39-970a-06fc4a79935b", "path": "/api/v1/rag/search", "level": "info", "timestamp": "2026-06-29T15:07:12.706888Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.7087943Z .{"method": "POST", "status_code": 422, "user_id": null, "action": "POST", "entity": "rag", "duration_ms": 0.52, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "2d89a4cc-798c-4cc5-b237-b80849b677f7", "correlation_id": "2d89a4cc-798c-4cc5-b237-b80849b677f7", "path": "/api/v1/rag/search", "level": "info", "timestamp": "2026-06-29T15:07:12.708522Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.7098813Z {"method": "POST", "status_code": 422, "user_id": null, "action": "POST", "entity": "rag", "duration_ms": 0.55, "source": "api", "ip": "127.0.0.1", "event": "request_completed", "request_id": "f4132fb4-dd77-4f7e-9346-26a1266fda1a", "correlation_id": "f4132fb4-dd77-4f7e-9346-26a1266fda1a", "path": "/api/v1/rag/search", "level": "info", "timestamp": "2026-06-29T15:07:12.709589Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.8716688Z ......................{"environment": "staging", "app_startup_checks": true, "app_auto_migrate": false, "app_startup_step_timeout_seconds": 15.0, "admin_email_set": true, "admin_name_set": true, "admin_password_set": false, "jwt_secret_key_set": true, "database_url_set": true, "redis_url_set": true, "allowed_origins_count": 0, "frontend_dist_dir": "/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/frontend/itam-platform/dist", "frontend_index_exists": false, "frontend_assets_exists": false, "event": "settings_validation_snapshot", "level": "info", "timestamp": "2026-06-29T15:07:12.871158Z"}
+quality	Backend regression tests	2026-06-29T15:07:12.8752801Z .
+quality	Backend regression tests	2026-06-29T15:07:12.8753636Z =================================== FAILURES ===================================
+quality	Backend regression tests	2026-06-29T15:07:12.8754388Z ______ AiChatRateLimitStoreTest.test_production_redis_failure_returns_503 ______
+quality	Backend regression tests	2026-06-29T15:07:12.8754966Z
+quality	Backend regression tests	2026-06-29T15:07:12.8755514Z self = <tests.test_ai_chat_rate_limit.AiChatRateLimitStoreTest testMethod=test_production_redis_failure_returns_503>
+quality	Backend regression tests	2026-06-29T15:07:12.8756227Z
+quality	Backend regression tests	2026-06-29T15:07:12.8756540Z     async def test_production_redis_failure_returns_503(self) -> None:
+quality	Backend regression tests	2026-06-29T15:07:12.8757294Z >       settings = Settings(environment="production", ai_chat_rate_limit_per_minute=1)
+quality	Backend regression tests	2026-06-29T15:07:12.8757955Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+quality	Backend regression tests	2026-06-29T15:07:12.8758286Z
+quality	Backend regression tests	2026-06-29T15:07:12.8758445Z tests/test_ai_chat_rate_limit.py:91:
+quality	Backend regression tests	2026-06-29T15:07:12.8759147Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+quality	Backend regression tests	2026-06-29T15:07:12.8759503Z
+quality	Backend regression tests	2026-06-29T15:07:12.8760844Z __pydantic_self__ = Settings(app_name='ENS ITAM Platform', environment='production', api_prefix='/api/v1', database_url='postgresql+asyncp...t_seconds=120, ollama_allowed_hosts=['localhost', '127.0.0.1', '::1'], hermes_base_url='', hermes_model='hermes-agent')
+quality	Backend regression tests	2026-06-29T15:07:12.8762388Z _case_sensitive = None, _nested_model_default_partial_update = None
+quality	Backend regression tests	2026-06-29T15:07:12.8763053Z _env_prefix = None, _env_file = PosixPath('.'), _env_file_encoding = None
+quality	Backend regression tests	2026-06-29T15:07:12.8763637Z _env_ignore_empty = None, _env_nested_delimiter = None
+quality	Backend regression tests	2026-06-29T15:07:12.8764143Z _env_nested_max_split = None, _env_parse_none_str = None
+quality	Backend regression tests	2026-06-29T15:07:12.8764705Z _env_parse_enums = None, _cli_prog_name = None, _cli_parse_args = None
+quality	Backend regression tests	2026-06-29T15:07:12.8765261Z _cli_settings_source = None, _cli_parse_none_str = None
+quality	Backend regression tests	2026-06-29T15:07:12.8765843Z _cli_hide_none_type = None, _cli_avoid_json = None, _cli_enforce_required = None
+quality	Backend regression tests	2026-06-29T15:07:12.8766490Z _cli_use_class_docs_for_groups = None, _cli_exit_on_error = None
+quality	Backend regression tests	2026-06-29T15:07:12.8767121Z _cli_prefix = None, _cli_flag_prefix_char = None, _cli_implicit_flags = None
+quality	Backend regression tests	2026-06-29T15:07:12.8767810Z _cli_ignore_unknown_args = None, _cli_kebab_case = None, _cli_shortcuts = None
+quality	Backend regression tests	2026-06-29T15:07:12.8768345Z _secrets_dir = None
+quality	Backend regression tests	2026-06-29T15:07:12.8768933Z values = {'environment': 'production', 'ai_chat_rate_limit_per_minute': 1}
+quality	Backend regression tests	2026-06-29T15:07:12.8769361Z
+quality	Backend regression tests	2026-06-29T15:07:12.8769470Z     def __init__(
+quality	Backend regression tests	2026-06-29T15:07:12.8792667Z         __pydantic_self__,
+quality	Backend regression tests	2026-06-29T15:07:12.8793107Z         _case_sensitive: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8793612Z         _nested_model_default_partial_update: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8794088Z         _env_prefix: str | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8794523Z         _env_file: DotenvType | None = ENV_FILE_SENTINEL,
+quality	Backend regression tests	2026-06-29T15:07:12.8794986Z         _env_file_encoding: str | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8795401Z         _env_ignore_empty: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8795823Z         _env_nested_delimiter: str | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8796259Z         _env_nested_max_split: int | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8796674Z         _env_parse_none_str: str | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8797082Z         _env_parse_enums: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8797480Z         _cli_prog_name: str | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8797964Z         _cli_parse_args: bool | list[str] | tuple[str, ...] | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8799149Z         _cli_settings_source: CliSettingsSource[Any] | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8799664Z         _cli_parse_none_str: str | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8800081Z         _cli_hide_none_type: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8800474Z         _cli_avoid_json: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8800888Z         _cli_enforce_required: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8801362Z         _cli_use_class_docs_for_groups: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8801819Z         _cli_exit_on_error: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8802221Z         _cli_prefix: str | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8802624Z         _cli_flag_prefix_char: str | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8803045Z         _cli_implicit_flags: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8803495Z         _cli_ignore_unknown_args: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8803936Z         _cli_kebab_case: bool | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8804445Z         _cli_shortcuts: Mapping[str, str | list[str]] | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8804969Z         _secrets_dir: PathType | None = None,
+quality	Backend regression tests	2026-06-29T15:07:12.8805354Z         **values: Any,
+quality	Backend regression tests	2026-06-29T15:07:12.8805645Z     ) -> None:
+quality	Backend regression tests	2026-06-29T15:07:12.8805930Z >       super().__init__(
+quality	Backend regression tests	2026-06-29T15:07:12.8806299Z             **__pydantic_self__._settings_build_values(
+quality	Backend regression tests	2026-06-29T15:07:12.8806720Z                 values,
+quality	Backend regression tests	2026-06-29T15:07:12.8807066Z                 _case_sensitive=_case_sensitive,
+quality	Backend regression tests	2026-06-29T15:07:12.8807676Z                 _nested_model_default_partial_update=_nested_model_default_partial_update,
+quality	Backend regression tests	2026-06-29T15:07:12.8808291Z                 _env_prefix=_env_prefix,
+quality	Backend regression tests	2026-06-29T15:07:12.8808853Z                 _env_file=_env_file,
+quality	Backend regression tests	2026-06-29T15:07:12.8809270Z                 _env_file_encoding=_env_file_encoding,
+quality	Backend regression tests	2026-06-29T15:07:12.8809714Z                 _env_ignore_empty=_env_ignore_empty,
+quality	Backend regression tests	2026-06-29T15:07:12.8810169Z                 _env_nested_delimiter=_env_nested_delimiter,
+quality	Backend regression tests	2026-06-29T15:07:12.8810642Z                 _env_nested_max_split=_env_nested_max_split,
+quality	Backend regression tests	2026-06-29T15:07:12.8811108Z                 _env_parse_none_str=_env_parse_none_str,
+quality	Backend regression tests	2026-06-29T15:07:12.8811564Z                 _env_parse_enums=_env_parse_enums,
+quality	Backend regression tests	2026-06-29T15:07:12.8812112Z                 _cli_prog_name=_cli_prog_name,
+quality	Backend regression tests	2026-06-29T15:07:12.8812527Z                 _cli_parse_args=_cli_parse_args,
+quality	Backend regression tests	2026-06-29T15:07:12.8812958Z                 _cli_settings_source=_cli_settings_source,
+quality	Backend regression tests	2026-06-29T15:07:12.8813402Z                 _cli_parse_none_str=_cli_parse_none_str,
+quality	Backend regression tests	2026-06-29T15:07:12.8813835Z                 _cli_hide_none_type=_cli_hide_none_type,
+quality	Backend regression tests	2026-06-29T15:07:12.8814247Z                 _cli_avoid_json=_cli_avoid_json,
+quality	Backend regression tests	2026-06-29T15:07:12.8814664Z                 _cli_enforce_required=_cli_enforce_required,
+quality	Backend regression tests	2026-06-29T15:07:12.8815198Z                 _cli_use_class_docs_for_groups=_cli_use_class_docs_for_groups,
+quality	Backend regression tests	2026-06-29T15:07:12.8815721Z                 _cli_exit_on_error=_cli_exit_on_error,
+quality	Backend regression tests	2026-06-29T15:07:12.8816125Z                 _cli_prefix=_cli_prefix,
+quality	Backend regression tests	2026-06-29T15:07:12.8816532Z                 _cli_flag_prefix_char=_cli_flag_prefix_char,
+quality	Backend regression tests	2026-06-29T15:07:12.8816977Z                 _cli_implicit_flags=_cli_implicit_flags,
+quality	Backend regression tests	2026-06-29T15:07:12.8817446Z                 _cli_ignore_unknown_args=_cli_ignore_unknown_args,
+quality	Backend regression tests	2026-06-29T15:07:12.8817907Z                 _cli_kebab_case=_cli_kebab_case,
+quality	Backend regression tests	2026-06-29T15:07:12.8818324Z                 _cli_shortcuts=_cli_shortcuts,
+quality	Backend regression tests	2026-06-29T15:07:12.8818846Z                 _secrets_dir=_secrets_dir,
+quality	Backend regression tests	2026-06-29T15:07:12.8819194Z             )
+quality	Backend regression tests	2026-06-29T15:07:12.8819439Z         )
+quality	Backend regression tests	2026-06-29T15:07:12.8819906Z E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Settings
+quality	Backend regression tests	2026-06-29T15:07:12.8821056Z E         Value error, JWT_SECRET_KEY must be changed outside local [type=value_error, input_value={'environment': 'producti...te_limit_per_minute': 1}, input_type=dict]
+quality	Backend regression tests	2026-06-29T15:07:12.8822221Z E           For further information visit https://errors.pydantic.dev/2.11/v/value_error
+quality	Backend regression tests	2026-06-29T15:07:12.8822976Z
+quality	Backend regression tests	2026-06-29T15:07:12.8823453Z /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/pydantic_settings/main.py:188: ValidationError
+quality	Backend regression tests	2026-06-29T15:07:12.8824370Z _______ test_m2_chat_bridge_contract_docs_exist_and_cover_required_terms _______
+quality	Backend regression tests	2026-06-29T15:07:12.8824802Z
+quality	Backend regression tests	2026-06-29T15:07:12.8825125Z     def test_m2_chat_bridge_contract_docs_exist_and_cover_required_terms() -> None:
+quality	Backend regression tests	2026-06-29T15:07:12.8825814Z         report = DOC_ROOT / "ENS_UNIFIED_MIGRATION_M2_CHAT_BRIDGE_20260625.md"
+quality	Backend regression tests	2026-06-29T15:07:12.8826531Z         findings = DOC_ROOT / "ens-unified-migration-m2-chat-bridge-findings.json"
+quality	Backend regression tests	2026-06-29T15:07:12.8827273Z         gates = DOC_ROOT / "ens-unified-migration-m2-chat-bridge-gates.log"
+quality	Backend regression tests	2026-06-29T15:07:12.8827962Z         api_contract = DOC_ROOT / "contracts" / "chat-bridge-api-contract.md"
+quality	Backend regression tests	2026-06-29T15:07:12.8828803Z         event_contract = DOC_ROOT / "contracts" / "chat-bridge-event-contract.md"
+quality	Backend regression tests	2026-06-29T15:07:12.8829524Z         state_contract = DOC_ROOT / "contracts" / "chat-bridge-state-contract.md"
+quality	Backend regression tests	2026-06-29T15:07:12.8830351Z         artifact_contract = DOC_ROOT / "contracts" / "chat-bridge-artifact-integration-contract.md"
+quality	Backend regression tests	2026-06-29T15:07:12.8831166Z         endpoints = DOC_ROOT / "maps" / "chat-bridge-target-contract.tsv"
+quality	Backend regression tests	2026-06-29T15:07:12.8831775Z         event_map = DOC_ROOT / "maps" / "chat-bridge-event-map.tsv"
+quality	Backend regression tests	2026-06-29T15:07:12.8832422Z         security_controls = DOC_ROOT / "maps" / "chat-bridge-security-controls.tsv"
+quality	Backend regression tests	2026-06-29T15:07:12.8832949Z
+quality	Backend regression tests	2026-06-29T15:07:12.8833681Z         for path in [report, findings, gates, api_contract, event_contract, state_contract, artifact_contract, endpoints, event_map, security_controls]:
+quality	Backend regression tests	2026-06-29T15:07:12.8834672Z >           assert path.is_file(), f"missing required M2 chat bridge file: {path}"
+quality	Backend regression tests	2026-06-29T15:07:12.8836159Z E           AssertionError: missing required M2 chat bridge file: /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+quality	Backend regression tests	2026-06-29T15:07:12.8837516Z E           assert False
+quality	Backend regression tests	2026-06-29T15:07:12.8837835Z E            +  where False = is_file()
+quality	Backend regression tests	2026-06-29T15:07:12.8839285Z E            +    where is_file = PosixPath('/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log').is_file
+quality	Backend regression tests	2026-06-29T15:07:12.8840017Z
+quality	Backend regression tests	2026-06-29T15:07:12.8840195Z tests/test_m2_chat_bridge_contract_docs.py:41: AssertionError
+quality	Backend regression tests	2026-06-29T15:07:12.8840593Z =============================== warnings summary ===============================
+quality	Backend regression tests	2026-06-29T15:07:12.8841143Z ../../../../../opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/starlette/middleware/wsgi.py:14
+quality	Backend regression tests	2026-06-29T15:07:12.8842403Z   /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/starlette/middleware/wsgi.py:14: DeprecationWarning: starlette.middleware.wsgi is deprecated and will be removed in a future release. Please refer to https://github.com/abersheeran/a2wsgi as a replacement.
+quality	Backend regression tests	2026-06-29T15:07:12.8843471Z     warnings.warn(
+quality	Backend regression tests	2026-06-29T15:07:12.8843608Z
+quality	Backend regression tests	2026-06-29T15:07:12.8843808Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+quality	Backend regression tests	2026-06-29T15:07:12.8844258Z =========================== short test summary info ============================
+quality	Backend regression tests	2026-06-29T15:07:12.8845137Z FAILED tests/test_ai_chat_rate_limit.py::AiChatRateLimitStoreTest::test_production_redis_failure_returns_503 - pydantic_core._pydantic_core.ValidationError: 1 validation error for Settings
+quality	Backend regression tests	2026-06-29T15:07:12.8846245Z   Value error, JWT_SECRET_KEY must be changed outside local [type=value_error, input_value={'environment': 'producti...te_limit_per_minute': 1}, input_type=dict]
+quality	Backend regression tests	2026-06-29T15:07:12.8846989Z     For further information visit https://errors.pydantic.dev/2.11/v/value_error
+quality	Backend regression tests	2026-06-29T15:07:12.8848364Z FAILED tests/test_m2_chat_bridge_contract_docs.py::test_m2_chat_bridge_contract_docs_exist_and_cover_required_terms - AssertionError: missing required M2 chat bridge file: /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+quality	Backend regression tests	2026-06-29T15:07:12.8850059Z assert False
+quality	Backend regression tests	2026-06-29T15:07:12.8850273Z  +  where False = is_file()
+quality	Backend regression tests	2026-06-29T15:07:13.0609382Z  +    where is_file = PosixPath('/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log').is_file
+quality	Backend regression tests	2026-06-29T15:07:13.0610382Z 2 failed, 334 passed, 22 skipped, 1 warning in 6.13s
+quality	Backend regression tests	2026-06-29T15:07:13.4486103Z ##[error]Process completed with exit code 1.
+quality	Post Run actions/checkout@v4	﻿2026-06-29T15:07:13.4642180Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.4643348Z Post job cleanup.
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5468446Z [command]/usr/bin/git version
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5507172Z git version 2.54.0
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5543053Z Temporarily overriding HOME='/home/runner/work/_temp/fd79528e-8c39-4b28-b124-25d10897fcc8' before making global git config changes
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5544296Z Adding repository directory to the temporary git global config as a safe directory
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5549641Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5586316Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5620246Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5894741Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5920147Z http.https://github.com/.extraheader
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5930753Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.5962576Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.6203023Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+quality	Post Run actions/checkout@v4	2026-06-29T15:07:13.6234800Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+quality	Complete job	﻿2026-06-29T15:07:13.6630745Z Cleaning up orphan processes
+quality	Complete job	2026-06-29T15:07:13.6913755Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

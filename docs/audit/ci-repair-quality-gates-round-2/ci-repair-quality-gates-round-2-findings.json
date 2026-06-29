@@ -1,0 +1,25 @@
+{
+  "status": "PARTIAL_GO",
+  "phase": "ci_repair_quality_gates_round_2",
+  "run_id_analyzed": 28381965407,
+  "failed_job": "quality",
+  "failed_step": "Backend regression tests",
+  "root_causes": [
+    "A_CI_JWT_SECRET_ENV_MISSING",
+    "B_M2_GATES_LOG_FILE_MISSING"
+  ],
+  "workflow_changed": true,
+  "jwt_secret_ci_env_added": true,
+  "jwt_secret_real_used": false,
+  "m2_gates_log_fixed": true,
+  "backend_changed": false,
+  "tests_changed": false,
+  "frontend_changed": false,
+  "secrets_found": false,
+  "local_gates_ok": true,
+  "push_executed": false,
+  "new_actions_run_id": null,
+  "actions_rechecked": false,
+  "actions_status_after_push": "NOT_CHECKED",
+  "next_recommended_phase": "POST_CI_REPAIR_VERIFICATION"
+}

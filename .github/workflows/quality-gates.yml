@@ -8,6 +8,8 @@ on:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    env:
+      JWT_SECRET_KEY: "ci-test-jwt-secret-key-not-production-please-rotate-2026-06-29-with-minimum-length"
 
     steps:
       - uses: actions/checkout@v4

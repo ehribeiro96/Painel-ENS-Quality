@@ -1,0 +1,106 @@
+=== find M2 docs ===
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/ENS_UNIFIED_MIGRATION_M2_CHAT_BRIDGE_20260625.md
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-api-contract.md
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-artifact-integration-contract.md
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-event-contract.md
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-state-contract.md
+docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-findings.json
+docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-artifact-dependencies.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-env-map.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-event-map.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-external-endpoints.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-security-controls.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-target-contract.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-artifacts-grep.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-env-grep.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-events-grep.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-dirs.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-files.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-manifests-snapshot.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-manifests.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-routes-grep.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-security-scan.txt
+docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/README.md
+docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/TEST_MATRIX.md
+docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/m2b-chat-bridge-mock-findings.json
+docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/m2b-chat-bridge-mock-gates.log
+=== grep m2 gates references in tests ===
+tests/test_m2_chat_bridge_contract_docs.py:7:DOC_ROOT = ROOT / "docs" / "audit" / "external-ens-unified-migration-m2-chat-bridge"
+tests/test_m2_chat_bridge_contract_docs.py:31:    gates = DOC_ROOT / "ens-unified-migration-m2-chat-bridge-gates.log"
+docs/audit/ci-repair-quality-gates/raw/new-quality-job-log-failed-redacted.txt:147:quality	Backend regression tests	2026-06-29T15:07:12.8827273Z         gates = DOC_ROOT / "ens-unified-migration-m2-chat-bridge-gates.log"
+docs/audit/ci-repair-quality-gates/raw/new-quality-job-log-failed-redacted.txt:158:quality	Backend regression tests	2026-06-29T15:07:12.8836159Z E           AssertionError: missing required M2 chat bridge file: /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+docs/audit/ci-repair-quality-gates/raw/new-quality-job-log-failed-redacted.txt:161:quality	Backend regression tests	2026-06-29T15:07:12.8839285Z E            +    where is_file = PosixPath('/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log').is_file
+docs/audit/ci-repair-quality-gates/raw/new-quality-job-log-failed-redacted.txt:174:quality	Backend regression tests	2026-06-29T15:07:12.8848364Z FAILED tests/test_m2_chat_bridge_contract_docs.py::test_m2_chat_bridge_contract_docs_exist_and_cover_required_terms - AssertionError: missing required M2 chat bridge file: /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+docs/audit/ci-repair-quality-gates/raw/new-quality-job-log-failed-redacted.txt:177:quality	Backend regression tests	2026-06-29T15:07:13.0609382Z  +    where is_file = PosixPath('/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log').is_file
+docs/audit/ci-repair-quality-gates-round-2/raw/failing-tests.txt:6:536:quality	Backend regression tests	2026-06-29T15:07:12.8827273Z         gates = DOC_ROOT / "ens-unified-migration-m2-chat-bridge-gates.log"
+docs/audit/ci-repair-quality-gates-round-2/raw/failing-tests.txt:9:547:quality	Backend regression tests	2026-06-29T15:07:12.8836159Z E           AssertionError: missing required M2 chat bridge file: /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+docs/audit/ci-repair-quality-gates-round-2/raw/failing-tests.txt:10:550:quality	Backend regression tests	2026-06-29T15:07:12.8839285Z E            +    where is_file = PosixPath('/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log').is_file
+docs/audit/ci-repair-quality-gates-round-2/raw/failing-tests.txt:14:563:quality	Backend regression tests	2026-06-29T15:07:12.8848364Z FAILED tests/test_m2_chat_bridge_contract_docs.py::test_m2_chat_bridge_contract_docs_exist_and_cover_required_terms - AssertionError: missing required M2 chat bridge file: /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+docs/audit/ci-repair-quality-gates-round-2/raw/failing-tests.txt:15:566:quality	Backend regression tests	2026-06-29T15:07:13.0609382Z  +    where is_file = PosixPath('/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log').is_file
+docs/audit/ci-repair-quality-gates-round-2/raw/quality-job-log-28381965407-redacted.txt:536:quality	Backend regression tests	2026-06-29T15:07:12.8827273Z         gates = DOC_ROOT / "ens-unified-migration-m2-chat-bridge-gates.log"
+docs/audit/ci-repair-quality-gates-round-2/raw/quality-job-log-28381965407-redacted.txt:547:quality	Backend regression tests	2026-06-29T15:07:12.8836159Z E           AssertionError: missing required M2 chat bridge file: /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+docs/audit/ci-repair-quality-gates-round-2/raw/quality-job-log-28381965407-redacted.txt:550:quality	Backend regression tests	2026-06-29T15:07:12.8839285Z E            +    where is_file = PosixPath('/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log').is_file
+docs/audit/ci-repair-quality-gates-round-2/raw/quality-job-log-28381965407-redacted.txt:563:quality	Backend regression tests	2026-06-29T15:07:12.8848364Z FAILED tests/test_m2_chat_bridge_contract_docs.py::test_m2_chat_bridge_contract_docs_exist_and_cover_required_terms - AssertionError: missing required M2 chat bridge file: /home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+docs/audit/ci-repair-quality-gates-round-2/raw/quality-job-log-28381965407-redacted.txt:566:quality	Backend regression tests	2026-06-29T15:07:13.0609382Z  +    where is_file = PosixPath('/home/runner/work/Painel-ENS-Quality/Painel-ENS-Quality/docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log').is_file
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:2:docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:3:docs/audit/external-ens-unified-migration-m2-chat-bridge/ENS_UNIFIED_MIGRATION_M2_CHAT_BRIDGE_20260625.md
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:4:docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-api-contract.md
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:5:docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-artifact-integration-contract.md
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:6:docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-event-contract.md
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:7:docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-state-contract.md
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:8:docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-findings.json
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:9:docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:10:docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-artifact-dependencies.tsv
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:11:docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-env-map.tsv
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:12:docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-event-map.tsv
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:13:docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-external-endpoints.tsv
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:14:docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-security-controls.tsv
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:15:docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-target-contract.tsv
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:16:docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-artifacts-grep.txt
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:17:docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-env-grep.txt
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:18:docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-events-grep.txt
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:19:docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-dirs.txt
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:20:docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-files.txt
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:21:docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-manifests-snapshot.txt
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:22:docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-manifests.txt
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:23:docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-routes-grep.txt
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:24:docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-security-scan.txt
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:25:docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/README.md
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:26:docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/TEST_MATRIX.md
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:27:docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/m2b-chat-bridge-mock-findings.json
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:28:docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/m2b-chat-bridge-mock-gates.log
+docs/audit/ci-repair-quality-gates-round-2/raw/m2-gates-file-check.txt:29:=== grep m2 gates references in tests ===
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-security-scan.txt:1:docs/audit/external-ens-unified-migration-m2-chat-bridge/ENS_UNIFIED_MIGRATION_M2_CHAT_BRIDGE_20260625.md:1:# ENS Unified Migration M2 — Chat Bridge Hermes Adapter
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-security-scan.txt:2:docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-api-contract.md:1:# Chat Bridge API Contract
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-security-scan.txt:3:docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-event-contract.md:1:# Chat Bridge Event Contract
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-security-scan.txt:4:docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-state-contract.md:1:# Chat Bridge State Contract
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-security-scan.txt:5:docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-artifact-integration-contract.md:1:# Chat Bridge Artifact Integration Contract
+=== ls exact M2 dirs ===
+docs/audit/external-ens-unified-migration-m2-chat-bridge/ENS_UNIFIED_MIGRATION_M2_CHAT_BRIDGE_20260625.md
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-api-contract.md
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-artifact-integration-contract.md
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-event-contract.md
+docs/audit/external-ens-unified-migration-m2-chat-bridge/contracts/chat-bridge-state-contract.md
+docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-findings.json
+docs/audit/external-ens-unified-migration-m2-chat-bridge/ens-unified-migration-m2-chat-bridge-gates.log
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-artifact-dependencies.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-env-map.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-event-map.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-external-endpoints.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-security-controls.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/maps/chat-bridge-target-contract.tsv
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-artifacts-grep.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-env-grep.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-events-grep.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-dirs.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-files.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-manifests-snapshot.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-external-manifests.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-routes-grep.txt
+docs/audit/external-ens-unified-migration-m2-chat-bridge/raw/chat-bridge-security-scan.txt
+docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/README.md
+docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/TEST_MATRIX.md
+docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/m2b-chat-bridge-mock-findings.json
+docs/audit/external-ens-unified-migration-m2b-chat-bridge-mock-adapter/m2b-chat-bridge-mock-gates.log

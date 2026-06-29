@@ -1,0 +1,25 @@
+# Gates log — ENS Unified Migration M2 Chat Bridge Hermes Adapter
+
+## External root
+- `/tmp/ens-unificado-analysis/projeto-ens-unificado-main/services/chat-bridge`
+
+## Mode selected
+- `M2A_CONTRACT_ONLY`
+
+## Validation summary
+- `git diff --check`: PASS
+- `PYTHONPATH=backend .venv/bin/python -m pytest`: PASS (272 passed, 22 skipped)
+- `.venv/bin/python -m ruff check backend tests scripts`: PASS
+- `.venv/bin/python -m compileall -q backend/app backend/alembic tests scripts`: PASS
+- `frontend/itam-platform npm run build`: PASS
+- Secret scan on M2 docs/test: PASS (no matches)
+
+## Boundary check
+- Backend changed: no
+- Frontend changed: no
+- Docker changed: no
+- ZIP/código externo committed: no
+- Push executed: no
+
+## Decision
+- `PARTIAL-GO` because the contract is complete, but Artifact M1 remains contract-only and the runtime adapter is intentionally deferred.
