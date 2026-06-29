@@ -1,0 +1,6 @@
+=== ssh-add list for git remote ===
+256 SHA256:lM0Vv6m2U+2MNioLq6uc63czAA5uIKNT4CwnTaw7Zy4 WSL-Painel-ENS-Quality-RJM22137 (ED25519)
+=== ssh -T git@github.com for git remote ===
+Hi ehribeiro96! You've successfully authenticated, but GitHub does not provide shell access.
+=== git ls-remote --heads origin ===
+LS_REMOTE_EXIT=0

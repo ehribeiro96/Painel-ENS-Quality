@@ -1,0 +1,2 @@
+origin	git@github.com:ehribeiro96/Painel-ENS-Quality.git (fetch)
+origin	git@github.com:ehribeiro96/Painel-ENS-Quality.git (push)

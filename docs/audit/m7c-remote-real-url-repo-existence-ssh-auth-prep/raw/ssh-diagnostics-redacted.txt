@@ -1,0 +1,16 @@
+=== date ===
+2026-06-29T11:32:27-03:00
+=== getent hosts github.com ===
+4.228.31.150    github.com
+=== ssh-add list ===
+Could not open a connection to your authentication agent.
+=== forced key existence ===
+EXPECTED_KEY_FOUND=1
+=== ssh -T git@github.com ===
+git@github.com: Permission denied (publickey).
+=== ssh-add expected key ===
+Identity added: REDACTED
+=== ssh-add list after ===
+256 SHA256:lM0Vv6m2U+2MNioLq6uc63czAA5uIKNT4CwnTaw7Zy4 WSL-Painel-ENS-Quality-RJM22137 (ED25519)
+=== ssh -T git@github.com after add ===
+Hi ehribeiro96! You've successfully authenticated, but GitHub does not provide shell access.

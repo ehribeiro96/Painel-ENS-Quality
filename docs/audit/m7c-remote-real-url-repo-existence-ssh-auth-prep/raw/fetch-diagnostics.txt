@@ -1,0 +1,71 @@
+=== git fetch origin --prune ===
+FETCH_EXIT=0
+=== origin main refs ===
+ORIGIN_MAIN_EXISTS=0
+=== divergence after fetch ===
+fatal: ambiguous argument 'origin/main...HEAD': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+=== status after fetch ===
+## main...origin/main [gone]
+?? _migration_proposals/
+?? assets/legacy/
+?? assets/static/Guia_Assinatura_ENS_Ilustrado_v1.docx
+?? assets/static/icons/.gitkeep
+?? assets/static/icons/Logo.png
+?? assets/static/icons/facebook.png
+?? assets/static/icons/instagram.png
+?? assets/static/icons/linkedin.png
+?? assets/static/icons/tiktok.png
+?? assets/static/icons/youtube.png
+?? docs/ADMIN_SUPPORT_PERMISSIONS.md
+?? docs/AI_CHAT_IMPLEMENTATION_REPORT.md
+?? docs/AI_CHAT_INTEGRATION_TODO.md
+?? docs/AI_CHAT_OLLAMA_LAN_B5C_RUNTIME_VALIDATION.md
+?? docs/AI_CHAT_OLLAMA_LAN_B5D2_SAME_ORIGIN_UI_SMOKE.md
+?? docs/AI_CHAT_OLLAMA_LAN_B5D_AUTH_UI_SMOKE.md
+?? docs/AI_CHAT_UX_REPORT.md
+?? docs/HERMES_LOCAL_OLLAMA_CONFIG_RECOMMENDATION.md
+?? docs/IMPLEMENTATION_REPORT_UI_UX_QA.md
+?? docs/INVENTORY_COLLABORATORS_CRUD.md
+?? docs/QA_TEST_PLAN_INVENTORY.md
+?? docs/UI_UX_QA_INVENTORY_AUDIT.md
+?? docs/UI_UX_QA_VISUAL_REPORT.md
+?? docs/WSL_NATIVE_DOCKER_ENGINE_D1C_REPORT.md
+?? docs/apoema-visual-qa/APOEMA_BROWSER_ERRORS.md
+?? docs/apoema-visual-qa/APOEMA_FUNCTIONAL_QA.md
+?? docs/apoema-visual-qa/APOEMA_QA_FINDINGS.json
+?? docs/apoema-visual-qa/APOEMA_VISUAL_QA.md
+?? docs/audit/ARCHITECTURE_AUDIT.md
+?? docs/audit/AUDIT_ENVIRONMENT.md
+?? docs/audit/B4B2_VISUAL_SMOKE_MANUAL_CHECKLIST.md
+?? docs/audit/BACKEND_AUDIT.md
+?? docs/audit/BACKEND_FINDINGS.csv
+?? docs/audit/BASE44_VISUAL_RECOVERY_H3_EXECUTIVE_SUMMARY.md
+?? docs/audit/DATABASE_FINDINGS.csv
+?? docs/audit/DATABASE_MIGRATIONS_AUDIT.md
+?? docs/audit/DESKTOP_APP_AUDIT.md
+?? docs/audit/DEVOPS_RELEASE_AUDIT.md
+?? docs/audit/FILE_CLASSIFICATION.csv
+?? docs/audit/FILE_INVENTORY.md
+?? docs/audit/FRONTEND_AUDIT.md
+?? docs/audit/FRONTEND_FINDINGS.csv
+?? docs/audit/FULL_PROJECT_AUDIT_REPORT.md
+?? docs/audit/FULL_PROJECT_AUDIT_REPORT_20260625.md
+?? docs/audit/GAP_ANALYSIS.md
+?? docs/audit/HIGH_FIX_ROUND3_REPORT.md
+?? docs/audit/PROJECT_TREE.txt
+?? docs/audit/RELEASE_HYGIENE_FINDINGS.csv
+?? docs/audit/SCRIPTS_OPS_AUDIT.md
+?? docs/audit/SCRIPTS_OPS_FINDINGS.csv
+?? docs/audit/SECURITY_AUDIT.md
+?? docs/audit/SECURITY_FINDINGS.csv
+?? docs/audit/TESTING_AUDIT.md
+?? docs/audit/TEST_RESULTS.md
+?? docs/audit/WORKTREE_BOUNDARY_COMMIT_PLAN_GIT_C1.md
+?? docs/audit/frontend-visual-polish/
+?? docs/audit/m7c-remote-real-url-repo-existence-ssh-auth-prep/
+?? docs/hermesops/HERMES_TOOLS_SKILLS_AUDIT.md
+?? docs/product/BASE44_VISUAL_RECOVERY_H3_DASHBOARD_ASSETS_AUDIT.md
+?? docs/superpowers/
+?? frontend/itam-platform/docs/audit/
