@@ -1,0 +1,15 @@
+409:quality	Backend regression tests	2026-06-30T10:49:57.0807792Z ..................................................................{"environment": "production", "error_type": "RuntimeError", "event": "ai_chat_rate_limit_store_unavailable", "level": "error", "timestamp": "2026-06-30T10:49:57.080321Z"}
+541:quality	Docker Compose config	﻿2026-06-30T10:50:15.8489001Z ##[group]Run docker compose config --services
+542:quality	Docker Compose config	2026-06-30T10:50:15.8489463Z ^[[36;1mdocker compose config --services^[[0m
+543:quality	Docker Compose config	2026-06-30T10:50:15.8522758Z shell: /usr/bin/bash -e {0}
+544:quality	Docker Compose config	2026-06-30T10:50:15.8523023Z env:
+545:quality	Docker Compose config	2026-06-30T10:50:15.8523525Z   JWT_SECRET_KEY: REDACTED_SYNTHETIC_CI_VALUE
+546:quality	Docker Compose config	2026-06-30T10:50:15.8524164Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.13/x64
+547:quality	Docker Compose config	2026-06-30T10:50:15.8524605Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib/pkgconfig
+548:quality	Docker Compose config	2026-06-30T10:50:15.8525040Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+549:quality	Docker Compose config	2026-06-30T10:50:15.8525437Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+550:quality	Docker Compose config	2026-06-30T10:50:15.8525837Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+551:quality	Docker Compose config	2026-06-30T10:50:15.8526228Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib
+552:quality	Docker Compose config	2026-06-30T10:50:15.8526562Z ##[endgroup]
+553:quality	Docker Compose config	2026-06-30T10:50:16.2881581Z error while interpolating services.app.environment.ADMIN_PASSWORD: required variable ADMIN_PASSWORD is missing a value: Set ADMIN_PASSWORD locally before starting the validation/runtime stack
+554:quality	Docker Compose config	2026-06-30T10:50:16.2930237Z ##[error]Process completed with exit code 1.

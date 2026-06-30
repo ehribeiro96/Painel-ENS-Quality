@@ -1,0 +1,22 @@
+=== workflow docker compose snippets ===
+11:    env:
+50:      - name: Docker Compose config
+51:        run: docker compose config --services
+=== compose env references ===
+5:      POSTGRES_DB: itam
+6:      POSTGRES_USER: itam
+7:      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-DEFINE_A_LOCAL_POSTGRES_PASSWORD}
+40:      DATABASE_URL: postgresql+asyncpg://itam:itam@postgres:5432/itam
+41:      REDIS_URL: redis://redis:6379/0
+44:      ADMIN_EMAIL: ${ADMIN_EMAIL:-estevao.quality@ens.edu.br}
+45:      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD locally before starting the validation/runtime stack}
+46:      ADMIN_NAME: ${ADMIN_NAME:-Estevão Ribeiro}
+47:      METRICS_TOKEN: ${METRICS_TOKEN:-}
+48:      ACCESS_TOKEN_MINUTES: ${ACCESS_TOKEN_MINUTES:-15}
+49:      REFRESH_TOKEN_DAYS: ${REFRESH_TOKEN_DAYS:-7}
+=== env example references ===
+6:DATABASE_URL=postgresql+asyncpg://itam:itam@postgres:5432/itam
+7:REDIS_URL=redis://redis:6379/0
+8:JWT_SECRET_KEY=<GERAR_SECRET_FORTE_COM_32_OU_MAIS_CARACTERES>
+22:ADMIN_PASSWORD=<DEFINIR_LOCALMENTE_COM_10_OU_MAIS_CARACTERES>
+58:AZURE_CLIENT_SECRET=

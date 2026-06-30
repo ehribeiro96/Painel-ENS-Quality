@@ -1,0 +1,6 @@
+git diff --check: PASS
+pytest -s -q with CI JWT_SECRET_KEY: PASS, 336 passed, 22 skipped, 1 warning
+ruff check backend tests scripts: PASS
+compileall: PASS
+frontend build: PASS
+docker compose config --services with synthetic ADMIN_PASSWORD: PASS

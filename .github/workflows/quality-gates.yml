@@ -48,6 +48,8 @@ jobs:
           npm run build
 
       - name: Docker Compose config
+        env:
+          ADMIN_PASSWORD: "ci-admin-password-not-production-please-rotate-2026-06-29"
         run: docker compose config --services
 
       - name: Secret pattern scan
