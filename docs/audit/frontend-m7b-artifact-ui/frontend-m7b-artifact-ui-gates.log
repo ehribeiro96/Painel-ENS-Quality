@@ -1,0 +1,7 @@
+git diff --check: PASS
+pytest -s -q: PASS (342 passed, 22 skipped, 1 warning)
+ruff check backend tests scripts: PASS
+compileall backend/app backend/alembic tests scripts: PASS
+frontend npm run build: PASS
+docker compose config --services: PASS
+HTTP smoke on 127.0.0.1:5175: TIMEOUT/RUNTIME_NOT_RESPONSIVE (non-blocking; build and tests passed)

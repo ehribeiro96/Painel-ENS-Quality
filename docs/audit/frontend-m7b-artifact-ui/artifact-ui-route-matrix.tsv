@@ -1,0 +1,5 @@
+route	component	auth_surface	backend_dependency	notes
+/apoema/artifacts	ArtifactsPage	ProtectedRoute via App.tsx	/api/v1/artifacts	List, upload, download action and delete.
+/apoema/artifacts/:artifactId	ArtifactDetailPage	ProtectedRoute via App.tsx	/api/v1/artifacts/{artifact_id}	Safe metadata, download action and delete.
+/apoema-preview/artifacts	ArtifactsPage	ProtectedRoute via App.tsx	/api/v1/artifacts	Preview prefix uses the same Apoema wildcard shell.
+/apoema-preview/artifacts/:artifactId	ArtifactDetailPage	ProtectedRoute via App.tsx	/api/v1/artifacts/{artifact_id}	Preview prefix uses the same Apoema wildcard shell.

@@ -1,0 +1,9 @@
+item	status	evidence
+No backend changes	OK	Only Apoema frontend, static test and docs were changed.
+No direct storage calls	OK	Artifacts client calls only /api/v1 paths.
+No internal path exposed	OK	UI renders DTO fields only and excludes storage internals.
+No temporary token rendered	OK	Download URL is opened directly and not displayed or copied.
+Upload uses FormData	OK	apoemaArtifactsApi.ts creates FormData and does not set multipart content-type manually.
+Delete confirmation	OK	List and detail delete actions use window.confirm.
+No legacy /artifacts alias	OK	App.tsx keeps only /apoema and /apoema-preview wildcard routes.
+No AppShell legacy restore	OK	No AppShell import or route was added.
