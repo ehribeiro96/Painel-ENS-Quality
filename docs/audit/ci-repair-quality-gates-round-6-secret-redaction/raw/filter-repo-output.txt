@@ -1,0 +1,33 @@
+warning: refs/codex/turn-diffs/captures/1782820843948/82e0f4e5-2684-4b1b-8b8c-118a147407e7/base: Unexpected object of type tree, skipping.
+warning: refs/codex/turn-diffs/checkpoints/fb358036b0091a11961cca0a25c9bd022b5b743cbcaa5367a902215cc89a4abd/7a1151424d2ee0805918d09376532c9a53298dc4a7be964e41a9b35894afd736/1782820509415/5de7c931-fe25-4f5b-95a6-6cc0e4c6e2d3: Unexpected object of type tree, skipping.
+warning: refs/codex/turn-diffs/checkpoints/fb4073ef3209b4bb73ae288fe684310b8e4f81829babf5e972cd9e41bf02334b/d58715e79dc09dcd4cc728a2c6f924fdedc5d69e19a49875add8bfd835e96db6/1782234016015/77849580-5a12-4f7b-9126-3a5f5d8a09cf: Unexpected object of type tree, skipping.
+NOTICE: Removing 'origin' remote; see 'Why is my origin removed?'
+        in the manual if you want to push back there.
+        (was git@github.com:ehribeiro96/Painel-ENS-Quality.git)
+Parsed 22 commitsParsed 28 commitsParsed 128 commitsParsed 172 commitsParsed 177 commitsParsed 180 commitsParsed 191 commitsHEAD is now at 3befabc ci: provide compose config environment
+
+New history written in 0.94 seconds; now repacking/cleaning...
+Repacking your repo and cleaning out old unneeded objects
+Completely finished after 1.34 seconds.
+warning: refs/codex/turn-diffs/captures/1782820843948/82e0f4e5-2684-4b1b-8b8c-118a147407e7/base: Unexpected object of type tree, skipping.
+warning: refs/codex/turn-diffs/checkpoints/fb358036b0091a11961cca0a25c9bd022b5b743cbcaa5367a902215cc89a4abd/7a1151424d2ee0805918d09376532c9a53298dc4a7be964e41a9b35894afd736/1782820509415/5de7c931-fe25-4f5b-95a6-6cc0e4c6e2d3: Unexpected object of type tree, skipping.
+warning: refs/codex/turn-diffs/checkpoints/fb4073ef3209b4bb73ae288fe684310b8e4f81829babf5e972cd9e41bf02334b/d58715e79dc09dcd4cc728a2c6f924fdedc5d69e19a49875add8bfd835e96db6/1782234016015/77849580-5a12-4f7b-9126-3a5f5d8a09cf: Unexpected object of type tree, skipping.
+NOTICE: Removing 'origin' remote; see 'Why is my origin removed?'
+        in the manual if you want to push back there.
+        (was git@github.com:ehribeiro96/Painel-ENS-Quality.git)
+Parsed 22 commitsParsed 28 commitsParsed 128 commitsParsed 172 commitsParsed 177 commitsParsed 180 commitsParsed 191 commitsHEAD is now at 3befabc ci: provide compose config environment
+
+New history written in 0.84 seconds; now repacking/cleaning...
+Repacking your repo and cleaning out old unneeded objects
+Completely finished after 1.11 seconds.
+warning: refs/codex/turn-diffs/captures/1782820843948/82e0f4e5-2684-4b1b-8b8c-118a147407e7/base: Unexpected object of type tree, skipping.
+warning: refs/codex/turn-diffs/checkpoints/fb358036b0091a11961cca0a25c9bd022b5b743cbcaa5367a902215cc89a4abd/7a1151424d2ee0805918d09376532c9a53298dc4a7be964e41a9b35894afd736/1782820509415/5de7c931-fe25-4f5b-95a6-6cc0e4c6e2d3: Unexpected object of type tree, skipping.
+warning: refs/codex/turn-diffs/checkpoints/fb4073ef3209b4bb73ae288fe684310b8e4f81829babf5e972cd9e41bf02334b/d58715e79dc09dcd4cc728a2c6f924fdedc5d69e19a49875add8bfd835e96db6/1782234016015/77849580-5a12-4f7b-9126-3a5f5d8a09cf: Unexpected object of type tree, skipping.
+NOTICE: Removing 'origin' remote; see 'Why is my origin removed?'
+        in the manual if you want to push back there.
+        (was git@github.com:ehribeiro96/Painel-ENS-Quality.git)
+Parsed 22 commitsParsed 28 commitsParsed 138 commitsParsed 175 commitsParsed 178 commitsParsed 190 commitsParsed 191 commitsHEAD is now at 674fe65 ci: provide compose config environment
+
+New history written in 0.76 seconds; now repacking/cleaning...
+Repacking your repo and cleaning out old unneeded objects
+Completely finished after 1.05 seconds.

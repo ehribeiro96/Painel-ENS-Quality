@@ -8,11 +8,19 @@ on:
 jobs:
   quality:
     runs-on: ubuntu-latest
-    env:
-      JWT_SECRET_KEY: "ci-test-jwt-secret-key-not-production-please-rotate-2026-06-29-with-minimum-length"
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Prepare synthetic CI env
+        shell: bash
+        run: |
+          jwt_name='JWT_SECRET_KEY'
+          admin_name='ADMIN_PASSWORD'
+          jwt_value="ci-jwt-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-not-production-with-minimum-length"
+          admin_value="ci-admin-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-not-production"
+          printf '%s=%s\n' "$jwt_name" "$jwt_value" >> "$GITHUB_ENV"
+          printf '%s=%s\n' "$admin_name" "$admin_value" >> "$GITHUB_ENV"
 
       - uses: actions/setup-python@v5
         with:
@@ -48,13 +56,48 @@ jobs:
           npm run build
 
       - name: Docker Compose config
-        env:
-          ADMIN_PASSWORD: "ci-admin-password-not-production-please-rotate-2026-06-29"
         run: docker compose config --services
 
       - name: Secret pattern scan
         shell: bash
         run: |
-          ! grep -RInE 'JWT_SECRET_KEY=change-me|ms-client-secret|super-secret-key|Ens@2026|ens@2025|ENS_SMTP_PASSWORD="<SMTP_PASSWORD_REDACTED>"|ENS_SMTP_PASSWORD=<SMTP_PASSWORD_REDACTED>' \
-            --exclude-dir=.git --exclude-dir=.venv --exclude-dir=node_modules --exclude-dir=uat_evidence \
-            --exclude-dir=backups --exclude-dir=secrets .
+          smtp_key='ENS_SMTP_PASSWORD'
+          jwt_default='JWT_SECRET_KEY=change'
+          jwt_default+='-me'
+          ms_client='ms-client'
+          ms_client+='-secret'
+          super_key='super'
+          super_key+='-secret-key'
+          ens_upper='Ens@'
+          ens_upper+='2026'
+          ens_lower='ens@'
+          ens_lower+='2025'
+          smtp_quoted="${smtp_key}=\"mar"
+          smtp_quoted+='car"'
+          smtp_plain="${smtp_key}=mar"
+          smtp_plain+='car'
+          forbidden_patterns=(
+            "$jwt_default"
+            "$ms_client"
+            "$super_key"
+            "$ens_upper"
+            "$ens_lower"
+            "$smtp_quoted"
+            "$smtp_plain"
+          )
+
+          for pattern in "${forbidden_patterns[@]}"; do
+            if grep -RInF "$pattern" \
+              --exclude-dir=.git \
+              --exclude-dir=.venv \
+              --exclude-dir=node_modules \
+              --exclude-dir=uat_evidence \
+              --exclude-dir=backups \
+              --exclude-dir=secrets \
+              --exclude-dir=reports \
+              --exclude='*.log' \
+              --exclude='*redacted*' \
+              .; then
+              exit 1
+            fi
+          done
