@@ -991,7 +991,8 @@ button.apoema-stub-card {
 .apoema-card-headline,
 .apoema-row-actions,
 .apoema-secure-link-panel,
-.apoema-file-action {
+.apoema-file-action,
+.apoema-artifact-actions {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1004,6 +1005,21 @@ button.apoema-stub-card {
 
 .apoema-row-actions {
   flex-wrap: wrap;
+}
+
+.apoema-artifact-actions {
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.apoema-artifact-detail-grid {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.apoema-monospace {
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.86rem;
 }
 
 .apoema-secure-link-panel {

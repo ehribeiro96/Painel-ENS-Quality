@@ -37,6 +37,8 @@ export interface ApoemaArtifactDeleteResponse {
 function classifyStatus(status: number): ApoemaApiErrorKind {
   if (status === 401) return "auth_required";
   if (status === 403) return "forbidden";
+  if (status === 404) return "not_found";
+  if (status === 410) return "expired";
   if (status === 422) return "validation_error";
   if (status >= 500 && status < 600) return "backend_error";
   return "unknown_api_error";

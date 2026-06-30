@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
-import { Copy, Download, RotateCcw, ShieldAlert, Trash2, UploadCloud } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { Download, Eye, RotateCcw, Search, ShieldAlert, Trash2, UploadCloud } from "lucide-react";
 import { StatusPill } from "../components/StatusPill";
 import { ApoemaApiError } from "../types";
 import { deleteArtifact, getArtifactDownloadUrl, listArtifacts, uploadArtifact } from "../lib/apoemaArtifactsApi";
 import { useAuth } from "@/lib/auth";
 import type { ApoemaArtifact } from "../lib/apoemaArtifactsApi";
 
-type PageState = "loading" | "ready" | "empty" | "unauthorized" | "unavailable" | "error";
+type PageState = "loading" | "ready" | "empty" | "unauthorized" | "forbidden" | "unavailable" | "error";
 
 type Banner = {
   tone: "warning" | "danger" | "success";
@@ -31,10 +32,19 @@ function formatDate(value: string) {
 function describeError(error: unknown): Banner {
   if (error instanceof ApoemaApiError) {
     if (error.kind === "auth_required") {
-      return { tone: "danger", title: "Sessão necessária", message: "Faça login novamente para acessar os artefatos." };
+      return { tone: "danger", title: "Sessão expirada", message: "Faça login novamente para acessar os artefatos." };
     }
     if (error.kind === "forbidden") {
       return { tone: "danger", title: "Sem permissão", message: "Seu perfil não tem permissão para esta operação." };
+    }
+    if (error.kind === "not_found") {
+      return { tone: "warning", title: "Artefato não encontrado", message: "O registro solicitado não existe mais ou não está acessível." };
+    }
+    if (error.kind === "expired") {
+      return { tone: "warning", title: "Link expirado", message: "Gere um novo download pelo backend para continuar." };
+    }
+    if (error.kind === "validation_error") {
+      return { tone: "warning", title: "Arquivo recusado", message: "O backend recusou tipo, extensão, nome ou tamanho do arquivo." };
     }
     if (error.kind === "network_unavailable") {
       return { tone: "warning", title: "Backend indisponível", message: "Não foi possível alcançar /api/v1/artifacts." };
@@ -46,10 +56,17 @@ function describeError(error: unknown): Banner {
 
 function stateFromError(error: unknown): PageState {
   if (error instanceof ApoemaApiError) {
-    if (error.kind === "auth_required" || error.kind === "forbidden") return "unauthorized";
+    if (error.kind === "auth_required") return "unauthorized";
+    if (error.kind === "forbidden") return "forbidden";
     if (error.kind === "network_unavailable") return "unavailable";
   }
   return "error";
+}
+
+function matchesQuery(artifact: ApoemaArtifact, query: string) {
+  const normalized = query.trim().toLowerCase();
+  if (!normalized) return true;
+  return [artifact.filename, artifact.content_type, artifact.id, artifact.sha256].some((value) => value.toLowerCase().includes(normalized));
 }
 
 export function ArtifactsPage() {
@@ -59,7 +76,7 @@ export function ArtifactsPage() {
   const [banner, setBanner] = useState<Banner | null>(null);
   const [busyId, setBusyId] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState<{ artifactId: string; url: string; expiresAt: string } | null>(null);
+  const [query, setQuery] = useState("");
 
   async function reload(guard: () => boolean = () => true) {
     setState("loading");
@@ -85,29 +102,30 @@ export function ArtifactsPage() {
     };
   }, [token]);
 
-  async function handleUpload(file: File | null) {
+  async function handleUpload(file: File | null, resetInput: () => void) {
     if (!file || uploading) return;
     setUploading(true);
     setBanner(null);
     try {
       await uploadArtifact(file, token);
-      setBanner({ tone: "success", title: "Upload registrado", message: "Arquivo enviado para storage seguro backend-owned." });
+      setBanner({ tone: "success", title: "Upload registrado", message: "Arquivo enviado para storage privado gerenciado pelo backend." });
       await reload();
     } catch (error) {
       setBanner(describeError(error));
       setState(stateFromError(error));
     } finally {
       setUploading(false);
+      resetInput();
     }
   }
 
-  async function handleDownloadUrl(artifactId: string) {
+  async function handleDownload(artifactId: string) {
     setBusyId(artifactId);
     setBanner(null);
     try {
       const result = await getArtifactDownloadUrl(artifactId, token);
-      setDownloadUrl({ artifactId, url: result.url, expiresAt: result.expires_at });
-      setBanner({ tone: "success", title: "Link assinado obtido", message: "URL mantida apenas na sessão do navegador; não é registrada em console nem relatório." });
+      window.open(result.url, "_blank", "noopener,noreferrer");
+      setBanner({ tone: "success", title: "Download iniciado", message: "URL temporária gerada pelo backend e aberta sem exibir o valor na interface." });
     } catch (error) {
       setBanner(describeError(error));
     } finally {
@@ -115,18 +133,13 @@ export function ArtifactsPage() {
     }
   }
 
-  async function copyCurrentUrl() {
-    if (!downloadUrl) return;
-    await navigator.clipboard.writeText(downloadUrl.url);
-    setBanner({ tone: "success", title: "URL copiada", message: "URL assinada copiada sem impressão em console." });
-  }
-
-  async function handleDelete(artifactId: string) {
-    setBusyId(artifactId);
+  async function handleDelete(artifact: ApoemaArtifact) {
+    const confirmed = window.confirm(`Excluir "${artifact.filename}"? Esta ação é irreversível e será auditada pelo backend.`);
+    if (!confirmed) return;
+    setBusyId(artifact.id);
     setBanner(null);
     try {
-      await deleteArtifact(artifactId, token);
-      setDownloadUrl((current) => (current?.artifactId === artifactId ? null : current));
+      await deleteArtifact(artifact.id, token);
       setBanner({ tone: "success", title: "Artefato excluído", message: "Exclusão registrada pelo backend com auditoria." });
       await reload();
     } catch (error) {
@@ -136,6 +149,7 @@ export function ArtifactsPage() {
     }
   }
 
+  const filteredArtifacts = useMemo(() => artifacts.filter((artifact) => matchesQuery(artifact, query)), [artifacts, query]);
   const showTable = state === "ready" || artifacts.length > 0;
 
   return (
@@ -143,21 +157,27 @@ export function ArtifactsPage() {
       <section className="apoema-page-top">
         <div>
           <StatusPill tone="success">Backend</StatusPill>
-          <h1>Biblioteca de Artefatos</h1>
-          <p>Backend Artifact Storage — storage seguro backend-owned com upload, listagem, link assinado e exclusão controlados por /api/v1.</p>
+          <h1>Artefatos</h1>
+          <p>Backend Artifact Storage — arquivos gerenciados pelo backend com storage privado backend-owned.</p>
         </div>
         <label className="apoema-file-action">
           <UploadCloud size={16} />
           {uploading ? "Enviando..." : "Enviar arquivo"}
-          <input type="file" disabled={uploading} onChange={(event) => void handleUpload(event.target.files?.[0] ?? null)} />
+          <input
+            type="file"
+            disabled={uploading}
+            onChange={(event) => void handleUpload(event.target.files?.[0] ?? null, () => {
+              event.currentTarget.value = "";
+            })}
+          />
         </label>
       </section>
 
       <div className="apoema-warning is-warning">
         <ShieldAlert size={16} />
         <div>
-          <strong>Storage seguro backend-owned</strong>
-          <p>Arquivos são armazenados no backend; a interface não expõe caminho interno, conteúdo sensível ou URL assinada em logs.</p>
+          <strong>Storage privado backend-owned</strong>
+          <p>A interface chama somente /api/v1/artifacts, não acessa storage direto, não expõe caminho interno e não exibe URL temporária completa; a URL não é registrada em console.</p>
         </div>
       </div>
 
@@ -183,13 +203,25 @@ export function ArtifactsPage() {
           </button>
         </div>
 
+        <div className="apoema-filter-bar">
+          <label className="apoema-search">
+            <Search size={16} />
+            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Buscar por nome, MIME, ID ou SHA-256" />
+          </label>
+        </div>
+
         {state === "loading" && <div className="apoema-empty-state">Carregando artefatos...</div>}
-        {state === "empty" && <div className="apoema-empty-state"><strong>Nenhum artefato</strong><p>Envie um arquivo para validar o adapter de storage.</p></div>}
-        {state === "unauthorized" && <div className="apoema-empty-state"><strong>Sessão/permissão necessária</strong><p>O backend recusou a chamada autenticada.</p></div>}
-        {state === "unavailable" && <div className="apoema-empty-state"><strong>Backend indisponível</strong><p>A UI não cria mock falso quando /api/v1 não responde.</p></div>}
+        {state === "empty" && <div className="apoema-empty-state"><strong>Nenhum artefato</strong><p>Envie um arquivo para registrar o primeiro artefato seguro.</p></div>}
+        {state === "unauthorized" && <div className="apoema-empty-state"><strong>Sessão expirada</strong><p>Entre novamente para acessar a biblioteca.</p></div>}
+        {state === "forbidden" && <div className="apoema-empty-state"><strong>Sem permissão</strong><p>Seu perfil não pode listar os artefatos disponíveis.</p></div>}
+        {state === "unavailable" && <div className="apoema-empty-state"><strong>Backend indisponível</strong><p>A UI não cria fallback mock quando /api/v1 não responde.</p></div>}
         {state === "error" && <div className="apoema-empty-state"><strong>Erro operacional</strong><p>Falha ao consultar o backend de artefatos.</p></div>}
 
-        {showTable && (
+        {showTable && filteredArtifacts.length === 0 && state !== "loading" ? (
+          <div className="apoema-empty-state"><strong>Nenhum resultado</strong><p>Ajuste a busca para ver os artefatos carregados.</p></div>
+        ) : null}
+
+        {showTable && filteredArtifacts.length > 0 && (
           <div className="apoema-table-wrap">
             <table className="apoema-table apoema-stub-table">
               <thead>
@@ -197,24 +229,30 @@ export function ArtifactsPage() {
                   <th>Nome</th>
                   <th>Tipo</th>
                   <th>Tamanho</th>
-                  <th>Status/data</th>
+                  <th>Origem/status</th>
+                  <th>Criado em</th>
                   <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
-                {artifacts.map((artifact) => (
+                {filteredArtifacts.map((artifact) => (
                   <tr key={artifact.id}>
                     <td><strong>{artifact.filename}</strong><span>ID {artifact.id.slice(0, 8)}</span></td>
                     <td>{artifact.content_type}</td>
                     <td>{formatBytes(artifact.size_bytes)}</td>
-                    <td><strong>ativo</strong><span>{formatDate(artifact.created_at)}</span></td>
+                    <td><strong>Backend Artifact</strong><span>{artifact.deleted_at ? "Excluído" : "Ativo"}</span></td>
+                    <td>{formatDate(artifact.created_at)}</td>
                     <td>
                       <div className="apoema-row-actions">
-                        <button type="button" className="apoema-secondary-button" disabled={busyId === artifact.id} onClick={() => void handleDownloadUrl(artifact.id)}>
+                        <Link className="apoema-secondary-button" to={artifact.id}>
+                          <Eye size={14} />
+                          Detalhes
+                        </Link>
+                        <button type="button" className="apoema-secondary-button" disabled={busyId === artifact.id} onClick={() => void handleDownload(artifact.id)}>
                           <Download size={14} />
-                          Obter link
+                          Download
                         </button>
-                        <button type="button" className="apoema-ghost-button" disabled={busyId === artifact.id} onClick={() => void handleDelete(artifact.id)}>
+                        <button type="button" className="apoema-ghost-button" disabled={busyId === artifact.id} onClick={() => void handleDelete(artifact)}>
                           <Trash2 size={14} />
                           Excluir
                         </button>
@@ -227,20 +265,6 @@ export function ArtifactsPage() {
           </div>
         )}
       </section>
-
-      {downloadUrl && (
-        <section className="apoema-panel apoema-secure-link-panel">
-          <div>
-            <StatusPill tone="warning">URL assinada</StatusPill>
-            <h2>Link temporário pronto</h2>
-            <p>Expira em {formatDate(downloadUrl.expiresAt)}. O valor completo não é exibido para evitar vazamento visual.</p>
-          </div>
-          <button type="button" className="apoema-primary-button" onClick={() => void copyCurrentUrl()}>
-            <Copy size={16} />
-            Copiar URL assinada
-          </button>
-        </section>
-      )}
     </div>
   );
 }

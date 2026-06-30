@@ -82,6 +82,8 @@ export type ApoemaProviderLoadState = "loading" | "ready" | "fallback" | "error"
 export type ApoemaApiErrorKind =
   | "auth_required"
   | "forbidden"
+  | "not_found"
+  | "expired"
   | "rate_limited"
   | "validation_error"
   | "backend_error"

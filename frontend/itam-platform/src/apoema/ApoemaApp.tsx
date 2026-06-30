@@ -12,6 +12,7 @@ import { ImportsPage } from "./pages/ImportsPage";
 import { MacrosPage } from "./pages/MacrosPage";
 import { ChatPage } from "./pages/ChatPage";
 import { ArtifactsPage } from "./pages/ArtifactsPage";
+import { ArtifactDetailPage } from "./pages/ArtifactDetailPage";
 import { RagPage } from "./pages/RagPage";
 import { DesignerPage } from "./pages/DesignerPage";
 import { IntegrationsPage } from "./pages/IntegrationsPage";
@@ -118,6 +119,7 @@ export function ApoemaApp() {
           <Route path="audit-logs" element={<AuditLogsPage />} />
           <Route path="chat" element={<ChatPage />} />
           <Route path="artifacts" element={<ArtifactsPage />} />
+          <Route path="artifacts/:artifactId" element={<ArtifactDetailPage />} />
           <Route path="rag" element={<RagPage />} />
           <Route path="designer" element={<DesignerPage />} />
           <Route path="integrations" element={<IntegrationsPage />} />
