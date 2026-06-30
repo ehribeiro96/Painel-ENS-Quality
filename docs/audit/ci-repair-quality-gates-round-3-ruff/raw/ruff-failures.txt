@@ -1,0 +1,52 @@
+359:quality	Install Python dependencies	2026-06-29T15:17:11.7962079Z Collecting ruff==0.11.13 (from -r requirements-dev.txt (line 7))
+360:quality	Install Python dependencies	2026-06-29T15:17:11.8349919Z   Downloading ruff-0.11.13-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (25 kB)
+361:quality	Install Python dependencies	2026-06-29T15:17:11.8773618Z Downloading ruff-0.11.13-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.6 MB)
+363:quality	Install Python dependencies	2026-06-29T15:17:12.0570498Z Installing collected packages: ruff
+364:quality	Install Python dependencies	2026-06-29T15:17:12.1701346Z Successfully installed ruff-0.11.13
+409:quality	Backend regression tests	2026-06-29T15:17:17.5315283Z ..................................................................{"environment": "production", "error_type": "RuntimeError", "event": "ai_chat_rate_limit_store_unavailable", "level": "error", "timestamp": "2026-06-29T15:17:17.531181Z"}
+454:quality	Ruff check	﻿2026-06-29T15:17:18.8503456Z ##[group]Run ruff check backend/app tests
+455:quality	Ruff check	2026-06-29T15:17:18.8503735Z ^[[36;1mruff check backend/app tests^[[0m
+456:quality	Ruff check	2026-06-29T15:17:18.8532016Z shell: /usr/bin/bash -e {0}
+457:quality	Ruff check	2026-06-29T15:17:18.8532220Z env:
+458:quality	Ruff check	2026-06-29T15:17:18.8532585Z   JWT_SECRET_KEY: ci-test-jwt-secret-key-not-production-please-rotate-2026-06-29-with-minimum-length
+459:quality	Ruff check	2026-06-29T15:17:18.8533043Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.13/x64
+460:quality	Ruff check	2026-06-29T15:17:18.8533373Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib/pkgconfig
+461:quality	Ruff check	2026-06-29T15:17:18.8533703Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+462:quality	Ruff check	2026-06-29T15:17:18.8533991Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+463:quality	Ruff check	2026-06-29T15:17:18.8534280Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.13/x64
+464:quality	Ruff check	2026-06-29T15:17:18.8534584Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.13/x64/lib
+465:quality	Ruff check	2026-06-29T15:17:18.8534835Z ##[endgroup]
+466:quality	Ruff check	2026-06-29T15:17:18.8789248Z tests/test_artifacts_contract.py:46:127: UP038 Use `X | Y` in `isinstance` call instead of `(X, Y)`
+467:quality	Ruff check	2026-06-29T15:17:18.8789802Z    |
+468:quality	Ruff check	2026-06-29T15:17:18.8790170Z 44 | …
+469:quality	Ruff check	2026-06-29T15:17:18.8790653Z 45 | …ponse.start')
+470:quality	Ruff check	2026-06-29T15:17:18.8791149Z 46 | …e['type'] == 'http.response.body' and isinstance(message.get('body'), (bytes, bytearray))]
+471:quality	Ruff check	2026-06-29T15:17:18.8791914Z    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UP038
+472:quality	Ruff check	2026-06-29T15:17:18.8792294Z 47 | …
+473:quality	Ruff check	2026-06-29T15:17:18.8792500Z    |
+474:quality	Ruff check	2026-06-29T15:17:18.8792722Z    = help: Convert to `X | Y`
+475:quality	Ruff check	2026-06-29T15:17:18.8792915Z
+476:quality	Ruff check	2026-06-29T15:17:18.8793235Z tests/test_designer_mock_contract.py:72:114: UP038 Use `X | Y` in `isinstance` call instead of `(X, Y)`
+477:quality	Ruff check	2026-06-29T15:17:18.8793573Z    |
+478:quality	Ruff check	2026-06-29T15:17:18.8793884Z 70 | …
+479:quality	Ruff check	2026-06-29T15:17:18.8794088Z 71 | … == 'http.response.start')
+480:quality	Ruff check	2026-06-29T15:17:18.8794465Z 72 | …e['type'] == 'http.response.body' and isinstance(message.get('body'), (bytes, bytearray))]
+481:quality	Ruff check	2026-06-29T15:17:18.8794838Z    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UP038
+482:quality	Ruff check	2026-06-29T15:17:18.8795100Z 73 | …
+483:quality	Ruff check	2026-06-29T15:17:18.8795245Z 74 | …
+484:quality	Ruff check	2026-06-29T15:17:18.8795379Z    |
+485:quality	Ruff check	2026-06-29T15:17:18.8795527Z    = help: Convert to `X | Y`
+486:quality	Ruff check	2026-06-29T15:17:18.8795658Z
+487:quality	Ruff check	2026-06-29T15:17:18.8795868Z tests/test_rag_mcp_mock_contract.py:68:114: UP038 Use `X | Y` in `isinstance` call instead of `(X, Y)`
+488:quality	Ruff check	2026-06-29T15:17:18.8796197Z    |
+489:quality	Ruff check	2026-06-29T15:17:18.8796351Z 66 | …
+490:quality	Ruff check	2026-06-29T15:17:18.8796530Z 67 | … == 'http.response.start')
+491:quality	Ruff check	2026-06-29T15:17:18.8796910Z 68 | …e['type'] == 'http.response.body' and isinstance(message.get('body'), (bytes, bytearray))]
+492:quality	Ruff check	2026-06-29T15:17:18.8797297Z    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UP038
+493:quality	Ruff check	2026-06-29T15:17:18.8797747Z 69 | …')
+494:quality	Ruff check	2026-06-29T15:17:18.8797889Z    |
+495:quality	Ruff check	2026-06-29T15:17:18.8798037Z    = help: Convert to `X | Y`
+496:quality	Ruff check	2026-06-29T15:17:18.8798157Z
+497:quality	Ruff check	2026-06-29T15:17:18.8798229Z Found 3 errors.
+498:quality	Ruff check	2026-06-29T15:17:18.8798532Z No fixes available (3 hidden fixes can be enabled with the `--unsafe-fixes` option).
+499:quality	Ruff check	2026-06-29T15:17:18.8808662Z ##[error]Process completed with exit code 1.

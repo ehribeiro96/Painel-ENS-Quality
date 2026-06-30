@@ -1,0 +1,39 @@
+=== local ruff version ===
+ruff 0.15.16
+ruff 0.15.16
+=== local canonical command ===
+.venv/bin/python -m ruff check backend tests scripts
+=== config files ===
+./pyproject.toml
+=== ruff config snippets ===
+pyproject.toml:1:[tool.ruff]
+pyproject.toml:2:target-version = "py312"
+pyproject.toml:13:[tool.ruff.lint]
+pyproject.toml:14:select = ["E", "F", "I", "UP", "B"]
+pyproject.toml:15:ignore = ["E501", "UP046", "UP047"]
+pyproject.toml:17:[tool.ruff.lint.per-file-ignores]
+pyproject.toml:20:"backend/app/shared/snapshots.py" = ["UP038"]
+pyproject.toml:24:ignore_missing_imports = true
+pyproject.toml:25:warn_unused_ignores = false
+=== workflow ruff snippets ===
+9:  quality:
+23:          python -m pip install --upgrade pip
+24:          pip install -r backend/requirements.txt
+25:          pip install -r requirements-legacy.txt
+26:          pip install -r requirements-dev.txt
+27:          pip install pytest
+36:        run: ruff check backend/app tests
+=== CI log ruff snippets ===
+290:quality	Install Python dependencies	2026-06-29T15:16:57.2752881Z Installing collected packages: pytz, pyasn1, websockets, uvloop, tzdata, typing-extensions, structlog, six, rsa, redis, pyyaml, python-multipart, python-dotenv, pycparser, numpy, MarkupSafe, idna, httptools, h11, greenlet, et-xmlfile, dnspython, click, bcrypt, asyncpg, annotated-types, uvicorn, typing-inspection, SQLAlchemy, python-dateutil, pydantic-core, openpyxl, Mako, email-validator, ecdsa, cffi, anyio, watchfiles, starlette, python-jose, pydantic, pandas, cryptography, alembic, pydantic-settings, fastapi
+352:quality	Install Python dependencies	2026-06-29T15:17:09.7558331Z Installing collected packages: Werkzeug, urllib3, PyJWT, lxml, Jinja2, itsdangerous, charset_normalizer, certifi, blinker, requests, python-docx, Flask, cryptography, msal
+359:quality	Install Python dependencies	2026-06-29T15:17:11.7962079Z Collecting ruff==0.11.13 (from -r requirements-dev.txt (line 7))
+363:quality	Install Python dependencies	2026-06-29T15:17:12.0570498Z Installing collected packages: ruff
+381:quality	Install Python dependencies	2026-06-29T15:17:12.8178474Z Installing collected packages: pygments, pluggy, packaging, iniconfig, pytest
+454:quality	Ruff check	﻿2026-06-29T15:17:18.8503456Z ##[group]Run ruff check backend/app tests
+455:quality	Ruff check	2026-06-29T15:17:18.8503735Z ^[[36;1mruff check backend/app tests^[[0m
+466:quality	Ruff check	2026-06-29T15:17:18.8789248Z tests/test_artifacts_contract.py:46:127: UP038 Use `X | Y` in `isinstance` call instead of `(X, Y)`
+471:quality	Ruff check	2026-06-29T15:17:18.8791914Z    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UP038
+476:quality	Ruff check	2026-06-29T15:17:18.8793235Z tests/test_designer_mock_contract.py:72:114: UP038 Use `X | Y` in `isinstance` call instead of `(X, Y)`
+481:quality	Ruff check	2026-06-29T15:17:18.8794838Z    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UP038
+487:quality	Ruff check	2026-06-29T15:17:18.8795868Z tests/test_rag_mcp_mock_contract.py:68:114: UP038 Use `X | Y` in `isinstance` call instead of `(X, Y)`
+492:quality	Ruff check	2026-06-29T15:17:18.8797297Z    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ UP038

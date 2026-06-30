@@ -33,7 +33,7 @@ jobs:
         run: PYTHONPATH=backend python -m pytest -s -q
 
       - name: Ruff check
-        run: ruff check backend/app tests
+        run: python -m ruff check backend tests scripts
 
       - uses: actions/setup-node@v4
         with:

@@ -65,7 +65,7 @@ class RagMcpMockContractTest(unittest.TestCase):
 
             await app(scope, receive, send)
             start = next(message for message in messages if message['type'] == 'http.response.start')
-            body_parts = [message['body'] for message in messages if message['type'] == 'http.response.body' and isinstance(message.get('body'), (bytes, bytearray))]
+            body_parts = [message['body'] for message in messages if message['type'] == 'http.response.body' and isinstance(message.get('body'), bytes | bytearray)]
             return int(start['status']), b''.join(body_parts).decode('utf-8')
 
         return asyncio.run(_invoke())
