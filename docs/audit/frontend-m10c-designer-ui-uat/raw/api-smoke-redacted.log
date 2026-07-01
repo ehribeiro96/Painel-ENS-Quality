@@ -1,0 +1,25 @@
+LOGIN_OK role=ADMIN email=uat.artifact.m7c@ens.edu.br
+designer_health: http=200 rc=0
+designer_templates: http=200 rc=0
+designer_form_options: http=200 rc=0
+create_job: http=200 rc=0
+job_id=32a2c858-612c-5cc7-9900-b0988934798d
+item_id=9437f42e-d1bf-5cc0-8b25-d734ca3ea370
+get_job: http=200 rc=0
+adjust_item: http=200 rc=0
+refresh_item_url: http=200 rc=0
+cancel_job: http=200 rc=0
+download_url_blocked: http=409 rc=0
+{"detail":{"code":"designer_feature_blocked","message":"Download URL requires artifact-backed output and is blocked in this phase","details":{"job_id":"32a2c858-612c-5cc7-9900-b0988934798d","endpoint":"/api/v1/designer/jobs/{job_id}/downloa
+missing_job: http=404 rc=0
+{"detail":{"code":"designer_job_not_found","message":"designer job not found","details":{"job_id":"00000000-0000-0000-0000-000000000000"}}}
+invalid_payload_422: http=422 rc=0
+{"detail":[{"type":"missing","loc":["body","canal"],"msg":"Field required","input":{"template_id":"bad"}},{"type":"missing","loc":["body","kv"],"msg":"Field required","input":{"template_id":"bad"}},{"type":"missing","loc":["body","modo_gera
+create_viewer_user: http=201 rc=0
+viewer_login: http=200 rc=0
+viewer_create_job_forbidden: http=403 rc=0
+{"detail":"permission_denied"}
+unauth_designer_health: http=401 rc=0
+{"detail":"missing_token"}
+bad_login_codes=401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,401,429,429,429,429
+SUMMARY {"login_role": "ADMIN", "health_status": "ok", "deterministic": true, "provider_real_enabled": false, "templates_count": 7, "template_ids": ["01_feed_instagram", "02_story_instagram", "03_banner_interno_desktop", "04_banner_interno_mobile", "05_AIDA_whatsapp", "05_whatsapp", "08_topo_email"], "channels": ["01_feed_instagram", "02_story_instagram", "03_banner_interno_desktop", "04_banner_interno_mobile", "05_AIDA_whatsapp", "05_whatsapp", "08_topo_email"], "kvs": ["graduacao", "imersoes", "institucional", "pos", "qualificacoes", "tudo-sobre-seguros"], "modes": ["peca_unica", "enxoval"], "job_id": "32a2c858-612c-5cc7-9900-b0988934798d", "item_id": "9437f42e-d1bf-5cc0-8b25-d734ca3ea370", "viewer_forbidden": true, "bad_login_last_code": "429"}

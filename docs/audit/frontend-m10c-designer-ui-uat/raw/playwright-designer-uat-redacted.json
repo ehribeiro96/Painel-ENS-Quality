@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "jobId": "32a2c858-612c-5cc7-9900-b0988934798d",
+  "log": [
+    "login_url=http://127.0.0.1:5175/apoema/dashboard",
+    "route_designer_url=http://127.0.0.1:5175/apoema/designer",
+    "route_designer_has_heading=true",
+    "designer_has_mock_copy=true",
+    "designer_has_download_unavailable_copy=true",
+    "designer_has_no_provider_real_copy=true",
+    "route_detalhe_do_job_url=http://127.0.0.1:5175/apoema/designer/jobs/32a2c858-612c-5cc7-9900-b0988934798d",
+    "route_detalhe_do_job_has_heading=true",
+    "job_has_job_id=true",
+    "job_has_internal_path_visible=false",
+    "job_has_storage_path_visible=false",
+    "job_has_download_url_visible=true",
+    "job_adjust_enabled=true",
+    "job_refresh_enabled=true",
+    "job_cancel_enabled=false",
+    "route_designer_url=http://127.0.0.1:5175/apoema-preview/designer",
+    "route_designer_has_heading=true",
+    "preview_has_mock_copy=true",
+    "route_detalhe_do_job_url=http://127.0.0.1:5175/apoema-preview/designer/jobs/32a2c858-612c-5cc7-9900-b0988934798d",
+    "route_detalhe_do_job_has_heading=true",
+    "preview_job_has_job_id=true"
+  ]
+}

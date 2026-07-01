@@ -1,0 +1,14 @@
+check	result	evidence	notes
+no_direct_provider_call	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Sem provider direto
+no_provider_image_secret_visible	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Sem secret visível
+no_vite_secret	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Sem VITE secret
+no_auth_error_fallback_masking	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log	401/403/429 cobertos
+no_cookie_logged	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Sem cookie/token no log
+no_storage_state_committed	PASS	git status	StorageState só em /tmp
+no_download_url_rendered	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	URL sensível não exposta
+no_internal_path_visible	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Sem path interno
+no_storage_path_visible	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Sem storage path
+no_artifact_chat_rag_fake	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Não afirma integrações inexistentes
+backend_designer_used	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log	UI/API usam backend
+missing_token_401	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log	401 confirmado
+no_secret_in_docs	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log; docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Sem segredo real

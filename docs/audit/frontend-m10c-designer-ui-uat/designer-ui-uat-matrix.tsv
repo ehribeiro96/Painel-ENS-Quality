@@ -1,0 +1,17 @@
+check	result	evidence	notes
+route_/apoema/designer	PASS	docs/audit/frontend-m10c-designer-ui-uat/screenshots/designer-page.png	Heading Designer visível
+route_/apoema/designer/jobs/:jobId	PASS	docs/audit/frontend-m10c-designer-ui-uat/screenshots/designer-job-page.png	Job detail renderizado
+route_/apoema-preview/designer	PASS	docs/audit/frontend-m10c-designer-ui-uat/screenshots/designer-preview-page.png	Preview renderizado
+route_/apoema-preview/designer/jobs/:jobId	PASS	docs/audit/frontend-m10c-designer-ui-uat/screenshots/designer-preview-job-page.png	Preview job detail renderizado
+health	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log	HTTP 200
+templates	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log	HTTP 200
+form-options	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log	HTTP 200
+job_create	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log	HTTP 200 via backend-backed UI/API
+job_detail	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log; docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Job id conferido
+item_adjust	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log; docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Botão e endpoint validados
+item_refresh_url	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log; docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Botão e endpoint validados
+job_cancel	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log; docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Endpoint validado; botão UI desabilitado no estado atual
+no_download_url	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log	409 esperado
+no_provider_real	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Texto honesto na UI
+no_artifact_chat_rag_integration	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/playwright-designer-uat-redacted.json	Integrações não expostas
+401_403_404_409_422_429	PASS	docs/audit/frontend-m10c-designer-ui-uat/raw/api-smoke-redacted.log	Cobertura de auth/erro
