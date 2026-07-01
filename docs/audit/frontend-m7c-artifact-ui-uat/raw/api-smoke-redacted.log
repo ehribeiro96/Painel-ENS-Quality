@@ -1,0 +1,11 @@
+login_api: ok
+missing_token_list_status: 401
+list_status: 200 count=9
+detail_status: 200
+download_url_status: 200
+download_fetch_status: 200
+viewer_forbidden_status: 403
+delete_status: 200
+post_delete_status: 404
+unauth_detail_status: 401
+download_url_redacted: [invalid-url]

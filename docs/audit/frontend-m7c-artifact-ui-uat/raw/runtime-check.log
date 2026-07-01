@@ -1,0 +1,5 @@
+Backend / health runtime
+- docker compose -p m7c_uat2 ps: app healthy on 8080, postgres healthy on 5432, redis healthy on 6379
+- GET http://[::1]:8080/health/ready -> 200
+- Vite dev server: http://127.0.0.1:5175/apoema/artifacts -> 200
+- Temporary credential file: /tmp/painel_runtime_h5_credentials.txt (0600)
