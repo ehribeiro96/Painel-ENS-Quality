@@ -1,0 +1,7 @@
+git diff --check: PASS
+pytest -s -q: PASS (348 passed, 22 skipped, 1 warning)
+ruff: PASS
+compileall: PASS
+frontend build: PASS
+docker compose config --services: PASS
+smoke HTTP: PASS (/apoema/chat, /apoema-preview/chat, /login returned 200)
