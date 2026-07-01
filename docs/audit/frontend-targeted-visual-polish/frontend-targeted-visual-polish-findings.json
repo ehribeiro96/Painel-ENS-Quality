@@ -1,0 +1,18 @@
+{
+  "status": "GO",
+  "phase": "targeted_visual_polish_after_qa",
+  "backend_changed": false,
+  "frontend_changed": true,
+  "router_warning_fixed": true,
+  "chat_title_wrap_fixed": true,
+  "login_spacing_polished": true,
+  "artifact_detail_title_checked": true,
+  "mobile_sidebar_checked": true,
+  "qa_429_handled_as_test_artifact": true,
+  "provider_direct_call_found": false,
+  "secrets_found": false,
+  "storage_state_committed": false,
+  "local_gates_ok": true,
+  "push_executed": false,
+  "next_recommended_phase": "OPERATE_NORMALLY"
+}

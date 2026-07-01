@@ -1,0 +1,39 @@
+{
+  "desktop": {
+    "viewport": "desktop-1920",
+    "page_errors": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    ],
+    "console_warnings": [],
+    "failed_requests": [],
+    "routes": [
+      "/apoema",
+      "/apoema/chat",
+      "/apoema/artifacts",
+      "/apoema/artifacts/14e5339f-c893-49fa-91df-b46e65d8740e",
+      "/apoema/rag",
+      "/apoema/designer",
+      "/apoema-preview",
+      "/apoema-preview/chat",
+      "/apoema-preview/rag",
+      "/apoema-preview/designer"
+    ]
+  },
+  "mobile": {
+    "viewport": "mobile-390",
+    "page_errors": [],
+    "console_errors": [
+      "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+    ],
+    "console_warnings": [],
+    "failed_requests": [],
+    "routes": [
+      "/apoema",
+      "/apoema/chat",
+      "/apoema/artifacts",
+      "/apoema/rag",
+      "/apoema/designer"
+    ]
+  }
+}

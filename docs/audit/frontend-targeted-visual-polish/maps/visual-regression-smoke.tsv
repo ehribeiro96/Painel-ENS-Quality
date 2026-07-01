@@ -1,0 +1,15 @@
+viewport	route	status	evidence	note
+desktop-1920	/login	pass	docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop-1920__login-before-auth__above.png	Login mais compacto; sem alteração de fluxo.
+desktop-1920	/apoema	pass	docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop__apoema__above.png	Home principal preservada.
+desktop-1920	/apoema/chat	pass	docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop__chat__above.png	“Conversas” permanece íntegro.
+desktop-1920	/apoema/artifacts	pass	docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop__artifacts__above.png	Conteúdo estável.
+desktop-1920	/apoema/artifacts/:id	pass	docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop__artifact-detail__above.png	Título e metadata sem sobreposição.
+desktop-1920	/apoema/rag	pass	docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop__rag__above.png	Não houve regressão visual.
+desktop-1920	/apoema/designer	pass	docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop__designer__above.png	Não houve regressão visual.
+desktop-1920	/apoema-preview	pass	docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop__preview__above.png	Preview continua acessível.
+mobile-390	/login	pass	docs/audit/frontend-targeted-visual-polish/screenshots/mobile-390/mobile-390__login-before-auth__above.png	Painéis mais compactos.
+mobile-390	/apoema	pass	docs/audit/frontend-targeted-visual-polish/screenshots/mobile-390/mobile__apoema__above.png	Navegação legível.
+mobile-390	/apoema/chat	pass	docs/audit/frontend-targeted-visual-polish/screenshots/mobile-390/mobile__chat__above.png	Chat segue legível em mobile.
+mobile-390	/apoema/artifacts	pass	docs/audit/frontend-targeted-visual-polish/screenshots/mobile-390/mobile__artifacts__above.png	Artefatos continuam navegáveis.
+mobile-390	/apoema/rag	pass	docs/audit/frontend-targeted-visual-polish/screenshots/mobile-390/mobile__rag__above.png	RAG sem regressão visual.
+mobile-390	/apoema/designer	pass	docs/audit/frontend-targeted-visual-polish/screenshots/mobile-390/mobile__designer__above.png	Designer sem regressão visual.

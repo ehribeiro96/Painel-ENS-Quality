@@ -1,0 +1,8 @@
+finding_id	status	resolution	evidence	note
+P2-A	closed	test harness serializado; 401 do login é bootstrap esperado, sem impacto visual/docs/review	docs/audit/frontend-targeted-visual-polish/raw/visual-polish-console-network.log; docs/audit/frontend-targeted-visual-polish/raw/visual-polish-smoke.json	O 429 da varredura longa foi tratado como artefato de teste, não como regressão de UI.
+P3-A	closed	Route wildcard aplicado em /apoema e /apoema-preview	frontend/itam-platform/src/App.tsx	Warning do React Router removido no smoke reduzido.
+P3-B	closed	Route wildcard aplicado em /apoema e /apoema-preview	frontend/itam-platform/src/App.tsx	Preview segue funcionando como antes.
+P3-C	closed	Cabeçalho do chat ganhou espaço e o título “Conversas” não quebra mais	frontend/itam-platform/src/apoema/styles/apoema.css; docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop__chat__above.png	Layout do chat permanece funcional.
+P3-D	closed	Login compactado sem alterar autenticação real	frontend/itam-platform/src/styles.css; docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop-1920__login-before-auth__above.png	O formulário continua íntegro e com menos espaço morto.
+P3-E	closed	Título do detalhe do artefato foi validado com wrapping mais seguro	frontend/itam-platform/src/apoema/styles/apoema.css; docs/audit/frontend-targeted-visual-polish/screenshots/desktop-1920/desktop__artifact-detail__above.png	Sem sobreposição visual observada.
+P3-F	closed	Sidebar mobile validada em navegação reduzida	docs/audit/frontend-targeted-visual-polish/screenshots/mobile-390/mobile__apoema__above.png	Funcional e navegável sem nova estrutura de shell.

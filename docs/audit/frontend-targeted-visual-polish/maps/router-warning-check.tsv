@@ -1,0 +1,3 @@
+route	console_warning	status	evidence	note
+/apoema	none	pass	docs/audit/frontend-targeted-visual-polish/raw/visual-polish-console-network.log	Route pai sem warning após remoção das rotas sem wildcard.
+/apoema-preview	none	pass	docs/audit/frontend-targeted-visual-polish/raw/visual-polish-console-network.log	Preview também ficou sem warning de `useRoutes`.
