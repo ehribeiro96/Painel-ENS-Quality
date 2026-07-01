@@ -1,87 +1,140 @@
 import { useEffect, useMemo, useState } from "react";
-import { BookOpen, RotateCcw, Search, ShieldAlert } from "lucide-react";
+import { Link } from "react-router-dom";
+import { BookOpen, RefreshCcw, Search, ShieldAlert } from "lucide-react";
+import { RagCollectionFilter } from "../components/RagCollectionFilter";
+import { RagSearchResults } from "../components/RagSearchResults";
 import { StatusPill } from "../components/StatusPill";
-import { getRagCourseContext, getRagRecentAudit, listRagCollections, searchRag } from "../lib/apoemaRagApi";
 import { ApoemaApiError } from "../types";
+import { getRagAuditRecent, getRagCollections, getRagCourseContext, searchRag } from "../lib/apoemaRagApi";
 import { useAuth } from "@/lib/auth";
-import type { ApoemaRagAuditEntry, ApoemaRagCollection, ApoemaRagCourseContext, ApoemaRagSearchResult } from "../lib/apoemaRagApi";
+import type { RagCollectionId } from "../types";
+import type { RagAuditEntry, RagCollection, RagCourseContext, RagSearchResult } from "../lib/apoemaRagApi";
 
-type PageState = "loading" | "ready" | "empty" | "unauthorized" | "unavailable" | "error";
+type CollectionState = "loading" | "ready" | "empty" | "unauthorized" | "forbidden" | "unavailable" | "error";
+type SearchState = "idle" | "loading" | "ready" | "empty" | "unauthorized" | "forbidden" | "not_found" | "expired" | "rate_limited" | "unavailable" | "error";
+type BannerTone = "warning" | "danger" | "success";
 
 type Banner = {
   title: string;
   message: string;
-  tone: "warning" | "danger" | "success";
+  tone: BannerTone;
 };
+
+function formatDate(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "data indisponível";
+  }
+  return date.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+}
 
 function describeError(error: unknown, resource: string): Banner {
   if (error instanceof ApoemaApiError) {
     if (error.kind === "auth_required") return { tone: "danger", title: "Sessão necessária", message: `Faça login novamente para acessar ${resource}.` };
     if (error.kind === "forbidden") return { tone: "danger", title: "Sem permissão", message: `Seu perfil não tem permissão para consultar ${resource}.` };
-    if (error.kind === "network_unavailable") return { tone: "warning", title: "Backend indisponível", message: `Não foi possível alcançar ${resource} em /api/v1.` };
+    if (error.kind === "not_found") return { tone: "warning", title: "Recurso não encontrado", message: `O backend não retornou ${resource}.` };
+    if (error.kind === "expired") return { tone: "warning", title: "Recurso expirado", message: `O backend informou que ${resource} não está mais disponível.` };
+    if (error.kind === "rate_limited") return { tone: "warning", title: "Limite atingido", message: `Espere alguns instantes para consultar ${resource} novamente.` };
+    if (error.kind === "network_unavailable") return { tone: "warning", title: "Backend indisponível", message: `Falha de rede ao consultar ${resource}.` };
     return { tone: "danger", title: "Erro da API", message: error.message };
   }
   return { tone: "danger", title: "Erro inesperado", message: `Falha ao consultar ${resource}.` };
 }
 
-function stateFromError(error: unknown): PageState {
+function collectionStateFromError(error: unknown): CollectionState {
   if (error instanceof ApoemaApiError) {
-    if (error.kind === "auth_required" || error.kind === "forbidden") return "unauthorized";
+    if (error.kind === "auth_required") return "unauthorized";
+    if (error.kind === "forbidden") return "forbidden";
     if (error.kind === "network_unavailable") return "unavailable";
   }
   return "error";
 }
 
-function formatDate(value: string) {
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "data indisponível";
-  return date.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+function searchStateFromError(error: unknown): SearchState {
+  if (error instanceof ApoemaApiError) {
+    if (error.kind === "auth_required") return "unauthorized";
+    if (error.kind === "forbidden") return "forbidden";
+    if (error.kind === "not_found") return "not_found";
+    if (error.kind === "expired") return "expired";
+    if (error.kind === "rate_limited") return "rate_limited";
+    if (error.kind === "network_unavailable") return "unavailable";
+  }
+  return "error";
 }
 
 export function RagPage() {
   const { token } = useAuth();
-  const [collections, setCollections] = useState<ApoemaRagCollection[]>([]);
-  const [selectedCollection, setSelectedCollection] = useState("");
-  const [query, setQuery] = useState("política de matrícula");
-  const [results, setResults] = useState<ApoemaRagSearchResult[]>([]);
-  const [courseContext, setCourseContext] = useState<ApoemaRagCourseContext | null>(null);
-  const [auditEntries, setAuditEntries] = useState<ApoemaRagAuditEntry[]>([]);
-  const [state, setState] = useState<PageState>("loading");
-  const [searchState, setSearchState] = useState<PageState>("empty");
+  const [collections, setCollections] = useState<RagCollection[]>([]);
+  const [collectionsState, setCollectionsState] = useState<CollectionState>("loading");
+  const [selectedCollections, setSelectedCollections] = useState<RagCollectionId[]>([]);
+  const [query, setQuery] = useState("política institucional");
+  const [results, setResults] = useState<RagSearchResult[]>([]);
+  const [searchState, setSearchState] = useState<SearchState>("idle");
+  const [courseContext, setCourseContext] = useState<RagCourseContext | null>(null);
+  const [courseState, setCourseState] = useState<CollectionState>("loading");
+  const [courseBanner, setCourseBanner] = useState<Banner | null>(null);
+  const [auditEntries, setAuditEntries] = useState<RagAuditEntry[]>([]);
+  const [auditState, setAuditState] = useState<CollectionState>("loading");
+  const [auditBanner, setAuditBanner] = useState<Banner | null>(null);
   const [banner, setBanner] = useState<Banner | null>(null);
 
   const selectedCollectionLabel = useMemo(() => {
-    return collections.find((collection) => collection.id === selectedCollection)?.label ?? "Todas as collections";
-  }, [collections, selectedCollection]);
+    if (selectedCollections.length === 0) {
+      return "Todas as collections";
+    }
+    if (selectedCollections.length === 1) {
+      return collections.find((collection) => collection.id === selectedCollections[0])?.label ?? "Collection selecionada";
+    }
+    return `${selectedCollections.length} collections selecionadas`;
+  }, [collections, selectedCollections]);
 
   async function reload(guard: () => boolean = () => true) {
-    setState("loading");
+    setCollectionsState("loading");
+    setCourseState("loading");
+    setAuditState("loading");
+    setCourseBanner(null);
+    setAuditBanner(null);
     setBanner(null);
+
+    const collectionPromise = getRagCollections(token);
+    const coursePromise = getRagCourseContext("apoema-onboarding", token);
+    const auditPromise = getRagAuditRecent(8, token);
+
     try {
-      const [collectionResult, contextResult] = await Promise.all([
-        listRagCollections(token),
-        getRagCourseContext("apoema-onboarding", token).catch((error: unknown) => {
-          setBanner(describeError(error, "contexto de curso"));
-          return null;
-        }),
-      ]);
-      let auditResult: ApoemaRagAuditEntry[] = [];
-      try {
-        auditResult = (await getRagRecentAudit(token)).items;
-      } catch (error) {
-        setBanner(describeError(error, "auditoria RAG"));
-      }
+      const collectionResult = await collectionPromise;
       if (!guard()) return;
       setCollections(collectionResult);
-      setSelectedCollection((current) => current || collectionResult[0]?.id || "");
-      setCourseContext(contextResult);
-      setAuditEntries(auditResult);
-      setState(collectionResult.length > 0 ? "ready" : "empty");
+      setCollectionsState(collectionResult.length > 0 ? "ready" : "empty");
+      setSelectedCollections((current) => current.filter((collectionId) => collectionResult.some((item) => item.id === collectionId)));
     } catch (error) {
       if (!guard()) return;
       setCollections([]);
-      setState(stateFromError(error));
-      setBanner(describeError(error, "RAG mock"));
+      setCollectionsState(collectionStateFromError(error));
+      setBanner(describeError(error, "catalogo RAG"));
+    }
+
+    try {
+      const contextResult = await coursePromise;
+      if (!guard()) return;
+      setCourseContext(contextResult);
+      setCourseState("ready");
+    } catch (error) {
+      if (!guard()) return;
+      setCourseContext(null);
+      setCourseState(collectionStateFromError(error));
+      setCourseBanner(describeError(error, "contexto de curso"));
+    }
+
+    try {
+      const auditResult = await auditPromise;
+      if (!guard()) return;
+      setAuditEntries(auditResult.items);
+      setAuditState(auditResult.items.length > 0 ? "ready" : "empty");
+    } catch (error) {
+      if (!guard()) return;
+      setAuditEntries([]);
+      setAuditState(collectionStateFromError(error));
+      setAuditBanner(describeError(error, "auditoria recente"));
     }
   }
 
@@ -95,33 +148,51 @@ export function RagPage() {
 
   async function handleSearch() {
     const normalized = query.trim();
-    if (!normalized) return;
+    if (!normalized) {
+      setBanner({ tone: "warning", title: "Consulta vazia", message: "Digite um termo para consultar o backend RAG." });
+      return;
+    }
+
     setSearchState("loading");
     setBanner(null);
     try {
-      const collectionIds = selectedCollection ? [selectedCollection] : [];
-      const result = await searchRag(normalized, collectionIds, token);
+      const result = await searchRag({ query: normalized, collections: selectedCollections, limit: 8 }, token);
       setResults(result.items);
       setSearchState(result.items.length > 0 ? "ready" : "empty");
     } catch (error) {
       setResults([]);
-      setSearchState(stateFromError(error));
-      setBanner(describeError(error, "pesquisa RAG"));
+      setSearchState(searchStateFromError(error));
+      setBanner(describeError(error, "busca RAG"));
+    }
+  }
+
+  async function handleCopyReference(reference: string) {
+    try {
+      await navigator.clipboard.writeText(reference);
+      setBanner({ tone: "success", title: "Referência copiada", message: "A referência segura do documento foi copiada para a área de transferência." });
+    } catch {
+      setBanner({ tone: "warning", title: "Não foi possível copiar", message: "Seu navegador bloqueou o acesso à área de transferência." });
     }
   }
 
   return (
-    <div className="apoema-page apoema-stub-page">
+    <div className="apoema-page apoema-rag-page">
       <section className="apoema-page-top">
         <div>
           <StatusPill tone="warning">Mock determinístico</StatusPill>
-          <h1>RAG MCP Mock</h1>
-          <p>Consulta determinística backend-owned para collections, busca, contexto de curso e auditoria recente via /api/v1.</p>
+          <h1>RAG Institucional</h1>
+          <p>Busca read-only em collections institucionais via backend. RAG MCP Mock mantido para validação do contrato.</p>
         </div>
-        <button type="button" className="apoema-secondary-button" onClick={() => void reload()}>
-          <RotateCcw size={16} />
-          Recarregar
-        </button>
+        <div className="apoema-rag-page-actions">
+          <Link className="apoema-secondary-button" to="courses/apoema-onboarding">
+            <BookOpen size={16} />
+            Ver contexto de curso
+          </Link>
+          <button type="button" className="apoema-secondary-button" onClick={() => void reload()}>
+            <RefreshCcw size={16} />
+            Recarregar
+          </button>
+        </div>
       </section>
 
       <div className="apoema-warning is-warning">
@@ -132,7 +203,7 @@ export function RagPage() {
         </div>
       </div>
 
-      {banner && (
+      {banner ? (
         <div className={`apoema-warning ${banner.tone === "danger" ? "is-danger" : "is-warning"}`}>
           <ShieldAlert size={16} />
           <div>
@@ -140,110 +211,190 @@ export function RagPage() {
             <p>{banner.message}</p>
           </div>
         </div>
-      )}
+      ) : null}
 
-      <section className="apoema-stub-grid">
-        <article className="apoema-panel">
+      <section className="apoema-rag-layout">
+        <div className="apoema-panel">
           <div className="apoema-section-head">
             <div>
-              <StatusPill tone="info">Collections</StatusPill>
-              <h2>Catálogo backend</h2>
-            </div>
-            <span>{state}</span>
-          </div>
-          {state === "loading" && <div className="apoema-empty-state">Carregando collections...</div>}
-          {state === "empty" && <div className="apoema-empty-state"><strong>Nenhuma collection</strong><p>O backend retornou catálogo vazio.</p></div>}
-          {state === "unauthorized" && <div className="apoema-empty-state"><strong>Sessão/permissão necessária</strong><p>Chamada recusada pelo backend.</p></div>}
-          {state === "unavailable" && <div className="apoema-empty-state"><strong>Backend indisponível</strong><p>Sem fallback falso local.</p></div>}
-          {state === "error" && <div className="apoema-empty-state"><strong>Erro operacional</strong><p>Falha ao carregar collections.</p></div>}
-          {collections.length > 0 && (
-            <div className="apoema-card-list">
-              {collections.map((collection) => (
-                <button key={collection.id} type="button" className={`apoema-stub-card ${selectedCollection === collection.id ? "is-active" : ""}`} onClick={() => setSelectedCollection(collection.id)}>
-                  <strong>{collection.label}</strong>
-                  <span>{collection.description}</span>
-                  <small>{collection.document_count} docs · {formatDate(collection.updated_at)}</small>
-                </button>
-              ))}
-            </div>
-          )}
-        </article>
-
-        <article className="apoema-panel">
-          <div className="apoema-section-head">
-            <div>
-              <StatusPill tone="warning">Busca mock</StatusPill>
-              <h2>Pesquisar contexto</h2>
+              <StatusPill tone="info">Collections backend</StatusPill>
+              <h2>Escopo e consulta</h2>
             </div>
             <span>{selectedCollectionLabel}</span>
           </div>
-          <div className="apoema-form-stack">
-            <label className="apoema-field">Collection
-              <select value={selectedCollection} onChange={(event) => setSelectedCollection(event.target.value)}>
-                <option value="">Todas</option>
-                {collections.map((collection) => <option key={collection.id} value={collection.id}>{collection.label}</option>)}
-              </select>
+
+          {collectionsState === "loading" ? <div className="apoema-empty-state">Carregando catálogo RAG...</div> : null}
+          {collectionsState === "empty" ? (
+            <div className="apoema-empty-state">
+              <strong>Nenhuma collection</strong>
+              <p>O backend respondeu catálogo vazio.</p>
+            </div>
+          ) : null}
+          {collectionsState === "unauthorized" ? (
+            <div className="apoema-empty-state">
+              <strong>Sessão necessária</strong>
+              <p>Faça login novamente para consultar o catálogo RAG.</p>
+            </div>
+          ) : null}
+          {collectionsState === "forbidden" ? (
+            <div className="apoema-empty-state">
+              <strong>Sem permissão</strong>
+              <p>Seu perfil não tem acesso ao catálogo RAG.</p>
+            </div>
+          ) : null}
+          {collectionsState === "unavailable" ? (
+            <div className="apoema-empty-state">
+              <strong>Backend indisponível</strong>
+              <p>A interface não oferece fallback falso para o catálogo.</p>
+            </div>
+          ) : null}
+          {collectionsState === "error" ? (
+            <div className="apoema-empty-state">
+              <strong>Erro operacional</strong>
+              <p>Falha ao carregar o catálogo RAG.</p>
+            </div>
+          ) : null}
+
+          {collections.length > 0 ? (
+            <RagCollectionFilter
+              collections={collections}
+              selectedCollections={selectedCollections}
+              onChange={setSelectedCollections}
+              loading={collectionsState === "loading"}
+              error={collectionsState === "error" ? "Não foi possível recuperar o catálogo de collections." : null}
+            />
+          ) : null}
+
+          <form
+            className="apoema-rag-search-form"
+            onSubmit={(event) => {
+              event.preventDefault();
+              void handleSearch();
+            }}
+          >
+            <label className="apoema-field">
+              Buscar no RAG
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Ex.: política institucional, onboarding, segurança"
+              />
             </label>
-            <label className="apoema-field">Termo de busca
-              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Buscar nos documentos mock" />
-            </label>
-            <button type="button" className="apoema-primary-button" onClick={() => void handleSearch()}>
+            <button type="submit" className="apoema-primary-button" disabled={searchState === "loading"}>
               <Search size={16} />
-              Pesquisar
+              {searchState === "loading" ? "Buscando..." : "Buscar"}
             </button>
-          </div>
-        </article>
-      </section>
-
-      <section className="apoema-panel">
-        <div className="apoema-section-head">
-          <div>
-            <StatusPill tone="info">Resultados</StatusPill>
-            <h2>Citações mockadas</h2>
-          </div>
-          <span>{searchState}</span>
+          </form>
         </div>
-        {searchState === "loading" && <div className="apoema-empty-state">Pesquisando no backend...</div>}
-        {searchState === "empty" && <div className="apoema-empty-state"><strong>Nenhum resultado ainda</strong><p>Execute uma busca para ver citações determinísticas.</p></div>}
-        {(searchState === "unauthorized" || searchState === "unavailable" || searchState === "error") && <div className="apoema-empty-state"><strong>Busca indisponível</strong><p>O backend não retornou resultados válidos.</p></div>}
-        {results.length > 0 && (
-          <div className="apoema-card-list">
-            {results.map((item) => (
-              <article key={item.document.document_id} className="apoema-stub-card">
-                <div className="apoema-card-headline">
+
+        <aside className="apoema-rag-sidepanels">
+          <section className="apoema-panel">
+            <div className="apoema-section-head">
+              <div>
+                <StatusPill tone="info">Contexto de curso</StatusPill>
+                <h2>apoema-onboarding</h2>
+              </div>
+              <span>{courseState === "ready" ? "backend-backed" : courseState}</span>
+            </div>
+          {courseState === "ready" && courseContext ? (
+            <div className="apoema-rag-sidecard">
+              <strong>{courseContext.title}</strong>
+              <p>{courseContext.summary}</p>
+              <small>Público: {courseContext.audience}</small>
+                <ul className="apoema-rag-bullet-list">
+                  {courseContext.recommendations.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <Link className="apoema-secondary-button" to={`courses/${courseContext.course_id}`}>
                   <BookOpen size={16} />
-                  <strong>{item.document.title}</strong>
-                  <StatusPill tone="warning">score {item.score}</StatusPill>
+                  Abrir contexto
+                </Link>
+              </div>
+            ) : (
+              <>
+                {courseBanner ? (
+                  <div className={`apoema-warning ${courseBanner.tone === "danger" ? "is-danger" : "is-warning"}`}>
+                    <ShieldAlert size={16} />
+                    <div>
+                      <strong>{courseBanner.title}</strong>
+                      <p>{courseBanner.message}</p>
+                    </div>
+                  </div>
+                ) : null}
+                <div className="apoema-empty-state">
+                  <strong>Contexto indisponível</strong>
+                  <p>O backend ainda não respondeu o contexto de curso.</p>
                 </div>
-                <p>{item.document.summary}</p>
-                <small>Collection {item.document.collection} · Fonte mock: {item.document.citation}</small>
-              </article>
-            ))}
-          </div>
-        )}
+              </>
+            )}
+          </section>
+
+          <section className="apoema-panel">
+            <div className="apoema-section-head">
+              <div>
+                <StatusPill tone="warning">Auditoria recente</StatusPill>
+                <h2>Eventos RAG</h2>
+              </div>
+              <span>{auditState === "ready" ? `${auditEntries.length} evento(s)` : auditState}</span>
+            </div>
+            {auditState === "ready" ? (
+              <div className="apoema-rag-audit-list">
+                {auditEntries.map((entry) => (
+                  <article key={entry.event_id} className="apoema-rag-audit-item">
+                    <strong>{entry.event_type}</strong>
+                    <span>{entry.result}</span>
+                    <small>
+                      {entry.actor_role} · {entry.collection ?? "sem collection"} · {formatDate(entry.occurred_at)}
+                    </small>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <>
+                {auditBanner ? (
+                  <div className={`apoema-warning ${auditBanner.tone === "danger" ? "is-danger" : "is-warning"}`}>
+                    <ShieldAlert size={16} />
+                    <div>
+                      <strong>{auditBanner.title}</strong>
+                      <p>{auditBanner.message}</p>
+                    </div>
+                  </div>
+                ) : null}
+                <div className="apoema-empty-state">
+                  <strong>Auditoria indisponível</strong>
+                  <p>O endpoint pode exigir perfil ADMIN/MANAGER.</p>
+                </div>
+              </>
+            )}
+          </section>
+        </aside>
       </section>
 
-      <section className="apoema-stub-grid">
-        <article className="apoema-panel">
-          <StatusPill tone="info">Contexto de curso</StatusPill>
-          <h2>{courseContext?.title ?? "Contexto controlado"}</h2>
-          <p>{courseContext?.summary ?? "Contexto de curso exemplo indisponível no momento."}</p>
-          {courseContext && <small>Público: {courseContext.audience} · {formatDate(courseContext.updated_at)}</small>}
-        </article>
-        <article className="apoema-panel">
-          <StatusPill tone="warning">Auditoria recente</StatusPill>
-          <div className="apoema-card-list">
-            {auditEntries.length === 0 && <div className="apoema-empty-state"><strong>Sem eventos visíveis</strong><p>Auditoria pode exigir perfil ADMIN/MANAGER.</p></div>}
-            {auditEntries.map((entry) => (
-              <div key={entry.event_id} className="apoema-stub-card">
-                <strong>{entry.event_type}</strong>
-                <span>{entry.result}</span>
-                <small>{entry.actor_role} · {formatDate(entry.occurred_at)}</small>
-              </div>
-            ))}
-          </div>
-        </article>
-      </section>
+      <RagSearchResults
+        results={results}
+        loading={searchState === "loading"}
+        error={
+          searchState === "unauthorized"
+            ? "Sua sessão expirou ou não foi autenticada."
+            : searchState === "forbidden"
+              ? "Você não tem permissão para consultar o RAG."
+              : searchState === "not_found"
+                ? "Resultado ou documento não encontrado."
+                : searchState === "expired"
+                  ? "Este recurso não está mais disponível."
+                  : searchState === "rate_limited"
+                    ? "Limite de consultas atingido. Tente novamente mais tarde."
+                    : searchState === "unavailable"
+                      ? "Falha de rede ao consultar o RAG."
+                      : searchState === "error"
+                        ? "Backend RAG indisponível."
+                        : null
+        }
+        query={query.trim()}
+        toDocumentPath={(documentId) => `documents/${documentId}`}
+        onCopyReference={handleCopyReference}
+      />
     </div>
   );
 }

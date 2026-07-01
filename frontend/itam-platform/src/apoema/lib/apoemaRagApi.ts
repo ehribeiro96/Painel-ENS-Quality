@@ -1,10 +1,10 @@
-import { ApoemaApiError } from "../types";
-import type { ApoemaApiErrorKind } from "../types";
+import { RagApiError } from "../types";
+import type { RagCollectionId, RagErrorCode } from "../types";
 
 const API_BASE = "/api/v1";
 
-export interface ApoemaRagCollection {
-  id: string;
+export interface RagCollection {
+  id: RagCollectionId;
   label: string;
   description: string;
   document_count: number;
@@ -12,9 +12,15 @@ export interface ApoemaRagCollection {
   updated_at: string;
 }
 
-export interface ApoemaRagDocument {
+export interface RagSearchRequest {
+  query: string;
+  collections?: RagCollectionId[];
+  limit?: number;
+}
+
+export interface RagDocument {
   document_id: string;
-  collection: string;
+  collection: RagCollectionId;
   title: string;
   summary: string;
   citation: string;
@@ -23,23 +29,23 @@ export interface ApoemaRagDocument {
   updated_at: string;
 }
 
-export interface ApoemaRagSearchResult {
-  document: ApoemaRagDocument;
+export interface RagSearchResult {
+  document: RagDocument;
   score: number;
   matched_terms: string[];
 }
 
-export interface ApoemaRagSearchResponse {
+export interface RagSearchResponse {
   query: string;
-  collections: string[];
+  collections: RagCollectionId[];
   limit: number;
   total: number;
-  items: ApoemaRagSearchResult[];
+  items: RagSearchResult[];
 }
 
-export interface ApoemaRagCourseContext {
+export interface RagCourseContext {
   course_id: string;
-  collection: string;
+  collection: RagCollectionId;
   title: string;
   summary: string;
   audience: string;
@@ -48,11 +54,11 @@ export interface ApoemaRagCourseContext {
   updated_at: string;
 }
 
-export interface ApoemaRagAuditEntry {
+export interface RagAuditEntry {
   event_id: string;
   event_type: string;
   actor_role: string;
-  collection: string | null;
+  collection: RagCollectionId | null;
   document_id: string | null;
   course_id: string | null;
   result: string;
@@ -60,30 +66,49 @@ export interface ApoemaRagAuditEntry {
   details: Record<string, unknown>;
 }
 
-export interface ApoemaRagAuditRecentResponse {
-  items: ApoemaRagAuditEntry[];
+export interface RagAuditRecentResponse {
+  items: RagAuditEntry[];
   total: number;
 }
 
-function classifyStatus(status: number): ApoemaApiErrorKind {
+function classifyStatus(status: number): RagErrorCode {
   if (status === 401) return "auth_required";
   if (status === 403) return "forbidden";
+  if (status === 404) return "not_found";
+  if (status === 410) return "expired";
   if (status === 422) return "validation_error";
+  if (status === 429) return "rate_limited";
   if (status >= 500 && status < 600) return "backend_error";
   return "unknown_api_error";
 }
 
+function normalizeDetail(value: unknown): string | null {
+  if (value === null || value === undefined) {
+    return null;
+  }
+  if (typeof value === "string") {
+    return value;
+  }
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
+  }
+}
+
 function extractMessage(details: unknown, status: number): string {
   if (details && typeof details === "object" && "detail" in details) {
-    const detail = (details as { detail?: unknown }).detail;
-    if (typeof detail === "string" && detail.trim()) return detail;
+    const detail = normalizeDetail((details as { detail?: unknown }).detail);
+    if (detail) return detail;
   }
   return `API ${status}`;
 }
 
 async function requestJson<T>(path: string, init: RequestInit = {}, token?: string | null): Promise<T> {
   const headers = new Headers(init.headers);
-  if (init.body && !headers.has("content-type")) headers.set("content-type", "application/json");
+  if (init.body && !(init.body instanceof FormData) && !headers.has("content-type")) {
+    headers.set("content-type", "application/json");
+  }
   if (token) headers.set("authorization", `Bearer ${token}`);
 
   try {
@@ -103,39 +128,55 @@ async function requestJson<T>(path: string, init: RequestInit = {}, token?: stri
           details = rawText;
         }
       }
-      throw new ApoemaApiError(extractMessage(details, response.status), classifyStatus(response.status), response.status, details);
+      throw new RagApiError(extractMessage(details, response.status), classifyStatus(response.status), response.status, details);
+    }
+
+    if (response.status === 204) {
+      return undefined as T;
     }
 
     return (await response.json()) as T;
   } catch (error) {
-    if (error instanceof ApoemaApiError) throw error;
-    throw new ApoemaApiError("Backend indisponível por falha de rede.", "network_unavailable", undefined, error);
+    if (error instanceof RagApiError) throw error;
+    throw new RagApiError("Falha de rede ao consultar o RAG.", "network_unavailable", undefined, error);
   }
 }
 
-export function listRagCollections(token?: string | null) {
-  return requestJson<ApoemaRagCollection[]>("/rag/collections", {}, token);
+export function getRagCollections(token?: string | null) {
+  return requestJson<RagCollection[]>("/rag/collections", {}, token);
 }
 
-export function searchRag(query: string, collections: string[], token?: string | null) {
-  return requestJson<ApoemaRagSearchResponse>(
+export function listRagCollections(token?: string | null) {
+  return getRagCollections(token);
+}
+
+export function searchRag(payload: RagSearchRequest, token?: string | null) {
+  return requestJson<RagSearchResponse>(
     "/rag/search",
     {
       method: "POST",
-      body: JSON.stringify({ query, collections, limit: 5 }),
+      body: JSON.stringify({
+        query: payload.query,
+        collections: payload.collections ?? [],
+        limit: payload.limit ?? 10,
+      }),
     },
     token,
   );
 }
 
 export function getRagDocument(documentId: string, token?: string | null) {
-  return requestJson<ApoemaRagDocument>(`/rag/documents/${encodeURIComponent(documentId)}`, {}, token);
+  return requestJson<RagDocument>(`/rag/documents/${encodeURIComponent(documentId)}`, {}, token);
 }
 
 export function getRagCourseContext(courseId: string, token?: string | null) {
-  return requestJson<ApoemaRagCourseContext>(`/rag/course-context/${encodeURIComponent(courseId)}`, {}, token);
+  return requestJson<RagCourseContext>(`/rag/course-context/${encodeURIComponent(courseId)}`, {}, token);
+}
+
+export function getRagAuditRecent(limit = 8, token?: string | null) {
+  return requestJson<RagAuditRecentResponse>(`/rag/audit/recent?limit=${encodeURIComponent(String(limit))}`, {}, token);
 }
 
 export function getRagRecentAudit(token?: string | null) {
-  return requestJson<ApoemaRagAuditRecentResponse>("/rag/audit/recent?limit=8", {}, token);
+  return getRagAuditRecent(8, token);
 }

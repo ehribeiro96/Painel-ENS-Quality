@@ -14,6 +14,8 @@ import { ChatPage } from "./pages/ChatPage";
 import { ArtifactsPage } from "./pages/ArtifactsPage";
 import { ArtifactDetailPage } from "./pages/ArtifactDetailPage";
 import { RagPage } from "./pages/RagPage";
+import { RagDocumentPage } from "./pages/RagDocumentPage";
+import { RagCourseContextPage } from "./pages/RagCourseContextPage";
 import { DesignerPage } from "./pages/DesignerPage";
 import { IntegrationsPage } from "./pages/IntegrationsPage";
 import { UserDetailsPage } from "./pages/UserDetailsPage";
@@ -121,6 +123,8 @@ export function ApoemaApp() {
           <Route path="artifacts" element={<ArtifactsPage />} />
           <Route path="artifacts/:artifactId" element={<ArtifactDetailPage />} />
           <Route path="rag" element={<RagPage />} />
+          <Route path="rag/documents/:documentId" element={<RagDocumentPage />} />
+          <Route path="rag/courses/:courseId" element={<RagCourseContextPage />} />
           <Route path="designer" element={<DesignerPage />} />
           <Route path="integrations" element={<IntegrationsPage />} />
           <Route path="settings" element={<SettingsPage />} />

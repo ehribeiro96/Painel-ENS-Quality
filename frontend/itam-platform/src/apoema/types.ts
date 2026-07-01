@@ -56,6 +56,8 @@ export interface ApoemaConversation {
   updatedAt: string;
 }
 
+export type RagCollectionId = "courses" | "institutional" | "marketing" | "insights";
+
 export type AiChatProviderId = ApoemaProviderId;
 export type AiChatProviderStatus = ApoemaProviderStatus;
 export type AiChatErrorCode = ApoemaApiErrorKind;
@@ -168,6 +170,8 @@ export type ApoemaApiErrorKind =
   | "network_unavailable"
   | "unknown_api_error";
 
+export type RagErrorCode = ApoemaApiErrorKind;
+
 export class ApoemaApiError extends Error {
   readonly kind: ApoemaApiErrorKind;
   readonly status?: number;
@@ -183,6 +187,8 @@ export class ApoemaApiError extends Error {
 }
 
 export class AiChatApiError extends ApoemaApiError {}
+
+export class RagApiError extends ApoemaApiError {}
 
 export type ApoemaProviderLoadResult =
   | {
