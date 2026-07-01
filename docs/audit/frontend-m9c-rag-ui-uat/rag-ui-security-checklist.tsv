@@ -1,0 +1,17 @@
+check	result	evidence	notes
+no_direct_mcp_call	pass	test_apoema_rag_ui_contract.py and UI grep	no direct MCP call in frontend
+no_direct_vector_call	pass	test_apoema_rag_ui_contract.py and UI grep	no direct vector DB call in frontend
+no_direct_provider_call	pass	test_apoema_rag_ui_contract.py and UI grep	no direct provider call in frontend
+no_provider_vector_secret_visible	pass	grep on frontend/tests/docs	no provider or vector secret found
+no_vite_secret	pass	grep on frontend/tests/docs	no VITE secret usage for RAG
+no_auth_error_fallback_masking	pass	api smoke + UI code review	401 without token stayed explicit; no mock fallback observed
+no_cookie_logged	pass	raw/api-smoke-redacted.log and report	no cookie values recorded
+no_storage_state_committed	pass	git ls-files scan	storageState remained in /tmp only
+no_internal_path_visible	pass	playwright-rag-uat-redacted.json	document/course pages did not expose internal_path
+no_storage_path_visible	pass	playwright-rag-uat-redacted.json	document/course pages did not expose storage_path
+no_ingestion_fake	pass	ui screenshots and page audit	ingestion not shown as implemented
+no_memory_write_fake	pass	ui screenshots and page audit	memory-write not shown as implemented
+no_chat_rag_fake	pass	ui screenshots and page audit	Chat-RAG not claimed as implemented
+backend_rag_used	pass	api-smoke-redacted.log and UI	search and detail came from /api/v1/rag/*
+missing_token_401	pass	api-smoke-redacted.log	auth failure remained explicit
+no_secret_in_docs	pass	grep on docs/audit/frontend-m9c-rag-ui-uat	no real secret recorded

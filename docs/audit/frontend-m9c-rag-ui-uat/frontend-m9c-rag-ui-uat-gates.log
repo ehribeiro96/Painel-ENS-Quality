@@ -1,0 +1,8 @@
+git diff --check: PASS
+pytest -s -q: PASS (357 passed, 22 skipped, 1 warning)
+ruff: PASS
+compileall: PASS
+frontend build: PASS
+docker compose config --services: PASS
+authenticated RAG API smoke: PASS
+playwright authenticated RAG UAT: PASS

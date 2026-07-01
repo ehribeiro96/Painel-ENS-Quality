@@ -1,0 +1,89 @@
+{
+  "authenticated_session_valid": true,
+  "user_role": "ADMIN",
+  "api": {
+    "refresh_status": 200,
+    "user_role": "ADMIN",
+    "collections": {
+      "status": 200,
+      "ids": [
+        "courses",
+        "institutional",
+        "marketing",
+        "insights"
+      ],
+      "count": 4
+    },
+    "synthetic_search": {
+      "status": 200,
+      "total": 1
+    },
+    "search": {
+      "status": 200,
+      "total": 1,
+      "first_document_id": "institutional-guideline-01"
+    },
+    "document": {
+      "status": 200,
+      "document_id": "institutional-guideline-01",
+      "collection": "institutional",
+      "title": "Guia institucional ENS"
+    },
+    "missing_document": {
+      "status": 404,
+      "detail": "rag_document_not_found"
+    },
+    "course_context": {
+      "status": 200,
+      "course_id": "apoema-onboarding",
+      "title": "Onboarding Apoema"
+    },
+    "audit_recent": {
+      "status": 200,
+      "total": 3,
+      "detail": null
+    },
+    "without_auth": {
+      "status": 401,
+      "detail": "missing_token"
+    }
+  },
+  "ui": {
+    "login_url": "/apoema/dashboard",
+    "login_h1": "Operações que impulsionam valor com IA e inventário unificado.",
+    "apoema_rag_url": "http://127.0.0.1:5175/apoema/rag",
+    "apoema_rag_h1": "RAG Institucional",
+    "apoema_rag_redirected_to_login": false,
+    "mock_banner_present": true,
+    "search_result_count": 3,
+    "institutional_result_visible": true,
+    "audit_text": "Contexto de cursoapoema-onboardingbackend-backedOnboarding ApoemaGuia mock para verificar o fluxo backend-owned sem frontend chamando provider.Público: Equipe interna ENS-Quality.Validar auth/RBAC antes de expor dados.Ma",
+    "audit_visible": true,
+    "no_ingestion_copy": false,
+    "document_url": "http://127.0.0.1:5175/apoema/rag/documents/institutional-guideline-01",
+    "document_h1": "Detalhe do documento",
+    "document_has_internal_path": false,
+    "course_url": "http://127.0.0.1:5175/apoema/rag/courses/apoema-onboarding",
+    "course_h1": "Contexto de curso",
+    "course_has_internal_path": false,
+    "preview_url": "http://127.0.0.1:5175/apoema-preview/rag",
+    "preview_h1": "RAG Institucional",
+    "not_found_text": "Documento RAGDetalhe do documentoMetadata segura do backend RAG; sem path interno, sem storage path e sem token renderizado.Voltar para RAGRecarregarDocumento não encontradoO backend não retornou este documento.Read-only",
+    "mobile_url": "http://127.0.0.1:5175/apoema/rag",
+    "preview_document_url": "http://127.0.0.1:5175/apoema-preview/rag/documents/institutional-guideline-01",
+    "preview_course_url": "http://127.0.0.1:5175/apoema-preview/rag/courses/apoema-onboarding",
+    "preview_course_h1": "Contexto de curso"
+  },
+  "screenshots": [
+    "m9c-rag-desktop-1366x768.png",
+    "m9c-rag-document-1366x768.png",
+    "m9c-rag-course-1366x768.png",
+    "m9c-rag-preview-1920x1080.png",
+    "m9c-rag-not-found-1366x768.png",
+    "m9c-rag-mobile-390x844.png",
+    "m9c-rag-preview-document-390x844.png",
+    "m9c-rag-preview-course-390x844.png"
+  ],
+  "console_errors": [],
+  "page_errors": []
+}

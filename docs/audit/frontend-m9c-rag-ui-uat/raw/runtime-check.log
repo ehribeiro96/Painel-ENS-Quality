@@ -1,0 +1,54 @@
+=== docker compose ps ===
+NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS
+=== health localhost ===
+HTTP/1.1 200 OK
+date: Wed, 01 Jul 2026 13:10:04 GMT
+server: uvicorn
+content-length: 266
+content-type: application/json
+x-request-id: cc57514b-1683-404c-9309-f8eea197e6d6
+x-correlation-id: cc57514b-1683-404c-9309-f8eea197e6d6
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: same-origin
+permissions-policy: camera=(), microphone=(), geolocation=()
+content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
+
+{"status":"ok","postgres":{"status":"ok","result":1},"redis":{"status":"ok","result":true},"frontend_ready":true,"migration":{"status":"up_to_date","current_revision":"0006_ai_chat","head_revision":"0006_ai_chat"},"bootstrap_admin":"created","startup_complete":true}=== health ipv6 ===
+HTTP/1.1 200 OK
+date: Wed, 01 Jul 2026 13:10:04 GMT
+server: uvicorn
+content-length: 266
+content-type: application/json
+x-request-id: 70e514c4-fcaf-4bfc-b71a-a198d4b78b09
+x-correlation-id: 70e514c4-fcaf-4bfc-b71a-a198d4b78b09
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: same-origin
+permissions-policy: camera=(), microphone=(), geolocation=()
+content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
+
+{"status":"ok","postgres":{"status":"ok","result":1},"redis":{"status":"ok","result":true},"frontend_ready":true,"migration":{"status":"up_to_date","current_revision":"0006_ai_chat","head_revision":"0006_ai_chat"},"bootstrap_admin":"created","startup_complete":true}=== rag collections unauth/auth-gate smoke ===
+HTTP/1.1 401 Unauthorized
+date: Wed, 01 Jul 2026 13:10:04 GMT
+server: uvicorn
+content-length: 26
+content-type: application/json
+x-request-id: c54d38a6-ac2d-4eee-aa99-89bca420093f
+x-correlation-id: c54d38a6-ac2d-4eee-aa99-89bca420093f
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: same-origin
+permissions-policy: camera=(), microphone=(), geolocation=()
+content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
+
+{"detail":"missing_token"}VITE_5175_NOT_READY=1
+Tentando iniciar helper estavel em background...
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"259-fvmuOxFU1O24ARubjOkCS/tKCFA"
+Date: Wed, 01 Jul 2026 13:10:19 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5

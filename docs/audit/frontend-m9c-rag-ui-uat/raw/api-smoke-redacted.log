@@ -1,0 +1,22 @@
+=== api smoke redacted ===
+refresh_status=200
+user_role=ADMIN
+GET /api/v1/rag/collections -> 200 [authenticated]
+  count=4
+  ids=courses,institutional,marketing,insights
+POST /api/v1/rag/search -> 200 [synthetic query]
+  total=1
+POST /api/v1/rag/search -> 200 [deterministic query]
+  total=1
+  first_document_id=institutional-guideline-01
+GET /api/v1/rag/documents/institutional-guideline-01 -> 200
+  collection=institutional
+  title=Guia institucional ENS
+GET /api/v1/rag/documents/unknown-document -> 404
+  detail=rag_document_not_found
+GET /api/v1/rag/course-context/apoema-onboarding -> 200
+  title=Onboarding Apoema
+GET /api/v1/rag/audit/recent -> 200
+  total=3
+GET /api/v1/rag/collections -> 401 [without token]
+  detail=missing_token

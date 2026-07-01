@@ -1,0 +1,18 @@
+check	result	evidence	notes
+route_/apoema/rag	pass	playwright-rag-uat-redacted.json	authenticated without /login redirect
+route_/apoema/rag/documents/:documentId	pass	playwright-rag-uat-redacted.json	document detail rendered for institutional-guideline-01
+route_/apoema/rag/courses/:courseId	pass	playwright-rag-uat-redacted.json	course context rendered for apoema-onboarding
+route_/apoema-preview/rag	pass	playwright-rag-uat-redacted.json	preview route rendered authenticated
+route_/apoema-preview/rag/documents/:documentId	pass	playwright-rag-uat-redacted.json	preview document route rendered authenticated
+route_/apoema-preview/rag/courses/:courseId	pass	playwright-rag-uat-redacted.json	preview course route rendered authenticated
+collections_backend_backed	pass	api-smoke-redacted.log	GET /api/v1/rag/collections -> 200
+search_backend_backed	pass	api-smoke-redacted.log	POST /api/v1/rag/search -> 200
+document_detail_backend_backed	pass	api-smoke-redacted.log	GET /api/v1/rag/documents/institutional-guideline-01 -> 200
+course_context_backend_backed	pass	api-smoke-redacted.log	GET /api/v1/rag/course-context/apoema-onboarding -> 200
+audit_recent_backend_backed	pass	api-smoke-redacted.log	GET /api/v1/rag/audit/recent -> 200 for ADMIN user
+missing_token_401	pass	api-smoke-redacted.log	GET /api/v1/rag/collections without token -> 401 missing_token
+document_not_found_404	pass	api-smoke-redacted.log	and not-found screenshot	showed controlled 404 path
+mock_read_only_honesty	pass	m9c-rag-desktop-1366x768.png	mock deterministico banner visible
+ingestion_not_exposed	pass	playwright-rag-uat-redacted.json	no ingest UI copy found
+memory_write_not_exposed	pass	manual ui audit	no memory-write action present
+chat_rag_not_exposed	pass	manual ui audit	no Chat-RAG integration claim present
