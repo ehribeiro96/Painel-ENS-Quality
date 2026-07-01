@@ -1,0 +1,15 @@
+check	result	evidence	notes
+login_ui	pass	summary.login.status=ok	Authenticated browser session established
+list_main	pass	summary.ui.listInitial	Artifacts list rendered
+upload_allowed	pass	summary.api.list + screenshot after upload	Uploaded m7c-artifact-uat-upload-1782865614290.txt
+detail_secure	pass	summary.ui.detail + screenshot	No internal path/storage path/signed token visible
+download_url_backend	pass	summary.api.downloadUrl + downloadFetch	Signed URL obtained and fetched without logging full URL
+preview_list	pass	summary.ui.previewList	Preview route rendered
+preview_detail	pass	summary.ui.previewDetail	Preview detail rendered without sensitive fields
+delete_confirmed	pass	summary.api.delete	Delete confirmed in UI
+post_delete	pass	summary.api.postDelete + summary.ui.postDeleteList	Artifact removed and 404 returned after delete
+missing_token_401	pass	summary.api.missingToken	401 missing_token confirmed
+viewer_forbidden_403	pass	summary.api.viewerForbidden	Viewer denied access to admin-owned artifact
+viewport_390x844	pass	summary.ui.viewportSmokes[0]	No page/console errors
+viewport_1366x768	pass	summary.ui.viewportSmokes[1]	No page/console errors
+viewport_1920x1080	pass	summary.ui.viewportSmokes[2]	No page/console errors

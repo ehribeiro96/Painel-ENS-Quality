@@ -1,0 +1,12 @@
+check	result	evidence	notes
+no_internal_path_visible	pass	summary.ui.detail.hasInternalPath=false	Detail page hides internal storage details
+no_storage_path_visible	pass	summary.redactions.storagePathVisible=false	No storage path exposed
+no_signed_token_visible	pass	summary.redactions.signedTokenVisible=false	No signed token rendered or logged
+no_signed_url_logged	pass	summary.redactions.signedUrlLogged=false	Download URL not persisted in logs/docs
+no_storage_direct_call	pass	frontend code + UI smoke	Frontend only calls /api/v1/artifacts
+no_legacy_alias	pass	contract + routes	No top-level /artifacts alias
+delete_requires_confirmation	pass	summary.api.delete=ui_confirmed	Delete executed from confirmation dialog
+auth_required	pass	summary.login.status=ok	Authenticated session required and established
+missing_token_401	pass	summary.api.missingToken.status=401	Missing token rejected
+storage_state_not_committed	pass	git status / commit scope	Temporary storage state remained outside repo
+no_secret_in_docs	pass	secret scan + docs redaction	No secrets committed into docs

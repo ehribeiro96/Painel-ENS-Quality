@@ -1,0 +1,154 @@
+{
+  "baseUi": "http://127.0.0.1:5175",
+  "baseApi": "http://[::1]:8080",
+  "credsFile": "/tmp/painel_runtime_h5_credentials.txt",
+  "login": {
+    "url": "/apoema/dashboard",
+    "bodyLength": 2156,
+    "pageErrors": [],
+    "consoleErrors": [],
+    "status": "ok"
+  },
+  "api": {
+    "login": {
+      "ok": true,
+      "userId": "9f695080-5845-44d3-b24e-9eadc5e1cf38"
+    },
+    "createViewer": {
+      "status": 201,
+      "ok": true
+    },
+    "viewerLogin": {
+      "ok": true
+    },
+    "missingToken": {
+      "status": 401,
+      "detail": "missing_token"
+    },
+    "list": {
+      "status": 200,
+      "count": 9
+    },
+    "detail": {
+      "status": 200,
+      "ok": true
+    },
+    "downloadUrl": {
+      "status": 200,
+      "ok": true,
+      "urlRedacted": "[invalid-url]"
+    },
+    "downloadFetch": {
+      "status": 200,
+      "ok": true
+    },
+    "viewerForbidden": {
+      "status": 403,
+      "detail": "artifact_access_denied"
+    },
+    "delete": {
+      "status": 200,
+      "ok": true,
+      "mode": "ui_confirmed"
+    },
+    "postDelete": {
+      "status": 404,
+      "detail": "artifact_not_found"
+    },
+    "unauthDetail": {
+      "status": 401,
+      "detail": "missing_token"
+    }
+  },
+  "ui": {
+    "listInitial": {
+      "url": "/apoema/artifacts",
+      "bodyLength": 1736
+    },
+    "upload": {
+      "status": "ok",
+      "bodyLength": 1757
+    },
+    "detail": {
+      "url": "/apoema/artifacts/7e609aa8-8555-4835-b1cf-946b5cc5e378",
+      "bodyLength": 1839,
+      "hasInternalPath": false,
+      "hasSignedToken": false
+    },
+    "download": {
+      "opened": true,
+      "popupBodyIncludesMarker": false
+    },
+    "previewList": {
+      "url": "/apoema-preview/artifacts",
+      "bodyLength": 1839
+    },
+    "previewDetail": {
+      "url": "/apoema-preview/artifacts/7e609aa8-8555-4835-b1cf-946b5cc5e378",
+      "bodyLength": 1312,
+      "hasInternalPath": false
+    },
+    "postDeleteList": {
+      "url": "/apoema/artifacts",
+      "bodyLength": 1736,
+      "containsArtifact": false
+    },
+    "viewportSmokes": [
+      {
+        "route": "/apoema/artifacts",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "url": "/apoema/artifacts",
+        "bodyLength": 1736,
+        "pageErrors": [],
+        "consoleErrors": [],
+        "status": "ok"
+      },
+      {
+        "route": "/apoema/artifacts",
+        "viewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "url": "/apoema/artifacts",
+        "bodyLength": 1736,
+        "pageErrors": [],
+        "consoleErrors": [],
+        "status": "ok"
+      },
+      {
+        "route": "/apoema-preview/artifacts",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "url": "/apoema-preview/artifacts",
+        "bodyLength": 2027,
+        "pageErrors": [],
+        "consoleErrors": [],
+        "status": "ok"
+      }
+    ]
+  },
+  "screenshots": [
+    "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/frontend-m7c-artifact-ui-uat/screenshots/artifacts-list-1366-before-upload.png",
+    "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/frontend-m7c-artifact-ui-uat/screenshots/artifacts-list-1366-after-upload.png",
+    "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/frontend-m7c-artifact-ui-uat/screenshots/artifact-detail-1366.png",
+    "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/frontend-m7c-artifact-ui-uat/screenshots/artifacts-preview-list-1366.png",
+    "/home/estevaoqualityadm/projects/Painel-ENS-Quality/docs/audit/frontend-m7c-artifact-ui-uat/screenshots/artifact-preview-detail-1366.png"
+  ],
+  "storageState": "/tmp/m7c-artifact-uat-storage-state.json",
+  "uploadFile": "/tmp/m7c-artifact-uat-upload-1782865614290.txt",
+  "artifactId": "7e609aa8-8555-4835-b1cf-946b5cc5e378",
+  "artifactName": "m7c-artifact-uat-upload-1782865614290.txt",
+  "redactions": {
+    "signedUrlLogged": false,
+    "signedTokenVisible": false,
+    "internalPathVisible": false,
+    "storagePathVisible": false
+  },
+  "pageErrors": [],
+  "consoleErrors": []
+}
