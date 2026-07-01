@@ -1,0 +1,10 @@
+route	scope	component	backend_dependency	status	notes
+/apoema/rag	Apoema	RagPage	/api/v1/rag/collections; /api/v1/rag/search; /api/v1/rag/audit/recent	implemented	read-only search surface
+/apoema/rag/documents/:documentId	Apoema	RagDocumentPage	/api/v1/rag/documents/{document_id}	implemented	safe metadata/content detail
+/apoema/rag/courses/:courseId	Apoema	RagCourseContextPage	/api/v1/rag/course-context/{course_id}	implemented	read-only course context
+/apoema-preview/rag	Apoema preview	RagPage	/api/v1/rag/collections; /api/v1/rag/search; /api/v1/rag/audit/recent	implemented	inherited by App.tsx preview route
+/apoema-preview/rag/documents/:documentId	Apoema preview	RagDocumentPage	/api/v1/rag/documents/{document_id}	implemented	inherited by App.tsx preview route
+/apoema-preview/rag/courses/:courseId	Apoema preview	RagCourseContextPage	/api/v1/rag/course-context/{course_id}	implemented	inherited by App.tsx preview route
+/rag	legacy	none	none	not_added	prohibited top-level alias
+/knowledge	legacy	none	none	not_added	prohibited top-level alias
+/mcp	legacy	none	none	not_added	prohibited top-level alias

@@ -1,0 +1,12 @@
+check	result	evidence	notes
+backend_api_only	PASS	apoemaRagApi.ts uses /api/v1/rag/*	No direct external endpoint
+no_direct_mcp_call	PASS	static scan and contract test	No MCP runtime call in frontend
+no_direct_vector_call	PASS	static scan and contract test	No vector DB endpoint in frontend
+no_direct_provider_call	PASS	static scan and contract test	No OpenAI/Gemini/Ollama client call
+no_provider_secret	PASS	static scan	No provider/vector key material
+no_internal_path_rendered	PASS	RagDocumentCard/Rag pages	No internal_path or storage_path fields rendered
+no_auth_fallback_masking	PASS	client status mapping	401/403/429 remain explicit errors
+no_ingestion_ui	PASS	RagPage/Rag client	No ingestion functions or controls
+no_memory_write_ui	PASS	RagPage/Rag client	No memory write functions or controls
+no_chat_rag_claim	PASS	copy review	No Chat-RAG integration claim
+no_legacy_alias	PASS	App.tsx and ApoemaApp.tsx	Only Apoema-scoped routes

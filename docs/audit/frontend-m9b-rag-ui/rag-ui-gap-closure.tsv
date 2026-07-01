@@ -1,0 +1,13 @@
+gap_id	status	implementation	evidence	remaining_work
+M9-G1	closed	Add Apoema RAG document and course routes	ApoemaApp.tsx	Authenticated UAT
+M9-G2	closed	Collection filter component uses backend collection DTO	RagCollectionFilter.tsx	None
+M9-G3	closed	Search results include document navigation	RagSearchResults.tsx	Authenticated UAT
+M9-G4	closed	Safe document detail page	RagDocumentPage.tsx	Authenticated UAT
+M9-G5	closed	Course context page and panel	RagCourseContextPage.tsx; RagPage.tsx	Authenticated UAT
+M9-G6	closed	Audit recent panel preserves backend RBAC	RagPage.tsx	Admin/manager UAT
+M9-G7	deferred	No Chat-RAG integration implemented	Report and code review	Future backend/UI phase
+M9-G8	deferred	No ingestion UI implemented	Report and code review	Future backend support
+M9-G9	deferred	No memory write UI implemented	Report and code review	Future backend support
+M9-G10	closed	Explicit 401/403/404/410/429/5xx/network mapping	apoemaRagApi.ts	None
+M9-G11	closed	Static contract test added	tests/test_apoema_rag_ui_contract.py	None
+M9-G12	deferred	UAT planned for M9C	Report	Future M9C phase

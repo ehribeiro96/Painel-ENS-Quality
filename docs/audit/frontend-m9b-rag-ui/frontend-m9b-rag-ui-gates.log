@@ -1,0 +1,8 @@
+git diff --check: PASS
+pytest -s -q: PASS, 357 passed, 22 skipped, 1 warning
+ruff: PASS
+compileall: PASS
+frontend build: PASS
+docker compose config --services: PASS
+security scan: PASS, no real secret found
+smoke HTTP local 127.0.0.1:5175: SKIPPED, runtime unavailable
