@@ -1,32 +1,55 @@
-import { useEffect, useMemo, useState } from "react";
-import { Ban, Palette, RefreshCcw, RotateCcw, ShieldAlert, WandSparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { RefreshCcw, ShieldAlert, Sparkles } from "lucide-react";
+import { DesignerBannerForm } from "../components/DesignerBannerForm";
+import { DesignerJobStatus } from "../components/DesignerJobStatus";
 import { StatusPill } from "../components/StatusPill";
 import {
-  adjustDesignerJobItem,
   cancelDesignerJob,
-  createDesignerBannerJob,
+  createDesignerBannerJson,
   getDesignerFormOptions,
   getDesignerHealth,
-  listDesignerTemplates,
-  refreshDesignerJobItemUrl,
+  getDesignerJob,
+  getDesignerTemplates,
 } from "../lib/apoemaDesignerApi";
 import { ApoemaApiError } from "../types";
 import { useAuth } from "@/lib/auth";
-import type { ApoemaDesignerFormOptions, ApoemaDesignerHealth, ApoemaDesignerJob, ApoemaDesignerTemplate } from "../lib/apoemaDesignerApi";
+import type { DesignerBannerJsonRequest, DesignerFormOptions, DesignerHealth, DesignerJob, DesignerTemplate } from "../types";
 
-type PageState = "loading" | "ready" | "empty" | "unauthorized" | "unavailable" | "error";
+type PageState = "loading" | "ready" | "empty" | "unauthorized" | "forbidden" | "conflict" | "expired" | "validation" | "rate_limited" | "unavailable" | "error";
+
+type BannerTone = "warning" | "danger" | "success";
 
 type Banner = {
   title: string;
   message: string;
-  tone: "warning" | "danger" | "success";
+  tone: BannerTone;
 };
+
+type DesignerBannerDraft = Pick<DesignerBannerJsonRequest, "template_id" | "modo_geracao" | "prompt" | "copy" | "box2" | "item_count"> & {
+  canal: string;
+  kv: string;
+};
+
+function formatDate(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "data indisponível";
+  }
+  return date.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+}
 
 function describeError(error: unknown, resource: string): Banner {
   if (error instanceof ApoemaApiError) {
-    if (error.kind === "auth_required") return { tone: "danger", title: "Sessão necessária", message: `Faça login novamente para acessar ${resource}.` };
-    if (error.kind === "forbidden") return { tone: "danger", title: "Sem permissão", message: `Seu perfil não pode executar esta ação mock.` };
-    if (error.kind === "network_unavailable") return { tone: "warning", title: "Backend indisponível", message: `Não foi possível alcançar ${resource} em /api/v1.` };
+    if (error.kind === "auth_required") return { tone: "danger", title: "Sua sessão expirou ou não foi autenticada.", message: `Faça login novamente para acessar ${resource}.` };
+    if (error.kind === "forbidden") return { tone: "danger", title: "Você não tem permissão para usar o Designer.", message: `Seu perfil não pode acessar ${resource}.` };
+    if (error.kind === "not_found") return { tone: "warning", title: "Template, job ou item não encontrado.", message: `O backend não retornou ${resource}.` };
+    if (error.kind === "conflict") return { tone: "warning", title: "O job está em um estado incompatível com esta ação.", message: `O backend rejeitou a operação em ${resource}.` };
+    if (error.kind === "expired") return { tone: "warning", title: "Este recurso não está mais disponível.", message: `O backend informou que ${resource} expirou ou foi removido.` };
+    if (error.kind === "validation_error") return { tone: "warning", title: "Revise os campos do formulário.", message: `O backend recusou os dados enviados para ${resource}.` };
+    if (error.kind === "rate_limited") return { tone: "warning", title: "Limite de geração atingido. Tente novamente mais tarde.", message: `O backend limitou a operação em ${resource}.` };
+    if (error.kind === "network_unavailable") return { tone: "warning", title: "Falha de rede ao acessar o Designer.", message: `Não foi possível alcançar ${resource} em /api/v1/designer.` };
+    if (error.kind === "backend_error") return { tone: "danger", title: "Backend Designer indisponível.", message: error.message };
     return { tone: "danger", title: "Erro da API", message: error.message };
   }
   return { tone: "danger", title: "Erro inesperado", message: `Falha ao consultar ${resource}.` };
@@ -34,50 +57,52 @@ function describeError(error: unknown, resource: string): Banner {
 
 function stateFromError(error: unknown): PageState {
   if (error instanceof ApoemaApiError) {
-    if (error.kind === "auth_required" || error.kind === "forbidden") return "unauthorized";
+    if (error.kind === "auth_required") return "unauthorized";
+    if (error.kind === "forbidden") return "forbidden";
+    if (error.kind === "conflict") return "conflict";
+    if (error.kind === "expired") return "expired";
+    if (error.kind === "validation_error") return "validation";
+    if (error.kind === "rate_limited") return "rate_limited";
     if (error.kind === "network_unavailable") return "unavailable";
   }
   return "error";
 }
 
-function formatDate(value: string) {
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "data indisponível";
-  return date.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+function defaultDraft(nextTemplates: DesignerTemplate[], nextOptions: DesignerFormOptions): DesignerBannerDraft {
+  const firstTemplate = nextTemplates[0];
+  const firstMode = firstTemplate?.mode_options[0] ?? nextOptions.modes[0] ?? "peca_unica";
+  return {
+    template_id: firstTemplate?.template_id ?? nextOptions.template_ids[0] ?? "",
+    canal: firstTemplate?.canal ?? nextOptions.channels[0] ?? "",
+    kv: firstTemplate?.kv ?? nextOptions.kvs[0] ?? "",
+    modo_geracao: firstMode,
+    prompt: "Banner institucional determinístico para validação Apoema M10B.",
+    copy: "Texto mock controlado pelo backend.",
+    box2: "",
+    item_count: 1,
+  };
 }
 
 export function DesignerPage() {
   const { token } = useAuth();
-  const [health, setHealth] = useState<ApoemaDesignerHealth | null>(null);
-  const [templates, setTemplates] = useState<ApoemaDesignerTemplate[]>([]);
-  const [options, setOptions] = useState<ApoemaDesignerFormOptions | null>(null);
-  const [job, setJob] = useState<ApoemaDesignerJob | null>(null);
-  const [state, setState] = useState<PageState>("loading");
-  const [jobState, setJobState] = useState<PageState>("empty");
-  const [banner, setBanner] = useState<Banner | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [form, setForm] = useState({
+  const [health, setHealth] = useState<DesignerHealth | null>(null);
+  const [templates, setTemplates] = useState<DesignerTemplate[]>([]);
+  const [options, setOptions] = useState<DesignerFormOptions | null>(null);
+  const [draft, setDraft] = useState<DesignerBannerDraft>({
     template_id: "",
     canal: "",
     kv: "",
     modo_geracao: "peca_unica",
-    prompt: "Banner institucional determinístico para validação Apoema M6B.",
+    prompt: "Banner institucional determinístico para validação Apoema M10B.",
     copy: "Texto mock controlado pelo backend.",
+    box2: "",
     item_count: 1,
   });
-
-  const selectedTemplate = useMemo(() => templates.find((template) => template.template_id === form.template_id) ?? null, [templates, form.template_id]);
-
-  function seedForm(nextTemplates: ApoemaDesignerTemplate[], nextOptions: ApoemaDesignerFormOptions) {
-    const first = nextTemplates[0];
-    setForm((current) => ({
-      ...current,
-      template_id: current.template_id || first?.template_id || nextOptions.template_ids[0] || "",
-      canal: current.canal || first?.canal || nextOptions.channels[0] || "",
-      kv: current.kv || first?.kv || nextOptions.kvs[0] || "",
-      modo_geracao: current.modo_geracao || first?.mode_options[0] || nextOptions.modes[0] || "peca_unica",
-    }));
-  }
+  const [job, setJob] = useState<DesignerJob | null>(null);
+  const [state, setState] = useState<PageState>("loading");
+  const [jobState, setJobState] = useState<PageState>("empty");
+  const [banner, setBanner] = useState<Banner | null>(null);
+  const [busy, setBusy] = useState(false);
 
   async function reload(guard: () => boolean = () => true) {
     setState("loading");
@@ -85,22 +110,23 @@ export function DesignerPage() {
     try {
       const [healthResult, templateResult, optionsResult] = await Promise.all([
         getDesignerHealth(token),
-        listDesignerTemplates(token),
+        getDesignerTemplates(token),
         getDesignerFormOptions(token),
       ]);
       if (!guard()) return;
       setHealth(healthResult);
       setTemplates(templateResult.items);
       setOptions(optionsResult);
-      seedForm(templateResult.items, optionsResult);
+      setDraft(defaultDraft(templateResult.items, optionsResult));
       setState(templateResult.items.length > 0 ? "ready" : "empty");
     } catch (error) {
       if (!guard()) return;
       setHealth(null);
       setTemplates([]);
       setOptions(null);
+      setDraft((current) => ({ ...current, template_id: "", canal: "", kv: "" }));
       setState(stateFromError(error));
-      setBanner(describeError(error, "Designer mock"));
+      setBanner(describeError(error, "catálogo Designer"));
     }
   }
 
@@ -112,15 +138,30 @@ export function DesignerPage() {
     };
   }, [token]);
 
+  async function reloadJob(nextJobId: string, guard: () => boolean = () => true) {
+    try {
+      const result = await getDesignerJob(nextJobId, token);
+      if (!guard()) return;
+      setJob(result);
+      setJobState("ready");
+    } catch (error) {
+      if (!guard()) return;
+      setJob(null);
+      setJobState(stateFromError(error));
+      setBanner(describeError(error, "detalhe do job"));
+    }
+  }
+
   async function createJob() {
     setBusy(true);
     setJobState("loading");
     setBanner(null);
     try {
-      const result = await createDesignerBannerJob(form, token);
+      const result = await createDesignerBannerJson(draft as DesignerBannerJsonRequest, token);
       setJob(result);
       setJobState("ready");
-      setBanner({ tone: "success", title: "Job mock criado", message: "Job determinístico criado no backend sem geração real de imagem." });
+      setBanner({ tone: "success", title: "Job mock criado", message: "Job determinístico criado no backend sem provider real e sem download-url." });
+      setState((current) => (current === "empty" ? "ready" : current));
     } catch (error) {
       setJob(null);
       setJobState(stateFromError(error));
@@ -130,29 +171,15 @@ export function DesignerPage() {
     }
   }
 
-  async function runItemAction(action: "adjust" | "refresh", itemId: string) {
+  async function cancelCurrentJob() {
     if (!job) return;
-    setBusy(true);
-    setBanner(null);
-    try {
-      const result = action === "adjust" ? await adjustDesignerJobItem(job.job_id, itemId, token) : await refreshDesignerJobItemUrl(job.job_id, itemId, token);
-      setJob(result);
-      setJobState("ready");
-      setBanner({ tone: "success", title: action === "adjust" ? "Item ajustado" : "Refresh solicitado", message: "Ação mock executada no backend; download-url segue bloqueado/não disponível nesta fase." });
-    } catch (error) {
-      setBanner(describeError(error, "ação de item Designer"));
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function cancelJob() {
-    if (!job) return;
+    const confirmed = window.confirm(`Cancelar o job ${job.job_id}? Esta ação é irreversível e será registrada pelo backend.`);
+    if (!confirmed) return;
     setBusy(true);
     setBanner(null);
     try {
       await cancelDesignerJob(job.job_id, token);
-      setJob({ ...job, status: "cancelled" });
+      await reloadJob(job.job_id);
       setBanner({ tone: "success", title: "Job cancelado", message: "Cancelamento mock registrado no backend." });
     } catch (error) {
       setBanner(describeError(error, "cancelamento Designer"));
@@ -161,16 +188,30 @@ export function DesignerPage() {
     }
   }
 
+  async function reloadCurrentJob() {
+    if (!job) return;
+    setBusy(true);
+    setBanner(null);
+    try {
+      await reloadJob(job.job_id);
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
-    <div className="apoema-page apoema-stub-page">
+    <div className="apoema-page apoema-designer-page">
       <section className="apoema-page-top">
         <div>
-          <StatusPill tone="warning">Mock determinístico</StatusPill>
-          <h1>Designer Mock</h1>
-          <p>Jobs determinísticos backend-owned para banners JSON. Não há geração real de imagem nem provider real nesta fase.</p>
+          <StatusPill tone={health?.provider_real_enabled ? "success" : "warning"}>
+            <Sparkles size={14} />
+            {health?.provider_real_enabled ? "Provider real" : "Designer Mock"}
+          </StatusPill>
+          <h1>Designer</h1>
+          <p>Mock determinístico via backend Designer. Provider real e download-url não estão disponíveis nesta fase.</p>
         </div>
-        <button type="button" className="apoema-secondary-button" onClick={() => void reload()}>
-          <RotateCcw size={16} />
+        <button type="button" className="apoema-secondary-button" onClick={() => void reload()} disabled={state === "loading" || busy}>
+          <RefreshCcw size={16} />
           Recarregar
         </button>
       </section>
@@ -178,12 +219,15 @@ export function DesignerPage() {
       <div className="apoema-warning is-warning">
         <ShieldAlert size={16} />
         <div>
-          <strong>Sem provider real e sem imagem real</strong>
-          <p>A UI chama somente /api/v1/designer. Download-url bloqueado/não disponível fica explícito e nenhuma chave de provider é criada no frontend.</p>
+          <strong>Contrato honesto</strong>
+          <p>
+            Não há geração real de imagem nem provider real. Sem geração real de imagem e nenhuma chave de provider no frontend. Download-url bloqueado/não disponível nesta fase.
+            A UI chama somente /api/v1/designer, sem upload de imagem e sem integração com Artifact, Chat ou RAG.
+          </p>
         </div>
       </div>
 
-      {banner && (
+      {banner ? (
         <div className={`apoema-warning ${banner.tone === "danger" ? "is-danger" : "is-warning"}`}>
           <ShieldAlert size={16} />
           <div>
@@ -191,9 +235,9 @@ export function DesignerPage() {
             <p>{banner.message}</p>
           </div>
         </div>
-      )}
+      ) : null}
 
-      <section className="apoema-stub-grid">
+      <section className="apoema-designer-grid">
         <article className="apoema-panel">
           <div className="apoema-section-head">
             <div>
@@ -202,94 +246,147 @@ export function DesignerPage() {
             </div>
             <span>{state}</span>
           </div>
-          {state === "loading" && <div className="apoema-empty-state">Carregando Designer API...</div>}
-          {state === "empty" && <div className="apoema-empty-state"><strong>Sem templates</strong><p>Backend retornou catálogo vazio.</p></div>}
-          {state === "unauthorized" && <div className="apoema-empty-state"><strong>Sessão/permissão necessária</strong><p>Chamada recusada pelo backend.</p></div>}
-          {state === "unavailable" && <div className="apoema-empty-state"><strong>Backend indisponível</strong><p>Sem fallback falso ou provider direto.</p></div>}
-          {state === "error" && <div className="apoema-empty-state"><strong>Erro operacional</strong><p>Falha ao carregar Designer API.</p></div>}
-          {health && (
-            <dl className="apoema-detail-grid">
-              <div><dt>Modo</dt><dd>{health.mode}</dd></div>
-              <div><dt>Determinístico</dt><dd>{health.deterministic ? "sim" : "não"}</dd></div>
-              <div><dt>Provider real</dt><dd>{health.provider_real_enabled ? "ativo" : "desativado"}</dd></div>
-              <div><dt>Templates</dt><dd>{health.template_count}</dd></div>
-            </dl>
-          )}
-        </article>
 
-        <article className="apoema-panel">
-          <StatusPill tone="warning">Formulário controlado</StatusPill>
-          <div className="apoema-form-stack">
-            <label className="apoema-field">Template
-              <select value={form.template_id} onChange={(event) => setForm((current) => ({ ...current, template_id: event.target.value }))}>
-                {templates.map((template) => <option key={template.template_id} value={template.template_id}>{template.label}</option>)}
-              </select>
-            </label>
-            <label className="apoema-field">Canal
-              <select value={form.canal} onChange={(event) => setForm((current) => ({ ...current, canal: event.target.value }))}>
-                {(options?.channels ?? []).map((channel) => <option key={channel} value={channel}>{channel}</option>)}
-              </select>
-            </label>
-            <label className="apoema-field">KV
-              <select value={form.kv} onChange={(event) => setForm((current) => ({ ...current, kv: event.target.value }))}>
-                {(options?.kvs ?? []).map((kv) => <option key={kv} value={kv}>{kv}</option>)}
-              </select>
-            </label>
-            <label className="apoema-field">Modo de geração
-              <select value={form.modo_geracao} onChange={(event) => setForm((current) => ({ ...current, modo_geracao: event.target.value }))}>
-                {(selectedTemplate?.mode_options ?? options?.modes ?? []).map((mode) => <option key={mode} value={mode}>{mode}</option>)}
-              </select>
-            </label>
-            <label className="apoema-field">Prompt
-              <textarea value={form.prompt} onChange={(event) => setForm((current) => ({ ...current, prompt: event.target.value }))} />
-            </label>
-            <button type="button" className="apoema-primary-button" disabled={busy || !form.template_id} onClick={() => void createJob()}>
-              <WandSparkles size={16} />
-              Criar job mock
-            </button>
-          </div>
-        </article>
-      </section>
+          {state === "loading" ? <div className="apoema-empty-state">Carregando Designer API...</div> : null}
+          {state === "empty" ? (
+            <div className="apoema-empty-state">
+              <strong>Sem templates</strong>
+              <p>O backend não retornou catálogo disponível.</p>
+            </div>
+          ) : null}
+          {state === "unauthorized" ? (
+            <div className="apoema-empty-state">
+              <strong>Sessão necessária</strong>
+              <p>Faça login novamente para acessar o Designer.</p>
+            </div>
+          ) : null}
+          {state === "forbidden" ? (
+            <div className="apoema-empty-state">
+              <strong>Sem permissão</strong>
+              <p>Seu perfil não pode acessar o Designer.</p>
+            </div>
+          ) : null}
+          {state === "conflict" ? (
+            <div className="apoema-empty-state">
+              <strong>Estado incompatível</strong>
+              <p>O backend rejeitou a operação por conflito de estado.</p>
+            </div>
+          ) : null}
+          {state === "expired" ? (
+            <div className="apoema-empty-state">
+              <strong>Recurso indisponível</strong>
+              <p>O recurso não está mais disponível.</p>
+            </div>
+          ) : null}
+          {state === "validation" ? (
+            <div className="apoema-empty-state">
+              <strong>Validação pendente</strong>
+              <p>Revise os dados retornados pelo backend.</p>
+            </div>
+          ) : null}
+          {state === "rate_limited" ? (
+            <div className="apoema-empty-state">
+              <strong>Limite atingido</strong>
+              <p>Espere alguns instantes e tente novamente.</p>
+            </div>
+          ) : null}
+          {state === "unavailable" ? (
+            <div className="apoema-empty-state">
+              <strong>Backend indisponível</strong>
+              <p>Falha de rede ao acessar /api/v1/designer.</p>
+            </div>
+          ) : null}
+          {state === "error" ? (
+            <div className="apoema-empty-state">
+              <strong>Erro operacional</strong>
+              <p>Falha ao carregar o Designer.</p>
+            </div>
+          ) : null}
 
-      <section className="apoema-panel">
-        <div className="apoema-section-head">
-          <div>
-            <StatusPill tone="info">Job</StatusPill>
-            <h2>Resultado determinístico</h2>
-          </div>
-          <span>{jobState}</span>
-        </div>
-        {jobState === "loading" && <div className="apoema-empty-state">Criando job no backend...</div>}
-        {jobState === "empty" && <div className="apoema-empty-state"><strong>Nenhum job criado</strong><p>Preencha o formulário para validar o adapter Designer mock.</p></div>}
-        {(jobState === "unauthorized" || jobState === "unavailable" || jobState === "error") && <div className="apoema-empty-state"><strong>Job indisponível</strong><p>O backend não retornou job válido.</p></div>}
-        {job && (
-          <div className="apoema-card-list">
-            <article className="apoema-stub-card">
-              <div className="apoema-card-headline">
-                <Palette size={16} />
-                <strong>Job {job.job_id}</strong>
-                <StatusPill tone="warning">{job.status}</StatusPill>
-              </div>
-              <p>{job.summary}</p>
-              <small>{job.template_id} · {job.kv} · {formatDate(job.created_at)}</small>
-              <div className="apoema-row-actions">
-                <button type="button" className="apoema-ghost-button" disabled={busy} onClick={() => void cancelJob()}><Ban size={14} />Cancelar</button>
-              </div>
-            </article>
-            {job.items.map((item) => (
-              <article key={item.item_id} className="apoema-stub-card">
-                <strong>{item.title}</strong>
-                <p>{item.result_note}</p>
-                <small>Download-url bloqueado/não disponível · status {item.status}</small>
-                <div className="apoema-row-actions">
-                  <button type="button" className="apoema-secondary-button" disabled={busy} onClick={() => void runItemAction("adjust", item.item_id)}><WandSparkles size={14} />Ajustar mock</button>
-                  <button type="button" className="apoema-secondary-button" disabled={busy} onClick={() => void runItemAction("refresh", item.item_id)}><RefreshCcw size={14} />Refresh mock</button>
+          {health ? (
+            <>
+              <dl className="apoema-detail-grid">
+                <div>
+                  <dt>Modo</dt>
+                  <dd>{health.mode}</dd>
                 </div>
-              </article>
-            ))}
-          </div>
-        )}
+                <div>
+                  <dt>Determinístico</dt>
+                  <dd>{health.deterministic ? "sim" : "não"}</dd>
+                </div>
+                <div>
+                  <dt>Provider real</dt>
+                  <dd>{health.provider_real_enabled ? "ativo" : "desativado"}</dd>
+                </div>
+                <div>
+                  <dt>Templates</dt>
+                  <dd>{health.template_count}</dd>
+                </div>
+                <div>
+                  <dt>Jobs</dt>
+                  <dd>{health.job_count}</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>{health.status}</dd>
+                </div>
+              </dl>
+              <div className="apoema-designer-health-note">{health.note}</div>
+            </>
+          ) : null}
+        </article>
+
+        <DesignerBannerForm
+          templates={templates}
+          formOptions={options}
+          value={draft}
+          onChange={setDraft}
+          onSubmit={() => void createJob()}
+          disabled={busy || templates.length === 0 || !options}
+          loading={busy}
+          catalogLoading={state === "loading"}
+          banner={jobState === "loading" ? "Criando job no backend..." : null}
+        />
       </section>
+
+      {job ? (
+        <section className="apoema-panel">
+          <div className="apoema-section-head">
+            <div>
+              <StatusPill tone="success">Job criado</StatusPill>
+              <h2>Resumo do job</h2>
+            </div>
+            <Link className="apoema-secondary-button" to={`jobs/${job.job_id}`}>
+              Ver detalhe
+            </Link>
+          </div>
+
+          <DesignerJobStatus job={job} health={health} busy={busy} onReload={() => void reloadCurrentJob()} onCancel={() => void cancelCurrentJob()} />
+
+          <div className="apoema-designer-created-job-foot">
+            <small>Job backend-owned criado em {formatDate(job.created_at)}.</small>
+            <small>O detalhe completo fica disponível em /apoema/designer/jobs/{job.job_id}.</small>
+          </div>
+        </section>
+      ) : (
+        <section className="apoema-panel">
+          <div className="apoema-section-head">
+            <div>
+              <StatusPill tone="info">Criação</StatusPill>
+              <h2>Nenhum job criado</h2>
+            </div>
+            <span>{jobState}</span>
+          </div>
+          {jobState === "loading" ? (
+            <div className="apoema-empty-state">Criando job no backend...</div>
+          ) : (
+            <div className="apoema-empty-state">
+              <strong>Pronto para criar</strong>
+              <p>Selecione um template, ajuste o briefing e crie um job deterministicamente controlado pelo backend.</p>
+            </div>
+          )}
+        </section>
+      )}
     </div>
   );
 }

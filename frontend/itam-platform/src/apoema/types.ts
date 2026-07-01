@@ -58,6 +58,129 @@ export interface ApoemaConversation {
 
 export type RagCollectionId = "courses" | "institutional" | "marketing" | "insights";
 
+export type DesignerChannel = string;
+export type DesignerKv =
+  | "graduacao"
+  | "imersoes"
+  | "institucional"
+  | "pos"
+  | "qualificacoes"
+  | "tudo-sobre-seguros";
+export type DesignerGenerationMode = "peca_unica" | "enxoval";
+export type DesignerJobStatus = "queued" | "running" | "completed" | "failed" | "cancelled" | "expired";
+export type DesignerJobItemStatus = "queued" | "running" | "completed" | "failed" | "cancelled";
+export type DesignerErrorCode = ApoemaApiErrorKind;
+export type DesignerApiError = ApoemaApiError;
+
+export interface DesignerHealth {
+  status: string;
+  service: string;
+  mode: string;
+  deterministic: boolean;
+  provider_real_enabled: boolean;
+  template_count: number;
+  job_count: number;
+  note: string;
+}
+
+export interface DesignerTemplate {
+  template_id: string;
+  canal: DesignerChannel;
+  kv: DesignerKv;
+  label: string;
+  description: string;
+  mode_options: DesignerGenerationMode[];
+  box2_allowed: boolean;
+  persona_image_allowed: boolean;
+  prompt_budget: number;
+  copy_budget: number;
+}
+
+export interface DesignerFormOptions {
+  channels: DesignerChannel[];
+  kvs: DesignerKv[];
+  modes: DesignerGenerationMode[];
+  template_ids: string[];
+  supports_box2: boolean;
+  supports_persona_image: boolean;
+  max_prompt_length: number;
+  max_copy_length: number;
+  max_items_per_job: number;
+}
+
+export interface DesignerBannerJsonRequest {
+  template_id: string;
+  canal: DesignerChannel;
+  kv: DesignerKv;
+  modo_geracao: DesignerGenerationMode;
+  prompt: string;
+  copy?: string;
+  box2?: string;
+  persona_image?: string;
+  item_count: number;
+}
+
+export interface DesignerAdjustItemRequest {
+  adjustment_prompt: string;
+  copy?: string;
+  box2?: string;
+}
+
+export interface DesignerRefreshItemUrlRequest {
+  reason?: string;
+}
+
+export interface DesignerErrorShape {
+  code: string;
+  message: string;
+  details: Record<string, unknown>;
+}
+
+export interface DesignerJobItem {
+  item_id: string;
+  template_id: string;
+  title: string;
+  status: DesignerJobItemStatus;
+  copy_preview: string;
+  prompt_preview: string;
+  result_note: string;
+  adjusted_count: number;
+  refresh_count: number;
+  created_at: string;
+  updated_at: string;
+  error?: DesignerErrorShape | null;
+}
+
+export interface DesignerJob {
+  job_id: string;
+  owner_user_id: string;
+  status: DesignerJobStatus;
+  created_at: string;
+  updated_at: string;
+  template_id: string;
+  canal: DesignerChannel;
+  kv: DesignerKv;
+  modo_geracao: DesignerGenerationMode;
+  box2: string | null;
+  persona_image_present: boolean;
+  prompt_preview: string;
+  copy_preview: string;
+  progress: number;
+  items: DesignerJobItem[];
+  summary: string;
+  error?: DesignerErrorShape | null;
+}
+
+export interface DesignerCancelResponse {
+  job_id: string;
+  status: DesignerJobStatus;
+  cancelled_at: string;
+  items_cancelled: number;
+  message: string;
+}
+
+export type DesignerRefreshItemUrlResponse = DesignerJob;
+
 export type AiChatProviderId = ApoemaProviderId;
 export type AiChatProviderStatus = ApoemaProviderStatus;
 export type AiChatErrorCode = ApoemaApiErrorKind;
@@ -163,6 +286,7 @@ export type ApoemaApiErrorKind =
   | "auth_required"
   | "forbidden"
   | "not_found"
+  | "conflict"
   | "expired"
   | "rate_limited"
   | "validation_error"

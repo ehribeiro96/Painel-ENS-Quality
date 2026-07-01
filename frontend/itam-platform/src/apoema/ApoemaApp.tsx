@@ -17,6 +17,7 @@ import { RagPage } from "./pages/RagPage";
 import { RagDocumentPage } from "./pages/RagDocumentPage";
 import { RagCourseContextPage } from "./pages/RagCourseContextPage";
 import { DesignerPage } from "./pages/DesignerPage";
+import { DesignerJobPage } from "./pages/DesignerJobPage";
 import { IntegrationsPage } from "./pages/IntegrationsPage";
 import { UserDetailsPage } from "./pages/UserDetailsPage";
 import { UsersPage } from "./pages/UsersPage";
@@ -126,6 +127,7 @@ export function ApoemaApp() {
           <Route path="rag/documents/:documentId" element={<RagDocumentPage />} />
           <Route path="rag/courses/:courseId" element={<RagCourseContextPage />} />
           <Route path="designer" element={<DesignerPage />} />
+          <Route path="designer/jobs/:jobId" element={<DesignerJobPage />} />
           <Route path="integrations" element={<IntegrationsPage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
