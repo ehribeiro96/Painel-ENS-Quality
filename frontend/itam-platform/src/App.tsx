@@ -42,9 +42,9 @@ export function App() {
       <Routes>
         <>
           <Route path="/" element={<Navigate to="/apoema" replace />} />
-          <Route path="/apoema" element={<ApoemaRoute />} />
+          {/* path="/apoema" element={<ApoemaRoute />} */}
           <Route path="/apoema/*" element={<ApoemaRoute />} />
-          <Route path="/apoema-preview" element={<ApoemaRoute />} />
+          {/* path="/apoema-preview" element={<ApoemaRoute />} */}
           <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
           <Route path="/login" element={<LoginPage />} />
         </>

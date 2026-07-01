@@ -264,7 +264,7 @@
 .apoema-chat-main h1 {
   margin: 10px 0 0;
   font-size: clamp(2rem, 3vw, 3.5rem);
-  line-height: 0.95;
+  line-height: 1.04;
   letter-spacing: -0.08em;
 }
 
@@ -273,6 +273,29 @@
 .apoema-chat-main h1,
 .apoema-detail-card h2 {
   text-wrap: balance;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.apoema-chat-sidebar .apoema-section-head > div,
+.apoema-section-head > div {
+  min-width: 0;
+}
+
+.apoema-section-head h2,
+.apoema-chat-sidebar h2 {
+  overflow-wrap: break-word;
+  word-break: normal;
+  line-height: 1.15;
+}
+
+.apoema-chat-sidebar .apoema-section-head {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.apoema-chat-sidebar .apoema-chat-sidebar-actions {
+  justify-content: flex-start;
 }
 
 .apoema-page-top p,

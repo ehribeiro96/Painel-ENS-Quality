@@ -2607,8 +2607,8 @@ textarea.input,
 .base44-login-shell {
   width: min(100%, 1280px);
   grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-  gap: 22px;
-  align-items: stretch;
+  gap: 18px;
+  align-items: start;
 }
 
 .base44-login-shell-loading {
@@ -2636,15 +2636,14 @@ textarea.input,
 }
 
 .base44-login-hero {
-  align-self: stretch;
+  align-self: start;
 }
 
 .base44-login-hero-surface {
-  height: 100%;
-  padding: 28px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 }
 
 .base44-login-hero-copy h1 {
@@ -2684,11 +2683,11 @@ textarea.input,
 
 .base44-login-card,
 .base44-notfound-card {
-  padding: 24px;
+  padding: 20px;
 }
 
 .base44-login-card {
-  gap: 18px;
+  gap: 14px;
   background: rgba(13, 17, 23, 0.94);
 }
 
@@ -2826,6 +2825,10 @@ textarea.input,
   .base44-login-shell {
     --base44-login-columns: 1fr;
   }
+
+  .base44-login-shell {
+    padding: 16px;
+  }
 }
 
 @media (max-width: 820px) {
@@ -2865,6 +2868,18 @@ textarea.input,
   .base44-asset-history-shell {
     padding-left: 18px;
     padding-right: 18px;
+  }
+
+  .base44-login-shell {
+    min-height: auto;
+    align-items: start;
+    place-items: start;
+    padding: 14px;
+  }
+
+  .base44-login-hero-surface,
+  .base44-login-card {
+    padding: 18px;
   }
 }
 
