@@ -1,0 +1,16 @@
+AUTHENTICATED
+GET /api/v1/ai-chat/health -> 200
+GET /api/v1/ai-chat/providers -> 200
+GET /api/v1/ai-chat/conversations -> 200
+
+ANONYMOUS
+GET /api/v1/ai-chat/providers -> 401 missing_token
+
+REDACTION
+- Cookie: redacted
+- Set-Cookie: redacted
+- Authorization: redacted
+- access_token: redacted
+- refresh_token: redacted
+- provider token: redacted
+- payload sensível: redacted

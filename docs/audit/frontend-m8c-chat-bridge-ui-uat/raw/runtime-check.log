@@ -1,0 +1,21 @@
+=== docker compose ps ===
+NAME      IMAGE     COMMAND   SERVICE   CREATED   STATUS    PORTS
+
+=== health localhost ===
+HTTP/1.1 200 OK
+date: Wed, 01 Jul 2026 10:59:42 GMT
+server: uvicorn
+content-length: 266
+content-type: application/json
+x-request-id: 5abfc768-339a-44f4-8183-a70e8f6996bf
+x-correlation-id: 5abfc768-339a-44f4-8183-a70e8f6996bf
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+referrer-policy: same-origin
+permissions-policy: camera=(), microphone=(), geolocation=()
+content-security-policy: default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'
+
+{"status":"ok","postgres":{"status":"ok","result":1},"redis":{"status":"ok","result":true},"frontend_ready":true,"migration":{"status":"up_to_date","current_revision":"0006_ai_chat","head_revision":"0006_ai_chat"},"bootstrap_admin":"created","startup_complete":true}
+
+=== frontend ===
+http://127.0.0.1:5175/apoema/chat -> 200 OK
