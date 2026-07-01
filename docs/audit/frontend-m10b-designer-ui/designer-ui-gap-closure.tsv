@@ -1,0 +1,9 @@
+gap_id	category	current_state	target_state	risk	priority	implementation_note
+M10-G1	routing	Designer route absent	Designer route available in Apoema	P2	high	Added /designer and /designer/jobs/:jobId under Apoema surfaces
+M10-G2	templates	Templates/form-options not consumed	Loaded from backend	P2	high	Use backend allowlist as source of truth
+M10-G3	job_create	No job create flow	Create banner job via /banners/json	P1	high	POST JSON only, no provider or upload flow
+M10-G4	job_detail	No job detail page	Job detail backed by backend	P1	high	Expose job status and item list only
+M10-G5	item_adjust	No adjust action	Adjust item via backend	P1	medium	Prompt for instruction and send minimal payload
+M10-G6	item_refresh_url	No refresh-url action	Refresh item URL via backend	P1	medium	Show safe result, do not render sensitive token
+M10-G7	job_cancel	No cancel action	Cancel job via backend	P1	medium	Confirm destructive action before request
+M10-G8	security	No explicit safety copy	Honest mock/deterministic copy	P2	high	Call out that provider real and download-url are unavailable

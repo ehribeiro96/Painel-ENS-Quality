@@ -1,0 +1,11 @@
+check	result	evidence	notes
+no_direct_provider_call	pass	apoemaDesignerApi.ts and Designer pages only call /api/v1/designer/*	sem provider real
+no_provider_secret_visible	pass	no key/token placeholders rendered in Designer UI	copy honesta
+no_vite_secret	pass	no VITE_* secret usage in Designer frontend	uses app auth only
+no_auth_error_fallback_masking	pass	api client maps 401/403/429 to explicit errors	sem fallback enganoso
+no_cookie_logged	pass	no cookie or storageState logging in docs/tests	sem captura sensível
+no_storage_state_committed	pass	no storageState tracked	none committed
+no_download_token_rendered	pass	job detail does not render download token/url as available	endpoint blocked
+no_internal_path_visible	pass	no internal_path or storage_path rendered	metadata segura
+no_fake_provider	pass	no real image provider integration	mock backend only
+no_fake_integration	pass	no Artifact/Chat/RAG claims in Designer	UI isolada

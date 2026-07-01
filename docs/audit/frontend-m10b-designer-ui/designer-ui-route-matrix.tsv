@@ -1,0 +1,5 @@
+route	page	backend_endpoints	note
+/apoema/designer	DesignerPage	GET /api/v1/designer/health; GET /api/v1/designer/templates; GET /api/v1/designer/form-options; POST /api/v1/designer/banners/json	mock-deterministic banner job creation
+/apoema/designer/jobs/:jobId	DesignerJobPage	GET /api/v1/designer/jobs/{job_id}; POST /api/v1/designer/jobs/{job_id}/items/{item_id}/adjust; POST /api/v1/designer/jobs/{job_id}/items/{item_id}/refresh-url; POST /api/v1/designer/jobs/{job_id}/cancel	job detail and allowed actions
+/apoema-preview/designer	DesignerPage	GET /api/v1/designer/health; GET /api/v1/designer/templates; GET /api/v1/designer/form-options; POST /api/v1/designer/banners/json	preview surface shares Apoema routing
+/apoema-preview/designer/jobs/:jobId	DesignerJobPage	GET /api/v1/designer/jobs/{job_id}; POST /api/v1/designer/jobs/{job_id}/items/{item_id}/adjust; POST /api/v1/designer/jobs/{job_id}/items/{item_id}/refresh-url; POST /api/v1/designer/jobs/{job_id}/cancel	job detail on preview surface

@@ -1,0 +1,6 @@
+git diff --check: PASS
+pytest -s -q: PASS
+ruff: PASS
+compileall: PASS
+frontend build: PASS
+docker compose config --services: PASS
