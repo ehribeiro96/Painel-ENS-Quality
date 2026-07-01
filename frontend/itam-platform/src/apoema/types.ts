@@ -56,6 +56,84 @@ export interface ApoemaConversation {
   updatedAt: string;
 }
 
+export type AiChatProviderId = ApoemaProviderId;
+export type AiChatProviderStatus = ApoemaProviderStatus;
+export type AiChatErrorCode = ApoemaApiErrorKind;
+export type AiChatMessageRole = "system" | "user" | "assistant" | "tool";
+
+export interface AiChatProvider {
+  id: AiChatProviderId;
+  label: string;
+  status: AiChatProviderStatus;
+  models: string[];
+  default_model: string;
+}
+
+export interface AiChatHealth {
+  enabled: boolean;
+  provider?: string;
+  configured?: boolean;
+  status?: string;
+  detail?: string | null;
+  model?: string | null;
+  [key: string]: unknown;
+}
+
+export interface AiChatMessage {
+  id: string;
+  conversation_id: string;
+  role: AiChatMessageRole;
+  content: string;
+  provider: string | null;
+  model: string | null;
+  metadata: Record<string, unknown>;
+  created_at: string;
+}
+
+export interface AiChatConversation {
+  id: string;
+  user_id: string;
+  title: string | null;
+  provider: string;
+  model: string | null;
+  system_prompt_version: string;
+  metadata: Record<string, unknown>;
+  created_at: string;
+  updated_at: string;
+  messages?: AiChatMessage[];
+}
+
+export interface AiChatConversationCreate {
+  title?: string | null;
+  message?: string | null;
+  mode?: string | null;
+}
+
+export interface AiChatMessageCreate {
+  content: string;
+  mode?: string | null;
+}
+
+export interface AiChatSendMessageRequest {
+  conversation_id: string | null;
+  provider: AiChatProviderId;
+  model: string;
+  message: string;
+  mode: string;
+}
+
+export interface AiChatSendMessageResponse {
+  conversation_id: string;
+  message_id: string;
+  provider: AiChatProviderId;
+  model: string;
+  status: ApoemaChatStatus;
+  content: string;
+  created_at: string;
+  usage: ApoemaChatUsage;
+  error: string | null;
+}
+
 export interface ApoemaAttachment {
   id: string;
   name: string;
@@ -103,6 +181,8 @@ export class ApoemaApiError extends Error {
     this.details = details;
   }
 }
+
+export class AiChatApiError extends ApoemaApiError {}
 
 export type ApoemaProviderLoadResult =
   | {

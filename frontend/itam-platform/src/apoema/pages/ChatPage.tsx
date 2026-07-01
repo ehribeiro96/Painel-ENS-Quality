@@ -1,60 +1,31 @@
+import { AlertTriangle, RotateCcw, ShieldAlert, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, Paperclip, RotateCcw, ShieldAlert, Sparkles } from "lucide-react";
 import { ChatComposer } from "../components/ChatComposer";
+import { ChatConversationSidebar } from "../components/ChatConversationSidebar";
 import { ChatMessage } from "../components/ChatMessage";
-import { FileDropzone } from "../components/FileDropzone";
 import { StatusPill } from "../components/StatusPill";
-import { apoemaConversations, apoemaInitialMessages } from "../data";
-import { attachmentWarning } from "../mockApi";
-import { getAiProviders, sendAiMessage } from "../lib/apoemaChatApi";
 import { useAuth } from "@/lib/auth";
-import { ApoemaApiError } from "../types";
-import type {
-  ApoemaAttachment,
-  ApoemaChatAttachmentMeta,
-  ApoemaMessage,
-  ApoemaProviderLoadState,
-  ApoemaProviderOption,
-} from "../types";
+import {
+  createAiChatConversation,
+  getAiChatConversation,
+  getAiChatProviders,
+  listAiChatConversations,
+  sendAiChatConversationMessage,
+} from "../lib/apoemaChatBridgeApi";
+import { AiChatApiError } from "../types";
+import type { AiChatConversation, AiChatProvider, ApoemaProviderLoadState } from "../types";
 
-type ApoemaBannerTone = "warning" | "danger";
+type ChatBannerTone = "warning" | "danger";
 
-type ApoemaBanner = {
-  tone: ApoemaBannerTone;
+type ChatBanner = {
+  tone: ChatBannerTone;
   title: string;
   message: string;
 };
 
-function humanSize(bytes: number) {
-  if (bytes < 1024) {
-    return `${bytes} B`;
-  }
-  const kb = bytes / 1024;
-  return `${kb.toFixed(kb >= 10 ? 0 : 1)} KB`;
-}
+type ConversationLoadState = "loading" | "ready" | "fallback" | "error";
 
-function classifyAttachmentKind(file: File): ApoemaChatAttachmentMeta["kind"] {
-  const lowerName = file.name.toLowerCase();
-  if (file.type.startsWith("image/")) return "image";
-  if (file.type === "application/pdf" || lowerName.endsWith(".pdf")) return "pdf";
-  if (file.type.includes("spreadsheet") || /\.(csv|xls|xlsx|ods|tsv)$/i.test(lowerName)) return "spreadsheet";
-  if (/\.(ts|tsx|js|jsx|py|sh|ps1|bat|cmd)$/i.test(lowerName)) return "script";
-  if (lowerName.endsWith(".log")) return "log";
-  if (file.type.startsWith("text/") || /\.(txt|md|json|yaml|yml|xml|sql|ini)$/i.test(lowerName)) return "text";
-  return "unknown";
-}
-
-function toAttachment(file: File): ApoemaAttachment {
-  return {
-    id: `${file.name}-${file.size}-${file.lastModified}`,
-    name: file.name,
-    size: humanSize(file.size),
-    sizeBytes: file.size,
-    mimeType: file.type || "application/octet-stream",
-    kind: classifyAttachmentKind(file),
-    sensitive: /\.(env|pem|key|sqlite|db|sql)$/i.test(file.name),
-  };
-}
+const CHAT_MODE = "general";
 
 function formatClock(timestamp: string) {
   const date = new Date(timestamp);
@@ -64,7 +35,7 @@ function formatClock(timestamp: string) {
   return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
-function statusTone(status?: ApoemaProviderOption["status"]) {
+function statusTone(status?: AiChatProvider["status"]) {
   switch (status) {
     case "online":
       return "success";
@@ -78,8 +49,23 @@ function statusTone(status?: ApoemaProviderOption["status"]) {
   }
 }
 
-function describeApoemaApiError(error: unknown): ApoemaBanner {
-  if (error instanceof ApoemaApiError) {
+function chooseConversationId(conversations: AiChatConversation[], preferredId?: string | null) {
+  if (preferredId && conversations.some((conversation) => conversation.id === preferredId)) {
+    return preferredId;
+  }
+  return conversations[0]?.id ?? "";
+}
+
+function summarizeConversation(conversation: AiChatConversation): AiChatConversation {
+  const { messages: _messages, ...summary } = conversation;
+  return {
+    ...summary,
+    metadata: { ...summary.metadata },
+  };
+}
+
+function describeAiChatApiError(error: unknown): ChatBanner {
+  if (error instanceof AiChatApiError) {
     switch (error.kind) {
       case "auth_required":
         return {
@@ -117,6 +103,18 @@ function describeApoemaApiError(error: unknown): ApoemaBanner {
           title: "Fallback local ativo",
           message: "Backend indisponível. Exibindo resposta local de fallback.",
         };
+      case "not_found":
+        return {
+          tone: "warning",
+          title: "Conversa não encontrada",
+          message: "A conversa solicitada não foi encontrada.",
+        };
+      case "expired":
+        return {
+          tone: "warning",
+          title: "Recurso expirado",
+          message: "O recurso solicitado expirou. Recarregue a conversa.",
+        };
       default:
         return {
           tone: "danger",
@@ -135,20 +133,23 @@ function describeApoemaApiError(error: unknown): ApoemaBanner {
 
 export function ChatPage() {
   const { token } = useAuth();
-  const [conversationId, setConversationId] = useState(apoemaConversations[0]?.id ?? "");
-  const [messages, setMessages] = useState<ApoemaMessage[]>(apoemaInitialMessages);
-  const [prompt, setPrompt] = useState("");
-  const [attachments, setAttachments] = useState<ApoemaAttachment[]>([]);
-  const [busy, setBusy] = useState(false);
-  const [dragging, setDragging] = useState(false);
-  const [providers, setProviders] = useState<ApoemaProviderOption[]>([]);
+  const [providers, setProviders] = useState<AiChatProvider[]>([]);
   const [selectedProviderId, setSelectedProviderId] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
   const [providerLoadState, setProviderLoadState] = useState<ApoemaProviderLoadState>("loading");
-  const [providerBanner, setProviderBanner] = useState<ApoemaBanner | null>(null);
-  const [messageBanner, setMessageBanner] = useState<ApoemaBanner | null>(null);
+  const [providerBanner, setProviderBanner] = useState<ChatBanner | null>(null);
 
-  const warning = useMemo(() => attachmentWarning(attachments), [attachments]);
+  const [conversations, setConversations] = useState<AiChatConversation[]>([]);
+  const [selectedConversationId, setSelectedConversationId] = useState("");
+  const [conversationDetail, setConversationDetail] = useState<AiChatConversation | null>(null);
+  const [conversationLoadState, setConversationLoadState] = useState<ConversationLoadState>("loading");
+  const [conversationBanner, setConversationBanner] = useState<ChatBanner | null>(null);
+
+  const [prompt, setPrompt] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [creatingConversation, setCreatingConversation] = useState(false);
+  const [messageBanner, setMessageBanner] = useState<ChatBanner | null>(null);
+
   const selectedProvider = useMemo(
     () => providers.find((provider) => provider.id === selectedProviderId) ?? null,
     [providers, selectedProviderId],
@@ -161,17 +162,30 @@ export function ChatPage() {
     return Array.from(new Set([selectedProvider.default_model, ...models]));
   }, [selectedProvider]);
   const providerReady = providerLoadState === "ready" || providerLoadState === "fallback";
+  const visibleMessages = conversationDetail?.messages ?? [];
 
-  async function reloadProviders(guard: () => boolean = () => true) {
+  const providerStateTone =
+    providerLoadState === "loading"
+      ? "neutral"
+      : providerLoadState === "fallback" || providerLoadState === "error"
+        ? "warning"
+        : statusTone(selectedProvider?.status);
+
+  const providerStateLabel =
+    providerLoadState === "loading"
+      ? "Carregando provedores"
+      : providerLoadState === "fallback"
+        ? "Fallback local"
+        : providerLoadState === "error"
+          ? "Catálogo indisponível"
+          : selectedProvider?.status ?? "Sem provedor";
+
+  async function reloadProviders() {
     setProviderLoadState("loading");
     setProviderBanner(null);
 
     try {
-      const result = await getAiProviders(token);
-      if (!guard()) {
-        return;
-      }
-
+      const result = await getAiChatProviders(token);
       if (result.kind === "fallback") {
         const firstProvider = result.providers[0] ?? null;
         setProviders(result.providers);
@@ -180,7 +194,7 @@ export function ChatPage() {
         setProviderLoadState("fallback");
         setProviderBanner({
           tone: "warning",
-          title: "Backend indisponível",
+          title: "Fallback local ativo",
           message: result.notice,
         });
         return;
@@ -204,26 +218,94 @@ export function ChatPage() {
       setSelectedProviderId(firstProvider.id);
       setSelectedModel(firstProvider.default_model);
       setProviderLoadState("ready");
-      setProviderBanner(null);
     } catch (error) {
-      if (!guard()) {
-        return;
-      }
-      const banner = describeApoemaApiError(error);
       setProviders([]);
       setSelectedProviderId("");
       setSelectedModel("");
       setProviderLoadState("error");
-      setProviderBanner(banner);
+      setProviderBanner(describeAiChatApiError(error));
+    }
+  }
+
+  async function reloadConversations(preferredConversationId?: string | null) {
+    setConversationLoadState("loading");
+    setConversationBanner(null);
+
+    try {
+      const result = await listAiChatConversations(token);
+      const nextConversations = result.conversations.map((conversation) => summarizeConversation(conversation));
+      setConversations(nextConversations);
+
+      const nextConversationId = chooseConversationId(nextConversations, preferredConversationId ?? selectedConversationId);
+      setSelectedConversationId(nextConversationId);
+      if (nextConversationId) {
+        await loadConversationDetail(nextConversationId);
+      } else {
+        setConversationDetail(null);
+        setConversationLoadState(result.kind === "fallback" ? "fallback" : "ready");
+      }
+
+      if (result.kind === "fallback") {
+        setConversationBanner({
+          tone: "warning",
+          title: "Fallback local ativo",
+          message: result.notice,
+        });
+      }
+    } catch (error) {
+      setConversations([]);
+      setSelectedConversationId("");
+      setConversationDetail(null);
+      setConversationLoadState("error");
+      setConversationBanner(describeAiChatApiError(error));
+    }
+  }
+
+  async function loadConversationDetail(conversationId: string) {
+    if (!conversationId) {
+      setConversationDetail(null);
+      return;
+    }
+
+    setConversationLoadState("loading");
+    setConversationDetail(null);
+
+    try {
+      const result = await getAiChatConversation(conversationId, token);
+      if (!result) {
+        setConversationDetail(null);
+        setConversationLoadState("error");
+        setConversationBanner({
+          tone: "warning",
+          title: "Conversa indisponível",
+          message: "A conversa selecionada não está disponível neste momento.",
+        });
+        return;
+      }
+
+      setConversationDetail(result.conversation);
+      if (result.kind === "fallback") {
+        setConversationLoadState("fallback");
+        setConversationBanner({
+          tone: "warning",
+          title: "Fallback local ativo",
+          message: result.notice,
+        });
+      } else {
+        setConversationLoadState("ready");
+        setConversationBanner(null);
+      }
+    } catch (error) {
+      setConversationDetail(null);
+      setConversationLoadState("error");
+      setConversationBanner(describeAiChatApiError(error));
     }
   }
 
   useEffect(() => {
-    let active = true;
-    void reloadProviders(() => active);
-    return () => {
-      active = false;
-    };
+    void reloadProviders();
+    void reloadConversations();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   useEffect(() => {
@@ -232,157 +314,143 @@ export function ChatPage() {
     }
   }, [providerModels, selectedModel, selectedProvider]);
 
+  async function handleNewConversation() {
+    if (creatingConversation) {
+      return;
+    }
+
+    setCreatingConversation(true);
+    setMessageBanner(null);
+
+    try {
+      const result = await createAiChatConversation(
+        {
+          title: "Nova conversa",
+          mode: CHAT_MODE,
+        },
+        token,
+      );
+
+      setConversations((current) => {
+        const next = [summarizeConversation(result.conversation), ...current.filter((conversation) => conversation.id !== result.conversation.id)];
+        return next;
+      });
+      setSelectedConversationId(result.conversation.id);
+      setConversationDetail(result.conversation);
+      setConversationLoadState(result.kind === "fallback" ? "fallback" : "ready");
+      if (result.kind === "fallback") {
+        setConversationBanner({
+          tone: "warning",
+          title: "Fallback local ativo",
+          message: result.notice,
+        });
+      } else {
+        setConversationBanner(null);
+      }
+    } catch (error) {
+      setMessageBanner(describeAiChatApiError(error));
+    } finally {
+      setCreatingConversation(false);
+    }
+  }
+
   async function sendMessage() {
     if (busy || !providerReady || !selectedProvider) {
       return;
     }
 
     const content = prompt.trim();
-    if (!content && attachments.length === 0) {
+    if (!content) {
+      setMessageBanner({
+        tone: "warning",
+        title: "Mensagem vazia",
+        message: "Digite uma mensagem para enviar ao backend.",
+      });
       return;
     }
 
-    const userMessage: ApoemaMessage = {
-      id: `user-${Date.now()}`,
-      role: "user",
-      content: content || "Anexei arquivos para revisão.",
-      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      attachments,
-    };
-
-    setMessages((current) => [...current, userMessage]);
-    setPrompt("");
     setBusy(true);
     setMessageBanner(null);
 
     try {
-      const result = await sendAiMessage(
-        {
-          conversation_id: conversationId || null,
-          provider: selectedProvider.id,
-          model: selectedModel || selectedProvider.default_model,
-          message: content,
-          mode: "assistente_n2",
-          attachments: attachments.map((attachment) => ({
-            id: attachment.id,
-            name: attachment.name,
-            mime_type: attachment.mimeType,
-            size: attachment.sizeBytes,
-            kind: attachment.kind,
-            sensitive: Boolean(attachment.sensitive),
-          })),
-          context: {
-            route: "apoema-chat",
-            source: "apoema-preview",
-          },
-        },
-        token,
-      );
-
-      if (result.kind === "fallback") {
-        setConversationId(result.response.conversation_id);
-        setMessages((current) => [
-          ...current,
+      if (!selectedConversationId) {
+        const result = await createAiChatConversation(
           {
-            id: result.response.message_id,
-            role: "assistant",
-            content: result.response.content,
-            time: formatClock(result.response.created_at),
-            source: "fallback",
+            title: content.length > 54 ? `${content.slice(0, 51).trimEnd()}...` : content,
+            message: content,
+            mode: CHAT_MODE,
           },
-        ]);
-        setMessageBanner({
-          tone: "warning",
-          title: "Fallback local ativo",
-          message: result.notice,
+          token,
+        );
+        setConversations((current) => {
+          const next = [summarizeConversation(result.conversation), ...current.filter((conversation) => conversation.id !== result.conversation.id)];
+          return next;
         });
-        return;
+        setSelectedConversationId(result.conversation.id);
+        setConversationDetail(result.conversation);
+        setConversationLoadState(result.kind === "fallback" ? "fallback" : "ready");
+        if (result.kind === "fallback") {
+          setConversationBanner({
+            tone: "warning",
+            title: "Fallback local ativo",
+            message: result.notice,
+          });
+        } else {
+          setConversationBanner(null);
+        }
+      } else {
+        const result = await sendAiChatConversationMessage(
+          selectedConversationId,
+          {
+            content,
+            mode: CHAT_MODE,
+          },
+          token,
+        );
+        setConversations((current) => {
+          const next = [summarizeConversation(result.conversation), ...current.filter((conversation) => conversation.id !== result.conversation.id)];
+          return next;
+        });
+        setConversationDetail(result.conversation);
+        setConversationLoadState(result.kind === "fallback" ? "fallback" : "ready");
+        if (result.kind === "fallback") {
+          setConversationBanner({
+            tone: "warning",
+            title: "Fallback local ativo",
+            message: result.notice,
+          });
+        } else {
+          setConversationBanner(null);
+        }
       }
 
-      const response = result.response;
-      setConversationId(response.conversation_id);
-      setMessages((current) => [
-        ...current,
-        {
-          id: response.message_id,
-          role: "assistant",
-          content: response.content,
-          time: formatClock(response.created_at),
-        },
-      ]);
-
-      if (response.status !== "ok") {
-        setMessageBanner({
-          tone: response.status === "unconfigured" ? "warning" : "warning",
-          title: response.status === "unconfigured" ? "Provedor sem configuração" : "Provedor de IA indisponível",
-          message:
-            response.status === "unconfigured"
-              ? "O provedor Hermes está sem configuração. A resposta veio do backend em modo degradado."
-              : "O provedor de IA está offline. Verifique a configuração do Ollama ou Hermes.",
-        });
-      }
+      setPrompt("");
     } catch (error) {
-      setMessageBanner(describeApoemaApiError(error));
+      setMessageBanner(describeAiChatApiError(error));
     } finally {
-      setAttachments([]);
       setBusy(false);
     }
   }
 
-  function addFiles(files: File[]) {
-    const mapped = files.map(toAttachment);
-    setAttachments((current) => [...current, ...mapped]);
-  }
-
-  const providerStateTone =
-    providerLoadState === "loading"
-      ? "neutral"
-      : providerLoadState === "fallback" || providerLoadState === "error"
-        ? "warning"
-        : statusTone(selectedProvider?.status);
-
-  const providerStateLabel =
-    providerLoadState === "loading"
-      ? "Carregando provedores"
-      : providerLoadState === "fallback"
-        ? "Fallback local"
-        : providerLoadState === "error"
-          ? "Catálogo indisponível"
-          : selectedProvider?.status ?? "Sem provedor";
-
   return (
     <div className="apoema-chat-layout">
-      <aside className="apoema-chat-sidebar apoema-panel">
-        <div className="apoema-section-head">
-          <h2>Conversas</h2>
-          <span>Painel</span>
-        </div>
-        <div className="apoema-conversation-list">
-          {apoemaConversations.map((conversation) => (
-            <button
-              key={conversation.id}
-              type="button"
-              className={`apoema-conversation-item ${conversation.id === conversationId ? "is-active" : ""}`}
-              onClick={() => setConversationId(conversation.id)}
-            >
-              <strong>{conversation.title}</strong>
-              <span>{conversation.subject}</span>
-              <small>{conversation.updatedAt}</small>
-            </button>
-          ))}
-        </div>
-        <div className="apoema-chat-sidebar-card">
-          <StatusPill tone="success">
-            <Sparkles size={14} />
-            IA habilitada
-          </StatusPill>
-          <p>
-            {selectedProvider?.id === "mock"
-              ? "Frontend Apoema → Backend do Painel → adaptador mock local determinístico para UAT."
-              : "Frontend Apoema → Backend do Painel → provedor controlado no servidor."}
-          </p>
-        </div>
-      </aside>
+      {/* Conversas backend-backed */}
+      <ChatConversationSidebar
+        conversations={conversations}
+        selectedConversationId={selectedConversationId || null}
+        loading={conversationLoadState === "loading" || (Boolean(selectedConversationId) && !conversationDetail)}
+        state={conversationLoadState}
+        banner={conversationBanner}
+        fallbackNotice={conversationLoadState === "fallback" ? conversationBanner?.message ?? null : null}
+        onSelectConversation={(conversationId) => {
+          setSelectedConversationId(conversationId);
+          void loadConversationDetail(conversationId);
+          setMessageBanner(null);
+        }}
+        onNewConversation={() => void handleNewConversation()}
+        onReload={() => void reloadConversations(selectedConversationId || null)}
+        creatingConversation={creatingConversation}
+      />
 
       <section className="apoema-panel apoema-chat-main">
         <div className="apoema-section-head">
@@ -408,7 +476,7 @@ export function ChatPage() {
                   <strong>{providerBanner.title}</strong>
                   <p>{providerBanner.message}</p>
                   <div className="apoema-warning-actions">
-                    <button type="button" className="apoema-secondary-button" onClick={() => void reloadProviders()}>
+                    <button type="button" className="apoema-secondary-button" onClick={() => void reloadProviders()} disabled={providerLoadState === "loading"}>
                       <RotateCcw size={16} />
                       Tentar novamente
                     </button>
@@ -462,9 +530,19 @@ export function ChatPage() {
         </div>
 
         <div className="apoema-chat-messages" aria-live="polite">
-          {messages.map((message) => (
-            <ChatMessage key={message.id} message={message} />
-          ))}
+          {selectedConversationId && conversationLoadState === "loading" && conversationDetail === null ? (
+            <div className="apoema-chat-empty-state">
+              <strong>Carregando conversa...</strong>
+              <p>Buscando o histórico selecionado no backend.</p>
+            </div>
+          ) : selectedConversationId && visibleMessages.length > 0 ? (
+            visibleMessages.map((message) => <ChatMessage key={message.id} message={message} />)
+          ) : (
+            <div className="apoema-chat-empty-state">
+              <strong>Sem mensagens ainda</strong>
+              <p>Crie uma conversa nova ou envie a primeira mensagem para iniciar o histórico do backend.</p>
+            </div>
+          )}
         </div>
 
         <div className="apoema-chat-dock">
@@ -478,79 +556,50 @@ export function ChatPage() {
             </div>
           )}
 
-          <FileDropzone
-            dragging={dragging}
-            onDragStateChange={setDragging}
-            onFiles={addFiles}
-            label="Arraste e solte arquivos para anexar ao contexto"
-          />
-
-          {warning && (
-            <div className="apoema-warning is-warning">
-              <ShieldAlert size={16} />
-              <div>
-                <strong>{warning.title}</strong>
-                <p>{warning.description}</p>
-              </div>
-            </div>
-          )}
-
-          {attachments.length > 0 && (
-            <div className="apoema-attachment-list">
-              {attachments.map((attachment) => (
-                <span key={attachment.id} className="apoema-attachment-chip">
-                  <Paperclip size={14} />
-                  {attachment.name}
-                </span>
-              ))}
-            </div>
-          )}
-
           <ChatComposer
             value={prompt}
             onChange={setPrompt}
             onSubmit={sendMessage}
-            disabled={busy || !providerReady || !selectedProvider}
+            disabled={!providerReady || !selectedProvider}
+            isSending={busy}
           />
+
           <div className="apoema-chat-sidebar-card" aria-live="polite">
             <StatusPill tone={providerStateTone as "success" | "warning" | "neutral" | "info"}>
               {providerStateLabel}
             </StatusPill>
             <p>
-              {providerLoadState === "fallback"
-                ? "Backend indisponível. Catálogo local ativo para continuidade da prévia."
-                : providerLoadState === "error"
-                  ? "O catálogo de provedores não pôde ser carregado."
-                  : selectedProvider?.id === "mock"
-                    ? `Adaptador mock local ativo. A resposta vem do backend em modo determinístico para validação de contrato.`
-                    : selectedProvider
-                    ? `Modelo atual: ${selectedModel || selectedProvider.default_model}. A conversa usa metadados de anexos e mantém o fluxo visual local.`
-                    : "Aguardando catálogo de provedores."}
+              {selectedProvider?.id === "mock"
+                ? "Frontend Apoema → Backend do Painel → adaptador mock local determinístico para UAT."
+                : "Frontend Apoema → Backend do Painel → provedor controlado no servidor."}
             </p>
+          </div>
+
+          <div className="apoema-chat-sidebar-card">
+            <StatusPill tone="warning">
+              <ShieldAlert size={14} />
+              Proteções
+            </StatusPill>
+            <p>Sem segredos, sem respostas progressivas inventadas e sem anexos backend-backed nesta fase.</p>
           </div>
         </div>
       </section>
 
-      <aside className="apoema-panel apoema-chat-right">
-        <div className="apoema-section-head">
-          <h2>Boas práticas</h2>
-          <span>Proteções</span>
+      <aside className="apoema-chat-right apoema-panel">
+        <div className="apoema-chat-sidebar-card">
+          <StatusPill tone="success">
+            <Sparkles size={14} />
+            Sem segredos
+          </StatusPill>
+          <p>O chat conversa com o backend do Painel e não expõe tokens, provider keys ou paths internos.</p>
         </div>
-        <div className="apoema-safety-list">
-          <div className="apoema-safety-item">
-            <ShieldAlert size={16} />
-            <div>
-              <strong>Sem segredos</strong>
-              <p>.env, tokens e bases locais são sinalizados antes do envio.</p>
-            </div>
-          </div>
-          <div className="apoema-safety-item">
-            <Sparkles size={16} />
-            <div>
-              <strong>Respostas concisas</strong>
-              <p>O assistente prioriza contexto operacional e ações sugeridas.</p>
-            </div>
-          </div>
+        <div className="apoema-chat-sidebar-card">
+          <StatusPill tone="info">Operação</StatusPill>
+          <p>Histórico backend-backed, mensagens em PT-BR e fallback local apenas quando a rede falha.</p>
+        </div>
+        <div className="apoema-chat-sidebar-card">
+          <StatusPill tone="neutral">Tempo</StatusPill>
+          <p>{conversationDetail?.updated_at ? `Última atualização: ${formatClock(conversationDetail.updated_at)}` : "Nenhuma conversa selecionada."}</p>
         </div>
       </aside>
     </div>

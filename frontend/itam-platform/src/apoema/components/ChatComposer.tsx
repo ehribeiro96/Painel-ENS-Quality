@@ -1,34 +1,48 @@
-import { Mic, Send } from "lucide-react";
+import { SendHorizonal } from "lucide-react";
+import { useMemo } from "react";
+
+type Props = {
+  value: string;
+  onChange: (value: string) => void;
+  onSubmit: () => void | Promise<void>;
+  disabled?: boolean;
+  isSending?: boolean;
+  placeholder?: string;
+};
 
 export function ChatComposer({
   value,
   onChange,
   onSubmit,
-  disabled,
-  placeholder = "Digite sua pergunta..."
-}: {
-  value: string;
-  onChange: (value: string) => void;
-  onSubmit: () => void;
-  disabled?: boolean;
-  placeholder?: string;
-}) {
+  disabled = false,
+  isSending = false,
+  placeholder = "Digite sua mensagem. Enter envia e Shift+Enter quebra linha.",
+}: Props) {
+  const sendDisabled = useMemo(() => disabled || isSending || !value.trim(), [disabled, isSending, value]);
+
   return (
-    <div className="apoema-chat-composer">
+    <div className={disabled ? "apoema-chat-composer is-disabled" : "apoema-chat-composer"}>
       <textarea
         value={value}
         onChange={(event) => onChange(event.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            if (!sendDisabled) {
+              void onSubmit();
+            }
+          }
+        }}
         placeholder={placeholder}
-        rows={3}
+        rows={4}
+        disabled={disabled}
+        aria-busy={isSending}
       />
       <div className="apoema-chat-composer-actions">
-        <button type="button" className="apoema-ghost-button">
-          <Mic size={16} />
-          Ditado
-        </button>
-        <button type="button" className="apoema-primary-button" onClick={onSubmit} disabled={disabled}>
-          <Send size={16} />
-          Enviar
+        <span className="apoema-chat-composer-hint">Sem respostas progressivas, sem anexos e com envio explícito para o backend.</span>
+        <button type="button" className="apoema-primary-button" onClick={() => void onSubmit()} disabled={sendDisabled}>
+          <SendHorizonal size={16} />
+          {isSending ? "Enviando..." : "Enviar"}
         </button>
       </div>
     </div>
