@@ -1,0 +1,8 @@
+check	status	evidence
+no direct provider imports	pass	grep limpo em frontend/itam-platform/src/apoema
+no provider keys in client	pass	grep limpo em frontend/itam-platform/src/apoema e teste estático
+no VITE_* secret usage	pass	contrato estático cobre process.env e VITE_[A-Z0-9_]*KEY
+401/403/429 do not fallback to mock	pass	ChatPage mapeia erros e mostra banners honestos
+no signed token rendered	pass	ChatMessage e ChatPage não expõem token bruto
+no internal storage path exposed	pass	bridge API não usa storage direto
+no streaming/cancel/attachments invented	pass	contrato e UI não simulam suporte inexistente

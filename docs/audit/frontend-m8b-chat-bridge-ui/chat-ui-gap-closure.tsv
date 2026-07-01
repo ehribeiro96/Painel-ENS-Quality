@@ -1,0 +1,7 @@
+gap	before	after	evidence
+providers sourced locally	Sim	Não	ChatPage usa getAiChatProviders()
+conversations sourced locally	Sim	Não	ChatPage usa listAiChatConversations() e getAiChatConversation()
+new conversation created locally	Sim	Não	createAiChatConversation() no backend
+message send local-only	Sim	Não	sendAiChatConversationMessage() no backend
+fallback masked auth errors	Sim	Não	describeAiChatApiError() diferencia 401/403/429
+streaming/cancel/attachments implied	Sim	Não	sem EventSource/getReader/AbortController e sem anexos no chat

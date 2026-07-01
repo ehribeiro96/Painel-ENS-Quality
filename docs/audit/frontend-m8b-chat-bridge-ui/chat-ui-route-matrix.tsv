@@ -1,0 +1,4 @@
+route	source	behavior	backend_dependency	risk
+/apoema/chat	ApoemaApp -> ChatPage	Chat de IA principal	/api/v1/ai-chat/*	baixo
+/apoema-preview/chat	ApoemaApp -> ChatPage	Preview da mesma UI	/api/v1/ai-chat/*	baixo
+/login	SPA fallback	Smoke de roteamento	Apenas shell do app	baixo
