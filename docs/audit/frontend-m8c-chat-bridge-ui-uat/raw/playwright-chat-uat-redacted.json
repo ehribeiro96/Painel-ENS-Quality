@@ -1,0 +1,47 @@
+{
+  "auth": {
+    "loginStatus": 200,
+    "loginOk": true,
+    "tokenCaptured": true,
+    "postLoginUrl": "http://127.0.0.1:5175/apoema/dashboard",
+    "storageStateWritten": true,
+    "chatUrl": "http://127.0.0.1:5175/apoema/chat",
+    "h1": "Como posso ajudar?",
+    "bodyHasChatCopy": true,
+    "providerSelectCount": 2,
+    "conversationItemCountBefore": 1,
+    "conversationItemCountAfterCreate": 2,
+    "activeConversationTitle": "Nova conversa",
+    "bodyHasSentMessage": true,
+    "messagesCountAfterSend": 2,
+    "fallbackVisible": false,
+    "bodyHasSentMessageAfterReload": true,
+    "reentryPreservedConversation": true,
+    "mobileBodyHasChatCopy": true,
+    "previewHasChatCopy": true,
+    "conversationsText": true
+  },
+  "anon": {
+    "url": "http://127.0.0.1:5175/login",
+    "isLogin": true,
+    "hasFallbackBanner": false
+  },
+  "api": {
+    "authenticated": {
+      "healthStatus": 200,
+      "providersStatus": 200,
+      "conversationsStatus": 200
+    },
+    "unauthenticated": {
+      "providersStatus": 401,
+      "bodyLooks401": true
+    }
+  },
+  "screenshots": [
+    "desktop-chat-initial.png",
+    "desktop-chat-after-send.png",
+    "mobile-chat-after-reload.png",
+    "desktop-preview-chat.png",
+    "anon-login-redirect.png"
+  ]
+}

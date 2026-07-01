@@ -1,0 +1,11 @@
+check	result	evidence
+authenticated_session	valid	/login -> /apoema/dashboard com login 200 e token capturado sem imprimir
+route_chat	ok	/apoema/chat carregou com h1 "Como posso ajudar?"
+route_preview	ok	/apoema-preview/chat carregou com o mesmo chat
+providers_backend	ok	/api/v1/ai-chat/providers retornou 200 com Authorization em memória
+conversation_list_backend	ok	/lista carregou e exibiu conversas do backend
+conversation_create	ok	/Nova conversa criou item novo na sidebar
+message_send	ok	/Mensagem UAT sintética enviada e aparecendo na conversa
+conversation_reload	ok	/reload manteve a conversa e a mensagem via backend
+unauth_401	ok	/api/v1/ai-chat/providers sem auth retornou 401 missing_token
+auth_error_masking	not_masked	/anônimo caiu em /login, sem fallback falso

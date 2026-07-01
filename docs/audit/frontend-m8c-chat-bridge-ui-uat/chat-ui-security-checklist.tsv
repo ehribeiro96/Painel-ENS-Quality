@@ -1,0 +1,14 @@
+check	result	evidence	notes
+no_direct_provider_call	pass	grep limpo em frontend/itam-platform/src/apoema	sem OpenAI/Gemini/Ollama direto
+no_provider_secret_visible	pass	grep limpo em UI e docs UAT	nenhuma key/token de provider
+no_vite_secret	pass	contrato estático e grep limpos	sem VITE_* para segredo
+no_auth_error_fallback_masking	pass	ctx anônimo redirecionou para /login	e sem fallback local aparente
+no_cookie_logged	pass	scripts e saída redigidos	nada de cookie/token impresso
+no_storage_state_committed	pass	state em /tmp apenas	não versionado
+no_streaming_fake	pass	UI e texto visível não mostram streaming real	sem EventSource/getReader/AbortController
+no_cancel_fake	pass	UI não expõe cancelamento como recurso	sem ação/controle de cancelamento
+no_attachments_fake	pass	sem anexos/artifacts no chat	nesta fase
+backend_conversations_used	pass	conversation list + create/send via backend	UI backend-backed
+local_history_not_primary	pass	reload e reentrada preservam backend state	sem fonte local primária
+missing_token_401	pass	/api/v1/ai-chat/providers sem auth = 401	missing_token
+no_secret_in_docs	pass	grep redigido nos docs UAT	sem segredo real
