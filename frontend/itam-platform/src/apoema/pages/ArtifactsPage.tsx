@@ -166,9 +166,12 @@ export function ArtifactsPage() {
           <input
             type="file"
             disabled={uploading}
-            onChange={(event) => void handleUpload(event.target.files?.[0] ?? null, () => {
-              event.currentTarget.value = "";
-            })}
+            onChange={(event) => {
+              const input = event.currentTarget;
+              void handleUpload(event.target.files?.[0] ?? null, () => {
+                input.value = "";
+              });
+            }}
           />
         </label>
       </section>
