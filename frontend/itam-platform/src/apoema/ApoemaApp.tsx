@@ -1,4 +1,4 @@
-import { Navigate, NavLink, Outlet, Route, Routes } from "react-router-dom";
+import { Navigate, NavLink, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Archive, ArrowLeftRight, BarChart3, Brain, FileSignature, FileUp, Layers3, Package, Palette, Search, Settings2, ShieldAlert, SplitSquareHorizontal, TextCursorInput, Users, WandSparkles } from "lucide-react";
 import { ApoemaLogo } from "./components/ApoemaLogo";
 import { ThemeSelector } from "./components/ThemeSelector";
@@ -46,6 +46,9 @@ const navItems = [
 ];
 
 function ApoemaShell({ theme }: { theme: ReturnType<typeof useThemeMode> }) {
+  const { pathname } = useLocation();
+  const routeBase = pathname.startsWith("/apoema-preview") ? "/apoema-preview" : "/apoema";
+
   return (
     <div className="apoema-shell">
       <aside className="apoema-sidebar">
@@ -54,7 +57,7 @@ function ApoemaShell({ theme }: { theme: ReturnType<typeof useThemeMode> }) {
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
-              <NavLink key={item.to} to={item.to} className={({ isActive }) => `apoema-nav-item ${isActive ? "is-active" : ""}`}>
+              <NavLink key={item.to} to={`${routeBase}/${item.to}`} className={({ isActive }) => `apoema-nav-item ${isActive ? "is-active" : ""}`}>
                 <Icon size={16} />
                 <span>{item.label}</span>
                 {"badge" in item ? <small className="apoema-nav-badge">{item.badge}</small> : null}
