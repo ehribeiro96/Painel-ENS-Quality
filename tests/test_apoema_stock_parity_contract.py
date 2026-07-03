@@ -41,13 +41,14 @@ class ApoemaStockParityContractTest(unittest.TestCase):
         self.assertNotIn('redirectTo: "/apoema/stock"', APP)
 
     def test_stock_page_contains_operational_parity_surface(self) -> None:
-        for term in ("Base44PageHeader", "Base44OperationalGrid", "Base44MetricCard", "Base44Surface", "Base44StatusBadge", "Base44EmptyState", "LoadingBlock"):
+        for term in ("DonorPanelPageLayout", "DonorChip", "LoadingBlock"):
             self.assertIn(term, APOEMA_STOCK)
         self.assertIn("assetsByStatus(", APOEMA_STOCK)
         self.assertIn("Apoema Estoque", APOEMA_STOCK)
         self.assertIn("Estoque", APOEMA_STOCK)
-        self.assertIn("Sem mock", APOEMA_STOCK)
         self.assertIn("total", APOEMA_STOCK)
+        for term in ("Base44PageHeader", "Base44OperationalGrid", "Base44MetricCard", "Base44Surface", "Base44StatusBadge", "Base44EmptyState"):
+            self.assertNotIn(term, APOEMA_STOCK)
 
     def test_legacy_stock_page_was_removed_from_disk(self) -> None:
         self.assertFalse(LEGACY_STOCK.exists())

@@ -1,4 +1,4 @@
-import type { AiChatConversation, AiChatConversationCreate, AiChatConversationDetail, AiChatMessageCreate, AiChatProviderHealth, Asset, AuditLog, ImportConflict, ImportJob, ImportPreview, ImportStagingAsset, ImportValidationError, MacroAutocompleteHint, MacroGeneration, MacroRenderResponse, MacroTemplate, Movement, Page, SearchResponse, SuggestedMovementMacro, TokenResponse, User } from "./types";
+import type { AiChatConversation, AiChatConversationCreate, AiChatConversationDetail, AiChatConversationUpdate, AiChatMessageCreate, AiChatProviderHealth, Asset, AuditLog, ImportConflict, ImportJob, ImportPreview, ImportStagingAsset, ImportValidationError, MacroAutocompleteHint, MacroGeneration, MacroRenderResponse, MacroTemplate, Movement, Page, SearchResponse, SuggestedMovementMacro, TokenResponse, User } from "./types";
 
 const API_BASE = (import.meta.env.VITE_API_URL || "/api/v1").replace(/\/$/, "");
 
@@ -201,6 +201,36 @@ export const api = {
   logout: (token?: string | null, options: Pick<RequestInit, "signal"> = {}) =>
     request<{ status: string }>("/auth/logout", { method: "POST", token, skipAuthRefresh: true, ...options }),
   me: (token: string) => request<User>("/auth/me", { token }),
+  aiChatHealth: (token: string) => request<AiChatProviderHealth>("/ai-chat/health", { token }),
+  aiChatConversations: (token: string) => request<AiChatConversation[]>("/ai-chat/conversations", { token }),
+  aiChatConversation: (token: string, id: string) => request<AiChatConversationDetail>(`/ai-chat/conversations/${id}`, { token }),
+  aiChatCreateConversation: (token: string, payload: AiChatConversationCreate) =>
+    request<AiChatConversationDetail>("/ai-chat/conversations", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      token,
+    }),
+  aiChatUpdateConversation: (token: string, id: string, payload: AiChatConversationUpdate) =>
+    request<AiChatConversation>(`/ai-chat/conversations/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(payload),
+      token,
+    }),
+  aiChatDeleteConversation: (token: string, id: string) =>
+    request<void>(`/ai-chat/conversations/${id}`, {
+      method: "DELETE",
+      token,
+    }),
+  aiChatSendMessage: (token: string, id: string, contentOrPayload: string | AiChatMessageCreate, mode?: AiChatMessageCreate["mode"]) =>
+    request<AiChatConversationDetail>(`/ai-chat/conversations/${id}/messages`, {
+      method: "POST",
+      body: JSON.stringify(
+        typeof contentOrPayload === "string"
+          ? { content: contentOrPayload, mode }
+          : contentOrPayload,
+      ),
+      token,
+    }),
   dashboardSummary: (token: string) => request<Record<string, number>>("/dashboard/summary", { token }),
   assetsByStatus: (token: string) => request<Array<{ status: string; count: number }>>("/dashboard/assets-by-status", { token }),
   recentMovements: (token: string) => request<Movement[]>("/dashboard/recent-movements", { token }),
@@ -289,13 +319,4 @@ export const api = {
     request<MacroAutocompleteHint[]>(`/macros/autocomplete?q=${encodeURIComponent(query)}&hint_type=${encodeURIComponent(hintType)}`, { token }),
   suggestedMovementMacro: (token: string, movementId: string) =>
     request<SuggestedMovementMacro>(`/movements/${movementId}/suggested-macro`, { token }),
-  aiChatHealth: (token: string) => request<AiChatProviderHealth>("/ai-chat/health", { token }),
-  aiChatConversations: (token: string) => request<AiChatConversation[]>("/ai-chat/conversations", { token }),
-  aiChatConversation: (token: string, id: string) => request<AiChatConversationDetail>(`/ai-chat/conversations/${id}`, { token }),
-  aiChatCreateConversation: (token: string, payload: AiChatConversationCreate) =>
-    request<AiChatConversationDetail>("/ai-chat/conversations", { method: "POST", body: JSON.stringify(payload), token }),
-  aiChatSendMessage: (token: string, id: string, contentOrPayload: string | AiChatMessageCreate, mode?: AiChatMessageCreate["mode"]) => {
-    const payload = typeof contentOrPayload === "string" ? { content: contentOrPayload, mode } : contentOrPayload;
-    return request<AiChatConversationDetail>(`/ai-chat/conversations/${id}/messages`, { method: "POST", body: JSON.stringify(payload), token });
-  }
 };

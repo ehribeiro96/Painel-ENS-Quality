@@ -27,12 +27,14 @@ class ApoemaAuditLogsParityContractTest(unittest.TestCase):
         self.assertNotIn('redirectTo: "/apoema/audit-logs"', APP)
 
     def test_audit_logs_page_contains_operational_filters_and_states(self) -> None:
-        for term in ("Base44AuditEventCard", "Base44EmptyState", "Base44FilterPanel", "Base44InfoGrid", "Base44PageHeader", "LoadingBlock", ".audit(token, query)"):
+        for term in ("DonorPanelPageLayout", "DonorSelect", "DonorFieldGrid", "DonorTextInput", "DonorChip", "Base44AuditEventCard", "Base44EmptyState", "LoadingBlock", ".audit(token, query)"):
             self.assertIn(term, APOEMA_AUDIT_LOGS)
         for term in ("pt-BR", "request_id", "correlation_id", "entity_id", "entity_type", "date_from", "date_to"):
             self.assertIn(term, APOEMA_AUDIT_LOGS)
         self.assertIn("Logs de Auditoria", APOEMA_AUDIT_LOGS)
         self.assertIn("Paginação", APOEMA_AUDIT_LOGS)
+        for term in ("Base44FilterPanel", "Base44InfoGrid", "Base44PageHeader", "<select"):
+            self.assertNotIn(term, APOEMA_AUDIT_LOGS)
 
     def test_no_direct_provider_calls_in_apoema_audit_logs(self) -> None:
         for term in ("localhost:11434", "127.0.0.1:11434", "OLLAMA_BASE_URL", "HERMES_BASE_URL", "COMPOSIO", "/api/chat"):

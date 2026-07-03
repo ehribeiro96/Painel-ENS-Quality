@@ -37,6 +37,7 @@ services:
       APP_HOST: 0.0.0.0
       APP_PORT: 8080
       ENS_BUILD_FRONTEND: "0"
+      HOME: ${HOME}
       DATABASE_URL: postgresql+asyncpg://itam:itam@postgres:5432/itam
       REDIS_URL: redis://redis:6379/0
       APP_STARTUP_CHECKS: "1"
@@ -56,6 +57,9 @@ services:
       - "8080:8080"
     volumes:
       - app_data:/app/data
+      - ${HOME}/.hermes:${HOME}/.hermes
+      - ${HOME}/.local/bin/hermes:/usr/local/bin/hermes:ro
+      - ${HOME}/.local/share/uv/python:${HOME}/.local/share/uv/python:ro
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health/ready', timeout=3).read()"]
       interval: 20s

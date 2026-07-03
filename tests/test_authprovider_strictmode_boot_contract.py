@@ -40,7 +40,7 @@ class AuthProviderStrictModeBootContractTest(unittest.TestCase):
         unauthorized_branch = re.search(r"if \(error instanceof ApiError && \(error.status === 401 \|\| error.status === 403\)\) \{(?P<body>.*?)\n        \}", AUTH, re.S)
         self.assertIsNotNone(unauthorized_branch)
         self.assertIn("clearSession();", unauthorized_branch.group("body"))
-        self.assertIn("return null;", unauthorized_branch.group("body"))
+        self.assertIn("return tokenRef.current;", unauthorized_branch.group("body"))
         self.assertNotRegex(AUTH, r"catch\(\(error: unknown\) => \{\s*clearSession\(\);")
 
     def test_api_refresh_accepts_signal_and_keeps_credentials_include(self) -> None:
@@ -69,9 +69,9 @@ class AuthProviderStrictModeBootContractTest(unittest.TestCase):
         self.assertIn('path="/login" element={<LoginPage />}', APP)
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', APP)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP)
+        self.assertIn('path="/ai-chat" element={<Navigate to="/apoema/chat" replace />} ', APP.replace("\n", " "))
 
         for legacy_alias in (
-            'path="/ai-chat"',
             'path="/assets"',
             'path="/audit-logs"',
             'path="/imports"',

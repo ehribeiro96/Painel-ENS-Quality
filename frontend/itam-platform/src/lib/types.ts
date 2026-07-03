@@ -243,6 +243,10 @@ export type AiChatConversationCreate = {
   mode?: AiChatMode | null;
 };
 
+export type AiChatConversationUpdate = {
+  title: string;
+};
+
 export type AiChatMessage = {
   id: string;
   conversation_id: string;

@@ -1,81 +1,104 @@
-import { CommandCard } from "../components/CommandCard";
-import { EmptyState } from "../components/EmptyState";
-import { MetricCard } from "../components/MetricCard";
-import { StatusPill } from "../components/StatusPill";
+import { Link } from "react-router-dom";
+import { ArrowRight, Clock3, Sparkles, WandSparkles } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { DonorPanelPageLayout } from "../components/DonorPanelPageLayout";
 import { apoemaActivities, apoemaCommands, apoemaMetrics, apoemaQuickIdeas } from "../data";
 
 export function DashboardPage() {
   return (
-    <div className="apoema-page">
-      <section className="apoema-hero">
-        <div className="apoema-hero-copy">
-          <StatusPill tone="success">Centro de operações</StatusPill>
-          <h1>Operações que impulsionam valor com IA e inventário unificado.</h1>
-          <p>
-            Apoema é a camada corporativa para N2, inventário, movimentos, macros ITIL, auditoria
-            e suporte inteligente. Tudo com uma experiência visual premium.
-          </p>
-          <div className="apoema-hero-actions">
-            <button type="button" className="apoema-primary-button">Abrir painel operacional</button>
-            <button type="button" className="apoema-secondary-button">Ver integrações</button>
+    <DonorPanelPageLayout
+      eyebrow="Centro de operações"
+      title="Painel operacional"
+      description="Inventário, macros, atendimento e auditoria em uma visão única e direta, com shell donor-first e contrastes consistentes."
+      actions={
+        <>
+          <Button asChild className="rounded-2xl bg-cyan-400 text-slate-950 hover:bg-cyan-300">
+            <Link to="/apoema/chat">
+              <Sparkles className="h-4 w-4" />
+              Abrir chat
+            </Link>
+          </Button>
+          <Button asChild variant="outline" className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10">
+            <Link to="/apoema/assets">
+              <ArrowRight className="h-4 w-4" />
+              Ver ativos
+            </Link>
+          </Button>
+        </>
+      }
+      stats={apoemaMetrics.slice(0, 4).map((metric) => ({
+        label: metric.label,
+        value: metric.value,
+        detail: metric.hint,
+      }))}
+    >
+      <section className="grid gap-4 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,0.9fr)]">
+        <div className="rounded-[28px] border border-white/10 bg-white/[0.04] p-5">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Atalhos operacionais</p>
+              <h3 className="mt-1 text-lg font-semibold text-slate-50">Ações rápidas</h3>
+            </div>
+            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">Fluxo ativo</span>
           </div>
-        </div>
-        <div className="apoema-hero-panel">
-          <div className="apoema-hero-panel-top">
-            <strong>Janela operacional</strong>
-            <span>Últimos 30 dias</span>
-          </div>
-          <div className="apoema-hero-card-grid">
-            {apoemaMetrics.slice(0, 3).map((metric) => (
-              <MetricCard key={metric.label} metric={metric} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="apoema-section-grid">
-        <div className="apoema-panel">
-          <div className="apoema-section-head">
-            <h2>Atalhos operacionais</h2>
-            <span>Ações rápidas</span>
-          </div>
-          <div className="apoema-command-grid">
+          <div className="grid gap-3 md:grid-cols-3">
             {apoemaCommands.map((command) => (
-              <CommandCard key={command.title} command={command} />
+              <article key={command.title} className="rounded-[22px] border border-white/10 bg-slate-950/40 p-4">
+                <p className="text-sm font-medium text-slate-100">{command.title}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{command.description}</p>
+                <button type="button" className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-cyan-400 px-4 py-2 text-sm font-medium text-slate-950 hover:bg-cyan-300">
+                  <WandSparkles className="h-4 w-4" />
+                  {command.action}
+                </button>
+              </article>
             ))}
           </div>
         </div>
 
-        <div className="apoema-panel">
-          <div className="apoema-section-head">
-            <h2>Sinais recentes</h2>
-            <span>Linha do tempo</span>
+        <div className="rounded-[28px] border border-white/10 bg-white/[0.04] p-5">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Sinais recentes</p>
+              <h3 className="mt-1 text-lg font-semibold text-slate-50">Linha do tempo</h3>
+            </div>
+            <Clock3 className="h-4 w-4 text-cyan-100" />
           </div>
-          <div className="apoema-timeline">
+          <div className="space-y-3">
             {apoemaActivities.map((activity) => (
-              <article key={activity.title} className={`apoema-timeline-item tone-${activity.tone}`}>
-                <time>{activity.time}</time>
-                <div>
-                  <strong>{activity.title}</strong>
-                  <p>{activity.detail}</p>
+              <article key={activity.title} className="rounded-[22px] border border-white/10 bg-slate-950/40 p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.22em] text-slate-500">{activity.time}</p>
+                    <h4 className="mt-1 text-sm font-medium text-slate-50">{activity.title}</h4>
+                  </div>
+                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-slate-400">
+                    {activity.tone}
+                  </span>
                 </div>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{activity.detail}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="apoema-panel">
-        <div className="apoema-section-head">
-          <h2>Ideias rápidas</h2>
-          <span>Copie uma sugestão para o chat</span>
+      <section className="rounded-[28px] border border-white/10 bg-white/[0.04] p-5">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Ideias rápidas</p>
+            <h3 className="mt-1 text-lg font-semibold text-slate-50">Use uma sugestão para começar</h3>
+          </div>
         </div>
-        <div className="apoema-idea-grid">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {apoemaQuickIdeas.map((idea) => (
-            <EmptyState key={idea} title={idea} description="Prompt operacional para acelerar a análise e ação." />
+            <article key={idea} className="rounded-[22px] border border-white/10 bg-slate-950/40 p-4">
+              <p className="text-sm font-medium text-slate-100">{idea}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-400">Prompt operacional para acelerar a análise e ação.</p>
+            </article>
           ))}
         </div>
       </section>
-    </div>
+    </DonorPanelPageLayout>
   );
 }

@@ -17,14 +17,16 @@ export function Base44MetricCard({
   accent?: ReactNode;
 }) {
   return (
-    <Base44Surface className="base44-metric-card" as="article">
-      <div className="base44-metric-card-header">
-        <span className="base44-metric-icon"><Icon size={18} aria-hidden="true" /></span>
-        {accent ? <span className="base44-metric-accent">{accent}</span> : null}
+    <Base44Surface as="article" className="space-y-3">
+      <div className="flex items-start justify-between gap-3">
+        <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-100 ring-1 ring-cyan-300/20">
+          <Icon size={18} aria-hidden="true" />
+        </span>
+        {accent ? <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium text-slate-300">{accent}</span> : null}
       </div>
-      <strong className="base44-metric-value">{value}</strong>
-      <span className="base44-metric-label">{title}</span>
-      {description ? <p className="base44-metric-description">{description}</p> : null}
+      <strong className="block text-2xl font-semibold tracking-tight text-slate-50">{value}</strong>
+      <span className="block text-sm font-medium text-slate-200">{title}</span>
+      {description ? <p className="text-sm leading-6 text-slate-400">{description}</p> : null}
     </Base44Surface>
   );
 }

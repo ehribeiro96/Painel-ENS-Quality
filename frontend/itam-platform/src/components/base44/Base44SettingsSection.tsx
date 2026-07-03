@@ -19,19 +19,19 @@ export function Base44SettingsSection({
   children?: ReactNode;
 }) {
   return (
-    <Base44Surface className="base44-settings-section" as="section">
-      <div className="base44-settings-section-head">
-        <div className="base44-settings-section-copy">
-          {eyebrow ? <p className="base44-eyebrow">{eyebrow}</p> : null}
-          <div className="base44-settings-section-titleline">
-            <h2>{title}</h2>
+    <Base44Surface as="section" className="space-y-4">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <div className="space-y-2">
+          {eyebrow ? <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">{eyebrow}</p> : null}
+          <div className="flex flex-wrap items-center gap-2">
+            <h2 className="text-lg font-semibold text-slate-50">{title}</h2>
             {status ? <Base44StatusBadge status="auditavel">{status}</Base44StatusBadge> : null}
           </div>
-          {description ? <p className="base44-settings-section-description">{description}</p> : null}
+          {description ? <p className="max-w-3xl text-sm leading-6 text-slate-400">{description}</p> : null}
         </div>
-        {actions ? <div className="base44-settings-section-actions">{actions}</div> : null}
+        {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
       </div>
-      {children ? <div className="base44-settings-section-body">{children}</div> : null}
+      {children ? <div>{children}</div> : null}
     </Base44Surface>
   );
 }

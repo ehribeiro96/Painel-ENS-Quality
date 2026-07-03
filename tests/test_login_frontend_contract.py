@@ -14,34 +14,46 @@ STYLES = (ROOT / "frontend/itam-platform/src/styles.css").read_text(encoding="ut
 class LoginFrontendContractTest(unittest.TestCase):
     def test_login_page_exports_function_component_and_form(self) -> None:
         self.assertIn("export function LoginPage()", LOGIN)
-        self.assertIn('Base44Surface className="base44-login-card" as="form"', LOGIN)
+        self.assertIn("rounded-[28px]", LOGIN)
+        self.assertIn("bg-slate-950/70", LOGIN)
+        self.assertIn("Apoema", LOGIN)
         self.assertIn('type="email"', LOGIN)
         self.assertIn('type="password"', LOGIN)
-        self.assertIn("handleSubmit", LOGIN)
+        self.assertIn("handleLogin", LOGIN)
 
     def test_login_page_handles_loading_and_error_states(self) -> None:
         self.assertIn("if (loading)", LOGIN)
-        self.assertIn("LoadingBlock label=\"Validando sessão...\"", LOGIN)
+        self.assertIn("Carregando módulo...", LOGIN)
         self.assertIn("getLoginErrorMessage", LOGIN)
         self.assertIn("Credenciais inválidas. Verifique e-mail e senha.", LOGIN)
         self.assertIn("Backend indisponível. Tente novamente em instantes.", LOGIN)
         self.assertIn("bootError", LOGIN)
+        self.assertIn("transitioning", LOGIN)
+        self.assertIn("Esqueceu a senha?", LOGIN)
+        self.assertIn("requestReset", LOGIN)
+        self.assertIn("setNewPassword", LOGIN)
 
     def test_login_page_does_not_use_mock_login_shortcut(self) -> None:
         lowered = LOGIN.lower()
         self.assertNotIn("mock login", lowered)
         self.assertNotIn("login mock", lowered)
+        self.assertNotIn("base44surface", lowered)
+        self.assertNotIn("base44pageheader", lowered)
+        self.assertNotIn("base44shellaccent", lowered)
+        self.assertNotIn("hermesops sentinel", lowered)
 
     def test_app_preserves_login_route_and_protected_routes(self) -> None:
         self.assertIn('path="/login" element={<LoginPage />} ', APP.replace("\n", " "))
         self.assertIn('path="/" element={<Navigate to="/apoema" replace />} ', APP.replace("\n", " "))
-        self.assertIn('path="/apoema" element={<ApoemaRoute />}', APP.replace("\n", " "))
-        self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', APP.replace("\n", " "))
+        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
+        self.assertIn('path="/ai-chat" element={<Navigate to="/apoema/chat" replace />} ', APP.replace("\n", " "))
         self.assertIn("RouteLoading", APP)
 
     def test_auth_context_has_timeout_and_boot_error_handling(self) -> None:
         self.assertIn("AUTH_BOOT_TIMEOUT_MS", AUTH)
+        self.assertIn("AUTH_SESSION_STORAGE_KEY", AUTH)
+        self.assertIn("window.localStorage", AUTH)
         self.assertIn("AbortController", AUTH)
         self.assertIn("sharedRefreshRequest", AUTH)
         self.assertIn("refreshSession()", AUTH)
@@ -56,8 +68,10 @@ class LoginFrontendContractTest(unittest.TestCase):
         self.assertIn('logout: (token?: string | null, options: Pick<RequestInit, "signal"> = {})', API)
 
     def test_login_warning_style_exists(self) -> None:
-        self.assertIn(".base44-inline-alert.warning", STYLES)
-        self.assertIn("color: var(--color-warning);", STYLES)
+        self.assertIn(".glass-surface", STYLES)
+        self.assertIn(".shadow-glass", STYLES)
+        self.assertNotIn(".apoema-login-shell", STYLES)
+        self.assertNotIn(".apoema-login-feature", STYLES)
 
 
 if __name__ == "__main__":

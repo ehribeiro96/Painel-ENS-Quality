@@ -61,7 +61,7 @@ class FakeAiChatSession:
             entity.updated_at = getattr(entity, "updated_at", None) or now
             entity.system_prompt_version = getattr(entity, "system_prompt_version", None) or "mvp-1"
             entity.extra_metadata = getattr(entity, "extra_metadata", None) or {}
-            self.conversations[entity.id] = {"entity": entity, "user_id": entity.user_id, "deleted_at": entity.deleted_at}
+            self.conversations[entity.id] = {"entity": entity, "user_id": entity.user_id}
             self.messages.setdefault(entity.id, [])
         elif name == "AiChatMessage":
             if getattr(entity, "id", None) is None:
@@ -91,16 +91,17 @@ class FakeAiChatSession:
         row = self.conversations.get(params.get("id_1"))
         if not row:
             return None
-        if row["user_id"] != params.get("user_id_1") or row["deleted_at"] is not None:
+        entity = row["entity"]
+        if row["user_id"] != params.get("user_id_1") or getattr(entity, "deleted_at", None) is not None:
             return None
-        return row["entity"]
+        return entity
 
     async def execute(self, statement):  # noqa: ANN001 - fake SQLAlchemy boundary
         text = str(statement.compile(compile_kwargs={"literal_binds": False}))
         params = statement.compile().params
         if "FROM ai_chat_conversations" in text:
             user_id = params.get("user_id_1")
-            items = [row["entity"] for row in self.conversations.values() if row["user_id"] == user_id and row["deleted_at"] is None]
+            items = [row["entity"] for row in self.conversations.values() if row["user_id"] == user_id and getattr(row["entity"], "deleted_at", None) is None]
         elif "FROM ai_chat_messages" in text:
             items = [row["entity"] for row in self.messages.get(params.get("conversation_id_1"), [])]
         else:
@@ -163,6 +164,12 @@ class AiChatApiTest(unittest.IsolatedAsyncioTestCase):
                     or require_role in dependencies,
                     route.path,
                 )
+
+    def test_conversation_rename_and_delete_routes_exist(self) -> None:
+        rename_routes = [route for route in ai_chat.router.routes if getattr(route, "path", None) == "/ai-chat/conversations/{conversation_id}" and "PATCH" in getattr(route, "methods", set())]
+        delete_routes = [route for route in ai_chat.router.routes if getattr(route, "path", None) == "/ai-chat/conversations/{conversation_id}" and "DELETE" in getattr(route, "methods", set())]
+        self.assertTrue(rename_routes, "rename route missing")
+        self.assertTrue(delete_routes, "delete route missing")
 
     async def test_api_uses_mock_provider_even_when_external_environment_selects_gemini(self) -> None:
         with patch.dict(os.environ, {"AI_PROVIDER": "gemini", "AI_GEMINI_API_KEY": "fake"}, clear=False):
@@ -251,6 +258,24 @@ class AiChatApiTest(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual(404, opened.exception.status_code)
         self.assertEqual(404, sent.exception.status_code)
+
+    async def test_rename_and_delete_conversation_are_persisted(self) -> None:
+        created = await ai_chat.create_conversation(ai_chat.AiChatConversationCreate(title="Original"), self.session, self.user_a)
+
+        renamed = await ai_chat.rename_conversation(
+            created.id,
+            ai_chat.AiChatConversationUpdate(title="Renamed"),
+            self.session,
+            self.user_a,
+        )
+        self.assertEqual("Renamed", renamed.title)
+
+        deleted = await ai_chat.delete_conversation(created.id, self.session, self.user_a)
+        self.assertIsNone(deleted)
+        self.assertIsNotNone(self.session.conversations[created.id]["entity"].deleted_at)
+
+        conversations = await ai_chat.list_conversations(self.session, self.user_a)
+        self.assertEqual([], conversations)
 
     async def test_message_above_limit_returns_422(self) -> None:
         created = await ai_chat.create_conversation(ai_chat.AiChatConversationCreate(title="Limite"), self.session, self.user_a)

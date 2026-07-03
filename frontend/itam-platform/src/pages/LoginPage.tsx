@@ -1,111 +1,95 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { LogIn, ShieldCheck, Sparkles } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 
-import { Base44PageHeader } from "@/components/base44/Base44PageHeader";
-import { Base44ShellAccent } from "@/components/base44/Base44ShellAccent";
-import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
-import { Base44Surface } from "@/components/base44/Base44Surface";
-import { LoadingBlock } from "@/components/StateBlocks";
 import { ApiError } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const LOGIN_TIMEOUT_MS = 8000;
+
+type LoginMode = "login" | "requestReset" | "setNewPassword";
 
 function getLoginErrorMessage(error: unknown) {
   if (error instanceof DOMException && error.name === "AbortError") {
     return "Backend indisponível. Tente novamente em instantes.";
   }
   if (error instanceof ApiError) {
-    if (error.status === 401) {
-      return "Credenciais inválidas. Verifique e-mail e senha.";
-    }
-    if (error.status === 403) {
-      return "Você não tem permissão para usar este recurso.";
-    }
-    if (error.status === 422) {
-      return "Dados de login inválidos. Revise e-mail e senha.";
-    }
-    if (error.status === 429) {
-      return "Limite de tentativas atingido. Aguarde alguns instantes e tente novamente.";
-    }
-    if (error.status >= 500) {
-      return "Backend indisponível. Tente novamente em instantes.";
-    }
+    if (error.status === 401) return "Credenciais inválidas. Verifique e-mail e senha.";
+    if (error.status === 403) return "Você não tem permissão para usar este recurso.";
+    if (error.status === 422) return "Dados de login inválidos. Revise e-mail e senha.";
+    if (error.status === 429) return "Limite de tentativas atingido. Aguarde alguns instantes e tente novamente.";
+    if (error.status >= 500) return "Backend indisponível. Tente novamente em instantes.";
   }
   return "Backend indisponível. Tente novamente em instantes.";
+}
+
+function TransitionOverlay() {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-xl">
+      <div className="flex flex-col items-center gap-4 rounded-[28px] border border-white/10 bg-slate-950/90 px-8 py-10 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.85)]">
+        <div className="flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-white/5 shadow-lg">
+          <img src="/logo.svg" alt="Apoema" className="h-16 w-16" />
+        </div>
+        <p className="text-lg font-semibold text-slate-100">Carregando módulo...</p>
+      </div>
+    </div>
+  );
+}
+
+function LoginBootState() {
+  return (
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.18),transparent_28%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.12),transparent_26%),linear-gradient(180deg,#07111f_0%,#09131f_100%)] p-4">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-1/4 top-1/4 h-96 w-96 animate-pulse rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 animate-pulse rounded-full bg-sky-400/10 blur-3xl delay-1000" />
+      </div>
+
+      <div className="z-10 flex flex-col items-center gap-4 rounded-[32px] border border-white/10 bg-slate-950/70 px-8 py-10 shadow-[0_24px_80px_-28px_rgba(0,0,0,0.85)] backdrop-blur-xl">
+        <div className="flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-white/5 shadow-lg">
+          <img src="/logo.svg" alt="Apoema" className="h-16 w-16" />
+        </div>
+        <div className="text-center">
+          <p className="text-xs uppercase tracking-[0.45em] text-slate-400">Apoema</p>
+          <p className="mt-2 text-lg font-semibold text-slate-100">Carregando módulo...</p>
+        </div>
+      </div>
+    </main>
+  );
 }
 
 export function LoginPage() {
   const { token, login, loading, bootError } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [mode, setMode] = useState<LoginMode>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [resetEmail, setResetEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [transitioning, setTransitioning] = useState(false);
+
+  useEffect(() => {
+    const hash = window.location.hash || "";
+    const params = new URLSearchParams(hash.startsWith("#") ? hash.slice(1) : hash);
+    if (params.get("type") === "recovery") {
+      setMode("setNewPassword");
+    }
+  }, []);
 
   if (loading) {
-    return (
-      <main
-        className="base44-login-shell base44-login-shell-loading"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1fr)",
-          gap: "18px",
-          width: "min(100%, 840px)",
-          margin: "0 auto",
-          alignItems: "center",
-          justifyItems: "stretch",
-          justifyContent: "center",
-        }}
-      >
-        <section className="base44-login-hero" aria-hidden="true">
-          <Base44Surface className="base44-login-hero-surface">
-            <Base44ShellAccent
-              title="HermesOps Sentinel"
-              subtitle="Centro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional."
-            />
-            <div className="base44-login-hero-copy">
-              <p className="base44-eyebrow">Validação de sessão</p>
-              <h1>Preparando o console operacional.</h1>
-              <p>
-                Estamos confirmando sua sessão local e carregando a interface visual antes de liberar o acesso.
-              </p>
-            </div>
-            <div className="base44-login-hero-chips">
-              <div>
-                <Sparkles size={16} aria-hidden="true" />
-                <span>Experiência visual consistente enquanto a sessão é verificada.</span>
-              </div>
-              <div>
-                <ShieldCheck size={16} aria-hidden="true" />
-                <span>Auth, permissões e backend continuam os mesmos.</span>
-              </div>
-            </div>
-          </Base44Surface>
-        </section>
-
-        <Base44Surface className="base44-login-card base44-login-loading-card">
-          <Base44PageHeader
-            eyebrow="Entrar"
-            title="Painel ENS-Quality"
-            description="Validando sua sessão local antes de abrir o centro de comando."
-          />
-          <LoadingBlock label="Validando sessão..." />
-          <p className="base44-login-note">
-            Se o backend demorar, a interface continua explícita e sem telas vazias.
-          </p>
-        </Base44Surface>
-      </main>
-    );
+    return <LoginBootState />;
   }
 
   if (token) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/apoema/chat" replace />;
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
     setSubmitting(true);
@@ -113,83 +97,201 @@ export function LoginPage() {
     const timeoutId = window.setTimeout(() => controller.abort(), LOGIN_TIMEOUT_MS);
     try {
       await login(email, password, controller.signal);
-      const state = location.state as { from?: { pathname?: string } } | null;
-      navigate(state?.from?.pathname || "/", { replace: true });
+      setTransitioning(true);
+      window.setTimeout(() => {
+        const state = location.state as { from?: { pathname?: string } } | null;
+        navigate(state?.from?.pathname || "/apoema/chat", { replace: true });
+      }, 3000);
     } catch (submitError) {
       setError(getLoginErrorMessage(submitError));
+      setSubmitting(false);
     } finally {
       window.clearTimeout(timeoutId);
+    }
+  }
+
+  async function handleResetPassword(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitting(true);
+    try {
+      if (mode === "requestReset") {
+        setError("Recuperação de senha indisponível neste ambiente.");
+        return;
+      }
+      if (mode === "setNewPassword") {
+        setError("Atualização de senha indisponível neste ambiente.");
+        return;
+      }
+    } finally {
       setSubmitting(false);
     }
   }
 
   return (
-    <main
-      className="base44-login-shell"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "var(--base44-login-columns, minmax(0, 1.15fr) minmax(320px, 0.85fr))",
-        gap: "22px",
-        alignItems: "stretch",
-        width: "min(100%, 1280px)",
-      }}
-    >
-      <section className="base44-login-hero" style={{ alignSelf: "stretch" }}>
-        <Base44Surface className="base44-login-hero-surface" style={{ height: "100%" }}>
-          <Base44ShellAccent
-            title="HermesOps Sentinel"
-            subtitle="Centro de comando local para inventário, automação controlada, macros ITIL, KCS e auditoria operacional."
-          >
-            <Base44StatusBadge status="auditavel">Rastreabilidade ativa</Base44StatusBadge>
-            <Base44StatusBadge status="online">Agente local</Base44StatusBadge>
-          </Base44ShellAccent>
-          <div className="base44-login-hero-copy">
-            <p className="base44-eyebrow">Acesso ao HermesOps Sentinel</p>
-            <h1>Guardião local da infraestrutura</h1>
-            <p>
-              O acesso operacional usa a autenticação real do Painel ENS-Quality. A camada visual do Base44 só reescreve a experiência, não os contratos.
-            </p>
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.18),transparent_28%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.12),transparent_26%),linear-gradient(180deg,#07111f_0%,#09131f_100%)] p-4">
+      {transitioning ? <TransitionOverlay /> : null}
+
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-sky-400/10 blur-3xl delay-1000" />
+      </div>
+
+      <div className="z-10 w-full max-w-md space-y-8">
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-[28px] border border-white/10 bg-white/5 shadow-[0_18px_50px_-24px_rgba(0,0,0,0.85)] backdrop-blur-md">
+            <img src="/logo.svg" alt="Apoema" className="h-16 w-16" />
           </div>
-          <div className="base44-login-hero-chips">
-            <div>
-              <Sparkles size={16} aria-hidden="true" />
-              <span>Visão Base44 aplicada apenas na apresentação.</span>
-            </div>
-            <div>
-              <ShieldCheck size={16} aria-hidden="true" />
-              <span>Auth, permissões e backend continuam os mesmos.</span>
-            </div>
-          </div>
-        </Base44Surface>
-      </section>
-
-      <Base44Surface className="base44-login-card" as="form" onSubmit={handleSubmit}>
-        <Base44PageHeader
-          eyebrow="Entrar"
-          title="Painel ENS-Quality"
-          description="Use suas credenciais locais para entrar no centro de comando operacional."
-        />
-
-        {error ? <div className="base44-inline-alert danger">{error}</div> : bootError ? <div className="base44-inline-alert warning">{bootError}</div> : null}
-
-        <label className="base44-field">
-          <span>E-mail</span>
-          <input className="input base44-input" placeholder="E-mail" type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
-        </label>
-
-        <label className="base44-field">
-          <span>Senha</span>
-          <input className="input base44-input" placeholder="Senha" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
-        </label>
-
-        <div className="base44-login-footer">
-          <button className="button base44-button-primary" type="submit" disabled={submitting}>
-            <LogIn size={16} aria-hidden="true" />
-            <span>{submitting ? "Entrando..." : "Entrar"}</span>
-          </button>
-          <p className="base44-login-note">Acesso auditável com rastreabilidade ativa. Nenhum mock do Base44 participa da autenticação.</p>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-50">Apoema</h2>
+          <p className="mt-2 text-slate-400">Painel ENS-Quality</p>
         </div>
-      </Base44Surface>
+
+        <div className="rounded-[28px] border border-white/10 bg-slate-950/70 p-8 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+          <div className="flex items-center justify-between gap-4">
+            <div className="space-y-1">
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Entrar</p>
+              <p className="text-sm text-slate-300">Painel ENS-Quality</p>
+            </div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100 shadow-sm">
+              <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+              Acesso seguro
+            </span>
+          </div>
+
+          {mode === "login" ? (
+            <form onSubmit={handleLogin} className="mt-8 space-y-6">
+              {error ? (
+                <div className="rounded-2xl border border-rose-400/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-100">{error}</div>
+              ) : bootError ? (
+                <div className="rounded-2xl border border-amber-400/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">{bootError}</div>
+              ) : null}
+
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-slate-200">
+                  E-mail
+                </Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="seu@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500 focus-visible:border-cyan-300/40 focus-visible:ring-cyan-300/20"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between gap-4">
+                  <Label htmlFor="password" className="text-slate-200">
+                    Senha
+                  </Label>
+                  <button
+                    type="button"
+                    onClick={() => setMode("requestReset")}
+                    className="text-xs text-cyan-200 hover:underline"
+                  >
+                    Esqueceu a senha?
+                  </button>
+                </div>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500 focus-visible:border-cyan-300/40 focus-visible:ring-cyan-300/20"
+                />
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full rounded-2xl bg-cyan-400 text-slate-950 shadow-[0_18px_40px_-20px_rgba(34,211,238,0.75)] transition-all hover:scale-[1.01] hover:bg-cyan-300"
+                disabled={submitting}
+              >
+                {submitting ? "Entrando..." : "Entrar"}
+              </Button>
+            </form>
+          ) : (
+            <form onSubmit={handleResetPassword} className="mt-8 space-y-6">
+              <div className="space-y-2 text-center">
+                <h3 className="text-lg font-semibold text-slate-100">
+                  {mode === "requestReset" ? "Redefinir senha" : "Definir nova senha"}
+                </h3>
+                <p className="text-sm text-slate-400">
+                  {mode === "requestReset"
+                    ? "Enviaremos um link de redefinição para seu e-mail."
+                    : "Crie uma nova senha para sua conta."}
+                </p>
+              </div>
+
+              {mode === "requestReset" ? (
+                <div className="space-y-2">
+                  <Label htmlFor="reset-email" className="text-slate-200">
+                    E-mail
+                  </Label>
+                  <Input
+                    id="reset-email"
+                    name="reset-email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="seu@email.com"
+                    value={resetEmail}
+                    onChange={(e) => setResetEmail(e.target.value)}
+                    required
+                    className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500"
+                  />
+                </div>
+              ) : null}
+
+              {mode === "setNewPassword" ? (
+                <div className="space-y-2">
+                  <Label htmlFor="new-password" className="text-slate-200">
+                    Nova senha
+                  </Label>
+                  <Input
+                    id="new-password"
+                    name="new-password"
+                    type="password"
+                    autoComplete="new-password"
+                    placeholder="••••••••"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    required
+                    className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500"
+                  />
+                </div>
+              ) : null}
+
+              <div className="flex flex-col gap-3 pt-2">
+                <Button
+                  type="submit"
+                  className="w-full rounded-2xl bg-cyan-400 text-slate-950 transition-all hover:bg-cyan-300"
+                  disabled={submitting}
+                >
+                  {submitting ? "Processando..." : mode === "requestReset" ? "Enviar link de redefinição" : "Salvar nova senha"}
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={() => {
+                    window.location.hash = "";
+                    setMode("login");
+                    setNewPassword("");
+                  }}
+                  className="w-full rounded-2xl text-slate-200 hover:bg-white/5"
+                >
+                  Voltar para Login
+                </Button>
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
     </main>
   );
 }

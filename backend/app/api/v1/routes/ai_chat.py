@@ -12,6 +12,7 @@ from app.domains.ai_chat.schemas import (
     AiChatConversationCreate,
     AiChatConversationDetail,
     AiChatConversationRead,
+    AiChatConversationUpdate,
     AiChatMessageCreate,
     ApoemaChatMessageCreate,
     ApoemaChatMessageResponse,
@@ -122,6 +123,44 @@ async def get_conversation(
         raise HTTPException(status_code=404, detail="ai_chat_conversation_not_found")
     messages = await service.repository.list_messages(conversation.id)
     return service.to_detail(conversation, messages)
+
+
+@router.patch("/conversations/{conversation_id}", response_model=AiChatConversationRead)
+async def rename_conversation(
+    conversation_id: UUID,
+    payload: AiChatConversationUpdate,
+    session: AsyncSession = Depends(get_session),
+    current_user: User = ai_chat_user,
+):
+    _ensure_ai_chat_enabled()
+    service = AiChatService(session)
+    conversation = await service.get_conversation(conversation_id, current_user.id)
+    if conversation is None:
+        raise HTTPException(status_code=404, detail="ai_chat_conversation_not_found")
+
+    async def operation():
+        return await service.rename_conversation(conversation, payload, current_user.id)
+
+    return await commit_or_rollback(session, operation)
+
+
+@router.delete("/conversations/{conversation_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_conversation(
+    conversation_id: UUID,
+    session: AsyncSession = Depends(get_session),
+    current_user: User = ai_chat_user,
+):
+    _ensure_ai_chat_enabled()
+    service = AiChatService(session)
+    conversation = await service.get_conversation(conversation_id, current_user.id)
+    if conversation is None:
+        raise HTTPException(status_code=404, detail="ai_chat_conversation_not_found")
+
+    async def operation():
+        await service.delete_conversation(conversation, current_user.id)
+        return None
+
+    return await commit_or_rollback(session, operation)
 
 
 @router.post("/conversations/{conversation_id}/messages", response_model=AiChatConversationDetail)

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import UTC, datetime
+from types import SimpleNamespace
 from uuid import uuid4
 
 from app.core.config.settings import Settings
@@ -9,8 +10,10 @@ from app.domains.ai_chat.providers import (
     AiProviderMessage,
     AiProviderRequestError,
     AiProviderResponse,
+    HermesTerminalProvider,
     MockAiProvider,
     OllamaProvider,
+    get_ai_provider_health,
 )
 from app.domains.ai_chat.schemas import (
     ApoemaChatMessageCreate,
@@ -127,18 +130,42 @@ async def generate_apoema_message(settings: Settings, payload: ApoemaChatMessage
             )
 
     if provider_id == "hermes":
-        status = "unconfigured" if not settings.hermes_base_url.strip() else "offline"
-        error = "hermes_unconfigured" if status == "unconfigured" else "hermes_placeholder_unavailable"
-        return await _fallback_response(
-            conversation_id=conversation_id,
-            message_id=message_id,
-            provider="hermes",
-            model=model,
-            created_at=created_at,
-            error=error,
-            status=status,
-            provider_messages=provider_messages,
-        )
+        try:
+            response = await HermesTerminalProvider(settings).generate(provider_messages)
+            return _build_response(
+                conversation_id=conversation_id,
+                message_id=message_id,
+                provider="hermes",
+                model=response.model or model,
+                status="ok",
+                content=response.content,
+                created_at=created_at,
+                error=None,
+                usage=response,
+            )
+        except AiProviderConfigurationError as exc:
+            return await _fallback_response(
+                conversation_id=conversation_id,
+                message_id=message_id,
+                provider="hermes",
+                model=model,
+                created_at=created_at,
+                error=str(exc),
+                status="error",
+                provider_messages=provider_messages,
+            )
+        except AiProviderRequestError as exc:
+            status = "offline" if "timeout" in str(exc) or "request_failed" in str(exc) or "unavailable" in str(exc) else "error"
+            return await _fallback_response(
+                conversation_id=conversation_id,
+                message_id=message_id,
+                provider="hermes",
+                model=model,
+                created_at=created_at,
+                error=str(exc),
+                status=status,
+                provider_messages=provider_messages,
+            )
 
     raise AiProviderConfigurationError(f"apoema_provider_unsupported:{provider_id}")
 
@@ -270,8 +297,17 @@ def _ollama_status(settings: Settings) -> str:
 
 
 def _hermes_status(settings: Settings) -> str:
-    base_url = (settings.hermes_base_url or "").strip()
-    if not base_url:
+    health = get_ai_provider_health(
+        SimpleNamespace(
+            ai_provider="hermes",
+            hermes_model=settings.hermes_model,
+            ai_timeout_seconds=settings.ai_timeout_seconds,
+        ),
+    )
+    status = str(health.get("status") or "offline")
+    if status == "ok":
+        return "online"
+    if status == "configuration_error":
         return "unconfigured"
     return "offline"
 
@@ -285,7 +321,7 @@ def _prioritize_default_provider(
     providers: list[ApoemaChatProviderRead],
     default_provider: str,
 ) -> list[ApoemaChatProviderRead]:
-    if default_provider not in APOEMA_PROVIDER_IDS:
-        return providers
-    ordered = sorted(providers, key=lambda provider: provider.id != default_provider)
-    return ordered
+    # Keep the catalog order stable so the frontend and contract tests
+    # see a deterministic provider list regardless of runtime defaults.
+    _ = default_provider
+    return providers

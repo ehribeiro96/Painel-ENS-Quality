@@ -88,7 +88,11 @@ class AiChatRateLimitStoreTest(unittest.IsolatedAsyncioTestCase):
         await limiter.check(user_b)
 
     async def test_production_redis_failure_returns_503(self) -> None:
-        settings = Settings(environment="production", ai_chat_rate_limit_per_minute=1)
+        settings = Settings(
+            environment="production",
+            ai_chat_rate_limit_per_minute=1,
+            jwt_secret_key="production-secret-key-with-enough-length-123",
+        )
         limiter = AiChatRateLimiter(settings)
 
         class ExplodingStore:

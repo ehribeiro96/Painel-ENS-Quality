@@ -153,7 +153,7 @@ export function ArtifactsPage() {
   const showTable = state === "ready" || artifacts.length > 0;
 
   return (
-    <div className="apoema-page apoema-stub-page">
+    <div className="apoema-page apoema-stub-page overflow-x-hidden">
       <section className="apoema-page-top">
         <div>
           <StatusPill tone="success">Backend</StatusPill>
@@ -206,10 +206,10 @@ export function ArtifactsPage() {
           </button>
         </div>
 
-        <div className="apoema-filter-bar">
-          <label className="apoema-search">
+        <div className="apoema-filter-bar flex flex-wrap">
+          <label className="apoema-search min-w-0 flex-1">
             <Search size={16} />
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Buscar por nome, MIME, ID ou SHA-256" />
+            <input className="min-w-0" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Buscar por nome, MIME, ID ou SHA-256" />
           </label>
         </div>
 
@@ -225,7 +225,7 @@ export function ArtifactsPage() {
         ) : null}
 
         {showTable && filteredArtifacts.length > 0 && (
-          <div className="apoema-table-wrap">
+          <div className="apoema-table-wrap max-w-full min-w-0">
             <table className="apoema-table apoema-stub-table">
               <thead>
                 <tr>

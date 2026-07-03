@@ -1,16 +1,11 @@
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { Pencil, Plus, Search, Trash2, Users } from "lucide-react";
 
-import { DataTable } from "@/components/DataTable";
 import { Alert, LoadingBlock } from "@/components/StateBlocks";
-import { Base44EmptyState } from "@/components/base44/Base44EmptyState";
-import { Base44FilterPanel } from "@/components/base44/Base44FilterPanel";
-import { Base44OperationalGrid } from "@/components/base44/Base44OperationalGrid";
-import { Base44PageHeader } from "@/components/base44/Base44PageHeader";
-import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
-import { Base44Surface } from "@/components/base44/Base44Surface";
-import { Base44UserCard } from "@/components/base44/Base44UserCard";
-import { Base44UserRoleBadge } from "@/components/base44/Base44UserRoleBadge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { DonorPanelPageLayout } from "../components/DonorPanelPageLayout";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { canDeleteOperationalData, canWriteOperationalData } from "@/lib/permissions";
@@ -35,13 +30,13 @@ const emptyForm: UserForm = {
   business_unit: "",
   manager_name: "",
   phone: "",
-  status: "ACTIVE"
+  status: "ACTIVE",
 };
 
 function sourceLabel(source: string | null | undefined) {
   if (source === "legacy_ens_db") return "Legacy ENS DB";
   if (source === "manual") return "Manual";
-  if (source === "entra_id" || source === "graph") return "Futuro AD/Entra";
+  if (source === "entra_id" || source === "graph") return "Entra/Graph";
   return "Não informado";
 }
 
@@ -49,18 +44,12 @@ function statusLabel(status: UserStatus) {
   return status === "ACTIVE" ? "Ativo" : status === "INACTIVE" ? "Inativo" : "Afastado";
 }
 
-function statusDescription(status: UserStatus) {
-  if (status === "ACTIVE") return "Pode participar de vínculos e operação.";
-  if (status === "INACTIVE") return "Mantido para histórico, auditoria e vínculos antigos.";
-  return "Usuário temporariamente fora da operação.";
-}
-
 function roleLabel(role: Role) {
   const labels: Record<Role, string> = {
     ADMIN: "Admin",
     TECHNICIAN: "Técnico",
     VIEWER: "Consulta",
-    MANAGER: "Gestor"
+    MANAGER: "Gestor",
   };
   return labels[role] ?? role;
 }
@@ -74,7 +63,7 @@ function formFromUser(user: User): UserForm {
     business_unit: user.business_unit ?? "",
     manager_name: user.manager_name ?? "",
     phone: user.phone ?? "",
-    status: user.status
+    status: user.status,
   };
 }
 
@@ -88,7 +77,7 @@ function payloadFromForm(form: UserForm) {
     manager_name: form.manager_name.trim() || null,
     phone: form.phone.trim() || null,
     status: form.status,
-    source: "manual"
+    source: "manual",
   };
 }
 
@@ -101,7 +90,6 @@ export function UsersPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [editingUser, setEditingUser] = useState<User | null>(null);
-  const [isFormOpen, setIsFormOpen] = useState(false);
   const [form, setForm] = useState<UserForm>(emptyForm);
 
   const canWrite = canWriteOperationalData(currentUser?.role);
@@ -134,21 +122,13 @@ export function UsersPage() {
   function openCreate() {
     setEditingUser(null);
     setForm(emptyForm);
-    setIsFormOpen(true);
     setError(null);
     setSuccess(null);
   }
 
-  function closeForm() {
-    setEditingUser(null);
-    setForm(emptyForm);
-    setIsFormOpen(false);
-  }
-
-  function openEdit(user: User) {
-    setEditingUser(user);
-    setForm(formFromUser(user));
-    setIsFormOpen(true);
+  function openEdit(userToEdit: User) {
+    setEditingUser(userToEdit);
+    setForm(formFromUser(userToEdit));
     setError(null);
     setSuccess(null);
   }
@@ -166,7 +146,8 @@ export function UsersPage() {
         await api.createUser(token, payload);
         setSuccess("Colaborador criado.");
       }
-      closeForm();
+      setEditingUser(null);
+      setForm(emptyForm);
       await loadUsers();
     } catch {
       setError("Não foi possível salvar. Verifique nome, e-mail único e campos obrigatórios.");
@@ -175,13 +156,13 @@ export function UsersPage() {
     }
   }
 
-  async function deactivateUser(user: User) {
+  async function deactivateUser(userToDelete: User) {
     if (!token || !canDelete) return;
     const confirmed = window.confirm("Desativar este colaborador? Histórico, auditoria e vínculos existentes serão preservados.");
     if (!confirmed) return;
     setSaving(true);
     try {
-      await api.deleteUser(token, user.id);
+      await api.deleteUser(token, userToDelete.id);
       setSuccess("Colaborador desativado com segurança.");
       await loadUsers();
     } catch {
@@ -191,232 +172,238 @@ export function UsersPage() {
     }
   }
 
-  const totalUsers = page?.total ?? 0;
   const userRows = page?.items ?? [];
+  const totalUsers = page?.total ?? 0;
   const hasSearch = Boolean(trimmedSearch);
-  const emptyMessage = hasSearch
-    ? `Nenhum colaborador encontrado para “${trimmedSearch}”. Ajuste a busca e tente novamente.`
-    : canWrite
-      ? "Nenhum colaborador cadastrado ainda. Use Novo colaborador para criar o primeiro registro."
-      : "Nenhum colaborador cadastrado ainda.";
-  const formTitle = editingUser ? "Editar colaborador" : "Novo colaborador";
-  const formDescription = editingUser
-    ? "Atualize somente dados cadastrais e status operacional. Role, senha e flags administrativas não são editadas aqui."
-    : "Cadastre um colaborador manual sem alterar permissões, autenticação ou vínculos existentes.";
   const summary = useMemo(() => {
     const active = userRows.filter((user) => user.status === "ACTIVE").length;
     const admins = userRows.filter((user) => user.role === "ADMIN").length;
     const legacy = userRows.filter((user) => user.source === "legacy_ens_db").length;
-    const manual = userRows.filter((user) => user.source === "manual").length;
-    return { active, admins, legacy, manual, current: userRows.length };
+    return { active, admins, legacy };
   }, [userRows]);
 
-  const spotlight = userRows.slice(0, 3);
-
   return (
-    <div className="base44-user-page">
-      <Base44PageHeader
-        eyebrow="Apoema Usuários"
-        title="Usuários"
-        description="Cadastro canônico usado por ativos, assinaturas, auditoria e vínculos operacionais, com a identidade visual Base44 aplicada sobre os mesmos contratos reais."
-        actions={
-          <>
-            <Base44StatusBadge status={canWrite ? "auditavel" : "leitura"}>{canWrite ? "Escrita ativa" : "Modo consulta"}</Base44StatusBadge>
-            <Base44StatusBadge status={canDelete ? "auditavel" : "leitura"}>{canDelete ? "Exclusão ativa" : "Sem exclusão"}</Base44StatusBadge>
-          </>
-        }
-      />
-
-      <Base44OperationalGrid
-        title="Resumo de colaboradores"
-        description="Os indicadores abaixo vêm da página e da consulta real corrente."
-        columns={4}
-        items={[
-          { title: "Total encontrado", value: totalUsers, description: "Colaboradores retornados pela consulta atual.", accent: hasSearch ? "Busca ativa" : "Sem busca" },
-          { title: "Ativos", value: summary.active, description: "Registros liberados para uso operacional.", accent: "Operação" },
-          { title: "Administradores", value: summary.admins, description: "Perfis com settings sensíveis e exclusões.", accent: "RBAC" },
-          { title: "Legados", value: summary.legacy, description: "Registros originados do ENS legado.", accent: "Histórico" }
-        ]}
-      />
-
+    <DonorPanelPageLayout
+      eyebrow="Usuários"
+      title="Cadastro operacional"
+      description="Colaboradores usados por ativos, assinaturas, auditoria e vínculos operacionais, em uma interface limpa e donor-first."
+      actions={
+        <>
+          <Button asChild variant="outline" className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10">
+            <Link to="/apoema/signatures">Gerar assinatura</Link>
+          </Button>
+          <Button type="button" className="rounded-2xl bg-cyan-400 text-slate-950 hover:bg-cyan-300" onClick={openCreate} disabled={!canWrite}>
+            <Plus className="h-4 w-4" />
+            Novo colaborador
+          </Button>
+        </>
+      }
+      stats={[
+        { label: "Total encontrado", value: totalUsers, detail: "Colaboradores retornados pela consulta atual." },
+        { label: "Ativos", value: summary.active, detail: "Registros liberados para uso operacional." },
+        { label: "Administradores", value: summary.admins, detail: "Perfis com settings sensíveis." },
+        { label: "Legados", value: summary.legacy, detail: "Registros originados do ENS legado." },
+      ]}
+    >
       {!canWrite ? <Alert tone="info">Seu perfil permite visualizar colaboradores, mas não criar ou editar registros.</Alert> : null}
+      {error ? <Alert tone="danger">{error}</Alert> : null}
+      {success ? <Alert tone="success">{success}</Alert> : null}
+      {loading ? <LoadingBlock label="Carregando colaboradores..." /> : null}
 
-      <Base44FilterPanel
-        eyebrow="Busca e filtros"
-        title="Localizar colaborador"
-        description="A busca textual continua ligada ao parâmetro real enviado para a API."
-        actions={<Base44StatusBadge status={hasSearch ? "warning" : "auditavel"}>{hasSearch ? `Busca: ${trimmedSearch}` : "Sem busca ativa"}</Base44StatusBadge>}
-      >
-        <div className="b44-filter-grid">
-          <label>
-            Busca
+      <section className="grid gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,0.95fr)]">
+        <article className="rounded-[28px] border border-white/10 bg-white/[0.04] p-5">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Busca</p>
+              <h3 className="mt-1 text-lg font-semibold text-slate-50">Localizar colaborador</h3>
+            </div>
+            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">
+              {hasSearch ? `Busca: ${trimmedSearch}` : "Sem busca ativa"}
+            </span>
+          </div>
+
+          <label className="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-950/50 px-3 py-3 text-slate-300">
+            <Search className="h-4 w-4 shrink-0 text-slate-500" />
             <input
-              className="input full"
+              className="w-full bg-transparent text-sm outline-none placeholder:text-slate-500"
               placeholder="Buscar por nome, identificador do e-mail, e-mail ou departamento..."
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
           </label>
-          <div className="base44-user-filter-tags">
-            <span className="filter-chip muted">Unidade: em breve</span>
-            <span className="filter-chip muted">Situação: em breve</span>
-            <span className="filter-chip muted">RBAC real preservado</span>
-          </div>
-        </div>
-      </Base44FilterPanel>
 
-      <section className="base44-user-workspace">
-        <Base44Surface className="base44-user-form-shell" as="section">
-          {canWrite && isFormOpen ? (
-            <form className="base44-user-form" onSubmit={(event) => void submitForm(event)}>
-              <div className="base44-user-form-head">
-                <div>
-                  <p className="base44-eyebrow">Cadastro operacional</p>
-                  <h2>{formTitle}</h2>
-                  <p className="base44-user-form-description">{formDescription}</p>
-                </div>
-                <div className="base44-chip-row">
-                  <Base44StatusBadge status="auditavel">{editingUser ? "Edição" : "Criação manual"}</Base44StatusBadge>
-                  <button className="button secondary" type="button" onClick={closeForm} disabled={saving}>Cancelar</button>
-                </div>
-              </div>
-              <div className="base44-user-form-grid">
-                <label>Nome<input className="input full" required minLength={2} value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></label>
-                <label>E-mail<input className="input full" required type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /></label>
-                <label>Cargo<input className="input full" value={form.job_title} onChange={(event) => setForm({ ...form, job_title: event.target.value })} /></label>
-                <label>Departamento<input className="input full" value={form.department} onChange={(event) => setForm({ ...form, department: event.target.value })} /></label>
-                <label>Unidade<input className="input full" value={form.business_unit} onChange={(event) => setForm({ ...form, business_unit: event.target.value })} /></label>
-                <label>Gestor<input className="input full" value={form.manager_name} onChange={(event) => setForm({ ...form, manager_name: event.target.value })} /></label>
-                <label>Telefone<input className="input full" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} /></label>
-                <label>Status
-                  <select className="select full" value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value as UserStatus })}>
-                    <option value="ACTIVE">Ativo</option>
-                    <option value="INACTIVE">Inativo</option>
-                    <option value="ON_LEAVE">Afastado</option>
-                  </select>
-                  <small>{statusDescription(form.status)}</small>
+          <div className="mt-4 overflow-hidden rounded-[24px] border border-white/10">
+            <div className="overflow-x-auto">
+              <table className="min-w-full border-collapse text-left text-sm">
+                <thead className="bg-slate-950/70 text-slate-300">
+                  <tr>
+                    {["Nome", "Perfil", "Status", "Departamento", "Unidade", "Origem"].map((header) => (
+                      <th key={header} className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em]">
+                        {header}
+                      </th>
+                    ))}
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em]">Ações</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/10 bg-slate-950/35">
+                  {userRows.length === 0 ? (
+                    <tr>
+                      <td className="px-4 py-8" colSpan={7}>
+                        <div className="rounded-[22px] border border-dashed border-white/15 bg-slate-950/35 p-5 text-slate-300">
+                          Nenhum colaborador encontrado.
+                        </div>
+                      </td>
+                    </tr>
+                  ) : (
+                    userRows.map((userItem) => (
+                      <tr key={userItem.id} className="align-top">
+                        <td className="px-4 py-4">
+                          <div className="space-y-1">
+                            <button type="button" className="font-medium text-slate-50 hover:underline" onClick={() => openEdit(userItem)}>
+                              {userItem.name}
+                            </button>
+                            <p className="text-xs text-slate-400">{userItem.email}</p>
+                          </div>
+                        </td>
+                        <td className="px-4 py-4 text-slate-300">{roleLabel(userItem.role)}</td>
+                        <td className="px-4 py-4 text-slate-300">{statusLabel(userItem.status)}</td>
+                        <td className="px-4 py-4 text-slate-300">{userItem.department ?? "-"}</td>
+                        <td className="px-4 py-4 text-slate-300">{userItem.business_unit ?? "-"}</td>
+                        <td className="px-4 py-4 text-slate-300">{sourceLabel(userItem.source)}</td>
+                        <td className="px-4 py-4">
+                          <div className="flex flex-wrap gap-2">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              className="h-9 rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
+                              onClick={() => openEdit(userItem)}
+                            >
+                              <Pencil className="h-4 w-4" />
+                              Editar
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              className="h-9 rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-rose-500/10 hover:text-rose-100"
+                              onClick={() => void deactivateUser(userItem)}
+                              disabled={!canDelete}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                              Excluir
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+
+        <article className="rounded-[28px] border border-white/10 bg-white/[0.04] p-5">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Cadastro</p>
+              <h3 className="mt-1 text-lg font-semibold text-slate-50">{editingUser ? "Editar colaborador" : "Novo colaborador"}</h3>
+            </div>
+            <Users className="h-4 w-4 text-cyan-100" />
+          </div>
+
+          <form className="space-y-4" onSubmit={submitForm}>
+            <div className="grid gap-3">
+              <label className="space-y-2 text-sm text-slate-300">
+                Nome
+                <Input
+                  className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500"
+                  value={form.name}
+                  onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+                />
+              </label>
+              <label className="space-y-2 text-sm text-slate-300">
+                E-mail
+                <Input
+                  className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500"
+                  value={form.email}
+                  onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
+                />
+              </label>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <label className="space-y-2 text-sm text-slate-300">
+                  Cargo
+                  <Input
+                    className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500"
+                    value={form.job_title}
+                    onChange={(event) => setForm((current) => ({ ...current, job_title: event.target.value }))}
+                  />
+                </label>
+                <label className="space-y-2 text-sm text-slate-300">
+                  Departamento
+                  <Input
+                    className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500"
+                    value={form.department}
+                    onChange={(event) => setForm((current) => ({ ...current, department: event.target.value }))}
+                  />
+                </label>
+                <label className="space-y-2 text-sm text-slate-300">
+                  Unidade
+                  <Input
+                    className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500"
+                    value={form.business_unit}
+                    onChange={(event) => setForm((current) => ({ ...current, business_unit: event.target.value }))}
+                  />
+                </label>
+                <label className="space-y-2 text-sm text-slate-300">
+                  Gestor
+                  <Input
+                    className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500"
+                    value={form.manager_name}
+                    onChange={(event) => setForm((current) => ({ ...current, manager_name: event.target.value }))}
+                  />
+                </label>
+                <label className="space-y-2 text-sm text-slate-300 sm:col-span-2">
+                  Telefone
+                  <Input
+                    className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500"
+                    value={form.phone}
+                    onChange={(event) => setForm((current) => ({ ...current, phone: event.target.value }))}
+                  />
                 </label>
               </div>
-              <div className="base44-user-form-actions">
-                <button className="button" type="submit" disabled={saving}>{saving ? "Salvando..." : editingUser ? "Salvar alterações" : "Criar colaborador"}</button>
-                <button className="button secondary" type="button" onClick={closeForm} disabled={saving}>Cancelar</button>
-              </div>
-            </form>
-          ) : canWrite ? (
-            <Base44EmptyState
-              title="Cadastro recolhido"
-              description="Use “Novo colaborador” para abrir o formulário. Para alterar um registro existente, escolha “Editar” na tabela."
-              action={<button className="button" type="button" onClick={openCreate}>+ Novo colaborador</button>}
-            />
-          ) : (
-            <Base44EmptyState
-              title="Modo consulta"
-              description="Seu perfil pode visualizar colaboradores, mas não pode criar ou editar registros."
-            />
-          )}
-        </Base44Surface>
+              <label className="space-y-2 text-sm text-slate-300">
+                Status
+                <select
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-sm text-slate-50 outline-none"
+                  value={form.status}
+                  onChange={(event) => setForm((current) => ({ ...current, status: event.target.value as UserStatus }))}
+                >
+                  <option value="ACTIVE">Ativo</option>
+                  <option value="INACTIVE">Inativo</option>
+                  <option value="ON_LEAVE">Afastado</option>
+                </select>
+              </label>
+            </div>
 
-        <Base44Surface className="base44-user-spotlight-shell" as="section">
-          <div className="base44-user-spotlight-head">
-            <div>
-              <p className="base44-eyebrow">Destaques carregados</p>
-              <h2>Primeiros resultados</h2>
-              <p className="base44-user-spotlight-description">Uma visão rápida dos registros já carregados na consulta atual.</p>
+            <div className="flex flex-wrap gap-2">
+              <Button type="submit" className="rounded-2xl bg-cyan-400 text-slate-950 hover:bg-cyan-300" disabled={!canWrite || saving}>
+                {editingUser ? "Salvar alterações" : "Criar colaborador"}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
+                onClick={() => {
+                  setEditingUser(null);
+                  setForm(emptyForm);
+                }}
+              >
+                Limpar
+              </Button>
             </div>
-            <Base44StatusBadge status="auditavel">{summary.current} item(ns)</Base44StatusBadge>
-          </div>
-          {spotlight.length ? (
-            <div className="base44-user-spotlight-grid">
-              {spotlight.map((user) => (
-                <Base44UserCard
-                  key={user.id}
-                  user={user}
-                  actions={
-                    <div className="base44-chip-row">
-                      <Base44UserRoleBadge role={user.role} />
-                      <Link className="button secondary" to={`/apoema/users/${user.id}`}>Abrir detalhe</Link>
-                    </div>
-                  }
-                />
-              ))}
-            </div>
-          ) : (
-            <Base44EmptyState title="Sem destaques" description="Quando a consulta retornar usuários, alguns cards aparecerão aqui para inspeção rápida." />
-          )}
-        </Base44Surface>
+          </form>
+        </article>
       </section>
-
-      {success ? <Alert tone="success"><strong>{success}</strong></Alert> : null}
-      {error ? <Alert tone="danger"><strong>{error}</strong></Alert> : null}
-      {loading ? <LoadingBlock label="Carregando colaboradores..." /> : null}
-
-      <Base44Surface className="base44-user-table-shell" as="section">
-        <div className="base44-user-table-head">
-          <div>
-            <h2 className="card-title">Lista de colaboradores</h2>
-            <p className="card-description">
-              {hasSearch ? "Resultado filtrado pela busca textual." : "Todos os colaboradores retornados pela API atual."}
-            </p>
-          </div>
-          <Base44StatusBadge status={hasSearch ? "warning" : "auditavel"}>{totalUsers} colaborador(es)</Base44StatusBadge>
-        </div>
-        <div className="base44-user-table-body">
-          {userRows.length === 0 ? (
-            <Base44EmptyState
-              title={hasSearch ? "Nenhum colaborador corresponde à busca." : "Sem colaboradores cadastrados."}
-              description={hasSearch ? "Tente remover parte do termo pesquisado ou limpar o campo de busca." : canWrite ? "Crie o primeiro colaborador para liberar vínculos, auditoria e cadastros operacionais." : "Sua sessão está em modo consulta. Quando houver dados, eles aparecerão aqui."}
-              action={hasSearch ? <button className="button secondary" type="button" onClick={() => setSearch("")}>Limpar busca</button> : canWrite ? <button className="button" type="button" onClick={openCreate}>+ Novo colaborador</button> : null}
-            />
-          ) : (
-            <div className="base44-user-table-wrap">
-              <Base44Surface className="base44-user-table-surface" as="div">
-                <div className="base44-user-table-caption">Tabela operacional preservada com os contratos reais de usuários.</div>
-                <div className="base44-user-table-inner">
-                  <DataTable
-                    items={userRows}
-                    emptyMessage={emptyMessage}
-                    emptyTitle={hasSearch ? "Nenhum colaborador corresponde à busca." : "Sem colaboradores cadastrados."}
-                    emptyDescription={hasSearch
-                      ? "Tente remover parte do termo pesquisado ou limpar o campo de busca."
-                      : canWrite
-                        ? "Crie o primeiro colaborador para liberar vínculos, auditoria e cadastros operacionais."
-                        : "Sua sessão está em modo consulta. Quando houver dados, eles aparecerão aqui."}
-                    emptyActions={hasSearch
-                      ? <button className="button secondary" type="button" onClick={() => setSearch("")}>Limpar busca</button>
-                      : canWrite
-                        ? <button className="button" type="button" onClick={openCreate}>+ Novo colaborador</button>
-                        : null}
-                    columns={[
-                      { key: "name", label: "Nome", render: (user: User) => <Link to={`/apoema/users/${user.id}`}>{user.name}</Link> },
-                      { key: "login", label: "Identificador", render: (user: User) => <span className="cell-stack"><strong>{user.email.split("@")[0] ?? "-"}</strong><small>derivado do e-mail</small></span> },
-                      { key: "email", label: "E-mail", className: "email-cell", render: (user: User) => <span title={user.email}>{user.email}</span> },
-                      { key: "business_unit", label: "Unidade", render: (user: User) => user.business_unit ?? "-" },
-                      { key: "department", label: "Dept.", render: (user: User) => user.department ?? "-" },
-                      { key: "source", label: "Fonte", render: (user: User) => <Base44StatusBadge status="leitura">{sourceLabel(user.source)}</Base44StatusBadge> },
-                      { key: "role", label: "Perfil", render: (user: User) => <Base44UserRoleBadge role={user.role} /> },
-                      {
-                        key: "status",
-                        label: "Situação",
-                        render: (user: User) => (
-                          <Base44StatusBadge status={user.status === "ACTIVE" ? "success" : user.status === "INACTIVE" ? "leitura" : "warning"} title={statusDescription(user.status)}>
-                            {statusLabel(user.status)}
-                          </Base44StatusBadge>
-                        )
-                      }
-                    ]}
-                    rowActions={(user: User) => (
-                      <div className="row-action-group users-row-actions">
-                        {canWrite ? <button className="mini-button text-action" type="button" onClick={() => openEdit(user)}>Editar</button> : null}
-                        {canDelete ? <button className="mini-button danger text-action" type="button" disabled={saving} onClick={() => void deactivateUser(user)}>Desativar</button> : null}
-                      </div>
-                    )}
-                  />
-                </div>
-              </Base44Surface>
-            </div>
-          )}
-        </div>
-      </Base44Surface>
-    </div>
+    </DonorPanelPageLayout>
   );
 }

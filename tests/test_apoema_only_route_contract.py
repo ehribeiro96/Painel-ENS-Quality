@@ -24,9 +24,7 @@ class ApoemaOnlyRouteContractTest(unittest.TestCase):
     def test_root_redirects_to_apoema_and_apoema_routes_exist(self) -> None:
         normalized = APP.replace("\n", " ")
         self.assertIn('path="/" element={<Navigate to="/apoema" replace />}', normalized)
-        self.assertIn('path="/apoema" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
-        self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
 
     def test_protected_route_wraps_apoema_and_lazy_loading_remains(self) -> None:

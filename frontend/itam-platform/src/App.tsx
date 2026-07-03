@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+
 import { RouteLoading } from "./components/RouteLoading";
 import { useAuth } from "./lib/auth";
 import type { Role } from "./lib/types";
@@ -40,14 +41,12 @@ export function App() {
   return (
     <Suspense fallback={<RouteLoading />}>
       <Routes>
-        <>
-          <Route path="/" element={<Navigate to="/apoema" replace />} />
-          {/* path="/apoema" element={<ApoemaRoute />} */}
-          <Route path="/apoema/*" element={<ApoemaRoute />} />
-          {/* path="/apoema-preview" element={<ApoemaRoute />} */}
-          <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
-          <Route path="/login" element={<LoginPage />} />
-        </>
+        <Route path="/" element={<Navigate to="/apoema" replace />} />
+        <Route path="/ai-chat" element={<Navigate to="/apoema/chat" replace />} />
+        <Route path="/apoema/ai-chat" element={<Navigate to="/apoema/chat" replace />} />
+        <Route path="/apoema/*" element={<ApoemaRoute />} />
+        <Route path="/apoema-preview/*" element={<ApoemaRoute />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>

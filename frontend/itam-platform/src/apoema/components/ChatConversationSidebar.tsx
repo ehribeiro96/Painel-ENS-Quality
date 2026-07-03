@@ -1,25 +1,35 @@
-import { MessageSquarePlus, RotateCcw, ShieldAlert } from "lucide-react";
-import type { AiChatConversation } from "../types";
-import { StatusPill } from "./StatusPill";
+import { useMemo, useState } from "react";
+import { Bot, MessageSquarePlus, MoreVertical, Pencil, RefreshCcw, Search, Trash2 } from "lucide-react";
 
-type BannerTone = "warning" | "danger";
-
-type SidebarBanner = {
-  tone: BannerTone;
-  title: string;
-  message: string;
-};
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import type { AiChatConversation } from "@/lib/types";
 
 type Props = {
   conversations: AiChatConversation[];
   selectedConversationId: string | null;
+  previewByConversationId: Record<string, string>;
   loading: boolean;
-  state: "loading" | "ready" | "fallback" | "error";
-  banner: SidebarBanner | null;
-  fallbackNotice: string | null;
+  query: string;
+  onQueryChange: (value: string) => void;
   onSelectConversation: (conversationId: string) => void;
   onNewConversation: () => void | Promise<void>;
   onReload: () => void | Promise<void>;
+  onRenameConversation: (conversationId: string, title: string) => void | Promise<void>;
+  onDeleteConversation: (conversationId: string) => void | Promise<void>;
   creatingConversation?: boolean;
 };
 
@@ -28,94 +38,296 @@ function formatConversationTime(timestamp: string) {
   if (Number.isNaN(date.getTime())) {
     return "";
   }
-  return date.toLocaleString([], { month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit" });
+  return date.toLocaleString("pt-BR", {
+    day: "2-digit",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+function normalize(text: string) {
+  return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function formatProviderLabel(provider: string | undefined) {
+  const value = (provider ?? "").trim();
+  if (!value || /mock|fallback|demo|test|beta/i.test(value)) {
+    return "Apoema";
+  }
+  if (value.toLowerCase() === "hermes") {
+    return "Hermes";
+  }
+  return value;
 }
 
 export function ChatConversationSidebar({
   conversations,
   selectedConversationId,
+  previewByConversationId,
   loading,
-  state,
-  banner,
-  fallbackNotice,
+  query,
+  onQueryChange,
   onSelectConversation,
   onNewConversation,
   onReload,
+  onRenameConversation,
+  onDeleteConversation,
   creatingConversation = false,
 }: Props) {
+  const [renameTarget, setRenameTarget] = useState<AiChatConversation | null>(null);
+  const [renameValue, setRenameValue] = useState("");
+  const [deleteTarget, setDeleteTarget] = useState<AiChatConversation | null>(null);
+
+  const filteredConversations = useMemo(() => {
+    return conversations.filter((conversation) => {
+      if (!query.trim()) {
+        return true;
+      }
+      const searchable = [conversation.title ?? "Nova conversa", conversation.provider, conversation.model ?? "", previewByConversationId[conversation.id] ?? ""]
+        .join(" ")
+        .toLowerCase();
+      return normalize(searchable).includes(normalize(query.trim()));
+    });
+  }, [conversations, previewByConversationId, query]);
+
   return (
-    <aside className="apoema-chat-sidebar apoema-panel">
-      <div className="apoema-section-head">
+    <>
+      <aside className="flex h-full min-h-0 flex-col rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_20px_60px_-26px_rgba(0,0,0,0.75)]">
+        <div className="flex items-start justify-between gap-3">
         <div>
-          <h2>Conversas</h2>
-          <span>Backend-backed</span>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan-200/70">Conversas</p>
+          <h2 className="mt-1 text-xl font-semibold text-slate-50">{conversations.length} conversa{conversations.length === 1 ? "" : "s"}</h2>
+          <p className="mt-1 text-sm text-slate-400">Histórico persistente, renomear e exclusão com confirmação.</p>
         </div>
-        <div className="apoema-chat-sidebar-actions">
-          <button type="button" className="apoema-ghost-button" onClick={() => void onReload()} disabled={loading}>
-            <RotateCcw size={14} />
+          <Button
+            type="button"
+            variant="outline"
+            className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
+            onClick={() => void onReload()}
+            disabled={loading}
+          >
+            <RefreshCcw className="h-4 w-4" />
             Recarregar
-          </button>
-          <button type="button" className="apoema-primary-button" onClick={() => void onNewConversation()} disabled={creatingConversation}>
-            <MessageSquarePlus size={14} />
-            {creatingConversation ? "Criando..." : "Nova conversa"}
-          </button>
+          </Button>
         </div>
-      </div>
 
-      <div className="apoema-chat-sidebar-status">
-        <StatusPill tone={state === "error" ? "warning" : state === "fallback" ? "warning" : state === "loading" ? "neutral" : "success"}>
-          {state === "loading" ? "Carregando conversas" : state === "fallback" ? "Fallback local ativo" : state === "error" ? "Erro de conversas" : "Conversas do backend"}
-        </StatusPill>
-        {fallbackNotice ? <p>{fallbackNotice}</p> : <p>O histórico primário vem do backend e não de estado local.</p>}
-      </div>
+        <div className="mt-3 flex flex-col gap-2">
+          <Button
+            type="button"
+            className="rounded-2xl bg-cyan-400 text-slate-950 shadow-[0_16px_40px_-20px_rgba(34,211,238,0.75)] hover:bg-cyan-300"
+            onClick={() => void onNewConversation()}
+            disabled={creatingConversation}
+          >
+            <MessageSquarePlus className="h-4 w-4" />
+            {creatingConversation ? "Criando..." : "Nova conversa"}
+          </Button>
 
-      {banner && (
-        <div className={`apoema-warning ${banner.tone === "danger" ? "is-danger" : "is-warning"}`}>
-          <ShieldAlert size={16} />
-          <div>
-            <strong>{banner.title}</strong>
-            <p>{banner.message}</p>
+          <label className="mt-2 flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-950/50 px-3 py-2 text-slate-300">
+            <Search className="h-4 w-4 shrink-0 text-slate-500" />
+            <input
+              value={query}
+              onChange={(event) => onQueryChange(event.target.value)}
+              placeholder="Filtrar conversas"
+              aria-label="Filtrar conversas"
+              className="w-full bg-transparent text-sm outline-none placeholder:text-slate-500"
+            />
+          </label>
+        </div>
+
+        <div className="mt-4 rounded-[22px] border border-white/10 bg-slate-950/40 p-3">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-100">
+              <Bot className="h-4 w-4" />
+            </span>
+            <div>
+              <p className="text-sm font-medium text-slate-100">Apoema chat</p>
+              <p className="text-xs text-slate-400">{loading ? "Sincronizando histórico..." : "Sem barra visual no menu"}</p>
+            </div>
           </div>
         </div>
-      )}
 
-      {loading ? (
-        <div className="apoema-chat-empty-state">
-          <strong>Carregando...</strong>
-          <p>Buscando conversas do backend.</p>
+        <div
+          className="mt-4 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          aria-label="Lista de conversas"
+        >
+          {filteredConversations.length === 0 ? (
+            <div className="rounded-[22px] border border-white/10 bg-slate-950/40 p-4 text-sm text-slate-400">
+              Nenhuma conversa corresponde ao filtro.
+            </div>
+          ) : (
+            filteredConversations.map((conversation) => {
+              const selected = conversation.id === selectedConversationId;
+              const preview = previewByConversationId[conversation.id] ?? conversation.title ?? "Nova conversa";
+
+              return (
+                <div
+                  key={conversation.id}
+                  className={cn(
+                    "group flex flex-col gap-2 rounded-[22px] border p-3 transition-colors",
+                    selected ? "border-cyan-300/20 bg-cyan-400/10" : "border-white/10 bg-slate-950/35 hover:bg-white/5",
+                  )}
+                >
+                  <div className="flex flex-wrap items-start gap-2 max-sm:flex-col max-sm:items-stretch">
+                    <button
+                      type="button"
+                      onClick={() => onSelectConversation(conversation.id)}
+                      className="flex min-w-0 flex-1 items-start gap-3 text-left max-sm:w-full"
+                      aria-current={selected ? "true" : undefined}
+                    >
+                      <span className={cn("mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl ring-1 ring-inset", selected ? "bg-cyan-300/15 ring-cyan-200/20" : "bg-white/5 ring-white/10")}>
+                        <Bot className={cn("h-4 w-4", selected ? "text-cyan-100" : "text-slate-300")} />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-sm font-medium text-slate-100">{conversation.title || "Nova conversa"}</span>
+                        <span className="mt-1 block text-xs text-slate-400">{preview}</span>
+                        <span className="mt-1 block text-[11px] uppercase tracking-[0.18em] text-slate-500">
+                          {conversation.model ? `${conversation.model} • ` : ""}
+                          {formatConversationTime(conversation.updated_at)}
+                        </span>
+                      </span>
+                    </button>
+
+                    <div className="flex shrink-0 items-center gap-1 max-sm:w-full max-sm:justify-end">
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        aria-label="Excluir conversa"
+                        className="h-9 rounded-full border border-rose-300/15 bg-rose-500/10 px-3 text-xs font-medium text-rose-100 hover:bg-rose-500/20 hover:text-rose-50 max-sm:w-9 max-sm:px-0"
+                        onClick={() => setDeleteTarget(conversation)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                        <span className="max-sm:hidden">Excluir</span>
+                      </Button>
+
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            className="h-9 w-9 rounded-full text-slate-300 hover:bg-white/10 hover:text-slate-50"
+                          >
+                            <MoreVertical className="h-4 w-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="border-white/10 bg-slate-950 text-slate-100">
+                          <DropdownMenuItem
+                            onClick={() => {
+                              setRenameTarget(conversation);
+                              setRenameValue(conversation.title ?? "Nova conversa");
+                            }}
+                          >
+                            <Pencil className="mr-2 h-4 w-4" />
+                            Renomear
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator className="bg-white/10" />
+                          <DropdownMenuItem
+                            className="text-rose-100 focus:bg-rose-500/10 focus:text-rose-50"
+                            onClick={() => setDeleteTarget(conversation)}
+                          >
+                            <Trash2 className="mr-2 h-4 w-4" />
+                            Excluir
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          )}
         </div>
-      ) : conversations.length === 0 ? (
-        <div className="apoema-chat-empty-state">
-          <strong>Nenhuma conversa ainda</strong>
-          <p>Crie uma conversa nova para iniciar o chat com o backend.</p>
-        </div>
-      ) : (
-        <div className="apoema-conversation-list" aria-label="Lista de conversas">
-          {conversations.map((conversation) => {
-            const active = conversation.id === selectedConversationId;
-            const messageCount = conversation.messages?.length ?? 0;
-            return (
-              <button
-                key={conversation.id}
-                type="button"
-                className={`apoema-conversation-item ${active ? "is-active" : ""}`}
-                onClick={() => onSelectConversation(conversation.id)}
-                aria-pressed={active}
-              >
-                <strong>{conversation.title || "Conversa sem título"}</strong>
-                <span>
-                  {conversation.provider}
-                  {conversation.model ? ` • ${conversation.model}` : ""}
-                </span>
-                <small>
-                  {messageCount} mensagem{messageCount === 1 ? "" : "s"}
-                  {conversation.updated_at ? ` • ${formatConversationTime(conversation.updated_at)}` : ""}
-                </small>
-              </button>
-            );
-          })}
-        </div>
-      )}
-    </aside>
+      </aside>
+
+      <Dialog
+        open={Boolean(renameTarget)}
+        onOpenChange={(open) => {
+          if (!open) {
+            setRenameTarget(null);
+            setRenameValue("");
+          }
+        }}
+      >
+        <DialogContent className="border-white/10 bg-slate-950 text-slate-100">
+          <DialogHeader>
+            <DialogTitle>Renomear conversa</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-2">
+            <label className="space-y-2 text-sm text-slate-300">
+              Novo título
+              <Input
+                value={renameValue}
+                onChange={(event) => setRenameValue(event.target.value)}
+                className="border-white/10 bg-white/5 text-slate-50 placeholder:text-slate-500"
+                placeholder="Nova conversa"
+              />
+            </label>
+          </div>
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="ghost"
+              className="rounded-2xl text-slate-200 hover:bg-white/5"
+              onClick={() => {
+                setRenameTarget(null);
+                setRenameValue("");
+              }}
+            >
+              Cancelar
+            </Button>
+            <Button
+              type="button"
+              className="rounded-2xl bg-cyan-400 text-slate-950 hover:bg-cyan-300"
+              onClick={async () => {
+                if (!renameTarget || !renameValue.trim()) {
+                  return;
+                }
+                await onRenameConversation(renameTarget.id, renameValue.trim());
+                setRenameTarget(null);
+                setRenameValue("");
+              }}
+            >
+              Salvar
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <AlertDialog
+        open={Boolean(deleteTarget)}
+        onOpenChange={(open) => {
+          if (!open) {
+            setDeleteTarget(null);
+          }
+        }}
+      >
+        <AlertDialogContent className="border-white/10 bg-slate-950 text-slate-100">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Excluir conversa?</AlertDialogTitle>
+            <AlertDialogDescription className="text-slate-300">
+              A exclusão remove a conversa de forma persistente. Após confirmar, ela não deve reaparecer ao recarregar a página.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10">
+              Cancelar
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className="rounded-2xl bg-rose-500 text-white hover:bg-rose-400"
+              onClick={async () => {
+                if (!deleteTarget) {
+                  return;
+                }
+                await onDeleteConversation(deleteTarget.id);
+                setDeleteTarget(null);
+              }}
+            >
+              Excluir
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 }

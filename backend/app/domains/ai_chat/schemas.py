@@ -30,6 +30,10 @@ class AiChatConversationCreate(BaseModel):
     mode: AiChatMode | None = None
 
 
+class AiChatConversationUpdate(BaseModel):
+    title: str = Field(min_length=1, max_length=180)
+
+
 class AiChatMessageCreate(BaseModel):
     content: str = Field(min_length=1)
     mode: AiChatMode | None = None

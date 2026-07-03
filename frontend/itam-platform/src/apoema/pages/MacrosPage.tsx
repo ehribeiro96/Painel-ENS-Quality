@@ -11,6 +11,7 @@ import { Base44OperationalGrid } from "@/components/base44/Base44OperationalGrid
 import { Base44PageHeader } from "@/components/base44/Base44PageHeader";
 import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
 import { Base44Surface } from "@/components/base44/Base44Surface";
+import { DonorChip, DonorField, DonorFieldGrid, DonorSelect, DonorTextInput } from "@/apoema/components/DonorForm";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import type { MacroTemplate } from "@/lib/types";
@@ -174,19 +175,25 @@ export function MacrosPage() {
         description="Filtre por nome, categoria ou slug antes de abrir a macro desejada."
         actions={<Base44StatusBadge status={templatesQuery.isLoading ? "warning" : "auditavel"}>{templatesQuery.isLoading ? "Carregando" : "API real"}</Base44StatusBadge>}
       >
-        <div className="b44-filter-grid">
-          <label>
-            Busca
-            <input className="input full" placeholder="Buscar macro por nome, categoria ou slug" value={search} onChange={(event) => setSearch(event.target.value)} />
-          </label>
-          <label>
-            Categoria
-            <select className="select full" value={category} onChange={(event) => setCategory(event.target.value)}>
-              <option value="">Todas</option>
-              {categories.map((item) => <option key={item} value={item}>{item}</option>)}
-            </select>
-          </label>
-        </div>
+        <DonorFieldGrid className="xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+          <DonorField label="Busca" hint="Nome, slug ou categoria da macro">
+            <DonorTextInput
+              placeholder="Buscar macro por nome, categoria ou slug"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+            />
+          </DonorField>
+          <DonorSelect
+            label="Categoria"
+            placeholder="Todas"
+            value={category}
+            options={[
+              { value: "", label: "Todas as categorias" },
+              ...categories.map((item) => ({ value: item, label: item })),
+            ]}
+            onChange={setCategory}
+          />
+        </DonorFieldGrid>
       </Base44FilterPanel>
 
       {templatesQuery.isError ? <Alert tone="danger">Não foi possível carregar macros.</Alert> : null}
@@ -203,7 +210,7 @@ export function MacrosPage() {
             </div>
             <Base44StatusBadge status="auditavel">{templates.length} item(ns)</Base44StatusBadge>
           </div>
-          <div className="base44-macro-list">
+          <div className="base44-macro-list grid gap-3">
             {templates.length === 0 && !templatesQuery.isLoading ? (
               <Base44EmptyState
                 title="Nenhuma macro encontrada"
@@ -212,7 +219,9 @@ export function MacrosPage() {
             ) : null}
             {templates.map((template) => (
               <button
-                className={template.id === selected?.id ? "base44-macro-item is-selected" : "base44-macro-item"}
+                className={template.id === selected?.id
+                  ? "base44-macro-item is-selected grid gap-3 rounded-[22px] border border-cyan-300/20 bg-cyan-400/10 p-4 text-left shadow-[0_18px_50px_-28px_rgba(0,0,0,0.95)]"
+                  : "base44-macro-item grid gap-3 rounded-[22px] border border-white/10 bg-slate-950/35 p-4 text-left transition-colors hover:border-cyan-300/20 hover:bg-white/[0.04]"}
                 key={template.id}
                 type="button"
                 onClick={() => {
@@ -224,9 +233,19 @@ export function MacrosPage() {
                   setValues({});
                 }}
               >
-                <strong>{template.name}</strong>
-                <span className="badge soft">{template.category}</span>
-                {template.slug === "ativos-atualizar-inventario" ? <small>Usada em movimentações de ativos</small> : null}
+                <div className="flex min-w-0 items-start justify-between gap-3">
+                  <div className="min-w-0 space-y-2">
+                    <strong className="block min-w-0 break-words text-base text-slate-50">{template.name}</strong>
+                    {template.description ? <p className="min-w-0 break-words text-sm leading-6 text-slate-400">{template.description}</p> : null}
+                  </div>
+                  <Base44StatusBadge status={template.id === selected?.id ? "success" : "auditavel"}>{template.category}</Base44StatusBadge>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <DonorChip>{template.slug}</DonorChip>
+                  <DonorChip>Obrigatórios: {template.required_fields.length}</DonorChip>
+                  <DonorChip>Opcionais: {template.optional_fields.length}</DonorChip>
+                </div>
+                {template.slug === "ativos-atualizar-inventario" ? <small className="text-sm leading-6 text-cyan-100/80">Usada em movimentações de ativos</small> : null}
               </button>
             ))}
           </div>
@@ -242,13 +261,11 @@ export function MacrosPage() {
           {selected ? (
             <>
               <p className="base44-macro-panel-helper">Preencha os campos disponíveis. Campos não preenchidos aparecerão como pendentes no preview e na auditoria da geração.</p>
-              <div className="base44-macro-field-grid">
+              <div className="base44-macro-field-grid grid gap-4 md:grid-cols-2">
                 {selected.required_fields.map((field) => (
-                  <label className="base44-macro-field" key={field}>
-                    <span>{field} <strong aria-hidden>*</strong></span>
-                    <div className="base44-macro-field-stack">
-                      <input
-                        className="input full"
+                  <DonorField key={field} label={<span className="break-words">{field} <strong aria-hidden>*</strong></span>} className="min-w-0">
+                    <div className="grid min-w-0 gap-2">
+                      <DonorTextInput
                         autoComplete="off"
                         value={values[field] ?? ""}
                         onBlur={() => setFocusedField((current) => (current === field ? null : current))}
@@ -256,27 +273,27 @@ export function MacrosPage() {
                         onFocus={() => setFocusedField(field)}
                       />
                       {activeAutocompleteField === field ? (
-                        <div className="base44-macro-autocomplete-panel" aria-label={`Sugestões para ${field}`}>
-                          {hintsQuery.isFetching ? <span className="base44-macro-autocomplete-empty">Buscando sugestões...</span> : null}
+                        <div className="grid min-w-0 gap-2 rounded-2xl border border-white/10 bg-slate-950/80 p-3 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.95)]" aria-label={`Sugestões para ${field}`}>
+                          {hintsQuery.isFetching ? <span className="text-sm text-slate-400">Buscando sugestões...</span> : null}
                           {!hintsQuery.isFetching && autocompleteHints.length === 0 ? (
-                            <span className="base44-macro-autocomplete-empty">Sem sugestões para este campo.</span>
+                            <span className="text-sm text-slate-400">Sem sugestões para este campo.</span>
                           ) : null}
                           {autocompleteHints.map((hint) => (
                             <button
-                              className="base44-macro-autocomplete-item"
+                              className="grid min-w-0 gap-1 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-left transition-colors hover:border-cyan-300/20 hover:bg-cyan-400/10"
                               key={hint.id}
                               type="button"
                               onMouseDown={(event) => event.preventDefault()}
                               onClick={() => applyHint(field, hint.label)}
                             >
-                              <strong>{hint.label}</strong>
-                              <span>{hint.source.replaceAll("_", " ")}</span>
+                              <strong className="break-words text-sm text-slate-50">{hint.label}</strong>
+                              <span className="break-words text-xs text-slate-400">{hint.source.replaceAll("_", " ")}</span>
                             </button>
                           ))}
                         </div>
                       ) : null}
                     </div>
-                  </label>
+                  </DonorField>
                 ))}
               </div>
               <Base44MacroPreview

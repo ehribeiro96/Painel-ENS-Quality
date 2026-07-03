@@ -62,17 +62,17 @@ export function Base44AuditEventCard({ item }: { item: AuditLog }) {
     : null;
 
   return (
-    <Base44Surface className="base44-audit-event-card" as="article">
-      <div className="base44-audit-event-card-head">
-        <div>
-          <p className="base44-eyebrow">Auditoria</p>
-          <h3>{formatAuditLabel(item.action, "Ação não informada")}</h3>
-          <p className="base44-audit-event-card-summary">
+    <Base44Surface as="article" className="space-y-4">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+        <div className="space-y-1">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Auditoria</p>
+          <h3 className="text-lg font-semibold text-slate-50">{formatAuditLabel(item.action, "Ação não informada")}</h3>
+          <p className="text-sm text-slate-400">
             {formatAuditLabel(item.entity, "Entidade não informada")}
             {item.entity_id ? <> · ID {compactId(item.entity_id)}</> : null}
           </p>
         </div>
-        <div className="base44-chip-row">
+        <div className="flex flex-wrap gap-2">
           <Base44StatusBadge status={auditActionTone(item.action)} title={item.action ?? undefined}>
             {formatAuditLabel(item.action, "-")}
           </Base44StatusBadge>
@@ -97,12 +97,12 @@ export function Base44AuditEventCard({ item }: { item: AuditLog }) {
       />
 
       {details ? (
-        <details className="base44-audit-event-card-details">
-          <summary>Ver before/after</summary>
-          <pre className="base44-audit-event-card-pre">{details}</pre>
+        <details className="rounded-[22px] border border-white/10 bg-slate-950/40 p-4">
+          <summary className="cursor-pointer text-sm font-medium text-slate-100">Ver before/after</summary>
+          <pre className="mt-3 max-h-72 overflow-auto rounded-[18px] bg-slate-950/85 p-4 text-xs leading-6 text-slate-200">{details}</pre>
         </details>
       ) : (
-        <p className="base44-audit-event-card-empty">Sem detalhe técnico registrado.</p>
+        <p className="rounded-[22px] border border-dashed border-white/15 bg-slate-950/35 p-4 text-sm text-slate-400">Sem detalhe técnico registrado.</p>
       )}
     </Base44Surface>
   );

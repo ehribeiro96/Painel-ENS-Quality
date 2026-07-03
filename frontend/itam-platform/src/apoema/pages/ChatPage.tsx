@@ -1,126 +1,70 @@
-import { AlertTriangle, RotateCcw, ShieldAlert, Sparkles } from "lucide-react";
+import { AlertTriangle, Bot, ShieldAlert, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { ChatComposer } from "../components/ChatComposer";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
+
+import { ChatComposer, type ComposerAttachment } from "../components/ChatComposer";
 import { ChatConversationSidebar } from "../components/ChatConversationSidebar";
 import { ChatMessage } from "../components/ChatMessage";
-import { StatusPill } from "../components/StatusPill";
+import { ApoemaChatBridgeAdapter, type ApoemaChatMessage, type ApoemaChatSession } from "../adapters/ApoemaChatBridgeAdapter";
 import { useAuth } from "@/lib/auth";
-import {
-  createAiChatConversation,
-  getAiChatConversation,
-  getAiChatProviders,
-  listAiChatConversations,
-  sendAiChatConversationMessage,
-} from "../lib/apoemaChatBridgeApi";
-import { AiChatApiError } from "../types";
-import type { AiChatConversation, AiChatProvider, ApoemaProviderLoadState } from "../types";
+import { validateAttachmentFile } from "@/lib/chatAttachments";
+import { createFilePart, createTextPart, serializeChatMessageContent } from "@/lib/chatMessageParts";
+import type { AiChatConversation, AiChatMessage, AiChatProviderHealth } from "@/lib/types";
+import { ApoemaApiError } from "../types";
 
-type ChatBannerTone = "warning" | "danger";
+const CHAT_SUGGESTIONS = [
+  { label: "Consultar ativo", prompt: "Quero consultar um ativo e entender o histórico recente." },
+  { label: "Resumir movimentações", prompt: "Resuma as movimentações recentes e destaque pontos de atenção." },
+  { label: "Gerar macro", prompt: "Crie uma macro operacional objetiva para uma movimentação segura." },
+  { label: "Analisar importação", prompt: "Analise uma importação e liste os pontos que merecem revisão." },
+];
 
-type ChatBanner = {
-  tone: ChatBannerTone;
+type BannerTone = "warning" | "danger";
+
+type Banner = {
+  tone: BannerTone;
   title: string;
   message: string;
 };
 
-type ConversationLoadState = "loading" | "ready" | "fallback" | "error";
-
-const CHAT_MODE = "general";
-
-function formatClock(timestamp: string) {
-  const date = new Date(timestamp);
-  if (Number.isNaN(date.getTime())) {
-    return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+function shortenPrompt(value: string, limit = 64) {
+  const compact = value.replace(/\s+/g, " ").trim();
+  if (!compact) {
+    return "Nova conversa";
   }
-  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  return compact.length > limit ? `${compact.slice(0, limit - 1).trimEnd()}…` : compact;
 }
 
-function statusTone(status?: AiChatProvider["status"]) {
-  switch (status) {
-    case "online":
-      return "success";
-    case "offline":
-    case "error":
-      return "warning";
-    case "unconfigured":
-      return "info";
-    default:
-      return "neutral";
-  }
-}
-
-function chooseConversationId(conversations: AiChatConversation[], preferredId?: string | null) {
-  if (preferredId && conversations.some((conversation) => conversation.id === preferredId)) {
-    return preferredId;
-  }
-  return conversations[0]?.id ?? "";
-}
-
-function summarizeConversation(conversation: AiChatConversation): AiChatConversation {
-  const { messages: _messages, ...summary } = conversation;
-  return {
-    ...summary,
-    metadata: { ...summary.metadata },
-  };
-}
-
-function describeAiChatApiError(error: unknown): ChatBanner {
-  if (error instanceof AiChatApiError) {
-    switch (error.kind) {
-      case "auth_required":
-        return {
-          tone: "danger",
-          title: "Sessão expirada",
-          message: "Sua sessão expirou ou não foi autenticada. Faça login novamente para usar o Chat de IA.",
-        };
-      case "forbidden":
-        return {
-          tone: "danger",
-          title: "Sem permissão",
-          message: "Você não tem permissão para usar este recurso.",
-        };
-      case "rate_limited":
-        return {
-          tone: "warning",
-          title: "Limite atingido",
-          message: "Limite de uso atingido. Aguarde alguns instantes e tente novamente.",
-        };
-      case "validation_error":
-        return {
-          tone: "warning",
-          title: "Requisição inválida",
-          message: "A requisição de IA é inválida. Revise os campos e tente novamente.",
-        };
-      case "backend_error":
-        return {
-          tone: "danger",
-          title: "Erro do backend",
-          message: "O backend de IA retornou um erro. Tente novamente em instantes.",
-        };
-      case "network_unavailable":
-        return {
-          tone: "warning",
-          title: "Fallback local ativo",
-          message: "Backend indisponível. Exibindo resposta local de fallback.",
-        };
-      case "not_found":
-        return {
-          tone: "warning",
-          title: "Conversa não encontrada",
-          message: "A conversa solicitada não foi encontrada.",
-        };
-      case "expired":
-        return {
-          tone: "warning",
-          title: "Recurso expirado",
-          message: "O recurso solicitado expirou. Recarregue a conversa.",
-        };
-      default:
-        return {
-          tone: "danger",
-          title: "Erro da API",
-          message: "A API de IA retornou uma resposta inesperada.",
-        };
+function describeApiError(error: unknown): Banner {
+  if (error instanceof ApoemaApiError) {
+    if (error.kind === "auth_required" || error.status === 401) {
+      return {
+        tone: "danger",
+        title: "Sessão expirada",
+        message: "Sua sessão expirou ou não foi autenticada. Faça login novamente para usar o chat.",
+      };
+    }
+    if (error.kind === "forbidden" || error.status === 403) {
+      return {
+        tone: "danger",
+        title: "Sem permissão",
+        message: "Você não tem permissão para usar este recurso.",
+      };
+    }
+    if (error.kind === "rate_limited" || error.status === 429) {
+      return {
+        tone: "warning",
+        title: "Limite temporário atingido",
+        message: "Limite temporário atingido. Aguarde alguns instantes e tente novamente.",
+      };
+    }
+    if (error.kind === "backend_error" || (error.status ?? 0) >= 500) {
+      return {
+        tone: "danger",
+        title: "Backend indisponível",
+        message: "O backend do chat retornou erro. Tente novamente em instantes.",
+      };
     }
   }
 
@@ -131,477 +75,509 @@ function describeAiChatApiError(error: unknown): ChatBanner {
   };
 }
 
-export function ChatPage() {
-  const { token } = useAuth();
-  const [providers, setProviders] = useState<AiChatProvider[]>([]);
-  const [selectedProviderId, setSelectedProviderId] = useState("");
-  const [selectedModel, setSelectedModel] = useState("");
-  const [providerLoadState, setProviderLoadState] = useState<ApoemaProviderLoadState>("loading");
-  const [providerBanner, setProviderBanner] = useState<ChatBanner | null>(null);
+function toConversation(session: ApoemaChatSession, provider: string, model: string | null, userId: string): AiChatConversation {
+  return {
+    id: session.id,
+    user_id: userId,
+    title: session.title,
+    provider,
+    model,
+    system_prompt_version: "apoema-chat-shell",
+    created_at: session.created_at,
+    updated_at: session.updated_at,
+  };
+}
 
-  const [conversations, setConversations] = useState<AiChatConversation[]>([]);
-  const [selectedConversationId, setSelectedConversationId] = useState("");
-  const [conversationDetail, setConversationDetail] = useState<AiChatConversation | null>(null);
-  const [conversationLoadState, setConversationLoadState] = useState<ConversationLoadState>("loading");
-  const [conversationBanner, setConversationBanner] = useState<ChatBanner | null>(null);
+function toRenderableMessage(message: ApoemaChatMessage, conversationId: string, provider: string, model: string | null): AiChatMessage {
+  return {
+    id: message.id,
+    conversation_id: conversationId,
+    role: message.role,
+    content: message.content,
+    provider,
+    model,
+    created_at: message.created_at,
+  };
+}
 
-  const [prompt, setPrompt] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [creatingConversation, setCreatingConversation] = useState(false);
-  const [messageBanner, setMessageBanner] = useState<ChatBanner | null>(null);
-
-  const selectedProvider = useMemo(
-    () => providers.find((provider) => provider.id === selectedProviderId) ?? null,
-    [providers, selectedProviderId],
-  );
-  const providerModels = useMemo(() => {
-    if (!selectedProvider) {
-      return [];
+function replaceLastUserMessageContent(messages: AiChatMessage[], content: string) {
+  const next = [...messages];
+  for (let index = next.length - 1; index >= 0; index -= 1) {
+    if (next[index]?.role === "user") {
+      next[index] = { ...next[index], content };
+      break;
     }
-    const models = selectedProvider.models.length > 0 ? selectedProvider.models : [selectedProvider.default_model];
-    return Array.from(new Set([selectedProvider.default_model, ...models]));
-  }, [selectedProvider]);
-  const providerReady = providerLoadState === "ready" || providerLoadState === "fallback";
-  const visibleMessages = conversationDetail?.messages ?? [];
+  }
+  return next;
+}
 
-  const providerStateTone =
-    providerLoadState === "loading"
-      ? "neutral"
-      : providerLoadState === "fallback" || providerLoadState === "error"
-        ? "warning"
-        : statusTone(selectedProvider?.status);
+function isSensitiveAttachmentName(fileName: string) {
+  return /\.(env|key|pem|p12|pfx|crt|cer|der|jks|keystore|secret|credentials?|token|config)$/i.test(fileName) || /(^|[\W_])(token|secret|credential|passwd|password)([\W_]|$)/i.test(fileName);
+}
 
-  const providerStateLabel =
-    providerLoadState === "loading"
-      ? "Carregando provedores"
-      : providerLoadState === "fallback"
-        ? "Fallback local"
-        : providerLoadState === "error"
-          ? "Catálogo indisponível"
-          : selectedProvider?.status ?? "Sem provedor";
+async function buildAttachmentDraft(file: File, id: string): Promise<ComposerAttachment> {
+  const kind: ComposerAttachment["kind"] = file.type.startsWith("image/") ? "image" : "file";
+  const previewUrl = URL.createObjectURL(file);
+  let previewText: string | null = null;
 
-  async function reloadProviders() {
-    setProviderLoadState("loading");
-    setProviderBanner(null);
-
+  if (!file.type.startsWith("image/") && file.size <= 96_000) {
     try {
-      const result = await getAiChatProviders(token);
-      if (result.kind === "fallback") {
-        const firstProvider = result.providers[0] ?? null;
-        setProviders(result.providers);
-        setSelectedProviderId(firstProvider?.id ?? "");
-        setSelectedModel(firstProvider?.default_model ?? "");
-        setProviderLoadState("fallback");
-        setProviderBanner({
-          tone: "warning",
-          title: "Fallback local ativo",
-          message: result.notice,
-        });
-        return;
-      }
-
-      if (result.providers.length === 0) {
-        setProviders([]);
-        setSelectedProviderId("");
-        setSelectedModel("");
-        setProviderLoadState("error");
-        setProviderBanner({
-          tone: "danger",
-          title: "Catálogo indisponível",
-          message: "O backend não retornou provedores disponíveis.",
-        });
-        return;
-      }
-
-      const firstProvider = result.providers[0];
-      setProviders(result.providers);
-      setSelectedProviderId(firstProvider.id);
-      setSelectedModel(firstProvider.default_model);
-      setProviderLoadState("ready");
-    } catch (error) {
-      setProviders([]);
-      setSelectedProviderId("");
-      setSelectedModel("");
-      setProviderLoadState("error");
-      setProviderBanner(describeAiChatApiError(error));
+      const text = await file.text();
+      previewText = text.slice(0, 1000).trim() || null;
+    } catch {
+      previewText = null;
     }
   }
 
-  async function reloadConversations(preferredConversationId?: string | null) {
-    setConversationLoadState("loading");
-    setConversationBanner(null);
+  return { id, file, kind, previewUrl, previewText };
+}
 
+export function ChatPage() {
+  const { token, user, loading: authLoading } = useAuth();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentConversationId = searchParams.get("chat");
+  const newConversationRequested = searchParams.get("new") === "1";
+  const [conversations, setConversations] = useState<AiChatConversation[]>([]);
+  const [messages, setMessages] = useState<AiChatMessage[]>([]);
+  const [input, setInput] = useState("");
+  const [query, setQuery] = useState("");
+  const [attachments, setAttachments] = useState<ComposerAttachment[]>([]);
+  const [loadingHistory, setLoadingHistory] = useState(true);
+  const [loadingMessages, setLoadingMessages] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [health, setHealth] = useState<AiChatProviderHealth | null>(null);
+  const [healthState, setHealthState] = useState<"loading" | "ready" | "error">("loading");
+  const [banner, setBanner] = useState<Banner | null>(null);
+
+  const provider = health?.provider && !/mock|fallback/i.test(health.provider) ? health.provider : "hermes";
+  const model = health?.model ?? "hermes-agent";
+
+  const selectedConversation = useMemo(
+    () => conversations.find((conversation) => conversation.id === currentConversationId) ?? null,
+    [conversations, currentConversationId],
+  );
+
+  const previewByConversationId = useMemo(() => {
+    const previews: Record<string, string> = {};
+    for (const conversation of conversations) {
+      previews[conversation.id] = conversation.title ?? "Nova conversa";
+    }
+    if (currentConversationId) {
+      const latest = [...messages].at(-1)?.content?.trim();
+      if (latest) {
+        previews[currentConversationId] = shortenPrompt(latest, 96);
+      }
+    }
+    return previews;
+  }, [conversations, currentConversationId, messages]);
+
+  const healthTone = useMemo(() => {
+    if (healthState === "loading") return "warning";
+    if (healthState === "error") return "warning";
+    if (health?.enabled && health.configured) return "success";
+    return "warning";
+  }, [health, healthState]);
+
+  const healthLabel = useMemo(() => {
+    if (healthState === "loading") return "Checando Hermes";
+    if (healthState === "error") return "Indisponível";
+    if (health?.enabled && health.configured) return "Hermes online";
+    return "Atenção";
+  }, [health, healthState]);
+
+  async function loadHealth() {
+    if (!token) return;
+
+    setHealthState("loading");
     try {
-      const result = await listAiChatConversations(token);
-      const nextConversations = result.conversations.map((conversation) => summarizeConversation(conversation));
-      setConversations(nextConversations);
+      const nextHealth = await ApoemaChatBridgeAdapter.health(token);
+      setHealth(nextHealth);
+      setHealthState("ready");
+    } catch (error) {
+      setHealth(null);
+      setHealthState("error");
+      setBanner(describeApiError(error));
+    }
+  }
 
-      const nextConversationId = chooseConversationId(nextConversations, preferredConversationId ?? selectedConversationId);
-      setSelectedConversationId(nextConversationId);
-      if (nextConversationId) {
-        await loadConversationDetail(nextConversationId);
-      } else {
-        setConversationDetail(null);
-        setConversationLoadState(result.kind === "fallback" ? "fallback" : "ready");
-      }
+  async function loadConversations(
+    preferredConversationId?: string | null,
+    options: { autoSelect?: boolean } = {},
+  ): Promise<AiChatConversation[]> {
+    if (!token) return [];
 
-      if (result.kind === "fallback") {
-        setConversationBanner({
-          tone: "warning",
-          title: "Fallback local ativo",
-          message: result.notice,
-        });
+    const autoSelect = options.autoSelect ?? true;
+    setLoadingHistory(true);
+    try {
+      const nextConversations = await ApoemaChatBridgeAdapter.listSessions(token);
+      const nextRenderable = nextConversations.map((conversation) => toConversation(conversation, provider, health?.model ?? null, user?.id ?? "apoema-user"));
+      setConversations(nextRenderable);
+
+      const nextSelectedId = preferredConversationId ?? (autoSelect ? nextRenderable[0]?.id : null) ?? null;
+      if (autoSelect && !currentConversationId && nextSelectedId) {
+        setSearchParams({ chat: nextSelectedId }, { replace: true });
       }
+      if (!nextSelectedId || !autoSelect) {
+        setMessages([]);
+      }
+      return nextRenderable;
     } catch (error) {
       setConversations([]);
-      setSelectedConversationId("");
-      setConversationDetail(null);
-      setConversationLoadState("error");
-      setConversationBanner(describeAiChatApiError(error));
+      setBanner(describeApiError(error));
+      return [];
+    } finally {
+      setLoadingHistory(false);
     }
   }
 
-  async function loadConversationDetail(conversationId: string) {
-    if (!conversationId) {
-      setConversationDetail(null);
-      return;
-    }
+  async function loadMessages(conversationId: string) {
+    if (!token) return;
 
-    setConversationLoadState("loading");
-    setConversationDetail(null);
-
+    setLoadingMessages(true);
     try {
-      const result = await getAiChatConversation(conversationId, token);
-      if (!result) {
-        setConversationDetail(null);
-        setConversationLoadState("error");
-        setConversationBanner({
-          tone: "warning",
-          title: "Conversa indisponível",
-          message: "A conversa selecionada não está disponível neste momento.",
-        });
-        return;
-      }
-
-      setConversationDetail(result.conversation);
-      if (result.kind === "fallback") {
-        setConversationLoadState("fallback");
-        setConversationBanner({
-          tone: "warning",
-          title: "Fallback local ativo",
-          message: result.notice,
-        });
-      } else {
-        setConversationLoadState("ready");
-        setConversationBanner(null);
-      }
+      const nextMessages = await ApoemaChatBridgeAdapter.listMessages(token, conversationId);
+      setMessages(nextMessages.map((message) => toRenderableMessage(message, conversationId, provider, health?.model ?? null)));
     } catch (error) {
-      setConversationDetail(null);
-      setConversationLoadState("error");
-      setConversationBanner(describeAiChatApiError(error));
+      setMessages([]);
+      setBanner(describeApiError(error));
+    } finally {
+      setLoadingMessages(false);
     }
   }
 
   useEffect(() => {
-    void reloadProviders();
-    void reloadConversations();
+    if (!token) return;
+
+    void loadHealth();
+    if (newConversationRequested) {
+      setMessages([]);
+      setInput("");
+      setAttachments([]);
+      setBanner(null);
+      void loadConversations(null, { autoSelect: false });
+      return;
+    }
+    void loadConversations(currentConversationId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  }, [token, currentConversationId, newConversationRequested]);
 
   useEffect(() => {
-    if (selectedProvider && !providerModels.includes(selectedModel)) {
-      setSelectedModel(selectedProvider.default_model);
+    if (!token) return;
+    if (currentConversationId) {
+      void loadMessages(currentConversationId);
+      return;
     }
-  }, [providerModels, selectedModel, selectedProvider]);
+    setMessages([]);
+  }, [currentConversationId, token]);
 
-  async function handleNewConversation() {
-    if (creatingConversation) {
+  useEffect(() => {
+    if (!token || currentConversationId || conversations.length === 0) {
       return;
     }
 
-    setCreatingConversation(true);
-    setMessageBanner(null);
+    setSearchParams({ chat: conversations[0].id }, { replace: true });
+  }, [conversations, currentConversationId, setSearchParams, token]);
 
-    try {
-      const result = await createAiChatConversation(
-        {
-          title: "Nova conversa",
-          mode: CHAT_MODE,
-        },
-        token,
-      );
-
-      setConversations((current) => {
-        const next = [summarizeConversation(result.conversation), ...current.filter((conversation) => conversation.id !== result.conversation.id)];
-        return next;
+  useEffect(() => {
+    return () => {
+      attachments.forEach((attachment) => {
+        if (attachment.previewUrl?.startsWith("blob:")) {
+          URL.revokeObjectURL(attachment.previewUrl);
+        }
       });
-      setSelectedConversationId(result.conversation.id);
-      setConversationDetail(result.conversation);
-      setConversationLoadState(result.kind === "fallback" ? "fallback" : "ready");
-      if (result.kind === "fallback") {
-        setConversationBanner({
-          tone: "warning",
-          title: "Fallback local ativo",
-          message: result.notice,
-        });
-      } else {
-        setConversationBanner(null);
-      }
-    } catch (error) {
-      setMessageBanner(describeAiChatApiError(error));
-    } finally {
-      setCreatingConversation(false);
+    };
+  }, [attachments]);
+
+  async function handleSelectConversation(conversationId: string) {
+    setSearchParams({ chat: conversationId }, { replace: true });
+  }
+
+  async function handleOpenNewConversation() {
+    setSearchParams({ new: "1" }, { replace: true });
+    setMessages([]);
+    setInput("");
+    setAttachments([]);
+    setBanner(null);
+  }
+
+  async function handleReload() {
+    await loadHealth();
+    await loadConversations(currentConversationId);
+    if (currentConversationId) {
+      await loadMessages(currentConversationId);
     }
   }
 
-  async function sendMessage() {
-    if (busy || !providerReady || !selectedProvider) {
-      return;
-    }
-
-    const content = prompt.trim();
-    if (!content) {
-      setMessageBanner({
-        tone: "warning",
-        title: "Mensagem vazia",
-        message: "Digite uma mensagem para enviar ao backend.",
-      });
-      return;
-    }
-
-    setBusy(true);
-    setMessageBanner(null);
-
+  async function handleRenameConversation(conversationId: string, title: string) {
+    if (!token) return;
     try {
-      if (!selectedConversationId) {
-        const result = await createAiChatConversation(
-          {
-            title: content.length > 54 ? `${content.slice(0, 51).trimEnd()}...` : content,
-            message: content,
-            mode: CHAT_MODE,
-          },
-          token,
-        );
-        setConversations((current) => {
-          const next = [summarizeConversation(result.conversation), ...current.filter((conversation) => conversation.id !== result.conversation.id)];
-          return next;
-        });
-        setSelectedConversationId(result.conversation.id);
-        setConversationDetail(result.conversation);
-        setConversationLoadState(result.kind === "fallback" ? "fallback" : "ready");
-        if (result.kind === "fallback") {
-          setConversationBanner({
-            tone: "warning",
-            title: "Fallback local ativo",
-            message: result.notice,
-          });
-        } else {
-          setConversationBanner(null);
-        }
-      } else {
-        const result = await sendAiChatConversationMessage(
-          selectedConversationId,
-          {
-            content,
-            mode: CHAT_MODE,
-          },
-          token,
-        );
-        setConversations((current) => {
-          const next = [summarizeConversation(result.conversation), ...current.filter((conversation) => conversation.id !== result.conversation.id)];
-          return next;
-        });
-        setConversationDetail(result.conversation);
-        setConversationLoadState(result.kind === "fallback" ? "fallback" : "ready");
-        if (result.kind === "fallback") {
-          setConversationBanner({
-            tone: "warning",
-            title: "Fallback local ativo",
-            message: result.notice,
-          });
-        } else {
-          setConversationBanner(null);
-        }
-      }
-
-      setPrompt("");
+      await ApoemaChatBridgeAdapter.renameSession(token, conversationId, title);
+      await loadConversations(currentConversationId);
     } catch (error) {
-      setMessageBanner(describeAiChatApiError(error));
-    } finally {
-      setBusy(false);
+      const nextBanner = describeApiError(error);
+      setBanner(nextBanner);
+      toast.error(nextBanner.title);
     }
   }
+
+  async function handleDeleteConversation(conversationId: string) {
+    if (!token) return;
+    try {
+      await ApoemaChatBridgeAdapter.deleteSession(token, conversationId);
+      const nextConversations = await loadConversations(currentConversationId === conversationId ? null : currentConversationId);
+      if (currentConversationId === conversationId) {
+        const nextConversation = nextConversations[0] ?? null;
+        if (nextConversation) {
+          setSearchParams({ chat: nextConversation.id }, { replace: true });
+          await loadMessages(nextConversation.id);
+        } else {
+          setSearchParams({}, { replace: true });
+          setMessages([]);
+        }
+      }
+    } catch (error) {
+      const nextBanner = describeApiError(error);
+      setBanner(nextBanner);
+      toast.error(nextBanner.title);
+    }
+  }
+
+  async function handlePickFiles(files: FileList) {
+    const incoming = Array.from(files);
+    const created: ComposerAttachment[] = [];
+    for (const file of incoming) {
+      if (isSensitiveAttachmentName(file.name)) {
+        toast.error(`Anexo bloqueado: ${file.name}`);
+        continue;
+      }
+
+      const validation = validateAttachmentFile(file);
+      if (!validation.success) {
+        toast.error(validation.error);
+        continue;
+      }
+
+      const id = globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      // Keep the preview local and honest. Nothing is uploaded here.
+      const draft = await buildAttachmentDraft(file, id);
+      created.push(draft);
+    }
+
+    setAttachments((current) => [...current, ...created]);
+  }
+
+  function removeAttachment(id: string) {
+    setAttachments((current) => {
+      const target = current.find((item) => item.id === id);
+      if (target?.previewUrl?.startsWith("blob:")) {
+        URL.revokeObjectURL(target.previewUrl);
+      }
+      return current.filter((item) => item.id !== id);
+    });
+  }
+
+  function clearAttachments() {
+    setAttachments((current) => {
+      current.forEach((attachment) => {
+        if (attachment.previewUrl?.startsWith("blob:")) {
+          URL.revokeObjectURL(attachment.previewUrl);
+        }
+      });
+      return [];
+    });
+  }
+
+  function buildLocalContent(text: string) {
+    const trimmed = text.trim();
+    const textPart = trimmed ? [createTextPart(trimmed)] : [];
+    const fileParts = attachments.map((attachment) =>
+      createFilePart({
+        kind: attachment.kind,
+        name: attachment.file.name,
+        url: attachment.previewUrl ?? "",
+        mimeType: attachment.file.type,
+      }),
+    );
+    return serializeChatMessageContent([...textPart, ...fileParts]);
+  }
+
+  async function handleSend(content: string) {
+    if (!token || !user) return;
+
+    const trimmed = content.trim();
+    if (!trimmed && attachments.length === 0) {
+      return;
+    }
+
+    setSending(true);
+    setBanner(null);
+
+    const structuredContent = buildLocalContent(trimmed || "Anexos locais");
+
+    try {
+      if (currentConversationId) {
+        const nextMessages = await ApoemaChatBridgeAdapter.sendMessage(token, currentConversationId, { content: trimmed || "Anexos locais" });
+        const mapped = nextMessages.map((message) => toRenderableMessage(message, currentConversationId, provider, health?.model ?? null));
+        setMessages(attachments.length > 0 ? replaceLastUserMessageContent(mapped, structuredContent) : mapped);
+        await loadConversations(currentConversationId);
+      } else {
+        const title = shortenPrompt(trimmed || "Anexos locais");
+        const created = await ApoemaChatBridgeAdapter.createSessionAndSendMessage(token, title, { content: trimmed || "Anexos locais" });
+        setSearchParams({ chat: created.session.id }, { replace: true });
+        const mapped = created.messages.map((message) => toRenderableMessage(message, created.session.id, provider, health?.model ?? null));
+        setMessages(attachments.length > 0 ? replaceLastUserMessageContent(mapped, structuredContent) : mapped);
+        await loadConversations(created.session.id);
+      }
+      setInput("");
+      clearAttachments();
+    } catch (error) {
+      const nextBanner = describeApiError(error);
+      setBanner(nextBanner);
+      toast.error(nextBanner.title);
+    } finally {
+      setSending(false);
+    }
+  }
+
+  const isEmptyState = !currentConversationId || messages.length === 0;
 
   return (
-    <div className="apoema-chat-layout">
-      {/* Conversas backend-backed */}
+    <div className="grid min-w-0 gap-4 lg:grid-cols-[clamp(240px,22vw,300px)_minmax(0,1fr)]">
       <ChatConversationSidebar
         conversations={conversations}
-        selectedConversationId={selectedConversationId || null}
-        loading={conversationLoadState === "loading" || (Boolean(selectedConversationId) && !conversationDetail)}
-        state={conversationLoadState}
-        banner={conversationBanner}
-        fallbackNotice={conversationLoadState === "fallback" ? conversationBanner?.message ?? null : null}
-        onSelectConversation={(conversationId) => {
-          setSelectedConversationId(conversationId);
-          void loadConversationDetail(conversationId);
-          setMessageBanner(null);
-        }}
-        onNewConversation={() => void handleNewConversation()}
-        onReload={() => void reloadConversations(selectedConversationId || null)}
-        creatingConversation={creatingConversation}
+        selectedConversationId={currentConversationId}
+        previewByConversationId={previewByConversationId}
+        loading={loadingHistory}
+        query={query}
+        onQueryChange={setQuery}
+        onSelectConversation={(conversationId) => void handleSelectConversation(conversationId)}
+        onNewConversation={() => void handleOpenNewConversation()}
+        onReload={() => void handleReload()}
+        onRenameConversation={(conversationId, title) => void handleRenameConversation(conversationId, title)}
+        onDeleteConversation={(conversationId) => void handleDeleteConversation(conversationId)}
+        creatingConversation={sending}
       />
 
-      <section className="apoema-panel apoema-chat-main">
-        <div className="apoema-section-head">
-          <div>
-            <StatusPill tone="info">Assistente Apoema</StatusPill>
-            <h1>Como posso ajudar?</h1>
-          </div>
-          <div style={{ display: "grid", gap: 10, minWidth: 320 }}>
-            {providerLoadState === "loading" && (
-              <div className="apoema-warning is-warning">
-                <AlertTriangle size={16} />
-                <div>
-                  <strong>Carregando provedores</strong>
-                  <p>Buscando catálogo do backend de IA.</p>
-                </div>
-              </div>
-            )}
-
-            {providerBanner && (
-              <div className={`apoema-warning ${providerBanner.tone === "danger" ? "is-danger" : "is-warning"}`}>
-                {providerBanner.tone === "danger" ? <ShieldAlert size={16} /> : <AlertTriangle size={16} />}
-                <div>
-                  <strong>{providerBanner.title}</strong>
-                  <p>{providerBanner.message}</p>
-                  <div className="apoema-warning-actions">
-                    <button type="button" className="apoema-secondary-button" onClick={() => void reloadProviders()} disabled={providerLoadState === "loading"}>
-                      <RotateCcw size={16} />
-                      Tentar novamente
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {providerReady && selectedProvider && (
-              <>
-                <label className="apoema-provider-select">
-                  Provedor
-                  <select
-                    value={selectedProviderId}
-                    onChange={(event) => {
-                      const nextProvider = providers.find((provider) => provider.id === event.target.value);
-                      if (!nextProvider) {
-                        return;
-                      }
-                      setSelectedProviderId(nextProvider.id);
-                      setSelectedModel(nextProvider.default_model);
-                      setMessageBanner(null);
-                    }}
-                  >
-                    {providers.map((provider) => (
-                      <option key={provider.id} value={provider.id}>
-                        {provider.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label className="apoema-provider-select">
-                  Modelo
-                  <select
-                    value={selectedModel}
-                    onChange={(event) => {
-                      setSelectedModel(event.target.value);
-                      setMessageBanner(null);
-                    }}
-                  >
-                    {providerModels.map((model) => (
-                      <option key={model} value={model}>
-                        {model}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </>
-            )}
-          </div>
-        </div>
-
-        <div className="apoema-chat-messages" aria-live="polite">
-          {selectedConversationId && conversationLoadState === "loading" && conversationDetail === null ? (
-            <div className="apoema-chat-empty-state">
-              <strong>Carregando conversa...</strong>
-              <p>Buscando o histórico selecionado no backend.</p>
-            </div>
-          ) : selectedConversationId && visibleMessages.length > 0 ? (
-            visibleMessages.map((message) => <ChatMessage key={message.id} message={message} />)
-          ) : (
-            <div className="apoema-chat-empty-state">
-              <strong>Sem mensagens ainda</strong>
-              <p>Crie uma conversa nova ou envie a primeira mensagem para iniciar o histórico do backend.</p>
-            </div>
-          )}
-        </div>
-
-        <div className="apoema-chat-dock">
-          {messageBanner && (
-            <div className={`apoema-warning ${messageBanner.tone === "danger" ? "is-danger" : "is-warning"}`}>
-              {messageBanner.tone === "danger" ? <ShieldAlert size={16} /> : <AlertTriangle size={16} />}
-              <div>
-                <strong>{messageBanner.title}</strong>
-                <p>{messageBanner.message}</p>
-              </div>
-            </div>
-          )}
-
-          <ChatComposer
-            value={prompt}
-            onChange={setPrompt}
-            onSubmit={sendMessage}
-            disabled={!providerReady || !selectedProvider}
-            isSending={busy}
-          />
-
-          <div className="apoema-chat-sidebar-card" aria-live="polite">
-            <StatusPill tone={providerStateTone as "success" | "warning" | "neutral" | "info"}>
-              {providerStateLabel}
-            </StatusPill>
-            <p>
-              {selectedProvider?.id === "mock"
-                ? "Frontend Apoema → Backend do Painel → adaptador mock local determinístico para UAT."
-                : "Frontend Apoema → Backend do Painel → provedor controlado no servidor."}
+      <section className="flex min-w-0 flex-col gap-4 rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_20px_60px_-26px_rgba(0,0,0,0.75)] md:p-5">
+        <header className="flex flex-wrap items-start justify-between gap-3">
+          <div className="max-w-3xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan-200/70">Chat IA</p>
+            <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-50">Hermes real no centro da operação</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              {selectedConversation?.title ?? "Nova conversa"} com histórico, novas conversas, exclusão confirmada e anexos locais honestos.
             </p>
           </div>
 
-          <div className="apoema-chat-sidebar-card">
-            <StatusPill tone="warning">
-              <ShieldAlert size={14} />
-              Proteções
-            </StatusPill>
-            <p>Sem segredos, sem respostas progressivas inventadas e sem anexos backend-backed nesta fase.</p>
+          <div className="grid gap-2 sm:grid-cols-2">
+            <div className="rounded-[22px] border border-white/10 bg-slate-950/40 px-4 py-3">
+              <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">Status</p>
+              <p className="mt-1 text-sm font-medium text-slate-100">{healthLabel}</p>
+              <p className="text-xs text-slate-400">
+                {healthState === "ready" ? `provider ${provider} • ${model}` : "Conferindo provider real"}
+              </p>
+            </div>
+            <div className="rounded-[22px] border border-white/10 bg-slate-950/40 px-4 py-3">
+              <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">Conversas</p>
+              <p className="mt-1 text-sm font-medium text-slate-100">{conversations.length}</p>
+              <p className="text-xs text-slate-400">{messages.length} mensagem(ns) carregada(s)</p>
+            </div>
           </div>
+        </header>
+
+        {banner ? (
+          <div
+            className={banner.tone === "danger" ? "rounded-[22px] border border-rose-400/20 bg-rose-500/10 p-4 text-rose-100" : "rounded-[22px] border border-amber-400/20 bg-amber-500/10 p-4 text-amber-100"}
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5">
+                {banner.tone === "danger" ? <ShieldAlert className="h-4 w-4" /> : <AlertTriangle className="h-4 w-4" />}
+              </div>
+              <div>
+                <strong className="block text-sm">{banner.title}</strong>
+                <p className="mt-1 text-sm leading-6">{banner.message}</p>
+              </div>
+            </div>
+          </div>
+        ) : null}
+
+        <div className="flex min-h-0 flex-1 flex-col gap-4">
+          {isEmptyState ? (
+            <div className="rounded-[28px] border border-dashed border-white/15 bg-slate-950/35 p-6">
+              <div className="space-y-6">
+                <div className="min-w-0 space-y-4">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-2 text-xs font-medium text-cyan-100">
+                    <Sparkles className="h-4 w-4" />
+                    Pronto para operar
+                  </div>
+                  <h3 className="max-w-3xl text-pretty text-2xl font-semibold leading-tight text-slate-50">
+                    Envie uma pergunta ou use uma sugestão rápida.
+                  </h3>
+                  <p className="max-w-3xl text-sm leading-6 text-slate-300">
+                    O histórico fica na lateral, o composer suporta arquivos e o caminho de sucesso responde com Hermes real.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {CHAT_SUGGESTIONS.map((suggestion, index) => (
+                      <button
+                        key={`${suggestion.label}-${index}`}
+                        type="button"
+                        className="max-w-full rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200 transition-colors hover:border-cyan-300/30 hover:bg-cyan-400/10"
+                        onClick={() => setInput(suggestion.prompt)}
+                      >
+                        {suggestion.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="min-w-0">
+                  <ChatComposer
+                    value={input}
+                    onChange={setInput}
+                    onSubmit={() => void handleSend(input)}
+                    onPickSuggestion={(prompt) => setInput(prompt)}
+                    suggestions={CHAT_SUGGESTIONS}
+                    disabled={authLoading || !token || !user || loadingMessages}
+                    isSending={sending}
+                    attachments={attachments}
+                    onPickFiles={handlePickFiles}
+                    onRemoveAttachment={removeAttachment}
+                    onClearAttachments={clearAttachments}
+                  />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="min-h-0 flex-1 space-y-4 overflow-y-auto pr-1">
+                {messages.map((message) => (
+                  <ChatMessage key={message.id} message={message} />
+                ))}
+
+                {sending ? (
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
+                    <Sparkles className="h-4 w-4 animate-pulse text-cyan-100" />
+                    Hermes está analisando a solicitação...
+                  </div>
+                ) : null}
+              </div>
+
+              <ChatComposer
+                value={input}
+                onChange={setInput}
+                onSubmit={() => void handleSend(input)}
+                onPickSuggestion={(prompt) => setInput(prompt)}
+                suggestions={CHAT_SUGGESTIONS}
+                disabled={authLoading || !token || !user || loadingMessages}
+                isSending={sending}
+                attachments={attachments}
+                onPickFiles={handlePickFiles}
+                onRemoveAttachment={removeAttachment}
+                onClearAttachments={clearAttachments}
+              />
+            </>
+          )}
         </div>
       </section>
-
-      <aside className="apoema-chat-right apoema-panel">
-        <div className="apoema-chat-sidebar-card">
-          <StatusPill tone="success">
-            <Sparkles size={14} />
-            Sem segredos
-          </StatusPill>
-          <p>O chat conversa com o backend do Painel e não expõe tokens, provider keys ou paths internos.</p>
-        </div>
-        <div className="apoema-chat-sidebar-card">
-          <StatusPill tone="info">Operação</StatusPill>
-          <p>Histórico backend-backed, mensagens em PT-BR e fallback local apenas quando a rede falha.</p>
-        </div>
-        <div className="apoema-chat-sidebar-card">
-          <StatusPill tone="neutral">Tempo</StatusPill>
-          <p>{conversationDetail?.updated_at ? `Última atualização: ${formatClock(conversationDetail.updated_at)}` : "Nenhuma conversa selecionada."}</p>
-        </div>
-      </aside>
     </div>
   );
 }

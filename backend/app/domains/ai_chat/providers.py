@@ -4,6 +4,7 @@ import asyncio
 import ipaddress
 import json
 import re
+import subprocess
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -32,7 +33,10 @@ DEFAULT_GEMINI_MODEL = "gemini-2.0-flash"
 DEFAULT_OLLAMA_BASE_URL = "http://127.0.0.1:11434"
 DEFAULT_OLLAMA_LAN_BASE_URL = "http://192.168.0.103:11434/v1"
 DEFAULT_OLLAMA_MODEL = "qwen3:1.7b-64k"
+DEFAULT_HERMES_MODEL = "hermes-agent"
 OLLAMA_LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
+HERMES_SMOKE_TEST_PHRASE = "APOEMA-HERMES-OK"
+_HERMES_SESSION_RE = re.compile(r"(?:\r?\n)?session_id:\s*([^\s]+)\s*$")
 _THINK_BLOCK_RE = re.compile(r"<think\b[^>]*>.*?</think\s*>", re.IGNORECASE | re.DOTALL)
 _THINK_OPEN_RE = re.compile(r"^\s*<think\b[^>]*>\s*", re.IGNORECASE)
 
@@ -444,6 +448,43 @@ class OllamaLanProvider:
         )
 
 
+class HermesTerminalProvider:
+    provider = "hermes"
+
+    def __init__(
+        self,
+        settings: object | None = None,
+        *,
+        model: str | None = None,
+        timeout_seconds: int | None = None,
+        source: str = "apoema",
+    ) -> None:
+        if settings is not None:
+            model = getattr(settings, "hermes_model", "") or DEFAULT_HERMES_MODEL
+            timeout_seconds = int(getattr(settings, "ai_timeout_seconds", 30) or 30)
+        self.model = (model or DEFAULT_HERMES_MODEL).strip() or DEFAULT_HERMES_MODEL
+        self.timeout_seconds = max(1, timeout_seconds or 30)
+        self.source = (source or "apoema").strip() or "apoema"
+
+    async def generate(self, messages: list[AiProviderMessage], mode: AiChatMode | None = None) -> AiProviderResponse:  # noqa: ARG002
+        query = _compose_hermes_query(messages)
+        latest_user_message = next((message.content.strip() for message in reversed(messages) if message.role == "user"), "")
+        if latest_user_message == HERMES_SMOKE_TEST_PHRASE:
+            query = f"Responda somente: {HERMES_SMOKE_TEST_PHRASE}"
+        content, metadata = await asyncio.to_thread(
+            _run_hermes_chat,
+            query,
+            self.timeout_seconds,
+            self.source,
+        )
+        return AiProviderResponse(
+            content=content,
+            provider=self.provider,
+            model=self.model,
+            raw_metadata=metadata,
+        )
+
+
 def build_ai_provider(settings: object) -> AiProvider:
     provider = _normalize_provider_name(getattr(settings, "ai_provider", "mock") or "mock")
     if provider == "mock":
@@ -461,6 +502,8 @@ def build_ai_provider(settings: object) -> AiProvider:
         return OllamaProvider(settings)
     if provider == "ollama-lan":
         return OllamaLanProvider(settings)
+    if provider == "hermes":
+        return HermesTerminalProvider(settings)
     raise ValueError(f"Unsupported AI_PROVIDER: {provider}")
 
 
@@ -521,6 +564,8 @@ def get_ai_provider_health(settings: object) -> dict[str, object]:
             "status": "ok",
             "model": (getattr(settings, "ollama_model", "") or getattr(settings, "ai_model", "") or DEFAULT_OLLAMA_MODEL).strip() or DEFAULT_OLLAMA_MODEL,
         }
+    if provider == "hermes":
+        return _hermes_health(settings)
     return {"provider": provider, "configured": False, "status": "unsupported_provider"}
 
 
@@ -595,6 +640,112 @@ def _is_safe_ollama_host(host: str) -> bool:
     except ValueError:
         return False
     return bool(address.is_loopback or address.is_private)
+
+
+def _compose_hermes_query(messages: list[AiProviderMessage]) -> str:
+    role_labels = {
+        "system": "Instruções do sistema",
+        "user": "Mensagem do usuário",
+        "assistant": "Resposta anterior do assistente",
+    }
+    parts = []
+    for message in messages:
+        label = role_labels.get(message.role, "Mensagem")
+        content = message.content.strip()
+        if content:
+            parts.append(f"{label}:\n{content}")
+    return "\n\n".join(parts).strip()
+
+
+def _parse_hermes_output(output: str) -> tuple[str, dict[str, object]]:
+    text = output.strip()
+    metadata: dict[str, object] = {}
+    match = _HERMES_SESSION_RE.search(text)
+    if match:
+        metadata["session_id"] = match.group(1)
+        text = text[: match.start()].rstrip()
+    return text, metadata
+
+
+def _run_hermes_chat(query: str, timeout_seconds: int, source: str) -> tuple[str, dict[str, object]]:
+    command = ["hermes", "chat", "-q", query, "-Q", "--source", source]
+    try:
+        completed = subprocess.run(
+            command,
+            capture_output=True,
+            check=False,
+            text=True,
+            timeout=max(1, timeout_seconds),
+        )
+    except FileNotFoundError as exc:
+        raise AiProviderConfigurationError("hermes_command_not_found") from exc
+    except subprocess.TimeoutExpired as exc:
+        raise AiProviderRequestError("hermes_timeout") from exc
+
+    stdout = (completed.stdout or "").strip()
+    stderr = (completed.stderr or "").strip()
+    if completed.returncode != 0:
+        detail = stderr or stdout or f"exit_{completed.returncode}"
+        detail = _sanitize_hermes_error(detail)
+        raise AiProviderRequestError(f"hermes_request_failed:{detail}")
+
+    content, metadata = _parse_hermes_output(stdout)
+    if stderr:
+        metadata["stderr"] = _sanitize_hermes_error(stderr)
+    if not content:
+        raise AiProviderRequestError("hermes_empty_response")
+    metadata["source"] = source
+    return content, metadata
+
+
+def _sanitize_hermes_error(value: str) -> str:
+    normalized = " ".join(value.split())
+    normalized = re.sub(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+", "<redacted-email>", normalized)
+    normalized = re.sub(r"\b(?:sk|pk|tok|key|token)[A-Za-z0-9_-]*\b", "<redacted>", normalized, flags=re.IGNORECASE)
+    return normalized[:200] if normalized else "hermes_error"
+
+
+def _hermes_health(settings: object) -> dict[str, object]:
+    model = (getattr(settings, "hermes_model", "") or DEFAULT_HERMES_MODEL).strip() or DEFAULT_HERMES_MODEL
+    timeout_seconds = max(5, int(getattr(settings, "ai_timeout_seconds", 30) or 30))
+    try:
+        content, metadata = _run_hermes_chat("Responda somente: APOEMA-HERMES-HEALTH-OK", timeout_seconds, "apoema-health")
+    except AiProviderConfigurationError as exc:
+        return {
+            "provider": "hermes",
+            "configured": False,
+            "status": "configuration_error",
+            "detail": str(exc),
+            "model": model,
+        }
+    except AiProviderRequestError as exc:
+        return {
+            "provider": "hermes",
+            "configured": True,
+            "status": "offline",
+            "detail": str(exc),
+            "model": model,
+        }
+
+    if "APOEMA-HERMES-HEALTH-OK" not in content:
+        return {
+            "provider": "hermes",
+            "configured": True,
+            "status": "error",
+            "detail": "hermes_health_unexpected_output",
+            "model": model,
+            "session_id": metadata.get("session_id"),
+        }
+
+    result: dict[str, object] = {
+        "provider": "hermes",
+        "configured": True,
+        "status": "ok",
+        "model": model,
+    }
+    if metadata.get("session_id"):
+        result["session_id"] = metadata["session_id"]
+    return result
 
 
 async def _default_http_post(

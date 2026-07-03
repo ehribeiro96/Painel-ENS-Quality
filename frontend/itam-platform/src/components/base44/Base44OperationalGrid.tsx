@@ -23,10 +23,14 @@ export function Base44OperationalGrid({
   columns?: 2 | 3 | 4;
 }) {
   return (
-    <Base44Surface className={`base44-operational-grid base44-operational-grid-cols-${columns}`} as="section">
-      {title ? <h2 className="base44-operational-grid-title">{title}</h2> : null}
-      {description ? <p className="base44-operational-grid-description">{description}</p> : null}
-      <div className="base44-operational-grid-list">
+    <Base44Surface as="section" className="space-y-4">
+      {title ? <h2 className="text-lg font-semibold text-slate-50">{title}</h2> : null}
+      {description ? <p className="max-w-3xl text-sm leading-6 text-slate-400">{description}</p> : null}
+      <div
+        className={`grid gap-3 ${
+          columns === 2 ? "md:grid-cols-2" : columns === 3 ? "md:grid-cols-2 xl:grid-cols-3" : "md:grid-cols-2 xl:grid-cols-4"
+        }`}
+      >
         {items.map((item, index) => (
           <Base44MetricCard
             key={`${String(item.title)}-${index}`}

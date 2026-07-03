@@ -11,6 +11,8 @@ APOEMA = "\n".join(
     for path in sorted((ROOT / "frontend/itam-platform/src/apoema").rglob("*"))
     if path.suffix in {".ts", ".tsx", ".css"}
 )
+APOEMA_CHAT_API = (ROOT / "frontend/itam-platform/src/apoema/lib/apoemaChatApi.ts").read_text(encoding="utf-8")
+CHAT_PAGE = (ROOT / "frontend/itam-platform/src/apoema/pages/ChatPage.tsx").read_text(encoding="utf-8")
 
 
 class ApoemaAiChatParityContractTest(unittest.TestCase):
@@ -33,12 +35,13 @@ class ApoemaAiChatParityContractTest(unittest.TestCase):
         self.assertIn('path="chat" element={<ChatPage />}', (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8"))
 
     def test_apoema_chat_keeps_auth_and_fallback_contract(self) -> None:
-        self.assertIn('return "auth_required"', APOEMA)
-        self.assertIn('return "forbidden"', APOEMA)
-        self.assertIn('kind === "network_unavailable"', APOEMA)
-        self.assertIn('source: "fallback"', APOEMA)
-        self.assertIn("Backend indisponível. Exibindo resposta local de fallback.", APOEMA)
-        self.assertIn("Fallback local ativo", APOEMA)
+        self.assertIn('return "auth_required"', APOEMA_CHAT_API)
+        self.assertIn('return "forbidden"', APOEMA_CHAT_API)
+        self.assertIn('kind === "network_unavailable"', APOEMA_CHAT_API)
+        self.assertIn("Backend indisponível. Exibindo resposta local de fallback.", APOEMA_CHAT_API)
+        self.assertIn("Chat IA", CHAT_PAGE)
+        self.assertIn("Hermes real no centro da operação", CHAT_PAGE)
+        self.assertNotIn("Fallback local ativo", CHAT_PAGE)
 
     def test_no_direct_provider_calls_in_apoema(self) -> None:
         for term in ("localhost:11434", "127.0.0.1:11434", "OLLAMA_BASE_URL", "HERMES_BASE_URL", "COMPOSIO", "/api/chat"):

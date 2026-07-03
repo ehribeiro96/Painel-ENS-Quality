@@ -10,12 +10,12 @@ export function Base44ShellAccent({
   children?: ReactNode;
 }) {
   return (
-    <div className="base44-shell-accent">
+    <div className="flex items-center justify-between gap-3 rounded-[24px] border border-white/10 bg-white/5 px-4 py-3">
       <div>
-        <strong>{title}</strong>
-        <p>{subtitle}</p>
+        <strong className="block text-sm font-semibold text-slate-50">{title}</strong>
+        <p className="text-sm text-slate-400">{subtitle}</p>
       </div>
-      {children ? <div className="base44-shell-accent-extra">{children}</div> : null}
+      {children ? <div>{children}</div> : null}
     </div>
   );
 }

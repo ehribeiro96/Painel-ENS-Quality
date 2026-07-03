@@ -208,10 +208,12 @@ class AiChatFrontendHardeningTest(unittest.TestCase):
         apoema_page = (ROOT / "frontend/itam-platform/src/apoema/pages/ChatPage.tsx").read_text(encoding="utf-8")
 
         self.assertFalse(legacy_page.exists())
-        self.assertIn("Proteções", apoema_page)
-        self.assertIn("Sem segredos", apoema_page)
-        self.assertIn("adaptador mock local determinístico", apoema_page)
-        self.assertIn("Backend indisponível. Exibindo resposta local de fallback.", apoema_page)
+        self.assertIn("Chat IA", apoema_page)
+        self.assertIn("Hermes real no centro da operação", apoema_page)
+        self.assertIn("Pronto para operar", apoema_page)
+        self.assertIn("exclusão confirmada e anexos locais honestos", apoema_page)
+        self.assertNotIn("adaptador mock local determinístico", apoema_page)
+        self.assertNotIn("Backend indisponível. Exibindo resposta local de fallback.", apoema_page)
 
 
 if __name__ == "__main__":

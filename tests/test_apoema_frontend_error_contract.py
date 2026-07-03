@@ -43,20 +43,20 @@ class ApoemaFrontendErrorContractTest(unittest.TestCase):
 
     def test_chat_page_renders_distinct_error_and_fallback_states(self) -> None:
         for snippet in (
-            "Sua sessão expirou ou não foi autenticada. Faça login novamente para usar o Chat de IA.",
+            "Sua sessão expirou ou não foi autenticada. Faça login novamente para usar o chat.",
             "Você não tem permissão para usar este recurso.",
-            "Limite de uso atingido. Aguarde alguns instantes e tente novamente.",
-            "O backend de IA retornou um erro. Tente novamente em instantes.",
-            "Fallback local ativo",
-            "providerLoadState === \"error\"",
-            "providerLoadState === \"fallback\"",
-            "source: \"fallback\"",
+            "Limite temporário atingido. Aguarde alguns instantes e tente novamente.",
+            "O backend do chat retornou erro. Tente novamente em instantes.",
+            "Chat IA",
+            "Hermes real no centro da operação",
+            "Hermes está analisando a solicitação...",
         ):
             self.assertIn(snippet, self.page + self.message)
 
     def test_fallback_messages_are_visually_marked(self) -> None:
-        self.assertIn(".apoema-chat-message.is-fallback", self.css)
-        self.assertIn("apoema-chat-message-source", self.message)
+        self.assertIn("data-role={message.role}", self.message)
+        self.assertIn("Copiar resposta", self.message)
+        self.assertIn("bg-white/[0.04]", self.message)
 
 
 if __name__ == "__main__":

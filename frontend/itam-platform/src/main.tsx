@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { App } from "./App";
-import { AuthProvider } from "./lib/auth";
+import { AuthProvider } from "./contexts/AuthContext";
 import "./styles.css";
 
 const root = document.getElementById("root");

@@ -43,11 +43,17 @@ class ApoemaImportsParityContractTest(unittest.TestCase):
         self.assertNotIn("legacyCompatibilityRoutes", APP)
 
     def test_imports_page_is_apoema_native_and_api_backed(self) -> None:
-        self.assertIn("Base44ImportPanel", IMPORTS_PAGE)
-        self.assertIn("Base44EmptyState", IMPORTS_PAGE)
-        self.assertIn("Base44InfoGrid", IMPORTS_PAGE)
-        self.assertIn("Base44PageHeader", IMPORTS_PAGE)
-        self.assertIn("Base44StatusBadge", IMPORTS_PAGE)
+        for term in (
+            "DonorPanelPageLayout",
+            "DonorSelect",
+            "DonorFieldGrid",
+            "DonorChip",
+            "Importar planilha",
+            "Analisar e corrigir com Hermes",
+            "Detalhes avançados",
+            "Upload, análise e correção assistida pelo Hermes",
+        ):
+            self.assertIn(term, IMPORTS_PAGE)
         self.assertIn("LoadingBlock", IMPORTS_PAGE)
         self.assertIn(".imports(token)", IMPORTS_PAGE)
         self.assertIn("importUpload", IMPORTS_PAGE)
@@ -55,6 +61,8 @@ class ApoemaImportsParityContractTest(unittest.TestCase):
         self.assertIn("importStaging", IMPORTS_PAGE)
         self.assertIn("importConflicts", IMPORTS_PAGE)
         self.assertIn("importValidationErrors", IMPORTS_PAGE)
+        for term in ("Base44ImportPanel", "Base44InfoGrid", "Base44PageHeader", "Base44StatusBadge", "<select"):
+            self.assertNotIn(term, IMPORTS_PAGE)
         self.assertNotIn("localhost:11434", APOEMA)
         self.assertNotIn("OLLAMA_BASE_URL", APOEMA)
         self.assertNotIn("HERMES_BASE_URL", APOEMA)

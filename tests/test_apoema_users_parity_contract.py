@@ -38,7 +38,7 @@ class ApoemaUsersParityContractTest(unittest.TestCase):
 
     def test_users_routes_move_to_apoema_without_legacy_alias(self) -> None:
         normalized = APP.replace("\n", " ")
-        self.assertIn('path="/apoema" element={<ApoemaRoute />}', normalized)
+        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
 
@@ -53,23 +53,19 @@ class ApoemaUsersParityContractTest(unittest.TestCase):
     def test_apoema_app_exposes_users_surface(self) -> None:
         self.assertIn('path="users" element={<UsersPage />}', APOEMA_APP)
         self.assertIn('path="users/:id" element={<UserDetailsPage />}', APOEMA_APP)
-        self.assertIn("Users, WandSparkles", APOEMA_APP)
-        self.assertIn('to: "users", label: "Usuários"', APOEMA_APP)
+        self.assertIn("UsersPage", APOEMA_APP)
+        self.assertIn("UserDetailsPage", APOEMA_APP)
+        self.assertIn("DonorAppShell", APOEMA_APP)
 
     def test_users_page_keeps_base44_operational_surface_and_internal_links(self) -> None:
         for term in (
-            "Apoema Usuários",
-            "Base44FilterPanel",
-            "Base44OperationalGrid",
-            "Base44PageHeader",
-            "Base44UserCard",
-            "Base44UserRoleBadge",
-            "DataTable",
+            "Cadastro operacional",
+            "Localizar colaborador",
+            "Novo colaborador",
+            "colaboradores",
             "canWriteOperationalData",
             "canDeleteOperationalData",
-            "/apoema/users/",
-            "Abrir detalhe",
-            "Novo colaborador",
+            'to="/apoema/signatures"',
         ):
             self.assertIn(term, APOEMA_USERS_PAGE)
 

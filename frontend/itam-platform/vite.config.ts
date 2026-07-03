@@ -1,6 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const devProxyTarget = process.env.VITE_DEV_PROXY_TARGET || "http://127.0.0.1:18080";
 
 export default defineConfig({
   plugins: [react()],
@@ -9,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/v1": {
-        target: "http://[::1]:8080",
+        target: devProxyTarget,
         changeOrigin: true,
         secure: false
       }
@@ -17,7 +22,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src")
+      "@": path.resolve(dirname, "src")
     }
   },
   build: {

@@ -54,11 +54,14 @@ class Settings(BaseSettings):
     frontend_static: str | None = None
     frontend_dist: str | None = None
     enable_ai_chat: bool = False
-    ai_provider: Literal["mock", "gemini", "openai", "ollama", "ollama-lan"] = Field(
+    ai_provider: Literal["mock", "gemini", "openai", "ollama", "ollama-lan", "hermes"] = Field(
         default="mock",
-        validation_alias=AliasChoices("AI_CHAT_PROVIDER", "AI_PROVIDER"),
+        validation_alias=AliasChoices("ai_provider", "AI_CHAT_PROVIDER", "AI_PROVIDER"),
     )
-    ai_chat_default_provider: Literal["mock", "ollama", "hermes"] = "mock"
+    ai_chat_default_provider: Literal["mock", "ollama", "hermes"] = Field(
+        default="mock",
+        validation_alias=AliasChoices("ai_chat_default_provider", "AI_CHAT_DEFAULT_PROVIDER"),
+    )
     ai_model: str = ""
     ai_gemini_api_key: str = ""
     ai_openai_api_key: str = ""
@@ -93,6 +96,20 @@ class Settings(BaseSettings):
         if isinstance(value, str):
             return [item.strip() for item in value.split(",") if item.strip()]
         return value
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_legacy_ai_chat_provider_alias(cls, data: object) -> object:
+        if not isinstance(data, dict):
+            return data
+        legacy_provider = (os.environ.get("AI_CHAT_PROVIDER") or "").strip().lower()
+        if legacy_provider and legacy_provider in {"mock", "ollama", "ollama-lan", "hermes"}:
+            current = str(data.get("ai_provider") or "").strip().lower()
+            if not current or current == "mock":
+                normalized = dict(data)
+                normalized["ai_provider"] = legacy_provider
+                return normalized
+        return data
 
     @model_validator(mode="after")
     def validate_production_security(self) -> Settings:

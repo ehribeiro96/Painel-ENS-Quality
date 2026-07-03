@@ -42,19 +42,16 @@ class ApoemaAssignmentsParityContractTest(unittest.TestCase):
 
     def test_assignments_page_contains_operational_and_timeline_surface(self) -> None:
         for term in (
-            "Base44AssetTimeline",
-            "Base44EmptyState",
-            "Base44OperationalGrid",
-            "Base44PageHeader",
-            "Base44StatusBadge",
-            "Base44Surface",
-            "DataTable",
-            "LoadingBlock",
-            "Apoema Movimentações",
+            "DonorPanelPageLayout",
+            "Vínculos e histórico auditável",
+            "Visão operacional dos vínculos atuais entre ativos e colaboradores, com histórico recente e dados reais da API.",
             "Movimentações",
             "Histórico recente",
             "Vínculos atuais",
-            "api.recentMovements",
+            "Movimentações auditáveis",
+            "recentMovements",
+            "items.length",
+            "Perguntar ao Hermes",
         ):
             self.assertIn(term, APOEMA_ASSIGNMENTS)
 

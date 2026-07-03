@@ -62,8 +62,6 @@ class ApoemaCssIsolationContractTest(unittest.TestCase):
             ".users-row-actions",
             ".wide-field",
             ".screen-center",
-            ".base44-login-shell",
-            ".base44-notfound-shell",
         )
         for selector in preserved_global_selectors:
             self.assertIn(selector, GLOBAL_CSS)
@@ -72,9 +70,17 @@ class ApoemaCssIsolationContractTest(unittest.TestCase):
         for selector in preserved_apoema_selectors:
             self.assertIn(selector, APOEMA_CSS)
 
+        for removed_selector in (
+            ".base44-inline-alert",
+            ".base44-login-shell",
+            ".base44-notfound-shell",
+            ".base44-login-hero-surface",
+        ):
+            self.assert_selector_absent(removed_selector)
+
     def test_apoema_and_route_contracts_remain_intact(self) -> None:
         self.assertIn('path="/" element={<Navigate to="/apoema" replace />}', APP.replace("\n", " "))
-        self.assertIn('path="/apoema" element={<ApoemaRoute />}', APP.replace("\n", " "))
+        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', APP.replace("\n", " "))
         self.assertNotIn("AppShell", APP)
         self.assertNotIn("LegacyShellRoute", APP)
@@ -82,6 +88,16 @@ class ApoemaCssIsolationContractTest(unittest.TestCase):
         self.assertNotIn("legacyCompatibilityRoutes", APP)
         for term in ("localhost:11434", "127.0.0.1:11434", "OLLAMA_BASE_URL", "HERMES_BASE_URL", "COMPOSIO", "/api/chat"):
             self.assertNotIn(term, APOEMA_CSS)
+
+    def test_not_found_page_is_donor_style_without_base44_surface(self) -> None:
+        not_found = NOT_FOUND_PAGE.read_text(encoding="utf-8")
+
+        self.assertIn("min-h-screen", not_found)
+        self.assertIn("A página solicitada não existe no shell atual.", not_found)
+        self.assertIn("bg-slate-950/70", not_found)
+        self.assertIn("Voltar ao início", not_found)
+        self.assertNotIn("Base44", not_found)
+        self.assertNotIn("base44-", not_found)
 
 
 if __name__ == "__main__":

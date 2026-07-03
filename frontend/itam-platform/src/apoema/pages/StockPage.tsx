@@ -1,12 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { Alert, LoadingBlock } from "@/components/StateBlocks";
-import { Base44EmptyState } from "@/components/base44/Base44EmptyState";
-import { Base44MetricCard } from "@/components/base44/Base44MetricCard";
-import { Base44OperationalGrid } from "@/components/base44/Base44OperationalGrid";
-import { Base44PageHeader } from "@/components/base44/Base44PageHeader";
-import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
-import { Base44Surface } from "@/components/base44/Base44Surface";
+import { DonorChip } from "../components/DonorForm";
+import { DonorPanelPageLayout } from "../components/DonorPanelPageLayout";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 
@@ -16,7 +12,7 @@ const stockLabels = [
   "CONFIG_PENDING",
   "MAINTENANCE",
   "DEFECTIVE",
-  "DISCARDED"
+  "DISCARDED",
 ];
 
 export function StockPage() {
@@ -41,20 +37,30 @@ export function StockPage() {
       .finally(() => setLoading(false));
   }, [token]);
 
-  const labels = useMemo(() => stockLabels.map((label) => [label, counts[label] ?? 0] as const), [counts]);
-  const total = labels.reduce((sum, [, value]) => sum + value, 0);
+  const metrics = useMemo(
+    () =>
+      stockLabels.map((label) => ({
+        label,
+        value: counts[label] ?? 0,
+        detail: counts[label] ? `Itens em ${label.toLowerCase().replaceAll("_", " ")}` : "Sem itens nessa categoria.",
+      })),
+    [counts],
+  );
+  const total = metrics.reduce((sum, item) => sum + Number(item.value), 0);
 
   return (
-    <div className="base44-operation-page">
-      <Base44PageHeader
-        eyebrow="Apoema Estoque"
-        title="Estoque"
-        description="Visão operacional de disponibilidade, reservas, manutenção e descarte, usando os totais reais expostos pela API de ativos por status."
-        actions={
-          <Base44StatusBadge status={loading ? "warning" : "auditavel"}>{loading ? "Atualizando" : "API real"}</Base44StatusBadge>
-        }
-      />
-
+    <DonorPanelPageLayout
+      eyebrow="Apoema Estoque"
+      title="Estoque"
+      description="Visão operacional de disponibilidade, reservas, manutenção e descarte, usando os totais reais expostos pela API de ativos por status."
+      actions={<DonorChip>{loading ? "Atualizando" : "API real"}</DonorChip>}
+      stats={[
+        { label: "Total", value: total, detail: "Itens somados a partir dos status." },
+        { label: "Em estoque", value: counts.STOCK ?? 0, detail: "Disponíveis para operação." },
+        { label: "Reservados", value: counts.RESERVED ?? 0, detail: "Aguardando alocação." },
+        { label: "Em manutenção", value: counts.MAINTENANCE ?? 0, detail: "Itens sob revisão." },
+      ]}
+    >
       {error ? (
         <Alert tone="danger">
           <strong>{error}</strong>
@@ -63,46 +69,32 @@ export function StockPage() {
       ) : null}
       {loading ? <LoadingBlock label="Carregando indicadores de estoque..." /> : null}
 
-      <Base44OperationalGrid
-        title="Distribuição operacional"
-        description="Os cartões abaixo usam os totais reais retornados pela API de estoque."
-        columns={3}
-        items={labels.map(([label, value]) => ({
-          title: label,
-          value,
-          description: `Total atual em ${label.toLowerCase()}.`,
-          accent: value > 0 ? "Há itens" : "Sem itens"
-        }))}
-      />
-
-      <Base44Surface className="base44-operation-summary" as="section">
-        <div className="base44-operation-summary-head">
+      <section className="rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_18px_50px_-26px_rgba(0,0,0,0.8)]">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <p className="base44-eyebrow">Resumo</p>
-            <h2>Operação de estoque</h2>
-            <p className="base44-operation-summary-description">
-              O shell visual é Apoema, mas a fonte de dados e a leitura operacional seguem a API real.
-            </p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Distribuição operacional</p>
+            <h2 className="mt-2 text-lg font-semibold text-slate-50">Resumo do estoque</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Os cartões abaixo usam os totais reais retornados pela API de estoque.</p>
           </div>
-          <div className="base44-chip-row">
-            <Base44StatusBadge status="auditavel">{total} total</Base44StatusBadge>
-            <Base44StatusBadge status="leitura">Sem mock</Base44StatusBadge>
-          </div>
+          <DonorChip>{total} total</DonorChip>
         </div>
 
         {total === 0 ? (
-          <Base44EmptyState
-            title="Nenhum indicador disponível"
-            description="Quando a API retornar totais, eles aparecerão neste painel Apoema."
-          />
+          <div className="mt-5 rounded-[22px] border border-dashed border-white/15 bg-slate-950/35 p-5 text-sm text-slate-400">
+            Nenhum indicador disponível no momento.
+          </div>
         ) : (
-          <div className="base44-operation-badge-row">
-            {labels.map(([label, value]) => (
-              <Base44MetricCard key={label} title={label} value={value} description="Indicador operacional real." />
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {metrics.map((metric) => (
+              <article key={metric.label} className="rounded-[22px] border border-white/10 bg-slate-950/45 p-4">
+                <p className="text-xs uppercase tracking-[0.22em] text-slate-500">{metric.label}</p>
+                <p className="mt-2 text-2xl font-semibold text-slate-50">{metric.value}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{metric.detail}</p>
+              </article>
             ))}
           </div>
         )}
-      </Base44Surface>
-    </div>
+      </section>
+    </DonorPanelPageLayout>
   );
 }

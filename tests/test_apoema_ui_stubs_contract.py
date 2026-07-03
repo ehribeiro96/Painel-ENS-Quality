@@ -6,6 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 APOEMA = ROOT / "frontend" / "itam-platform" / "src" / "apoema"
 APP = ROOT / "frontend" / "itam-platform" / "src" / "App.tsx"
 APOEMA_APP = APOEMA / "ApoemaApp.tsx"
+CHAT_PAGE = APOEMA / "pages" / "ChatPage.tsx"
 
 
 def read(path: Path) -> str:
@@ -14,19 +15,23 @@ def read(path: Path) -> str:
 
 def test_canonical_apoema_ui_stub_routes_exist() -> None:
     content = read(APOEMA_APP)
+    chat_page = read(CHAT_PAGE)
 
+    assert "DonorAppShell" in content
+    assert 'path="dashboard" element={<DashboardPage />}' in content
+    assert 'path="integrations" element={<IntegrationsPage />}' in content
     assert 'path="artifacts"' in content
     assert 'path="rag"' in content
     assert 'path="designer"' in content
-    assert 'label: "Artefatos"' in content
-    assert 'label: "RAG"' in content
-    assert 'label: "Designer"' in content
+    assert 'Chat IA' in chat_page
+    assert 'Conversas' in chat_page
+    assert 'Hermes real no centro da operação' in chat_page
+    assert 'Pronto para operar' in chat_page
 
 
 def test_apoema_preview_alias_is_controlled_by_app_route_only() -> None:
     app = read(APP)
 
-    assert 'path="/apoema-preview"' in app
     assert 'path="/apoema-preview/*"' in app
     assert 'path="/apoema/*"' in app
 

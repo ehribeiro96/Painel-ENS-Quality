@@ -65,6 +65,25 @@ class AiChatRepository:
         await self.session.refresh(conversation)
         return conversation
 
+    async def update_conversation_title(self, conversation: AiChatConversation, title: str, user_id: uuid.UUID) -> AiChatConversation:
+        conversation.title = title
+        conversation.updated_by = user_id
+        conversation.updated_at = utc_now()
+        self.session.add(conversation)
+        await self.session.flush()
+        await self.session.refresh(conversation)
+        return conversation
+
+    async def delete_conversation(self, conversation: AiChatConversation, user_id: uuid.UUID) -> AiChatConversation:
+        conversation.deleted_at = utc_now()
+        conversation.deleted_by = user_id
+        conversation.updated_by = user_id
+        conversation.updated_at = utc_now()
+        self.session.add(conversation)
+        await self.session.flush()
+        await self.session.refresh(conversation)
+        return conversation
+
     async def create_message(
         self,
         conversation_id: uuid.UUID,

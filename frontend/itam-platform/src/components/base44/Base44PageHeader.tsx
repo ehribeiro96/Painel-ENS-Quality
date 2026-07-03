@@ -16,15 +16,15 @@ export function Base44PageHeader({
   breadcrumbs?: ReactNode;
 }) {
   return (
-    <Base44Surface className="base44-page-header" as="header">
-      {breadcrumbs ? <div className="base44-page-breadcrumbs">{breadcrumbs}</div> : null}
-      <div className="base44-page-header-row">
-        <div className="base44-page-titleblock">
-          {eyebrow ? <p className="base44-eyebrow">{eyebrow}</p> : null}
-          <h1>{title}</h1>
-          {description ? <p className="base44-page-description">{description}</p> : null}
+    <Base44Surface as="header" className="space-y-4">
+      {breadcrumbs ? <div className="text-xs uppercase tracking-[0.28em] text-slate-500">{breadcrumbs}</div> : null}
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <div className="max-w-3xl">
+          {eyebrow ? <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">{eyebrow}</p> : null}
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50 md:text-3xl">{title}</h1>
+          {description ? <p className="mt-3 text-sm leading-6 text-slate-300 md:text-base">{description}</p> : null}
         </div>
-        {actions ? <div className="base44-page-actions">{actions}</div> : null}
+        {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
       </div>
     </Base44Surface>
   );

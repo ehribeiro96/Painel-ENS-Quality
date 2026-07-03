@@ -40,13 +40,11 @@ def test_chat_sidebar_headings_do_not_break_conversation_title() -> None:
 def test_login_shell_is_compacted_on_notebook_and_mobile() -> None:
     styles = read(STYLES)
 
-    assert ".base44-login-hero-surface {" in styles
-    assert "height: 100%;" not in styles.split(".base44-login-hero-surface {", 1)[1].split("}", 1)[0]
-    assert "@media (max-width: 1180px)" in styles
-    assert "min-height: auto;" in styles
-    assert "align-items: start;" in styles
-    assert "place-items: start;" in styles
-    assert "padding: 14px;" in styles
+    assert ".glass-surface {" in styles
+    assert "@media (max-width: 1023px)" in styles
+    assert "background: linear-gradient(135deg, hsla(0, 0%, 100%, 0.5), hsla(0, 0%, 100%, 0.25));" in styles
+    assert "@media (max-width: 640px)" in styles
+    assert "background: radial-gradient(ellipse at top, hsl(220, 60%, 98%), hsl(30, 100%, 97%) 50%, hsl(220, 100%, 98%));" in styles
 
 
 def test_artifact_detail_title_keeps_safe_wrapping() -> None:
@@ -54,7 +52,7 @@ def test_artifact_detail_title_keeps_safe_wrapping() -> None:
     artifact_detail = read(ARTIFACT_DETAIL)
 
     assert "Detalhe do artefato" in artifact_detail
-    assert "line-height: 1.04;" in styles
+    assert "line-height: 1.08;" in styles
     assert "overflow-wrap: break-word;" in styles
     assert "word-break: normal;" in styles
 

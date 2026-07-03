@@ -212,7 +212,11 @@ def run_migrations_sync() -> None:
 
 async def run_migrations() -> None:
     if not settings.app_auto_migrate:
-        runtime_state["migration"] = await get_migration_status()
+        runtime_state["migration"] = {
+            "status": "skipped",
+            "current_revision": None,
+            "head_revision": None,
+        }
         return
     runtime_state["migration"] = {"status": "running", "current_revision": None, "head_revision": None}
     await asyncio.to_thread(run_migrations_sync)
@@ -220,6 +224,11 @@ async def run_migrations() -> None:
 
 
 async def bootstrap_admin() -> None:
+    if not settings.app_startup_checks:
+        runtime_state["bootstrap_admin"] = "skipped_startup_checks_disabled"
+        logger.info("bootstrap_admin_skipped", reason="APP_STARTUP_CHECKS_disabled")
+        return
+
     if not settings.admin_email or not settings.admin_password:
         runtime_state["bootstrap_admin"] = "skipped_missing_env"
         logger.warning("bootstrap_admin_skipped", reason="ADMIN_EMAIL_or_ADMIN_PASSWORD_missing")

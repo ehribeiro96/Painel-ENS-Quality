@@ -36,7 +36,7 @@ class ApoemaSettingsParityContractTest(unittest.TestCase):
 
     def test_settings_routes_move_to_apoema_without_legacy_alias(self) -> None:
         normalized = APP.replace("\n", " ")
-        self.assertIn('path="/apoema" element={<ApoemaRoute />}', normalized)
+        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
 
@@ -49,17 +49,17 @@ class ApoemaSettingsParityContractTest(unittest.TestCase):
     def test_apoema_app_exposes_settings_surface(self) -> None:
         self.assertIn('path="settings" element={<SettingsPage />}', APOEMA_APP)
         self.assertIn('SettingsPage', APOEMA_APP)
-        self.assertIn('to: "settings", label: "Ajustes"', APOEMA_APP)
+        self.assertIn("DonorAppShell", APOEMA_APP)
 
     def test_settings_page_preserves_theme_preferences_and_security_copy(self) -> None:
         for term in (
             "Configurações",
-            "ThemeSelector",
+            "Tema, segurança e densidade",
             "apoemaPreferences",
-            "StatusPill",
             "Proteção de contexto",
             "Assistência centrada em IA",
             "Nenhum token, senha, cookie ou header é renderizado nesta interface.",
+            "Donor-first",
         ):
             self.assertIn(term, APOEMA_SETTINGS_PAGE)
 

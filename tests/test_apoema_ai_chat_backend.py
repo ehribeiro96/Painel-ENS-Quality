@@ -15,7 +15,7 @@ from app.api.v1.dependencies.auth import get_current_user  # noqa: E402
 from app.api.v1.routes import ai_chat  # noqa: E402
 from app.core.config.settings import Settings  # noqa: E402
 from app.domains.ai_chat.apoema import build_apoema_provider_catalog, generate_apoema_message  # noqa: E402
-from app.domains.ai_chat.providers import AiProviderRequestError  # noqa: E402
+from app.domains.ai_chat.providers import AiProviderRequestError, AiProviderResponse  # noqa: E402
 from app.domains.ai_chat.schemas import ApoemaChatMessageCreate  # noqa: E402
 from fastapi import HTTPException  # noqa: E402
 
@@ -24,14 +24,21 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
     def test_provider_catalog_exposes_expected_providers(self) -> None:
         settings = Settings(ai_chat_default_provider="mock")
 
-        catalog = build_apoema_provider_catalog(settings)
+        with patch("app.domains.ai_chat.apoema.get_ai_provider_health") as health_probe:
+            health_probe.return_value = {
+                "provider": "hermes",
+                "configured": True,
+                "status": "ok",
+                "model": "hermes-agent",
+            }
+            catalog = build_apoema_provider_catalog(settings)
 
         self.assertEqual(["mock", "ollama", "hermes"], [provider.id for provider in catalog.providers])
         self.assertEqual("fallback-local", catalog.providers[0].default_model)
         self.assertEqual("qwen3:4b-64k", catalog.providers[1].default_model)
         self.assertEqual(["qwen3:4b-64k", "qwen2.5-coder:7b"], catalog.providers[1].models)
         self.assertEqual("hermes-agent", catalog.providers[2].default_model)
-        self.assertEqual("unconfigured", catalog.providers[2].status)
+        self.assertEqual("online", catalog.providers[2].status)
 
     async def test_mock_provider_message_returns_ok(self) -> None:
         settings = Settings(ai_chat_default_provider="mock")
@@ -68,7 +75,7 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
         self.assertIn("Usando fallback local", response.content)
         self.assertNotIn("Teste com prompt sensível", response.error or "")
 
-    async def test_hermes_placeholder_returns_safe_unconfigured_response(self) -> None:
+    async def test_hermes_terminal_provider_returns_real_response_without_fallback(self) -> None:
         settings = Settings(ai_chat_default_provider="hermes", hermes_base_url="")
         payload = ApoemaChatMessageCreate(
             conversation_id=None,
@@ -78,12 +85,19 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
             mode="assistente_n2",
         )
 
-        response = await generate_apoema_message(settings, payload)
+        with patch("app.domains.ai_chat.apoema.HermesTerminalProvider.generate") as hermes_generate:
+            hermes_generate.return_value = AiProviderResponse(
+                content="APOEMA-HERMES-OK",
+                provider="hermes",
+                model="hermes-agent",
+            )
+            response = await generate_apoema_message(settings, payload)
 
         self.assertEqual("hermes", response.provider)
-        self.assertEqual("unconfigured", response.status)
+        self.assertEqual("ok", response.status)
         self.assertEqual("hermes-agent", response.model)
-        self.assertIn("Usando fallback local", response.content)
+        self.assertEqual("APOEMA-HERMES-OK", response.content)
+        self.assertIsNone(response.error)
 
     def test_apoema_routes_require_auth_dependency(self) -> None:
         provider_route = next(route for route in ai_chat.router.routes if getattr(route, "path", None) == "/ai-chat/providers")

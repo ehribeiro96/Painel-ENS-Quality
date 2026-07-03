@@ -41,10 +41,12 @@ class ApoemaSignaturesParityContractTest(unittest.TestCase):
         self.assertNotIn('redirectTo: "/apoema/signatures"', APP)
 
     def test_signatures_page_contains_operational_parity_surface(self) -> None:
-        for term in ("Base44CopyBlock", "Base44EmptyState", "Base44OperationalGrid", "Base44PageHeader", "Base44StatusBadge", "Base44Surface", "Base44UserCard", "LoadingBlock"):
+        for term in ("DonorPanelPageLayout", "DonorSelect", "DonorFieldGrid", "DonorField", "DonorChip", "LoadingBlock"):
             self.assertIn(term, APOEMA_SIGNATURES)
-        for term in ("signatureGenerate", "signatureDownloadHtml", "Apoema Assinaturas", "Assinaturas Corporativas", "Abrir legado", "HTML da assinatura copiado"):
+        for term in ("signatureGenerate", "signatureDownloadHtml", "Apoema Assinaturas", "Assinaturas corporativas", "Gerar preview", "Copiar HTML", "Baixar HTML", "HTML da assinatura copiado"):
             self.assertIn(term, APOEMA_SIGNATURES)
+        for term in ("Base44CopyBlock", "Base44OperationalGrid", "Base44PageHeader", "Base44StatusBadge", "Base44Surface", "Base44UserCard", "Abrir legado", "<select"):
+            self.assertNotIn(term, APOEMA_SIGNATURES)
 
     def test_legacy_signatures_page_was_removed_from_disk(self) -> None:
         self.assertFalse(LEGACY_SIGNATURES.exists())

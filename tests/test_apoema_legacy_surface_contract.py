@@ -26,11 +26,9 @@ class ApoemaLegacySurfaceContractTest(unittest.TestCase):
     def test_apoema_surface_remains_apoema_first_without_legacy_shell_wrapper(self) -> None:
         normalized = APP.replace("\n", " ")
         self.assertIn('path="/" element={<Navigate to="/apoema" replace />}', normalized)
-        self.assertIn('path="/apoema" element={<ApoemaRoute />}', normalized)
-        self.assertIn('path="/apoema-preview" element={<ApoemaRoute />}', normalized)
+        self.assertIn('path="/apoema/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/apoema-preview/*" element={<ApoemaRoute />}', normalized)
         self.assertIn('path="/login" element={<LoginPage />} ', normalized)
-        self.assertNotIn('path: "/ai-chat"', APP)
         self.assertNotIn('path: "/audit-logs"', APP)
         self.assertNotIn('path: "/assets"', APP)
         self.assertNotIn('path: "/assets/:id"', APP)

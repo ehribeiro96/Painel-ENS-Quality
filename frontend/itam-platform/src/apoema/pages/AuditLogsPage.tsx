@@ -3,12 +3,10 @@ import { ArrowLeft, ArrowRight, Search, ShieldAlert } from "lucide-react";
 
 import { Base44AuditEventCard } from "@/components/base44/Base44AuditEventCard";
 import { Base44EmptyState } from "@/components/base44/Base44EmptyState";
-import { Base44FilterPanel } from "@/components/base44/Base44FilterPanel";
-import { Base44InfoGrid } from "@/components/base44/Base44InfoGrid";
-import { Base44PageHeader } from "@/components/base44/Base44PageHeader";
-import { Base44StatusBadge } from "@/components/base44/Base44StatusBadge";
-import { Base44Surface } from "@/components/base44/Base44Surface";
-import { AlertBlock, LoadingBlock } from "@/components/StateBlocks";
+import { Alert, LoadingBlock } from "@/components/StateBlocks";
+import { Button } from "@/components/ui/button";
+import { DonorChip, DonorField, DonorFieldGrid, DonorSelect, DonorTextInput } from "../components/DonorForm";
+import { DonorPanelPageLayout } from "../components/DonorPanelPageLayout";
 import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import type { AuditLog, Page } from "@/lib/types";
@@ -123,162 +121,162 @@ export function AuditLogsPage() {
   const navigationDisabled = loading || !items.length;
 
   return (
-    <div className="base44-audit-page">
-      <Base44PageHeader
-        eyebrow="Auditoria operacional"
-        title="Logs de Auditoria"
-        description="Consulta rastreável com filtros, paginação e eventos expostos pela API real dentro da experiência Apoema."
-        breadcrumbs={[
-          <span key="root">Apoema</span>,
-          <span key="sep">/</span>,
-          <span key="audit">Logs de Auditoria</span>,
-        ]}
-        actions={
-          <>
-            <Base44StatusBadge status="auditavel">{page?.total ?? 0} eventos</Base44StatusBadge>
-            <Base44StatusBadge status="auditavel">Página {currentPage}/{totalPages}</Base44StatusBadge>
-          </>
-        }
-      />
-
-      <section className="grid base44-audit-summary-grid" aria-label="Resumo de auditoria">
-        <Base44InfoGrid
-          columns={4}
-          title="Visão rápida"
-          items={[
-            { label: "Eventos carregados", value: page?.total ?? 0, hint: "Total retornado pela última consulta." },
-            { label: "Ações distintas", value: summary.distinctActions, hint: "Tipos de operação presentes na página atual." },
-            { label: "Entidades distintas", value: summary.distinctEntities, hint: "Domínios ou tabelas alcançados pelos eventos." },
-            { label: "Eventos rastreáveis", value: summary.traceableEvents, hint: "Linhas com request_id, correlation_id ou entity_id." },
-          ]}
-        />
-        <Base44Surface className="base44-audit-summary-card" as="aside">
-          <p className="base44-eyebrow">Último evento</p>
-          <h2>{summary.lastEvent}</h2>
-          <p className="base44-audit-summary-copy">
-            Os campos de rastreabilidade continuam expostos nos cards, e a consulta segue enviando entity_type, entity_id, user_id, request_id e correlation_id quando preenchidos.
-          </p>
-          <div className="base44-chip-row">
-            <Base44StatusBadge status={activeFilters ? "alerta" : "auditavel"}>{activeFilters ? "Filtros ativos" : "Consulta limpa"}</Base44StatusBadge>
-            <Base44StatusBadge status={loading ? "alerta" : "auditavel"}>{loading ? "Atualizando" : "API real"}</Base44StatusBadge>
-          </div>
-        </Base44Surface>
-      </section>
-
-      <Base44FilterPanel
-        eyebrow="Filtros de auditoria"
-        title="Refinar investigação"
-        description="Busca, ação, entidade e campos de rastreabilidade permanecem ligados ao estado real e à query enviada à API."
-        actions={
-          <div className="base44-chip-row">
-            <Base44StatusBadge status={activeFilters ? "alerta" : "leitura"}>{activeFilters ? "Aplicados" : "Sem filtros"}</Base44StatusBadge>
-          </div>
-        }
-      >
-        <form className="b44-filter-grid" aria-label="Filtros de auditoria" onSubmit={applyFilters}>
-          <label>
-            Ação
-            <select className="select" value={draftFilters.action} onChange={(event) => updateFilter("action", event.target.value)}>
-              <option value="">Todas</option>
-              {auditActions.map((action) => <option key={action} value={action}>{formatAuditLabel(action)}</option>)}
-            </select>
-          </label>
-          <label>
-            Entidade
-            <select className="select" value={draftFilters.entity_type} onChange={(event) => updateFilter("entity_type", event.target.value)}>
-              <option value="">Todas</option>
-              {auditEntities.map((entity) => <option key={entity} value={entity}>{formatAuditLabel(entity)}</option>)}
-            </select>
-          </label>
-          <label>
-            Entity ID
-            <input className="input" placeholder="ID do registro" value={draftFilters.entity_id} onChange={(event) => updateFilter("entity_id", event.target.value)} />
-          </label>
-          <label>
-            User ID
-            <input className="input" placeholder="ID do usuário" value={draftFilters.user_id} onChange={(event) => updateFilter("user_id", event.target.value)} />
-          </label>
-          <label>
-            Fonte
-            <input className="input" placeholder="api, import..." value={draftFilters.source} onChange={(event) => updateFilter("source", event.target.value)} />
-          </label>
-          <label>
-            Request ID
-            <input className="input" placeholder="Request ID" value={draftFilters.request_id} onChange={(event) => updateFilter("request_id", event.target.value)} />
-          </label>
-          <label>
-            Correlation ID
-            <input className="input" placeholder="Correlation ID" value={draftFilters.correlation_id} onChange={(event) => updateFilter("correlation_id", event.target.value)} />
-          </label>
-          <label>
-            Texto / busca
-            <input className="input" placeholder="ID, request, correlation..." value={draftFilters.search} onChange={(event) => updateFilter("search", event.target.value)} />
-          </label>
-          <label>
-            Data inicial
-            <input className="input" type="datetime-local" value={draftFilters.date_from} onChange={(event) => updateFilter("date_from", event.target.value)} />
-          </label>
-          <label>
-            Data final
-            <input className="input" type="datetime-local" value={draftFilters.date_to} onChange={(event) => updateFilter("date_to", event.target.value)} />
-          </label>
-          <div className="b44-filter-actions">
-            <button className="button" type="submit"><Search size={16} aria-hidden /> Aplicar filtros</button>
-            <button className="button secondary" type="button" onClick={clearFilters} disabled={!activeFilters && !hasActiveFilters(draftFilters)}>Limpar filtros</button>
-          </div>
-        </form>
-      </Base44FilterPanel>
-
+    <DonorPanelPageLayout
+      eyebrow="Auditoria operacional"
+      title="Logs de Auditoria"
+      description="Consulta rastreável com filtros donor-style, paginação e eventos expostos pela API real dentro da experiência Apoema."
+      actions={
+        <>
+          <DonorChip>{page?.total ?? 0} eventos</DonorChip>
+          <DonorChip>Página {currentPage}/{totalPages}</DonorChip>
+        </>
+      }
+      stats={[
+        { label: "Eventos", value: page?.total ?? 0, detail: "Total retornado pela última consulta." },
+        { label: "Ações distintas", value: summary.distinctActions, detail: "Tipos de operação presentes na página atual." },
+        { label: "Entidades distintas", value: summary.distinctEntities, detail: "Domínios ou tabelas alcançados." },
+        { label: "Rastreáveis", value: summary.traceableEvents, detail: "Linhas com request_id, correlation_id ou entity_id." },
+      ]}
+    >
       {error ? (
-        <AlertBlock tone="danger">
+        <Alert tone="danger">
           <strong>{error}</strong>
           <p>Atualize a página, verifique sua sessão e confirme a permissão de auditoria antes de tentar novamente.</p>
-        </AlertBlock>
+        </Alert>
       ) : null}
       {loading ? <LoadingBlock label="Carregando logs de auditoria..." /> : null}
 
-      <Base44Surface className="base44-audit-collection" as="section">
-        <div className="base44-audit-collection-head">
+      <section className="rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_18px_50px_-26px_rgba(0,0,0,0.8)]">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <p className="base44-eyebrow">Registros</p>
-            <h2>Eventos de auditoria</h2>
-            <p className="base44-audit-collection-description">Lista operacional com rastreabilidade explícita para investigação e conferência rápida.</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Filtros</p>
+            <h2 className="mt-2 text-lg font-semibold text-slate-50">Refinar investigação</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Busca, ação, entidade e campos de rastreabilidade permanecem ligados ao estado real e à query enviada à API.</p>
           </div>
-          <div className="base44-chip-row">
-            <Base44StatusBadge status="auditavel">{page?.page_size ?? 25} por página</Base44StatusBadge>
-            <Base44StatusBadge status="auditavel">{page?.total ?? 0} total</Base44StatusBadge>
+          <div className="flex flex-wrap items-center gap-2">
+            <DonorChip>{activeFilters ? "Filtros ativos" : "Consulta limpa"}</DonorChip>
+            <DonorChip>{loading ? "Atualizando" : "API real"}</DonorChip>
+          </div>
+        </div>
+
+        <form className="mt-5 space-y-4" aria-label="Filtros de auditoria" onSubmit={applyFilters}>
+          <DonorFieldGrid className="grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+            <DonorSelect
+              label="Ação"
+              value={draftFilters.action}
+              placeholder="Todas"
+              options={[{ value: "", label: "Todas" }, ...auditActions.map((action) => ({ value: action, label: formatAuditLabel(action) }))]}
+              onChange={(value) => updateFilter("action", value)}
+            />
+            <DonorSelect
+              label="Entidade"
+              value={draftFilters.entity_type}
+              placeholder="Todas"
+              options={[{ value: "", label: "Todas" }, ...auditEntities.map((entity) => ({ value: entity, label: formatAuditLabel(entity) }))]}
+              onChange={(value) => updateFilter("entity_type", value)}
+            />
+            <DonorField label="Entity ID">
+              <DonorTextInput placeholder="ID do registro" value={draftFilters.entity_id} onChange={(event) => updateFilter("entity_id", event.target.value)} />
+            </DonorField>
+            <DonorField label="User ID">
+              <DonorTextInput placeholder="ID do usuário" value={draftFilters.user_id} onChange={(event) => updateFilter("user_id", event.target.value)} />
+            </DonorField>
+            <DonorField label="Fonte">
+              <DonorTextInput placeholder="api, import..." value={draftFilters.source} onChange={(event) => updateFilter("source", event.target.value)} />
+            </DonorField>
+            <DonorField label="Request ID">
+              <DonorTextInput placeholder="Request ID" value={draftFilters.request_id} onChange={(event) => updateFilter("request_id", event.target.value)} />
+            </DonorField>
+            <DonorField label="Correlation ID">
+              <DonorTextInput placeholder="Correlation ID" value={draftFilters.correlation_id} onChange={(event) => updateFilter("correlation_id", event.target.value)} />
+            </DonorField>
+            <DonorField label="Texto / busca">
+              <DonorTextInput placeholder="ID, request, correlation..." value={draftFilters.search} onChange={(event) => updateFilter("search", event.target.value)} />
+            </DonorField>
+            <DonorField label="Data inicial">
+              <DonorTextInput type="datetime-local" value={draftFilters.date_from} onChange={(event) => updateFilter("date_from", event.target.value)} />
+            </DonorField>
+            <DonorField label="Data final">
+              <DonorTextInput type="datetime-local" value={draftFilters.date_to} onChange={(event) => updateFilter("date_to", event.target.value)} />
+            </DonorField>
+          </DonorFieldGrid>
+
+          <div className="flex flex-wrap gap-2">
+            <Button type="submit" className="rounded-2xl bg-cyan-400 text-slate-950 hover:bg-cyan-300">
+              <Search className="h-4 w-4" />
+              Aplicar filtros
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
+              onClick={clearFilters}
+              disabled={!activeFilters && !hasActiveFilters(draftFilters)}
+            >
+              Limpar filtros
+            </Button>
+          </div>
+        </form>
+      </section>
+
+      <section className="rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_18px_50px_-26px_rgba(0,0,0,0.8)]">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Registros</p>
+            <h2 className="mt-2 text-lg font-semibold text-slate-50">Eventos de auditoria</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Lista operacional com rastreabilidade explícita para investigação e conferência rápida.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <DonorChip>{page?.page_size ?? 25} por página</DonorChip>
+            <DonorChip>{page?.total ?? 0} total</DonorChip>
           </div>
         </div>
 
         {items.length ? (
-          <div className="base44-audit-events-grid">
-            {items.map((item) => <Base44AuditEventCard item={item} key={item.id} />)}
+          <div className="mt-5 grid gap-4 xl:grid-cols-2">
+            {items.map((item) => (
+              <Base44AuditEventCard item={item} key={item.id} />
+            ))}
           </div>
         ) : (
           <Base44EmptyState
             icon={ShieldAlert}
             title="Nenhum evento encontrado"
-            description={activeFilters ? "Os filtros atuais não retornaram resultados. Ajuste a busca, a entidade ou a janela de tempo." : "Quando a API retornar eventos, eles aparecerão aqui com cards de auditoria Base44 sobre os dados reais."}
-            action={<button className="button secondary" type="button" onClick={clearFilters}>Limpar filtros</button>}
+            description={activeFilters ? "Os filtros atuais não retornaram resultados. Ajuste a busca, a entidade ou a janela de tempo." : "Quando a API retornar eventos, eles aparecerão aqui com cards de auditoria sobre os dados reais."}
+            action={<Button type="button" variant="outline" className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10" onClick={clearFilters}>Limpar filtros</Button>}
           />
         )}
-      </Base44Surface>
+      </section>
 
-      <Base44Surface className="base44-pagination-panel" as="nav" aria-label="Paginação de auditoria">
-        <div className="base44-pagination-copy">
-          <p className="base44-eyebrow">Paginação</p>
-          <h2>Página {currentPage} de {totalPages}</h2>
-          <p>Use os controles abaixo para navegar entre lotes sem alterar o contrato de dados atual.</p>
+      <section className="flex flex-wrap items-center justify-between gap-3 rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_18px_50px_-26px_rgba(0,0,0,0.8)]" aria-label="Paginação de auditoria">
+        <div className="space-y-1">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Paginação</p>
+          <h2 className="text-lg font-semibold text-slate-50">Página {currentPage} de {totalPages}</h2>
+          <p className="text-sm leading-6 text-slate-300">Use os controles abaixo para navegar entre lotes sem alterar o contrato de dados atual.</p>
         </div>
-        <div className="base44-pagination-actions">
-          <button className="button secondary" type="button" disabled={navigationDisabled || currentPage <= 1} onClick={() => setPageNumber((value) => Math.max(1, value - 1))}>
-            <ArrowLeft size={16} aria-hidden /> Anterior
-          </button>
-          <button className="button secondary" type="button" disabled={navigationDisabled || currentPage >= totalPages} onClick={() => setPageNumber((value) => Math.min(totalPages, value + 1))}>
-            Próxima <ArrowRight size={16} aria-hidden />
-          </button>
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
+            disabled={navigationDisabled || currentPage <= 1}
+            onClick={() => setPageNumber((value) => Math.max(1, value - 1))}
+          >
+            <ArrowLeft size={16} aria-hidden />
+            Anterior
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
+            disabled={navigationDisabled || currentPage >= totalPages}
+            onClick={() => setPageNumber((value) => Math.min(totalPages, value + 1))}
+          >
+            Próxima
+            <ArrowRight size={16} aria-hidden />
+          </Button>
         </div>
-      </Base44Surface>
-    </div>
+      </section>
+    </DonorPanelPageLayout>
   );
 }

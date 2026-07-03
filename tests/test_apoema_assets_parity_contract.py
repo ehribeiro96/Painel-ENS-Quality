@@ -32,9 +32,17 @@ class ApoemaAssetsParityContractTest(unittest.TestCase):
         self.assertNotIn('redirectTo: "/apoema/assets/:id"', APP)
 
     def test_apoema_assets_page_contains_the_operational_parity_surface(self) -> None:
-        for term in ("Search", "DataTable", "StatusPill", "MetricCard", "selectedAsset", "apoemaMetrics"):
+        for term in (
+            "DonorPanelPageLayout",
+            "Ativos e confiança operacional",
+            "Filtre, revise e priorize a base de ativos sem sair do shell donor-first.",
+            "Filtros avançados",
+            "selectedAsset",
+            "apoemaMetrics",
+            "Search",
+            "Ações sugeridas",
+        ):
             self.assertIn(term, APOEMA_ASSETS)
-        self.assertIn("Filtre, revise e priorize a base de ativos", APOEMA_ASSETS)
 
     def test_apoema_asset_detail_page_contains_operational_actions(self) -> None:
         for term in ("MoveAssetDialog", "Base44AssetTimeline", "LoadingBlock", "Base44EmptyState", "queryClient.invalidateQueries"):

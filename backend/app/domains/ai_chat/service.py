@@ -16,6 +16,7 @@ from app.domains.ai_chat.repository import AiChatRepository
 from app.domains.ai_chat.schemas import (
     AiChatConversationCreate,
     AiChatConversationDetail,
+    AiChatConversationUpdate,
     AiChatMessageCreate,
     AiChatMessageRead,
     AiChatMode,
@@ -84,6 +85,12 @@ class AiChatService:
         if payload.message:
             await self.send_message(conversation, AiChatMessageCreate(content=payload.message, mode=payload.mode), user_id)
         return conversation
+
+    async def rename_conversation(self, conversation: AiChatConversation, payload: AiChatConversationUpdate, user_id: uuid.UUID) -> AiChatConversation:
+        return await self.repository.update_conversation_title(conversation, payload.title.strip(), user_id)
+
+    async def delete_conversation(self, conversation: AiChatConversation, user_id: uuid.UUID) -> AiChatConversation:
+        return await self.repository.delete_conversation(conversation, user_id)
 
     async def get_conversation(self, conversation_id: uuid.UUID, user_id: uuid.UUID) -> AiChatConversation | None:
         return await self.repository.get_conversation_for_user(conversation_id, user_id)
