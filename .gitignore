@@ -35,6 +35,9 @@ exports/
 # Local browser/test state
 **/storageState*.json
 **/storage-state*.json
+**/cookies*
+*.storageState*
+storageState*
 **/.auth/
 **/playwright-report/
 **/test-results/
@@ -143,6 +146,19 @@ pptx_sample.md
 pptx_template_output.md
 
 # --- Untracked artifact safety boundary ---
+google-cloud-sdk/
+_migration_proposals/
+_tigration_proposals/
+docs/audit/
+docs/local-crawl/
+docs/apoema-visual-qa/
+docs/superpowers/
+frontend/itam-platform/docs/audit/
+assets/static/
+assets/legacy/
+.codex-crawl/
+screenshots/
+validation/
 _cleanup_backup_manifest.md
 *_backup_manifest.md
 assets/legacy/*.map
