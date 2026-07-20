@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import logging
 import re
+from dataclasses import dataclass
 from datetime import UTC, datetime
 from typing import Literal, Protocol
 from uuid import UUID
 
+from app.core.database.session import AsyncSessionLocal
 from app.domains.audit.models import AuditLog
 from app.domains.audit.service import AuditService
 from app.shared.enums import AuditAction
@@ -12,6 +15,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 AiAuditEvent = Literal[
     "CHAT_MESSAGE",
+    "CHAT_CONVERSATION",
     "MACRO_GENERATION",
     "IMPORT_ANALYSIS",
     "AI_PROVIDER_CALL",
@@ -23,6 +27,12 @@ _SAFE_ERROR_CODE = re.compile(r"^[a-z][a-z0-9_-]{2,79}$")
 
 
 class AiAuditUser(Protocol):
+    id: UUID
+    role: object
+
+
+@dataclass
+class AiAuditActor:
     id: UUID
     role: object
 
@@ -74,7 +84,7 @@ async def record_ai_audit(
 async def record_ai_operation_audits(
     session: AsyncSession,
     *,
-    event: Literal["CHAT_MESSAGE", "MACRO_GENERATION", "IMPORT_ANALYSIS"],
+    event: Literal["CHAT_MESSAGE", "CHAT_CONVERSATION", "MACRO_GENERATION", "IMPORT_ANALYSIS"],
     user: AiAuditUser,
     provider: str,
     model: str | None,
@@ -97,3 +107,44 @@ async def record_ai_operation_audits(
     provider_event = await record_ai_audit(session, event="AI_PROVIDER_CALL", **common)
     domain_event = await record_ai_audit(session, event=event, **common)
     return provider_event, domain_event
+
+
+async def persist_failed_ai_operation_audits(
+    *,
+    event: Literal["CHAT_MESSAGE", "CHAT_CONVERSATION", "MACRO_GENERATION", "IMPORT_ANALYSIS"],
+    user_id: UUID,
+    user_role: object,
+    provider: str,
+    model: str | None,
+    resource_type: str,
+    resource_id: UUID | str | None,
+    duration_ms: int,
+    error: Exception | str,
+) -> bool:
+    """Persist FAILED audits outside the rolled-back request transaction."""
+    try:
+        async with AsyncSessionLocal() as session:
+            try:
+                await record_ai_operation_audits(
+                    session,
+                    event=event,
+                    user=AiAuditActor(user_id, user_role),
+                    provider=provider,
+                    model=model,
+                    resource_type=resource_type,
+                    resource_id=resource_id,
+                    status="FAILED",
+                    duration_ms=duration_ms,
+                    error=error,
+                )
+                await session.commit()
+                return True
+            except Exception:
+                await session.rollback()
+                raise
+    except Exception:
+        logging.getLogger(__name__).error(
+            "ai_failure_audit_persistence_failed",
+            extra={"event": event, "resource_type": resource_type, "resource_id": str(resource_id) if resource_id else None},
+        )
+        return False

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from datetime import UTC, datetime
-from types import SimpleNamespace
 from uuid import uuid4
 
 from app.core.config.settings import Settings
@@ -13,7 +12,6 @@ from app.domains.ai_chat.providers import (
     HermesTerminalProvider,
     MockAiProvider,
     OllamaProvider,
-    get_ai_provider_health,
 )
 from app.domains.ai_chat.schemas import (
     ApoemaChatMessageCreate,
@@ -21,7 +19,6 @@ from app.domains.ai_chat.schemas import (
     ApoemaChatProviderRead,
     ApoemaChatProvidersResponse,
 )
-from app.domains.audit.ai import sanitize_ai_error
 
 APOEMA_SYSTEM_PROMPT = """Você é o assistente de IA do Apoema Preview, um painel corporativo de inventário, suporte e operações de TI.
 
@@ -106,27 +103,8 @@ async def generate_apoema_message(settings: Settings, payload: ApoemaChatMessage
                 error=None,
                 usage=response,
             )
-        except AiProviderConfigurationError as exc:
-            return _provider_failure_response(
-                conversation_id=conversation_id,
-                message_id=message_id,
-                provider="ollama",
-                model=model,
-                created_at=created_at,
-                error=exc,
-                status="error",
-            )
-        except AiProviderRequestError as exc:
-            status = "offline" if "timeout" in str(exc) or "unavailable" in str(exc) else "error"
-            return _provider_failure_response(
-                conversation_id=conversation_id,
-                message_id=message_id,
-                provider="ollama",
-                model=model,
-                created_at=created_at,
-                error=exc,
-                status=status,
-            )
+        except (AiProviderConfigurationError, AiProviderRequestError):
+            raise
 
     if provider_id == "hermes":
         try:
@@ -142,27 +120,8 @@ async def generate_apoema_message(settings: Settings, payload: ApoemaChatMessage
                 error=None,
                 usage=response,
             )
-        except AiProviderConfigurationError as exc:
-            return _provider_failure_response(
-                conversation_id=conversation_id,
-                message_id=message_id,
-                provider="hermes",
-                model=model,
-                created_at=created_at,
-                error=exc,
-                status="error",
-            )
-        except AiProviderRequestError as exc:
-            status = "offline" if "timeout" in str(exc) or "unavailable" in str(exc) else "error"
-            return _provider_failure_response(
-                conversation_id=conversation_id,
-                message_id=message_id,
-                provider="hermes",
-                model=model,
-                created_at=created_at,
-                error=exc,
-                status=status,
-            )
+        except (AiProviderConfigurationError, AiProviderRequestError):
+            raise
 
     raise AiProviderConfigurationError(f"apoema_provider_unsupported:{provider_id}")
 
@@ -200,28 +159,6 @@ def _build_response(
             },
             "error": error,
         }
-    )
-
-
-def _provider_failure_response(
-    *,
-    conversation_id: str,
-    message_id: str,
-    provider: str,
-    model: str,
-    created_at: datetime,
-    error: Exception,
-    status: str,
-) -> ApoemaChatMessageResponse:
-    return _build_response(
-        conversation_id=conversation_id,
-        message_id=message_id,
-        provider=provider,
-        model=model,
-        status=status,
-        content="O provedor de IA não respondeu. Tente novamente; nenhuma resposta sintética foi gerada.",
-        created_at=created_at,
-        error=sanitize_ai_error(error) or "ai_operation_failed",
     )
 
 
@@ -284,19 +221,7 @@ def _ollama_status(settings: Settings) -> str:
 
 
 def _hermes_status(settings: Settings) -> str:
-    health = get_ai_provider_health(
-        SimpleNamespace(
-            ai_provider="hermes",
-            hermes_model=settings.hermes_model,
-            ai_timeout_seconds=settings.ai_timeout_seconds,
-        ),
-    )
-    status = str(health.get("status") or "offline")
-    if status == "ok":
-        return "online"
-    if status == "configuration_error":
-        return "unconfigured"
-    return "offline"
+    return "online" if (settings.hermes_model or "").strip() else "unconfigured"
 
 
 def _normalize_provider_id(provider: str) -> str:
