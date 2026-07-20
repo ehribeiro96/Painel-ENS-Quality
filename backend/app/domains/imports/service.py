@@ -180,7 +180,7 @@ class ImportService:
             .order_by(ImportStagingAsset.row_number)
         )
         staging_rows = list(result.scalars())
-        blockers = [row for row in staging_rows if row.decision == ImportDecision.CONFLICT.value]
+        blockers = [row for row in staging_rows if row.decision in {ImportDecision.CONFLICT.value, ImportDecision.REVIEW_REQUIRED.value}]
         if blockers:
             raise ValueError("import_has_blocking_conflicts")
         if not any(row.decision in self._applicable_decisions() for row in staging_rows):
@@ -654,9 +654,11 @@ class ImportService:
             apply_blockers.append("Modo PREVIEW_ONLY nao permite apply.")
         if blocking_conflicts_count:
             apply_blockers.append("Existem conflitos bloqueantes pendentes.")
+        if review_required_count:
+            apply_blockers.append("Existem linhas que exigem revisao humana.")
         if not applicable_rows_count:
             apply_blockers.append("Nao existem linhas aplicaveis.")
-        can_apply = applicable_rows_count > 0 and not blocking_conflicts_count and current_report.get("import_mode") != "PREVIEW_ONLY"
+        can_apply = applicable_rows_count > 0 and not blocking_conflicts_count and not review_required_count and current_report.get("import_mode") != "PREVIEW_ONLY"
         preview = [
             {
                 "row_number": row.row_number,

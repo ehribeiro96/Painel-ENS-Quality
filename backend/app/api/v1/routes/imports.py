@@ -1,17 +1,20 @@
 from __future__ import annotations
 
-import logging
 import time
-from types import SimpleNamespace
-from typing import Literal, cast
+from typing import Literal
 from uuid import UUID
 
 from app.api.v1.dependencies.auth import get_current_user, require_ai_capability, require_role
 from app.core.config.settings import settings
-from app.core.database.session import AsyncSessionLocal, get_session
+from app.core.database.session import get_session
 from app.core.permissions.ai import ensure_ai_enabled
 from app.domains.ai_chat.providers import AiProviderConfigurationError, AiProviderRequestError
-from app.domains.audit.ai import AiAuditUser, record_ai_audit, record_ai_operation_audits, sanitize_ai_error
+from app.domains.audit.ai import (
+    persist_failed_ai_operation_audits,
+    record_ai_audit,
+    record_ai_operation_audits,
+    sanitize_ai_error,
+)
 from app.domains.imports.models import ImportConflict, ImportJob, ImportStagingAsset, ImportValidationError
 from app.domains.imports.schemas import (
     ImportAiAnalysis,
@@ -42,7 +45,7 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(prefix="/imports", tags=["Imports"])
-logger = logging.getLogger(__name__)
+
 
 
 async def _get_import_or_404(import_id: UUID, session: AsyncSession) -> ImportJob:
@@ -63,7 +66,8 @@ async def analyze_import_with_hermes(
     primitive_import_id = import_id
     job = await _get_import_or_404(import_id, session)
     job_id = job.id
-    audit_user = cast(AiAuditUser, SimpleNamespace(id=current_user.id, role=current_user.role))
+    user_id = current_user.id
+    user_role = current_user.role
     result = await session.execute(
         select(ImportStagingAsset)
         .where(ImportStagingAsset.job_id == primitive_import_id, ImportStagingAsset.deleted_at.is_(None))
@@ -89,23 +93,17 @@ async def analyze_import_with_hermes(
 
         return await commit_or_rollback(session, operation)
     except (AiProviderConfigurationError, AiProviderRequestError, ImportAiAnalysisError) as exc:
-        try:
-            async with AsyncSessionLocal() as audit_session:
-                await record_ai_operation_audits(
-                    audit_session,
-                    event="IMPORT_ANALYSIS",
-                    user=audit_user,
-                    provider="hermes",
-                    model=settings.hermes_model or "hermes-agent",
-                    resource_type="ImportJob",
-                    resource_id=job_id,
-                    status="FAILED",
-                    duration_ms=round((time.perf_counter() - started) * 1000),
-                    error=exc,
-                )
-                await audit_session.commit()
-        except Exception:
-            logger.error("import_ai_failure_audit_persistence_failed", extra={"import_id": str(primitive_import_id)})
+        await persist_failed_ai_operation_audits(
+            event="IMPORT_ANALYSIS",
+            user_id=user_id,
+            user_role=user_role,
+            provider="hermes",
+            model=settings.hermes_model or "hermes-agent",
+            resource_type="ImportJob",
+            resource_id=job_id,
+            duration_ms=round((time.perf_counter() - started) * 1000),
+            error=exc,
+        )
         code = sanitize_ai_error(exc) or "ai_operation_failed"
         http_status = 503 if isinstance(exc, AiProviderConfigurationError) else 502
         raise HTTPException(status_code=http_status, detail=code) from exc

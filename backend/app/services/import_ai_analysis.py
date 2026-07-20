@@ -5,6 +5,7 @@ import json
 import re
 import time
 import uuid
+from collections import Counter
 from datetime import UTC, datetime
 from typing import Literal
 from uuid import UUID
@@ -16,6 +17,7 @@ from app.domains.imports.models import ImportJob, ImportStagingAsset
 from app.domains.imports.schemas import ImportAiAnalysis, ImportAiDiagnostics, ImportCorrection, ImportFileSummary
 from app.shared.enums import AuditAction, ImportDecision
 from pydantic import ValidationError
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 IDENTITY_FIELDS = {"serial", "patrimony", "ip_address", "mac_address", "user", "location"}
@@ -180,20 +182,72 @@ async def decide_ai_suggestion(
     if index is None:
         raise ValueError("suggestion_not_found")
     current = suggestions[index]
+    if current.status == decision:
+        return current
     if current.status != "PENDING":
         raise ValueError("suggestion_already_decided")
+    staging = await session.scalar(
+        select(ImportStagingAsset).where(
+            ImportStagingAsset.job_id == job.id,
+            ImportStagingAsset.row_number == current.row,
+            ImportStagingAsset.deleted_at.is_(None),
+        )
+    )
+    if staging is None:
+        raise ValueError("suggestion_staging_row_not_found")
+    previous_value = staging.normalized_payload.get(current.field)
+    if decision == "APPROVED":
+        source_value = staging.raw_payload.get(current.field)
+        if current.field in IDENTITY_FIELDS and (source_value is None or source_value == ""):
+            raise ValueError("protected_field_source_required")
+        normalized = dict(staging.normalized_payload)
+        normalized[current.field] = current.proposed_value
+        staging.normalized_payload = normalized
+        staging.issues = [
+            issue for issue in staging.issues
+            if issue.get("field") != current.field and issue.get("field_name") != current.field
+        ]
+        if not staging.issues and staging.decision in {ImportDecision.REVIEW_REQUIRED.value, ImportDecision.CONFLICT.value}:
+            staging.decision = ImportDecision.SAFE_UPDATE.value if staging.matched_asset_id else ImportDecision.CREATE.value
     updated = current.model_copy(update={"status": decision, "decided_by": actor_id, "decided_at": decided_at or datetime.now(UTC)})
     suggestions[index] = updated
     report = dict(job.report or {})
     report[SUGGESTIONS_REPORT_KEY] = [item.model_dump(mode="json") for item in suggestions]
+    rows_result = await session.execute(
+        select(ImportStagingAsset).where(ImportStagingAsset.job_id == job.id, ImportStagingAsset.deleted_at.is_(None))
+    )
+    rows = list(rows_result.scalars())
+    counts = Counter(row.decision for row in rows)
+    applicable = sum(counts[value] for value in (ImportDecision.CREATE.value, ImportDecision.SAFE_UPDATE.value, ImportDecision.SAFE_MERGE.value))
+    blocking = counts[ImportDecision.CONFLICT.value]
+    review = counts[ImportDecision.REVIEW_REQUIRED.value]
+    blockers = []
+    if blocking:
+        blockers.append("Existem conflitos bloqueantes pendentes.")
+    if review:
+        blockers.append("Existem linhas que exigem revisao humana.")
+    if not applicable:
+        blockers.append("Nao existem linhas aplicaveis.")
+    if report.get("import_mode") == "PREVIEW_ONLY":
+        blockers.append("Modo PREVIEW_ONLY nao permite apply.")
+    report.update(
+        {
+            "decision_counts": dict(counts),
+            "applicable_rows_count": applicable,
+            "blocking_conflicts_count": blocking,
+            "review_required_count": review,
+            "apply_blockers": blockers,
+            "can_apply": applicable > 0 and not blocking and not review and report.get("import_mode") != "PREVIEW_ONLY",
+        }
+    )
     job.report = report
     await AuditService(session).record(
         action=AuditAction.STATUS_CHANGE,
         entity="ImportAiSuggestion",
         entity_id=suggestion_id,
         actor_id=actor_id,
-        before={"import_id": str(job.id), "row": current.row, "field": current.field, "status": current.status},
-        after={"import_id": str(job.id), "row": updated.row, "field": updated.field, "status": updated.status},
+        before={"import_id": str(job.id), "row": current.row, "field": current.field, "status": current.status, "value": previous_value},
+        after={"import_id": str(job.id), "row": updated.row, "field": updated.field, "status": updated.status, "value": staging.normalized_payload.get(current.field)},
     )
     await session.flush()
     return updated
