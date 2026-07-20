@@ -57,7 +57,7 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual("ok", response.status)
         self.assertTrue(response.content.startswith("Modo mock: resposta simulada para validação do Painel ENS-Quality."))
 
-    async def test_ollama_request_failure_falls_back_without_exposing_secret_or_prompt(self) -> None:
+    async def test_ollama_request_failure_returns_failed_without_mock_or_secret(self) -> None:
         settings = Settings(ai_chat_default_provider="ollama")
         payload = ApoemaChatMessageCreate(
             conversation_id="apoema-ollama",
@@ -72,8 +72,40 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual("ollama", response.provider)
         self.assertEqual("offline", response.status)
-        self.assertIn("Usando fallback local", response.content)
+        self.assertIn("Tente novamente", response.content)
+        self.assertNotIn("fallback", response.content.lower())
+        self.assertNotIn("Modo mock", response.content)
         self.assertNotIn("Teste com prompt sensível", response.error or "")
+
+    async def test_hermes_unavailable_never_returns_false_success(self) -> None:
+        settings = Settings(ai_chat_default_provider="hermes", hermes_base_url="")
+        payload = ApoemaChatMessageCreate(provider="hermes", model="hermes-agent", message="segredo=nao-gravar")
+
+        with patch(
+            "app.domains.ai_chat.apoema.HermesTerminalProvider.generate",
+            side_effect=AiProviderRequestError("hermes_request_failed:token=nao-gravar"),
+        ):
+            response = await generate_apoema_message(settings, payload)
+
+        self.assertEqual("error", response.status)
+        self.assertNotEqual("ok", response.status)
+        self.assertEqual("hermes_request_failed", response.error)
+        self.assertNotIn("nao-gravar", f"{response.content} {response.error}")
+        self.assertNotIn("mock", response.content.lower())
+
+    async def test_hermes_invalid_response_never_returns_false_success(self) -> None:
+        settings = Settings(ai_chat_default_provider="hermes", hermes_base_url="")
+        payload = ApoemaChatMessageCreate(provider="hermes", model="hermes-agent", message="teste")
+
+        with patch(
+            "app.domains.ai_chat.apoema.HermesTerminalProvider.generate",
+            side_effect=AiProviderRequestError("hermes_empty_response"),
+        ):
+            response = await generate_apoema_message(settings, payload)
+
+        self.assertEqual("error", response.status)
+        self.assertEqual("hermes_empty_response", response.error)
+        self.assertNotIn("mock", response.content.lower())
 
     async def test_hermes_terminal_provider_returns_real_response_without_fallback(self) -> None:
         settings = Settings(ai_chat_default_provider="hermes", hermes_base_url="")

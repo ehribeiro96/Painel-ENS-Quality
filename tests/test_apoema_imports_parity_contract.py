@@ -44,24 +44,23 @@ class ApoemaImportsParityContractTest(unittest.TestCase):
 
     def test_imports_page_is_apoema_native_and_api_backed(self) -> None:
         for term in (
-            "DonorPanelPageLayout",
-            "DonorSelect",
-            "DonorFieldGrid",
-            "DonorChip",
-            "Importar planilha",
-            "Analisar e corrigir com Hermes",
-            "Detalhes avançados",
-            "Upload, análise e correção assistida pelo Hermes",
+            "Importar ativos",
+            "Selecionar planilha",
+            "Opções avançadas e detalhes",
+            "analyzeImport",
+            "safe_to_apply",
+            "Revisar pendências",
+            "Sugestões da IA",
+            "Aprovar",
+            "Rejeitar",
+            "aiSuggestions",
         ):
             self.assertIn(term, IMPORTS_PAGE)
         self.assertIn("LoadingBlock", IMPORTS_PAGE)
         self.assertIn(".imports(token)", IMPORTS_PAGE)
         self.assertIn("importUpload", IMPORTS_PAGE)
         self.assertIn("importPreview", IMPORTS_PAGE)
-        self.assertIn("importStaging", IMPORTS_PAGE)
-        self.assertIn("importConflicts", IMPORTS_PAGE)
-        self.assertIn("importValidationErrors", IMPORTS_PAGE)
-        for term in ("Base44ImportPanel", "Base44InfoGrid", "Base44PageHeader", "Base44StatusBadge", "<select"):
+        for term in ("importStaging", "importConflicts", "importValidationErrors", "DonorPanelPageLayout", "DonorChip", "Base44ImportPanel", "Base44InfoGrid", "Base44PageHeader", "Base44StatusBadge", "<select"):
             self.assertNotIn(term, IMPORTS_PAGE)
         self.assertNotIn("localhost:11434", APOEMA)
         self.assertNotIn("OLLAMA_BASE_URL", APOEMA)

@@ -1,0 +1,31 @@
+{
+  "job": {
+    "total_rows": 1,
+    "valid_rows": 0,
+    "invalid_rows": 0,
+    "report": {
+      "can_apply": false,
+      "warnings": []
+    }
+  },
+  "rows": [
+    {
+      "row_number": 1,
+      "raw_payload": {
+        "hostname": "srv financeiro",
+        "serial": "ENS-CONTROLLED-001"
+      },
+      "normalized_payload": {
+        "hostname": "srv financeiro",
+        "serial": "ENS-CONTROLLED-001"
+      },
+      "decision": "REVIEW_REQUIRED",
+      "issues": [
+        {
+          "code": "hostname_semantic_normalization",
+          "message": "Padronizar hostname sem alterar o serial controlado"
+        }
+      ]
+    }
+  ]
+}

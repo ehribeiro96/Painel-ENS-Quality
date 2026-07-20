@@ -8,6 +8,7 @@ LOGIN = (ROOT / "frontend/itam-platform/src/pages/LoginPage.tsx").read_text(enco
 APP = (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8")
 AUTH = (ROOT / "frontend/itam-platform/src/lib/auth.tsx").read_text(encoding="utf-8")
 API = (ROOT / "frontend/itam-platform/src/lib/api.ts").read_text(encoding="utf-8")
+SHELL = (ROOT / "frontend/itam-platform/src/apoema/components/DonorAppShell.tsx").read_text(encoding="utf-8")
 STYLES = (ROOT / "frontend/itam-platform/src/styles.css").read_text(encoding="utf-8")
 
 
@@ -56,7 +57,7 @@ class LoginFrontendContractTest(unittest.TestCase):
         self.assertIn("window.localStorage", AUTH)
         self.assertIn("AbortController", AUTH)
         self.assertIn("sharedRefreshRequest", AUTH)
-        self.assertIn("refreshSession()", AUTH)
+        self.assertIn("refreshSession(controller.signal)", AUTH)
         self.assertIn("setBootError", AUTH)
         self.assertIn("bootError", AUTH)
         self.assertIn("api.login(email, password, { signal })", AUTH)
@@ -66,6 +67,12 @@ class LoginFrontendContractTest(unittest.TestCase):
         self.assertIn('login: (email: string, password: string, options: Pick<RequestInit, "signal"> = {})', API)
         self.assertIn('refresh: (options: Pick<RequestInit, "signal"> = {})', API)
         self.assertIn('logout: (token?: string | null, options: Pick<RequestInit, "signal"> = {})', API)
+
+    def test_logout_waits_for_session_cleanup_before_navigation(self) -> None:
+        self.assertIn("onClick={async () => {", SHELL)
+        self.assertIn("await signOut();", SHELL)
+        self.assertLess(SHELL.index("await signOut();"), SHELL.index('navigate("/login");'))
+        self.assertNotIn("void signOut();", SHELL)
 
     def test_login_warning_style_exists(self) -> None:
         self.assertIn(".glass-surface", STYLES)

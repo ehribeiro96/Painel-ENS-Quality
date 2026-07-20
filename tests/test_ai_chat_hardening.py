@@ -101,7 +101,7 @@ class AiChatHardeningTest(unittest.IsolatedAsyncioTestCase):
         finally:
             ai_chat.settings.enable_ai_chat = original_enabled
 
-        self.assertEqual(404, ctx.exception.status_code)
+        self.assertEqual(403, ctx.exception.status_code)
         self.assertEqual("ai_chat_disabled", ctx.exception.detail)
 
     async def test_safe_metadata_is_recorded_without_api_key_or_full_prompt_in_metadata(self) -> None:

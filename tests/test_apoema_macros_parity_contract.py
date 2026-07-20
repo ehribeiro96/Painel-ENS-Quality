@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 APP = (ROOT / "frontend/itam-platform/src/App.tsx").read_text(encoding="utf-8")
 APOEMA_APP = (ROOT / "frontend/itam-platform/src/apoema/ApoemaApp.tsx").read_text(encoding="utf-8")
 APOEMA_MACROS = (ROOT / "frontend/itam-platform/src/apoema/pages/MacrosPage.tsx").read_text(encoding="utf-8")
-MACRO_PREVIEW = (ROOT / "frontend/itam-platform/src/components/base44/Base44MacroPreview.tsx").read_text(encoding="utf-8")
+
 LEGACY_MACROS = ROOT / "frontend/itam-platform/src/pages/MacrosPage.tsx"
 MATRIX = (ROOT / "docs/audit/apoema-only-phase-4f-macros/MACROS_PARITY_MATRIX_20260623.md").read_text(encoding="utf-8")
 
@@ -30,14 +30,11 @@ class ApoemaMacrosParityContractTest(unittest.TestCase):
         self.assertNotIn('redirectTo: "/apoema/macros"', APP)
 
     def test_macros_page_contains_itil_preview_and_copy_contract(self) -> None:
-        for term in ("Base44MacroPanel", "Base44MacroPreview", "Base44EmptyState", "Base44FilterPanel", "Base44PageHeader", "Base44StatusBadge", "LoadingBlock"):
+        for term in ("Gerar macro com Hermes", "generateItilMacro", "Macro gerada editável", "missing_information", "Copiar", "Adicionar detalhes"):
             self.assertIn(term, APOEMA_MACROS)
-        for term in ("useQuery", "macroTemplates", "macroAutocomplete", "macroGenerate", "macroMarkCopied"):
-            self.assertIn(term, APOEMA_MACROS)
-        self.assertIn("Apoema Macros ITIL", APOEMA_MACROS)
-        self.assertIn("Macros ITIL", APOEMA_MACROS)
-        self.assertIn("Copiar macro", MACRO_PREVIEW)
-        self.assertIn("Acesso nao autorizado.", APOEMA_MACROS)
+        for term in ("Base44MacroPanel", "Base44MacroPreview", "Base44FilterPanel", "macroTemplates", "macroAutocomplete"):
+            self.assertNotIn(term, APOEMA_MACROS)
+        self.assertIn("Acesso não autorizado.", APOEMA_MACROS)
         self.assertIn("ADMIN", APOEMA_MACROS)
         self.assertIn("TECHNICIAN", APOEMA_MACROS)
 
