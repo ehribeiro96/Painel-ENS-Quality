@@ -77,9 +77,9 @@ Uma constraint/índice único parcial protege `asset_movement` por `context_id`.
 
 O fluxo permanece staging-first:
 
-`upload -> normalização determinística -> sugestão IA -> revisão humana -> apply existente`
+`upload -> normalização determinística -> staging -> revisão humana -> apply explícito`
 
-Sugestões Hermes são DTOs de resposta, exigem `requires_review=true` e não são gravadas/aplicadas automaticamente. Campos críticos (`serial`, `patrimony`, `ip_address`, `mac_address`, `user`, `location`) sem valor-fonte real são rejeitados mesmo se o provider alegar um `original_value`.
+Sugestões Hermes são persistidas automaticamente para revisão e exigem `requires_review=true`. Elas não alteram o staging antes da aprovação humana, não alteram ativos e não executam apply final automaticamente. Campos críticos (`serial`, `patrimony`, `ip_address`, `mac_address`, `user`, `location`) sem valor-fonte real são rejeitados mesmo se o provider alegar um `original_value`.
 
 ## Auditoria
 
@@ -100,6 +100,6 @@ O middleware registra o status HTTP final com request/correlation ID. Operaçõe
 4. Logs estruturados de autorização dependem da retenção e proteção do pipeline de logs; persistência dedicada de eventos de autorização pode ser avaliada depois, sem bloquear o P0.
 5. Testes operacionais dependentes de runtime/credenciais continuam explicitamente condicionais; a CI executa uma suíte crítica determinística separada, sem skips.
 6. `npm audit` ainda reporta uma vulnerabilidade baixa transitiva em `@babel/core`; o achado alto direto do Vite foi removido com a atualização compatível para 6.4.3.
-7. O catálogo de providers ainda faz probe ativo do Hermes quando a IA está habilitada; separar catálogo estático de diagnóstico ativo fica para uma fase operacional posterior.
+7. O catálogo de providers é estático; somente a rota de health protegida executa probe, fora do event loop.
 8. `X-Forwarded-For` e `X-Audit-Source` dependem de normalização por proxy confiável; a política de proxy/CIDR requer decisão de arquitetura.
 9. O caminho Hermes candidato a produção opera em modo fail-closed: falhas e timeouts retornam erro controlado e auditado, sem fallback mock automático. O provider mock permanece apenas para uso explícito em ambiente de teste ou desenvolvimento.

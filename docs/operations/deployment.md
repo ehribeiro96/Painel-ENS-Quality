@@ -15,14 +15,24 @@ Procedimento para promover uma versão aprovada do Painel ENS Quality / Apoema s
 
 1. Registrar versão atual, containers e health.
 2. Criar e verificar o backup do PostgreSQL pelo procedimento operacional aprovado. Não imprimir conexão, credenciais nem conteúdo do dump.
-3. Fazer checkout da tag aprovada:
+3. Executar o precheck somente leitura da migration 0007 com usuário PostgreSQL read-only e preservar a saída como evidência:
+
+   ```bash
+   psql "$DATABASE_URL_READ_ONLY" --set ON_ERROR_STOP=1 \
+     --file docs/operations/sql/precheck-0007-macro-movement-unique.sql \
+     > precheck-0007-macro-movement-unique.txt
+   ```
+
+   Zero linhas significa `READY_TO_MIGRATE`. Uma ou mais linhas significa `STOP_DATA_CONFLICT`: não aplicar a migration, não deduplicar automaticamente e encaminhar decisão manual auditada. A migration só pode seguir após precheck vazio e backup verificado.
+
+4. Fazer checkout da tag aprovada:
 
    ```bash
    git fetch origin --tags
    git switch --detach v1.0.0-rc1
    ```
 
-4. Validar o grafo Alembic e aplicar a migration com o ambiente virtual do projeto:
+5. Validar o grafo Alembic e aplicar a migration com o ambiente virtual do projeto:
 
    ```bash
    cd /home/estevaoqualityadm/projects/Painel-ENS-Quality
@@ -32,16 +42,16 @@ Procedimento para promover uma versão aprovada do Painel ENS Quality / Apoema s
    cd ..
    ```
 
-5. Construir e recriar somente a aplicação:
+6. Construir e recriar somente a aplicação:
 
    ```bash
    docker compose build app
    docker compose up -d --no-deps --force-recreate app
    ```
 
-6. Confirmar que os IDs e `StartedAt` de PostgreSQL e Redis não mudaram.
-7. Confirmar o hash dos arquivos críticos entre host e container.
-8. Aguardar o serviço `app` ficar healthy.
+7. Confirmar que os IDs e `StartedAt` de PostgreSQL e Redis não mudaram.
+8. Confirmar o hash dos arquivos críticos entre host e container.
+9. Aguardar o serviço `app` ficar healthy.
 
 ## Health checks
 

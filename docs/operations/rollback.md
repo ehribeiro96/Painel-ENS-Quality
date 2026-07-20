@@ -24,6 +24,8 @@ Rollback do Painel ENS Quality / Apoema após rollout interrompido. O objetivo �
 
 A revisão `0007_macro_movement_unique` adiciona um índice único parcial e possui downgrade. A aplicação anterior deve ser avaliada primeiro com o schema avançado, pois manter a migration evita churn no banco.
 
+Antes do upgrade, executar `docs/operations/sql/precheck-0007-macro-movement-unique.sql`. Qualquer linha retornada interrompe o rollout como `STOP_DATA_CONFLICT`; o script é somente leitura e não autoriza correção ou deduplicação automática.
+
 Executar downgrade somente se:
 
 - a versão anterior for incompatível com o índice;
