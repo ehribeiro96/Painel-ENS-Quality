@@ -37,6 +37,18 @@ jobs:
       - name: Python compile
         run: python -m compileall -q backend/app backend/alembic tests
 
+      - name: Critical security tests (no skips)
+        run: >-
+          PYTHONPATH=backend python -m pytest -q -o addopts=''
+          tests/test_ai_feature_flag.py
+          tests/test_user_permission_boundaries.py
+          tests/test_health_endpoints.py
+          tests/test_macro_idempotency.py
+          tests/test_import_ai_safety.py
+          tests/test_authprovider_strictmode_boot_contract.py
+          tests/test_auth_session_hardening.py
+          tests/test_login_frontend_contract.py
+
       - name: Backend regression tests
         run: PYTHONPATH=backend python -m pytest -s -q
 
