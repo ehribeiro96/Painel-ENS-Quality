@@ -13,6 +13,25 @@ class ItilMacroGenerationError(RuntimeError):
     pass
 
 
+ITIL_PRIORITY_MATRIX = {
+    ("high", "high"): "P1",
+    ("high", "medium"): "P2",
+    ("high", "low"): "P3",
+    ("medium", "high"): "P2",
+    ("medium", "medium"): "P3",
+    ("medium", "low"): "P4",
+    ("low", "high"): "P3",
+    ("low", "medium"): "P4",
+    ("low", "low"): "P4",
+}
+
+
+def calculate_itil_priority(impact: str, urgency: str) -> str:
+    if "unknown" in (impact, urgency):
+        return "unknown"
+    return ITIL_PRIORITY_MATRIX[(impact, urgency)]
+
+
 def _json_object(content: str) -> dict[str, object]:
     text = re.sub(r"^\s*```(?:json)?\s*|\s*```\s*$", "", content.strip(), flags=re.IGNORECASE)
     try:
@@ -40,6 +59,15 @@ async def generate_itil_macro(payload: ItilMacroGenerateRequest, provider: AiPro
         ]
     )
     try:
-        return ItilMacroOutput.model_validate(_json_object(response.content))
+        output = ItilMacroOutput.model_validate(_json_object(response.content))
+        expected_priority = calculate_itil_priority(output.impact, output.urgency)
+        if output.priority != expected_priority:
+            output = output.model_copy(
+                update={
+                    "priority": expected_priority,
+                    "warnings": [*output.warnings, "Prioridade do provider normalizada pela matriz ITIL determinística."],
+                }
+            )
+        return output
     except ValidationError as exc:
         raise ItilMacroGenerationError("hermes_invalid_output") from exc

@@ -246,7 +246,8 @@ export type MacroAutocompleteHint = {
   source: string;
 };
 
-export type ItilMacroOutput = {
+export interface ItilMacroOutput {
+  official: false;
   practice: "incident" | "service_request" | "problem" | "change" | "access" | "other";
   category: string | null;
   subcategory: string | null;

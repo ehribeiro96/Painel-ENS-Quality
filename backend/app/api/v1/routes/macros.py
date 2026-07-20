@@ -8,7 +8,7 @@ from app.core.config.settings import settings
 from app.core.database.session import get_session
 from app.core.permissions.ai import ensure_ai_enabled
 from app.domains.ai_chat.providers import AiProviderConfigurationError, AiProviderRequestError
-from app.domains.audit.ai import record_ai_operation_audits, sanitize_ai_error
+from app.domains.audit.ai import persist_failed_ai_operation_audits, record_ai_operation_audits, sanitize_ai_error
 from app.domains.macros.ai_service import ItilMacroGenerationError, generate_itil_macro
 from app.domains.macros.models import MacroGeneration
 from app.domains.macros.renderer import MacroRenderError, render_macro
@@ -38,7 +38,7 @@ router = APIRouter(prefix="/macros", tags=["Macros"])
 movements_router = APIRouter(prefix="/movements", tags=["Macros"])
 
 
-@router.post("/itil/generate", response_model=ItilMacroOutput)
+@router.post("/itil/preview", response_model=ItilMacroOutput)
 async def generate_itil_macro_route(
     payload: ItilMacroGenerateRequest,
     current_user: User = Depends(require_ai_capability(AiCapability.AI_MACRO_GENERATION)),
@@ -46,6 +46,10 @@ async def generate_itil_macro_route(
 ):
     ensure_ai_enabled(settings)
     started = time.perf_counter()
+    user_id = current_user.id
+    user_role = current_user.role
+    provider = "hermes"
+    model = settings.hermes_model or "hermes-agent"
 
     async def operation() -> ItilMacroOutput:
         generated = await generate_itil_macro(payload)
@@ -65,19 +69,17 @@ async def generate_itil_macro_route(
     try:
         return await commit_or_rollback(session, operation)
     except (AiProviderConfigurationError, AiProviderRequestError, ItilMacroGenerationError) as exc:
-        await record_ai_operation_audits(
-            session,
+        await persist_failed_ai_operation_audits(
             event="MACRO_GENERATION",
-            user=current_user,
-            provider="hermes",
-            model=settings.hermes_model or "hermes-agent",
-            resource_type="ItilMacro",
+            user_id=user_id,
+            user_role=user_role,
+            provider=provider,
+            model=model,
+            resource_type="ItilMacroPreview",
             resource_id=None,
-            status="FAILED",
             duration_ms=round((time.perf_counter() - started) * 1000),
             error=exc,
         )
-        await session.commit()
         code = sanitize_ai_error(exc) or "ai_operation_failed"
         http_status = 503 if isinstance(exc, AiProviderConfigurationError) else 502
         raise HTTPException(status_code=http_status, detail=code) from exc

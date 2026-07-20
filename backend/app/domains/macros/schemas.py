@@ -114,6 +114,7 @@ class ItilMacroGenerateRequest(BaseModel):
 
 
 class ItilMacroOutput(BaseModel):
+    official: Literal[False] = False
     practice: MacroPractice
     category: str | None = None
     subcategory: str | None = None

@@ -318,7 +318,7 @@ export const api = {
   macroGenerate: (token: string, payload: Record<string, unknown>) =>
     request<MacroGeneration>("/macros/generate", { method: "POST", body: JSON.stringify(payload), token }),
   generateItilMacro: (token: string, payload: Record<string, unknown>, signal?: AbortSignal) =>
-    request<ItilMacroOutput>("/macros/itil/generate", { method: "POST", body: JSON.stringify(payload), token, signal }),
+    request<ItilMacroOutput>("/macros/itil/preview", { method: "POST", body: JSON.stringify(payload), token, signal }),
   macroMarkCopied: (token: string, generationId: string) =>
     request<MacroGeneration>(`/macros/generations/${generationId}/copied`, { method: "POST", token }),
   macroAutocomplete: (token: string, query: string, hintType = "collaborator_name") =>

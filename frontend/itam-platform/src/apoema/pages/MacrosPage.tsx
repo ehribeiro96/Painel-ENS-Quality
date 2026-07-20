@@ -42,7 +42,7 @@ export function MacrosPage() {
 
   return (
     <div className="mx-auto grid max-w-6xl gap-6 pb-10">
-      <header><h1 className="text-2xl font-semibold text-slate-50">Macros</h1><p className="mt-1 text-sm text-slate-400">Gere registros de atendimento claros e padronizados.</p></header>
+      <header><h1 className="text-2xl font-semibold text-slate-50">Macros</h1><p className="mt-1 text-sm text-slate-400">Gere rascunhos de atendimento. A macro oficial continua vinculada a uma movimentação salva.</p></header>
       {error ? <Alert tone="danger">{error}</Alert> : null}
       <div className="grid gap-6 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <form className="grid content-start gap-4 rounded-2xl bg-white/[0.035] p-5" onSubmit={generate}>
@@ -54,12 +54,12 @@ export function MacrosPage() {
           <div className="flex flex-wrap gap-2"><Button type="submit" disabled={loading} className="min-h-11 bg-cyan-400 text-slate-950 hover:bg-cyan-300">{loading ? "Analisando atendimento…" : "Gerar macro com Hermes"}</Button>{loading ? <Button type="button" variant="outline" className="min-h-11" onClick={()=>controller.current?.abort()}>Cancelar</Button> : null}</div>
         </form>
         <section className="min-w-0 rounded-2xl bg-white/[0.035] p-5" aria-live="polite">
-          <div className="flex items-center justify-between gap-3"><h2 className="text-lg font-semibold text-slate-50">Preview</h2>{result ? <span className="text-sm text-slate-400">{result.practice.replaceAll("_", " ")} · {result.priority}</span> : null}</div>
+          <div className="flex items-center justify-between gap-3"><h2 className="text-lg font-semibold text-slate-50">Rascunho não oficial</h2>{result ? <span className="text-sm text-slate-400">{result.practice.replaceAll("_", " ")} · {result.priority}</span> : null}</div>
           {!result ? <div className="grid min-h-72 place-items-center text-center text-sm text-slate-500"><div><Search className="mx-auto mb-3 h-6 w-6"/><p>Preencha o atendimento para gerar a macro.</p></div></div> : <div className="mt-4 grid gap-4">
             {result.missing_information.length ? <Alert tone="warning">Campos ausentes: {result.missing_information.join(", ")}</Alert> : null}
             {result.warnings.length ? <Alert tone="warning">{result.warnings.join(" ")}</Alert> : null}
             <textarea aria-label="Macro gerada editável" value={macroText} onChange={(e)=>{setMacroText(e.target.value);setCopied(false);}} rows={16} className={`${fieldClass} min-h-80 py-3 leading-6`} />
-            <div className="flex flex-wrap gap-2"><Button type="button" onClick={copy} className="min-h-11 bg-cyan-400 text-slate-950 hover:bg-cyan-300">{copied ? <Check className="mr-2 h-4 w-4"/> : <Copy className="mr-2 h-4 w-4"/>}{copied ? "Copiada" : "Copiar"}</Button><Button type="button" variant="outline" className="min-h-11" onClick={()=>setResult(null)}><RotateCcw className="mr-2 h-4 w-4"/>Editar atendimento</Button></div>
+            <div className="flex flex-wrap gap-2"><Button type="button" onClick={copy} className="min-h-11 bg-cyan-400 text-slate-950 hover:bg-cyan-300">{copied ? <Check className="mr-2 h-4 w-4"/> : <Copy className="mr-2 h-4 w-4"/>}{copied ? "Rascunho copiado" : "Copiar rascunho"}</Button><Button type="button" variant="outline" className="min-h-11" onClick={()=>setResult(null)}><RotateCcw className="mr-2 h-4 w-4"/>Editar atendimento</Button></div>
           </div>}
         </section>
       </div>
