@@ -8,6 +8,7 @@ on:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - uses: actions/checkout@v4
@@ -35,19 +36,23 @@ jobs:
           pip install pytest
 
       - name: Python compile
-        run: python -m compileall -q backend/app backend/alembic tests
+        run: python -m compileall -q backend/app backend/alembic tests scripts
 
-      - name: Critical security tests (no skips)
-        run: >-
-          PYTHONPATH=backend python -m pytest -q -o addopts=''
-          tests/test_ai_feature_flag.py
-          tests/test_user_permission_boundaries.py
-          tests/test_health_endpoints.py
-          tests/test_macro_idempotency.py
-          tests/test_import_ai_safety.py
-          tests/test_authprovider_strictmode_boot_contract.py
-          tests/test_auth_session_hardening.py
-          tests/test_login_frontend_contract.py
+      - name: Critical security tests (actual zero skips)
+        shell: bash
+        run: |
+          PYTHONPATH=backend python -m pytest -q -o addopts='' \
+            --junitxml=/tmp/critical-pytest.xml \
+            tests/test_ai_feature_flag.py \
+            tests/test_user_permission_boundaries.py \
+            tests/test_health_endpoints.py \
+            tests/test_macro_idempotency.py \
+            tests/test_import_ai_safety.py \
+            tests/test_pr1_remediation_contracts.py \
+            tests/test_authprovider_strictmode_boot_contract.py \
+            tests/test_auth_session_hardening.py \
+            tests/test_login_frontend_contract.py
+          python scripts/assert_pytest_report.py /tmp/critical-pytest.xml
 
       - name: Backend regression tests
         run: PYTHONPATH=backend python -m pytest -s -q
@@ -66,6 +71,7 @@ jobs:
         run: |
           npm ci
           npm run build
+          npm audit --omit=dev --audit-level=moderate
 
       - name: Docker Compose config
         run: docker compose config --services
