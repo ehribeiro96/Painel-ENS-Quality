@@ -1,4 +1,4 @@
-import type { AiChatConversation, AiChatConversationCreate, AiChatConversationDetail, AiChatConversationUpdate, AiChatMessageCreate, AiChatProviderHealth, Asset, AuditLog, ImportConflict, ImportJob, ImportPreview, ImportStagingAsset, ImportValidationError, MacroAutocompleteHint, MacroGeneration, MacroRenderResponse, MacroTemplate, Movement, Page, SearchResponse, SuggestedMovementMacro, TokenResponse, User } from "./types";
+import type { AiChatConversation, AiChatConversationCreate, AiChatConversationDetail, AiChatConversationUpdate, AiChatMessageCreate, AiChatProviderHealth, Asset, AuditLog, ImportAiAnalysis, ImportConflict, ImportCorrection, ImportJob, ImportPreview, ImportStagingAsset, ImportValidationError, ItilMacroOutput, MacroAutocompleteHint, MacroGeneration, MacroRenderResponse, MacroTemplate, Movement, Page, SearchResponse, SuggestedMovementMacro, TokenResponse, User } from "./types";
 
 const API_BASE = (import.meta.env.VITE_API_URL || "/api/v1").replace(/\/$/, "");
 
@@ -293,6 +293,10 @@ export const api = {
   importStaging: (token: string, id: string) => request<Page<ImportStagingAsset>>(`/imports/${id}/staging?page_size=50`, { token }),
   importConflicts: (token: string, id: string) => request<ImportConflict[]>(`/imports/${id}/conflicts`, { token }),
   importValidationErrors: (token: string, id: string) => request<ImportValidationError[]>(`/imports/${id}/validation-errors`, { token }),
+  analyzeImport: (token: string, id: string, signal?: AbortSignal) => request<ImportAiAnalysis>(`/imports/${id}/ai-analysis`, { method: "POST", token, signal }),
+  aiSuggestions: (token: string, id: string) => request<ImportCorrection[]>(`/imports/${id}/ai-suggestions`, { token }),
+  approveAiSuggestion: (token: string, importId: string, suggestionId: string) => request<ImportCorrection>(`/imports/${importId}/ai-suggestions/${suggestionId}/approve`, { method: "POST", token }),
+  rejectAiSuggestion: (token: string, importId: string, suggestionId: string) => request<ImportCorrection>(`/imports/${importId}/ai-suggestions/${suggestionId}/reject`, { method: "POST", token }),
   updateImportMapping: (token: string, id: string, mapping: Record<string, string>, importMode?: string) =>
     request<ImportJob>(`/imports/${id}/mapping`, { method: "POST", body: JSON.stringify({ mapping, import_mode: importMode }), token }),
   applyImport: (token: string, id: string) => request<{ job: ImportJob; report: Record<string, unknown> }>(`/imports/${id}/apply`, { method: "POST", token }),
@@ -313,6 +317,8 @@ export const api = {
     request<MacroRenderResponse>("/macros/render", { method: "POST", body: JSON.stringify(payload), token }),
   macroGenerate: (token: string, payload: Record<string, unknown>) =>
     request<MacroGeneration>("/macros/generate", { method: "POST", body: JSON.stringify(payload), token }),
+  generateItilMacro: (token: string, payload: Record<string, unknown>, signal?: AbortSignal) =>
+    request<ItilMacroOutput>("/macros/itil/generate", { method: "POST", body: JSON.stringify(payload), token, signal }),
   macroMarkCopied: (token: string, generationId: string) =>
     request<MacroGeneration>(`/macros/generations/${generationId}/copied`, { method: "POST", token }),
   macroAutocomplete: (token: string, query: string, hintType = "collaborator_name") =>

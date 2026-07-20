@@ -10,12 +10,12 @@ import structlog
 from app.api.v1.router import api_router
 from app.core.config.settings import settings
 from app.core.database.session import engine
-from app.core.frontend import frontend_ready, mount_frontend
-from app.core.health import dependency_health
+from app.core.frontend import mount_frontend
+from app.core.health import readiness_health
 from app.core.legacy import mount_legacy_signature_apps
 from app.core.logging.setup import configure_logging
 from app.core.observability.metrics import instrument_sqlalchemy, metrics
-from app.core.startup import enterprise_startup, runtime_state
+from app.core.startup import enterprise_startup
 from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, PlainTextResponse
@@ -176,29 +176,23 @@ async def request_context(request: Request, call_next):
 
 @app.get("/health")
 async def health() -> dict[str, object]:
-    return {
-        "status": "ok",
-        "service": settings.app_name,
-        "frontend_ready": frontend_ready(),
-        "legacy_mounts": legacy_mounts,
-        "startup": runtime_state,
-    }
+    return {"status": "ok"}
 
 
 @app.get("/health/live")
 async def health_live() -> dict[str, object]:
-    return {"status": "ok", "service": settings.app_name}
+    return {"status": "ok"}
 
 
 @app.get("/health/ready")
 async def health_ready():
-    payload = await dependency_health()
-    return JSONResponse(payload, status_code=200 if payload["status"] == "ok" else 503)
+    payload = await readiness_health()
+    return JSONResponse(payload, status_code=200 if all(payload.values()) else 503)
 
 
 @app.get("/health/dependencies")
-async def health_dependencies() -> dict[str, object]:
-    return await dependency_health()
+async def health_dependencies() -> dict[str, bool]:
+    return await readiness_health()
 
 
 @app.get("/metrics", response_class=PlainTextResponse)

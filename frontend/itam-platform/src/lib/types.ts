@@ -110,6 +110,43 @@ export type ImportValidationError = {
   message: string;
 };
 
+export type ImportCorrection = {
+  id: string | null;
+  row: number;
+  field: string;
+  original_value: unknown;
+  proposed_value: unknown;
+  reason: string;
+  method: "deterministic" | "hermes";
+  confidence: number;
+  requires_review: boolean;
+  status: "PENDING" | "APPROVED" | "REJECTED" | null;
+  decided_by: string | null;
+  decided_at: string | null;
+};
+export type ImportAiAnalysis = {
+  file_summary: { rows_total: number; rows_valid: number; rows_auto_corrected: number; rows_need_review: number; rows_invalid: number };
+  column_mapping: ImportCorrection[];
+  deterministic_corrections: ImportCorrection[];
+  ai_suggestions: ImportCorrection[];
+  ambiguous_rows: number[];
+  invalid_rows: number[];
+  warnings: string[];
+  confidence: number;
+  safe_to_apply: boolean;
+  diagnostics: {
+    total_ms: number;
+    payload_bytes: number;
+    prompt_chars: number;
+    hermes_ms: number;
+    frontend_timeout_ms: number;
+    backend_timeout_ms: number;
+    provider: string;
+    model: string;
+    exceptions: string[];
+  } | null;
+};
+
 export type AuditLog = {
   id: string;
   actor_id: string | null;
@@ -207,6 +244,29 @@ export type MacroAutocompleteHint = {
   label: string;
   hint_type: string;
   source: string;
+};
+
+export type ItilMacroOutput = {
+  practice: "incident" | "service_request" | "problem" | "change" | "access" | "other";
+  category: string | null;
+  subcategory: string | null;
+  service: string | null;
+  configuration_item: string | null;
+  impact: "low" | "medium" | "high" | "unknown";
+  urgency: "low" | "medium" | "high" | "unknown";
+  priority: "P1" | "P2" | "P3" | "P4" | "unknown";
+  title: string;
+  user_report: string | null;
+  diagnosis: string | null;
+  actions_taken: string[];
+  result: string | null;
+  current_status: string | null;
+  resolution: string | null;
+  next_action: string | null;
+  closure_criteria: string | null;
+  missing_information: string[];
+  warnings: string[];
+  macro_text: string;
 };
 
 export type SuggestedMovementMacro = {

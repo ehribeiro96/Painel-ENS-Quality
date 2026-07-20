@@ -668,7 +668,20 @@ def _parse_hermes_output(output: str) -> tuple[str, dict[str, object]]:
 
 
 def _run_hermes_chat(query: str, timeout_seconds: int, source: str) -> tuple[str, dict[str, object]]:
-    command = ["hermes", "chat", "-q", query, "-Q", "--source", source]
+    command = [
+        "hermes",
+        "chat",
+        "-q",
+        query,
+        "-Q",
+        "-t",
+        "todo",
+        "--ignore-rules",
+        "--max-turns",
+        "1",
+        "--source",
+        source,
+    ]
     try:
         completed = subprocess.run(
             command,

@@ -21,6 +21,7 @@ from app.domains.ai_chat.schemas import (
     ApoemaChatProviderRead,
     ApoemaChatProvidersResponse,
 )
+from app.domains.audit.ai import sanitize_ai_error
 
 APOEMA_SYSTEM_PROMPT = """Você é o assistente de IA do Apoema Preview, um painel corporativo de inventário, suporte e operações de TI.
 
@@ -106,27 +107,25 @@ async def generate_apoema_message(settings: Settings, payload: ApoemaChatMessage
                 usage=response,
             )
         except AiProviderConfigurationError as exc:
-            return await _fallback_response(
+            return _provider_failure_response(
                 conversation_id=conversation_id,
                 message_id=message_id,
                 provider="ollama",
                 model=model,
                 created_at=created_at,
-                error=str(exc),
+                error=exc,
                 status="error",
-                provider_messages=provider_messages,
             )
         except AiProviderRequestError as exc:
-            status = "offline" if "timeout" in str(exc) or "request_failed" in str(exc) or "unavailable" in str(exc) else "error"
-            return await _fallback_response(
+            status = "offline" if "timeout" in str(exc) or "unavailable" in str(exc) else "error"
+            return _provider_failure_response(
                 conversation_id=conversation_id,
                 message_id=message_id,
                 provider="ollama",
                 model=model,
                 created_at=created_at,
-                error=str(exc),
+                error=exc,
                 status=status,
-                provider_messages=provider_messages,
             )
 
     if provider_id == "hermes":
@@ -144,27 +143,25 @@ async def generate_apoema_message(settings: Settings, payload: ApoemaChatMessage
                 usage=response,
             )
         except AiProviderConfigurationError as exc:
-            return await _fallback_response(
+            return _provider_failure_response(
                 conversation_id=conversation_id,
                 message_id=message_id,
                 provider="hermes",
                 model=model,
                 created_at=created_at,
-                error=str(exc),
+                error=exc,
                 status="error",
-                provider_messages=provider_messages,
             )
         except AiProviderRequestError as exc:
-            status = "offline" if "timeout" in str(exc) or "request_failed" in str(exc) or "unavailable" in str(exc) else "error"
-            return await _fallback_response(
+            status = "offline" if "timeout" in str(exc) or "unavailable" in str(exc) else "error"
+            return _provider_failure_response(
                 conversation_id=conversation_id,
                 message_id=message_id,
                 provider="hermes",
                 model=model,
                 created_at=created_at,
-                error=str(exc),
+                error=exc,
                 status=status,
-                provider_messages=provider_messages,
             )
 
     raise AiProviderConfigurationError(f"apoema_provider_unsupported:{provider_id}")
@@ -206,35 +203,25 @@ def _build_response(
     )
 
 
-async def _fallback_response(
+def _provider_failure_response(
     *,
     conversation_id: str,
     message_id: str,
     provider: str,
     model: str,
     created_at: datetime,
-    error: str,
+    error: Exception,
     status: str,
-    provider_messages: list[AiProviderMessage],
 ) -> ApoemaChatMessageResponse:
-    fallback_response = await MockAiProvider().generate(provider_messages)
-    content = "\n".join(
-        [
-            "O provedor de IA está offline. Verifique a configuração do Ollama ou Hermes.",
-            "Usando fallback local para manter a conversa ativa.",
-            f"Motivo técnico: {error}.",
-            fallback_response.content,
-        ]
-    )
     return _build_response(
         conversation_id=conversation_id,
         message_id=message_id,
         provider=provider,
         model=model,
         status=status,
-        content=content,
+        content="O provedor de IA não respondeu. Tente novamente; nenhuma resposta sintética foi gerada.",
         created_at=created_at,
-        error=error,
+        error=sanitize_ai_error(error) or "ai_operation_failed",
     )
 
 
@@ -263,7 +250,7 @@ def _provider_default_model(settings: Settings, provider_id: str) -> str:
         return _ollama_default_model(settings)
     if provider_id == "hermes":
         return _hermes_default_model(settings)
-    return APOEMA_DEFAULT_FALLBACK_MODEL
+    raise AiProviderConfigurationError(f"apoema_provider_unsupported:{provider_id}")
 
 
 def _ollama_default_model(settings: Settings) -> str:
@@ -314,7 +301,9 @@ def _hermes_status(settings: Settings) -> str:
 
 def _normalize_provider_id(provider: str) -> str:
     normalized = (provider or "mock").strip().lower().replace("_", "-")
-    return normalized if normalized in APOEMA_PROVIDER_IDS else "mock"
+    if normalized not in APOEMA_PROVIDER_IDS:
+        raise AiProviderConfigurationError(f"apoema_provider_unsupported:{normalized}")
+    return normalized
 
 
 def _prioritize_default_provider(

@@ -1,514 +1,102 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import { FileUp, Upload, ChevronDown } from "lucide-react";
+import { ChangeEvent, DragEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
+import { Check, ChevronDown, FileSpreadsheet, Upload } from "lucide-react";
 
-import { DataTable } from "@/components/DataTable";
-import { Base44EmptyState } from "@/components/base44/Base44EmptyState";
 import { Alert, LoadingBlock } from "@/components/StateBlocks";
 import { Button } from "@/components/ui/button";
-import { DonorChip, DonorField, DonorFieldGrid, DonorSelect } from "../components/DonorForm";
-import { DonorPanelPageLayout } from "../components/DonorPanelPageLayout";
-import { api } from "@/lib/api";
+import { api, mapAiChatError } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
-import { formatDateTime, formatImportDecision, formatTechnicalLabel } from "@/lib/format";
-import type { ImportConflict, ImportJob, ImportPreview, ImportStagingAsset, ImportValidationError, Page } from "@/lib/types";
+import type { ImportAiAnalysis, ImportCorrection, ImportJob, ImportPreview } from "@/lib/types";
 
-const FIELD_OPTIONS = [
-  "hostname",
-  "serial",
-  "patrimony",
-  "manufacturer",
-  "model",
-  "asset_type",
-  "fallback_asset_type",
-  "user",
-  "user_email",
-  "location",
-  "operating_system",
-  "ip_address",
-  "last_login",
-  "status",
-  "notes",
-  "source_state",
-  "source_metadata.unit",
-  "source_metadata.network_location",
-  "source_metadata.imported_user_hint",
-  "source_metadata.first_seen",
-  "source_metadata.last_tried",
-  "source_metadata.fqdn",
-  "source_metadata.dns_name",
-  "source_metadata.source_notes",
-  "source_metadata.source",
-];
+const IMPORT_AI_TIMEOUT_MS = 125000;
 
-const IMPORT_MODES = ["INITIAL_LOAD", "SAFE_REIMPORT", "PREVIEW_ONLY"];
-
-function issueText(issue: Record<string, unknown>) {
-  return String(issue.message ?? issue.suggested_action ?? issue.code ?? "Sem detalhe.");
-}
-
-function renderIssueChips(issues: Array<Record<string, unknown>>) {
-  if (issues.length === 0) {
-    return <span className="text-slate-500">Sem detalhes.</span>;
-  }
-  return (
-    <div className="flex min-w-0 flex-wrap gap-2">
-      {issues.map((issue, index) => {
-        const text = issueText(issue);
-        return (
-          <DonorChip key={`${text}-${index}`} className="max-w-full whitespace-normal break-words text-left">
-            {text}
-          </DonorChip>
-        );
-      })}
-    </div>
-  );
-}
-
-function renderConflictDetails(conflict: ImportConflict) {
-  const details = conflict.details ?? {};
-  const identity = [details.identity_type, details.identity_value].filter(Boolean).join(" · ");
-  const rows = Array.isArray(details.rows) ? details.rows.join(", ") : "";
-  return (
-    <div className="grid min-w-0 gap-2">
-      <strong className="break-words text-sm text-slate-50">{String(details.message ?? conflict.conflict_type)}</strong>
-      <div className="flex min-w-0 flex-wrap gap-2">
-        <DonorChip className="max-w-full whitespace-normal break-words">{conflict.conflict_type}</DonorChip>
-        <DonorChip className="max-w-full whitespace-normal break-words">{conflict.severity}</DonorChip>
-        {identity ? <DonorChip className="max-w-full whitespace-normal break-words">{identity}</DonorChip> : null}
-        {rows ? <DonorChip className="max-w-full whitespace-normal break-words">{`Linhas ${rows}`}</DonorChip> : null}
-      </div>
-      {details.suggested_action ? <p className="break-words text-xs leading-5 text-slate-400">Ação sugerida: {details.suggested_action as string}</p> : null}
-    </div>
-  );
+function displayValue(value: unknown) {
+  if (value === null || value === undefined || value === "") return "—";
+  return typeof value === "object" ? JSON.stringify(value) : String(value);
 }
 
 export function ImportsPage() {
-  const { token } = useAuth();
-  const [page, setPage] = useState<Page<ImportJob> | null>(null);
-  const [selected, setSelected] = useState<ImportJob | null>(null);
+  const { token, user } = useAuth();
+  const input = useRef<HTMLInputElement>(null);
+  const [job, setJob] = useState<ImportJob | null>(null);
+  const [analysis, setAnalysis] = useState<ImportAiAnalysis | null>(null);
   const [preview, setPreview] = useState<ImportPreview | null>(null);
-  const [staging, setStaging] = useState<Page<ImportStagingAsset> | null>(null);
-  const [conflicts, setConflicts] = useState<ImportConflict[]>([]);
-  const [validationErrors, setValidationErrors] = useState<ImportValidationError[]>([]);
-  const [mapping, setMapping] = useState<Record<string, string>>({});
-  const [importMode, setImportMode] = useState("INITIAL_LOAD");
-  const [loading, setLoading] = useState(true);
-  const [uploading, setUploading] = useState(false);
-  const [applying, setApplying] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
+  const [suggestions, setSuggestions] = useState<ImportCorrection[]>([]);
+  const [busy, setBusy] = useState(false);
+  const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
-  function loadImports(nextSelectedId?: string) {
+  useEffect(() => {
     if (!token) return;
-    setLoading(true);
-    api
-      .imports(token)
-      .then((data) => {
-        setPage(data);
-        const next = data.items.find((item) => item.id === nextSelectedId) ?? data.items[0] ?? null;
-        setSelected(next);
-        setError(null);
-      })
-      .catch(() => setError("Não foi possível carregar as importações."))
-      .finally(() => setLoading(false));
-  }
+    api.imports(token).then((page) => {
+      const latest = page.items[0] ?? null;
+      setJob(latest);
+      if (latest) void api.aiSuggestions(token, latest.id).then(setSuggestions).catch(() => undefined);
+    }).catch(() => undefined);
+  }, [token]);
 
-  function loadDetails(job: ImportJob | null) {
-    if (!token || !job) {
-      setPreview(null);
-      setStaging(null);
-      setConflicts([]);
-      setValidationErrors([]);
-      return;
-    }
-    Promise.all([
-      api.importPreview(token, job.id),
-      api.importStaging(token, job.id),
-      api.importConflicts(token, job.id),
-      api.importValidationErrors(token, job.id),
-    ])
-      .then(([previewData, stagingData, conflictData, errorData]) => {
-        setPreview(previewData);
-        setStaging(stagingData);
-        setConflicts(conflictData);
-        setValidationErrors(errorData);
-        setMapping(previewData.detected_mapping ?? {});
-        setImportMode(String(previewData.job.report.import_mode ?? "INITIAL_LOAD"));
-      })
-      .catch(() => setError("Não foi possível carregar preview, staging ou conflitos."));
-  }
-
-  useEffect(() => loadImports(), [token]);
-  useEffect(() => loadDetails(selected), [selected?.id, token]);
-
-  async function handleFile(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    if (!file || !token) return;
-    setUploading(true);
-    setMessage(null);
-    setError(null);
+  async function analyze(nextJob: ImportJob) {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), IMPORT_AI_TIMEOUT_MS);
     try {
-      const job = await api.importUpload(token, file, importMode);
-      setMessage("Arquivo enviado para staging. Revise o resumo e os detalhes avançados antes de aplicar.");
-      loadImports(job.id);
-    } catch {
-      setError("Falha no upload. Verifique extensão CSV/XLSX, tamanho, fórmulas e permissões.");
+      const [result, nextPreview] = await Promise.all([api.analyzeImport(token as string, nextJob.id, controller.signal), api.importPreview(token as string, nextJob.id)]);
+      setAnalysis(result); setPreview(nextPreview); setSuggestions(result.ai_suggestions);
     } finally {
-      setUploading(false);
-      event.target.value = "";
+      window.clearTimeout(timeout);
     }
   }
 
-  async function saveMapping() {
-    if (!token || !selected) return;
+  async function upload(file: File) {
+    setBusy(true); setError(null); setMessage(null); setAnalysis(null); setPreview(null); setSuggestions([]);
     try {
-      const job = await api.updateImportMapping(token, selected.id, mapping, importMode);
-      setSelected(job);
-      setMessage("Mapeamento salvo para esta importação.");
-    } catch {
-      setError("Não foi possível salvar o mapeamento.");
-    }
+      const nextJob = await api.importUpload(token as string, file, "INITIAL_LOAD");
+      setJob(nextJob); await analyze(nextJob);
+      setMessage("Análise concluída. Revise as pendências antes de importar.");
+    } catch (reason) { setError(reason instanceof DOMException && reason.name === "AbortError" ? "A análise excedeu 125 segundos. Nenhuma sugestão foi aplicada." : mapAiChatError(reason).message); }
+    finally { setBusy(false); }
   }
 
-  async function applyImport() {
-    if (!token || !selected) return;
-    const report = selected.report as Record<string, unknown>;
-    if (report.can_apply === false || selected.conflict_rows > 0) {
-      const blockers = Array.isArray(report.apply_blockers) ? report.apply_blockers.join(" ") : "Revise bloqueadores antes de aplicar.";
-      setError(blockers);
-      return;
-    }
-    if (selected.report.import_mode === "PREVIEW_ONLY") {
-      setError("Esta importação está em modo PREVIEW_ONLY e não permite apply.");
-      return;
-    }
-    if (!window.confirm("Aplicar importação? Dados operacionais críticos não serão sobrescritos automaticamente.")) return;
-    setApplying(true);
-    setError(null);
+  async function onFile(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0]; if (file) await upload(file); event.target.value = "";
+  }
+  function onDrop(event: DragEvent<HTMLLabelElement>) { event.preventDefault(); setDragActive(false); const file=event.dataTransfer.files?.[0]; if(file&&!busy) void upload(file); }
+  function onKey(event: KeyboardEvent<HTMLLabelElement>) { if(!busy&&(event.key==="Enter"||event.key===" ")){event.preventDefault();input.current?.click();} }
+
+  async function apply() {
+    if (!job || !analysis?.safe_to_apply || !window.confirm("Confirmar importação após revisão humana?")) return;
+    setBusy(true); setError(null);
+    try { const result=await api.applyImport(token as string,job.id); setJob(result.job); setMessage("Importação aplicada com auditoria."); }
+    catch(reason){setError(mapAiChatError(reason).message);} finally{setBusy(false);}
+  }
+
+  async function decideSuggestion(item: ImportCorrection, decision: "APPROVED" | "REJECTED") {
+    if (!job || !item.id) return;
+    setBusy(true); setError(null);
     try {
-      const result = await api.applyImport(token, selected.id);
-      setSelected(result.job);
-      setMessage("Importação aplicada com relatório final e auditoria.");
-      loadImports(result.job.id);
-    } catch {
-      setError("Falha ao aplicar importação.");
-    } finally {
-      setApplying(false);
-    }
+      const updated = decision === "APPROVED"
+        ? await api.approveAiSuggestion(token as string, job.id, item.id)
+        : await api.rejectAiSuggestion(token as string, job.id, item.id);
+      setSuggestions((current) => current.map((candidate) => candidate.id === updated.id ? updated : candidate));
+      setMessage(decision === "APPROVED" ? "Sugestão aprovada e auditada. Nenhuma alteração foi aplicada automaticamente." : "Sugestão rejeitada e auditada.");
+    } catch (reason) { setError(mapAiChatError(reason).message); }
+    finally { setBusy(false); }
   }
 
-  async function cancelImport() {
-    if (!token || !selected) return;
-    if (!window.confirm("Cancelar importação pendente? O staging será preservado para auditoria.")) return;
-    try {
-      const job = await api.cancelImport(token, selected.id);
-      setSelected(job);
-      setMessage("Importação cancelada.");
-      loadImports(job.id);
-    } catch {
-      setError("Não foi possível cancelar a importação.");
-    }
-  }
-
-  function requestHermesCorrection() {
-    setMessage("Hermes precisa de endpoint de correção de planilha configurado para aplicar sugestões automaticamente. O resumo e os detalhes avançados permanecem disponíveis para revisão humana.");
-    setError(null);
-  }
-
-  const latest = selected ?? page?.items[0];
-  const report = (latest?.report ?? {}) as Record<string, unknown>;
-  const warnings = Array.isArray(report.warnings) ? report.warnings.map(String) : [];
-  const blockers = Array.isArray(report.apply_blockers) ? report.apply_blockers.map(String) : [];
-  const hasConflicts = (latest?.conflict_rows ?? 0) > 0;
-  const reportCanApply = selected ? selected.report.can_apply !== false : false;
-  const importReady = Boolean(selected && reportCanApply && !hasConflicts && selected.status !== "PREVIEW_ONLY");
-  const steps = [
-    { label: "Upload", state: latest ? "done" : "pending" },
-    { label: "Preview", state: preview ? "done" : latest ? "current" : "pending" },
-    { label: "Mapeamento", state: preview ? "current" : "pending" },
-    { label: "Validação", state: latest ? "done" : "pending" },
-    { label: "Conflitos", state: hasConflicts ? "blocked" : latest ? "done" : "pending" },
-    { label: "Aplicar", state: importReady ? "current" : "pending" },
-    { label: "Resultado", state: latest?.status?.startsWith("APPLIED") ? "done" : "pending" },
-  ];
-
-  const metrics = useMemo(
-    () => [
-      ["Total de linhas", latest?.total_rows ?? 0, ""],
-      ["Prontas para aplicar", latest?.valid_rows ?? 0, "success"],
-      ["Exigem revisão", (latest?.conflict_rows ?? 0) + (latest?.invalid_rows ?? 0), "warning"],
-      ["Inválidas", latest?.invalid_rows ?? 0, latest?.invalid_rows ? "danger" : ""],
-      ["Conflitos", latest?.conflict_rows ?? 0, latest?.conflict_rows ? "danger" : ""],
-    ],
-    [latest],
-  );
-
-  return (
-    <DonorPanelPageLayout
-      eyebrow="Importações"
-      title="Importar planilha"
-      description="Upload, análise e correção assistida pelo Hermes. Os detalhes técnicos permanecem disponíveis, mas não dominam a tela principal."
-      actions={
-        <>
-          <DonorChip>{uploading ? "Enviando" : "Upload ativo"}</DonorChip>
-          <DonorChip>{importReady ? "Pronto para aplicar" : "Revisão necessária"}</DonorChip>
-        </>
-      }
-      stats={[
-        { label: "Última carga", value: latest ? formatDateTime(latest.created_at) : "-", detail: latest?.filename ?? "Nenhum arquivo selecionado." },
-        { label: "Linhas válidas", value: latest?.valid_rows ?? 0, detail: "Entradas prontas para revisão ou aplicação." },
-        { label: "Conflitos", value: latest?.conflict_rows ?? 0, detail: "Demandam conferência antes da decisão." },
-        { label: "Inválidas", value: latest?.invalid_rows ?? 0, detail: "Campos obrigatórios ou regras quebradas." },
-      ]}
-    >
-      {message ? <Alert tone="success">{message}</Alert> : null}
-      {error ? <Alert tone="danger">{error}</Alert> : null}
-      {loading ? <LoadingBlock /> : null}
-
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
-        <section className="rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_18px_50px_-26px_rgba(0,0,0,0.8)]">
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Upload</p>
-              <h2 className="mt-2 text-lg font-semibold text-slate-50">Enviar planilha para staging</h2>
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Escolha o modo, envie o arquivo e mantenha a decisão humana antes de aplicar qualquer alteração operacional.</p>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              {steps.map((step) => (
-                <DonorChip key={step.label} className={step.state === "blocked" ? "border-rose-400/20 bg-rose-500/10 text-rose-100" : step.state === "current" ? "border-cyan-300/20 bg-cyan-400/10 text-cyan-100" : step.state === "done" ? "border-emerald-400/20 bg-emerald-500/10 text-emerald-100" : ""}>
-                  {step.label}
-                </DonorChip>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-5 grid gap-4 xl:grid-cols-[minmax(240px,320px)_minmax(0,1fr)]">
-            <label className={`grid cursor-pointer gap-3 rounded-[22px] border border-dashed border-white/15 bg-slate-950/40 p-4 transition-colors ${uploading ? "opacity-70" : "hover:border-cyan-300/30 hover:bg-cyan-400/10"}`}>
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-100">
-                <Upload className="h-5 w-5" />
-              </span>
-              <div className="grid min-w-0 gap-1">
-                <strong className="block break-words text-sm text-slate-50">{uploading ? "Enviando..." : "Selecionar arquivo"}</strong>
-                <small className="block max-w-full break-words text-sm leading-6 text-slate-300">CSV ou XLSX. Fórmulas perigosas e macros seguem bloqueadas pelo backend.</small>
-              </div>
-              <input className="sr-only" type="file" accept=".csv,.xlsx" onChange={handleFile} disabled={uploading} />
-            </label>
-
-            <div className="grid min-w-0 gap-4">
-              <DonorFieldGrid className="grid-cols-1 lg:grid-cols-2">
-                <DonorSelect
-                  label="Modo da importação"
-                  value={importMode}
-                  options={IMPORT_MODES.map((mode) => ({ value: mode, label: formatTechnicalLabel(mode) }))}
-                  onChange={setImportMode}
-                />
-                <DonorField label="Estado do fluxo" hint="O backend real valida, aplica e registra auditoria. Nenhum fake success é exibido.">
-                  <div className="flex flex-wrap gap-2">
-                    <DonorChip>{latest ? formatTechnicalLabel(latest.status) : "Sem importação"}</DonorChip>
-                    <DonorChip>{page?.total ?? 0} jobs</DonorChip>
-                  </div>
-                </DonorField>
-              </DonorFieldGrid>
-
-              <DonorField label="Orientação operacional" hint="Revise preview, mapeamento e conflitos antes de aplicar.">
-                <p className="min-w-0 break-words text-sm leading-6 text-slate-300">
-                  O fluxo principal continua simples: upload, análise, revisão e aplicação. Os detalhes técnicos ficam recolhidos para consulta.
-                </p>
-              </DonorField>
-
-              <div className="flex flex-wrap gap-2">
-                <Button className="rounded-2xl bg-cyan-400 text-slate-950 hover:bg-cyan-300" type="button" onClick={requestHermesCorrection} disabled={!selected}>
-                  Analisar e corrigir com Hermes
-                </Button>
-                <Button className="rounded-2xl bg-cyan-400 text-slate-950 hover:bg-cyan-300" type="button" onClick={applyImport} disabled={!selected || !reportCanApply || applying}>
-                  {applying ? "Aplicando..." : "Aplicar importação"}
-                </Button>
-                <Button className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10" type="button" variant="outline" onClick={cancelImport} disabled={!selected}>
-                  Cancelar
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_18px_50px_-26px_rgba(0,0,0,0.8)]">
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan-200/70">Resumo</p>
-              <h2 className="mt-2 text-lg font-semibold text-slate-50">Próxima ação recomendada</h2>
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">O painel mostra a decisão atual sem transformar a tela em um painel técnico cru.</p>
-            </div>
-            <DonorChip>{hasConflicts ? `${latest?.conflict_rows ?? 0} conflitos` : "Sem conflitos"}</DonorChip>
-          </div>
-
-          <div className="mt-5 space-y-3">
-            <div className="rounded-[22px] border border-white/10 bg-slate-950/45 p-4">
-              <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Pronto para aplicar?</p>
-              <p className="mt-2 text-sm leading-6 text-slate-300">{importReady ? "Sim, após confirmação humana." : "Não."}</p>
-            </div>
-            <div className="rounded-[22px] border border-white/10 bg-slate-950/45 p-4">
-              <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Bloqueios</p>
-              <p className="mt-2 break-words text-sm leading-6 text-slate-300">{hasConflicts ? `${latest?.conflict_rows ?? 0} conflito(s) exigem revisão.` : blockers.length ? blockers.join(" ") : "Nenhum bloqueio automático identificado."}</p>
-            </div>
-            <div className="rounded-[22px] border border-white/10 bg-slate-950/45 p-4">
-              <p className="text-xs uppercase tracking-[0.22em] text-slate-500">Próxima ação</p>
-              <p className="mt-2 break-words text-sm leading-6 text-slate-300">
-                {hasConflicts ? "Abrir detalhes avançados e decidir o tratamento antes de aplicar." : importReady ? "Revisar mapeamento final e aplicar com confirmação." : "Concluir upload/preview antes da decisão."}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {warnings.length ? <DonorChip>{warnings.length} alertas</DonorChip> : <DonorChip>Sem alertas</DonorChip>}
-              <DonorChip>{latest?.filename ?? "Nenhum arquivo"}</DonorChip>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        {metrics.map(([label, value, tone]) => (
-          <article key={label} className="rounded-[22px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_12px_30px_-24px_rgba(0,0,0,0.75)]">
-            <p className="text-xs uppercase tracking-[0.22em] text-slate-500">{label}</p>
-            <p className={`mt-2 text-2xl font-semibold text-slate-50 ${tone === "danger" ? "text-rose-100" : tone === "warning" ? "text-amber-100" : tone === "success" ? "text-emerald-100" : ""}`}>{value}</p>
-            <p className="mt-2 text-sm leading-6 text-slate-400">Resumo operacional da importação selecionada.</p>
-          </article>
-        ))}
-      </section>
-
-      <details className="rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_18px_50px_-26px_rgba(0,0,0,0.8)]">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-lg font-semibold text-slate-50">
-          Detalhes avançados
-          <ChevronDown className="h-4 w-4 shrink-0 text-slate-400" />
-        </summary>
-
-        <div className="mt-5 space-y-5">
-          <section className="rounded-[22px] border border-white/10 bg-slate-950/35 p-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-200/70">Jobs</p>
-                <h3 className="mt-1 text-base font-semibold text-slate-50">Importações recentes</h3>
-              </div>
-              <DonorChip>{page?.total ?? 0} jobs</DonorChip>
-            </div>
-            <div className="mt-4 overflow-hidden rounded-[18px] border border-white/10">
-              <DataTable
-                items={page?.items ?? []}
-                columns={[
-                  { key: "filename", label: "Arquivo", className: "min-w-0 break-words" },
-                  {
-                    key: "status",
-                    label: "Status",
-                    render: (item) => <DonorChip>{formatTechnicalLabel(item.status)}</DonorChip>,
-                  },
-                  { key: "total_rows", label: "Linhas" },
-                  { key: "conflict_rows", label: "Conflitos" },
-                  { key: "created_at", label: "Criada em", render: (item) => formatDateTime(item.created_at) },
-                  { key: "id", label: "Ação", render: (item) => <Button type="button" variant="outline" className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10" onClick={() => setSelected(item)}>Abrir</Button> },
-                ]}
-              />
-            </div>
-          </section>
-
-          <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-            <section className="rounded-[22px] border border-white/10 bg-slate-950/35 p-4">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-200/70">Mapeamento</p>
-                  <h3 className="mt-1 text-base font-semibold text-slate-50">Campos detectados</h3>
-                </div>
-                <DonorChip>{preview ? "Carregado" : "Sem preview"}</DonorChip>
-              </div>
-              {!preview ? (
-                <div className="mt-4">
-                  <Base44EmptyState title="Nenhuma importação selecionada." description="Ao abrir um job, o preview e o mapeamento detectado aparecem aqui." icon={FileUp} />
-                </div>
-              ) : (
-                <div className="mt-4 grid gap-3 lg:grid-cols-2 xl:grid-cols-3">
-                  {preview.columns.map((column) => (
-                    <DonorSelect
-                      key={column}
-                      label={column}
-                      placeholder="Ignorar"
-                      value={mapping[column] ?? ""}
-                      options={[{ value: "", label: "Ignorar" }, ...FIELD_OPTIONS.map((field) => ({ value: field, label: field }))]}
-                      onChange={(value) => setMapping((current) => ({ ...current, [column]: value }))}
-                    />
-                  ))}
-                  <div className="lg:col-span-2 xl:col-span-3 flex justify-start">
-                    <Button type="button" className="rounded-2xl bg-cyan-400 text-slate-950 hover:bg-cyan-300" onClick={saveMapping}>Salvar mapeamento</Button>
-                  </div>
-                </div>
-              )}
-            </section>
-
-            <section className="rounded-[22px] border border-white/10 bg-slate-950/35 p-4">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-200/70">Staging</p>
-                  <h3 className="mt-1 text-base font-semibold text-slate-50">Preview operacional</h3>
-                </div>
-                <DonorChip>{staging?.items.length ?? 0} linha(s)</DonorChip>
-              </div>
-              <div className="mt-4 overflow-hidden rounded-[18px] border border-white/10">
-                <DataTable
-                  items={staging?.items ?? []}
-                  columns={[
-                    { key: "row_number", label: "Linha" },
-                    { key: "identity_value", label: "Identificador" },
-                    { key: "identity_confidence", label: "Confiança" },
-                    { key: "decision", label: "Ação", render: (item) => <DonorChip>{formatImportDecision(item.decision)}</DonorChip> },
-                    { key: "row_status", label: "Status" },
-                    { key: "merge_action", label: "Merge" },
-                    { key: "issues", label: "Motivo", render: (item) => renderIssueChips(item.issues) },
-                  ]}
-                />
-              </div>
-            </section>
-          </div>
-
-          <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-            <section className="rounded-[22px] border border-white/10 bg-slate-950/35 p-4">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-200/70">Erros</p>
-                  <h3 className="mt-1 text-base font-semibold text-slate-50">Validação</h3>
-                </div>
-                <DonorChip>{validationErrors.length} erro(s)</DonorChip>
-              </div>
-              <div className="mt-4 overflow-hidden rounded-[18px] border border-white/10">
-                <DataTable
-                  items={validationErrors}
-                  columns={[
-                    { key: "row_number", label: "Linha" },
-                    { key: "field_name", label: "Campo" },
-                    { key: "error_code", label: "Código" },
-                    { key: "message", label: "Mensagem", className: "min-w-0 break-words", render: (item) => <span className="break-words leading-6 text-slate-100">{item.message}</span> },
-                  ]}
-                />
-              </div>
-            </section>
-
-            <section className="rounded-[22px] border border-white/10 bg-slate-950/35 p-4">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-200/70">Conflitos</p>
-                  <h3 className="mt-1 text-base font-semibold text-slate-50">Ocorrências</h3>
-                </div>
-                <DonorChip>{conflicts.length} conflito(s)</DonorChip>
-              </div>
-              <div className="mt-4 overflow-hidden rounded-[18px] border border-white/10">
-                <DataTable
-                  items={conflicts}
-                  columns={[
-                    { key: "conflict_type", label: "Tipo" },
-                    { key: "severity", label: "Severidade" },
-                    { key: "details", label: "Detalhe", className: "min-w-0 break-words", render: (item) => renderConflictDetails(item) },
-                  ]}
-                />
-              </div>
-            </section>
-          </div>
-        </div>
-      </details>
-    </DonorPanelPageLayout>
-  );
+  const summary=analysis?.file_summary;
+  const canDecide = user?.role === "ADMIN" || user?.role === "TECHNICIAN";
+  return <div className="mx-auto grid max-w-5xl gap-6 pb-10">
+    <header><h1 className="text-2xl font-semibold text-slate-50">Importar ativos</h1><p className="mt-1 text-sm text-slate-400">Envie uma planilha. A IA identifica colunas, corrige formatos e mostra o que precisa de revisão.</p></header>
+    {message?<Alert tone="success">{message}</Alert>:null}{error?<Alert tone="danger">{error}</Alert>:null}
+    <label data-testid="imports-dropzone" role="button" tabIndex={busy?-1:0} aria-disabled={busy} aria-label="Selecionar ou arrastar planilha" onKeyDown={onKey} onDrop={onDrop} onDragOver={(e)=>{e.preventDefault();setDragActive(true);}} onDragLeave={()=>setDragActive(false)} className={`grid min-h-72 cursor-pointer place-items-center rounded-2xl border border-dashed p-8 text-center outline-none transition-colors focus-visible:ring-2 focus-visible:ring-cyan-300 ${dragActive?"border-cyan-300 bg-cyan-400/10":"border-white/15 bg-white/[0.025] hover:border-cyan-300/40"}`}>
+      <div><span className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-cyan-400/10 text-cyan-200"><Upload className="h-6 w-6"/></span><strong className="text-base text-slate-100">{busy?"Analisando planilha…":dragActive?"Solte para analisar":"Arraste a planilha aqui"}</strong><p className="mt-2 text-sm text-slate-500">CSV ou XLSX · limites definidos pelo servidor</p><span className="mt-5 inline-flex min-h-11 items-center rounded-xl bg-cyan-400 px-5 text-sm font-semibold text-slate-950">Selecionar planilha</span><input ref={input} className="sr-only" type="file" accept=".csv,.xlsx" disabled={busy} onChange={onFile}/></div>
+    </label>
+    {busy?<LoadingBlock/>:null}
+    {summary?<section className="grid gap-5 rounded-2xl bg-white/[0.035] p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3"><div><h2 className="text-lg font-semibold text-slate-50">Resumo da análise</h2><p className="mt-1 text-sm text-slate-400">{summary.rows_need_review?`Existem ${summary.rows_need_review} itens que precisam da sua confirmação.`:"Planilha pronta para importar."}</p></div><FileSpreadsheet className="h-5 w-5 text-cyan-200"/></div>
+      <dl className="grid grid-cols-2 gap-4 sm:grid-cols-5"><div><dt className="text-xs text-slate-500">Status</dt><dd className="mt-1 text-sm font-semibold text-cyan-100">{job?.status??"—"}</dd></div><div><dt className="text-xs text-slate-500">Linhas</dt><dd className="mt-1 text-xl text-slate-100">{summary.rows_total}</dd></div><div><dt className="text-xs text-slate-500">Corrigidas</dt><dd className="mt-1 text-xl text-slate-100">{summary.rows_auto_corrected}</dd></div><div><dt className="text-xs text-slate-500">Revisão</dt><dd className="mt-1 text-xl text-amber-100">{summary.rows_need_review}</dd></div><div><dt className="text-xs text-slate-500">Inválidas</dt><dd className="mt-1 text-xl text-rose-100">{summary.rows_invalid}</dd></div></dl>
+      <div className="flex flex-wrap gap-2">{summary.rows_need_review?<Button type="button" variant="outline" className="min-h-11" onClick={()=>document.getElementById("ai-suggestions")?.scrollIntoView({behavior:"smooth"})}>Revisar pendências</Button>:null}<Button type="button" className="min-h-11 bg-cyan-400 text-slate-950 hover:bg-cyan-300" disabled={!analysis.safe_to_apply||busy} onClick={apply}><Check className="mr-2 h-4 w-4"/>Importar</Button><Button type="button" variant="ghost" className="min-h-11" onClick={()=>{setJob(null);setAnalysis(null);setPreview(null);setSuggestions([]);}}>Cancelar</Button></div>
+    </section>:null}
+    {suggestions.length?<section id="ai-suggestions" className="grid gap-4 rounded-2xl border border-amber-300/15 bg-amber-300/[0.035] p-5"><div><h2 className="text-lg font-semibold text-slate-50">Sugestões da IA</h2><p className="mt-1 text-sm text-slate-400">Painel separado para decisão humana. Aprovar não altera o staging nem aplica a importação.</p></div>{suggestions.map((item)=><article key={item.id??`${item.row}-${item.field}`} className="grid gap-3 rounded-xl border border-white/10 bg-slate-950/35 p-4"><div className="flex flex-wrap items-center justify-between gap-2"><strong className="text-sm text-slate-100">Linha {item.row} · {item.field}</strong><span className="rounded-full border border-white/10 px-2 py-1 text-xs text-slate-300">{item.status??"PENDING"}</span></div><dl className="grid gap-3 sm:grid-cols-2"><div><dt className="text-xs text-slate-500">Valor atual</dt><dd className="mt-1 break-words text-sm text-slate-200">{displayValue(item.original_value)}</dd></div><div><dt className="text-xs text-slate-500">Sugestão</dt><dd className="mt-1 break-words text-sm text-cyan-100">{displayValue(item.proposed_value)}</dd></div><div><dt className="text-xs text-slate-500">Confiança</dt><dd className="mt-1 text-sm text-slate-200">{Math.round(item.confidence*100)}%</dd></div><div><dt className="text-xs text-slate-500">Motivo</dt><dd className="mt-1 text-sm text-slate-200">{item.reason}</dd></div></dl>{item.status==="PENDING"?<div className="flex flex-wrap gap-2"><Button type="button" className="min-h-11 bg-cyan-400 text-slate-950 hover:bg-cyan-300" disabled={!canDecide||busy} onClick={()=>void decideSuggestion(item,"APPROVED")}>Aprovar</Button><Button type="button" variant="outline" className="min-h-11" disabled={!canDecide||busy} onClick={()=>void decideSuggestion(item,"REJECTED")}>Rejeitar</Button>{!canDecide?<span className="self-center text-xs text-slate-500">VIEWER não pode decidir sugestões.</span>:null}</div>:null}</article>)}</section>:null}
+    <details id="import-details" className="border-t border-white/10 pt-4"><summary className="flex cursor-pointer list-none items-center justify-between text-sm font-medium text-slate-300">Opções avançadas e detalhes<ChevronDown className="h-4 w-4"/></summary><div className="mt-4 grid gap-4 text-sm text-slate-400"><p>Arquivo: {job?.filename??"Nenhum"}</p><p>Confiança da análise: {analysis?`${Math.round(analysis.confidence*100)}%`:"—"}</p>{preview?<p>{preview.items.length} linhas disponíveis no preview técnico.</p>:null}</div></details>
+  </div>;
 }

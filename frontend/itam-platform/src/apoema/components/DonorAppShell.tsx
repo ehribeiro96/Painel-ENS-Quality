@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { useState } from "react";
-import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   Bell,
   Bot,
@@ -37,7 +37,6 @@ const navItems: Array<{ label: string; items: NavItem[] }> = [
   {
     label: "Chat",
     items: [
-      { label: "Novo chat", to: "/apoema/chat?new=1", icon: MessageSquarePlus },
       { label: "Chat / Histórico", to: "/apoema/chat", icon: Bot },
     ],
   },
@@ -100,47 +99,77 @@ function isActiveRoute(currentPath: string, target: string) {
   return currentPath === targetPath || currentPath.startsWith(`${targetPath}/`);
 }
 
-function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarContent({
+  onNavigate,
+  expanded = true,
+}: {
+  onNavigate?: () => void;
+  expanded?: boolean;
+}) {
   const location = useLocation();
   const currentPath = location.pathname;
   const currentFullPath = `${location.pathname}${location.search}`;
 
   return (
-    <div className="flex h-full min-h-0 flex-col rounded-[28px] border border-white/10 bg-slate-950/75 p-3 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.8)] backdrop-blur-xl">
-      <div className="flex items-center gap-3 rounded-[22px] border border-white/10 bg-white/5 px-3 py-3">
+    <div
+      className={cn(
+        "flex h-full min-h-0 flex-col rounded-[28px] border border-white/10 bg-slate-950/75 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.8)] backdrop-blur-xl",
+        "p-2",
+      )}
+    >
+      <div className={cn("flex min-h-[68px] items-center rounded-[22px] border border-white/10 bg-white/5 px-3 py-3", expanded ? "gap-3" : "justify-center")}>
         <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-400/15 text-cyan-200 ring-1 ring-cyan-300/25">
           <img src="/logo.svg" alt="Apoema" className="h-7 w-7" />
         </div>
-        <div className="min-w-0 overflow-hidden transition-all duration-300 group-hover/sidebar:opacity-100 group-focus-within/sidebar:opacity-100 lg:max-w-0 lg:opacity-0 lg:group-hover/sidebar:max-w-[180px] lg:group-focus-within/sidebar:max-w-[180px]">
-          <p className="text-[11px] uppercase tracking-[0.32em] text-slate-400">Apoema</p>
-          <strong className="block truncate text-sm text-slate-100">Painel ENS-Quality</strong>
-        </div>
+        {expanded ? (
+          <div className="min-w-0 overflow-hidden">
+            <p className="text-[11px] uppercase tracking-[0.32em] text-slate-400">Apoema</p>
+            <strong className="block truncate text-sm text-slate-100">Painel ENS-Quality</strong>
+          </div>
+        ) : null}
       </div>
 
-      <div className="mt-3 flex items-center gap-2 lg:justify-center">
-        <Button asChild className="h-10 w-full justify-start rounded-2xl bg-cyan-400 px-3 text-slate-950 hover:bg-cyan-300 lg:w-10 lg:justify-center">
-          <Link to="/apoema/chat?new=1" onClick={onNavigate} aria-label="Novo chat">
-            <MessageSquarePlus className="h-4 w-4 shrink-0" />
-            <span className="truncate lg:hidden xl:inline-flex">Novo chat</span>
+      <div className={cn("mt-3", expanded ? "flex items-center gap-2" : "flex justify-center")}>
+        <Button
+          asChild
+          className={cn(
+            "rounded-2xl bg-cyan-400 text-slate-950 hover:bg-cyan-300",
+            expanded ? "h-11 w-full justify-start gap-3 px-4" : "h-11 w-11 justify-center px-0",
+          )}
+        >
+          <Link
+            to="/apoema/chat?new=1"
+            onClick={onNavigate}
+            aria-label="Novo chat"
+            aria-current={currentFullPath === "/apoema/chat?new=1" ? "page" : undefined}
+            title="Novo chat"
+          >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center">
+              <MessageSquarePlus className="h-[18px] w-[18px]" />
+            </span>
+            {expanded ? <span className="truncate">Novo chat</span> : null}
           </Link>
         </Button>
       </div>
 
       <nav
         className={cn(
-          "mt-4 min-h-0 flex-1 space-y-4 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
-          "lg:pr-2",
+          "mt-4 min-h-0 flex-1 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+          expanded ? "space-y-4" : "space-y-2",
+          expanded ? "lg:pr-2" : "pr-0",
         )}
         aria-label="Navegação principal"
       >
         {navItems.map((group) => (
-          <section key={group.label} className="space-y-2">
-            <div className="flex items-center justify-between px-2">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-500 transition-all duration-300 group-hover/sidebar:text-slate-300 group-focus-within/sidebar:text-slate-300 lg:max-w-0 lg:overflow-hidden lg:opacity-0 lg:group-hover/sidebar:max-w-[120px] lg:group-focus-within/sidebar:max-w-[120px]">
-                {group.label}
-              </p>
-              <span className="hidden h-px flex-1 bg-white/10 lg:block" />
-            </div>
+          <section key={group.label} className={cn(expanded ? "space-y-2" : "space-y-1.5")}>
+            {expanded ? (
+              <div className="flex h-4 items-center justify-between px-2">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-500">{group.label}</p>
+                <span className="hidden h-px flex-1 bg-white/10 lg:block" />
+              </div>
+            ) : (
+              <div className="mx-auto h-px w-7 bg-white/10" aria-hidden="true" />
+            )}
             <div className="space-y-1">
               {group.items.map((item) => {
                 const Icon = item.icon;
@@ -148,24 +177,25 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
                   ? currentFullPath === item.to
                   : isActiveRoute(currentPath, item.to) && currentFullPath !== "/apoema/chat?new=1";
                 return (
-                  <NavLink
+                  <Link
                     key={`${group.label}:${item.label}:${item.to}`}
                     to={item.to}
                     onClick={onNavigate}
+                    title={item.label}
+                    aria-label={item.label}
+                    aria-current={active ? "page" : undefined}
                     className={cn(
-                      "flex items-center gap-3 rounded-2xl border px-3 py-3 text-sm transition-all duration-300",
-                      "border-transparent text-slate-300 hover:border-white/10 hover:bg-white/6 hover:text-white",
-                      active ? "border-cyan-300/20 bg-cyan-400/12 text-cyan-100 shadow-[0_10px_30px_-20px_rgba(34,211,238,0.85)]" : "bg-transparent",
-                      "lg:justify-start",
+                      "group/item flex items-center rounded-2xl border text-sm transition-[background-color,border-color,color,box-shadow] duration-200",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/50 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950",
+                      active ? "border-cyan-300/25 bg-cyan-400/[0.12] text-cyan-100 shadow-[0_10px_30px_-20px_rgba(34,211,238,0.85)]" : "border-transparent text-slate-300 hover:border-white/10 hover:bg-white/[0.06] hover:text-white",
+                      expanded ? "h-11 w-full gap-3 px-4 justify-start" : "h-11 w-11 justify-center px-0 mx-auto",
                     )}
                   >
                     <span className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ring-1 ring-inset", active ? "bg-cyan-300/15 ring-cyan-200/20" : "bg-white/5 ring-white/10")}>
-                      <Icon className={cn("h-4 w-4", active ? "text-cyan-100" : "text-slate-300")} />
+                      <Icon className={cn("h-[18px] w-[18px]", active ? "text-cyan-100" : "text-slate-300")} />
                     </span>
-                    <span className="min-w-0 flex-1 overflow-hidden transition-all duration-300 group-hover/sidebar:opacity-100 group-focus-within/sidebar:opacity-100 lg:max-w-0 lg:opacity-0 lg:group-hover/sidebar:max-w-[180px] lg:group-focus-within/sidebar:max-w-[180px]">
-                      <span className="block truncate font-medium">{item.label}</span>
-                    </span>
-                  </NavLink>
+                    {expanded ? <span className="min-w-0 flex-1 truncate font-medium">{item.label}</span> : null}
+                  </Link>
                 );
               })}
             </div>
@@ -173,17 +203,19 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         ))}
       </nav>
 
-      <div className="mt-3 rounded-[22px] border border-white/10 bg-white/5 p-3">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-slate-100 ring-1 ring-white/10">
-            <Bell className="h-4 w-4" />
-          </div>
-          <div className="min-w-0 transition-all duration-300 group-hover/sidebar:opacity-100 group-focus-within/sidebar:opacity-100 lg:max-w-0 lg:opacity-0 lg:group-hover/sidebar:max-w-[180px] lg:group-focus-within/sidebar:max-w-[180px]">
-            <p className="truncate text-sm font-medium text-slate-100">Hermes real pronto</p>
-            <p className="truncate text-xs text-slate-400">Sem fallback visual no caminho de sucesso</p>
+      {expanded ? (
+        <div className="mt-3 rounded-[22px] border border-white/10 bg-white/5 p-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-slate-100 ring-1 ring-white/10">
+              <Bell className="h-4 w-4" />
+            </div>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-medium text-slate-100">Hermes real pronto</p>
+              <p className="truncate text-xs text-slate-400">Sem fallback visual no caminho de sucesso</p>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }
@@ -191,7 +223,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 function MobileSidebar({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="h-full min-h-0">
-      <SidebarContent onNavigate={onNavigate} />
+      <SidebarContent onNavigate={onNavigate} expanded />
     </div>
   );
 }
@@ -220,7 +252,7 @@ export function DonorTopBar() {
                 Menu
               </Button>
             </DialogTrigger>
-            <DialogContent className="left-0 top-0 h-full max-w-[360px] translate-x-0 translate-y-0 rounded-none border-r border-white/10 bg-slate-950 p-0 text-slate-100 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.9)]">
+            <DialogContent className="left-0 top-0 h-full max-w-[360px] translate-x-0 translate-y-0 rounded-none border-r border-white/10 bg-slate-950 p-0 text-slate-100 shadow-[0_24px_80px_-24px_rgba(0,0,0,0.9)] [&>button]:h-10 [&>button]:w-10 [&>button]:rounded-xl [&>button]:border [&>button]:border-white/10 [&>button]:bg-slate-900 [&>button]:text-slate-200 [&>button>svg]:h-5 [&>button>svg]:w-5">
               <DialogTitle className="sr-only">Menu principal</DialogTitle>
               <div className="h-full p-3">
                 <MobileSidebar
@@ -240,8 +272,8 @@ export function DonorTopBar() {
           <Button
             variant="outline"
             className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
-            onClick={() => {
-              void signOut();
+            onClick={async () => {
+              await signOut();
               navigate("/login");
             }}
           >
@@ -264,11 +296,12 @@ export function DonorAppShell() {
   return (
     <div className="min-h-screen overflow-x-clip bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.14),transparent_34%),radial-gradient(circle_at_85%_0%,rgba(56,189,248,0.12),transparent_30%),linear-gradient(180deg,#07111f_0%,#09131f_100%)] text-slate-100">
       <div
-        className="mx-auto grid min-h-screen w-full max-w-[1800px] gap-4 p-4 lg:grid-cols-[var(--apoema-sidebar-width)_minmax(0,1fr)] lg:items-start lg:gap-5 lg:transition-[grid-template-columns] lg:duration-300"
+        className="mx-auto grid min-h-screen w-full max-w-[1800px] gap-4 p-4 lg:grid-cols-[88px_minmax(0,1fr)] lg:items-start lg:gap-5"
         style={shellStyle}
       >
         <aside
-          className="group/sidebar sticky top-4 hidden h-[calc(100dvh-2rem)] min-h-0 overflow-hidden lg:block"
+          data-expanded={sidebarExpanded ? "true" : "false"}
+          className="group/sidebar sticky top-4 z-30 hidden h-[calc(100dvh-2rem)] min-h-0 w-[var(--apoema-sidebar-width)] overflow-visible transition-[width] duration-300 lg:block"
           onMouseEnter={() => setSidebarExpanded(true)}
           onMouseLeave={() => setSidebarExpanded(false)}
           onFocusCapture={() => setSidebarExpanded(true)}
@@ -278,7 +311,7 @@ export function DonorAppShell() {
             }
           }}
         >
-          <SidebarContent />
+          <SidebarContent expanded={sidebarExpanded} />
         </aside>
 
         <div className="flex min-w-0 flex-col gap-4">
