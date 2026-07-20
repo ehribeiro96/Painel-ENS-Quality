@@ -206,7 +206,7 @@ class ImportPipelineUnitTest(unittest.TestCase):
         self.assertEqual(plan[0]["decision"], ImportDecision.CONFLICT)
         self.assertEqual(plan[1]["decision"], ImportDecision.CONFLICT)
 
-    def test_review_required_rows_do_not_block_partial_apply_report(self) -> None:
+    def test_review_required_rows_block_apply_until_reviewed(self) -> None:
         service = ImportService(None)  # type: ignore[arg-type]
         job = SimpleNamespace(
             source="LANSWEEPER",
@@ -224,9 +224,10 @@ class ImportPipelineUnitTest(unittest.TestCase):
             SimpleNamespace(row_number=3, decision=ImportDecision.REVIEW_REQUIRED.value, row_status="STAGED", normalized_payload={"source_external_key": "lansweeper:abc"}, identity_type="source_external_key", identity_value="lansweeper:abc", identity_confidence="NONE", merge_action="REVIEW", issues=[]),
         ]
         report = service._build_report(job, rows, {"created": 0, "updated": 0, "failed": 0}, was_applied=False)
-        self.assertTrue(report["can_apply"])
+        self.assertFalse(report["can_apply"])
         self.assertEqual(report["review_required_count"], 1)
         self.assertEqual(report["blocking_conflicts_count"], 0)
+        self.assertIn("Existem linhas que exigem revisao humana.", report["apply_blockers"])
 
     def test_lansweeper_corrected_shape_fixture_classification(self) -> None:
         dataframe = pd.read_excel(FIXTURES / "lansweeper_corrected_shape.xlsx", sheet_name="report", dtype=str, keep_default_na=False)

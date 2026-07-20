@@ -107,8 +107,24 @@ class AiGovernanceAuditTest(unittest.IsolatedAsyncioTestCase):
 
     async def test_error_event_sanitizes_prompt_token_cookie_password_and_secret(self) -> None:
         session = _Session()
-        user = SimpleNamespace(id=uuid.uuid4(), role=Role.ADMIN)
-        sensitive = "hermes_request_failed: password=p4ss token=tok cookie=session secret=abc prompt=cliente"
+        user_id = uuid.UUID("11111111-1111-4111-8111-111111111111")
+        resource_id = uuid.UUID("22222222-2222-4222-8222-222222222222")
+        user = SimpleNamespace(id=user_id, role=Role.ADMIN)
+        sensitive_values = (
+            "PROMPT_SENSITIVE_SENTINEL_9F8E7D6C",
+            "TOKEN_SENSITIVE_SENTINEL_8E7D6C5B",
+            "COOKIE_SENSITIVE_SENTINEL_7D6C5B4A",
+            "PASSWORD_SENSITIVE_SENTINEL_6C5B4A39",
+            "API_SECRET_SENTINEL_5B4A3928",
+            "AUTHORIZATION_SENSITIVE_SENTINEL_4A392817",
+            "TRACEBACK_SENSITIVE_SENTINEL_39281706",
+        )
+        sensitive = (
+            "ai_provider_timeout: "
+            f"prompt={sensitive_values[0]} token={sensitive_values[1]} cookie={sensitive_values[2]} "
+            f"password={sensitive_values[3]} secret={sensitive_values[4]} "
+            f"Authorization=Bearer {sensitive_values[5]} traceback={sensitive_values[6]}"
+        )
 
         event = await record_ai_audit(
             session,
@@ -117,16 +133,26 @@ class AiGovernanceAuditTest(unittest.IsolatedAsyncioTestCase):
             provider="hermes",
             model="hermes-agent",
             resource_type="ChatConversation",
-            resource_id=None,
+            resource_id=resource_id,
             status="FAILED",
             duration_ms=9,
             error=sensitive,
         )
 
-        serialized = str(event.after).lower()
-        self.assertEqual("hermes_request_failed", event.after["error"])
-        for secret in ("p4ss", "tok", "session", "abc", "cliente", "password=", "token=", "cookie=", "prompt="):
-            self.assertNotIn(secret, serialized)
+        error_payload = event.after["error"]
+        self.assertEqual("ai_provider_timeout", error_payload)
+        for sensitive_value in sensitive_values:
+            self.assertNotIn(sensitive_value, error_payload)
+        for raw_field in ("prompt=", "token=", "cookie=", "password=", "secret=", "authorization=", "traceback="):
+            self.assertNotIn(raw_field, error_payload.lower())
+
+        self.assertEqual(user_id, event.actor_id)
+        self.assertEqual(resource_id, event.entity_id)
+        self.assertEqual(str(user_id), event.after["user_id"])
+        self.assertEqual(str(resource_id), event.after["resource_id"])
+        self.assertEqual("AI_PROVIDER_CALL", event.after["action"])
+        self.assertEqual("FAILED", event.after["status"])
+        self.assertEqual("hermes", event.after["provider"])
 
     def test_unknown_error_is_replaced_with_generic_code(self) -> None:
         self.assertEqual("ai_operation_failed", sanitize_ai_error("falha com senha supersecreta"))
@@ -187,12 +213,7 @@ class AiGovernanceAuditTest(unittest.IsolatedAsyncioTestCase):
 
         with patch.object(imports, "ensure_ai_enabled"), patch.object(
             imports, "analyze_import", new=AsyncMock(side_effect=timeout)
-        ), patch.object(
-            imports,
-            "AsyncSessionLocal",
-            return_value=_SessionContext(audit_session),
-            create=True,
-        ):
+        ), patch("app.domains.audit.ai.AsyncSessionLocal", return_value=_SessionContext(audit_session)):
             with self.assertRaises(HTTPException) as raised:
                 await imports.analyze_import_with_hermes(job._id, request_session, user)
 

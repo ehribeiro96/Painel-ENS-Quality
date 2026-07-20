@@ -320,7 +320,7 @@ class AiChatApiTest(unittest.IsolatedAsyncioTestCase):
             ai_chat.AiChatService = original_service
 
         self.assertEqual(503, ctx.exception.status_code)
-        self.assertEqual("ai_provider_configuration_error: openai_api_key_missing", ctx.exception.detail)
+        self.assertEqual("ai_provider_not_configured", ctx.exception.detail)
 
 
 if __name__ == "__main__":

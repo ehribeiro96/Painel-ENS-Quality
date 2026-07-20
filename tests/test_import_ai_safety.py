@@ -42,14 +42,21 @@ class _SlowProvider:
 
 
 class _Session:
-    def __init__(self) -> None:
+    def __init__(self, rows: list[Any] | None = None) -> None:
         self.added: list[Any] = []
+        self.rows = rows or []
 
     def add(self, value: object) -> None:
         self.added.append(value)
 
     async def flush(self) -> None:
         return None
+
+    async def scalar(self, statement):  # noqa: ANN001, ANN201, ARG002
+        return self.rows[0] if self.rows else None
+
+    async def execute(self, statement):  # noqa: ANN001, ANN201, ARG002
+        return SimpleNamespace(scalars=lambda: self.rows)
 
 
 class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
@@ -161,7 +168,11 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
             ai_suggestions=[ImportCorrection(row=1, field="hostname", original_value="pc antigo", proposed_value="pc-antigo", reason="padronização", method="hermes", confidence=0.9, requires_review=True)],
             confidence=0,
         )
-        session = _Session()
+        staging = SimpleNamespace(
+            row_number=1, raw_payload={"hostname": "pc antigo"}, normalized_payload={"hostname": "pc antigo"},
+            issues=[{"field": "hostname"}], decision="REVIEW_REQUIRED", matched_asset_id=None,
+        )
+        session = _Session([staging])
 
         persisted = await persist_ai_suggestions(job, analysis, session, actor_id)
         self.assertEqual("PENDING", persisted[0].status)
@@ -173,6 +184,9 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
         decided_at = datetime(2026, 7, 17, tzinfo=UTC)
         approved = await decide_ai_suggestion(job, suggestion_id, "APPROVED", session, actor_id, decided_at)
         self.assertEqual("APPROVED", approved.status)
+        self.assertEqual("pc-antigo", staging.normalized_payload["hostname"])
+        self.assertEqual("CREATE", staging.decision)
+        self.assertTrue(job.report["can_apply"])
         self.assertEqual(actor_id, approved.decided_by)
         self.assertEqual(decided_at, approved.decided_at)
         self.assertEqual(AuditAction.STATUS_CHANGE, session.added[-1].action)
@@ -180,6 +194,7 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual("APPROVED", session.added[-1].after["status"])
         self.assertEqual("pc antigo", approved.original_value)
         self.assertEqual([approved], list_ai_suggestions(job))
+        self.assertEqual(approved, await decide_ai_suggestion(job, suggestion_id, "APPROVED", session, actor_id))
 
         with self.assertRaisesRegex(ValueError, "suggestion_already_decided"):
             await decide_ai_suggestion(job, suggestion_id, "REJECTED", session, actor_id)
@@ -192,13 +207,37 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
             ai_suggestions=[ImportCorrection(row=1, field="hostname", original_value="pc 1", proposed_value="pc-1", reason="padronização", method="hermes", confidence=0.9, requires_review=True)],
             confidence=0,
         )
-        session = _Session()
+        staging = SimpleNamespace(
+            row_number=1, raw_payload={"hostname": "pc 1"}, normalized_payload={"hostname": "pc 1"},
+            issues=[{"field": "hostname"}], decision="REVIEW_REQUIRED", matched_asset_id=None,
+        )
+        session = _Session([staging])
         suggestion = (await persist_ai_suggestions(job, analysis, session, actor_id))[0]
 
         rejected = await decide_ai_suggestion(job, suggestion.id, "REJECTED", session, actor_id)
 
         self.assertEqual("REJECTED", rejected.status)
         self.assertEqual("REJECTED", session.added[-1].after["status"])
+        self.assertEqual("pc 1", staging.normalized_payload["hostname"])
+        self.assertFalse(job.report["can_apply"])
+
+    async def test_protected_field_without_real_source_stays_blocked(self) -> None:
+        actor_id = uuid.uuid4()
+        job = SimpleNamespace(id=uuid.uuid4(), report={})
+        analysis = ImportAiAnalysis(
+            file_summary=ImportFileSummary(rows_total=1, rows_valid=0, rows_auto_corrected=0, rows_need_review=1, rows_invalid=0),
+            ai_suggestions=[ImportCorrection(row=1, field="serial", original_value="forged", proposed_value="INVENTED", reason="guess", method="hermes", confidence=0.9, requires_review=True)],
+            confidence=0,
+        )
+        staging = SimpleNamespace(row_number=1, raw_payload={}, normalized_payload={}, issues=[{"field":"serial"}], decision="REVIEW_REQUIRED", matched_asset_id=None)
+        session = _Session([staging])
+        suggestion = (await persist_ai_suggestions(job, analysis, session, actor_id))[0]
+
+        with self.assertRaisesRegex(ValueError, "protected_field_source_required"):
+            await decide_ai_suggestion(job, suggestion.id, "APPROVED", session, actor_id)
+
+        self.assertEqual({}, staging.normalized_payload)
+        self.assertEqual("REVIEW_REQUIRED", staging.decision)
 
 
 if __name__ == "__main__":

@@ -48,7 +48,7 @@ class ApoemaImportsParityContractTest(unittest.TestCase):
             "Selecionar planilha",
             "Opções avançadas e detalhes",
             "analyzeImport",
-            "safe_to_apply",
+            "can_apply",
             "Revisar pendências",
             "Sugestões da IA",
             "Aprovar",
@@ -60,7 +60,9 @@ class ApoemaImportsParityContractTest(unittest.TestCase):
         self.assertIn(".imports(token)", IMPORTS_PAGE)
         self.assertIn("importUpload", IMPORTS_PAGE)
         self.assertIn("importPreview", IMPORTS_PAGE)
-        for term in ("importStaging", "importConflicts", "importValidationErrors", "DonorPanelPageLayout", "DonorChip", "Base44ImportPanel", "Base44InfoGrid", "Base44PageHeader", "Base44StatusBadge", "<select"):
+        for term in ("importStaging", "importConflicts", "importValidationErrors", "Analisar com Hermes", "cancelImport", "Limpar tela", "Tentar novamente", "<select"):
+            self.assertIn(term, IMPORTS_PAGE)
+        for term in ("DonorPanelPageLayout", "DonorChip", "Base44ImportPanel", "Base44InfoGrid", "Base44PageHeader", "Base44StatusBadge"):
             self.assertNotIn(term, IMPORTS_PAGE)
         self.assertNotIn("localhost:11434", APOEMA)
         self.assertNotIn("OLLAMA_BASE_URL", APOEMA)

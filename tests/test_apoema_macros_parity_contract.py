@@ -30,7 +30,7 @@ class ApoemaMacrosParityContractTest(unittest.TestCase):
         self.assertNotIn('redirectTo: "/apoema/macros"', APP)
 
     def test_macros_page_contains_itil_preview_and_copy_contract(self) -> None:
-        for term in ("Gerar macro com Hermes", "generateItilMacro", "Macro gerada editável", "missing_information", "Copiar", "Adicionar detalhes"):
+        for term in ("Gerar macro com Hermes", "generateItilMacro", "Macro gerada editável", "missing_information", "Rascunho não oficial", "Copiar rascunho", "Adicionar detalhes"):
             self.assertIn(term, APOEMA_MACROS)
         for term in ("Base44MacroPanel", "Base44MacroPreview", "Base44FilterPanel", "macroTemplates", "macroAutocomplete"):
             self.assertNotIn(term, APOEMA_MACROS)

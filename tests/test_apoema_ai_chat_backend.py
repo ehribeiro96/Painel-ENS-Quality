@@ -24,13 +24,7 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
     def test_provider_catalog_exposes_expected_providers(self) -> None:
         settings = Settings(ai_chat_default_provider="mock")
 
-        with patch("app.domains.ai_chat.apoema.get_ai_provider_health") as health_probe:
-            health_probe.return_value = {
-                "provider": "hermes",
-                "configured": True,
-                "status": "ok",
-                "model": "hermes-agent",
-            }
+        with patch("app.domains.ai_chat.providers.subprocess.run") as health_probe:
             catalog = build_apoema_provider_catalog(settings)
 
         self.assertEqual(["mock", "ollama", "hermes"], [provider.id for provider in catalog.providers])
@@ -39,6 +33,7 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(["qwen3:4b-64k", "qwen2.5-coder:7b"], catalog.providers[1].models)
         self.assertEqual("hermes-agent", catalog.providers[2].default_model)
         self.assertEqual("online", catalog.providers[2].status)
+        health_probe.assert_not_called()
 
     async def test_mock_provider_message_returns_ok(self) -> None:
         settings = Settings(ai_chat_default_provider="mock")
@@ -68,14 +63,8 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
         )
 
         with patch("app.domains.ai_chat.apoema.OllamaProvider.generate", side_effect=AiProviderRequestError("ollama_timeout")):
-            response = await generate_apoema_message(settings, payload)
-
-        self.assertEqual("ollama", response.provider)
-        self.assertEqual("offline", response.status)
-        self.assertIn("Tente novamente", response.content)
-        self.assertNotIn("fallback", response.content.lower())
-        self.assertNotIn("Modo mock", response.content)
-        self.assertNotIn("Teste com prompt sensível", response.error or "")
+            with self.assertRaisesRegex(AiProviderRequestError, "ollama_timeout"):
+                await generate_apoema_message(settings, payload)
 
     async def test_hermes_unavailable_never_returns_false_success(self) -> None:
         settings = Settings(ai_chat_default_provider="hermes", hermes_base_url="")
@@ -85,13 +74,8 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
             "app.domains.ai_chat.apoema.HermesTerminalProvider.generate",
             side_effect=AiProviderRequestError("hermes_request_failed:token=nao-gravar"),
         ):
-            response = await generate_apoema_message(settings, payload)
-
-        self.assertEqual("error", response.status)
-        self.assertNotEqual("ok", response.status)
-        self.assertEqual("hermes_request_failed", response.error)
-        self.assertNotIn("nao-gravar", f"{response.content} {response.error}")
-        self.assertNotIn("mock", response.content.lower())
+            with self.assertRaises(AiProviderRequestError):
+                await generate_apoema_message(settings, payload)
 
     async def test_hermes_invalid_response_never_returns_false_success(self) -> None:
         settings = Settings(ai_chat_default_provider="hermes", hermes_base_url="")
@@ -101,11 +85,8 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
             "app.domains.ai_chat.apoema.HermesTerminalProvider.generate",
             side_effect=AiProviderRequestError("hermes_empty_response"),
         ):
-            response = await generate_apoema_message(settings, payload)
-
-        self.assertEqual("error", response.status)
-        self.assertEqual("hermes_empty_response", response.error)
-        self.assertNotIn("mock", response.content.lower())
+            with self.assertRaisesRegex(AiProviderRequestError, "hermes_empty_response"):
+                await generate_apoema_message(settings, payload)
 
     async def test_hermes_terminal_provider_returns_real_response_without_fallback(self) -> None:
         settings = Settings(ai_chat_default_provider="hermes", hermes_base_url="")
