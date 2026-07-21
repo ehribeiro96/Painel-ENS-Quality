@@ -105,6 +105,34 @@ class MacroService:
         required_fields: list[str] | None = None,
         audit_event: str = "macro_generated",
     ) -> MacroGeneration:
+        if context_type == "asset_movement":
+            raise ValueError("reserved_context_requires_official_endpoint")
+        return await self._generate(
+            template,
+            values,
+            actor_id,
+            context_type,
+            context_id,
+            ticket_number,
+            audit_context,
+            allow_pending,
+            required_fields,
+            audit_event,
+        )
+
+    async def _generate(
+        self,
+        template: MacroTemplate,
+        values: dict[str, object],
+        actor_id: UUID | None,
+        context_type: str | None = None,
+        context_id: UUID | None = None,
+        ticket_number: str | None = None,
+        audit_context: AuditContext | None = None,
+        allow_pending: bool = False,
+        required_fields: list[str] | None = None,
+        audit_event: str = "macro_generated",
+    ) -> MacroGeneration:
         rendered, pending = render_macro(template.template_text, values, required_fields if required_fields is not None else template.required_fields)
         if pending and not allow_pending:
             raise MacroRenderError("missing_optional_fields", pending)
@@ -220,7 +248,7 @@ class MacroService:
             return None, None, values, pending
         try:
             async with self.session.begin_nested():
-                generation = await self.generate(
+                generation = await self._generate(
                     template,
                     values,
                     actor_id,

@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import Literal
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class MacroTemplateBase(BaseModel):
@@ -63,6 +63,12 @@ class MacroGenerateRequest(BaseModel):
     context_type: str | None = Field(default=None, max_length=80)
     context_id: UUID | None = None
     ticket_number: str | None = Field(default=None, max_length=80)
+
+    @model_validator(mode="after")
+    def reject_reserved_movement_context(self) -> MacroGenerateRequest:
+        if self.context_type == "asset_movement":
+            raise ValueError("reserved_context_requires_official_endpoint")
+        return self
 
 
 class MacroGenerationRead(BaseModel):
