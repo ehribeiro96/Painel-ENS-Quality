@@ -202,7 +202,7 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
         suggestion_id = persisted[0].id
 
         decided_at = datetime(2026, 7, 17, tzinfo=UTC)
-        approved = await decide_ai_suggestion(job, suggestion_id, "APPROVED", session, actor_id, decided_at)
+        approved = await decide_ai_suggestion(job.id, suggestion_id, "APPROVED", session, actor_id, decided_at)
         self.assertEqual("APPROVED", approved.status)
         self.assertEqual("pc-antigo", staging.normalized_payload["hostname"])
         self.assertEqual("CREATE", staging.decision)
@@ -214,10 +214,10 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual("APPROVED", session.added[-1].after["status"])
         self.assertEqual("pc antigo", approved.original_value)
         self.assertEqual([approved], list_ai_suggestions(job))
-        self.assertEqual(approved, await decide_ai_suggestion(job, suggestion_id, "APPROVED", session, actor_id))
+        self.assertEqual(approved, await decide_ai_suggestion(job.id, suggestion_id, "APPROVED", session, actor_id))
 
         with self.assertRaisesRegex(ValueError, "suggestion_already_decided"):
-            await decide_ai_suggestion(job, suggestion_id, "REJECTED", session, actor_id)
+            await decide_ai_suggestion(job.id, suggestion_id, "REJECTED", session, actor_id)
 
     async def test_suggestion_can_be_rejected_with_audit(self) -> None:
         actor_id = uuid.uuid4()
@@ -231,7 +231,7 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
         session = _Session([staging], job)
         suggestion = (await persist_ai_suggestions(job, analysis, session, actor_id))[0]
 
-        rejected = await decide_ai_suggestion(job, suggestion.id, "REJECTED", session, actor_id)
+        rejected = await decide_ai_suggestion(job.id, suggestion.id, "REJECTED", session, actor_id)
 
         self.assertEqual("REJECTED", rejected.status)
         self.assertEqual("REJECTED", session.added[-1].after["status"])
@@ -256,7 +256,7 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
         suggestion = (await persist_ai_suggestions(job, analysis, session, actor_id))[0]
 
         with self.assertRaisesRegex(ValueError, "protected_field_source_required"):
-            await decide_ai_suggestion(job, suggestion.id, "APPROVED", session, actor_id)
+            await decide_ai_suggestion(job.id, suggestion.id, "APPROVED", session, actor_id)
 
         self.assertEqual({}, staging.normalized_payload)
         self.assertEqual("REVIEW_REQUIRED", staging.decision)

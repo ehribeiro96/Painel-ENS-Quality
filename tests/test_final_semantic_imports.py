@@ -173,7 +173,7 @@ class ImportReviewSemanticBlockerTest(unittest.IsolatedAsyncioTestCase):
         actor_id = uuid.uuid4()
 
         approved = await decide_ai_suggestion(
-            job,
+            job.id,
             job.suggestion.id,
             "APPROVED",
             session,
@@ -198,7 +198,7 @@ class ImportReviewSemanticBlockerTest(unittest.IsolatedAsyncioTestCase):
                 staging = _staging(job)
                 session = _ImportSession(job, staging)
                 with self.assertRaisesRegex(ValueError, "import_not_reviewable"):
-                    await decide_ai_suggestion(job, job.suggestion.id, "APPROVED", session, uuid.uuid4())
+                    await decide_ai_suggestion(job.id, job.suggestion.id, "APPROVED", session, uuid.uuid4())
                 self.assertEqual("PC ANTIGO", staging.normalized_payload["hostname"])
 
 
@@ -208,7 +208,7 @@ class ImportCancelApplySemanticBlockerTest(unittest.IsolatedAsyncioTestCase):
         session = _ImportSession(job, _staging(job))
 
         with self.assertRaisesRegex(ValueError, "import_not_cancellable"):
-            await ImportService(session).cancel_import(job, uuid.uuid4())
+            await ImportService(session).cancel_import(job.id, uuid.uuid4())
 
         self.assertEqual("APPLYING", job.status)
         self.assertTrue(any("FROM import_jobs" in sql and "FOR UPDATE" in sql for sql in session.statements))
@@ -217,21 +217,24 @@ class ImportCancelApplySemanticBlockerTest(unittest.IsolatedAsyncioTestCase):
         job = _job("CANCELLED")
         session = _ImportSession(job, _staging(job))
 
-        result = await ImportService(session).cancel_import(job, uuid.uuid4())
+        result = await ImportService(session).cancel_import(job.id, uuid.uuid4())
 
         self.assertIs(job, result)
         self.assertTrue(any("FROM import_jobs" in sql and "FOR UPDATE" in sql for sql in session.statements))
         self.assertEqual([], session.added)
 
-    def test_apply_and_cancel_both_use_the_import_job_row_lock(self) -> None:
+    def test_review_apply_and_cancel_share_forced_import_job_reload(self) -> None:
         source = (ROOT / "backend/app/domains/imports/service.py").read_text(encoding="utf-8")
         apply_body = source.split("async def apply_import", 1)[1].split("async def update_mapping", 1)[0]
         cancel_body = source.split("async def cancel_import", 1)[1].split("def _safe_filename", 1)[0]
+        review_source = (ROOT / "backend/app/services/import_ai_analysis.py").read_text(encoding="utf-8")
 
-        self.assertIn("select(ImportJob)", apply_body)
-        self.assertIn("with_for_update()", apply_body)
-        self.assertIn("select(ImportJob)", cancel_body)
-        self.assertIn("with_for_update()", cancel_body)
+        self.assertIn("_get_import_job_for_update", apply_body)
+        self.assertIn("_get_import_job_for_update", cancel_body)
+        self.assertIn("_get_import_job_for_update", review_source)
+        helper_body = source.split("async def _get_import_job_for_update", 1)[1].split("class ImportService", 1)[0]
+        self.assertIn("with_for_update()", helper_body)
+        self.assertIn("populate_existing=True", helper_body)
         self.assertIn("import_not_cancellable", cancel_body)
 
 
@@ -248,7 +251,7 @@ class ImportConcurrencySemanticBlockerTest(unittest.IsolatedAsyncioTestCase):
 
         async def decide(session: _ConcurrentSession, decision: str):
             try:
-                result = await decide_ai_suggestion(job, job.suggestion.id, decision, session, uuid.uuid4())
+                result = await decide_ai_suggestion(job.id, job.suggestion.id, decision, session, uuid.uuid4())
                 await session.commit()
                 return result
             except Exception as exc:  # noqa: BLE001
@@ -288,7 +291,7 @@ class ImportConcurrencySemanticBlockerTest(unittest.IsolatedAsyncioTestCase):
         async def run(session: _ConcurrentSession, operation: str):
             try:
                 service = ImportService(session)
-                result = await (service.apply_import(job, uuid.uuid4()) if operation == "apply" else service.cancel_import(job, uuid.uuid4()))
+                result = await (service.apply_import(job.id, uuid.uuid4()) if operation == "apply" else service.cancel_import(job.id, uuid.uuid4()))
                 await session.commit()
                 return result
             except Exception as exc:  # noqa: BLE001

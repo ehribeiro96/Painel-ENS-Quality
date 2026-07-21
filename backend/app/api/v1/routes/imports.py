@@ -125,10 +125,10 @@ async def _decide_import_ai_suggestion(
     session: AsyncSession,
     current_user: User,
 ) -> ImportCorrection:
-    job = await _get_import_or_404(import_id, session)
+    await _get_import_or_404(import_id, session)
 
     async def operation() -> ImportCorrection:
-        suggestion = await decide_ai_suggestion(job, suggestion_id, decision, session, current_user.id)
+        suggestion = await decide_ai_suggestion(import_id, suggestion_id, decision, session, current_user.id)
         await record_ai_audit(
             session,
             event="AI_APPROVAL" if decision == "APPROVED" else "AI_REJECTION",
@@ -316,16 +316,16 @@ async def apply_import(
     session: AsyncSession = Depends(get_session),
     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
 ) -> ImportApplyResponse:
-    job = await _get_import_or_404(import_id, session)
     try:
         async def operation() -> ImportJob:
-            return await ImportService(session).apply_import(job, current_user.id, build_audit_context(request, current_user.id))
+            return await ImportService(session).apply_import(import_id, current_user.id, build_audit_context(request, current_user.id))
 
         applied = await commit_or_rollback(session, operation)
         return ImportApplyResponse(job=applied, report=applied.report)
     except ValueError as exc:
         code = str(exc)
-        raise HTTPException(status_code=409 if code == "import_not_applicable" else 400, detail=code) from exc
+        http_status = 404 if code == "import_not_found" else 409 if code == "import_not_applicable" else 400
+        raise HTTPException(status_code=http_status, detail=code) from exc
 
 
 @router.post("/{import_id}/cancel", response_model=ImportJobRead)
@@ -335,15 +335,15 @@ async def cancel_import(
     session: AsyncSession = Depends(get_session),
     current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
 ) -> ImportJob:
-    job = await _get_import_or_404(import_id, session)
     try:
         async def operation() -> ImportJob:
-            return await ImportService(session).cancel_import(job, current_user.id, build_audit_context(request, current_user.id))
+            return await ImportService(session).cancel_import(import_id, current_user.id, build_audit_context(request, current_user.id))
 
         return await commit_or_rollback(session, operation)
     except ValueError as exc:
         code = str(exc)
-        raise HTTPException(status_code=409 if code == "import_not_cancellable" else 400, detail=code) from exc
+        http_status = 404 if code == "import_not_found" else 409 if code == "import_not_cancellable" else 400
+        raise HTTPException(status_code=http_status, detail=code) from exc
 
 
 @router.get("/{import_id}/report")

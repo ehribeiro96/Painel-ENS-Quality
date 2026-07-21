@@ -14,7 +14,7 @@ from app.domains.ai_chat.providers import AiProvider, AiProviderMessage, HermesT
 from app.domains.audit.service import AuditService
 from app.domains.imports.models import ImportJob, ImportStagingAsset
 from app.domains.imports.schemas import ImportAiAnalysis, ImportAiDiagnostics, ImportCorrection, ImportFileSummary
-from app.domains.imports.service import ImportService
+from app.domains.imports.service import ImportService, _get_import_job_for_update
 from app.shared.enums import AuditAction, ImportDecision
 from pydantic import ValidationError
 from sqlalchemy import select
@@ -168,7 +168,7 @@ async def persist_ai_suggestions(
 
 
 async def decide_ai_suggestion(
-    job: ImportJob,
+    job_id: UUID,
     suggestion_id: UUID | None,
     decision: Literal["APPROVED", "REJECTED"],
     session: AsyncSession,
@@ -177,7 +177,7 @@ async def decide_ai_suggestion(
 ) -> ImportCorrection:
     if suggestion_id is None:
         raise ValueError("suggestion_not_found")
-    locked_job = await session.scalar(select(ImportJob).where(ImportJob.id == job.id).with_for_update())
+    locked_job = await _get_import_job_for_update(session, job_id)
     if locked_job is None:
         raise ValueError("suggestion_not_found")
     job = locked_job
