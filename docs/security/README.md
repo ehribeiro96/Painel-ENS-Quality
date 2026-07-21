@@ -73,6 +73,8 @@ A migração completa não foi feita nesta fase porque exige decisão conjunta s
 
 Uma constraint/índice único parcial protege `asset_movement` por `context_id`. O serviço usa savepoint e, em corrida, retorna a geração vencedora. A migration não remove duplicatas existentes: antes de aplicá-la, o operador deve consultar duplicidades e decidir correção manual auditada. Nenhuma migration foi executada automaticamente.
 
+`asset_movement` é contexto reservado ao endpoint oficial de movimentação. O schema da geração genérica e `MacroService.generate()` rejeitam esse contexto com `reserved_context_requires_official_endpoint`; somente `generate_for_movement()` carrega a movimentação persistida, deriva o `context_id` canônico e retorna o `generation_id` auditável.
+
 ## Imports e IA
 
 O fluxo permanece staging-first:
@@ -80,6 +82,8 @@ O fluxo permanece staging-first:
 `upload -> normalização determinística -> staging -> revisão humana -> apply explícito`
 
 Sugestões Hermes são persistidas automaticamente para revisão e exigem `requires_review=true`. Elas não alteram o staging antes da aprovação humana, não alteram ativos e não executam apply final automaticamente. Campos críticos (`serial`, `patrimony`, `ip_address`, `mac_address`, `user`, `location`) sem valor-fonte real são rejeitados mesmo se o provider alegar um `original_value`.
+
+Aprovação e rejeição bloqueiam `ImportJob` e as linhas de staging na ordem canônica. Aprovação reexecuta o classificador do pipeline para recalcular identidade, match, merge, conflitos e blockers; rejeição preserva o staging e apenas recompõe o report. `apply_import` e `cancel_import` usam o mesmo lock de `ImportJob`, e `APPLYING` nunca é cancelável.
 
 ## Auditoria
 
@@ -92,6 +96,8 @@ A autorização de IA registra em log estruturado:
 
 O middleware registra o status HTTP final com request/correlation ID. Operações persistentes existentes continuam usando `AuditService`.
 
+Provider, modelo e `conversation_id` de eventos de IA são identificadores canônicos: o modelo precisa pertencer ao catálogo do provider, a conversa efêmera usa UUID e a camada de auditoria rejeita CR/LF, NUL, delimitadores e valores fora dos limites antes de persistir. Prompt, token, cookie, Authorization e traceback bruto não entram no payload de auditoria.
+
 ## Riscos conhecidos
 
 1. `REQUIRES_ARCHITECTURE_DECISION`: access token ainda em `localStorage`, sujeito a exfiltração em caso de XSS.
@@ -102,4 +108,4 @@ O middleware registra o status HTTP final com request/correlation ID. Operaçõe
 6. `npm audit` ainda reporta uma vulnerabilidade baixa transitiva em `@babel/core`; o achado alto direto do Vite foi removido com a atualização compatível para 6.4.3.
 7. O catálogo de providers é estático; somente a rota de health protegida executa probe, fora do event loop.
 8. `X-Forwarded-For` e `X-Audit-Source` dependem de normalização por proxy confiável; a política de proxy/CIDR requer decisão de arquitetura.
-9. O caminho Hermes candidato a produção opera em modo fail-closed: falhas e timeouts retornam erro controlado e auditado, sem fallback mock automático. O provider mock permanece apenas para uso explícito em ambiente de teste ou desenvolvimento.
+9. O caminho Hermes candidato a produção opera em modo fail-closed: falhas e timeouts retornam erro controlado e auditado, sem fallback mock automático. O provider mock exige `AI_MOCK_ENABLED=true` em ambiente local permitido. Produção rejeita mock na validação de configuração, não o anuncia no catálogo e responde `403 ai_provider_not_allowed` a seleção explícita, com auditoria `DENIED`.
