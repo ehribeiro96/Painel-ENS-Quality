@@ -42,9 +42,10 @@ class _SlowProvider:
 
 
 class _Session:
-    def __init__(self, rows: list[Any] | None = None) -> None:
+    def __init__(self, rows: list[Any] | None = None, job: Any | None = None) -> None:
         self.added: list[Any] = []
         self.rows = rows or []
+        self.job = job
 
     def add(self, value: object) -> None:
         self.added.append(value)
@@ -52,11 +53,33 @@ class _Session:
     async def flush(self) -> None:
         return None
 
-    async def scalar(self, statement):  # noqa: ANN001, ANN201, ARG002
+    async def scalar(self, statement):  # noqa: ANN001, ANN201
+        if "FROM import_jobs" in str(statement):
+            return self.job
         return self.rows[0] if self.rows else None
 
-    async def execute(self, statement):  # noqa: ANN001, ANN201, ARG002
+    async def execute(self, statement):  # noqa: ANN001, ANN201
+        if "FROM assets" in str(statement):
+            return SimpleNamespace(scalars=lambda: [])
         return SimpleNamespace(scalars=lambda: self.rows)
+
+
+def _review_job(report: dict[str, object]) -> SimpleNamespace:
+    return SimpleNamespace(
+        id=uuid.uuid4(), source="SPREADSHEET", filename="synthetic.csv", status="REVIEW_REQUIRED",
+        total_rows=1, valid_rows=0, invalid_rows=0, created_rows=0, updated_rows=0,
+        skipped_rows=0, conflict_rows=0, failed_rows=0, updated_by=None, report=report,
+    )
+
+
+def _review_staging(job: SimpleNamespace, hostname: str) -> SimpleNamespace:
+    return SimpleNamespace(
+        id=uuid.uuid4(), job_id=job.id, row_number=1, raw_payload={"hostname": hostname},
+        normalized_payload={"hostname": hostname, "asset_type": "DESKTOP", "identity_confidence": "MEDIUM"},
+        identity_type="hostname", identity_value=hostname, issues=[{"field": "hostname"}],
+        decision="REVIEW_REQUIRED", row_status="STAGED", matched_asset_id=None, merge_action="REVIEW",
+        updated_by=None, deleted_at=None, identity_confidence="MEDIUM",
+    )
 
 
 class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
@@ -162,17 +185,14 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
 
     async def test_suggestions_persist_pending_and_require_explicit_decision_with_audit(self) -> None:
         actor_id = uuid.uuid4()
-        job = SimpleNamespace(id=uuid.uuid4(), report={})
+        job = _review_job({})
         analysis = ImportAiAnalysis(
             file_summary=ImportFileSummary(rows_total=1, rows_valid=0, rows_auto_corrected=0, rows_need_review=1, rows_invalid=0),
             ai_suggestions=[ImportCorrection(row=1, field="hostname", original_value="pc antigo", proposed_value="pc-antigo", reason="padronização", method="hermes", confidence=0.9, requires_review=True)],
             confidence=0,
         )
-        staging = SimpleNamespace(
-            row_number=1, raw_payload={"hostname": "pc antigo"}, normalized_payload={"hostname": "pc antigo"},
-            issues=[{"field": "hostname"}], decision="REVIEW_REQUIRED", matched_asset_id=None,
-        )
-        session = _Session([staging])
+        staging = _review_staging(job, "pc antigo")
+        session = _Session([staging], job)
 
         persisted = await persist_ai_suggestions(job, analysis, session, actor_id)
         self.assertEqual("PENDING", persisted[0].status)
@@ -201,17 +221,14 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
 
     async def test_suggestion_can_be_rejected_with_audit(self) -> None:
         actor_id = uuid.uuid4()
-        job = SimpleNamespace(id=uuid.uuid4(), report={})
+        job = _review_job({})
         analysis = ImportAiAnalysis(
             file_summary=ImportFileSummary(rows_total=1, rows_valid=0, rows_auto_corrected=0, rows_need_review=1, rows_invalid=0),
             ai_suggestions=[ImportCorrection(row=1, field="hostname", original_value="pc 1", proposed_value="pc-1", reason="padronização", method="hermes", confidence=0.9, requires_review=True)],
             confidence=0,
         )
-        staging = SimpleNamespace(
-            row_number=1, raw_payload={"hostname": "pc 1"}, normalized_payload={"hostname": "pc 1"},
-            issues=[{"field": "hostname"}], decision="REVIEW_REQUIRED", matched_asset_id=None,
-        )
-        session = _Session([staging])
+        staging = _review_staging(job, "pc 1")
+        session = _Session([staging], job)
         suggestion = (await persist_ai_suggestions(job, analysis, session, actor_id))[0]
 
         rejected = await decide_ai_suggestion(job, suggestion.id, "REJECTED", session, actor_id)
@@ -223,14 +240,19 @@ class ImportAiSafetyTest(unittest.IsolatedAsyncioTestCase):
 
     async def test_protected_field_without_real_source_stays_blocked(self) -> None:
         actor_id = uuid.uuid4()
-        job = SimpleNamespace(id=uuid.uuid4(), report={})
+        job = _review_job({})
         analysis = ImportAiAnalysis(
             file_summary=ImportFileSummary(rows_total=1, rows_valid=0, rows_auto_corrected=0, rows_need_review=1, rows_invalid=0),
             ai_suggestions=[ImportCorrection(row=1, field="serial", original_value="forged", proposed_value="INVENTED", reason="guess", method="hermes", confidence=0.9, requires_review=True)],
             confidence=0,
         )
-        staging = SimpleNamespace(row_number=1, raw_payload={}, normalized_payload={}, issues=[{"field":"serial"}], decision="REVIEW_REQUIRED", matched_asset_id=None)
-        session = _Session([staging])
+        staging = SimpleNamespace(
+            id=uuid.uuid4(), job_id=job.id, row_number=1, raw_payload={}, normalized_payload={},
+            issues=[{"field":"serial"}], decision="REVIEW_REQUIRED", matched_asset_id=None,
+            row_status="STAGED", identity_type=None, identity_value=None, merge_action="REVIEW",
+            updated_by=None, deleted_at=None, identity_confidence=None,
+        )
+        session = _Session([staging], job)
         suggestion = (await persist_ai_suggestions(job, analysis, session, actor_id))[0]
 
         with self.assertRaisesRegex(ValueError, "protected_field_source_required"):

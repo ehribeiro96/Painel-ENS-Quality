@@ -22,7 +22,7 @@ from fastapi import HTTPException  # noqa: E402
 
 class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
     def test_provider_catalog_exposes_expected_providers(self) -> None:
-        settings = Settings(ai_chat_default_provider="mock")
+        settings = Settings(ai_chat_default_provider="mock", ai_mock_enabled=True)
 
         with patch("app.domains.ai_chat.providers.subprocess.run") as health_probe:
             catalog = build_apoema_provider_catalog(settings)
@@ -36,9 +36,9 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
         health_probe.assert_not_called()
 
     async def test_mock_provider_message_returns_ok(self) -> None:
-        settings = Settings(ai_chat_default_provider="mock")
+        settings = Settings(ai_chat_default_provider="mock", ai_mock_enabled=True)
         payload = ApoemaChatMessageCreate(
-            conversation_id="apoema-test",
+            conversation_id="11111111-1111-4111-8111-111111111111",
             provider="mock",
             model="fallback-local",
             message="Olá Apoema",
@@ -47,7 +47,7 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
 
         response = await generate_apoema_message(settings, payload)
 
-        self.assertEqual("apoema-test", response.conversation_id)
+        self.assertEqual("11111111-1111-4111-8111-111111111111", response.conversation_id)
         self.assertEqual("mock", response.provider)
         self.assertEqual("ok", response.status)
         self.assertTrue(response.content.startswith("Modo mock: resposta simulada para validação do Painel ENS-Quality."))
@@ -55,7 +55,7 @@ class ApoemaAiChatBackendTest(unittest.IsolatedAsyncioTestCase):
     async def test_ollama_request_failure_returns_failed_without_mock_or_secret(self) -> None:
         settings = Settings(ai_chat_default_provider="ollama")
         payload = ApoemaChatMessageCreate(
-            conversation_id="apoema-ollama",
+            conversation_id="22222222-2222-4222-8222-222222222222",
             provider="ollama",
             model="qwen3:4b-64k",
             message="Teste com prompt sensível",

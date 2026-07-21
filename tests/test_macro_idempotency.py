@@ -45,7 +45,7 @@ class _RaceMacroService(MacroService):
     async def suggested_for_movement(self, movement_id):  # noqa: ANN001, ARG002
         return self.template, {"Patrimônio": "P-1"}, "macro", []
 
-    async def generate(self, *args, **kwargs):  # noqa: ANN002, ANN003
+    async def _generate(self, *args, **kwargs):  # noqa: ANN002, ANN003
         raise IntegrityError("insert macro", {}, Exception("uq_macro_generations_asset_movement"))
 
 

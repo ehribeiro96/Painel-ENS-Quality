@@ -21,6 +21,7 @@ def force_ai_chat_mock_environment() -> patch:
         os.environ,
         {
             "AI_PROVIDER": "mock",
+            "AI_MOCK_ENABLED": "true",
             "AI_MODEL": "",
             "AI_GEMINI_API_KEY": "",
             "AI_OPENAI_API_KEY": "",
@@ -138,6 +139,7 @@ class AiChatMockProviderTest(unittest.IsolatedAsyncioTestCase):
         class MinimalSettings:
             ai_provider = "mock"
             ai_model = ""
+            mock_provider_allowed = True
 
         provider = build_ai_provider(MinimalSettings())
 
