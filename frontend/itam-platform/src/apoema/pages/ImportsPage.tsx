@@ -8,6 +8,14 @@ import { useAuth } from "@/lib/auth";
 import type { ImportAiAnalysis, ImportConflict, ImportCorrection, ImportJob, ImportPreview, ImportStagingAsset, ImportValidationError } from "@/lib/types";
 
 const IMPORT_AI_TIMEOUT_MS = 125000;
+const CANCELLABLE_IMPORT_STATUSES = ["RECEIVED", "STAGED", "READY_TO_APPLY", "REVIEW_REQUIRED", "PREVIEW_ONLY"];
+type LoadOperation = "latest" | "preview" | "staging" | "conflicts" | "validation-errors" | "suggestions";
+type FailedLoad = { operation: LoadOperation; message: string; jobId: string | null };
+type LoadFailure = { operation: LoadOperation; reason: unknown; jobId: string | null };
+
+function isLoadFailure(value: unknown): value is LoadFailure {
+  return typeof value === "object" && value !== null && "operation" in value && "reason" in value;
+}
 
 function displayValue(value: unknown) {
   if (value === null || value === undefined || value === "") return "—";
@@ -26,54 +34,94 @@ export function ImportsPage() {
   const [validationErrors, setValidationErrors] = useState<ImportValidationError[]>([]);
   const [mapping, setMapping] = useState<Record<string,string>>({});
   const [importMode, setImportMode] = useState("INITIAL_LOAD");
-  const [loadFailed, setLoadFailed] = useState(false);
+  const [failedLoad, setFailedLoad] = useState<FailedLoad | null>(null);
   const [busy, setBusy] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
+  function rememberLoadFailure(operation: LoadOperation, reason: unknown, jobId: string | null) {
+    const message = mapAiChatError(reason).message;
+    setFailedLoad({ operation, message, jobId });
+    setError(message);
+  }
+
+  function rememberActionFailure(reason: unknown) {
+    if (!isLoadFailure(reason)) setError(mapAiChatError(reason).message);
+  }
+
+  async function loadOperation(operation: LoadOperation, nextJob?: ImportJob) {
+    if (!token) return null;
+    if (operation === "latest") {
+      const page = await api.imports(token);
+      const latest = page.items[0] ?? null;
+      setJob(latest);
+      return latest;
+    }
+    if (!nextJob) return null;
+    if (operation === "preview") {
+      const value = await api.importPreview(token, nextJob.id);
+      setJob(value.job); setPreview(value); setMapping(value.detected_mapping); setImportMode(String(value.job.report.import_mode ?? "INITIAL_LOAD"));
+    } else if (operation === "staging") {
+      setStaging((await api.importStaging(token, nextJob.id)).items);
+    } else if (operation === "conflicts") {
+      setConflicts(await api.importConflicts(token, nextJob.id));
+    } else if (operation === "validation-errors") {
+      setValidationErrors(await api.importValidationErrors(token, nextJob.id));
+    } else if (operation === "suggestions") {
+      setSuggestions(await api.aiSuggestions(token, nextJob.id));
+    }
+    return null;
+  }
+
   async function loadImport(nextJob: ImportJob) {
-    const [nextPreview, nextStaging, nextConflicts, nextErrors, nextSuggestions] = await Promise.all([
-      api.importPreview(token as string, nextJob.id),
-      api.importStaging(token as string, nextJob.id),
-      api.importConflicts(token as string, nextJob.id),
-      api.importValidationErrors(token as string, nextJob.id),
-      api.aiSuggestions(token as string, nextJob.id),
-    ]);
-    setJob(nextPreview.job); setPreview(nextPreview); setStaging(nextStaging.items); setConflicts(nextConflicts); setValidationErrors(nextErrors); setSuggestions(nextSuggestions); setMapping(nextPreview.detected_mapping); setImportMode(String(nextPreview.job.report.import_mode??"INITIAL_LOAD")); setLoadFailed(false);
+    for (const operation of ["preview", "staging", "conflicts", "validation-errors", "suggestions"] as const) {
+      try { await loadOperation(operation, nextJob); }
+      catch (reason) { rememberLoadFailure(operation, reason, nextJob.id); throw { operation, reason, jobId: nextJob.id } satisfies LoadFailure; }
+    }
+    setFailedLoad(null); setError(null);
   }
 
   async function loadLatest() {
     if (!token) return;
     setError(null);
-    try { const page=await api.imports(token); const latest=page.items[0]??null; setJob(latest); if(latest) await loadImport(latest); setLoadFailed(false); }
-    catch(reason){setLoadFailed(true);setError(mapAiChatError(reason).message);}
+    try { const latest = await loadOperation("latest"); if (latest) await loadImport(latest); setFailedLoad(null); }
+    catch(reason){ if (!isLoadFailure(reason)) rememberLoadFailure("latest", reason, null); }
+  }
+
+  async function retryLoad() {
+    if (!failedLoad) return;
+    const target = failedLoad.jobId && job?.id === failedLoad.jobId ? job : undefined;
+    setError(null);
+    try { await loadOperation(failedLoad.operation, target); setFailedLoad(null); }
+    catch (reason) { rememberLoadFailure(failedLoad.operation, reason, failedLoad.jobId); }
   }
 
   useEffect(() => { void loadLatest(); }, [token]);
 
   async function analyze() {
     if (!job) return;
-    setBusy(true); setError(null);
+    setBusy(true); setError(null); setFailedLoad(null);
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), IMPORT_AI_TIMEOUT_MS);
     try {
       const result = await api.analyzeImport(token as string, job.id, controller.signal);
       setAnalysis(result); await loadImport(job); setMessage("Análise Hermes concluída. A importação continua sob revisão humana.");
     } catch(reason) {
-      setError(reason instanceof DOMException && reason.name === "AbortError" ? "A análise excedeu 125 segundos. O job permanece utilizável sem IA." : mapAiChatError(reason).message);
+      if (reason instanceof DOMException && reason.name === "AbortError") setError("A análise excedeu 125 segundos. O job permanece utilizável sem IA.");
+      else rememberActionFailure(reason);
     } finally {
       window.clearTimeout(timeout); setBusy(false);
     }
   }
 
   async function upload(file: File) {
-    setBusy(true); setError(null); setMessage(null); setAnalysis(null); setPreview(null); setSuggestions([]); setStaging([]); setConflicts([]); setValidationErrors([]);
+    setBusy(true); setError(null); setFailedLoad(null); setMessage(null); setAnalysis(null); setPreview(null); setSuggestions([]); setStaging([]); setConflicts([]); setValidationErrors([]);
     try {
       const nextJob = await api.importUpload(token as string, file, "INITIAL_LOAD");
       setJob(nextJob); await loadImport(nextJob);
       setMessage("Upload concluído. Revise mapping, staging, conflitos e erros; Hermes é opcional.");
-    } catch (reason) { setError(mapAiChatError(reason).message); }
+    } catch (reason) { rememberActionFailure(reason); }
     finally { setBusy(false); }
   }
 
@@ -85,46 +133,46 @@ export function ImportsPage() {
 
   async function apply() {
     if (!job || job.report.can_apply !== true || !window.confirm("Confirmar importação após revisão humana?")) return;
-    setBusy(true); setError(null);
+    setBusy(true); setError(null); setFailedLoad(null);
     try { const result=await api.applyImport(token as string,job.id); setJob(result.job); setMessage("Importação aplicada com auditoria."); }
-    catch(reason){setError(mapAiChatError(reason).message);} finally{setBusy(false);}
+    catch(reason){rememberActionFailure(reason);} finally{setBusy(false);}
   }
 
   async function decideSuggestion(item: ImportCorrection, decision: "APPROVED" | "REJECTED") {
     if (!job || !item.id) return;
-    setBusy(true); setError(null);
+    setBusy(true); setError(null); setFailedLoad(null);
     try {
       await (decision === "APPROVED"
         ? await api.approveAiSuggestion(token as string, job.id, item.id)
         : await api.rejectAiSuggestion(token as string, job.id, item.id));
       setAnalysis(null); await loadImport(job);
       setMessage(decision === "APPROVED" ? "Sugestão aprovada no staging e bloqueios recalculados. Nenhum ativo foi alterado." : "Sugestão rejeitada; staging preservado e bloqueios recarregados.");
-    } catch (reason) { setError(mapAiChatError(reason).message); }
+    } catch (reason) { rememberActionFailure(reason); }
     finally { setBusy(false); }
   }
 
   async function cancel() {
-    if (!job || ["APPLIED","APPLIED_WITH_ISSUES","CANCELLED"].includes(job.status) || !window.confirm("Cancelar este job de importação no backend?")) return;
-    setBusy(true); setError(null);
+    if (!job || !CANCELLABLE_IMPORT_STATUSES.includes(job.status) || !window.confirm("Cancelar este job de importação no backend?")) return;
+    setBusy(true); setError(null); setFailedLoad(null);
     try { const cancelled=await api.cancelImport(token as string,job.id); setJob(cancelled); await loadImport(cancelled); setMessage("Job cancelado no backend."); }
-    catch(reason){setError(mapAiChatError(reason).message);} finally{setBusy(false);}
+    catch(reason){rememberActionFailure(reason);} finally{setBusy(false);}
   }
 
   async function saveMapping() {
     if(!job) return;
-    setBusy(true); setError(null);
+    setBusy(true); setError(null); setFailedLoad(null);
     try { const updated=await api.updateImportMapping(token as string,job.id,mapping,importMode); await loadImport(updated); setMessage("Mapping e modo atualizados; staging e bloqueios recalculados."); }
-    catch(reason){setError(mapAiChatError(reason).message);} finally{setBusy(false);}
+    catch(reason){rememberActionFailure(reason);} finally{setBusy(false);}
   }
 
-  function clearScreen() { setJob(null); setAnalysis(null); setPreview(null); setSuggestions([]); setStaging([]); setConflicts([]); setValidationErrors([]); setMessage(null); setError(null); }
+  function clearScreen() { setJob(null); setAnalysis(null); setPreview(null); setSuggestions([]); setStaging([]); setConflicts([]); setValidationErrors([]); setMessage(null); setError(null); setFailedLoad(null); }
 
   const summary=analysis?.file_summary ?? (job ? {rows_total:job.total_rows,rows_valid:job.valid_rows,rows_auto_corrected:0,rows_need_review:Number(job.report.review_required_count??0),rows_invalid:job.invalid_rows} : null);
   const canDecide = user?.role === "ADMIN" || user?.role === "TECHNICIAN";
-  const canCancel = Boolean(job && !["APPLIED","APPLIED_WITH_ISSUES","CANCELLED"].includes(job.status));
+  const canCancel = Boolean(job && CANCELLABLE_IMPORT_STATUSES.includes(job.status));
   return <div className="mx-auto grid max-w-5xl gap-6 pb-10">
     <header><h1 className="text-2xl font-semibold text-slate-50">Importar ativos</h1><p className="mt-1 text-sm text-slate-400">Upload, mapping, staging, revisão e apply funcionam sem IA. Hermes é uma análise opcional.</p></header>
-    {message?<Alert tone="success">{message}</Alert>:null}{error?<Alert tone="danger">{error}{loadFailed?<Button type="button" variant="outline" className="ml-3" onClick={()=>void loadLatest()}>Tentar novamente</Button>:null}</Alert>:null}
+    {message?<Alert tone="success">{message}</Alert>:null}{error?<Alert tone="danger">{error}{failedLoad?<Button type="button" variant="outline" className="ml-3" onClick={()=>void retryLoad()}>Tentar novamente</Button>:null}</Alert>:null}
     <label data-testid="imports-dropzone" role="button" tabIndex={busy?-1:0} aria-disabled={busy} aria-label="Selecionar ou arrastar planilha" onKeyDown={onKey} onDrop={onDrop} onDragOver={(e)=>{e.preventDefault();setDragActive(true);}} onDragLeave={()=>setDragActive(false)} className={`grid min-h-72 cursor-pointer place-items-center rounded-2xl border border-dashed p-8 text-center outline-none transition-colors focus-visible:ring-2 focus-visible:ring-cyan-300 ${dragActive?"border-cyan-300 bg-cyan-400/10":"border-white/15 bg-white/[0.025] hover:border-cyan-300/40"}`}>
       <div><span className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-cyan-400/10 text-cyan-200"><Upload className="h-6 w-6"/></span><strong className="text-base text-slate-100">{busy?"Analisando planilha…":dragActive?"Solte para analisar":"Arraste a planilha aqui"}</strong><p className="mt-2 text-sm text-slate-500">CSV ou XLSX · limites definidos pelo servidor</p><span className="mt-5 inline-flex min-h-11 items-center rounded-xl bg-cyan-400 px-5 text-sm font-semibold text-slate-950">Selecionar planilha</span><input ref={input} className="sr-only" type="file" accept=".csv,.xlsx" disabled={busy} onChange={onFile}/></div>
     </label>
