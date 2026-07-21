@@ -62,6 +62,7 @@ class Settings(BaseSettings):
         default="mock",
         validation_alias=AliasChoices("ai_chat_default_provider", "AI_CHAT_DEFAULT_PROVIDER"),
     )
+    ai_mock_enabled: bool = False
     ai_model: str = ""
     ai_gemini_api_key: str = ""
     ai_openai_api_key: str = ""
@@ -87,6 +88,10 @@ class Settings(BaseSettings):
         """
 
         return self.ai_openai_api_key
+
+    @property
+    def mock_provider_allowed(self) -> bool:
+        return self.environment != "production" and self.ai_mock_enabled is True
 
     @field_validator("allowed_origins", "ollama_allowed_hosts", mode="before")
     @classmethod
@@ -129,6 +134,10 @@ class Settings(BaseSettings):
             raise ValueError("JWT_SECRET_KEY must be changed outside local")
         if self.environment == "production" and self.admin_password == "<DEFINIR_LOCALMENTE_NO_ENV>":
             raise ValueError("ADMIN_PASSWORD must be changed in production")
+        if self.environment == "production" and (
+            self.ai_provider == "mock" or self.ai_chat_default_provider == "mock"
+        ):
+            raise ValueError("ai_provider_not_allowed")
         if self.refresh_cookie_samesite == "none" and not self.refresh_cookie_secure:
             raise ValueError("REFRESH_COOKIE_SECURE=true is required when REFRESH_COOKIE_SAMESITE=none")
         return self

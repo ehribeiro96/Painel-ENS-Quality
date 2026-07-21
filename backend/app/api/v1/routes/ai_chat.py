@@ -8,7 +8,11 @@ from app.api.v1.dependencies.auth import require_ai_capability
 from app.core.config.settings import settings
 from app.core.database.session import get_session
 from app.core.permissions.ai import ensure_ai_enabled
-from app.domains.ai_chat.apoema import build_apoema_provider_catalog, generate_apoema_message
+from app.domains.ai_chat.apoema import (
+    build_apoema_provider_catalog,
+    generate_apoema_message,
+    resolve_apoema_provider_model,
+)
 from app.domains.ai_chat.providers import AiProviderConfigurationError, AiProviderRequestError, get_ai_provider_health
 from app.domains.ai_chat.rate_limit import get_ai_chat_rate_limiter
 from app.domains.ai_chat.schemas import (
@@ -50,6 +54,10 @@ async def _apply_rate_limit(user_id: UUID) -> None:
 
 def _provider_http_error(exc: AiProviderConfigurationError | AiProviderRequestError) -> HTTPException:
     if isinstance(exc, AiProviderConfigurationError):
+        if str(exc) == "ai_provider_not_allowed":
+            return HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="ai_provider_not_allowed")
+        if str(exc) == "ai_model_not_allowed":
+            return HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="ai_model_not_allowed")
         return HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="ai_provider_not_configured")
     code = sanitize_ai_error(exc) or "ai_operation_failed"
     if "timeout" in code:
@@ -98,12 +106,29 @@ async def send_apoema_message(
     _ensure_ai_chat_enabled()
     if len(payload.message) > settings.ai_max_input_chars:
         raise HTTPException(status_code=422, detail="ai_chat_input_too_large")
+    try:
+        provider, model = resolve_apoema_provider_model(settings, payload.provider, payload.model)
+    except AiProviderConfigurationError as exc:
+        if str(exc) == "ai_provider_not_allowed":
+            await record_ai_operation_audits(
+                session,
+                event="CHAT_MESSAGE",
+                user=current_user,
+                provider="mock",
+                model="fallback-local",
+                resource_type="ChatConversation",
+                resource_id=payload.conversation_id,
+                status="DENIED",
+                duration_ms=0,
+                error=exc,
+            )
+            await session.commit()
+        raise _provider_http_error(exc) from exc
     await _apply_rate_limit(current_user.id)
     started = time.perf_counter()
     user_id = current_user.id
     user_role = current_user.role
-    provider = payload.provider or settings.ai_chat_default_provider
-    model = payload.model or settings.ai_model or None
+
 
     async def operation() -> ApoemaChatMessageResponse:
         response = await generate_apoema_message(settings, payload)

@@ -36,40 +36,45 @@ APOEMA_PROVIDER_IDS = ("mock", "ollama", "hermes")
 
 
 def build_apoema_provider_catalog(settings: Settings) -> ApoemaChatProvidersResponse:
-    providers = [
-        ApoemaChatProviderRead(
-            id="mock",
-            label="Mock adapter",
-            status="online",
-            models=[APOEMA_DEFAULT_FALLBACK_MODEL],
-            default_model=APOEMA_DEFAULT_FALLBACK_MODEL,
-        ),
-        ApoemaChatProviderRead(
-            id="ollama",
-            label="Ollama",
-            status=_ollama_status(settings),
-            models=_ollama_models(settings),
-            default_model=_ollama_default_model(settings),
-        ),
-        ApoemaChatProviderRead(
-            id="hermes",
-            label="Hermes",
-            status=_hermes_status(settings),
-            models=[_hermes_default_model(settings)],
-            default_model=_hermes_default_model(settings),
-        ),
-    ]
+    providers: list[ApoemaChatProviderRead] = []
+    if is_apoema_mock_allowed(settings):
+        providers.append(
+            ApoemaChatProviderRead(
+                id="mock",
+                label="Mock adapter",
+                status="online",
+                models=[APOEMA_DEFAULT_FALLBACK_MODEL],
+                default_model=APOEMA_DEFAULT_FALLBACK_MODEL,
+            )
+        )
+    providers.extend(
+        [
+            ApoemaChatProviderRead(
+                id="ollama",
+                label="Ollama",
+                status=_ollama_status(settings),
+                models=_ollama_models(settings),
+                default_model=_ollama_default_model(settings),
+            ),
+            ApoemaChatProviderRead(
+                id="hermes",
+                label="Hermes",
+                status=_hermes_status(settings),
+                models=[_hermes_default_model(settings)],
+                default_model=_hermes_default_model(settings),
+            ),
+        ]
+    )
     default_provider = _normalize_provider_id(getattr(settings, "ai_chat_default_provider", "mock"))
     ordered = _prioritize_default_provider(providers, default_provider)
     return ApoemaChatProvidersResponse(providers=ordered)
 
 
 async def generate_apoema_message(settings: Settings, payload: ApoemaChatMessageCreate) -> ApoemaChatMessageResponse:
-    provider_id = _normalize_provider_id(payload.provider or getattr(settings, "ai_chat_default_provider", "mock"))
-    conversation_id = (payload.conversation_id or str(uuid4())).strip() or str(uuid4())
+    provider_id, model = resolve_apoema_provider_model(settings, payload.provider, payload.model)
+    conversation_id = str(payload.conversation_id or uuid4())
     message_id = str(uuid4())
     created_at = datetime.now(UTC)
-    model = payload.model.strip() or _provider_default_model(settings, provider_id)
     provider_messages = _compose_provider_messages(payload)
 
     if provider_id == "mock":
@@ -188,6 +193,25 @@ def _provider_default_model(settings: Settings, provider_id: str) -> str:
     if provider_id == "hermes":
         return _hermes_default_model(settings)
     raise AiProviderConfigurationError(f"apoema_provider_unsupported:{provider_id}")
+
+
+def is_apoema_mock_allowed(settings: Settings) -> bool:
+    return settings.mock_provider_allowed
+
+
+def resolve_apoema_provider_model(settings: Settings, provider: str, model: str) -> tuple[str, str]:
+    provider_id = _normalize_provider_id(provider or getattr(settings, "ai_chat_default_provider", "mock"))
+    if provider_id == "mock" and not is_apoema_mock_allowed(settings):
+        raise AiProviderConfigurationError("ai_provider_not_allowed")
+    canonical_models = {
+        "mock": [APOEMA_DEFAULT_FALLBACK_MODEL],
+        "ollama": _ollama_models(settings),
+        "hermes": [_hermes_default_model(settings)],
+    }[provider_id]
+    requested = model.strip() if model else _provider_default_model(settings, provider_id)
+    if requested not in canonical_models:
+        raise AiProviderConfigurationError("ai_model_not_allowed")
+    return provider_id, requested
 
 
 def _ollama_default_model(settings: Settings) -> str:

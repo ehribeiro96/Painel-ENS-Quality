@@ -22,8 +22,11 @@ AiAuditEvent = Literal[
     "AI_APPROVAL",
     "AI_REJECTION",
 ]
-AiAuditStatus = Literal["SUCCESS", "FAILED"]
+AiAuditStatus = Literal["SUCCESS", "FAILED", "DENIED"]
 _SAFE_ERROR_CODE = re.compile(r"^[a-z][a-z0-9_-]{2,79}$")
+_SAFE_PROVIDER = re.compile(r"^[a-z][a-z0-9-]{0,31}$")
+_SAFE_MODEL = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:/+\-]{0,127}$")
+_SAFE_RESOURCE_TYPE = re.compile(r"^[A-Z][A-Za-z0-9]{0,63}$")
 
 
 class AiAuditUser(Protocol):
@@ -57,11 +60,19 @@ async def record_ai_audit(
     duration_ms: int,
     error: Exception | str | None = None,
 ) -> AuditLog:
+    if not _SAFE_PROVIDER.fullmatch(provider) or (model is not None and not _SAFE_MODEL.fullmatch(model)):
+        raise ValueError("invalid_ai_audit_identifier")
+    if not _SAFE_RESOURCE_TYPE.fullmatch(resource_type):
+        raise ValueError("invalid_ai_audit_identifier")
+    try:
+        canonical_resource_id = resource_id if isinstance(resource_id, UUID) else UUID(resource_id) if resource_id else None
+    except (TypeError, ValueError, AttributeError) as exc:
+        raise ValueError("invalid_ai_audit_identifier") from exc
     timestamp = datetime.now(UTC)
     return await AuditService(session).record(
         action=AuditAction.CREATE,
         entity="AiAuditEvent",
-        entity_id=resource_id if isinstance(resource_id, UUID) else None,
+        entity_id=canonical_resource_id,
         actor_id=user.id,
         source="ai-governance",
         after={
@@ -73,7 +84,7 @@ async def record_ai_audit(
             "provider": provider,
             "model": model,
             "resource_type": resource_type,
-            "resource_id": str(resource_id) if resource_id is not None else None,
+            "resource_id": str(canonical_resource_id) if canonical_resource_id is not None else None,
             "status": status,
             "duration_ms": max(0, duration_ms),
             "error": sanitize_ai_error(error),
