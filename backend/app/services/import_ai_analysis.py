@@ -5,7 +5,6 @@ import json
 import re
 import time
 import uuid
-from collections import Counter
 from datetime import UTC, datetime
 from typing import Literal
 from uuid import UUID
@@ -15,6 +14,7 @@ from app.domains.ai_chat.providers import AiProvider, AiProviderMessage, HermesT
 from app.domains.audit.service import AuditService
 from app.domains.imports.models import ImportJob, ImportStagingAsset
 from app.domains.imports.schemas import ImportAiAnalysis, ImportAiDiagnostics, ImportCorrection, ImportFileSummary
+from app.domains.imports.service import ImportService
 from app.shared.enums import AuditAction, ImportDecision
 from pydantic import ValidationError
 from sqlalchemy import select
@@ -177,6 +177,12 @@ async def decide_ai_suggestion(
 ) -> ImportCorrection:
     if suggestion_id is None:
         raise ValueError("suggestion_not_found")
+    locked_job = await session.scalar(select(ImportJob).where(ImportJob.id == job.id).with_for_update())
+    if locked_job is None:
+        raise ValueError("suggestion_not_found")
+    job = locked_job
+    if job.status not in {"STAGED", "READY_TO_APPLY", "REVIEW_REQUIRED", "PREVIEW_ONLY"}:
+        raise ValueError("import_not_reviewable")
     suggestions = list_ai_suggestions(job)
     index = next((index for index, item in enumerate(suggestions) if item.id == suggestion_id), None)
     if index is None:
@@ -191,7 +197,7 @@ async def decide_ai_suggestion(
             ImportStagingAsset.job_id == job.id,
             ImportStagingAsset.row_number == current.row,
             ImportStagingAsset.deleted_at.is_(None),
-        )
+        ).with_for_update()
     )
     if staging is None:
         raise ValueError("suggestion_staging_row_not_found")
@@ -203,43 +209,22 @@ async def decide_ai_suggestion(
         normalized = dict(staging.normalized_payload)
         normalized[current.field] = current.proposed_value
         staging.normalized_payload = normalized
-        staging.issues = [
-            issue for issue in staging.issues
-            if issue.get("field") != current.field and issue.get("field_name") != current.field
-        ]
-        if not staging.issues and staging.decision in {ImportDecision.REVIEW_REQUIRED.value, ImportDecision.CONFLICT.value}:
-            staging.decision = ImportDecision.SAFE_UPDATE.value if staging.matched_asset_id else ImportDecision.CREATE.value
     updated = current.model_copy(update={"status": decision, "decided_by": actor_id, "decided_at": decided_at or datetime.now(UTC)})
     suggestions[index] = updated
-    report = dict(job.report or {})
-    report[SUGGESTIONS_REPORT_KEY] = [item.model_dump(mode="json") for item in suggestions]
     rows_result = await session.execute(
-        select(ImportStagingAsset).where(ImportStagingAsset.job_id == job.id, ImportStagingAsset.deleted_at.is_(None))
+        select(ImportStagingAsset)
+        .where(ImportStagingAsset.job_id == job.id, ImportStagingAsset.deleted_at.is_(None))
+        .order_by(ImportStagingAsset.row_number)
+        .with_for_update()
     )
     rows = list(rows_result.scalars())
-    counts = Counter(row.decision for row in rows)
-    applicable = sum(counts[value] for value in (ImportDecision.CREATE.value, ImportDecision.SAFE_UPDATE.value, ImportDecision.SAFE_MERGE.value))
-    blocking = counts[ImportDecision.CONFLICT.value]
-    review = counts[ImportDecision.REVIEW_REQUIRED.value]
-    blockers = []
-    if blocking:
-        blockers.append("Existem conflitos bloqueantes pendentes.")
-    if review:
-        blockers.append("Existem linhas que exigem revisao humana.")
-    if not applicable:
-        blockers.append("Nao existem linhas aplicaveis.")
-    if report.get("import_mode") == "PREVIEW_ONLY":
-        blockers.append("Modo PREVIEW_ONLY nao permite apply.")
-    report.update(
-        {
-            "decision_counts": dict(counts),
-            "applicable_rows_count": applicable,
-            "blocking_conflicts_count": blocking,
-            "review_required_count": review,
-            "apply_blockers": blockers,
-            "can_apply": applicable > 0 and not blocking and not review and report.get("import_mode") != "PREVIEW_ONLY",
-        }
-    )
+    service = ImportService(session)
+    if decision == "APPROVED":
+        await service.reclassify_staging(job, rows, actor_id)
+    else:
+        service.refresh_staging_report(job, rows, actor_id)
+    report = dict(job.report or {})
+    report[SUGGESTIONS_REPORT_KEY] = [item.model_dump(mode="json") for item in suggestions]
     job.report = report
     await AuditService(session).record(
         action=AuditAction.STATUS_CHANGE,
@@ -247,7 +232,16 @@ async def decide_ai_suggestion(
         entity_id=suggestion_id,
         actor_id=actor_id,
         before={"import_id": str(job.id), "row": current.row, "field": current.field, "status": current.status, "value": previous_value},
-        after={"import_id": str(job.id), "row": updated.row, "field": updated.field, "status": updated.status, "value": staging.normalized_payload.get(current.field)},
+        after={
+            "import_id": str(job.id),
+            "row": updated.row,
+            "field": updated.field,
+            "status": updated.status,
+            "value": staging.normalized_payload.get(current.field),
+            "decision": staging.decision,
+            "matched_asset_id": str(staging.matched_asset_id) if staging.matched_asset_id else None,
+            "merge_action": staging.merge_action,
+        },
     )
     await session.flush()
     return updated

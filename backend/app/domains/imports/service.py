@@ -170,7 +170,7 @@ class ImportService:
         locked = await self.session.scalar(select(ImportJob).where(ImportJob.id == job.id).with_for_update())
         if locked is not None:
             job = locked
-        if job.status in {"APPLIED", "APPLIED_WITH_ISSUES", "CANCELLED"}:
+        if job.status not in {"STAGED", "READY_TO_APPLY", "REVIEW_REQUIRED"}:
             raise ValueError("import_not_applicable")
         if (job.report or {}).get("import_mode") == "PREVIEW_ONLY":
             raise ValueError("preview_only_import_not_applicable")
@@ -298,9 +298,60 @@ class ImportService:
         )
         return job
 
+    async def reclassify_staging(
+        self,
+        job: ImportJob,
+        staging_rows: list[ImportStagingAsset],
+        actor_id: UUID | None,
+    ) -> None:
+        normalized_rows = [row.normalized_payload for row in staging_rows]
+        existing_by_serial, existing_by_patrimony, existing_by_hostname = await self._load_existing_assets(normalized_rows)
+        duplicate_plan = self._build_internal_duplicate_plan(normalized_rows)
+        await self.session.execute(delete(ImportConflict).where(ImportConflict.job_id == job.id))
+        await self.session.execute(delete(ImportValidationError).where(ImportValidationError.job_id == job.id))
+        seen_identities: set[tuple[str, str]] = set()
+        for index, staging in enumerate(staging_rows):
+            decision, issues, matched_asset_id, merge_action = self._classify_row(
+                staging.raw_payload,
+                staging.normalized_payload,
+                duplicate_plan.get(index),
+                existing_by_serial,
+                existing_by_patrimony,
+                existing_by_hostname,
+                seen_identities,
+            )
+            staging.identity_type, staging.identity_value = identity_for(staging.normalized_payload)
+            staging.decision = decision.value
+            staging.row_status = ImportRowStatus.STAGED.value
+            staging.matched_asset_id = matched_asset_id
+            staging.merge_action = merge_action
+            staging.issues = issues
+            staging.updated_by = actor_id
+            await self.session.flush()
+            await self._persist_row_issues(job, staging, decision, issues, actor_id)
+        self._refresh_job_counts(job, staging_rows)
+        job.report = self._build_report(job, staging_rows, {"created": 0, "updated": 0, "failed": 0}, was_applied=False)
+        job.updated_by = actor_id
+        await self.session.flush()
+
+    def refresh_staging_report(
+        self,
+        job: ImportJob,
+        staging_rows: list[ImportStagingAsset],
+        actor_id: UUID | None,
+    ) -> None:
+        self._refresh_job_counts(job, staging_rows)
+        job.report = self._build_report(job, staging_rows, {"created": 0, "updated": 0, "failed": 0}, was_applied=False)
+        job.updated_by = actor_id
+
     async def cancel_import(self, job: ImportJob, actor_id: UUID | None, audit_context: AuditContext | None = None) -> ImportJob:
-        if job.status in {"APPLIED", "APPLIED_WITH_ISSUES"}:
-            raise ValueError("applied_import_cannot_be_cancelled")
+        locked = await self.session.scalar(select(ImportJob).where(ImportJob.id == job.id).with_for_update())
+        if locked is not None:
+            job = locked
+        if job.status == "CANCELLED":
+            return job
+        if job.status not in {"RECEIVED", "STAGED", "READY_TO_APPLY", "REVIEW_REQUIRED", "PREVIEW_ONLY"}:
+            raise ValueError("import_not_cancellable")
         before = {"status": job.status}
         job.status = "CANCELLED"
         job.updated_by = actor_id

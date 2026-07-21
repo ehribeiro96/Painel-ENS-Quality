@@ -324,7 +324,8 @@ async def apply_import(
         applied = await commit_or_rollback(session, operation)
         return ImportApplyResponse(job=applied, report=applied.report)
     except ValueError as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        code = str(exc)
+        raise HTTPException(status_code=409 if code == "import_not_applicable" else 400, detail=code) from exc
 
 
 @router.post("/{import_id}/cancel", response_model=ImportJobRead)
@@ -341,7 +342,8 @@ async def cancel_import(
 
         return await commit_or_rollback(session, operation)
     except ValueError as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        code = str(exc)
+        raise HTTPException(status_code=409 if code == "import_not_cancellable" else 400, detail=code) from exc
 
 
 @router.get("/{import_id}/report")
