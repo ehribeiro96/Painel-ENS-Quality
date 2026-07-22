@@ -201,6 +201,8 @@ class CiAndMigrationContractTest(unittest.TestCase):
             report = Path(tmp) / "report.xml"
             report.write_text('<testsuites tests="2" failures="0" errors="0" skipped="0"><testsuite tests="2" failures="0" errors="0" skipped="0"/></testsuites>', encoding="utf-8")
             self.assertEqual(0, module.main([str(report)]))
+            self.assertEqual(0, module.main([str(report), "--exact-tests", "2"]))
+            self.assertNotEqual(0, module.main([str(report), "--exact-tests", "3"]))
             report.write_text('<testsuites><testsuite tests="1" failures="0" errors="0" skipped="1"/></testsuites>', encoding="utf-8")
             self.assertNotEqual(0, module.main([str(report)]))
             report.write_text('<testsuites><testsuite tests="0" failures="0" errors="0" skipped="0"/></testsuites>', encoding="utf-8")
