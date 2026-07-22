@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from datetime import datetime
+from typing import Literal
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class MacroTemplateBase(BaseModel):
@@ -38,7 +39,6 @@ class MacroTemplateUpdate(BaseModel):
 
 class MacroTemplateRead(MacroTemplateBase):
     model_config = ConfigDict(from_attributes=True)
-
     id: UUID
     slug: str
     created_at: datetime
@@ -64,10 +64,15 @@ class MacroGenerateRequest(BaseModel):
     context_id: UUID | None = None
     ticket_number: str | None = Field(default=None, max_length=80)
 
+    @model_validator(mode="after")
+    def reject_reserved_movement_context(self) -> MacroGenerateRequest:
+        if self.context_type == "asset_movement":
+            raise ValueError("reserved_context_requires_official_endpoint")
+        return self
+
 
 class MacroGenerationRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-
     id: UUID
     template_id: UUID
     context_type: str | None
@@ -83,7 +88,6 @@ class MacroGenerationRead(BaseModel):
 
 class MacroAutocompleteHintRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-
     id: UUID
     label: str
     hint_type: str
@@ -98,3 +102,42 @@ class SuggestedMovementMacro(BaseModel):
     rendered_text: str
     pending_fields: list[str]
     values: dict[str, object]
+
+
+MacroPractice = Literal["incident", "service_request", "problem", "change", "access", "other"]
+MacroLevel = Literal["low", "medium", "high", "unknown"]
+MacroPriority = Literal["P1", "P2", "P3", "P4", "unknown"]
+
+
+class ItilMacroGenerateRequest(BaseModel):
+    practice: MacroPractice | Literal["automatic"] = "automatic"
+    summary: str = Field(min_length=3, max_length=4000)
+    configuration_item: str | None = Field(default=None, max_length=300)
+    requester: str | None = Field(default=None, max_length=300)
+    actions_taken: str | None = Field(default=None, max_length=4000)
+    result: str | None = Field(default=None, max_length=4000)
+    additional_information: str | None = Field(default=None, max_length=4000)
+
+
+class ItilMacroOutput(BaseModel):
+    official: Literal[False] = False
+    practice: MacroPractice
+    category: str | None = None
+    subcategory: str | None = None
+    service: str | None = None
+    configuration_item: str | None = None
+    impact: MacroLevel = "unknown"
+    urgency: MacroLevel = "unknown"
+    priority: MacroPriority = "unknown"
+    title: str
+    user_report: str | None = None
+    diagnosis: str | None = None
+    actions_taken: list[str] = Field(default_factory=list)
+    result: str | None = None
+    current_status: str | None = None
+    resolution: str | None = None
+    next_action: str | None = None
+    closure_criteria: str | None = None
+    missing_information: list[str] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+    macro_text: str = Field(min_length=1, max_length=12000)

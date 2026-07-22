@@ -8,6 +8,25 @@ on:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: postgresql+asyncpg://apoema_ci:apoema-ci-only@127.0.0.1:5432/apoema_ci
+      APOEMA_POSTGRES_TESTS: "1"
+
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: apoema_ci
+          POSTGRES_PASSWORD: apoema-ci-only
+          POSTGRES_DB: apoema_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U apoema_ci -d apoema_ci"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - uses: actions/checkout@v4
@@ -35,7 +54,42 @@ jobs:
           pip install pytest
 
       - name: Python compile
-        run: python -m compileall -q backend/app backend/alembic tests
+        run: python -m compileall -q backend/app backend/alembic tests scripts
+
+      - name: Prepare disposable PostgreSQL schema
+        working-directory: backend
+        run: |
+          python -m alembic upgrade head
+          python -m alembic current | tee /tmp/alembic-current.txt
+          grep -Fq '(head)' /tmp/alembic-current.txt
+
+      - name: PostgreSQL concurrency tests (14 methods, actual zero skips)
+        shell: bash
+        run: |
+          PYTHONPATH=backend python -c 'from app.core.database.session import engine; assert engine.dialect.name == "postgresql"; print(f"database_dialect={engine.dialect.name}")'
+          PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=backend python -m pytest \
+            -p no:cacheprovider \
+            -s -q -o addopts='' \
+            tests/test_import_concurrency_postgres.py \
+            --junitxml=/tmp/import-concurrency-postgres.xml
+          python scripts/assert_pytest_report.py \
+            /tmp/import-concurrency-postgres.xml --exact-tests 25
+
+      - name: Critical security tests (actual zero skips)
+        shell: bash
+        run: |
+          PYTHONPATH=backend python -m pytest -q -o addopts='' \
+            --junitxml=/tmp/critical-pytest.xml \
+            tests/test_ai_feature_flag.py \
+            tests/test_user_permission_boundaries.py \
+            tests/test_health_endpoints.py \
+            tests/test_macro_idempotency.py \
+            tests/test_import_ai_safety.py \
+            tests/test_pr1_remediation_contracts.py \
+            tests/test_authprovider_strictmode_boot_contract.py \
+            tests/test_auth_session_hardening.py \
+            tests/test_login_frontend_contract.py
+          python scripts/assert_pytest_report.py /tmp/critical-pytest.xml
 
       - name: Backend regression tests
         run: PYTHONPATH=backend python -m pytest -s -q
@@ -54,6 +108,7 @@ jobs:
         run: |
           npm ci
           npm run build
+          npm audit --omit=dev --audit-level=moderate
 
       - name: Docker Compose config
         run: docker compose config --services

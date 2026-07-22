@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Any
+from typing import Any, Literal
 from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -9,7 +9,6 @@ from pydantic import BaseModel, ConfigDict, Field
 
 class ImportJobRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-
     id: UUID
     source: str
     filename: str
@@ -28,7 +27,6 @@ class ImportJobRead(BaseModel):
 
 class ImportStagingAssetRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-
     id: UUID
     job_id: UUID
     row_number: int
@@ -63,7 +61,6 @@ class ImportPreview(BaseModel):
 
 class ImportConflictRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-
     id: UUID
     job_id: UUID
     staging_asset_id: UUID | None
@@ -74,7 +71,6 @@ class ImportConflictRead(BaseModel):
 
 class ImportValidationErrorRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-
     id: UUID
     job_id: UUID
     staging_asset_id: UUID | None
@@ -82,3 +78,51 @@ class ImportValidationErrorRead(BaseModel):
     field_name: str | None
     error_code: str
     message: str
+
+
+class ImportCorrection(BaseModel):
+    id: UUID | None = None
+    row: int
+    field: str
+    original_value: Any = None
+    proposed_value: Any = None
+    reason: str
+    method: str
+    confidence: float = Field(ge=0, le=1)
+    requires_review: bool
+    status: Literal["PENDING", "APPROVED", "REJECTED"] | None = None
+    decided_by: UUID | None = None
+    decided_at: datetime | None = None
+
+
+class ImportFileSummary(BaseModel):
+    rows_total: int
+    rows_valid: int
+    rows_auto_corrected: int
+    rows_need_review: int
+    rows_invalid: int
+
+
+class ImportAiDiagnostics(BaseModel):
+    total_ms: int
+    payload_bytes: int
+    prompt_chars: int
+    hermes_ms: int
+    frontend_timeout_ms: int = 125000
+    backend_timeout_ms: int = 120000
+    provider: str = "hermes"
+    model: str = "hermes-agent"
+    exceptions: list[str] = Field(default_factory=list)
+
+
+class ImportAiAnalysis(BaseModel):
+    file_summary: ImportFileSummary
+    column_mapping: list[ImportCorrection] = Field(default_factory=list)
+    deterministic_corrections: list[ImportCorrection] = Field(default_factory=list)
+    ai_suggestions: list[ImportCorrection] = Field(default_factory=list)
+    ambiguous_rows: list[int] = Field(default_factory=list)
+    invalid_rows: list[int] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+    confidence: float = Field(ge=0, le=1)
+    safe_to_apply: bool = False
+    diagnostics: ImportAiDiagnostics | None = None

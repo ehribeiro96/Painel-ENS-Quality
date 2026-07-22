@@ -37,11 +37,8 @@ async def create_user(
     payload: UserCreate,
     request: Request,
     session: AsyncSession = Depends(get_session),
-    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+    current_user: User = Depends(require_role(Role.ADMIN)),
 ) -> User:
-    if current_user.role != Role.ADMIN and payload.role != Role.VIEWER:
-        raise HTTPException(status_code=403, detail="role_assignment_requires_admin")
-
     async def operation() -> User:
         return await UserService(session).create(payload, current_user.id, build_audit_context(request, current_user.id))
 
@@ -82,7 +79,7 @@ async def update_user(
     payload: UserUpdate,
     request: Request,
     session: AsyncSession = Depends(get_session),
-    current_user: User = Depends(require_role(Role.ADMIN, Role.TECHNICIAN)),
+    current_user: User = Depends(require_role(Role.ADMIN)),
 ) -> User:
     service = UserService(session)
     user = await service.get(user_id)

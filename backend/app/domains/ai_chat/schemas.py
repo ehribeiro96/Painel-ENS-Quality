@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import Literal
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 AiChatRole = Literal["system", "user", "assistant"]
 AiChatMode = Literal[
@@ -85,13 +85,20 @@ class ApoemaChatContext(BaseModel):
 
 
 class ApoemaChatMessageCreate(BaseModel):
-    conversation_id: str | None = None
+    conversation_id: UUID | None = None
     provider: AiChatProviderId = "mock"
-    model: str = Field(min_length=1)
+    model: str = Field(min_length=1, max_length=128, pattern=r"^[A-Za-z0-9][A-Za-z0-9._:/+\-]*$")
     message: str = Field(min_length=1)
     mode: str = "assistente_n2"
     attachments: list[ApoemaChatAttachment] = Field(default_factory=list)
     context: ApoemaChatContext = Field(default_factory=ApoemaChatContext)
+
+    @field_validator("model")
+    @classmethod
+    def reject_ambiguous_model_whitespace(cls, value: str) -> str:
+        if value != value.strip():
+            raise ValueError("ai_model_not_allowed")
+        return value
 
 
 class ApoemaChatUsage(BaseModel):

@@ -1,4 +1,4 @@
-import { AlertTriangle, Bot, ShieldAlert, Sparkles } from "lucide-react";
+import { AlertTriangle, Bot, History, ShieldAlert, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
@@ -148,6 +148,7 @@ export function ChatPage() {
   const [health, setHealth] = useState<AiChatProviderHealth | null>(null);
   const [healthState, setHealthState] = useState<"loading" | "ready" | "error">("loading");
   const [banner, setBanner] = useState<Banner | null>(null);
+  const [mobileHistoryOpen, setMobileHistoryOpen] = useState(false);
 
   const provider = health?.provider && !/mock|fallback/i.test(health.provider) ? health.provider : "hermes";
   const model = health?.model ?? "hermes-agent";
@@ -170,13 +171,6 @@ export function ChatPage() {
     }
     return previews;
   }, [conversations, currentConversationId, messages]);
-
-  const healthTone = useMemo(() => {
-    if (healthState === "loading") return "warning";
-    if (healthState === "error") return "warning";
-    if (health?.enabled && health.configured) return "success";
-    return "warning";
-  }, [health, healthState]);
 
   const healthLabel = useMemo(() => {
     if (healthState === "loading") return "Checando Hermes";
@@ -214,9 +208,6 @@ export function ChatPage() {
       setConversations(nextRenderable);
 
       const nextSelectedId = preferredConversationId ?? (autoSelect ? nextRenderable[0]?.id : null) ?? null;
-      if (autoSelect && !currentConversationId && nextSelectedId) {
-        setSearchParams({ chat: nextSelectedId }, { replace: true });
-      }
       if (!nextSelectedId || !autoSelect) {
         setMessages([]);
       }
@@ -271,12 +262,20 @@ export function ChatPage() {
   }, [currentConversationId, token]);
 
   useEffect(() => {
-    if (!token || currentConversationId || conversations.length === 0) {
+    const latestSearch = new URLSearchParams(window.location.search);
+    if (
+      !token ||
+      currentConversationId ||
+      newConversationRequested ||
+      latestSearch.has("new") ||
+      latestSearch.has("chat") ||
+      conversations.length === 0
+    ) {
       return;
     }
 
     setSearchParams({ chat: conversations[0].id }, { replace: true });
-  }, [conversations, currentConversationId, setSearchParams, token]);
+  }, [conversations, currentConversationId, newConversationRequested, setSearchParams, token]);
 
   useEffect(() => {
     return () => {
@@ -443,43 +442,59 @@ export function ChatPage() {
 
   return (
     <div className="grid min-w-0 gap-4 lg:grid-cols-[clamp(240px,22vw,300px)_minmax(0,1fr)]">
-      <ChatConversationSidebar
-        conversations={conversations}
-        selectedConversationId={currentConversationId}
-        previewByConversationId={previewByConversationId}
-        loading={loadingHistory}
-        query={query}
-        onQueryChange={setQuery}
-        onSelectConversation={(conversationId) => void handleSelectConversation(conversationId)}
-        onNewConversation={() => void handleOpenNewConversation()}
-        onReload={() => void handleReload()}
-        onRenameConversation={(conversationId, title) => void handleRenameConversation(conversationId, title)}
-        onDeleteConversation={(conversationId) => void handleDeleteConversation(conversationId)}
-        creatingConversation={sending}
-      />
+      <button
+        type="button"
+        className="flex h-11 w-full items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-4 text-sm font-medium text-slate-100 transition-colors hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/40 lg:hidden"
+        aria-expanded={mobileHistoryOpen}
+        aria-controls="apoema-chat-history"
+        onClick={() => setMobileHistoryOpen((current) => !current)}
+      >
+        <span className="inline-flex items-center gap-2">
+          <History className="h-4 w-4 text-cyan-200" />
+          Conversas
+        </span>
+        <span className="text-xs font-normal text-slate-400">{conversations.length} conversa{conversations.length === 1 ? "" : "s"}</span>
+      </button>
 
-      <section className="flex min-w-0 flex-col gap-4 rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_20px_60px_-26px_rgba(0,0,0,0.75)] md:p-5">
-        <header className="flex flex-wrap items-start justify-between gap-3">
-          <div className="max-w-3xl">
+      <div id="apoema-chat-history" className={`min-w-0 ${mobileHistoryOpen ? "block" : "hidden lg:block"}`}>
+        <ChatConversationSidebar
+          conversations={conversations}
+          selectedConversationId={currentConversationId}
+          previewByConversationId={previewByConversationId}
+          loading={loadingHistory}
+          query={query}
+          onQueryChange={setQuery}
+          onSelectConversation={(conversationId) => {
+            setMobileHistoryOpen(false);
+            void handleSelectConversation(conversationId);
+          }}
+          onNewConversation={() => {
+            setMobileHistoryOpen(false);
+            void handleOpenNewConversation();
+          }}
+          onReload={() => void handleReload()}
+          onRenameConversation={(conversationId, title) => void handleRenameConversation(conversationId, title)}
+          onDeleteConversation={(conversationId) => void handleDeleteConversation(conversationId)}
+          creatingConversation={sending}
+        />
+      </div>
+
+      <section className="flex min-w-0 flex-col gap-4 rounded-[28px] border border-white/10 bg-white/[0.04] p-3 shadow-[0_20px_60px_-26px_rgba(0,0,0,0.75)] md:p-5">
+        <header>
+          <div className="max-w-4xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan-200/70">Chat IA</p>
-            <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-50">Hermes real no centro da operação</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
+            <h2 className="mt-1 text-xl font-semibold tracking-tight text-slate-50 md:text-2xl">Hermes real no centro da operação</h2>
+            <p className="mt-1.5 text-sm leading-6 text-slate-400">
               {selectedConversation?.title ?? "Nova conversa"} com histórico, novas conversas, exclusão confirmada e anexos locais honestos.
             </p>
-          </div>
-
-          <div className="grid gap-2 sm:grid-cols-2">
-            <div className="rounded-[22px] border border-white/10 bg-slate-950/40 px-4 py-3">
-              <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">Status</p>
-              <p className="mt-1 text-sm font-medium text-slate-100">{healthLabel}</p>
-              <p className="text-xs text-slate-400">
-                {healthState === "ready" ? `provider ${provider} • ${model}` : "Conferindo provider real"}
-              </p>
-            </div>
-            <div className="rounded-[22px] border border-white/10 bg-slate-950/40 px-4 py-3">
-              <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">Conversas</p>
-              <p className="mt-1 text-sm font-medium text-slate-100">{conversations.length}</p>
-              <p className="text-xs text-slate-400">{messages.length} mensagem(ns) carregada(s)</p>
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-400" aria-label="Estado do chat">
+              <span className="inline-flex items-center gap-2 text-slate-300">
+                <span className={`h-2 w-2 rounded-full ${healthState === "ready" && health?.enabled && health.configured ? "bg-emerald-300" : "bg-amber-300"}`} />
+                {healthLabel}
+              </span>
+              <span>{healthState === "ready" ? `${provider} • ${model}` : "Conferindo provider real"}</span>
+              <span>{conversations.length} conversa{conversations.length === 1 ? "" : "s"}</span>
+              <span>{messages.length} mensagem{messages.length === 1 ? "" : "s"}</span>
             </div>
           </div>
         </header>
@@ -502,25 +517,22 @@ export function ChatPage() {
 
         <div className="flex min-h-0 flex-1 flex-col gap-4">
           {isEmptyState ? (
-            <div className="rounded-[28px] border border-dashed border-white/15 bg-slate-950/35 p-6">
-              <div className="space-y-6">
-                <div className="min-w-0 space-y-4">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-2 text-xs font-medium text-cyan-100">
+            <div className="flex min-h-0 flex-1 flex-col justify-center py-2 md:py-5">
+              <div className="space-y-5">
+                <div className="min-w-0 space-y-3">
+                  <div className="inline-flex items-center gap-2 text-xs font-medium text-cyan-100">
                     <Sparkles className="h-4 w-4" />
                     Pronto para operar
                   </div>
-                  <h3 className="max-w-3xl text-pretty text-2xl font-semibold leading-tight text-slate-50">
+                  <h3 className="max-w-3xl text-pretty text-xl font-semibold leading-tight text-slate-50 md:text-2xl">
                     Envie uma pergunta ou use uma sugestão rápida.
                   </h3>
-                  <p className="max-w-3xl text-sm leading-6 text-slate-300">
-                    O histórico fica na lateral, o composer suporta arquivos e o caminho de sucesso responde com Hermes real.
-                  </p>
                   <div className="flex flex-wrap gap-2">
                     {CHAT_SUGGESTIONS.map((suggestion, index) => (
                       <button
                         key={`${suggestion.label}-${index}`}
                         type="button"
-                        className="max-w-full rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200 transition-colors hover:border-cyan-300/30 hover:bg-cyan-400/10"
+                        className="max-w-full rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-slate-300 transition-colors hover:border-cyan-300/30 hover:bg-cyan-400/10 hover:text-slate-100"
                         onClick={() => setInput(suggestion.prompt)}
                       >
                         {suggestion.label}
@@ -535,7 +547,8 @@ export function ChatPage() {
                     onChange={setInput}
                     onSubmit={() => void handleSend(input)}
                     onPickSuggestion={(prompt) => setInput(prompt)}
-                    suggestions={CHAT_SUGGESTIONS}
+                    suggestions={[]}
+                    showSuggestions={false}
                     disabled={authLoading || !token || !user || loadingMessages}
                     isSending={sending}
                     attachments={attachments}
@@ -566,7 +579,8 @@ export function ChatPage() {
                 onChange={setInput}
                 onSubmit={() => void handleSend(input)}
                 onPickSuggestion={(prompt) => setInput(prompt)}
-                suggestions={CHAT_SUGGESTIONS}
+                suggestions={[]}
+                showSuggestions={false}
                 disabled={authLoading || !token || !user || loadingMessages}
                 isSending={sending}
                 attachments={attachments}

@@ -89,17 +89,32 @@ class AiChatRateLimitStoreTest(unittest.IsolatedAsyncioTestCase):
 
     async def test_production_redis_failure_returns_503(self) -> None:
         settings = Settings(
+            _env_file=None,
             environment="production",
             ai_chat_rate_limit_per_minute=1,
+            ai_mock_enabled=False,
+            ai_provider="hermes",
+            ai_chat_default_provider="hermes",
+            redis_url="redis://127.0.0.1:6379/15",
             jwt_secret_key="production-secret-key-with-enough-length-123",
         )
+        self.assertEqual("production", settings.environment)
+        self.assertFalse(settings.ai_mock_enabled)
+        self.assertEqual("hermes", settings.ai_provider)
+        self.assertEqual("hermes", settings.ai_chat_default_provider)
+        self.assertFalse(settings.mock_provider_allowed)
         limiter = AiChatRateLimiter(settings)
 
         class ExplodingStore:
+            def __init__(self) -> None:
+                self.calls = 0
+
             async def increment(self, key: str, ttl_seconds: int) -> int:  # noqa: ARG002
+                self.calls += 1
                 raise RuntimeError("redis unavailable")
 
-        limiter._redis_store = ExplodingStore()  # type: ignore[assignment]
+        exploding_store = ExplodingStore()
+        limiter._redis_store = exploding_store  # type: ignore[assignment]
         user = UUID("00000000-0000-0000-0000-00000000000d")
 
         with self.assertRaises(HTTPException) as ctx:
@@ -107,6 +122,7 @@ class AiChatRateLimitStoreTest(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual(503, ctx.exception.status_code)
         self.assertEqual("ai_chat_rate_limit_unavailable", getattr(ctx.exception, "detail", None))
+        self.assertEqual(1, exploding_store.calls)
 
     def test_build_key_hashes_user_id_and_uses_window_epoch(self) -> None:
         user_id = UUID("00000000-0000-0000-0000-00000000000c")

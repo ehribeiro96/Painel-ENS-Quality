@@ -33,3 +33,12 @@ async def dependency_health() -> dict[str, Any]:
         "bootstrap_admin": runtime_state.get("bootstrap_admin"),
         "startup_complete": runtime_state.get("startup_complete", False),
     }
+
+
+async def readiness_health() -> dict[str, bool]:
+    health = await dependency_health()
+    return {
+        "database": health.get("postgres", {}).get("status") == "ok",
+        "redis": health.get("redis", {}).get("status") == "ok",
+        "migrations": health.get("migration", {}).get("status") == "up_to_date",
+    }

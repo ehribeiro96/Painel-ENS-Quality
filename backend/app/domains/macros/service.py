@@ -16,6 +16,7 @@ from app.shared.audit_context import AuditContext
 from app.shared.enums import AuditAction
 from app.shared.models import utc_now
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
@@ -92,6 +93,34 @@ class MacroService:
         return render_macro(template.template_text, values, template.required_fields)
 
     async def generate(
+        self,
+        template: MacroTemplate,
+        values: dict[str, object],
+        actor_id: UUID | None,
+        context_type: str | None = None,
+        context_id: UUID | None = None,
+        ticket_number: str | None = None,
+        audit_context: AuditContext | None = None,
+        allow_pending: bool = False,
+        required_fields: list[str] | None = None,
+        audit_event: str = "macro_generated",
+    ) -> MacroGeneration:
+        if context_type == "asset_movement":
+            raise ValueError("reserved_context_requires_official_endpoint")
+        return await self._generate(
+            template,
+            values,
+            actor_id,
+            context_type,
+            context_id,
+            ticket_number,
+            audit_context,
+            allow_pending,
+            required_fields,
+            audit_event,
+        )
+
+    async def _generate(
         self,
         template: MacroTemplate,
         values: dict[str, object],
@@ -217,17 +246,30 @@ class MacroService:
         template, values, _rendered, pending = await self.suggested_for_movement(movement_id)
         if template is None:
             return None, None, values, pending
-        generation = await self.generate(
-            template,
-            values,
-            actor_id,
-            context_type="asset_movement",
-            context_id=movement_id,
-            audit_context=audit_context,
-            allow_pending=True,
-            required_fields=[],
-            audit_event="asset_movement_macro_generated",
-        )
+        try:
+            async with self.session.begin_nested():
+                generation = await self._generate(
+                    template,
+                    values,
+                    actor_id,
+                    context_type="asset_movement",
+                    context_id=movement_id,
+                    audit_context=audit_context,
+                    allow_pending=True,
+                    required_fields=[],
+                    audit_event="asset_movement_macro_generated",
+                )
+        except IntegrityError:
+            generation = await self.session.scalar(
+                select(MacroGeneration).where(
+                    MacroGeneration.context_type == "asset_movement",
+                    MacroGeneration.context_id == movement_id,
+                )
+            )
+            if generation is None:
+                raise
+            existing_template = await self.repository.get_template(generation.template_id)
+            return generation, existing_template, generation.input_values, []
         await AuditService(self.session).record(
             action=AuditAction.CREATE,
             entity="AssetMovement",

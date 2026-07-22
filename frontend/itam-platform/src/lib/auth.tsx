@@ -173,7 +173,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       handleUnauthorized: clearSession
     });
     setLoading(true);
-    refreshSession()
+    refreshSession(controller.signal)
       .then(() => {
         if (active && bootSeq === bootSeqRef.current) {
           setLoading(false);

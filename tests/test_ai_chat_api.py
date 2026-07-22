@@ -30,6 +30,7 @@ def force_ai_chat_mock_settings() -> patch:
         os.environ,
         {
             "AI_PROVIDER": "mock",
+            "AI_MOCK_ENABLED": "true",
             "AI_MODEL": "",
             "AI_GEMINI_API_KEY": "",
             "AI_OPENAI_API_KEY": "",
@@ -40,6 +41,7 @@ def force_ai_chat_mock_settings() -> patch:
     get_settings.cache_clear()
     for settings_obj in (ai_chat.settings, ai_chat_service_module.settings):
         settings_obj.ai_provider = "mock"
+        settings_obj.ai_mock_enabled = True
         settings_obj.ai_model = ""
         settings_obj.ai_gemini_api_key = ""
         settings_obj.ai_openai_api_key = ""
@@ -320,7 +322,7 @@ class AiChatApiTest(unittest.IsolatedAsyncioTestCase):
             ai_chat.AiChatService = original_service
 
         self.assertEqual(503, ctx.exception.status_code)
-        self.assertEqual("ai_provider_configuration_error: openai_api_key_missing", ctx.exception.detail)
+        self.assertEqual("ai_provider_not_configured", ctx.exception.detail)
 
 
 if __name__ == "__main__":

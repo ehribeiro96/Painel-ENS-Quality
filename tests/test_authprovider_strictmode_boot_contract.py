@@ -27,14 +27,13 @@ class AuthProviderStrictModeBootContractTest(unittest.TestCase):
         self.assertNotIn("setUser(null)", abort_branch.group(0))
         self.assertNotIn("setLoading(false)", abort_branch.group(0))
 
-    def test_boot_refresh_is_not_reused_when_bound_to_cleanup_signal(self) -> None:
+    def test_boot_refresh_respects_cleanup_abort_signal(self) -> None:
         self.assertIn("let sharedRefreshRequest: Promise<TokenResponse> | null = null;", AUTH)
         self.assertIn("function requestRefresh(signal?: AbortSignal)", AUTH)
         self.assertIn("if (!signal && sharedRefreshRequest)", AUTH)
         self.assertIn("sharedRefreshRequest = refreshRequest;", AUTH)
-        self.assertIn("refreshSession()", AUTH)
+        self.assertIn("refreshSession(controller.signal)", AUTH)
         self.assertIn("controller.abort();", AUTH)
-        self.assertNotIn("refreshSession(controller.signal)", AUTH)
 
     def test_session_is_cleared_only_for_real_unauthorized_refresh(self) -> None:
         unauthorized_branch = re.search(r"if \(error instanceof ApiError && \(error.status === 401 \|\| error.status === 403\)\) \{(?P<body>.*?)\n        \}", AUTH, re.S)

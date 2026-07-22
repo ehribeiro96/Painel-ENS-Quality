@@ -11,6 +11,7 @@ from app.core.observability.metrics import metrics
 from app.domains.assets.models import Asset
 from app.domains.audit.service import AuditService
 from app.domains.imports.classification.conflict_detector import build_internal_duplicate_plan
+from app.domains.imports.classification.identity_classifier import analyze_identity
 from app.domains.imports.classification.row_classifier import classify_row
 from app.domains.imports.merge_engine.policy import apply_trusted_updates, build_asset_from_import
 from app.domains.imports.models import ImportConflict, ImportJob, ImportStagingAsset, ImportValidationError
@@ -34,6 +35,15 @@ from app.shared.snapshots import asset_snapshot
 from fastapi import UploadFile
 from sqlalchemy import delete, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
+
+
+async def _get_import_job_for_update(session: AsyncSession, job_id: UUID) -> ImportJob | None:
+    return await session.scalar(
+        select(ImportJob)
+        .where(ImportJob.id == job_id, ImportJob.deleted_at.is_(None))
+        .with_for_update()
+        .execution_options(populate_existing=True)
+    )
 
 
 class ImportService:
@@ -166,26 +176,29 @@ class ImportService:
         metrics.observe("itam_import_upload_duration_ms", (time.perf_counter() - started) * 1000, {"source": source.lower()})
         return job
 
-    async def apply_import(self, job: ImportJob, actor_id: UUID | None, audit_context: AuditContext | None = None) -> ImportJob:
-        locked = await self.session.scalar(select(ImportJob).where(ImportJob.id == job.id).with_for_update())
-        if locked is not None:
-            job = locked
-        if job.status in {"APPLIED", "APPLIED_WITH_ISSUES", "CANCELLED"}:
+    async def apply_import(self, job_id: UUID, actor_id: UUID | None, audit_context: AuditContext | None = None) -> ImportJob:
+        job = await _get_import_job_for_update(self.session, job_id)
+        if job is None:
+            raise ValueError("import_not_found")
+        if job.status not in {"STAGED", "READY_TO_APPLY", "REVIEW_REQUIRED"}:
             raise ValueError("import_not_applicable")
         if (job.report or {}).get("import_mode") == "PREVIEW_ONLY":
             raise ValueError("preview_only_import_not_applicable")
+        job.status = "APPLYING"
+        job.updated_by = actor_id
+        await self.session.flush()
         result = await self.session.execute(
             select(ImportStagingAsset)
             .where(ImportStagingAsset.job_id == job.id, ImportStagingAsset.deleted_at.is_(None))
             .order_by(ImportStagingAsset.row_number)
+            .with_for_update()
         )
         staging_rows = list(result.scalars())
-        blockers = [row for row in staging_rows if row.decision == ImportDecision.CONFLICT.value]
+        blockers = [row for row in staging_rows if row.decision in {ImportDecision.CONFLICT.value, ImportDecision.REVIEW_REQUIRED.value}]
         if blockers:
             raise ValueError("import_has_blocking_conflicts")
         if not any(row.decision in self._applicable_decisions() for row in staging_rows):
             raise ValueError("import_has_no_applicable_rows")
-        job.status = "APPLYING"
         await AuditService(self.session).record(
             action=AuditAction.IMPORT,
             entity="ImportJob",
@@ -298,9 +311,65 @@ class ImportService:
         )
         return job
 
-    async def cancel_import(self, job: ImportJob, actor_id: UUID | None, audit_context: AuditContext | None = None) -> ImportJob:
-        if job.status in {"APPLIED", "APPLIED_WITH_ISSUES"}:
-            raise ValueError("applied_import_cannot_be_cancelled")
+    async def reclassify_staging(
+        self,
+        job: ImportJob,
+        staging_rows: list[ImportStagingAsset],
+        actor_id: UUID | None,
+    ) -> None:
+        normalized_rows = [row.normalized_payload for row in staging_rows]
+        existing_by_serial, existing_by_patrimony, existing_by_hostname = await self._load_existing_assets(normalized_rows)
+        duplicate_plan = self._build_internal_duplicate_plan(normalized_rows)
+        await self.session.execute(delete(ImportConflict).where(ImportConflict.job_id == job.id))
+        await self.session.execute(delete(ImportValidationError).where(ImportValidationError.job_id == job.id))
+        seen_identities: set[tuple[str, str]] = set()
+        for index, staging in enumerate(staging_rows):
+            decision, issues, matched_asset_id, merge_action = self._classify_row(
+                staging.raw_payload,
+                staging.normalized_payload,
+                duplicate_plan.get(index),
+                existing_by_serial,
+                existing_by_patrimony,
+                existing_by_hostname,
+                seen_identities,
+            )
+            identity = analyze_identity(staging.normalized_payload)
+            normalized = dict(staging.normalized_payload)
+            normalized["identity_confidence"] = identity.confidence
+            staging.normalized_payload = normalized
+            staging.identity_type = identity.primary_type
+            staging.identity_value = identity.primary_value
+            staging.decision = decision.value
+            staging.row_status = ImportRowStatus.STAGED.value
+            staging.matched_asset_id = matched_asset_id
+            staging.merge_action = merge_action
+            staging.issues = issues
+            staging.updated_by = actor_id
+            await self.session.flush()
+            await self._persist_row_issues(job, staging, decision, issues, actor_id)
+        self._refresh_job_counts(job, staging_rows)
+        job.report = self._build_report(job, staging_rows, {"created": 0, "updated": 0, "failed": 0}, was_applied=False)
+        job.updated_by = actor_id
+        await self.session.flush()
+
+    def refresh_staging_report(
+        self,
+        job: ImportJob,
+        staging_rows: list[ImportStagingAsset],
+        actor_id: UUID | None,
+    ) -> None:
+        self._refresh_job_counts(job, staging_rows)
+        job.report = self._build_report(job, staging_rows, {"created": 0, "updated": 0, "failed": 0}, was_applied=False)
+        job.updated_by = actor_id
+
+    async def cancel_import(self, job_id: UUID, actor_id: UUID | None, audit_context: AuditContext | None = None) -> ImportJob:
+        job = await _get_import_job_for_update(self.session, job_id)
+        if job is None:
+            raise ValueError("import_not_found")
+        if job.status == "CANCELLED":
+            return job
+        if job.status not in {"RECEIVED", "STAGED", "READY_TO_APPLY", "REVIEW_REQUIRED", "PREVIEW_ONLY"}:
+            raise ValueError("import_not_cancellable")
         before = {"status": job.status}
         job.status = "CANCELLED"
         job.updated_by = actor_id
@@ -654,9 +723,11 @@ class ImportService:
             apply_blockers.append("Modo PREVIEW_ONLY nao permite apply.")
         if blocking_conflicts_count:
             apply_blockers.append("Existem conflitos bloqueantes pendentes.")
+        if review_required_count:
+            apply_blockers.append("Existem linhas que exigem revisao humana.")
         if not applicable_rows_count:
             apply_blockers.append("Nao existem linhas aplicaveis.")
-        can_apply = applicable_rows_count > 0 and not blocking_conflicts_count and current_report.get("import_mode") != "PREVIEW_ONLY"
+        can_apply = applicable_rows_count > 0 and not blocking_conflicts_count and not review_required_count and current_report.get("import_mode") != "PREVIEW_ONLY"
         preview = [
             {
                 "row_number": row.row_number,

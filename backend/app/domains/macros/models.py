@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Any
 
 from app.shared.models import Base, EntityMixin, utc_now
-from sqlalchemy import Boolean, DateTime, ForeignKey, Index, String, Text
+from sqlalchemy import Boolean, DateTime, ForeignKey, Index, String, Text, text
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -38,6 +38,13 @@ class MacroGeneration(EntityMixin, Base):
     __table_args__ = (
         Index("ix_macro_generations_template_created", "template_id", "created_at"),
         Index("ix_macro_generations_context", "context_type", "context_id"),
+        Index(
+            "uq_macro_generations_asset_movement",
+            "context_type",
+            "context_id",
+            unique=True,
+            postgresql_where=text("context_type = 'asset_movement' AND context_id IS NOT NULL"),
+        ),
     )
 
     template_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), ForeignKey("macro_templates.id"), nullable=False)

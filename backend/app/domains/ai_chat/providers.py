@@ -488,6 +488,8 @@ class HermesTerminalProvider:
 def build_ai_provider(settings: object) -> AiProvider:
     provider = _normalize_provider_name(getattr(settings, "ai_provider", "mock") or "mock")
     if provider == "mock":
+        if getattr(settings, "mock_provider_allowed", False) is not True:
+            raise AiProviderConfigurationError("ai_provider_not_allowed")
         return MockAiProvider()
     if provider == "gemini":
         return GeminiProvider(settings)
@@ -510,6 +512,8 @@ def build_ai_provider(settings: object) -> AiProvider:
 def get_ai_provider_health(settings: object) -> dict[str, object]:
     provider = _normalize_provider_name(getattr(settings, "ai_provider", "mock") or "mock")
     if provider == "mock":
+        if getattr(settings, "mock_provider_allowed", False) is not True:
+            raise AiProviderConfigurationError("ai_provider_not_allowed")
         return {"provider": "mock", "configured": True, "status": "ok"}
     if provider == "gemini":
         if not (getattr(settings, "ai_gemini_api_key", "") or "").strip():
@@ -668,7 +672,20 @@ def _parse_hermes_output(output: str) -> tuple[str, dict[str, object]]:
 
 
 def _run_hermes_chat(query: str, timeout_seconds: int, source: str) -> tuple[str, dict[str, object]]:
-    command = ["hermes", "chat", "-q", query, "-Q", "--source", source]
+    command = [
+        "hermes",
+        "chat",
+        "-q",
+        query,
+        "-Q",
+        "-t",
+        "todo",
+        "--ignore-rules",
+        "--max-turns",
+        "1",
+        "--source",
+        source,
+    ]
     try:
         completed = subprocess.run(
             command,

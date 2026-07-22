@@ -21,6 +21,7 @@ type Props = {
   onSubmit: () => void | Promise<void>;
   onPickSuggestion: (prompt: string) => void;
   suggestions: ChatPromptSuggestion[];
+  showSuggestions?: boolean;
   disabled?: boolean;
   isSending?: boolean;
   placeholder?: string;
@@ -46,6 +47,7 @@ export function ChatComposer({
   onSubmit,
   onPickSuggestion,
   suggestions,
+  showSuggestions = true,
   disabled = false,
   isSending = false,
   placeholder = "Pergunte sobre ativos, movimentações, macros ou inventário...",
@@ -92,7 +94,7 @@ export function ChatComposer({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_20px_60px_-26px_rgba(0,0,0,0.75)]",
+        "relative overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.035] p-3 md:p-4",
         dragActive && "border-cyan-300/30 bg-cyan-400/10",
         disabled && "opacity-80",
       )}
@@ -134,21 +136,23 @@ export function ChatComposer({
       />
 
       <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center">
-        <div className="flex min-w-0 flex-wrap items-center gap-2">
-          {suggestions.map((suggestion, index) => (
-            <button
-              key={`${suggestion.label}-${index}`}
-              type="button"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-slate-200 transition-colors hover:border-cyan-300/30 hover:bg-cyan-400/10"
-              onClick={() => onPickSuggestion(suggestion.prompt)}
-            >
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-100">
-                <Paperclip className="h-3 w-3" />
-              </span>
-              {suggestion.label}
-            </button>
-          ))}
-        </div>
+        {showSuggestions && suggestions.length > 0 ? (
+          <div className="flex min-w-0 flex-wrap items-center gap-2">
+            {suggestions.map((suggestion, index) => (
+              <button
+                key={`${suggestion.label}-${index}`}
+                type="button"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-slate-200 transition-colors hover:border-cyan-300/30 hover:bg-cyan-400/10"
+                onClick={() => onPickSuggestion(suggestion.prompt)}
+              >
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-100">
+                  <Paperclip className="h-3 w-3" />
+                </span>
+                {suggestion.label}
+              </button>
+            ))}
+          </div>
+        ) : null}
         <div className="text-xs text-slate-400 xl:text-right">
           {isSending ? "Enviando para Hermes..." : "Enter envia. Shift+Enter quebra linha."}
         </div>
@@ -222,31 +226,6 @@ export function ChatComposer({
       ) : null}
 
       <div className="mt-4 space-y-3">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
-              onClick={() => fileInputRef.current?.click()}
-              disabled={disabled}
-            >
-              <Upload className="h-4 w-4" />
-              Anexar arquivos
-            </Button>
-            <span className="text-xs text-slate-400">Arquivos sensíveis são bloqueados antes do envio.</span>
-          </div>
-          <Button
-            type="button"
-            className="rounded-2xl bg-cyan-400 px-5 text-slate-950 shadow-[0_16px_40px_-20px_rgba(34,211,238,0.75)] hover:bg-cyan-300"
-            onClick={() => void submit()}
-            disabled={disabled || isSending || !canSend}
-          >
-            <SendHorizonal className="h-4 w-4" />
-            {isSending ? "Enviando..." : "Enviar"}
-          </Button>
-        </div>
-
         <Textarea
           ref={textareaRef}
           value={value}
@@ -260,8 +239,33 @@ export function ChatComposer({
           placeholder={placeholder}
           rows={3}
           disabled={disabled}
-          className="min-h-[120px] rounded-[24px] border-white/10 bg-slate-950/60 text-slate-50 placeholder:text-slate-500 focus-visible:border-cyan-300/40 focus-visible:ring-cyan-300/20"
+          className="min-h-24 max-h-60 overflow-y-auto rounded-[20px] border-white/10 bg-slate-950/60 text-slate-50 placeholder:text-slate-500 focus-visible:border-cyan-300/40 focus-visible:ring-cyan-300/20"
         />
+
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex min-w-0 flex-wrap items-center gap-2">
+            <Button
+              type="button"
+              variant="outline"
+              className="h-10 rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={disabled}
+            >
+              <Upload className="h-4 w-4" />
+              Anexar arquivos
+            </Button>
+            <span className="hidden text-xs text-slate-400 lg:inline">Arquivos sensíveis são bloqueados antes do envio.</span>
+          </div>
+          <Button
+            type="button"
+            className="h-10 w-full rounded-2xl bg-cyan-400 px-5 text-slate-950 shadow-[0_16px_40px_-20px_rgba(34,211,238,0.75)] hover:bg-cyan-300 sm:w-auto"
+            onClick={() => void submit()}
+            disabled={disabled || isSending || !canSend}
+          >
+            <SendHorizonal className="h-4 w-4" />
+            {isSending ? "Enviando..." : "Enviar"}
+          </Button>
+        </div>
       </div>
     </div>
   );

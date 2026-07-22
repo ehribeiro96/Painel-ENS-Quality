@@ -93,29 +93,31 @@ export function ChatConversationSidebar({
 
   return (
     <>
-      <aside className="flex h-full min-h-0 flex-col rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-[0_20px_60px_-26px_rgba(0,0,0,0.75)]">
-        <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan-200/70">Conversas</p>
-          <h2 className="mt-1 text-xl font-semibold text-slate-50">{conversations.length} conversa{conversations.length === 1 ? "" : "s"}</h2>
-          <p className="mt-1 text-sm text-slate-400">Histórico persistente, renomear e exclusão com confirmação.</p>
-        </div>
+      <aside className="flex h-full min-h-0 w-full min-w-0 flex-col rounded-[28px] border border-white/10 bg-white/[0.04] p-3 shadow-[0_20px_60px_-26px_rgba(0,0,0,0.75)]">
+        <div className="flex min-w-0 items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan-200/70">Conversas</p>
+            <h2 className="mt-1 truncate text-lg font-semibold text-slate-50">{conversations.length} conversa{conversations.length === 1 ? "" : "s"}</h2>
+          </div>
           <Button
             type="button"
-            variant="outline"
-            className="rounded-2xl border-white/10 bg-white/5 text-slate-100 hover:bg-white/10"
+            variant="ghost"
+            size="icon"
+            aria-label="Recarregar"
+            title="Recarregar conversas"
+            className="h-10 w-10 shrink-0 rounded-2xl border border-transparent text-slate-400 hover:border-white/10 hover:bg-white/[0.06] hover:text-slate-100 focus-visible:ring-cyan-300/40"
             onClick={() => void onReload()}
             disabled={loading}
           >
             <RefreshCcw className="h-4 w-4" />
-            Recarregar
+            <span className="sr-only">Recarregar</span>
           </Button>
         </div>
 
-        <div className="mt-3 flex flex-col gap-2">
+        <div className="mt-3 grid gap-2">
           <Button
             type="button"
-            className="rounded-2xl bg-cyan-400 text-slate-950 shadow-[0_16px_40px_-20px_rgba(34,211,238,0.75)] hover:bg-cyan-300"
+            className="h-10 rounded-2xl bg-cyan-400 text-slate-950 shadow-[0_16px_40px_-20px_rgba(34,211,238,0.75)] hover:bg-cyan-300"
             onClick={() => void onNewConversation()}
             disabled={creatingConversation}
           >
@@ -123,7 +125,7 @@ export function ChatConversationSidebar({
             {creatingConversation ? "Criando..." : "Nova conversa"}
           </Button>
 
-          <label className="mt-2 flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-950/50 px-3 py-2 text-slate-300">
+          <label className="flex min-h-10 items-center gap-2 rounded-2xl border border-white/10 bg-slate-950/50 px-3 py-2 text-slate-300 focus-within:border-cyan-300/30 focus-within:ring-2 focus-within:ring-cyan-300/15">
             <Search className="h-4 w-4 shrink-0 text-slate-500" />
             <input
               value={query}
@@ -135,20 +137,8 @@ export function ChatConversationSidebar({
           </label>
         </div>
 
-        <div className="mt-4 rounded-[22px] border border-white/10 bg-slate-950/40 p-3">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-100">
-              <Bot className="h-4 w-4" />
-            </span>
-            <div>
-              <p className="text-sm font-medium text-slate-100">Apoema chat</p>
-              <p className="text-xs text-slate-400">{loading ? "Sincronizando histórico..." : "Sem barra visual no menu"}</p>
-            </div>
-          </div>
-        </div>
-
         <div
-          className="mt-4 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-3 min-h-0 flex-1 space-y-2 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           aria-label="Lista de conversas"
         >
           {filteredConversations.length === 0 ? (
@@ -164,15 +154,15 @@ export function ChatConversationSidebar({
                 <div
                   key={conversation.id}
                   className={cn(
-                    "group flex flex-col gap-2 rounded-[22px] border p-3 transition-colors",
+                    "group rounded-[20px] border p-2.5 transition-colors",
                     selected ? "border-cyan-300/20 bg-cyan-400/10" : "border-white/10 bg-slate-950/35 hover:bg-white/5",
                   )}
                 >
-                  <div className="flex flex-wrap items-start gap-2 max-sm:flex-col max-sm:items-stretch">
+                  <div className="flex items-start gap-2">
                     <button
                       type="button"
                       onClick={() => onSelectConversation(conversation.id)}
-                      className="flex min-w-0 flex-1 items-start gap-3 text-left max-sm:w-full"
+                      className="flex min-w-0 flex-1 items-start gap-3 rounded-xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35"
                       aria-current={selected ? "true" : undefined}
                     >
                       <span className={cn("mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl ring-1 ring-inset", selected ? "bg-cyan-300/15 ring-cyan-200/20" : "bg-white/5 ring-white/10")}>
@@ -180,32 +170,22 @@ export function ChatConversationSidebar({
                       </span>
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-medium text-slate-100">{conversation.title || "Nova conversa"}</span>
-                        <span className="mt-1 block text-xs text-slate-400">{preview}</span>
-                        <span className="mt-1 block text-[11px] uppercase tracking-[0.18em] text-slate-500">
+                        <span className="mt-1 block truncate text-xs text-slate-400">{preview}</span>
+                        <span className="mt-1 block truncate text-[11px] uppercase tracking-[0.18em] text-slate-500">
                           {conversation.model ? `${conversation.model} • ` : ""}
                           {formatConversationTime(conversation.updated_at)}
                         </span>
                       </span>
                     </button>
 
-                    <div className="flex shrink-0 items-center gap-1 max-sm:w-full max-sm:justify-end">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        aria-label="Excluir conversa"
-                        className="h-9 rounded-full border border-rose-300/15 bg-rose-500/10 px-3 text-xs font-medium text-rose-100 hover:bg-rose-500/20 hover:text-rose-50 max-sm:w-9 max-sm:px-0"
-                        onClick={() => setDeleteTarget(conversation)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                        <span className="max-sm:hidden">Excluir</span>
-                      </Button>
-
+                    <div className="flex shrink-0 items-center">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button
                             type="button"
                             variant="ghost"
                             size="icon"
+                            aria-label={`Ações da conversa ${conversation.title || "Nova conversa"}`}
                             className="h-9 w-9 rounded-full text-slate-300 hover:bg-white/10 hover:text-slate-50"
                           >
                             <MoreVertical className="h-4 w-4" />
