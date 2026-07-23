@@ -230,17 +230,19 @@ class ImageProvenanceContractTest(unittest.TestCase):
             )
         self.assertEqual("sha256:test-image", result["image_id"])
 
-    def test_oci_assertion_accepts_honest_dirty_worktree_revision(self) -> None:
+    def test_oci_assertion_rejects_dirty_worktree_revision_for_certification(self) -> None:
         revision = f"worktree-{'a' * 40}-dirty"
         completed = subprocess.CompletedProcess([], 0, stdout=self._inspect_payload(revision=revision), stderr="")
-        with patch("scripts.assert_oci_labels.subprocess.run", return_value=completed):
-            result = assert_labels(
+        with (
+            patch("scripts.assert_oci_labels.subprocess.run", return_value=completed),
+            self.assertRaises(ValueError),
+        ):
+            assert_labels(
                 "sha256:test-image",
                 revision,
                 "v1.0.0-rc2-candidate",
                 "https://github.com/ehribeiro96/Painel-ENS-Quality",
             )
-        self.assertEqual(revision, result["revision"])
 
     def test_oci_assertion_rejects_mismatch_missing_and_unknown(self) -> None:
         cases = (
@@ -351,8 +353,6 @@ class ReleaseTagContractTest(unittest.TestCase):
             "    raise SystemExit(0)\n"
             "if args and args[0] in {'fetch', 'ls-remote'}:\n"
             "    args = [os.environ['TEST_ORIGIN'] if arg == 'origin' else arg for arg in args]\n"
-            "if args and args[0] == 'fetch':\n"
-            "    args.append('refs/tags/*:refs/tags/*')\n"
             "os.execv(os.environ['REAL_GIT'], [os.environ['REAL_GIT'], *args])\n",
             encoding="utf-8",
         )
@@ -414,6 +414,34 @@ class ReleaseTagContractTest(unittest.TestCase):
         subprocess.run(["git", "-C", str(self.work), "tag", "-fa", "divergent", "-m", "local divergence"], check=True, capture_output=True)
         self.assertNotEqual(0, self._run("divergent").returncode)
 
+    def test_forced_tag_fetchspec_cannot_overwrite_divergent_local_tag(self) -> None:
+        subprocess.run(["git", "-C", str(self.work), "tag", "-a", "forced-fetchspec", "-m", "published"], check=True)
+        subprocess.run(
+            ["git", "-C", str(self.work), "push", "origin", "refs/tags/forced-fetchspec"],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(["git", "-C", str(self.work), "tag", "-fa", "forced-fetchspec", "-m", "local divergence"], check=True)
+        subprocess.run(
+            ["git", "-C", str(self.work), "config", "--add", "remote.origin.fetch", "+refs/tags/*:refs/tags/*"],
+            check=True,
+        )
+
+        local_before = subprocess.run(
+            ["git", "-C", str(self.work), "rev-parse", "refs/tags/forced-fetchspec"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+        self.assertNotEqual(0, self._run("forced-fetchspec").returncode)
+        local_after = subprocess.run(
+            ["git", "-C", str(self.work), "rev-parse", "refs/tags/forced-fetchspec"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+        self.assertEqual(local_before, local_after)
+
     def test_different_tag_object_with_same_peeled_commit_fails_closed(self) -> None:
         subprocess.run(["git", "-C", str(self.work), "tag", "-a", "retagged", "-m", "published object"], check=True)
         subprocess.run(["git", "-C", str(self.work), "push", "origin", "refs/tags/retagged"], check=True, capture_output=True)
@@ -447,25 +475,33 @@ class ReleaseTagContractTest(unittest.TestCase):
 
         deployment = (ROOT / "docs/operations/deployment.md").read_text(encoding="utf-8")
         rollback = (ROOT / "docs/operations/rollback.md").read_text(encoding="utf-8")
+        release_integrity = (ROOT / "scripts/release_integrity.sh").read_text(encoding="utf-8")
         for content in (deployment, rollback):
             self.assertIn("set -euo pipefail", content)
             self.assertIn("OCI_REVISION=", content)
             self.assertIn("OCI_VERSION=", content)
             self.assertIn("assert_oci_labels.py", content)
 
-        self.assertIn("git status --porcelain=v1 --untracked-files=all", deployment)
+        self.assertIn("--porcelain=v1", release_integrity)
+        self.assertIn("--untracked-files=all", release_integrity)
+        self.assertIn('if ! git -C "${release_source}"', release_integrity)
         self.assertIn("EVIDENCE_ROOT", deployment)
         self.assertIn("EVIDENCE_ROOT must be outside the repository", deployment)
         self.assertIn("--iidfile", deployment)
+        self.assertIn("create-build-context", deployment)
+        self.assertIn('- <"${BUILD_CONTEXT_TAR}"', deployment)
         self.assertIn("docker compose up -d --no-build --no-deps --force-recreate app", deployment)
         self.assertIn("docker compose ps -q app", deployment)
-        self.assertLess(deployment.index("git status --porcelain=v1"), deployment.index("mkdir -p \"${EVIDENCE_ROOT}\""))
+        self.assertLess(deployment.index("assert-clean"), deployment.index("git switch --detach"))
         self.assertIn("APP_AUTO_MIGRATE=false", rollback)
         self.assertIn("ROLLBACK_IMAGE_ID", rollback)
+        self.assertIn("ROLLBACK_REVISION", rollback)
+        self.assertIn("git worktree add", rollback)
         self.assertIn("docker image tag", rollback)
-        self.assertIn("docker compose up -d --no-build --no-deps --force-recreate app", rollback)
-        self.assertIn("docker compose ps -q app", rollback)
-        self.assertIn("docker inspect \"${CONTAINER_ID}\"", rollback)
+        self.assertIn('--project-directory "${ROLLBACK_SOURCE}"', rollback)
+        self.assertIn('-f "${ROLLBACK_SOURCE}/docker-compose.yml"', rollback)
+        self.assertIn("--no-build", rollback)
+        self.assertIn("assert-container-image", rollback)
 
     def test_evidence_root_contract_distinguishes_inside_and_outside_repository(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

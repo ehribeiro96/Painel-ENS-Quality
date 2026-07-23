@@ -11,7 +11,7 @@ LABELS = {
     "source": "org.opencontainers.image.source",
 }
 CANONICAL_SOURCE = "https://github.com/ehribeiro96/Painel-ENS-Quality"
-REVISION_PATTERN = re.compile(r"(?:[0-9a-f]{40}|[0-9a-f]{64}|worktree-(?:[0-9a-f]{40}|[0-9a-f]{64})-dirty)")
+REVISION_PATTERN = re.compile(r"(?:[0-9a-f]{40}|[0-9a-f]{64})")
 
 
 def inspect_image(image: str) -> tuple[str, dict[str, str]]:

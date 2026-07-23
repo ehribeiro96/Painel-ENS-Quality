@@ -15,35 +15,105 @@ Rollback do Painel ENS Quality / Apoema após rollout interrompido. O objetivo �
 ## Rollback da aplicação
 
 1. Bloquear novas mudanças e registrar versão, health e containers.
-2. Em uma única sessão Bash, selecionar a tag e o image ID anteriores aprovados, validar a proveniência e vincular exatamente essa imagem à referência que o Compose recriará:
+2. Em uma única sessão Bash, selecionar a tag e o image ID anteriores aprovados, derivar a fonte histórica da revisão OCI e vincular exatamente essa imagem ao Compose da mesma revisão:
 
    ```bash
    set -euo pipefail
    : "${TARGET_TAG:?TARGET_TAG is required}"
    : "${ROLLBACK_IMAGE_ID:?ROLLBACK_IMAGE_ID is required from the approved inventory}"
+   : "${EVIDENCE_ROOT:?EVIDENCE_ROOT is required outside the repository}"
+   : "${CHANGE_ID:?CHANGE_ID is required}"
+   RELEASE_SOURCE="$(git rev-parse --show-toplevel)"
+   EVIDENCE_ROOT="$(realpath -m "${EVIDENCE_ROOT}")"
+   case "${EVIDENCE_ROOT}/" in "${RELEASE_SOURCE}/"*) echo "EVIDENCE_ROOT must be outside the repository" >&2; exit 1;; esac
+   mkdir -p "${EVIDENCE_ROOT}"
+
+   ROLLBACK_REVISION="$(
+     docker image inspect \
+       --format '{{ index .Config.Labels "org.opencontainers.image.revision" }}' \
+       "${ROLLBACK_IMAGE_ID}"
+   )"
+   "${RELEASE_SOURCE}/scripts/release_integrity.sh" \
+     validate-revision "${RELEASE_SOURCE}" "${ROLLBACK_REVISION}" >/dev/null
+
    TARGET_COMMIT="$(TARGET_TAG="${TARGET_TAG}" ./scripts/resolve_release_tag.sh)"
    test -n "${TARGET_COMMIT}"
+   test "${TARGET_COMMIT}" = "${ROLLBACK_REVISION}"
+
+   ROLLBACK_SOURCE="$(
+     mktemp -d "${EVIDENCE_ROOT}/rollback-source.XXXXXX"
+   )"
+   git worktree add \
+     --detach \
+     "${ROLLBACK_SOURCE}" \
+     "${ROLLBACK_REVISION}"
+   test "$(
+     git -C "${ROLLBACK_SOURCE}" rev-parse HEAD
+   )" = "${ROLLBACK_REVISION}"
+   "${RELEASE_SOURCE}/scripts/release_integrity.sh" \
+     validate-rollback-source \
+     "${ROLLBACK_SOURCE}" \
+     "${EVIDENCE_ROOT}" \
+     "${ROLLBACK_REVISION}" >/dev/null
+
+   ROLLBACK_OVERRIDE="$(
+     mktemp "${EVIDENCE_ROOT}/rollback-override.XXXXXX.yml"
+   )"
+   chmod 600 "${ROLLBACK_OVERRIDE}"
+   cat >"${ROLLBACK_OVERRIDE}" <<'YAML'
+   services:
+     app:
+       image: ${APP_IMAGE:?APP_IMAGE is required}
+       environment:
+         APP_AUTO_MIGRATE: "false"
+   YAML
+   "${RELEASE_SOURCE}/scripts/release_integrity.sh" \
+     validate-rollback-override "${ROLLBACK_OVERRIDE}"
+
    export APP_AUTO_MIGRATE=false
-   export OCI_REVISION="${TARGET_COMMIT}"
+   export OCI_REVISION="${ROLLBACK_REVISION}"
    export OCI_VERSION="${TARGET_TAG}"
    export OCI_SOURCE="https://github.com/ehribeiro96/Painel-ENS-Quality"
-   IMAGE_REF="$(docker compose config --format json | python3 -c \
-     'import json, sys; print(json.load(sys.stdin)["services"]["app"]["image"])')"
-   test -n "${IMAGE_REF}"
-   export APP_IMAGE="${IMAGE_REF}"
+   [[ "${CHANGE_ID}" =~ ^[A-Za-z0-9_.-]+$ ]]
+   ROLLBACK_IMAGE_REF="painel-ens-quality-app:rollback-${CHANGE_ID}"
    IMAGE_ID="$(docker image inspect "${ROLLBACK_IMAGE_ID}" --format '{{.Id}}')"
    test -n "${IMAGE_ID}"
    python3 scripts/assert_oci_labels.py \
-     "${IMAGE_ID}" "${TARGET_COMMIT}" "${TARGET_TAG}" "${OCI_SOURCE}"
-   docker image tag "${IMAGE_ID}" "${IMAGE_REF}"
-   test "$(docker image inspect "${IMAGE_REF}" --format '{{.Id}}')" = "${IMAGE_ID}"
-   docker compose up -d --no-build --no-deps --force-recreate app
-   CONTAINER_ID="$(docker compose ps -q app)"
-   test -n "${CONTAINER_ID}"
-   test "$(docker inspect "${CONTAINER_ID}" --format '{{.Image}}')" = "${IMAGE_ID}"
+     "${IMAGE_ID}" "${ROLLBACK_REVISION}" "${TARGET_TAG}" "${OCI_SOURCE}"
+   docker image tag "${ROLLBACK_IMAGE_ID}" "${ROLLBACK_IMAGE_REF}"
+   "${RELEASE_SOURCE}/scripts/release_integrity.sh" \
+     assert-image-reference "${ROLLBACK_IMAGE_REF}" "${ROLLBACK_IMAGE_ID}"
+
+   APP_IMAGE="${ROLLBACK_IMAGE_REF}" \
+   APP_AUTO_MIGRATE=false \
+   docker compose \
+     --project-directory "${ROLLBACK_SOURCE}" \
+     -f "${ROLLBACK_SOURCE}/docker-compose.yml" \
+     -f "${ROLLBACK_OVERRIDE}" \
+     up \
+     -d \
+     --no-deps \
+     --no-build \
+     --force-recreate \
+     app
+
+   ROLLED_BACK_CONTAINER_ID="$(
+     APP_IMAGE="${ROLLBACK_IMAGE_REF}" \
+     APP_AUTO_MIGRATE=false \
+     docker compose \
+       --project-directory "${ROLLBACK_SOURCE}" \
+       -f "${ROLLBACK_SOURCE}/docker-compose.yml" \
+       -f "${ROLLBACK_OVERRIDE}" \
+       ps -q app
+   )"
+   test -n "${ROLLED_BACK_CONTAINER_ID}"
+   "${RELEASE_SOURCE}/scripts/release_integrity.sh" \
+     assert-container-image \
+     "${ROLLED_BACK_CONTAINER_ID}" \
+     "${ROLLBACK_IMAGE_ID}"
    ```
 
-   O rollback não reconstrói tags históricas com ferramentas potencialmente ausentes naquela versão. Se a imagem aprovada não existir, não tiver labels certificadas ou divergir da tag, interromper e escalar; não fazer rebuild improvisado.
+   O rollback usa obrigatoriamente `docker-compose.yml` do worktree detached em `ROLLBACK_REVISION`; o checkout atual nunca fornece a configuração histórica. O override externo é mínimo, afeta somente `app`, não contém `build`, volumes, PostgreSQL, Redis ou secrets e força `APP_AUTO_MIGRATE=false`. Se a imagem aprovada não existir, não tiver revision OCI certificada, divergir da tag, não possuir commit/Compose histórico ou produzir container com outro image ID, interromper e escalar; não fazer rebuild improvisado.
 3. Não executar `down`, não remover volumes e não recriar PostgreSQL ou Redis.
 4. Confirmar novamente IDs/`StartedAt` de PostgreSQL e Redis.
 5. Executar health, readiness e smoke autenticado da versão restaurada.

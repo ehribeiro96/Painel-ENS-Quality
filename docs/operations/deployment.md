@@ -20,16 +20,22 @@ Procedimento para promover uma versão aprovada do Painel ENS Quality / Apoema s
    set -euo pipefail
    : "${TARGET_TAG:?TARGET_TAG is required}"
    : "${EVIDENCE_ROOT:?EVIDENCE_ROOT is required outside the repository}"
-   REPO_ROOT="$(git rev-parse --show-toplevel)"
+   RELEASE_SOURCE="$(git rev-parse --show-toplevel)"
+   REPO_ROOT="${RELEASE_SOURCE}"
    EVIDENCE_ROOT="$(realpath -m "${EVIDENCE_ROOT}")"
    case "${EVIDENCE_ROOT}/" in "${REPO_ROOT}/"*) echo "EVIDENCE_ROOT must be outside the repository" >&2; exit 1;; esac
+   ./scripts/release_integrity.sh \
+     assert-clean "${RELEASE_SOURCE}" "${EVIDENCE_ROOT}" >/dev/null
    TARGET_COMMIT="$(TARGET_TAG="${TARGET_TAG}" ./scripts/resolve_release_tag.sh)"
    test -n "${TARGET_COMMIT}"
    printf 'TARGET_TAG=%s\nTARGET_COMMIT=%s\n' "${TARGET_TAG}" "${TARGET_COMMIT}"
    git switch --detach "${TARGET_COMMIT}"
    test "$(git rev-parse HEAD)" = "${TARGET_COMMIT}"
-   test -z "$(git status --porcelain=v1 --untracked-files=all)"
+   ./scripts/release_integrity.sh \
+     assert-clean "${RELEASE_SOURCE}" "${EVIDENCE_ROOT}" >/dev/null
    ```
+
+   O helper valida `EVIDENCE_ROOT` antes de criar qualquer artefato, grava a saída de `git status` em arquivo externo com modo `0600` e testa separadamente o exit code e o tamanho do arquivo. Falha do Git nunca é convertida em worktree limpa. O gate anterior ao `git switch` evita mudar o estado do operador quando já existe drift; a repetição posterior é defesa adicional.
 
 2. Registrar versão atual, containers e health.
 3. Criar e verificar o backup do PostgreSQL pelo procedimento operacional aprovado. Não imprimir conexão, credenciais nem conteúdo do dump.
@@ -54,13 +60,26 @@ Procedimento para promover uma versão aprovada do Painel ENS Quality / Apoema s
    cd ..
    ```
 
-6. Construir a imagem com identidade OCI correspondente à mesma tag/commit e conferir as labels, de forma fail-closed, antes de recriar somente a aplicação:
+6. Criar um contexto imutável diretamente do commit certificado, construir a imagem desse tar via stdin e conferir as labels, de forma fail-closed, antes de recriar somente a aplicação:
 
    ```bash
    export APP_AUTO_MIGRATE=false
    export OCI_REVISION="${TARGET_COMMIT}"
    export OCI_VERSION="${TARGET_TAG}"
    export OCI_SOURCE="https://github.com/ehribeiro96/Painel-ENS-Quality"
+   BUILD_CONTEXT_TAR="$(
+     ./scripts/release_integrity.sh \
+       create-build-context \
+       "${RELEASE_SOURCE}" \
+       "${EVIDENCE_ROOT}" \
+       "${TARGET_COMMIT}"
+   )"
+   ARCHIVED_COMMIT="$(
+     git -C "${RELEASE_SOURCE}" \
+       get-tar-commit-id <"${BUILD_CONTEXT_TAR}"
+   )"
+   test "${ARCHIVED_COMMIT}" = "${TARGET_COMMIT}"
+   sha256sum "${BUILD_CONTEXT_TAR}" | tee "${BUILD_CONTEXT_TAR}.sha256"
    IMAGE_REF="$(docker compose config --format json | python3 -c \
      'import json, sys; print(json.load(sys.stdin)["services"]["app"]["image"])')"
    test -n "${IMAGE_REF}"
@@ -70,7 +89,8 @@ Procedimento para promover uma versão aprovada do Painel ENS Quality / Apoema s
      --file backend/Dockerfile \
      --build-arg "OCI_REVISION=${TARGET_COMMIT}" \
      --build-arg "OCI_VERSION=${TARGET_TAG}" \
-     --build-arg "OCI_SOURCE=${OCI_SOURCE}" .
+     --build-arg "OCI_SOURCE=${OCI_SOURCE}" \
+     - <"${BUILD_CONTEXT_TAR}"
    IMAGE_ID="$(<"${IID_FILE}")"
    test -n "${IMAGE_ID}"
    python3 scripts/assert_oci_labels.py \
@@ -82,7 +102,7 @@ Procedimento para promover uma versão aprovada do Painel ENS Quality / Apoema s
    test "$(docker inspect "${CONTAINER_ID}" --format '{{.Image}}')" = "${IMAGE_ID}"
    ```
 
-   A referência vem do modelo Compose resolvido e `--iidfile` registra o ID devolvido pelo build, sem depender do project name nem de containers anteriores. O assertion exige igualdade exata de revision, version e source, rejeita labels ausentes e rejeita `unknown`. Os defaults `unknown` continuam úteis apenas para builds não certificados.
+   `git archive` incorpora o commit no pax header; o helper rejeita tar vazio, ilegível, divergente ou sem `backend/Dockerfile`, registra SHA-256 e nunca usa worktree ou arquivo untracked como contexto. A referência vem do modelo Compose resolvido e `--iidfile` registra o ID devolvido pelo build, sem depender do project name nem de containers anteriores. O assertion exige igualdade exata de revision, version e source, rejeita labels ausentes, `dirty` e `unknown`. Os defaults `unknown` continuam úteis apenas para builds não certificados.
 
 7. Confirmar que os IDs e `StartedAt` de PostgreSQL e Redis não mudaram.
 8. Confirmar o hash dos arquivos críticos entre host e container.

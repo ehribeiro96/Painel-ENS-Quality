@@ -9,7 +9,6 @@ case "${ORIGIN_URL}" in
   git@github.com:ehribeiro96/Painel-ENS-Quality.git|https://github.com/ehribeiro96/Painel-ENS-Quality|https://github.com/ehribeiro96/Painel-ENS-Quality.git) ;;
   *) printf 'unexpected origin URL\n' >&2; exit 1 ;;
 esac
-git fetch --prune --tags origin >/dev/null
 REMOTE_REFS="$(git ls-remote --exit-code origin "${TAG_REF}" "${TAG_REF}^{}")"
 REMOTE_TAG_OBJECT=""
 REMOTE_COMMIT=""
@@ -22,13 +21,28 @@ while IFS=$'\t' read -r object ref; do
 done <<< "${REMOTE_REFS}"
 test -n "${REMOTE_TAG_OBJECT}"
 test -n "${REMOTE_COMMIT}"
-git rev-parse --verify "${TAG_REF}" >/dev/null
-test "$(git cat-file -t "${TAG_REF}")" = "tag" || {
+
+if git show-ref --verify --quiet "${TAG_REF}"; then
+  test "$(git rev-parse "${TAG_REF}")" = "${REMOTE_TAG_OBJECT}" || {
+    printf 'local release tag diverges from origin: %s\n' "${TARGET_TAG}" >&2
+    exit 1
+  }
+fi
+
+VALIDATION_REF="refs/apoema-release-validation/$$/${TARGET_TAG}"
+git check-ref-format "${VALIDATION_REF}" >/dev/null
+cleanup_validation_ref() {
+  git update-ref -d "${VALIDATION_REF}" >/dev/null 2>&1
+}
+trap cleanup_validation_ref EXIT
+
+git fetch --no-tags origin "${TAG_REF}:${VALIDATION_REF}" >/dev/null
+test "$(git rev-parse "${VALIDATION_REF}")" = "${REMOTE_TAG_OBJECT}"
+test "$(git cat-file -t "${VALIDATION_REF}")" = "tag" || {
   printf 'release tag must be annotated: %s\n' "${TARGET_TAG}" >&2
   exit 1
 }
-test "$(git rev-parse "${TAG_REF}")" = "${REMOTE_TAG_OBJECT}"
-TARGET_COMMIT="$(git rev-parse "${TAG_REF}^{}")"
+TARGET_COMMIT="$(git rev-parse "${VALIDATION_REF}^{}")"
 test -n "${TARGET_COMMIT}"
 test "${TARGET_COMMIT}" = "${REMOTE_COMMIT}"
 git cat-file -e "${TARGET_COMMIT}^{commit}"
