@@ -8,6 +8,14 @@ RUN npm run build
 
 FROM python:3.12-slim
 
+ARG OCI_REVISION=unknown
+ARG OCI_VERSION=unknown
+ARG OCI_SOURCE=unknown
+
+LABEL org.opencontainers.image.revision="${OCI_REVISION}" \
+      org.opencontainers.image.version="${OCI_VERSION}" \
+      org.opencontainers.image.source="${OCI_SOURCE}"
+
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app/backend:/app \
@@ -16,7 +24,6 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     ENS_BUILD_FRONTEND=0
 
 WORKDIR /app
-
 
 COPY backend/requirements.txt /app/backend-requirements.txt
 COPY requirements-legacy.txt /app/legacy-requirements.txt

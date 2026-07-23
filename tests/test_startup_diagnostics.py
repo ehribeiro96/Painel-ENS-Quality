@@ -115,7 +115,7 @@ class StartupDiagnosticsTest(unittest.IsolatedAsyncioTestCase):
         local = Settings(environment="local")
         staging_secret = "a" * 32
 
-        self.assertTrue(local.app_auto_migrate)
+        self.assertFalse(local.app_auto_migrate)
         self.assertTrue(local.enable_ai_chat)
         self.assertFalse(Settings(environment="staging", jwt_secret_key=staging_secret, app_auto_migrate=False).app_auto_migrate)
         with self.assertRaises(ValueError):

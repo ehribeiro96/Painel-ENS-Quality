@@ -129,7 +129,6 @@ class Settings(BaseSettings):
             # by a runtime configuration override.
             if "enable_ai_chat" not in self.model_fields_set:
                 self.enable_ai_chat = True
-            self.app_auto_migrate = True
         elif _is_weak_jwt_secret(self.jwt_secret_key):
             raise ValueError("JWT_SECRET_KEY must be changed outside local")
         if self.environment == "production" and self.admin_password == "<DEFINIR_LOCALMENTE_NO_ENV>":

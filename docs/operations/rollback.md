@@ -15,8 +15,36 @@ Rollback do Painel ENS Quality / Apoema após rollout interrompido. O objetivo �
 ## Rollback da aplicação
 
 1. Bloquear novas mudanças e registrar versão, health e containers.
-2. Selecionar a tag ou imagem anterior aprovada.
-3. Reconstruir/recriar somente o serviço `app`; não executar `down`, não remover volumes e não recriar PostgreSQL ou Redis.
+2. Em uma única sessão Bash, selecionar a tag e o image ID anteriores aprovados, validar a proveniência e vincular exatamente essa imagem à referência que o Compose recriará:
+
+   ```bash
+   set -euo pipefail
+   : "${TARGET_TAG:?TARGET_TAG is required}"
+   : "${ROLLBACK_IMAGE_ID:?ROLLBACK_IMAGE_ID is required from the approved inventory}"
+   TARGET_COMMIT="$(TARGET_TAG="${TARGET_TAG}" ./scripts/resolve_release_tag.sh)"
+   test -n "${TARGET_COMMIT}"
+   export APP_AUTO_MIGRATE=false
+   export OCI_REVISION="${TARGET_COMMIT}"
+   export OCI_VERSION="${TARGET_TAG}"
+   export OCI_SOURCE="https://github.com/ehribeiro96/Painel-ENS-Quality"
+   IMAGE_REF="$(docker compose config --format json | python3 -c \
+     'import json, sys; print(json.load(sys.stdin)["services"]["app"]["image"])')"
+   test -n "${IMAGE_REF}"
+   export APP_IMAGE="${IMAGE_REF}"
+   IMAGE_ID="$(docker image inspect "${ROLLBACK_IMAGE_ID}" --format '{{.Id}}')"
+   test -n "${IMAGE_ID}"
+   python3 scripts/assert_oci_labels.py \
+     "${IMAGE_ID}" "${TARGET_COMMIT}" "${TARGET_TAG}" "${OCI_SOURCE}"
+   docker image tag "${IMAGE_ID}" "${IMAGE_REF}"
+   test "$(docker image inspect "${IMAGE_REF}" --format '{{.Id}}')" = "${IMAGE_ID}"
+   docker compose up -d --no-build --no-deps --force-recreate app
+   CONTAINER_ID="$(docker compose ps -q app)"
+   test -n "${CONTAINER_ID}"
+   test "$(docker inspect "${CONTAINER_ID}" --format '{{.Image}}')" = "${IMAGE_ID}"
+   ```
+
+   O rollback não reconstrói tags históricas com ferramentas potencialmente ausentes naquela versão. Se a imagem aprovada não existir, não tiver labels certificadas ou divergir da tag, interromper e escalar; não fazer rebuild improvisado.
+3. Não executar `down`, não remover volumes e não recriar PostgreSQL ou Redis.
 4. Confirmar novamente IDs/`StartedAt` de PostgreSQL e Redis.
 5. Executar health, readiness e smoke autenticado da versão restaurada.
 
@@ -62,4 +90,5 @@ O rollback termina apenas com:
 - readiness verde;
 - PostgreSQL e Redis preservados;
 - smoke autenticado aprovado;
+- identidade OCI da imagem restaurada correspondente à release aprovada;
 - incidente e decisão sobre a migration registrados.
