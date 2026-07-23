@@ -28,9 +28,14 @@ services:
       start_period: 5s
 
   app:
+    image: "${APP_IMAGE:-painel-ens-quality-app}"
     build:
       context: .
       dockerfile: backend/Dockerfile
+      args:
+        OCI_REVISION: ${OCI_REVISION:-unknown}
+        OCI_VERSION: ${OCI_VERSION:-unknown}
+        OCI_SOURCE: ${OCI_SOURCE:-unknown}
     env_file:
       - .env
     environment:
@@ -41,7 +46,7 @@ services:
       DATABASE_URL: postgresql+asyncpg://itam:itam@postgres:5432/itam
       REDIS_URL: redis://redis:6379/0
       APP_STARTUP_CHECKS: "1"
-      APP_AUTO_MIGRATE: "0"
+      APP_AUTO_MIGRATE: "${APP_AUTO_MIGRATE:-false}"
       ADMIN_EMAIL: ${ADMIN_EMAIL:-estevao.quality@ens.edu.br}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD locally before starting the validation/runtime stack}
       ADMIN_NAME: ${ADMIN_NAME:-Estevão Ribeiro}

@@ -112,14 +112,21 @@ class StartupDiagnosticsTest(unittest.IsolatedAsyncioTestCase):
         self.assertNotIn("redis_url", snapshot)
 
     def test_settings_rejects_weak_jwt_secret_outside_local_and_keeps_local_defaults(self) -> None:
-        local = Settings(environment="local")
+        local = Settings(environment="local", _env_file=None)
         staging_secret = "a" * 32
 
-        self.assertTrue(local.app_auto_migrate)
+        self.assertFalse(local.app_auto_migrate)
         self.assertTrue(local.enable_ai_chat)
-        self.assertFalse(Settings(environment="staging", jwt_secret_key=staging_secret, app_auto_migrate=False).app_auto_migrate)
+        self.assertFalse(
+            Settings(
+                environment="staging",
+                jwt_secret_key=staging_secret,
+                app_auto_migrate=False,
+                _env_file=None,
+            ).app_auto_migrate
+        )
         with self.assertRaises(ValueError):
-            Settings(environment="staging", jwt_secret_key="change-me")
+            Settings(environment="staging", jwt_secret_key="change-me", _env_file=None)
 
     async def test_startup_validation_rejects_weak_jwt_secret_outside_local(self) -> None:
         original_settings = startup.settings
